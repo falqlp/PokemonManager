@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { AppModule } from './app.module';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { PokemonModel } from './pokemon.model';
+
 
 
 @Component({
@@ -7,6 +9,14 @@ import { AppModule } from './app.module';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'pokemon-manager';
+export class AppComponent implements OnInit{
+  protected pokemons: PokemonModel[]=[];
+
+  constructor(protected http:HttpClient){}
+  public ngOnInit(): void {
+    this.http.get('/api/pokemon').subscribe((res: PokemonModel)=>this.pokemons = res)
+  }
+  protected click(): void {
+    
+  }
 }
