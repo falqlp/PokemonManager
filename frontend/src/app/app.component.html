@@ -1,3 +1,5 @@
 <div>test</div>
 <button (click)="click()">test</button>
-<div><span></span></div>
+<div *ngFor="let pokemon of pokemons">
+    <pokemon-panel [pokemon]="pokemon"></pokemon-panel>
+</div>

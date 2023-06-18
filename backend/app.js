@@ -27,16 +27,16 @@ mongoose.connect(mongoURI, mongooseOptions)
   });
   app.get('/api/pokemon', (req, res, next)=>{
     // res.status(200).json({message: 'ça marche !'});
-    Pokemon.find().then((pokemons)=>res.status(200).json(pokemons).catch((error)=>console.log(error)));
+    Pokemon.find().then((pokemons)=>res.status(200).json(pokemons)).catch((error)=>console.log(error));
   })
 
-  const pikachu = new Pokemon({
-    id:25,
-    name:'pikachu',
-    types:['elec'],
+  const bulbizarre = new Pokemon({
+    id:1,
+    name:'bulbizarre',
+    types:['plante', 'poison'],
   });
-  // pikachu.save().then(()=>console.log('save')).catch((error)=>console.log('error: ', error));
+  bulbizarre.save().then(()=>console.log('save')).catch((error)=>console.log('error: ', error));
   // Pokemon.find().then((res)=>console.log(res));
-  Pokemon.findOne({id:25}).then((res)=>console.log(res))
+  // Pokemon.findOne({id:25}).then((res)=>console.log(res))
 
 module.exports = app;

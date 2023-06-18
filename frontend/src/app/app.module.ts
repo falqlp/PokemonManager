@@ -5,10 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PokemonPanelComponent } from './pokemon-panel/pokemon-panel.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PokemonPanelComponent
   ],
   imports: [
     BrowserModule,

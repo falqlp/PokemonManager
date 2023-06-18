@@ -14,9 +14,11 @@ export class AppComponent implements OnInit{
 
   constructor(protected http:HttpClient){}
   public ngOnInit(): void {
-    this.http.get('/api/pokemon').subscribe((res: PokemonModel)=>this.pokemons = res)
+    this.http.get<PokemonModel[]>('/api/pokemon').subscribe((res)=>{
+      this.pokemons = res;
+    })
   }
   protected click(): void {
-    
+    console.log(this.pokemons[0]);
   }
 }
