@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const Pokemon = require('./models/pokemon');
 const mongoose = require('mongoose');
+const { error } = require('console');
 
 const mongoURI = 'mongodb://127.0.0.1:27017/PokemonManager';
 
@@ -19,9 +20,12 @@ mongoose.connect(mongoURI, mongooseOptions)
   });
 
   const pikachu = new Pokemon({
+    id:25,
     name:'pikachu',
-    firstType:'elec',
+    types:['elec'],
   });
-  Pokemon.find().then((res)=>console.log(res))
+  // pikachu.save().then(()=>console.log('save')).catch((error)=>console.log('error: ', error));
+  // Pokemon.find().then((res)=>console.log(res));
+  Pokemon.findOne({id:25}).then((res)=>console.log(res))
 
 module.exports = app;

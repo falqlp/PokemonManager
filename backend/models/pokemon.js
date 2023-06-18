@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const pokemonSchema = mongoose.Schema({
+  id: {type: Number, required:true, unique:true},
   name: { type: String, required: true, unique: true },
-  firstType: { type: String, required: true },
-  secondType: { type: String, required: false },
+  types: [{ type: String }],
 });
 
 module.exports = mongoose.model('Pokemon', pokemonSchema);
