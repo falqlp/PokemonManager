@@ -1,0 +1,59 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "import"],
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "error",
+    "@typescript-eslint/no-restricted-imports": [
+      "error",
+      {
+        "name": "angular",
+        "message": "do not use AngularJS",
+        "allowTypeImports": true
+      }
+    ],
+    "linebreak-style": "off",
+    "no-param-reassign": "off",
+    "no-console": "warn",
+    "no-use-before-define": "warn",
+    "max-len": "off",
+    "eqeqeq": "warn",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "vars-on-top": "warn",
+    "no-restricted-globals": [
+      "error",
+      {
+        "name": "document",
+        "message": "do not use DOM"
+      }
+    ],
+    "curly": ["error", "all"],
+    "lines-between-class-members": [
+      "error",
+      "always",
+      { "exceptAfterSingleLine": true }
+    ],
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "js": "never"
+      }
+    ]
+  }
+}
