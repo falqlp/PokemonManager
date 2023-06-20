@@ -1,9 +1,12 @@
 @import "./styles/buttons/btn-primary.scss";
-@import "./styles/buttons/btn.scss";
+@import "./styles/buttons/btn-default.scss";
+@import "./styles/buttons/btn-success.scss";
+@import "./styles/buttons/btn-danger.scss";
 
 body {
   background-color: #151230;
   color: white;
-  border-color: white;
+  border-color: #c2c3c7;
   font-size: 20px;
+  font-family: "Poppins", sans-serif;
 }

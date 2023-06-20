@@ -1,21 +1,24 @@
 .pokemon-panel {
-  border: 1px solid;
+  border: 2px solid;
   min-width: 200px;
   width: fit-content;
   border-radius: 10px;
+  background-color: #0f0e0e;
   &__header {
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid;
+    align-items: center;
+    border-bottom: 2px solid;
+    min-height: 40px;
     width: 100%;
-    border-radius: 10px 10px 0 0;
+    border-radius: 7px 7px 0 0;
   }
   &__content {
     display: flex;
     flex-direction: column;
     &--type {
       display: flex;
-      border-bottom: 1px solid;
+      border-bottom: 2px solid;
       label {
         text-align: center;
         flex: 1;
@@ -28,10 +31,10 @@
     }
   }
 }
-.elec {
-  background-color: yellow;
+.Electrique {
+  background-color: #fcfc36;
   color: black;
 }
-.plante {
-  background-color: green;
+.Plante {
+  background-color: #148314;
 }
