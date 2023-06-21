@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PokemonBaseModel } from '../pokemon.model';
 
 @Component({
@@ -6,6 +6,18 @@ import { PokemonBaseModel } from '../pokemon.model';
   templateUrl: './pokemon-panel.component.html',
   styleUrls: ['./pokemon-panel.component.scss'],
 })
-export class PokemonPanelComponent {
-  @Input() public pokemon?: PokemonBaseModel;
+export class PokemonPanelComponent implements OnInit {
+  @Input() public pokemon: PokemonBaseModel;
+  protected imgNumber: string;
+
+  public ngOnInit(): void {
+    this.setImgNumber();
+  }
+
+  protected setImgNumber(): void {
+    if (!this.pokemon) {
+      return;
+    }
+    this.imgNumber = this.pokemon.id.toString().padStart(3, '0');
+  }
 }

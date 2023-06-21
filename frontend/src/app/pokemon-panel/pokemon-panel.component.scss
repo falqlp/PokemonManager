@@ -1,5 +1,4 @@
 .pokemon-panel {
-  border: 2px solid;
   min-width: 200px;
   width: fit-content;
   border-radius: 10px;
@@ -8,7 +7,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 2px solid;
     min-height: 40px;
     width: 100%;
     border-radius: 7px 7px 0 0;
@@ -18,11 +16,8 @@
     flex-direction: column;
     &--type {
       display: flex;
-      border-bottom: 2px solid;
-      label {
-        text-align: center;
-        flex: 1;
-      }
+      justify-content: center;
+      border-bottom: 3px solid;
     }
     &--stats {
       display: flex;
@@ -31,7 +26,7 @@
     }
   }
 }
-.Electrique {
+.Électrik {
   background-color: #fcfc36;
   color: black;
 }

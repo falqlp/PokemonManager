@@ -1,8 +1,9 @@
-<div>test</div>
 <button class="btn btn-default" (click)="click()">Default</button>
 <button class="btn btn-primary">Primary</button>
 <button class="btn btn-success">Success</button>
 <button class="btn btn-danger">Danger</button>
-<div *ngFor="let pokemon of pokemonBases">
-  <pokemon-panel [pokemon]="pokemon"></pokemon-panel>
+<div class="flex">
+  <div *ngFor="let pokemon of pokemonBases">
+    <pokemon-panel [pokemon]="pokemon"></pokemon-panel>
+  </div>
 </div>
