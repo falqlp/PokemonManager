@@ -1,7 +1,7 @@
 import type { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import type { PokemonModel } from './pokemon.model';
+import type { PokemonBaseModel } from './pokemon.model';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +9,16 @@ import type { PokemonModel } from './pokemon.model';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  protected pokemons: PokemonModel[] = [];
+  protected pokemonBases: PokemonBaseModel[] = [];
 
   constructor(protected http: HttpClient) {}
   public ngOnInit(): void {
-    this.http.get<PokemonModel[]>('/api/pokemon').subscribe((res) => {
-      this.pokemons = res;
+    this.http.get<PokemonBaseModel[]>('/api/pokemonBase').subscribe((res) => {
+      this.pokemonBases = res;
     });
   }
 
   protected click(): void {
-    console.log(this.pokemons[0]);
+    console.log(this.pokemonBases[0]);
   }
 }

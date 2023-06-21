@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const Pokemon = require("./models/pokemon");
+const PokemonBase = require("./models/pokemonBase");
 const mongoose = require("mongoose");
 const { error } = require("console");
 
@@ -20,6 +21,28 @@ mongoose
     console.error("Erreur de connexion à MongoDB", error);
   });
 
+Pokemon.find()
+  .then((pokemons) => {
+    console.log(pokemons);
+    pokemons.forEach((pokemon) => {
+      let newPokemon = new PokemonBase({
+        id: pokemon.id,
+        name: pokemon.name,
+        types: pokemon.types,
+        baseStats: {
+          hp: pokemon.hp,
+          atk: pokemon.atk,
+          def: pokemon.def,
+          spAtk: pokemon.spAtk,
+          spDef: pokemon.spDef,
+          spe: pokemon.spe,
+        },
+      });
+      newPokemon.save().then(console.log("ok"));
+    });
+  })
+  .catch((error) => console.log(error));
+
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -32,14 +55,14 @@ app.use((req, res, next) => {
   );
   next();
 });
-app.get("/api/pokemon", (req, res, next) => {
-  Pokemon.find()
+app.get("/api/pokemonBase", (req, res, next) => {
+  PokemonBase.find()
     .then((pokemons) => res.status(200).json(pokemons))
     .catch((error) => console.log(error));
 });
 
-app.get("/api/pokemon/:id", (req, res, next) => {
-  Pokemon.find()
+app.get("/api/pokemonBase/:id", (req, res, next) => {
+  PokemonBase.find()
     .then((pokemons) => res.status(200).json(pokemons))
     .catch((error) => console.log(error));
 });

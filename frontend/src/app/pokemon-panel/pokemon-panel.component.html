@@ -7,12 +7,12 @@
       <label *ngFor="let type of pokemon.types">{{ type }}</label>
     </div>
     <div class="pokemon-panel__content--stats">
-      <span>PV: {{ pokemon.hp }}</span>
-      <span>Attaque: {{ pokemon.atk }}</span>
-      <span>Defense: {{ pokemon.def }}</span>
-      <span>Attaque Speciale: {{ pokemon.spAtk }}</span>
-      <span>Defense Speciale: {{ pokemon.spDef }}</span>
-      <span>Vitesse: {{ pokemon.spe }}</span>
+      <span>PV: {{ pokemon.baseStats.hp }}</span>
+      <span>Attaque: {{ pokemon.baseStats.atk }}</span>
+      <span>Defense: {{ pokemon.baseStats.def }}</span>
+      <span>Attaque Speciale: {{ pokemon.baseStats.spAtk }}</span>
+      <span>Defense Speciale: {{ pokemon.baseStats.spDef }}</span>
+      <span>Vitesse: {{ pokemon.baseStats.spe }}</span>
     </div>
   </div>
 </div>

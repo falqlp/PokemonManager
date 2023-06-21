@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PokemonModel } from '../pokemon.model';
+import { PokemonBaseModel } from '../pokemon.model';
 
 @Component({
   selector: 'pokemon-panel',
@@ -7,5 +7,5 @@ import { PokemonModel } from '../pokemon.model';
   styleUrls: ['./pokemon-panel.component.scss'],
 })
 export class PokemonPanelComponent {
-  @Input() public pokemon?: PokemonModel;
+  @Input() public pokemon?: PokemonBaseModel;
 }

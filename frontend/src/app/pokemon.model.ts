@@ -1,11 +1,13 @@
-export interface PokemonModel {
+export interface PokemonBaseModel {
   id: number;
   name: string;
   types: string[];
-  hp: number;
-  spe: number;
-  atk: number;
-  def: number;
-  spAtk: number;
-  spDef: number;
+  baseStats: {
+    hp: number;
+    spe: number;
+    atk: number;
+    def: number;
+    spAtk: number;
+    spDef: number;
+  };
 }
