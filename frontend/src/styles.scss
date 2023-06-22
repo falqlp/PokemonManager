@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./styles/buttons/btn-primary.scss";
+@import "./styles/buttons/btn-default.scss";
+@import "./styles/buttons/btn-success.scss";
+@import "./styles/buttons/btn-danger.scss";
+
+body {
+  background-color: #151230;
+  color: white;
+  border-color: #c2c3c7;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.type-displayText {
+  width: 80px;
+  height: 16px;
+  padding: 5px;
+}
+
+.img-pokemon {
+  width: 300px;
+  height: 300px;
+}

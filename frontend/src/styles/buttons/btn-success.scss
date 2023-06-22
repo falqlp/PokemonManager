@@ -1,0 +1,22 @@
+.btn-success {
+  width: fit-content;
+  min-width: 100px;
+  height: 35px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 2px solid #156d19;
+  box-shadow: 0px 0px 20px -20px;
+  cursor: pointer;
+  background-color: #1c8d22;
+  transition: all 0.2s ease-in-out 0ms;
+  user-select: none;
+}
+
+.btn-success:hover {
+  background-color: #209226;
+  box-shadow: 0px 0px 20px -18px;
+}
+
+.btn-success:active {
+  transform: scale(0.95);
+}

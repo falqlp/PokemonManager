@@ -1,24 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { PokemonModel } from './pokemon.model';
-
-
+import { Component } from '@angular/core';
+import type { PokemonBaseModel } from './pokemon.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit{
-  protected pokemons: PokemonModel[]=[];
+export class AppComponent {
+  protected pokemonBases: PokemonBaseModel[] = [];
 
-  constructor(protected http:HttpClient){}
-  public ngOnInit(): void {
-    this.http.get<PokemonModel[]>('/api/pokemon').subscribe((res)=>{
-      this.pokemons = res;
-    })
-  }
   protected click(): void {
-    console.log(this.pokemons[0]);
+    console.log(this.pokemonBases[0]);
+  }
+
+  protected onPokemonsChanged(pokemons: PokemonBaseModel[]): void {
+    this.pokemonBases = pokemons;
   }
 }

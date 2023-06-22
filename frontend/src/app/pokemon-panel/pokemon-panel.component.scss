@@ -1,36 +1,35 @@
-.pokemon-panel{
-    border:black 1px solid;
-    min-width: 200px;
-    width: fit-content;
-    border-radius: 10px;
-    &__header{
-        display: flex;
-        justify-content: center;
-        border-bottom: black 1px solid;
-        width: 100%;
-        border-radius: 10px 10px 0 0;
+.pokemon-panel {
+  min-width: 200px;
+  width: fit-content;
+  border-radius: 10px;
+  background-color: #0f0e0e;
+  &__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px;
+    width: 100%;
+    border-radius: 7px 7px 0 0;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    &--type {
+      display: flex;
+      justify-content: center;
+      border-bottom: 3px solid;
     }
-    &__content{
-        display: flex;
-        flex-direction: column;
-        &--type{
-            display: flex;
-            border-bottom: black 1px solid;
-            label{
-                text-align: center;
-                flex: 1;
-            }
-        }
-        &--stats{
-            display: flex;
-            flex-direction: column;
-            padding: 5px;
-        }
+    &--stats {
+      display: flex;
+      flex-direction: column;
+      padding: 5px;
     }
+  }
 }
-.elec{
-    background-color: yellow;
+.Électrik {
+  background-color: #fcfc36;
+  color: black;
 }
-.plante{
-    background-color: green;
+.Plante {
+  background-color: #148314;
 }

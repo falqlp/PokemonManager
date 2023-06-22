@@ -1,5 +1,10 @@
-<div>test</div>
-<button (click)="click()">test</button>
-<div *ngFor="let pokemon of pokemons">
+<button class="btn btn-default" (click)="click()">Default</button>
+<button class="btn btn-primary">Primary</button>
+<button class="btn btn-success">Success</button>
+<button class="btn btn-danger">Danger</button>
+<search-input (pokemonsChanged)="onPokemonsChanged($event)"></search-input>
+<div class="flex">
+  <div *ngFor="let pokemon of pokemonBases">
     <pokemon-panel [pokemon]="pokemon"></pokemon-panel>
+  </div>
 </div>
