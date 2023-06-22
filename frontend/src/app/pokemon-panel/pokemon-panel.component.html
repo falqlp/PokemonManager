@@ -6,14 +6,14 @@
     <img
       class="img-pokemon"
       src="assets/images/max-size/{{ imgNumber }}.png"
-      alt="{{ pokemon.name }}"
+      [alt]="pokemon.name"
     />
     <div class="pokemon-panel__content--type">
       <img
         *ngFor="let type of pokemon.types"
         class="type-displayText"
         src="assets/types/displayText/{{ type }}.png"
-        alt="{{ type }}"
+        [alt]="type"
       />
     </div>
     <div class="pokemon-panel__content--stats">
