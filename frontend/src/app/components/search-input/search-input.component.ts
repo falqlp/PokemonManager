@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   Subject,
   debounceTime,
@@ -8,23 +8,32 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { PokemonBaseModel } from '../pokemon.model';
+import { PokemonBaseModel } from '../../pokemon.model';
 
 @Component({
   selector: 'search-input',
   templateUrl: './search-input.component.html',
   styleUrls: ['./search-input.component.scss'],
 })
-export class SearchInputComponent {
-  @Output() pokemonsChanged = new EventEmitter<PokemonBaseModel[]>();
+export class SearchInputComponent implements OnInit {
+  @Output() public pokemonsChanged = new EventEmitter<PokemonBaseModel[]>();
 
-  protected pokemons: PokemonBaseModel[];
   protected searchSubject = new Subject<string>();
 
-  constructor(private http: HttpClient) {
+  public constructor(private http: HttpClient) {}
+
+  public ngOnInit(): void {
+    this.searchPokemon();
+  }
+
+  protected inputType(event: KeyboardEvent): void {
+    this.searchSubject.next((event.target as HTMLInputElement).value);
+  }
+
+  protected searchPokemon(): void {
     this.searchSubject
       .pipe(
-        debounceTime(300),
+        debounceTime(100),
         distinctUntilChanged(),
         tap((query: string) => {
           if (!query) {
@@ -39,9 +48,5 @@ export class SearchInputComponent {
       .subscribe((response: PokemonBaseModel[]) => {
         this.pokemonsChanged.emit(response);
       });
-  }
-
-  search(event: KeyboardEvent): void {
-    this.searchSubject.next((event.target as HTMLInputElement).value);
   }
 }

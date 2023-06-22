@@ -4,11 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PokemonPanelComponent } from './pokemon-panel/pokemon-panel.component';
-import { SearchInputComponent } from './search-input/search-input.component';
+import { PokemonPanelComponent } from './components/pokemon-panel/pokemon-panel.component';
+import { SearchInputComponent } from './components/search-input/search-input.component';
+import { CooldownButtonComponent } from './components/cooldown-button/cooldown-button.component';
 
 @NgModule({
-  declarations: [AppComponent, PokemonPanelComponent, SearchInputComponent],
+  declarations: [AppComponent, PokemonPanelComponent, SearchInputComponent, CooldownButtonComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

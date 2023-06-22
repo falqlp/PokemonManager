@@ -1,0 +1,19 @@
+.button-container {
+  position: relative;
+  width: 150px; // Choisissez une largeur appropriée pour votre bouton
+  height: 150px; // Choisissez une hauteur appropriée pour votre bouton
+}
+
+button {
+  width: 100%;
+  height: 100%;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); // La couleur de la barre de progression
+  pointer-events: none;
+}
