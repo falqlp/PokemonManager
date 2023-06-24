@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const pokemonBaseRoutes = require("./routes/pokemon/pokemonBaseRoute");
 const pokemonRoutes = require("./routes/pokemon/pokemonRoute");
 const trainerRoutes = require("./routes/trainerRoute");
+const bodyParser = require("body-parser");
 
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
@@ -36,6 +37,15 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+app.use((req, res, next) => {
+  bodyParser.json();
+  next();
+}); // pour analyser les requêtes de type application/json
+app.use((req, res, next) => {
+  bodyParser.urlencoded({ extended: true });
+  next();
+}); // pour analyser les requêtes de type application/x-www-form-urlencoded
 
 app.use("/api/pokemonBase", pokemonBaseRoutes);
 app.use("/api/pokemon", pokemonRoutes);

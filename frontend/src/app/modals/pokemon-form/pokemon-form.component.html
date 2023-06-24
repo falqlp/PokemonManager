@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Formulaire Pokémon</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="pokemonForm">
+    <mat-form-field>
+      <label>Pokémon</label>
+      <input
+        type="text"
+        matInput
+        formControlName="pokemon"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option
+          *ngFor="let pokemon of filteredPokemons | async"
+          [value]="pokemon.name"
+        >
+          {{ pokemon.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field>
+      <label>Surnom</label>
+      <input matInput formControlName="nickname" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <label>Niveau</label>
+      <input matInput formControlName="level" type="number" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="btn-danger" mat-dialog-close>Annuler</button>
+  <button
+    class="btn-success"
+    [disabled]="!pokemonForm.valid"
+    (click)="submit()"
+  >
+    Soumettre
+  </button>
+</mat-dialog-actions>

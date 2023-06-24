@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PokemonFormComponent } from 'src/app/modals/pokemon-form/pokemon-form.component';
+import { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
-import { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 
 @Component({
   selector: 'app-home',
@@ -9,15 +11,25 @@ import { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  protected pokemonBases: PokemonBaseModel[] = [];
+  protected pokemonBases: PokemonBaseModel[];
+  protected trainerPokemon: PokemonBaseModel[];
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient, protected dialog: MatDialog) {}
 
   protected click(): void {
-    console.log(this.pokemonBases[0]);
+    this.dialog
+      .open(PokemonFormComponent)
+      .afterClosed()
+      .subscribe((pokemon) => this.createPokemon(pokemon));
   }
 
   protected onPokemonsChanged(pokemons: PokemonBaseModel[]): void {
     this.pokemonBases = pokemons;
+  }
+
+  protected createPokemon(pokemon: PokemonModel): void {
+    this.http
+      .post<PokemonModel>('api/pokemon', pokemon)
+      .subscribe((pokemon) => console.log(pokemon));
   }
 }
