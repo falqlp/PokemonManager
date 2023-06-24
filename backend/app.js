@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
-const Pokemon = require("./models/pokemon");
-const PokemonBase = require("./models/pokemonBase");
+const Pokemon = require("./models/PokemonModels/pokemon");
+const PokemonBase = require("./models/PokemonModels/pokemonBase");
 const mongoose = require("mongoose");
-const { error } = require("console");
-const pokemon = require("./models/pokemon");
+const pokemonBaseRoutes = require("./routes/pokemon/pokemonBaseRoute");
+const pokemonRoutes = require("./routes/pokemon/pokemonRoute");
+const trainerRoutes = require("./routes/trainerRoute");
 
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
@@ -34,31 +35,10 @@ app.use((req, res, next) => {
   );
   next();
 });
-app.get("/api/pokemonBase", (req, res, next) => {
-  PokemonBase.find()
-    .sort({ id: 1 })
-    .then((pokemons) => res.status(200).json(pokemons))
-    .catch((error) => console.log(error));
-});
 
-app.get("/api/pokemonBase/search/:name", (req, res, next) => {
-  if (req.params.name) {
-    const regex = new RegExp("^" + req.params.name, "i");
-    PokemonBase.find({ name: regex })
-      .sort({ id: 1 })
-      .limit(5)
-      .then((pokemons) => res.status(200).json(pokemons))
-      .catch((error) => console.log(error));
-  } else {
-    res.status(200).json([]);
-  }
-});
-
-app.get("/api/pokemonBase/:id", (req, res, next) => {
-  PokemonBase.find()
-    .then((pokemons) => res.status(200).json(pokemons))
-    .catch((error) => console.log(error));
-});
+app.use("/api/pokemonBase", pokemonBaseRoutes);
+app.use("/api/pokemon", pokemonRoutes);
+app.use("/api/trainer", trainerRoutes);
 
 // const bulbizarre = new Pokemon({
 //   id:1,

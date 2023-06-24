@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
-const pokemonSchema = mongoose.Schema({
-  id: { type: Number, required: true, unique: true },
-  name: { type: String, required: true, unique: true },
-  types: [{ type: String }],
+const pokemonStatsSchema = mongoose.Schema({
   hp: { type: Number, required: true },
   atk: { type: Number, required: true },
   def: { type: Number, required: true },
@@ -12,4 +9,4 @@ const pokemonSchema = mongoose.Schema({
   spe: { type: Number, required: true },
 });
 
-module.exports = mongoose.model("Pokemon", pokemonSchema);
+module.exports = mongoose.model("PokemonStats", pokemonStatsSchema);

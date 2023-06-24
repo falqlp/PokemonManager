@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import type { PokemonBaseModel } from './pokemon.model';
+import type { PokemonBaseModel } from './models/PokemonModels/pokemonBase.model';
 
 @Component({
   selector: 'app-root',

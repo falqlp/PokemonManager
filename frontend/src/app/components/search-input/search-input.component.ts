@@ -8,7 +8,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { PokemonBaseModel } from '../../pokemon.model';
+import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 
 @Component({
   selector: 'search-input',
