@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const Pokemon = require("./models/PokemonModels/pokemon");
 const PokemonBase = require("./models/PokemonModels/pokemonBase");
+const Trainer = require("./models/TrainerModels/trainer");
 const mongoose = require("mongoose");
 const pokemonBaseRoutes = require("./routes/pokemon/pokemonBaseRoute");
 const pokemonRoutes = require("./routes/pokemon/pokemonRoute");

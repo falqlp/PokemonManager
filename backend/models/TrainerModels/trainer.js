@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
 const trainerSchema = new mongoose.Schema({
-  _id: { type: String },
-  name: { type: String, require: true },
+  name: { type: String, require: true, unique: true },
   pokemons: [{ type: String }],
 });
 

@@ -23,7 +23,7 @@ router.get("/search/:name", (req, res, next) => {
 });
 
 router.get("/:id", (req, res, next) => {
-  PokemonBase.find()
+  PokemonBase.findOne({ id: req.params.id })
     .then((pokemons) => res.status(200).json(pokemons))
     .catch((error) => console.log(error));
 });

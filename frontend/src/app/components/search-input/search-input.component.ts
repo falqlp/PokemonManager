@@ -33,7 +33,7 @@ export class SearchInputComponent implements OnInit {
   protected searchPokemon(): void {
     this.searchSubject
       .pipe(
-        debounceTime(100),
+        debounceTime(200),
         distinctUntilChanged(),
         tap((query: string) => {
           if (!query) {
