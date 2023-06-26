@@ -10,5 +10,9 @@
 </div>
 <cooldown-button></cooldown-button>
 <div class="pokemon-trainer">
-  <img *ngFor="let pokemon of trainerPokemon" src="" [alt]="pokemon.name" />
+  <img
+    *ngFor="let pokemon of trainerPokemon"
+    [src]="imgNumber(pokemon.basePokemon)"
+    [alt]="pokemon.basePokemon.name"
+  />
 </div>

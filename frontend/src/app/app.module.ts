@@ -15,6 +15,8 @@ import { PokemonFormComponent } from './modals/pokemon-form/pokemon-form.compone
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { LoginComponent } from './views/login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { MatButtonModule } from '@angular/material/button';
     CooldownButtonComponent,
     HomeComponent,
     PokemonFormComponent,
+    TopBarComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

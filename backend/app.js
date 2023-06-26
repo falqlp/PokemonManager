@@ -1,14 +1,12 @@
 const express = require("express");
 const app = express();
-const Pokemon = require("./models/PokemonModels/pokemon");
-const PokemonBase = require("./models/PokemonModels/pokemonBase");
-const Trainer = require("./models/TrainerModels/trainer");
 const mongoose = require("mongoose");
 const pokemonBaseRoutes = require("./routes/pokemon/pokemonBaseRoute");
 const pokemonRoutes = require("./routes/pokemon/pokemonRoute");
 const trainerRoutes = require("./routes/trainerRoute");
 const bodyParser = require("body-parser");
-const { request } = require("http");
+const loginRoutes = require("./routes/login");
+const User = require("./models/user");
 
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
@@ -44,14 +42,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/pokemonBase", pokemonBaseRoutes);
 app.use("/api/pokemon", pokemonRoutes);
 app.use("/api/trainer", trainerRoutes);
-
-// const bulbizarre = new Pokemon({
-//   id:1,
-//   name:'bulbizarre',
-//   types:['plante', 'poison'],
-// });
-// bulbizarre.save().then(()=>console.log('save')).catch((error)=>console.log('error: ', error));
-// Pokemon.find().then((res)=>console.log(res));
-// Pokemon.findOne({id:25}).then((res)=>console.log(res))
+app.use("/api/login", loginRoutes);
 
 module.exports = app;
