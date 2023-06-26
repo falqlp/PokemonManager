@@ -3,7 +3,7 @@ const PokemonBase = require("./pokemonBase");
 const PokemonStats = require("./pokemonStats");
 
 const pokemonSchema = new mongoose.Schema({
-  trainerId: { type: String, required: true },
+  trainerId: { type: String, required: false },
   nickname: { type: String, required: false },
   basePokemon: { type: PokemonBase.schema, required: true },
   level: { type: Number, required: true },

@@ -9,23 +9,18 @@ router.get("/", (req, res, next) => {
     .catch((error) => console.log(error));
 });
 
-router.get("/search/:name", (req, res, next) => {
-  if (req.params.name) {
-    const regex = new RegExp("^" + req.params.name, "i");
-    Trainer.find({ name: regex })
-      .sort({ id: 1 })
-      .limit(5)
-      .then((pokemons) => res.status(200).json(pokemons))
-      .catch((error) => console.log(error));
-  } else {
-    res.status(200).json([]);
-  }
-});
-
 router.get("/:id", (req, res, next) => {
   Trainer.findOne({ _id: req.params.id })
     .then((pokemons) => res.status(200).json(pokemons))
     .catch((error) => console.log(error));
+});
+
+router.put("/:id", (req, res, next) => {
+  Trainer.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
+    .then(() =>
+      res.status(200).json({ message: "Trainer updated successfully!" })
+    )
+    .catch((error) => res.status(400).json({ error }));
 });
 
 module.exports = router;

@@ -15,7 +15,11 @@ export class PokemonFormComponent implements OnInit {
   pokemonForm = new FormGroup({
     pokemon: new FormControl('', Validators.required),
     nickname: new FormControl(''),
-    level: new FormControl(0, Validators.required),
+    level: new FormControl(1, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(100),
+    ]),
   });
 
   options: PokemonBaseModel[];

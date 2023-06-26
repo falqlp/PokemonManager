@@ -20,7 +20,9 @@ export class HomeComponent {
     this.dialog
       .open(PokemonFormComponent)
       .afterClosed()
-      .subscribe((pokemon) => this.createPokemon(pokemon));
+      .subscribe((pokemon) =>
+        pokemon ? this.createPokemon(pokemon) : undefined
+      );
   }
 
   protected onPokemonsChanged(pokemons: PokemonBaseModel[]): void {
@@ -28,8 +30,13 @@ export class HomeComponent {
   }
 
   protected createPokemon(pokemon: PokemonModel): void {
-    this.http
-      .post<PokemonModel>('api/pokemon', pokemon)
-      .subscribe((pokemon) => console.log(pokemon));
+    this.http.post<PokemonModel>('api/pokemon', pokemon).subscribe((pokemon) =>
+      this.http
+        .put('api/trainer/6496f985f15bc10f660c1958', {
+          name: 'Popole',
+          pokemons: [pokemon._id],
+        })
+        .subscribe()
+    );
   }
 }
