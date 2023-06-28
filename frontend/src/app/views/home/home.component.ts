@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { catchError, of, tap } from 'rxjs';
 import { PokemonFormComponent } from 'src/app/modals/pokemon-form/pokemon-form.component';
 import { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
@@ -52,16 +53,26 @@ export class HomeComponent implements OnInit {
   protected createPokemon(pokemon: PokemonModel): void {
     this.http
       .post<PokemonModel>('api/pokemon', pokemon)
-      .subscribe((pokemon) => {
-        if (pokemon._id) {
-          this.player.pokemons.push(pokemon._id);
-          this.trainerService
-            .updateTrainer(this.player._id, this.player)
-            .subscribe(() => {
-              this.playerService.updatePlayer(this.player._id);
-            });
-        }
-      });
+      .pipe(
+        tap((pokemon) => {
+          if (pokemon._id) {
+            this.player.pokemons.push(pokemon._id);
+            return this.trainerService.updateTrainer(
+              this.player._id,
+              this.player
+            );
+          }
+          return of(null);
+        }),
+        tap(() => {
+          this.playerService.updatePlayer(this.player._id);
+        }),
+        catchError((error) => {
+          console.error('Error creating Pokemon: ', error);
+          return of(null);
+        })
+      )
+      .subscribe();
   }
 
   protected imgNumber(pokemon: PokemonBaseModel): string {

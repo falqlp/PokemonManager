@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
 import { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
@@ -14,7 +14,8 @@ import { TrainerQueriesService } from 'src/app/services/trainer-queries.service'
 export class TopBarComponent implements OnInit {
   protected player$: Observable<TrainerModel>;
   protected playerPokemons: PokemonModel[];
-  private playerSubscription: Subscription;
+  private destroy$ = new Subject<void>();
+
   constructor(
     protected playerService: PlayerService,
     protected trainerService: TrainerQueriesService
@@ -22,19 +23,19 @@ export class TopBarComponent implements OnInit {
 
   public ngOnInit(): void {
     this.player$ = this.playerService.player$;
-    this.playerSubscription = this.player$.subscribe((player) => {
-      this.trainerService
-        .getTrainerPokemon(player._id)
-        .subscribe((pokemons) => {
-          this.playerPokemons = pokemons;
-        });
-    });
+    this.player$
+      .pipe(
+        takeUntil(this.destroy$),
+        switchMap((player) => this.trainerService.getTrainerPokemon(player._id))
+      )
+      .subscribe((pokemons) => {
+        this.playerPokemons = pokemons;
+      });
   }
 
   public ngOnDestroy(): void {
-    if (this.playerSubscription) {
-      this.playerSubscription.unsubscribe();
-    }
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   protected imgNumber(pokemon: PokemonBaseModel): string {
