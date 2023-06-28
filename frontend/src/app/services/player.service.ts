@@ -8,13 +8,15 @@ import { TrainerQueriesService } from './trainer-queries.service';
 })
 export class PlayerService {
   private playerSubject = new BehaviorSubject<TrainerModel>({
-    _id: '649c3bdbe45d3dab76652529',
-    name: 'Unconnected',
+    _id: '6496f985f15bc10f660c1958',
+    name: 'Popole',
     pokemons: [],
   });
 
   public player$ = this.playerSubject.asObservable();
-  constructor(protected trainerService: TrainerQueriesService) {}
+  constructor(protected trainerService: TrainerQueriesService) {
+    this.updatePlayer('6496f985f15bc10f660c1958');
+  }
 
   public updatePlayer(id: string): void {
     this.getPlayer(id).subscribe((trainer) => {
