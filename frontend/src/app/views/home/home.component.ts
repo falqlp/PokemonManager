@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { catchError, of, tap } from 'rxjs';
+import { catchError, of, switchMap, tap } from 'rxjs';
 import { PokemonFormComponent } from 'src/app/modals/pokemon-form/pokemon-form.component';
 import { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
@@ -57,6 +57,10 @@ export class HomeComponent implements OnInit {
         tap((pokemon) => {
           if (pokemon._id) {
             this.player.pokemons.push(pokemon._id);
+          }
+        }),
+        switchMap((pokemon) => {
+          if (pokemon._id) {
             return this.trainerService.updateTrainer(
               this.player._id,
               this.player
