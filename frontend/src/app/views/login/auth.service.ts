@@ -5,7 +5,7 @@ import { LoginFormModel } from './login-form.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(protected http: HttpClient) {}
 
   public login(loginForm: LoginFormModel): Observable<string> {
     return this.http.post<string>('api/login', loginForm);

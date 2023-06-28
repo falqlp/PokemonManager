@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { PlayerService } from 'src/app/services/player.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,11 @@ export class LoginComponent {
     password: new FormControl<string>('', Validators.required),
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    protected authService: AuthService,
+    protected playerService: PlayerService,
+    protected rooter: Router
+  ) {}
 
   public login(): void {
     if (this.loginForm.valid) {
@@ -23,7 +29,10 @@ export class LoginComponent {
           password: this.loginForm.controls.password.value as string,
         })
         .subscribe((response) => {
-          console.log(response);
+          if (response) {
+            this.playerService.updatePlayer(response);
+            this.rooter.navigateByUrl('home');
+          }
         });
     }
   }

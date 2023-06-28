@@ -22,7 +22,9 @@ router.get("/pokemons/:id", (req, res, next) => {
       Pokemon.find({
         _id: { $in: trainer.pokemons },
       })
-        .then((pokemons) => res.status(200).json(pokemons))
+        .then((pokemons) => {
+          res.status(200).json(pokemons);
+        })
         .catch((error) => console.log(error));
     })
     .catch((error) => console.log(error));

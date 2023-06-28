@@ -1,1 +1,8 @@
-<div></div>
+<div *ngIf="player$ | async as player">
+  <span>{{ player.name }}</span>
+  <img
+    *ngFor="let pokemon of playerPokemons"
+    [src]="imgNumber(pokemon.basePokemon)"
+    [alt]="pokemon.basePokemon.name"
+  />
+</div>
