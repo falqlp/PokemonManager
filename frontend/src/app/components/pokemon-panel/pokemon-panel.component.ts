@@ -8,16 +8,16 @@ import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 })
 export class PokemonPanelComponent implements OnInit {
   @Input() public pokemon: PokemonBaseModel;
-  protected imgNumber: string;
+  protected img: string;
 
   public ngOnInit(): void {
     this.setImgNumber();
   }
 
   protected setImgNumber(): void {
-    if (!this.pokemon) {
-      return;
-    }
-    this.imgNumber = this.pokemon.id.toString().padStart(3, '0');
+    this.img =
+      'assets/images/max-size/' +
+      this.pokemon.id.toString().padStart(3, '0') +
+      '.png';
   }
 }

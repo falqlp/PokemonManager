@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subject, switchMap, takeUntil } from 'rxjs';
+import { PokemonInfoComponent } from 'src/app/modals/pokemon-info/pokemon-info.component';
 import { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
 import { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
@@ -18,7 +20,8 @@ export class TopBarComponent implements OnInit {
 
   constructor(
     protected playerService: PlayerService,
-    protected trainerService: TrainerQueriesService
+    protected trainerService: TrainerQueriesService,
+    protected dialog: MatDialog
   ) {}
 
   public ngOnInit(): void {
@@ -36,6 +39,10 @@ export class TopBarComponent implements OnInit {
   public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  protected openInfo(pokemon: PokemonModel): void {
+    this.dialog.open(PokemonInfoComponent, { data: pokemon });
   }
 
   protected imgNumber(pokemon: PokemonBaseModel): string {

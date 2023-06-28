@@ -3,11 +3,7 @@
     <label>{{ pokemon.name }}</label>
   </div>
   <div class="pokemon-panel__content">
-    <img
-      class="img-pokemon"
-      src="assets/images/max-size/{{ imgNumber }}.png"
-      [alt]="pokemon.name"
-    />
+    <img class="img-pokemon" [src]="img" [alt]="pokemon.name" />
     <div class="pokemon-panel__content--type">
       <img
         *ngFor="let type of pokemon.types"

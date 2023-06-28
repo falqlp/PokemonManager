@@ -1,12 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { catchError, of, switchMap, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { PokemonFormComponent } from 'src/app/modals/pokemon-form/pokemon-form.component';
 import { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
 import { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
+import { PokemonQueriesService } from 'src/app/services/pokemon-queries.service';
 import { TrainerQueriesService } from 'src/app/services/trainer-queries.service';
 
 @Component({
@@ -20,10 +20,10 @@ export class HomeComponent implements OnInit {
   protected player: TrainerModel;
 
   constructor(
-    protected http: HttpClient,
     protected dialog: MatDialog,
     protected playerService: PlayerService,
-    protected trainerService: TrainerQueriesService
+    protected trainerService: TrainerQueriesService,
+    protected pokemonService: PokemonQueriesService
   ) {}
 
   public ngOnInit(): void {
@@ -51,29 +51,11 @@ export class HomeComponent implements OnInit {
   }
 
   protected createPokemon(pokemon: PokemonModel): void {
-    this.http
-      .post<PokemonModel>('api/pokemon', pokemon)
+    this.pokemonService
+      .createPokemonForTrainer(pokemon, this.player)
       .pipe(
-        tap((pokemon) => {
-          if (pokemon._id) {
-            this.player.pokemons.push(pokemon._id);
-          }
-        }),
-        switchMap((pokemon) => {
-          if (pokemon._id) {
-            return this.trainerService.updateTrainer(
-              this.player._id,
-              this.player
-            );
-          }
-          return of(null);
-        }),
         tap(() => {
           this.playerService.updatePlayer(this.player._id);
-        }),
-        catchError((error) => {
-          console.error('Error creating Pokemon: ', error);
-          return of(null);
         })
       )
       .subscribe();

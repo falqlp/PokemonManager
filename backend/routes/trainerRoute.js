@@ -32,7 +32,7 @@ router.get("/pokemons/:id", (req, res, next) => {
 
 router.put("/:id", (req, res, next) => {
   Trainer.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
-    .then(() =>
+    .then((trainer) =>
       res.status(200).json({ message: "Trainer updated successfully!" })
     )
     .catch((error) => res.status(400).json({ error }));

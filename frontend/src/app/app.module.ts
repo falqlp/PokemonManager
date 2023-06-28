@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { LoginComponent } from './views/login/login.component';
+import { PokemonInfoComponent } from './modals/pokemon-info/pokemon-info.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { LoginComponent } from './views/login/login.component';
     PokemonFormComponent,
     TopBarComponent,
     LoginComponent,
+    PokemonInfoComponent,
   ],
   imports: [
     BrowserModule,

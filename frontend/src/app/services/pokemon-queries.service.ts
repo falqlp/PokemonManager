@@ -1,0 +1,38 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { PokemonModel } from '../models/PokemonModels/pokemon.model';
+import { Observable, catchError, of, switchMap, tap } from 'rxjs';
+import { TrainerModel } from '../models/TrainersModels/trainer.model';
+import { TrainerQueriesService } from './trainer-queries.service';
+import { PlayerService } from './player.service';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PokemonQueriesService {
+  constructor(
+    protected http: HttpClient,
+    protected trainerService: TrainerQueriesService,
+    protected playerService: PlayerService
+  ) {}
+
+  public create(pokemon: PokemonModel): Observable<PokemonModel> {
+    return this.http.post<PokemonModel>('api/pokemon', pokemon);
+  }
+
+  public createPokemonForTrainer(
+    pokemon: PokemonModel,
+    trainer: TrainerModel
+  ): Observable<TrainerModel> {
+    return this.create(pokemon).pipe(
+      tap((pokemon) => {
+        if (pokemon._id) {
+          trainer.pokemons.push(pokemon._id);
+        }
+      }),
+      switchMap(() => {
+        return this.trainerService.updateTrainer(trainer._id, trainer);
+      })
+    );
+  }
+}

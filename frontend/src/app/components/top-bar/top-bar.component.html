@@ -2,7 +2,9 @@
   <span>{{ player.name }}</span>
   <img
     *ngFor="let pokemon of playerPokemons"
+    class="clickable-icon"
     [src]="imgNumber(pokemon.basePokemon)"
     [alt]="pokemon.basePokemon.name"
+    (click)="openInfo(pokemon)"
   />
 </div>
