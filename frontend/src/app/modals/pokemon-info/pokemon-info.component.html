@@ -1,20 +1,35 @@
-<h2 mat-dialog-title>Info Pokémon</h2>
-<mat-dialog-content class="content">
-  <img
-    class="img-pokemon"
-    [src]="img"
-    [alt]="data.nickname === '' ? data.basePokemon.name : data.nickname"
-  />
-  <span>{{
-    data.nickname === "" ? data.basePokemon.name : data.nickname
-  }}</span>
-  <span>PV: {{ data.stats?.hp }}</span>
-  <span>Attaque: {{ data.stats?.atk }}</span>
-  <span>Defense: {{ data.stats?.def }}</span>
-  <span>Attaque Speciale: {{ data.stats?.spAtk }}</span>
-  <span>Defense Speciale: {{ data.stats?.spDef }}</span>
-  <span>Vitesse: {{ data.stats?.spe }}</span>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button class="btn-default" mat-dialog-close>Fermer</button>
-</mat-dialog-actions>
+<div class="pokemon-info">
+  <h2
+    class="pokemon-info__header"
+    [ngClass]="data.basePokemon.types[0]"
+    mat-dialog-title
+  >
+    {{ data.nickname === "" ? data.basePokemon.name : data.nickname }}
+  </h2>
+  <mat-dialog-content class="pokemon-info__content">
+    <img
+      class="img-pokemon"
+      [src]="img"
+      [alt]="data.nickname === '' ? data.basePokemon.name : data.nickname"
+    />
+    <div class="pokemon-info__content--type">
+      <img
+        *ngFor="let type of data.basePokemon.types"
+        class="type-displayText"
+        src="assets/types/displayText/{{ type }}.png"
+        [alt]="type"
+      />
+    </div>
+    <div class="pokemon-info__content--stats">
+      <span>PV: {{ data.stats?.hp }}</span>
+      <span>Attaque: {{ data.stats?.atk }}</span>
+      <span>Defense: {{ data.stats?.def }}</span>
+      <span>Attaque Speciale: {{ data.stats?.spAtk }}</span>
+      <span>Defense Speciale: {{ data.stats?.spDef }}</span>
+      <span>Vitesse: {{ data.stats?.spe }}</span>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button class="btn-default" mat-dialog-close>Fermer</button>
+  </mat-dialog-actions>
+</div>

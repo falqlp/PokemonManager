@@ -1,4 +1,88 @@
-.content {
-  display: flex;
-  flex-direction: column;
+.pokemon-info {
+  min-width: 200px;
+  width: fit-content;
+  //   border-radius: 10px;
+  background-color: #0f0e0e;
+  &__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    color: white;
+    padding: 0;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    &--type {
+      display: flex;
+      justify-content: center;
+      border-bottom: 3px solid;
+      border-color: #c2c3c7;
+    }
+    &--stats {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      color: white;
+    }
+  }
+}
+.Électrik {
+  background-color: #fac000;
+}
+.Plante {
+  background-color: #3fa129;
+}
+.Normal {
+  background-color: #9fa19f;
+}
+.Eau {
+  background-color: #2980ef;
+}
+.Fée {
+  background-color: #ef70ef;
+}
+.Insecte {
+  background-color: #91a119;
+}
+.Feu {
+  background-color: #e62829;
+}
+.Dragon {
+  background-color: #5060e1;
+}
+.Roche {
+  background-color: #afa981;
+}
+.Sol {
+  background-color: #915121;
+}
+.Poison {
+  background-color: #9141cb;
+}
+.Psy {
+  background-color: #ef4179;
+}
+.Ténèbres {
+  background-color: #50413f;
+}
+.Spectre {
+  background-color: #704170;
+}
+.Combat {
+  background-color: #ff8000;
+}
+.Acier {
+  background-color: #60a1b8;
+}
+.Glace {
+  background-color: #3fd8ff;
+}
+.Vol {
+  background-color: #81b9ef;
 }
