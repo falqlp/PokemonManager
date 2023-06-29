@@ -7,6 +7,8 @@ export interface PokemonModel {
   nickname?: string;
   basePokemon: PokemonBaseModel;
   level: number;
+  exp: number;
+  expMax: number;
   attacks?: string[];
   stats?: PokemonStatsModel;
   ev?: PokemonStatsModel;

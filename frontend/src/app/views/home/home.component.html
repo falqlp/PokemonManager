@@ -1,5 +1,5 @@
 <button class="btn btn-default" (click)="click()">Default</button>
-<button class="btn btn-primary">Primary</button>
+<button class="btn btn-primary" (click)="clickP()">Primary</button>
 <button class="btn btn-success">Success</button>
 <button class="btn btn-danger">Danger</button>
 <search-input (pokemonsChanged)="onPokemonsChanged($event)"></search-input>
@@ -16,3 +16,5 @@
     [alt]="pokemon.basePokemon.name"
   />
 </div>
+<progress-bar [currentProgress]="progress"></progress-bar>
+<progress-bar [currentProgress]="progress" [style]="'hp'"></progress-bar>

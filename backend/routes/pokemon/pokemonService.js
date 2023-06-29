@@ -1,5 +1,11 @@
 const PokemonService = {
   createPokemon: function (pokemon) {
+    if (pokemon.exp === undefined) {
+      pokemon.exp = 0;
+    }
+    if (pokemon.expMax === undefined) {
+      pokemon.expMax = 100;
+    }
     if (pokemon.iv === undefined) {
       pokemon.iv = this.generateIvs();
     }

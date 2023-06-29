@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   protected pokemonBases: PokemonBaseModel[];
   protected trainerPokemon: PokemonModel[];
   protected player: TrainerModel;
+  protected progress = 50;
 
   constructor(
     protected dialog: MatDialog,
@@ -44,6 +45,9 @@ export class HomeComponent implements OnInit {
       .subscribe((pokemon) =>
         pokemon ? this.createPokemon(pokemon) : undefined
       );
+  }
+  protected clickP(): void {
+    this.progress -= 10;
   }
 
   protected onPokemonsChanged(pokemons: PokemonBaseModel[]): void {

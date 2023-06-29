@@ -7,6 +7,8 @@ const pokemonSchema = new mongoose.Schema({
   nickname: { type: String, required: false },
   basePokemon: { type: PokemonBase.schema, required: true },
   level: { type: Number, required: true },
+  exp: { type: Number, required: true },
+  expMax: { type: Number, required: true },
   attacks: [{ type: String, required: false }],
   stats: { type: PokemonStats.schema, required: true },
   ev: { type: PokemonStats.schema, required: true },

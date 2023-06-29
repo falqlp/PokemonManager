@@ -1,0 +1,25 @@
+.progress-bar {
+  margin: 10px;
+  height: 5px;
+  background-color: lightgray;
+  &--progress {
+    height: 100%;
+    background-color: aqua;
+  }
+}
+
+.hp {
+  height: 10px;
+}
+
+.bar-green {
+  background-color: green;
+}
+
+.bar-orange {
+  background-color: orange;
+}
+
+.bar-red {
+  background-color: red;
+}

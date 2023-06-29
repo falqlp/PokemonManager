@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { LoginComponent } from './views/login/login.component';
 import { PokemonInfoComponent } from './modals/pokemon-info/pokemon-info.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PokemonInfoComponent } from './modals/pokemon-info/pokemon-info.compone
     TopBarComponent,
     LoginComponent,
     PokemonInfoComponent,
+    ProgressBarComponent,
   ],
   imports: [
     BrowserModule,

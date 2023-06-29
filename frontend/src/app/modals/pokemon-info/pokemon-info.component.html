@@ -20,6 +20,13 @@
         [alt]="type"
       />
     </div>
+    <div class="pokemon-info__content--level">
+      <span>Niv: {{ data.level }}</span
+      ><progress-bar
+        [currentProgress]="data.exp"
+        [max]="data.expMax"
+      ></progress-bar>
+    </div>
     <div class="pokemon-info__content--stats">
       <span>PV: {{ data.stats?.hp }}</span>
       <span>Attaque: {{ data.stats?.atk }}</span>
