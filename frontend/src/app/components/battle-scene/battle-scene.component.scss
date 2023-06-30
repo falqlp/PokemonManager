@@ -18,12 +18,13 @@
       margin: 5px;
       height: fit-content;
       background-color: #0f0e0e;
+      width: 100%;
+      max-width: 250px;
       &--info {
         margin-bottom: 10px;
         display: flex;
         align-items: center;
         gap: 10px;
-        width: 200px;
       }
     }
     &--thumbnails {

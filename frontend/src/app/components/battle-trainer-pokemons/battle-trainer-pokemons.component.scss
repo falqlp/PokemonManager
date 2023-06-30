@@ -16,3 +16,14 @@
   border: black 2px solid;
   border-radius: 4px;
 }
+.battle-trainer-pokemon {
+  position: relative;
+}
+.cooldown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); // La couleur de la barre de progression
+  pointer-events: none;
+}
