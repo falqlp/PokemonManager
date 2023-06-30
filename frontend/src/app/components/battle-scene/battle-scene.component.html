@@ -1,0 +1,20 @@
+<div class="host">
+  <div class="battle-scene">
+    <div class="opponent">
+      <img
+        class="battle-scene__pokemons--thumbnails"
+        src="assets/images/thumbnails/{{
+          opponentActivePokemon.basePokemon.id
+        }}.png"
+        [alt]="opponentActivePokemon.basePokemon.name"
+      />
+    </div>
+    <div class="player">
+      <img
+        class="battle-scene__pokemons--back"
+        src="assets/images/back/{{ playerActivePokemon.basePokemon.id }}.png"
+        [alt]="playerActivePokemon.basePokemon.name"
+      />
+    </div>
+  </div>
+</div>

@@ -6,11 +6,11 @@ import { PlayerService } from 'src/app/services/player.service';
 import { TrainerQueriesService } from 'src/app/services/trainer-queries.service';
 
 @Component({
-  selector: 'app-battle-scene',
-  templateUrl: './battle-scene.component.html',
-  styleUrls: ['./battle-scene.component.scss'],
+  selector: 'app-battle',
+  templateUrl: './battle.component.html',
+  styleUrls: ['./battle.component.scss'],
 })
-export class BattleSceneComponent implements OnInit {
+export class BattleComponent implements OnInit {
   protected opponent: TrainerModel;
   protected player: TrainerModel;
   protected opponentPokemons: PokemonModel[];

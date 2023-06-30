@@ -1,0 +1,30 @@
+.host {
+  display: flex;
+  justify-content: center;
+}
+.battle-scene {
+  border: red 1px solid;
+  max-width: 750px;
+  width: 100%;
+  .battle-scene__pokemons {
+    display: flex;
+    align-items: center;
+    &--icon {
+      height: 60px;
+      width: 60px;
+    }
+    &--thumbnails {
+      height: 240px;
+      width: 240px;
+    }
+    &--back {
+      height: 288px;
+      width: 288px;
+    }
+  }
+}
+.opponent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

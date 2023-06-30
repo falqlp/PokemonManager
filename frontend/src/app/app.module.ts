@@ -19,7 +19,9 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { LoginComponent } from './views/login/login.component';
 import { PokemonInfoComponent } from './modals/pokemon-info/pokemon-info.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
-import { BattleSceneComponent } from './views/battle-scene/battle-scene.component';
+import { BattleComponent } from './views/battle/battle.component';
+import { BattleSceneComponent } from './components/battle-scene/battle-scene.component';
+import { BattleTrainerPokemonsComponent } from './components/battle-trainer-pokemons/battle-trainer-pokemons.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { BattleSceneComponent } from './views/battle-scene/battle-scene.componen
     LoginComponent,
     PokemonInfoComponent,
     ProgressBarComponent,
+    BattleComponent,
     BattleSceneComponent,
+    BattleTrainerPokemonsComponent,
   ],
   imports: [
     BrowserModule,
