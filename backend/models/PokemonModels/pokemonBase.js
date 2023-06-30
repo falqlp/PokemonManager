@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const PokemonStats = require("./pokemonStats");
 
 const pokemonBaseSchema = mongoose.Schema({
-  id: { type: Number, required: true },
+  id: { type: String, required: true },
   name: { type: String, required: true },
   types: [{ type: String }],
   baseStats: { type: PokemonStats.schema, required: true },

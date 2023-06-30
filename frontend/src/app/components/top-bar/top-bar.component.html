@@ -4,7 +4,7 @@
     <img
       *ngFor="let pokemon of playerPokemons"
       class="clickable-icon"
-      [src]="imgNumber(pokemon.basePokemon)"
+      src="assets/images/sprites/{{ pokemon.basePokemon.id }}MS.png"
       [alt]="pokemon.basePokemon.name"
       (click)="openInfo(pokemon)"
     />

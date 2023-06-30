@@ -1,0 +1,30 @@
+<div *ngFor="let pokemon of opponentPokemons">
+  <ng-container *ngIf="pokemon._id !== opponentActivePokemon._id">
+    <img
+      src="assets/images/sprites/{{ pokemon.basePokemon.id }}MS.png"
+      [alt]="pokemon.basePokemon.name"
+    />
+  </ng-container>
+</div>
+<div>
+  <img
+    src="assets/images/thumbnails/{{
+      opponentActivePokemon.basePokemon.id
+    }}.png"
+    [alt]="opponentActivePokemon.basePokemon.name"
+  />
+</div>
+<div>
+  <img
+    src="assets/images/back/{{ playerActivePokemon.basePokemon.id }}.png"
+    [alt]="playerActivePokemon.basePokemon.name"
+  />
+</div>
+<div *ngFor="let pokemon of playerPokemons">
+  <ng-container *ngIf="pokemon._id !== playerActivePokemon._id">
+    <img
+      src="assets/images/sprites/{{ pokemon.basePokemon.id }}MS.png"
+      [alt]="pokemon.basePokemon.name"
+    />
+  </ng-container>
+</div>

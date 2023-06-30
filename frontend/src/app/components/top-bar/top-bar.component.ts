@@ -44,12 +44,4 @@ export class TopBarComponent implements OnInit {
   protected openInfo(pokemon: PokemonModel): void {
     this.dialog.open(PokemonInfoComponent, { data: pokemon });
   }
-
-  protected imgNumber(pokemon: PokemonBaseModel): string {
-    return (
-      'assets/images/sprites/' +
-      pokemon.id.toString().padStart(3, '0') +
-      'MS.png'
-    );
-  }
 }

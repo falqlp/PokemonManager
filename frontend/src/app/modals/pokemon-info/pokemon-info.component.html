@@ -9,7 +9,7 @@
   <mat-dialog-content class="pokemon-info__content">
     <img
       class="img-pokemon"
-      [src]="img"
+      src="assets/images/max-size/{{ data.basePokemon.id }}.png"
       [alt]="data.nickname === '' ? data.basePokemon.name : data.nickname"
     />
     <div class="pokemon-info__content--type">
