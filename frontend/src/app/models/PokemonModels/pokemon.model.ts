@@ -10,7 +10,7 @@ export interface PokemonModel {
   exp: number;
   expMax: number;
   attacks?: string[];
-  stats?: PokemonStatsModel;
+  stats: PokemonStatsModel;
   ev?: PokemonStatsModel;
   iv?: PokemonStatsModel;
 }

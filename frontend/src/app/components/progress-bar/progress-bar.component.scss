@@ -1,25 +1,31 @@
-.progress-bar {
-  margin: 10px;
-  height: 5px;
-  background-color: lightgray;
-  &--progress {
-    height: 100%;
-    background-color: aqua;
+:host {
+  margin: 0 10px 10px 10px;
+  .progress-bar {
+    height: 5px;
+    background-color: lightgray;
+    &--progress {
+      height: 100%;
+      background-color: aqua;
+    }
   }
-}
 
-.hp {
-  height: 10px;
-}
+  .hp {
+    display: flex;
+    height: 10px;
+    font-size: 14px;
+    justify-content: flex-end;
+    flex-direction: column;
+  }
 
-.bar-green {
-  background-color: green;
-}
+  .bar-green {
+    background-color: green;
+  }
 
-.bar-orange {
-  background-color: orange;
-}
+  .bar-orange {
+    background-color: orange;
+  }
 
-.bar-red {
-  background-color: red;
+  .bar-red {
+    background-color: red;
+  }
 }

@@ -1,6 +1,21 @@
 <div class="host">
   <div class="battle-scene">
     <div class="opponent">
+      <div class="battle-scene__pokemons__box">
+        <div class="battle-scene__pokemons__box--info">
+          <span>{{
+            opponentActivePokemon.nickname
+              ? opponentActivePokemon.nickname
+              : opponentActivePokemon.basePokemon.name
+          }}</span>
+          <span>niv: {{ opponentActivePokemon.level }}</span>
+        </div>
+        <progress-bar
+          [style]="'hp'"
+          [currentProgress]="opponentActivePokemon.stats.hp"
+          [max]="opponentActivePokemon.stats.hp"
+        ></progress-bar>
+      </div>
       <img
         class="battle-scene__pokemons--thumbnails"
         src="assets/images/thumbnails/{{
@@ -15,6 +30,21 @@
         src="assets/images/back/{{ playerActivePokemon.basePokemon.id }}.png"
         [alt]="playerActivePokemon.basePokemon.name"
       />
+      <div class="battle-scene__pokemons__box">
+        <div class="battle-scene__pokemons__box--info">
+          <span>{{
+            playerActivePokemon.nickname
+              ? playerActivePokemon.nickname
+              : playerActivePokemon.basePokemon.name
+          }}</span>
+          <span>niv: {{ playerActivePokemon.level }}</span>
+        </div>
+        <progress-bar
+          [style]="'hp'"
+          [currentProgress]="playerActivePokemon.stats.hp"
+          [max]="playerActivePokemon.stats.hp"
+        ></progress-bar>
+      </div>
     </div>
   </div>
 </div>

@@ -1,1 +1,28 @@
-<p>battle-trainer-pokemons works!</p>
+<div class="trainer">
+  {{ trainer.name }}
+</div>
+<div>
+  <div
+    *ngFor="let pokemon of trainerPokemons"
+    class="pokemon-box"
+    (click)="click(pokemon)"
+  >
+    <ng-container *ngIf="pokemon._id !== activePokemon._id">
+      <div class="pokemon-box__info">
+        <img
+          src="assets/images/sprites/{{ pokemon.basePokemon.id }}MS.png"
+          [alt]="pokemon.basePokemon.name"
+        />
+        <span>{{
+          pokemon.nickname ? pokemon.nickname : pokemon.basePokemon.name
+        }}</span>
+        <span>niv: {{ pokemon.level }}</span>
+      </div>
+      <progress-bar
+        [style]="'hp'"
+        [currentProgress]="pokemon.stats.hp"
+        [max]="pokemon.stats.hp"
+      ></progress-bar>
+    </ng-container>
+  </div>
+</div>

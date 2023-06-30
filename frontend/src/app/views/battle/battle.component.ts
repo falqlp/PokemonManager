@@ -47,4 +47,12 @@ export class BattleComponent implements OnInit {
         this.opponentActivePokemon = pokemons[0];
       });
   }
+
+  protected changePlayerActivePokemon(pokemon: PokemonModel): void {
+    this.playerActivePokemon = pokemon;
+  }
+
+  protected changeOpponentActivePokemon(pokemon: PokemonModel): void {
+    this.opponentActivePokemon = pokemon;
+  }
 }
