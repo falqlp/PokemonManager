@@ -4,27 +4,25 @@
 <div class="battle-trainer-pokemon">
   <div>
     <div
-      *ngFor="let pokemon of trainerPokemons"
+      *ngFor="let pokemon of trainerPokemons.slice(1)"
       class="pokemon-box"
       (click)="!disabled && click(pokemon)"
     >
-      <ng-container *ngIf="pokemon._id !== activePokemon._id">
-        <div class="pokemon-box__info">
-          <img
-            src="assets/images/sprites/{{ pokemon.basePokemon.id }}MS.png"
-            [alt]="pokemon.basePokemon.name"
-          />
-          <span>{{
-            pokemon.nickname ? pokemon.nickname : pokemon.basePokemon.name
-          }}</span>
-          <span>niv: {{ pokemon.level }}</span>
-        </div>
-        <progress-bar
-          [style]="'hp'"
-          [currentProgress]="pokemon.stats.hp"
-          [max]="pokemon.stats.hp"
-        ></progress-bar>
-      </ng-container>
+      <div class="pokemon-box__info">
+        <img
+          src="assets/images/sprites/{{ pokemon.basePokemon.id }}MS.png"
+          [alt]="pokemon.basePokemon.name"
+        />
+        <span>{{
+          pokemon.nickname ? pokemon.nickname : pokemon.basePokemon.name
+        }}</span>
+        <span>niv: {{ pokemon.level }}</span>
+      </div>
+      <progress-bar
+        [style]="'hp'"
+        [currentProgress]="pokemon.stats.hp"
+        [max]="pokemon.stats.hp"
+      ></progress-bar>
     </div>
   </div>
   <div class="cooldown" [style.width.%]="progress"></div>

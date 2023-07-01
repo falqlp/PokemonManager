@@ -15,8 +15,6 @@ export class BattleComponent implements OnInit {
   protected player: TrainerModel;
   protected opponentPokemons: PokemonModel[];
   protected playerPokemons: PokemonModel[];
-  protected opponentActivePokemon: PokemonModel;
-  protected playerActivePokemon: PokemonModel;
 
   constructor(
     protected trainerService: TrainerQueriesService,
@@ -31,7 +29,6 @@ export class BattleComponent implements OnInit {
       )
       .subscribe((pokemons) => {
         this.playerPokemons = pokemons;
-        this.playerActivePokemon = pokemons[0];
       });
 
     this.trainerService
@@ -44,15 +41,25 @@ export class BattleComponent implements OnInit {
       )
       .subscribe((pokemons) => {
         this.opponentPokemons = pokemons;
-        this.opponentActivePokemon = pokemons[0];
       });
   }
 
   protected changePlayerActivePokemon(pokemon: PokemonModel): void {
-    this.playerActivePokemon = pokemon;
+    this.playerPokemons = this.changePokemon(this.playerPokemons, pokemon);
   }
 
   protected changeOpponentActivePokemon(pokemon: PokemonModel): void {
-    this.opponentActivePokemon = pokemon;
+    this.opponentPokemons = this.changePokemon(this.opponentPokemons, pokemon);
+  }
+
+  protected changePokemon(
+    pokemons: PokemonModel[],
+    pokemon: PokemonModel
+  ): PokemonModel[] {
+    pokemons[
+      pokemons.findIndex((playerPokemon) => playerPokemon?._id === pokemon?._id)
+    ] = pokemons[0];
+    pokemons[0] = pokemon;
+    return pokemons;
   }
 }

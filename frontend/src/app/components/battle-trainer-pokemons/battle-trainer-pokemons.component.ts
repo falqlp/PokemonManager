@@ -8,7 +8,6 @@ import { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
   styleUrls: ['./battle-trainer-pokemons.component.scss'],
 })
 export class BattleTrainerPokemonsComponent {
-  @Input() public activePokemon: PokemonModel;
   @Input() public trainer: TrainerModel;
   @Input() public trainerPokemons: PokemonModel[];
   @Output() public clickOnPokemon = new EventEmitter<PokemonModel>();

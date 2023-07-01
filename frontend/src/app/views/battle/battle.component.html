@@ -2,21 +2,19 @@
   <div class="battle__trainer-pokemons">
     <app-battle-trainer-pokemons
       [trainer]="player"
-      [activePokemon]="playerActivePokemon"
       [trainerPokemons]="playerPokemons"
       (clickOnPokemon)="changePlayerActivePokemon($event)"
     ></app-battle-trainer-pokemons>
   </div>
   <div class="battle__scene">
     <app-battle-scene
-      [opponentActivePokemon]="opponentActivePokemon"
-      [playerActivePokemon]="playerActivePokemon"
+      [opponentActivePokemon]="opponentPokemons[0]"
+      [playerActivePokemon]="playerPokemons[0]"
     ></app-battle-scene>
   </div>
   <div class="battle__trainer-pokemons">
     <app-battle-trainer-pokemons
       [trainer]="opponent"
-      [activePokemon]="opponentActivePokemon"
       [trainerPokemons]="opponentPokemons"
       (clickOnPokemon)="changeOpponentActivePokemon($event)"
     ></app-battle-trainer-pokemons>
