@@ -1,4 +1,7 @@
-<div class="battle">
+<div
+  *ngIf="player && playerPokemons && opponent && opponentPokemons"
+  class="battle"
+>
   <div class="battle__trainer-pokemons">
     <app-battle-trainer-pokemons
       [trainer]="player"
@@ -11,6 +14,7 @@
       [opponentActivePokemon]="opponentPokemons[0]"
       [playerActivePokemon]="playerPokemons[0]"
     ></app-battle-scene>
+    <app-battle-attack [activePokemon]="playerPokemons[0]"></app-battle-attack>
   </div>
   <div class="battle__trainer-pokemons">
     <app-battle-trainer-pokemons

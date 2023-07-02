@@ -22,6 +22,7 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 import { BattleComponent } from './views/battle/battle.component';
 import { BattleSceneComponent } from './components/battle-scene/battle-scene.component';
 import { BattleTrainerPokemonsComponent } from './components/battle-trainer-pokemons/battle-trainer-pokemons.component';
+import { BattleAttackComponent } from './components/battle-attack/battle-attack.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { BattleTrainerPokemonsComponent } from './components/battle-trainer-poke
     BattleComponent,
     BattleSceneComponent,
     BattleTrainerPokemonsComponent,
+    BattleAttackComponent,
   ],
   imports: [
     BrowserModule,

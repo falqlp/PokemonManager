@@ -6,6 +6,7 @@ const pokemonRoutes = require("./routes/pokemon/pokemonRoute");
 const trainerRoutes = require("./routes/trainerRoute");
 const bodyParser = require("body-parser");
 const loginRoutes = require("./routes/login");
+const attackRoute = require("./routes/attackRoute");
 
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
@@ -42,5 +43,6 @@ app.use("/api/pokemonBase", pokemonBaseRoutes);
 app.use("/api/pokemon", pokemonRoutes);
 app.use("/api/trainer", trainerRoutes);
 app.use("/api/login", loginRoutes);
+app.use("/api/attack", attackRoute);
 
 module.exports = app;
