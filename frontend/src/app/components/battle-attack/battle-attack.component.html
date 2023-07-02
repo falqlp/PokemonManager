@@ -1,5 +1,22 @@
-<div *ngFor="let attack of attacks">
-  <img src="assets/types/simple/{{ attack.type }}.png" [alt]="attack.type" />{{
-    attack.name
-  }}
+<div class="battle-attack">
+  <div *ngFor="let attack of attacks" class="battle-attack__attack">
+    <div class="battle-attack__attack__top">
+      <img
+        src="assets/types/simple/{{ attack.type }}.png"
+        [alt]="attack.type"
+      />
+      <span>{{ attack.name }}</span>
+    </div>
+    <div class="battle-attack__attack__bottom">
+      <img
+        class="img-category"
+        src="assets/attack/{{ attack.category }}.png"
+        [alt]="attack.type"
+      />
+      <div class="battle-attack__attack__bottom--info">
+        <span>Pussance: {{ attack.power }}</span>
+        <span>Precision: {{ attack.accuracy }}%</span>
+      </div>
+    </div>
+  </div>
 </div>
