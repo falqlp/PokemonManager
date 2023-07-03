@@ -2,13 +2,19 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin: 10px;
+  position: relative;
   &__attack {
+    margin: 10px;
     padding: 10px;
+    background-color: #0f0e0e;
+    border: #0f0e0e 2px solid;
+    border-radius: 4px;
+    flex: 1;
     &__top {
       display: flex;
       align-items: center;
       gap: 10px;
+      padding-bottom: 10px;
     }
     &__bottom {
       display: flex;
@@ -21,8 +27,14 @@
     }
   }
   &__attack:hover {
-    border: black 2px solid;
+    border-color: black;
     border-radius: 4px;
     cursor: pointer;
   }
+}
+.selectedAttack {
+  border-color: green;
+}
+.selectedAttack:hover {
+  border-color: rgb(3, 43, 3);
 }

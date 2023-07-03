@@ -58,19 +58,41 @@ body {
   padding: 5px;
 }
 
+.icon-type {
+  height: 30px;
+  width: 30px;
+}
+
 .img-pokemon {
   width: 300px;
   height: 300px;
   padding: 0 10px;
 }
 .img-category {
-  width: 64px;
-  height: 36px;
+  width: 50px;
+  height: 30px;
 }
 
 .clickable-icon:hover {
   transform: scale(0.95);
   cursor: pointer;
+}
+
+.cooldown-horizontal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+.cooldown-vertical {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
 }
 
 html,

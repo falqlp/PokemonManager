@@ -11,6 +11,9 @@ import { AttackModel } from 'src/app/models/attack.model';
 export class BattleAttackComponent implements OnInit {
   @Input() public activePokemon: PokemonModel;
   protected attacks: AttackModel[];
+  protected selectedAttack: AttackModel;
+  protected disabled = false;
+  protected progress = 0;
   constructor(protected http: HttpClient) {}
 
   public ngOnInit(): void {
@@ -21,5 +24,20 @@ export class BattleAttackComponent implements OnInit {
           this.attacks = attacks;
         });
     }
+  }
+
+  protected onClick(attack: AttackModel): void {
+    this.selectedAttack = attack;
+    this.disabled = true;
+    this.progress = 100;
+
+    const interval = setInterval(() => {
+      this.progress -= 1; // ajustez cette valeur en fonction de la durée du cooldown
+      if (this.progress <= 0) {
+        clearInterval(interval);
+        this.disabled = false;
+        this.progress = 0;
+      }
+    }, 50); // ajustez cette valeur en fonction de la durée du cooldown
   }
 }

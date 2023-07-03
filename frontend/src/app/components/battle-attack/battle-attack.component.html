@@ -1,7 +1,13 @@
 <div class="battle-attack">
-  <div *ngFor="let attack of attacks" class="battle-attack__attack">
+  <div
+    *ngFor="let attack of attacks"
+    class="battle-attack__attack"
+    [ngClass]="{ selectedAttack: selectedAttack?.name === attack.name }"
+    (click)="!disabled && onClick(attack)"
+  >
     <div class="battle-attack__attack__top">
       <img
+        class="icon-type"
         src="assets/types/simple/{{ attack.type }}.png"
         [alt]="attack.type"
       />
@@ -19,4 +25,5 @@
       </div>
     </div>
   </div>
+  <div class="cooldown-vertical" [style.height.%]="progress"></div>
 </div>
