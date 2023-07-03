@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const attackSchema = new mongoose.Schema({
+  id: { type: Number, require: true, unique: true },
   name: { type: String, require: true, unique: true },
   type: { type: String, require: true },
   category: { type: String, require: true },
