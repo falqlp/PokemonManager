@@ -1,5 +1,5 @@
 const axios = require("axios");
-const attack = require("./models/attack");
+const Attack = require("./models/attack");
 
 const MigrationService = {
   attack: function () {

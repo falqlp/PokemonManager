@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { tap, switchMap } from 'rxjs';
+import { tap, switchMap, map } from 'rxjs';
 import { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
@@ -25,7 +25,17 @@ export class BattleComponent implements OnInit {
     this.playerService.player$
       .pipe(
         tap((player) => (this.player = player)),
-        switchMap((player) => this.trainerService.getTrainerPokemon(player._id))
+        switchMap((player) =>
+          this.trainerService.getTrainerPokemon(player._id)
+        ),
+        map((pokemons) =>
+          pokemons.map((pokemon) => {
+            if (!pokemon.currentHp) {
+              pokemon.currentHp = pokemon.stats.hp;
+            }
+            return pokemon;
+          })
+        )
       )
       .subscribe((pokemons) => {
         this.playerPokemons = pokemons;
@@ -37,6 +47,14 @@ export class BattleComponent implements OnInit {
         tap((trainer) => (this.opponent = trainer)),
         switchMap(() =>
           this.trainerService.getTrainerPokemon('6496f985f15bc10f660c1958')
+        ),
+        map((pokemons) =>
+          pokemons.map((pokemon) => {
+            if (!pokemon.currentHp) {
+              pokemon.currentHp = pokemon.stats.hp;
+            }
+            return pokemon;
+          })
         )
       )
       .subscribe((pokemons) => {

@@ -13,4 +13,5 @@ export interface PokemonModel {
   stats: PokemonStatsModel;
   ev?: PokemonStatsModel;
   iv?: PokemonStatsModel;
+  currentHp?: number;
 }

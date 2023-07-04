@@ -20,7 +20,7 @@
       </div>
       <progress-bar
         [style]="'hp'"
-        [currentProgress]="pokemon.stats.hp"
+        [currentProgress]="pokemon.currentHp ?? pokemon.stats.hp"
         [max]="pokemon.stats.hp"
       ></progress-bar>
     </div>

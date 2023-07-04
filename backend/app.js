@@ -7,7 +7,6 @@ const trainerRoutes = require("./routes/trainerRoute");
 const bodyParser = require("body-parser");
 const loginRoutes = require("./routes/login");
 const attackRoute = require("./routes/attackRoute");
-const Attack = require("./models/attack");
 
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
