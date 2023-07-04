@@ -40,11 +40,11 @@
 .opponent {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .player {
   display: flex;
   flex-direction: row;
-  justify-content: start;
-  align-items: end;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
