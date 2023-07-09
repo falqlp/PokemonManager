@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
+import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 
 @Component({
   selector: 'app-pokemon-info',

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { tap } from 'rxjs';
 import { PokemonFormComponent } from 'src/app/modals/pokemon-form/pokemon-form.component';
-import { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
-import { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
-import { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
+import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
+import type { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
+import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { PokemonQueriesService } from 'src/app/services/pokemon-queries.service';
 import { TrainerQueriesService } from 'src/app/services/trainer-queries.service';
@@ -46,6 +47,7 @@ export class HomeComponent implements OnInit {
         pokemon ? this.createPokemon(pokemon) : undefined
       );
   }
+
   protected clickP(): void {
     this.progress -= 10;
   }

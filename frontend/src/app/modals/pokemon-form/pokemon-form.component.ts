@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Observable, map, startWith } from 'rxjs';
-import { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
-import { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
+import type { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs';
+import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
+import type { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
 
 @Component({
   selector: 'app-pokemon-form',

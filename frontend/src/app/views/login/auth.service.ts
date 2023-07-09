@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { LoginFormModel } from './login-form.model';
+import type { Observable } from 'rxjs';
+import type { LoginFormModel } from './login-form.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

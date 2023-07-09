@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'progress-bar',
@@ -12,15 +13,29 @@ export class ProgressBarComponent implements OnInit {
     this._currentProgress = value;
     this.updateProgress();
   }
+
+  public get currentProgress(): number {
+    return this._currentProgress;
+  }
+
   @Input()
   public set max(value: number) {
     this._max = value;
     this.updateProgress();
   }
+
+  public get max(): number {
+    return this._max ?? 100;
+  }
+
   @Input()
   public set min(value: number) {
     this._min = value;
     this.updateProgress();
+  }
+
+  public get min(): number {
+    return this._min ?? 0;
   }
 
   protected _min: number;
@@ -34,18 +49,6 @@ export class ProgressBarComponent implements OnInit {
 
   protected updateProgress(): void {
     this.progress =
-      this.currentProgress - this.min === 0
-        ? 0
-        : ((this.currentProgress - this.min) * 100) / (this.max - this.min);
-  }
-
-  public get currentProgress(): number {
-    return this._currentProgress;
-  }
-  public get max(): number {
-    return this._max ?? 100;
-  }
-  public get min(): number {
-    return this._min ?? 0;
+      ((this.currentProgress - this.min) * 100) / (this.max - this.min);
   }
 }

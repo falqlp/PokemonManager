@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   Subject,
   debounceTime,
@@ -8,7 +9,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
+import type { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 
 @Component({
   selector: 'search-input',

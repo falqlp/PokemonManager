@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { TrainerModel } from '../models/TrainersModels/trainer.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import type { TrainerModel } from '../models/TrainersModels/trainer.model';
+import type { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { TrainerQueriesService } from './trainer-queries.service';
 
 @Injectable({

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
+import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 
 @Component({
   selector: 'app-battle-scene',

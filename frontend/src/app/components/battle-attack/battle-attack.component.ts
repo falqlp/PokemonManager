@@ -1,14 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-} from '@angular/core';
-import { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
-import { AttackModel } from 'src/app/models/attack.model';
+import type { OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
+import type { AttackModel } from 'src/app/models/attack.model';
 
 @Component({
   selector: 'app-battle-attack',

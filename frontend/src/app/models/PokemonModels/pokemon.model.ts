@@ -1,5 +1,5 @@
-import { PokemonBaseModel } from './pokemonBase.model';
-import { PokemonStatsModel } from './pokemonStats.model';
+import type { PokemonBaseModel } from './pokemonBase.model';
+import type { PokemonStatsModel } from './pokemonStats.model';
 
 export interface PokemonModel {
   _id?: string;

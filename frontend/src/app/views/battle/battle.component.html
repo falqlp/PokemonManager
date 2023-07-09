@@ -14,7 +14,10 @@
       [opponentActivePokemon]="opponentPokemons[0]"
       [playerActivePokemon]="playerPokemons[0]"
     ></app-battle-scene>
-    <app-battle-attack [activePokemon]="playerPokemons[0]"></app-battle-attack>
+    <app-battle-attack
+      [activePokemon]="playerPokemons[0]"
+      (onAttackChange)="onAttackChange($event)"
+    ></app-battle-attack>
   </div>
   <div class="battle__trainer-pokemons">
     <app-battle-trainer-pokemons

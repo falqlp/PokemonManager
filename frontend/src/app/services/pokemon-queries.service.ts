@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PokemonModel } from '../models/PokemonModels/pokemon.model';
-import { Observable, catchError, of, switchMap, tap } from 'rxjs';
-import { TrainerModel } from '../models/TrainersModels/trainer.model';
+import type { PokemonModel } from '../models/PokemonModels/pokemon.model';
+import type { Observable } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
+import type { TrainerModel } from '../models/TrainersModels/trainer.model';
 import { TrainerQueriesService } from './trainer-queries.service';
 import { PlayerService } from './player.service';
 
@@ -25,9 +26,9 @@ export class PokemonQueriesService {
     trainer: TrainerModel
   ): Observable<TrainerModel> {
     return this.create(pokemon).pipe(
-      tap((pokemon) => {
-        if (pokemon._id) {
-          trainer.pokemons.push(pokemon._id);
+      tap((newPokemon) => {
+        if (newPokemon._id) {
+          trainer.pokemons.push(newPokemon._id);
         }
       }),
       switchMap(() => {

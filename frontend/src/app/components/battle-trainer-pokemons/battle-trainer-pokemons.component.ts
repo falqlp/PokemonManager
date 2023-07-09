@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
-import { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
+import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
+import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 
 @Component({
   selector: 'app-battle-trainer-pokemons',

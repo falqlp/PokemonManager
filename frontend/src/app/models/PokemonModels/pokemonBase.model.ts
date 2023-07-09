@@ -1,4 +1,4 @@
-import { PokemonStatsModel } from './pokemonStats.model';
+import type { PokemonStatsModel } from './pokemonStats.model';
 
 export interface PokemonBaseModel {
   id: number;

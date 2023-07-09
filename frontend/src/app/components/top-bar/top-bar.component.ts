@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable, Subject, switchMap, takeUntil } from 'rxjs';
+import type { Observable } from 'rxjs';
+import { Subject, switchMap, takeUntil } from 'rxjs';
 import { PokemonInfoComponent } from 'src/app/modals/pokemon-info/pokemon-info.component';
-import { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
-import { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
-import { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
+import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
+import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { TrainerQueriesService } from 'src/app/services/trainer-queries.service';
 

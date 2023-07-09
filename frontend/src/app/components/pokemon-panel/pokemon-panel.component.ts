@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
+import type { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 
 @Component({
   selector: 'pokemon-panel',
