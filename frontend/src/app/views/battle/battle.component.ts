@@ -41,12 +41,11 @@ export class BattleComponent implements OnInit {
         opponentCurrentHp = Math.round(opponentCurrentHp * 10) / 10;
         this.opponentPokemons[0].currentHp = Math.max(0, opponentCurrentHp);
       }
-    }, 200);
+    }, 500);
   }
 
   protected changePlayerActivePokemon(pokemon: PokemonModel): void {
     this.playerPokemons = this.changePokemon(this.playerPokemons, pokemon);
-    this.selectedAttack = undefined;
   }
 
   protected changeOpponentActivePokemon(pokemon: PokemonModel): void {

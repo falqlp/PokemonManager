@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import type { OnChanges, OnInit } from '@angular/core';
+import type { OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import type { AttackModel } from 'src/app/models/attack.model';
@@ -22,8 +22,12 @@ export class BattleAttackComponent implements OnInit, OnChanges {
     this.getAttacks();
   }
 
-  public ngOnChanges(): void {
-    this.getAttacks();
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes['activePokemon']) {
+      this.getAttacks();
+      this.selectedAttack = undefined;
+      this.onAttackChange.emit(this.selectedAttack);
+    }
   }
 
   protected onClick(attack: AttackModel): void {
@@ -31,7 +35,6 @@ export class BattleAttackComponent implements OnInit, OnChanges {
     this.onAttackChange.emit(this.selectedAttack);
     this.disabled = true;
     this.progress = 100;
-
     const interval = setInterval(() => {
       this.progress -= 1; // ajustez cette valeur en fonction de la durée du cooldown
       if (this.progress <= 0) {
@@ -39,7 +42,7 @@ export class BattleAttackComponent implements OnInit, OnChanges {
         this.disabled = false;
         this.progress = 0;
       }
-    }, 50); // ajustez cette valeur en fonction de la durée du cooldown
+    }, 6 + 200 / Math.sqrt(this.activePokemon.stats.spe)); // ajustez cette valeur en fonction de la durée du cooldown
   }
 
   protected getAttacks(): void {
