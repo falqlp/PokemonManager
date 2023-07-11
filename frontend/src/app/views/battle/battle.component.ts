@@ -36,15 +36,12 @@ export class BattleComponent implements OnInit {
           this.opponentPokemons[0],
           this.selectedAttack
         );
-        this.opponentPokemons[0].currentHp -= damage.damage / 5;
-        this.opponentPokemons[0].currentHp =
-          Math.round(this.opponentPokemons[0].currentHp * 10) / 10;
-        this.opponentPokemons[0].currentHp =
-          this.opponentPokemons[0].currentHp < 0
-            ? 0
-            : this.opponentPokemons[0].currentHp;
+        let opponentCurrentHp =
+          this.opponentPokemons[0].currentHp - damage.damage / 5;
+        opponentCurrentHp = Math.round(opponentCurrentHp * 10) / 10;
+        this.opponentPokemons[0].currentHp = Math.max(0, opponentCurrentHp);
       }
-    }, 1000);
+    }, 200);
   }
 
   protected changePlayerActivePokemon(pokemon: PokemonModel): void {

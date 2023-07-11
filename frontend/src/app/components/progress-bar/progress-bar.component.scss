@@ -6,6 +6,7 @@
     &--progress {
       height: 100%;
       background-color: aqua;
+      transition: width 0.2s linear;
     }
   }
 
