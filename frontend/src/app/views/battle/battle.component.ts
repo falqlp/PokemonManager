@@ -6,6 +6,7 @@ import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { TrainerQueriesService } from 'src/app/services/trainer-queries.service';
 import { AttackModel } from '../../models/attack.model';
+import { BattleService } from './battle.service';
 
 @Component({
   selector: 'app-battle',
@@ -21,16 +22,34 @@ export class BattleComponent implements OnInit {
 
   constructor(
     protected trainerService: TrainerQueriesService,
-    protected playerService: PlayerService
+    protected playerService: PlayerService,
+    protected service: BattleService
   ) {}
 
   public ngOnInit(): void {
     this.getPlayer();
     this.getOpponent();
+    setInterval(() => {
+      if (this.selectedAttack) {
+        const damage = this.service.calcDamage(
+          this.playerPokemons[0],
+          this.opponentPokemons[0],
+          this.selectedAttack
+        );
+        this.opponentPokemons[0].currentHp -= damage.damage / 5;
+        this.opponentPokemons[0].currentHp =
+          Math.round(this.opponentPokemons[0].currentHp * 10) / 10;
+        this.opponentPokemons[0].currentHp =
+          this.opponentPokemons[0].currentHp < 0
+            ? 0
+            : this.opponentPokemons[0].currentHp;
+      }
+    }, 1000);
   }
 
   protected changePlayerActivePokemon(pokemon: PokemonModel): void {
     this.playerPokemons = this.changePokemon(this.playerPokemons, pokemon);
+    this.selectedAttack = undefined;
   }
 
   protected changeOpponentActivePokemon(pokemon: PokemonModel): void {

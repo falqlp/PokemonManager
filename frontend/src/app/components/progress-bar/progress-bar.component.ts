@@ -48,7 +48,13 @@ export class ProgressBarComponent implements OnInit {
   }
 
   protected updateProgress(): void {
-    this.progress =
-      ((this.currentProgress - this.min) * 100) / (this.max - this.min);
+    if (this.currentProgress < this.min) {
+      this.progress = this.min;
+    } else if (this.currentProgress > this.max) {
+      this.progress = this.max;
+    } else {
+      this.progress =
+        ((this.currentProgress - this.min) * 100) / (this.max - this.min);
+    }
   }
 }

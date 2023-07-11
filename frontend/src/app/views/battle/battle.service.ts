@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import type { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import type { AttackModel } from '../../models/attack.model';
 import { MIN_ROLL, STAB_MODIFIER, TYPE_EFFECTIVENESS } from './battel.const';
+import type { DamageModel, Effectiveness } from '../../models/damage.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,13 +12,19 @@ export class BattleService {
     attPokemon: PokemonModel,
     defPokemon: PokemonModel,
     attack: AttackModel
-  ): number {
-    return (
-      this.calcDamageBase(attPokemon, defPokemon, attack) *
-      this.calcEfficiency(attack, defPokemon) *
-      this.stab(attack, attPokemon) *
-      this.roll()
-    );
+  ): DamageModel {
+    const effectivness = this.calcEffectivness(attack, defPokemon);
+    const criticalHit = this.criticalHit(attPokemon);
+    return {
+      damage:
+        this.calcDamageBase(attPokemon, defPokemon, attack) *
+        effectivness *
+        this.stab(attack, attPokemon) *
+        criticalHit *
+        this.roll(),
+      effectivness: this.getEffectiveness(effectivness),
+      critical: criticalHit !== 1,
+    };
   }
 
   public calcDamageBase(
@@ -42,7 +49,10 @@ export class BattleService {
     );
   }
 
-  public calcEfficiency(attack: AttackModel, defPokemon: PokemonModel): number {
+  public calcEffectivness(
+    attack: AttackModel,
+    defPokemon: PokemonModel
+  ): number {
     let modifier = 1;
     defPokemon.basePokemon.types.forEach((type) => {
       if (
@@ -53,6 +63,17 @@ export class BattleService {
       }
     });
     return modifier;
+  }
+
+  public getEffectiveness(effectivness: number): Effectiveness {
+    if (effectivness === 0) {
+      return 'Immune';
+    } else if (effectivness < 1) {
+      return 'Not very effective';
+    } else if (effectivness > 1) {
+      return 'Super effective';
+    }
+    return 'Effective';
   }
 
   public stab(attack: AttackModel, attPokemon: PokemonModel): number {
