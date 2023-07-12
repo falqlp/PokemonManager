@@ -17,12 +17,17 @@
       />
     </div>
     <div class="pokemon-panel__content--stats">
-      <span>PV: {{ pokemon.baseStats.hp }}</span>
-      <span>Attaque: {{ pokemon.baseStats.atk }}</span>
-      <span>Defense: {{ pokemon.baseStats.def }}</span>
-      <span>Attaque Speciale: {{ pokemon.baseStats.spAtk }}</span>
-      <span>Defense Speciale: {{ pokemon.baseStats.spDef }}</span>
-      <span>Vitesse: {{ pokemon.baseStats.spe }}</span>
+      <span>{{ "HP" | translate }}: {{ pokemon.baseStats.hp }}</span>
+      <span>{{ "ATTACK" | translate }}: {{ pokemon.baseStats.atk }}</span>
+      <span>{{ "DEFENSE" | translate }}: {{ pokemon.baseStats.def }}</span>
+      <span
+        >{{ "SPECIAL_ATTACK" | translate }}: {{ pokemon.baseStats.spAtk }}</span
+      >
+      <span
+        >{{ "SPECIAL_DEFENSE" | translate }}:
+        {{ pokemon.baseStats.spDef }}</span
+      >
+      <span>{{ "SPEED" | translate }}: {{ pokemon.baseStats.spe }}</span>
     </div>
   </div>
 </div>

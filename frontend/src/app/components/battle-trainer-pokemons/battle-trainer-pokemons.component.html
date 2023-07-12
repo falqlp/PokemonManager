@@ -16,7 +16,7 @@
         <span>{{
           pokemon.nickname ? pokemon.nickname : pokemon.basePokemon.name
         }}</span>
-        <span>niv: {{ pokemon.level }}</span>
+        <span>{{ "LVL" | translate }}: {{ pokemon.level }}</span>
       </div>
       <progress-bar
         [style]="'hp'"

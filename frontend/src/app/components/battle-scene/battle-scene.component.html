@@ -8,7 +8,9 @@
               ? opponentActivePokemon.nickname
               : opponentActivePokemon.basePokemon.name
           }}</span>
-          <span>niv: {{ opponentActivePokemon.level }}</span>
+          <span
+            >{{ "LVL" | translate }}: {{ opponentActivePokemon.level }}</span
+          >
         </div>
         <progress-bar
           [style]="'hp'"
@@ -39,7 +41,7 @@
               ? playerActivePokemon.nickname
               : playerActivePokemon.basePokemon.name
           }}</span>
-          <span>niv: {{ playerActivePokemon.level }}</span>
+          <span>{{ "LVL" | translate }}: {{ playerActivePokemon.level }}</span>
         </div>
         <progress-bar
           [style]="'hp'"

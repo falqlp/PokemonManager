@@ -28,12 +28,12 @@
       ></progress-bar>
     </div>
     <div class="pokemon-info__content--stats">
-      <span>PV: {{ data.stats.hp }}</span>
-      <span>Attaque: {{ data.stats.atk }}</span>
-      <span>Defense: {{ data.stats.def }}</span>
-      <span>Attaque Speciale: {{ data.stats.spAtk }}</span>
-      <span>Defense Speciale: {{ data.stats.spDef }}</span>
-      <span>Vitesse: {{ data.stats.spe }}</span>
+      <span>{{ "HP" | translate }}: {{ data.stats.hp }}</span>
+      <span>{{ "ATTACK" | translate }}: {{ data.stats.atk }}</span>
+      <span>{{ "DEFENSE" | translate }}: {{ data.stats.def }}</span>
+      <span>{{ "SPECIAL_ATTACK" | translate }}: {{ data.stats.spAtk }}</span>
+      <span>{{ "SPECIAL_DEFENSE" | translate }}: {{ data.stats.spDef }}</span>
+      <span>{{ "SPEED" | translate }}: {{ data.stats.spe }}</span>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>

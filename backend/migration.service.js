@@ -1,5 +1,6 @@
 const axios = require("axios");
 const Attack = require("./models/attack");
+const PokemonBase = require("./models/PokemonModels/pokemonBase");
 
 const MigrationService = {
   attack: function () {
@@ -95,6 +96,29 @@ const MigrationService = {
       default:
         return type;
     }
+  },
+  updatePokemonName: function () {
+    let translations = {};
+    PokemonBase.find().then((pokemons) => {
+      let requests = pokemons.map((pokemon) => {
+        return axios
+          .get(
+            `https://pokeapi.co/api/v2/pokemon-species/${parseInt(pokemon.id)}`
+          )
+          .then((response) => {
+            pokemon.name = response.data.name.toUpperCase();
+            let englishName = response.data.name.toUpperCase();
+            let frenchName = response.data.names.find(
+              (name) => name.language.name === "en"
+            ).name;
+            translations[englishName] = frenchName;
+          });
+      });
+
+      Promise.all(requests).then(() => {
+        console.log(translations);
+      });
+    });
   },
 };
 module.exports = MigrationService;
