@@ -21,14 +21,6 @@ const MigrationService = {
               }
             });
           }
-          console.log(
-            i,
-            name,
-            this.typeEnToFr(response.data.type.name),
-            response.data.damage_class.name,
-            response.data.accuracy,
-            response.data.power
-          );
           let attackData = {
             id: i,
             name: name,
@@ -97,6 +89,49 @@ const MigrationService = {
         return type;
     }
   },
+  typeFrToEn: function (type) {
+    switch (type) {
+      case "Normal":
+        return "normal";
+      case "Feu":
+        return "fire";
+      case "Eau":
+        return "water";
+      case "Électrik":
+        return "electric";
+      case "Plante":
+        return "grass";
+      case "Glace":
+        return "ice";
+      case "Combat":
+        return "fighting";
+      case "Poison":
+        return "poison";
+      case "Sol":
+        return "ground";
+      case "Vol":
+        return "flying";
+      case "Psy":
+        return "psychic";
+      case "Insecte":
+        return "bug";
+      case "Roche":
+        return "rock";
+      case "Spectre":
+        return "ghost";
+      case "Dragon":
+        return "dragon";
+      case "Ténèbres":
+        return "dark";
+      case "Acier":
+        return "steel";
+      case "Fée":
+        return "fairy";
+      default:
+        return type;
+    }
+  },
+
   updatePokemonName: function () {
     let translations = {};
     PokemonBase.find().then((pokemons) => {
@@ -119,6 +154,57 @@ const MigrationService = {
         console.log(translations);
       });
     });
+  },
+  updateTypeToEn: function () {
+    PokemonBase.find().then((pokemons) => {
+      pokemons.forEach((pokemon) => {
+        const newTypes = [];
+        pokemon.types.forEach((type) => {
+          newTypes.push(this.typeFrToEn(type).toUpperCase());
+        });
+        pokemon.types = newTypes;
+        pokemon.save().then(() => console.log(pokemon.name));
+      });
+    });
+  },
+  updateAttackTypeToEn: function () {
+    Attack.find().then((attacks) => {
+      attacks.forEach((attack) => {
+        attack.type = this.typeFrToEn(attack.type).toUpperCase();
+        attack.save().then(() => console.log(attack.name));
+      });
+    });
+  },
+  updateAttackName: function () {
+    let translations = {};
+    Attack.find()
+      .then((attacks) => {
+        let requests = attacks.map((attack) => {
+          return axios
+            .get(`https://pokeapi.co/api/v2/move/${attack.id + 1}`)
+            .then((response) => {
+              attack.name = response.data.name.toUpperCase();
+              let englishName = response.data.name.toUpperCase();
+
+              let nameObj = response.data.names.find(
+                (name) => name.language.name === "fr"
+              );
+              if (!nameObj) {
+                nameObj = response.data.names.find(
+                  (name) => name.language.name === "en"
+                );
+              }
+              let frenchName = nameObj.name;
+              translations[englishName] = frenchName;
+              attack.save().then(console.log(attack.name));
+            });
+        });
+
+        Promise.all(requests).then(() => {
+          console.log(translations);
+        });
+      })
+      .catch((error) => console.log(error));
   },
 };
 module.exports = MigrationService;

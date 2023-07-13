@@ -4,7 +4,9 @@
     [ngClass]="data.basePokemon.types[0]"
     mat-dialog-title
   >
-    {{ data.nickname === "" ? data.basePokemon.name : data.nickname }}
+    {{
+      data.nickname === "" ? data.basePokemon.name : (data.nickname | translate)
+    }}
   </h2>
   <mat-dialog-content class="pokemon-info__content">
     <img
@@ -21,7 +23,7 @@
       />
     </div>
     <div class="pokemon-info__content--level">
-      <span>Niv: {{ data.level }}</span
+      <span>{{ "LVL" | translate }}: {{ data.level }}</span
       ><progress-bar
         [currentProgress]="data.exp"
         [max]="data.expMax"
