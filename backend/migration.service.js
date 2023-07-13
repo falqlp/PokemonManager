@@ -4,7 +4,7 @@ const PokemonBase = require("./models/PokemonModels/pokemonBase");
 
 const MigrationService = {
   attack: function () {
-    for (let i = 1000; i < 1000; i++) {
+    for (let i = 0; i < 1000; i++) {
       axios
         .get("https://pokeapi.co/api/v2/move/" + (i + 1))
         .then((response) => {
@@ -22,9 +22,9 @@ const MigrationService = {
             });
           }
           let attackData = {
-            id: i,
-            name: name,
-            type: typeEnToFr(response.data.type.name),
+            id: i + 1,
+            name: response.data.name.toUpperCase(),
+            type: response.data.type.name.toUpperCase(),
             category: response.data.damage_class.name,
             accuracy: response.data.accuracy,
             power: response.data.power,
@@ -36,7 +36,7 @@ const MigrationService = {
             runValidators: true,
           })
             .then((doc) => {
-              console.log(doc);
+              console.log(attackData.id, " ok");
             })
             .catch((err) => {
               console.log("Something went wrong when updating the data!", err);
@@ -181,13 +181,13 @@ const MigrationService = {
       .then((attacks) => {
         let requests = attacks.map((attack) => {
           return axios
-            .get(`https://pokeapi.co/api/v2/move/${attack.id + 1}`)
+            .get(`https://pokeapi.co/api/v2/move/${attack.id}`)
             .then((response) => {
               attack.name = response.data.name.toUpperCase();
               let englishName = response.data.name.toUpperCase();
 
               let nameObj = response.data.names.find(
-                (name) => name.language.name === "fr"
+                (name) => name.language.name === "en"
               );
               if (!nameObj) {
                 nameObj = response.data.names.find(
@@ -196,7 +196,7 @@ const MigrationService = {
               }
               let frenchName = nameObj.name;
               translations[englishName] = frenchName;
-              attack.save().then(console.log(attack.name));
+              // attack.save().then(console.log(attack.name));
             });
         });
 
