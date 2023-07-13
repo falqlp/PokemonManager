@@ -6,7 +6,7 @@
           <span>{{
             opponentActivePokemon.nickname
               ? opponentActivePokemon.nickname
-              : opponentActivePokemon.basePokemon.name
+              : (opponentActivePokemon.basePokemon.name | translate)
           }}</span>
           <span
             >{{ "LVL" | translate }}: {{ opponentActivePokemon.level }}</span
@@ -39,7 +39,7 @@
           <span>{{
             playerActivePokemon.nickname
               ? playerActivePokemon.nickname
-              : playerActivePokemon.basePokemon.name
+              : (playerActivePokemon.basePokemon.name | translate)
           }}</span>
           <span>{{ "LVL" | translate }}: {{ playerActivePokemon.level }}</span>
         </div>

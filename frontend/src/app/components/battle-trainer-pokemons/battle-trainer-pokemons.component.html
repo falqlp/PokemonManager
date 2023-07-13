@@ -14,7 +14,9 @@
           [alt]="pokemon.basePokemon.name"
         />
         <span>{{
-          pokemon.nickname ? pokemon.nickname : pokemon.basePokemon.name
+          pokemon.nickname
+            ? pokemon.nickname
+            : (pokemon.basePokemon.name | translate)
         }}</span>
         <span>{{ "LVL" | translate }}: {{ pokemon.level }}</span>
       </div>

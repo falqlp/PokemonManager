@@ -1,6 +1,6 @@
 <div *ngIf="pokemon" class="pokemon-panel">
   <div class="pokemon-panel__header" [ngClass]="pokemon.types[0]">
-    <label>{{ pokemon.name }}</label>
+    <label>{{ pokemon.name | translate }}</label>
   </div>
   <div class="pokemon-panel__content">
     <img

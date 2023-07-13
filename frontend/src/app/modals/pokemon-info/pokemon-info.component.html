@@ -5,7 +5,7 @@
     mat-dialog-title
   >
     {{
-      data.nickname === "" ? data.basePokemon.name : (data.nickname | translate)
+      data.nickname === "" ? (data.basePokemon.name | translate) : data.nickname
     }}
   </h2>
   <mat-dialog-content class="pokemon-info__content">
