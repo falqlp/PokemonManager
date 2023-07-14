@@ -20,9 +20,9 @@ import { LoginComponent } from './views/login/login.component';
 import { PokemonInfoComponent } from './modals/pokemon-info/pokemon-info.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { BattleComponent } from './views/battle/battle.component';
-import { BattleSceneComponent } from './components/battle-scene/battle-scene.component';
-import { BattleTrainerPokemonsComponent } from './components/battle-trainer-pokemons/battle-trainer-pokemons.component';
-import { BattleAttackComponent } from './components/battle-attack/battle-attack.component';
+import { BattleSceneComponent } from './views/battle/components/battle-scene/battle-scene.component';
+import { BattleTrainerPokemonsComponent } from './views/battle/components/battle-trainer-pokemons/battle-trainer-pokemons.component';
+import { BattleAttackComponent } from './views/battle/components/battle-attack/battle-attack.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 

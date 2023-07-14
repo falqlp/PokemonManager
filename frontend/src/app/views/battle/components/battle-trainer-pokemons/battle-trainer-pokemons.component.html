@@ -6,7 +6,7 @@
     <div
       *ngFor="let pokemon of trainerPokemons.slice(1)"
       class="pokemon-box"
-      (click)="!disabled && click(pokemon)"
+      (click)="!disabled && pokemon.currentHp !== 0 && click(pokemon)"
     >
       <div class="pokemon-box__info">
         <img
@@ -19,6 +19,9 @@
             : (pokemon.basePokemon.name | translate)
         }}</span>
         <span>{{ "LVL" | translate }}: {{ pokemon.level }}</span>
+        <span *ngIf="pokemon.currentHp === 0" class="pokemon-box__info--ko"
+          >KO</span
+        >
       </div>
       <progress-bar
         [style]="'hp'"
