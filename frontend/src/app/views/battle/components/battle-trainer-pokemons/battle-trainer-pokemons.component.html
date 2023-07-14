@@ -6,6 +6,7 @@
     <div
       *ngFor="let pokemon of trainerPokemons.slice(1)"
       class="pokemon-box"
+      [ngClass]="{ ko: pokemon.currentHp === 0 }"
       (click)="!disabled && pokemon.currentHp !== 0 && click(pokemon)"
     >
       <div class="pokemon-box__info">
