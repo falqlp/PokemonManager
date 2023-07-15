@@ -1,0 +1,35 @@
+.battle-scene__attack {
+  animation: slideDown 0.3s ease-out;
+  z-index: -1;
+  position: relative;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  &--effectivness {
+    min-width: 200px;
+    border: black 2px solid;
+    border-radius: 0 0 4px 4px;
+    border-top-style: hidden;
+    padding: 5px 10px;
+  }
+  &--critical {
+    position: relative;
+    z-index: -2;
+    animation: slideDown 0.3s ease-out;
+    border: black 2px solid;
+    border-radius: 0 0 4px 4px;
+    border-top-style: hidden;
+    padding: 5px 10px;
+    background-color: #851a1a;
+  }
+}
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

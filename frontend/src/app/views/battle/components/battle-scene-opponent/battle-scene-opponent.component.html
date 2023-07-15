@@ -1,0 +1,35 @@
+<div class="opponent">
+  <div class="opponent__pokemon__info">
+    <div class="opponent__pokemon__info__box">
+      <div class="opponent__pokemon__info__box--info">
+        <span>{{
+          opponentActivePokemon.nickname
+            ? opponentActivePokemon.nickname
+            : (opponentActivePokemon.basePokemon.name | translate)
+        }}</span>
+        <span>{{ "LVL" | translate }}: {{ opponentActivePokemon.level }}</span>
+      </div>
+      <progress-bar
+        [style]="'hp'"
+        [currentProgress]="
+          opponentActivePokemon.currentHp ?? opponentActivePokemon.stats.hp
+        "
+        [max]="opponentActivePokemon.stats.hp"
+      ></progress-bar>
+    </div>
+    <div class="opponent__pokemon__info__attack">
+      <app-battle-scene-attack-info
+        [damage]="opponentDamage"
+      ></app-battle-scene-attack-info>
+    </div>
+  </div>
+  <div class="opponent__pokemon__image">
+    <img
+      class="opponent__pokemon__image--thumbnails"
+      src="assets/images/thumbnails/{{
+        opponentActivePokemon.basePokemon.id
+      }}.png"
+      [alt]="opponentActivePokemon.basePokemon.name"
+    />
+  </div>
+</div>

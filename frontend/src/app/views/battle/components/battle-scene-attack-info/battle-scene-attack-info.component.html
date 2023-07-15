@@ -1,0 +1,12 @@
+<div *ngIf="damage" class="battle-scene__attack">
+  <div class="battle-scene__attack--effectivness">
+    {{ damage.effectivness }}
+  </div>
+  <div *ngIf="damage.critical" class="battle-scene__attack--critical">
+    Critical
+  </div>
+</div>
+<!--<div class="battle-scene__attack">-->
+<!--  <div class="battle-scene__attack&#45;&#45;effectivness">Effective</div>-->
+<!--  <div class="battle-scene__attack&#45;&#45;critical">Critical</div>-->
+<!--</div>-->

@@ -25,6 +25,8 @@ import { BattleTrainerPokemonsComponent } from './views/battle/components/battle
 import { BattleAttackComponent } from './views/battle/components/battle-attack/battle-attack.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { BattleSceneAttackInfoComponent } from './views/battle/components/battle-scene-attack-info/battle-scene-attack-info.component';
+import { BattleSceneOpponentComponent } from './views/battle/components/battle-scene-opponent/battle-scene-opponent.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -46,6 +48,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     BattleSceneComponent,
     BattleTrainerPokemonsComponent,
     BattleAttackComponent,
+    BattleSceneAttackInfoComponent,
+    BattleSceneOpponentComponent,
   ],
   imports: [
     BrowserModule,

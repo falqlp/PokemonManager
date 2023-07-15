@@ -1,32 +1,10 @@
 <div class="host">
   <div class="battle-scene">
     <div class="opponent">
-      <div class="battle-scene__pokemons__box">
-        <div class="battle-scene__pokemons__box--info">
-          <span>{{
-            opponentActivePokemon.nickname
-              ? opponentActivePokemon.nickname
-              : (opponentActivePokemon.basePokemon.name | translate)
-          }}</span>
-          <span
-            >{{ "LVL" | translate }}: {{ opponentActivePokemon.level }}</span
-          >
-        </div>
-        <progress-bar
-          [style]="'hp'"
-          [currentProgress]="
-            opponentActivePokemon.currentHp ?? opponentActivePokemon.stats.hp
-          "
-          [max]="opponentActivePokemon.stats.hp"
-        ></progress-bar>
-      </div>
-      <img
-        class="battle-scene__pokemons--thumbnails"
-        src="assets/images/thumbnails/{{
-          opponentActivePokemon.basePokemon.id
-        }}.png"
-        [alt]="opponentActivePokemon.basePokemon.name"
-      />
+      <app-battle-scene-opponent
+        [opponentActivePokemon]="opponentActivePokemon"
+        [opponentDamage]="opponentDamage"
+      ></app-battle-scene-opponent>
     </div>
     <div class="player">
       <img

@@ -7,6 +7,7 @@ import { PlayerService } from 'src/app/services/player.service';
 import { TrainerQueriesService } from 'src/app/services/trainer-queries.service';
 import { AttackModel } from '../../models/attack.model';
 import { BattleService } from './battle.service';
+import { DamageModel } from '../../models/damage.model';
 
 @Component({
   selector: 'app-battle',
@@ -19,6 +20,7 @@ export class BattleComponent implements OnInit {
   protected opponentPokemons: PokemonModel[];
   protected playerPokemons: PokemonModel[];
   protected selectedAttack: AttackModel;
+  protected opponentDamage: DamageModel;
 
   constructor(
     protected trainerService: TrainerQueriesService,
@@ -30,14 +32,15 @@ export class BattleComponent implements OnInit {
     this.getPlayer();
     this.getOpponent();
     setInterval(() => {
+      this.opponentDamage = undefined;
       if (this.selectedAttack) {
-        const damage = this.service.calcDamage(
+        this.opponentDamage = this.service.calcDamage(
           this.playerPokemons[0],
           this.opponentPokemons[0],
           this.selectedAttack
         );
         let opponentCurrentHp =
-          this.opponentPokemons[0].currentHp - damage.damage / 5;
+          this.opponentPokemons[0].currentHp - this.opponentDamage.damage / 5;
         opponentCurrentHp = Math.round(opponentCurrentHp * 10) / 10;
         this.opponentPokemons[0].currentHp = Math.max(0, opponentCurrentHp);
       }

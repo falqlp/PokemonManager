@@ -1,0 +1,39 @@
+.opponent {
+  display: flex;
+  flex-wrap: wrap;
+  &__pokemon {
+    &__info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      &__box {
+        border: black 2px solid;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        padding-top: 5px;
+        margin: 5px 5px 0 5px;
+        height: fit-content;
+        background-color: #0f0e0e;
+        width: 100%;
+        max-width: 250px;
+        &--info {
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+    }
+
+    &__image {
+      display: flex;
+      &--thumbnails {
+        height: 240px;
+        width: 240px;
+      }
+    }
+  }
+}

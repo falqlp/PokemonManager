@@ -3,7 +3,9 @@
     *ngFor="let attack of attacks"
     class="battle-attack__attack"
     [ngClass]="{ selectedAttack: selectedAttack?.name === attack.name }"
-    (click)="!disabled && onClick(attack)"
+    (click)="
+      !disabled && selectedAttack?.name !== attack.name && onClick(attack)
+    "
   >
     <div class="battle-attack__attack__top">
       <img

@@ -6,9 +6,9 @@
   border: red 1px solid;
   width: 100%;
   .battle-scene__pokemons {
-    display: flex;
-    align-items: center;
     &__box {
+      grid-column: 1;
+      grid-row: 1;
       border: black 2px solid;
       border-radius: 4px;
       display: flex;
@@ -27,20 +27,24 @@
         gap: 10px;
       }
     }
-    &--thumbnails {
-      height: 240px;
-      width: 240px;
+    &__attack {
+      grid-column: 1;
+      grid-row: 2;
     }
+    &__image {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      &--thumbnails {
+        height: 240px;
+        width: 240px;
+      }
+    }
+
     &--back {
       height: 288px;
       width: 288px;
     }
   }
-}
-.opponent {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
 }
 .player {
   display: flex;
