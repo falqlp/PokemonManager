@@ -55,10 +55,7 @@ export class BattleService {
   ): number {
     let modifier = 1;
     defPokemon.basePokemon.types.forEach((type) => {
-      if (
-        TYPE_EFFECTIVENESS[attack.type] &&
-        TYPE_EFFECTIVENESS[attack.type][type]
-      ) {
+      if (TYPE_EFFECTIVENESS[attack.type][type] !== undefined) {
         modifier *= TYPE_EFFECTIVENESS[attack.type][type];
       }
     });
@@ -67,13 +64,13 @@ export class BattleService {
 
   public getEffectiveness(effectivness: number): Effectiveness {
     if (effectivness === 0) {
-      return 'Immune';
+      return 'IMMUNE';
     } else if (effectivness < 1) {
-      return 'Not very effective';
+      return 'NOT_VERY_EFFECTIVE';
     } else if (effectivness > 1) {
-      return 'Super effective';
+      return 'SUPER_EFFECTIVE';
     }
-    return 'Effective';
+    return 'EFFECTIVE';
   }
 
   public stab(attack: AttackModel, attPokemon: PokemonModel): number {

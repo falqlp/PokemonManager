@@ -17,7 +17,7 @@
   &--critical {
     position: relative;
     z-index: -2;
-    animation: slideDown 0.3s ease-out;
+    animation: slideDown 0.2s ease-out;
     border: black 2px solid;
     border-radius: 0 0 4px 4px;
     border-top-style: hidden;
@@ -32,4 +32,24 @@
   100% {
     transform: translateY(0);
   }
+}
+
+.EFFECTIVE {
+  background-color: white;
+  color: black;
+}
+
+.NOT_VERY_EFFECTIVE {
+  background-color: #8b3232;
+  color: black;
+}
+
+.SUPER_EFFECTIVE {
+  background-color: #3c9441;
+  color: black;
+}
+
+.IMMUNE {
+  background-color: #808080;
+  color: black;
 }
