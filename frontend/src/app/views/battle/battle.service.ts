@@ -100,4 +100,15 @@ export class BattleService {
   public roll(): number {
     return Math.random() * (1 - MIN_ROLL) + MIN_ROLL;
   }
+
+  public damageOnPokemon(
+    pokemon: PokemonModel,
+    damage: DamageModel
+  ): PokemonModel {
+    pokemon.currentHp = Math.max(
+      0,
+      Math.round((pokemon.currentHp - damage.damage / 5) * 10) / 10
+    );
+    return pokemon;
+  }
 }

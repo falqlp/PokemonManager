@@ -31,20 +31,7 @@ export class BattleComponent implements OnInit {
   public ngOnInit(): void {
     this.getPlayer();
     this.getOpponent();
-    setInterval(() => {
-      this.opponentDamage = undefined;
-      if (this.selectedAttack) {
-        this.opponentDamage = this.service.calcDamage(
-          this.playerPokemons[0],
-          this.opponentPokemons[0],
-          this.selectedAttack
-        );
-        let opponentCurrentHp =
-          this.opponentPokemons[0].currentHp - this.opponentDamage.damage / 5;
-        opponentCurrentHp = Math.round(opponentCurrentHp * 10) / 10;
-        this.opponentPokemons[0].currentHp = Math.max(0, opponentCurrentHp);
-      }
-    }, 500);
+    this.battleLoop();
   }
 
   protected changePlayerActivePokemon(pokemon: PokemonModel): void {
@@ -111,5 +98,26 @@ export class BattleComponent implements OnInit {
 
   protected onAttackChange(newAttack: AttackModel): void {
     this.selectedAttack = newAttack;
+  }
+
+  protected battleLoop(): void {
+    setInterval(() => {
+      this.opponentDamage = undefined;
+      if (
+        this.selectedAttack &&
+        this.playerPokemons[0].currentHp !== 0 &&
+        this.opponentPokemons[0].currentHp !== 0
+      ) {
+        this.opponentDamage = this.service.calcDamage(
+          this.playerPokemons[0],
+          this.opponentPokemons[0],
+          this.selectedAttack
+        );
+        this.opponentPokemons[0] = this.service.damageOnPokemon(
+          this.opponentPokemons[0],
+          this.opponentDamage
+        );
+      }
+    }, 500);
   }
 }
