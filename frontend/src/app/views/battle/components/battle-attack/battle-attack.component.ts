@@ -27,22 +27,14 @@ export class BattleAttackComponent implements OnInit, OnChanges {
       this.getAttacks();
       this.selectedAttack = undefined;
       this.onAttackChange.emit(this.selectedAttack);
+      this.setCooldown();
     }
   }
 
   protected onClick(attack: AttackModel): void {
     this.selectedAttack = attack;
     this.onAttackChange.emit(this.selectedAttack);
-    this.disabled = true;
-    this.progress = 100;
-    const interval = setInterval(() => {
-      this.progress -= 1; // ajustez cette valeur en fonction de la durée du cooldown
-      if (this.progress <= 0) {
-        clearInterval(interval);
-        this.disabled = false;
-        this.progress = 0;
-      }
-    }, 6 + 200 / Math.sqrt(this.activePokemon.stats.spe)); // ajustez cette valeur en fonction de la durée du cooldown
+    this.setCooldown();
   }
 
   protected getAttacks(): void {
@@ -53,5 +45,18 @@ export class BattleAttackComponent implements OnInit, OnChanges {
           this.attacks = attacks;
         });
     }
+  }
+
+  protected setCooldown(): void {
+    this.disabled = true;
+    this.progress = 100;
+    const interval = setInterval(() => {
+      this.progress -= 1;
+      if (this.progress <= 0) {
+        clearInterval(interval);
+        this.disabled = false;
+        this.progress = 0;
+      }
+    }, 6 + 200 / Math.sqrt(this.activePokemon.stats.spe));
   }
 }

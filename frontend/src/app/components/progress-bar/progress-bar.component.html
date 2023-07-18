@@ -1,4 +1,4 @@
-<span class="hp" *ngIf="style === 'hp'">
+<span class="hp" *ngIf="style === 'hp' && displayHp">
   {{ "HP" | translate }}: {{ currentProgress }}/{{ max }}</span
 >
 <div class="progress-bar" [ngClass]="style">

@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ProgressBarComponent implements OnInit {
   @Input() public style = 'level';
+  @Input() public displayHp = true;
   @Input()
   public set currentProgress(value: number) {
     this._currentProgress = value;
