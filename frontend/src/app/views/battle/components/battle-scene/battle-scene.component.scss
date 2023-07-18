@@ -1,3 +1,5 @@
+@import "src/styles/colors";
+
 .host {
   display: flex;
   justify-content: center;
@@ -17,7 +19,7 @@
       padding-top: 5px;
       margin: 5px;
       height: fit-content;
-      background-color: #0f0e0e;
+      background-color: $background-color1;
       width: 100%;
       max-width: 250px;
       &--info {

@@ -7,10 +7,10 @@
       />
     </div>
     <div class="player">
-      <img
+      <app-display-pokemon-image
         class="battle-scene__pokemons--back"
-        src="assets/images/back/{{ playerActivePokemon.basePokemon.id }}.png"
-        [alt]="playerActivePokemon.basePokemon.name"
+        [pokemon]="playerActivePokemon"
+        [type]="'back'"
       />
       <div class="battle-scene__pokemons__box">
         <div class="battle-scene__pokemons__box--info">

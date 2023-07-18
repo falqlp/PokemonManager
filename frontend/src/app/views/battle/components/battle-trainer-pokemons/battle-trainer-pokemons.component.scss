@@ -1,34 +1,42 @@
+@import "src/styles/colors";
+
 .trainer {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
+  background-color: $background-color2;
+  padding: 10px;
+  border-radius: 8px;
 }
-.pokemon-box {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-  &__info {
+.battle-trainer-pokemons {
+  position: relative;
+  background-color: $background-color2;
+  padding: 10px;
+  border-radius: 8px;
+  &__pokemon-box {
+    cursor: pointer;
     display: flex;
-    align-items: center;
-    gap: 10px;
-    &--ko {
-      background-color: #0f0e0e;
-      padding: 5px;
-      border-radius: 5px;
-      border: black 2px solid;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    &__info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      &--ko {
+        background-color: #0f0e0e;
+        padding: 5px;
+        border-radius: 5px;
+        border: black 2px solid;
+      }
     }
   }
-}
-.ko {
-  opacity: 0.5;
-  cursor: default;
-}
-.pokemon-box:hover {
-  border: black 2px solid;
-  border-radius: 4px;
-}
-.battle-trainer-pokemon {
-  position: relative;
+  .ko {
+    opacity: 0.5;
+    cursor: default;
+  }
+  &__pokemon-box:hover {
+    border: black 2px solid;
+    border-radius: 4px;
+  }
 }

@@ -1,11 +1,11 @@
 <div *ngIf="player$ | async as player" class="top-bar">
   <span>{{ player.name }}</span>
   <div class="top-bar__pokemons">
-    <img
+    <app-display-pokemon-image
       *ngFor="let pokemon of playerPokemons"
       class="clickable-icon"
-      src="assets/images/sprites/{{ pokemon.basePokemon.id }}MS.png"
-      [alt]="pokemon.basePokemon.name"
+      [pokemon]="pokemon"
+      [type]="'icon'"
       (click)="openInfo(pokemon)"
     />
   </div>

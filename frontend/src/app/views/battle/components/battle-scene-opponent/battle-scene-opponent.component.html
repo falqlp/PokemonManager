@@ -23,12 +23,10 @@
     </div>
   </div>
   <div class="opponent__pokemon__image">
-    <img
+    <app-display-pokemon-image
       class="opponent__pokemon__image--thumbnails"
-      src="assets/images/thumbnails/{{
-        opponentActivePokemon.basePokemon.id
-      }}.png"
-      [alt]="opponentActivePokemon.basePokemon.name"
+      [pokemon]="opponentActivePokemon"
+      [type]="'thumbnails'"
     />
   </div>
 </div>

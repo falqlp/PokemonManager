@@ -1,5 +1,7 @@
+@import "src/styles/colors";
+
 .top-bar {
-  background-color: #0f0e0e;
+  background-color: $background-color1;
   height: 50px;
   color: white;
   display: flex;
@@ -8,6 +10,7 @@
   border-bottom: #252525 2px solid;
   margin-bottom: 10px;
   &__pokemons {
+    height: fit-content;
     margin: 0 10px;
     display: flex;
     align-items: center;

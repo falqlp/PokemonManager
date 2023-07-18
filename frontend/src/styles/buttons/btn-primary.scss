@@ -1,3 +1,5 @@
+@import "src/styles/colors";
+
 .btn-primary {
   width: fit-content;
   min-width: 100px;
@@ -7,7 +9,7 @@
   border: 2px solid #252525;
   box-shadow: 0px 0px 20px -20px;
   cursor: pointer;
-  background-color: #0f0e0e;
+  background-color: $background-color1;
   transition: all 0.2s ease-in-out 0ms;
   user-select: none;
   color: white;

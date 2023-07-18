@@ -1,3 +1,5 @@
+@import "src/styles/colors";
+
 .opponent {
   display: flex;
   flex-wrap: wrap;
@@ -16,7 +18,7 @@
         padding: 5px 0;
         margin: 5px 5px 0 5px;
         height: fit-content;
-        background-color: #0f0e0e;
+        background-color: $background-color1;
         width: 100%;
         max-width: 250px;
         &--info {

@@ -1,13 +1,18 @@
+@import "src/styles/colors";
+
 .battle-attack {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   position: relative;
+  background-color: $background-color2;
+  margin: 10px 0;
+  border-radius: 8px;
   &__attack {
-    margin: 10px;
+    margin: 20px;
     padding: 10px;
-    background-color: #0f0e0e;
-    border: #0f0e0e 2px solid;
+    background-color: $background-color1;
+    border: $background-color1 2px solid;
     border-radius: 4px;
     flex: 1;
     &__top {
