@@ -16,12 +16,10 @@
           opponentActivePokemon.currentHp ?? opponentActivePokemon.stats.hp
         "
         [max]="opponentActivePokemon.stats.hp"
-      ></progress-bar>
+      />
     </div>
     <div class="opponent__pokemon__info__attack">
-      <app-battle-scene-attack-info
-        [damage]="opponentDamage"
-      ></app-battle-scene-attack-info>
+      <app-battle-scene-attack-info [damage]="opponentDamage" />
     </div>
   </div>
   <div class="opponent__pokemon__image">

@@ -24,10 +24,7 @@
     </div>
     <div class="pokemon-info__content--level">
       <span>{{ "LVL" | translate }}: {{ data.level }}</span
-      ><progress-bar
-        [currentProgress]="data.exp"
-        [max]="data.expMax"
-      ></progress-bar>
+      ><progress-bar [currentProgress]="data.exp" [max]="data.expMax" />
     </div>
     <div class="pokemon-info__content--stats">
       <span>{{ "HP" | translate }}: {{ data.stats.hp }}</span>

@@ -4,7 +4,7 @@
       <app-battle-scene-opponent
         [opponentActivePokemon]="opponentActivePokemon"
         [opponentDamage]="opponentDamage"
-      ></app-battle-scene-opponent>
+      />
     </div>
     <div class="player">
       <img
@@ -27,7 +27,7 @@
             playerActivePokemon.currentHp ?? playerActivePokemon.stats.hp
           "
           [max]="playerActivePokemon.stats.hp"
-        ></progress-bar>
+        />
       </div>
     </div>
   </div>
