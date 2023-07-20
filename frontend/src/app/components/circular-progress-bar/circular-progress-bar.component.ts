@@ -17,21 +17,8 @@ export class CircularProgressBarComponent implements OnInit {
   public constructor(protected colorService: ColorService) {}
 
   public ngOnInit(): void {
-    this.simulateProgress();
     this.calculateProgress();
     this.rgb = this.colorService.hpPourcentToRGB(this.currentProgress);
-  }
-
-  protected simulateProgress(): void {
-    const intervalId = setInterval(() => {
-      if (this.progress < 100) {
-        this.progress += 0.1;
-      } else {
-        clearInterval(intervalId);
-      }
-      this.calculateProgress();
-      this.rgb = this.colorService.hpPourcentToRGB(this.currentProgress);
-    }, 10);
   }
 
   protected calculateProgress(): void {

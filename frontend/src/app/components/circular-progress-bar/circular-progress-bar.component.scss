@@ -1,8 +1,6 @@
 @import "src/styles/colors";
 
 .circular-progress-bar {
-  height: 50px;
-  width: 50px;
   &__full {
     fill: rgb(0, 128, 0);
   }

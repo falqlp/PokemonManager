@@ -10,12 +10,11 @@
 </div>
 <cooldown-button></cooldown-button>
 <div class="pokemon-trainer">
-  <img
+  <app-circular-hp-pokemon
     *ngFor="let pokemon of trainerPokemon"
-    [src]="imgNumber(pokemon.basePokemon)"
-    [alt]="pokemon.basePokemon.name"
+    [pokemon]="pokemon"
   />
 </div>
-<app-circular-progress-bar [progress]="0" />
+<!--<app-circular-progress-bar [progress]="0" />-->
 <progress-bar [currentProgress]="progress"></progress-bar>
 <progress-bar [currentProgress]="progress" [style]="'hp'"></progress-bar>
