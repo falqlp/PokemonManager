@@ -1,5 +1,6 @@
 import type { OnInit } from '@angular/core';
 import { Component, Input } from '@angular/core';
+import { ColorService } from '../../services/color.service';
 
 @Component({
   selector: 'progress-bar',
@@ -43,6 +44,9 @@ export class ProgressBarComponent implements OnInit {
   protected _max: number;
   protected _currentProgress: number;
   protected progress: number;
+  protected rgb: string;
+
+  public constructor(protected colorService: ColorService) {}
 
   public ngOnInit(): void {
     this.updateProgress();
@@ -57,5 +61,6 @@ export class ProgressBarComponent implements OnInit {
       this.progress =
         ((this.currentProgress - this.min) * 100) / (this.max - this.min);
     }
+    this.rgb = this.colorService.hpPourcentToRGB(this.progress);
   }
 }

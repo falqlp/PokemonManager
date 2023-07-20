@@ -4,11 +4,7 @@
 <div class="progress-bar" [ngClass]="style">
   <div
     class="progress-bar--progress"
-    [ngClass]="{
-      'bar-green': style === 'hp' && progress >= 50,
-      'bar-orange': style === 'hp' && progress < 50 && progress >= 25,
-      'bar-red': style === 'hp' && progress < 25
-    }"
+    [style.background-color]="style === 'hp' ? rgb : ''"
     [style.width.%]="progress"
   ></div>
 </div>

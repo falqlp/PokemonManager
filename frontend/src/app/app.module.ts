@@ -28,6 +28,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BattleSceneAttackInfoComponent } from './views/battle/components/battle-scene-attack-info/battle-scene-attack-info.component';
 import { BattleSceneOpponentComponent } from './views/battle/components/battle-scene-opponent/battle-scene-opponent.component';
 import { DisplayPokemonImageComponent } from './components/display-pokemon-image/display-pokemon-image.component';
+import { CircularProgressBarComponent } from './components/circular-progress-bar/circular-progress-bar.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -52,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     BattleSceneAttackInfoComponent,
     BattleSceneOpponentComponent,
     DisplayPokemonImageComponent,
+    CircularProgressBarComponent,
   ],
   imports: [
     BrowserModule,

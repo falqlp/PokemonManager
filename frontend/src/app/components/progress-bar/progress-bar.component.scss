@@ -6,7 +6,7 @@
     &--progress {
       height: 100%;
       background-color: aqua;
-      transition: width 0.5s linear;
+      transition: width 0.5s linear, background-color 0.5s linear;
     }
   }
 
@@ -16,17 +16,5 @@
     font-size: 14px;
     justify-content: flex-end;
     flex-direction: column;
-  }
-
-  .bar-green {
-    background-color: green;
-  }
-
-  .bar-orange {
-    background-color: orange;
-  }
-
-  .bar-red {
-    background-color: red;
   }
 }
