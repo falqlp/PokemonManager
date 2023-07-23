@@ -14,7 +14,7 @@ export class BattleService {
     attack: AttackModel
   ): DamageModel {
     const effectivness = this.calcEffectivness(attack, defPokemon);
-    const criticalHit = this.criticalHit(attPokemon);
+    const criticalHit = effectivness === 0 ? 1 : this.criticalHit(attPokemon);
     return {
       damage:
         this.calcDamageBase(attPokemon, defPokemon, attack) *
