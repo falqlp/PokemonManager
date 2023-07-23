@@ -4,7 +4,7 @@
     [attr.fill]="rgb"
     [attr.d]="
       'M 50 50 L 50 0 A 50 50 0 ' +
-      (currentProgress > 50 ? 1 : 0) +
+      (progress > 50 ? 1 : 0) +
       ' 0 ' +
       svg.x +
       ' ' +
@@ -12,7 +12,7 @@
     "
   ></path>
   <circle
-    *ngIf="currentProgress >= 100"
+    *ngIf="progress >= 100"
     class="circular-progress-bar__full"
     r="50"
     cx="50"

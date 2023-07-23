@@ -7,25 +7,31 @@ import { ColorService } from '../../services/color.service';
   styleUrls: ['./circular-progress-bar.component.scss'],
 })
 export class CircularProgressBarComponent implements OnInit {
-  @Input() public progress: number;
+  @Input() public currentProgress: number;
   @Input() public min = 0;
   @Input() public max = 100;
-  protected currentProgress: number;
+  protected progress: number;
   protected svg: { x: number; y: number };
   protected rgb: string;
-
   public constructor(protected colorService: ColorService) {}
 
   public ngOnInit(): void {
-    this.calculateProgress();
-    this.rgb = this.colorService.hpPourcentToRGB(this.currentProgress);
+    this.updateProgress();
   }
 
-  protected calculateProgress(): void {
-    this.currentProgress = (100 * this.progress) / (this.max - this.min);
+  protected updateProgress(): void {
+    if (this.currentProgress < this.min) {
+      this.progress = this.min;
+    } else if (this.currentProgress > this.max) {
+      this.progress = this.max;
+    } else {
+      this.progress =
+        ((this.currentProgress - this.min) * 100) / (this.max - this.min);
+    }
     this.svg = {
-      y: 50 + -50 * Math.cos((this.currentProgress * Math.PI) / 50),
-      x: 50 + -50 * Math.sin((this.currentProgress * Math.PI) / 50),
+      y: 50 + -50 * Math.cos((this.progress * Math.PI) / 50),
+      x: 50 + -50 * Math.sin((this.progress * Math.PI) / 50),
     };
+    this.rgb = this.colorService.hpPourcentToRGB(this.progress);
   }
 }

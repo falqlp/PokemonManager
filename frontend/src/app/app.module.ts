@@ -30,6 +30,7 @@ import { BattleSceneOpponentComponent } from './views/battle/components/battle-s
 import { DisplayPokemonImageComponent } from './components/display-pokemon-image/display-pokemon-image.component';
 import { CircularProgressBarComponent } from './components/circular-progress-bar/circular-progress-bar.component';
 import { CircularHpPokemonComponent } from './components/circular-hp-pokemon/circular-hp-pokemon.component';
+import { BattleOppenentPokemonsComponent } from './views/battle/components/battle-oppenent-pokemon/battle-oppenent-pokemons.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -56,6 +57,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     DisplayPokemonImageComponent,
     CircularProgressBarComponent,
     CircularHpPokemonComponent,
+    BattleOppenentPokemonsComponent,
   ],
   imports: [
     BrowserModule,
