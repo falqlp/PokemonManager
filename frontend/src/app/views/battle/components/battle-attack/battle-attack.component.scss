@@ -1,19 +1,14 @@
 @import "src/styles/colors";
+@import "src/styles/flexbox";
 
 .battle-attack {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  @include flexbox(space-around, 2, row, 20px);
   position: relative;
-  background-color: $background-color2;
   margin: 10px 0;
-  border-radius: 8px;
+  gap: 20px;
   &__attack {
-    margin: 20px;
-    padding: 10px;
-    background-color: $background-color1;
+    @include flexbox(flex-start, 1, column);
     border: $background-color1 2px solid;
-    border-radius: 4px;
     flex: 1;
     &__top {
       display: flex;
@@ -32,8 +27,7 @@
     }
   }
   &__attack:hover {
-    border-color: black;
-    border-radius: 4px;
+    border-color: $select-border;
     cursor: pointer;
   }
 }

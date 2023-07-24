@@ -1,42 +1,49 @@
 @import "src/styles/colors";
+@import "src/styles/flexbox";
 
-.trainer {
+:host {
   display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-  background-color: $background-color2;
-  padding: 10px;
-  border-radius: 8px;
-}
-.battle-trainer-pokemons {
-  position: relative;
-  background-color: $background-color2;
-  padding: 10px;
-  border-radius: 8px;
-  &__pokemon-box {
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    &__info {
+  flex-direction: column;
+  gap: 10px;
+  .trainer {
+    @include flexbox(center, 2);
+  }
+
+  .battle-trainer-pokemons {
+    position: relative;
+    background-color: $background-color2;
+    padding: 10px;
+    border-radius: 8px;
+
+    &__pokemon-box {
+      border: $background-color2 2px solid;
+      border-radius: 4px;
+      cursor: pointer;
       display: flex;
-      align-items: center;
-      gap: 10px;
-      &--ko {
-        background-color: #0f0e0e;
-        padding: 5px;
-        border-radius: 5px;
-        border: black 2px solid;
+      flex-direction: column;
+      padding-bottom: 5px;
+
+      &__info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &--ko {
+          background-color: $background-color2;
+          padding: 5px;
+          border-radius: 5px;
+          border: black 2px solid;
+        }
       }
     }
-  }
-  .ko {
-    opacity: 0.5;
-    cursor: default;
-  }
-  &__pokemon-box:hover {
-    border: black 2px solid;
-    border-radius: 4px;
+
+    .ko {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    &__pokemon-box:hover {
+      border-color: $select-border;
+    }
   }
 }

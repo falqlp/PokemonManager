@@ -1,0 +1,15 @@
+@import "./colors";
+
+@mixin flexbox($justify-content, $level, $flex-direction: row, $padding: 10px) {
+  display: flex;
+  justify-content: $justify-content;
+  padding: $padding;
+  flex-direction: $flex-direction;
+  @if $level == 1 {
+    border-radius: 4px;
+    background-color: $background-color1;
+  } @else if $level == 2 {
+    border-radius: 8px;
+    background-color: $background-color2;
+  }
+}
