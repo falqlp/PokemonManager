@@ -1,4 +1,5 @@
 @import "src/styles/colors";
+@import "src/styles/flexbox";
 
 .opponent {
   display: flex;
@@ -10,15 +11,9 @@
       flex-direction: column;
       align-items: flex-end;
       &__box {
+        @include flexbox(flex-start, 1, column);
         border: black 2px solid;
-        border-radius: 4px;
-        display: flex;
-        flex-direction: column;
-        align-items: baseline;
-        padding: 5px 0;
-        margin: 5px 5px 0 5px;
         height: fit-content;
-        background-color: $background-color1;
         width: 100%;
         max-width: 250px;
         &--info {

@@ -5,6 +5,7 @@
   justify-content: $justify-content;
   padding: $padding;
   flex-direction: $flex-direction;
+  align-items: baseline;
   @if $level == 1 {
     border-radius: 4px;
     background-color: $background-color1;
