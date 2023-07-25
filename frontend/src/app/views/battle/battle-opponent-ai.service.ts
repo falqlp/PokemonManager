@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AttackQueriesService } from '../../services/attack-queries.service';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { AttackModel } from '../../models/attack.model';
+import { DecisionModel } from './battle.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,7 @@ import { AttackModel } from '../../models/attack.model';
 export class BattleOpponentAiService {
   protected pokemons: PokemonModel[];
   protected attacks: AttackModel[];
+  public decision: DecisionModel = { attack: undefined, pokemon: undefined };
   public constructor(protected attackQueriesService: AttackQueriesService) {}
 
   public init(pokemons: PokemonModel[]): void {
@@ -17,10 +19,11 @@ export class BattleOpponentAiService {
       .getAttacks(this.pokemons[0].attacks)
       .subscribe((attacks) => {
         this.attacks = attacks;
+        this.getAttack();
       });
   }
 
-  public getAttack(): AttackModel {
-    return this.attacks[0] ? this.attacks[0] : undefined;
+  protected getAttack(): void {
+    this.decision.attack = this.attacks[0];
   }
 }

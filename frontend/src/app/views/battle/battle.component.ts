@@ -109,7 +109,7 @@ export class BattleComponent implements OnInit {
     setInterval(() => {
       this.opponentDamage = undefined;
       this.playerDamage = undefined;
-      this.opponentSelectedAttack = this.aiService.getAttack();
+      this.opponentSelectedAttack = this.aiService.decision.attack;
 
       if (
         this.opponentSelectedAttack &&
