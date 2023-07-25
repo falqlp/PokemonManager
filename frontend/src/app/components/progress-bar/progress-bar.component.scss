@@ -1,11 +1,13 @@
+@import "src/styles/colors";
+
 :host {
   margin: 0 10px;
   .progress-bar {
     height: 5px;
-    background-color: lightgray;
+    background-color: $progress-bar-background-color;
     &--progress {
       height: 100%;
-      background-color: aqua;
+      background-color: $lvl-progress-bar-color;
       transition: width 0.5s linear, background-color 0.5s linear;
     }
   }

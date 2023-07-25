@@ -24,6 +24,7 @@
     <app-battle-oppenent-pokemons
       [trainer]="opponent"
       [trainerPokemons]="opponentPokemons"
+      [selectedAttack]="opponentSelectedAttack"
       (clickOnPokemon)="changeOpponentActivePokemon($event)"
     />
   </div>

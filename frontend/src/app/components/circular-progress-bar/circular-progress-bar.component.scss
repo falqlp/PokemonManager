@@ -1,10 +1,12 @@
 @import "src/styles/colors";
 
 .circular-progress-bar {
-  &__full {
-    fill: rgb(0, 128, 0);
+  &__background {
+    fill: $progress-bar-background-color;
   }
-
+  &__full {
+    fill: $max-hp-color;
+  }
   &__center {
     fill: $background-color2;
   }

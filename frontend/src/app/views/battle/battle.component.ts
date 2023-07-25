@@ -8,6 +8,7 @@ import { TrainerQueriesService } from 'src/app/services/trainer-queries.service'
 import { AttackModel } from '../../models/attack.model';
 import { BattleService } from './battle.service';
 import { DamageModel } from '../../models/damage.model';
+import { BattleOpponentAiService } from './battle-opponent-ai.service';
 
 @Component({
   selector: 'app-battle',
@@ -16,16 +17,19 @@ import { DamageModel } from '../../models/damage.model';
 })
 export class BattleComponent implements OnInit {
   protected opponent: TrainerModel;
-  protected player: TrainerModel;
   protected opponentPokemons: PokemonModel[];
-  protected playerPokemons: PokemonModel[];
-  protected selectedAttack: AttackModel;
+  protected opponentSelectedAttack: AttackModel;
   protected opponentDamage: DamageModel;
+  protected player: TrainerModel;
+  protected playerPokemons: PokemonModel[];
+  protected playerSelectedAttack: AttackModel;
+  protected playerDamage: DamageModel;
 
   constructor(
     protected trainerService: TrainerQueriesService,
     protected playerService: PlayerService,
-    protected service: BattleService
+    protected service: BattleService,
+    protected aiService: BattleOpponentAiService
   ) {}
 
   public ngOnInit(): void {
@@ -93,25 +97,45 @@ export class BattleComponent implements OnInit {
       )
       .subscribe((pokemons) => {
         this.opponentPokemons = pokemons;
+        this.aiService.init(this.opponentPokemons);
       });
   }
 
   protected onAttackChange(newAttack: AttackModel): void {
-    this.selectedAttack = newAttack;
+    this.playerSelectedAttack = newAttack;
   }
 
   protected battleLoop(): void {
     setInterval(() => {
       this.opponentDamage = undefined;
+      this.playerDamage = undefined;
+      this.opponentSelectedAttack = this.aiService.getAttack();
+
       if (
-        this.selectedAttack &&
+        this.opponentSelectedAttack &&
+        this.playerPokemons[0].currentHp !== 0 &&
+        this.opponentPokemons[0].currentHp !== 0
+      ) {
+        this.playerDamage = this.service.calcDamage(
+          this.opponentPokemons[0],
+          this.playerPokemons[0],
+          this.opponentSelectedAttack
+        );
+        this.playerPokemons[0] = this.service.damageOnPokemon(
+          this.playerPokemons[0],
+          this.playerDamage
+        );
+      }
+
+      if (
+        this.playerSelectedAttack &&
         this.playerPokemons[0].currentHp !== 0 &&
         this.opponentPokemons[0].currentHp !== 0
       ) {
         this.opponentDamage = this.service.calcDamage(
           this.playerPokemons[0],
           this.opponentPokemons[0],
-          this.selectedAttack
+          this.playerSelectedAttack
         );
         this.opponentPokemons[0] = this.service.damageOnPokemon(
           this.opponentPokemons[0],
