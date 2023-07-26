@@ -2,7 +2,7 @@
   <span>{{ player.name }}</span>
   <div class="top-bar__pokemons">
     <app-display-pokemon-image
-      *ngFor="let pokemon of playerPokemons"
+      *ngFor="let pokemon of player.pokemons"
       class="clickable-icon"
       [pokemon]="pokemon"
       [type]="'icon'"

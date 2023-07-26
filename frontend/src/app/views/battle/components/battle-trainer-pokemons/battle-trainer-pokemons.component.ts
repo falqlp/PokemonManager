@@ -9,7 +9,6 @@ import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 })
 export class BattleTrainerPokemonsComponent {
   @Input() public trainer: TrainerModel;
-  @Input() public trainerPokemons: PokemonModel[];
   @Output() public clickOnPokemon = new EventEmitter<PokemonModel>();
   protected disabled = false;
   protected progress = 0;

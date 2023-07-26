@@ -10,7 +10,6 @@ import { AttackModel } from '../../../../models/attack.model';
 })
 export class BattleOppenentPokemonsComponent {
   @Input() public trainer: TrainerModel;
-  @Input() public trainerPokemons: PokemonModel[];
   @Input() public selectedAttack: AttackModel;
   @Output() public clickOnPokemon = new EventEmitter<PokemonModel>();
   protected disabled = false;

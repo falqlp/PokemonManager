@@ -11,7 +11,7 @@
 <cooldown-button></cooldown-button>
 <div class="pokemon-trainer">
   <app-circular-hp-pokemon
-    *ngFor="let pokemon of trainerPokemon"
+    *ngFor="let pokemon of player.pokemons"
     [pokemon]="pokemon"
   />
 </div>

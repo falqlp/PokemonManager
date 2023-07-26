@@ -9,7 +9,7 @@ const pokemonSchema = new mongoose.Schema({
   level: { type: Number, required: true },
   exp: { type: Number, required: true },
   expMax: { type: Number, required: true },
-  attacks: [{ type: String, required: false }],
+  attacks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Attack" }],
   stats: { type: PokemonStats.schema, required: true },
   ev: { type: PokemonStats.schema, required: true },
   iv: { type: PokemonStats.schema, required: true },

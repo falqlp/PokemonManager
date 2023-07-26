@@ -5,7 +5,6 @@ import type { Observable } from 'rxjs';
 import { switchMap, tap } from 'rxjs';
 import type { TrainerModel } from '../models/TrainersModels/trainer.model';
 import { TrainerQueriesService } from './trainer-queries.service';
-import { PlayerService } from './player.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +12,7 @@ import { PlayerService } from './player.service';
 export class PokemonQueriesService {
   constructor(
     protected http: HttpClient,
-    protected trainerService: TrainerQueriesService,
-    protected playerService: PlayerService
+    protected trainerService: TrainerQueriesService
   ) {}
 
   public create(pokemon: PokemonModel): Observable<PokemonModel> {
@@ -27,8 +25,8 @@ export class PokemonQueriesService {
   ): Observable<TrainerModel> {
     return this.create(pokemon).pipe(
       tap((newPokemon) => {
-        if (newPokemon._id) {
-          trainer.pokemons.push(newPokemon._id);
+        if (newPokemon) {
+          trainer.pokemons.push(newPokemon);
         }
       }),
       switchMap(() => {

@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import type { OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
@@ -40,11 +39,7 @@ export class BattleAttackComponent implements OnInit, OnChanges {
 
   protected getAttacks(): void {
     if (this.activePokemon?.attacks) {
-      this.attackQueriesService
-        .getAttacks(this.activePokemon.attacks)
-        .subscribe((attacks) => {
-          this.attacks = attacks;
-        });
+      this.attacks = this.activePokemon.attacks;
     }
   }
 

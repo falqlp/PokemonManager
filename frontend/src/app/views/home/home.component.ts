@@ -8,7 +8,6 @@ import type { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.
 import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { PokemonQueriesService } from 'src/app/services/pokemon-queries.service';
-import { TrainerQueriesService } from 'src/app/services/trainer-queries.service';
 
 @Component({
   selector: 'app-home',
@@ -17,25 +16,18 @@ import { TrainerQueriesService } from 'src/app/services/trainer-queries.service'
 })
 export class HomeComponent implements OnInit {
   protected pokemonBases: PokemonBaseModel[];
-  protected trainerPokemon: PokemonModel[];
   protected player: TrainerModel;
   protected progress = 50;
 
   constructor(
     protected dialog: MatDialog,
     protected playerService: PlayerService,
-    protected trainerService: TrainerQueriesService,
     protected pokemonService: PokemonQueriesService
   ) {}
 
   public ngOnInit(): void {
     this.playerService.player$.subscribe((player) => {
       this.player = player;
-      this.trainerService
-        .getTrainerPokemon(this.player._id)
-        .subscribe((pokemons) => {
-          this.trainerPokemon = pokemons;
-        });
     });
   }
 

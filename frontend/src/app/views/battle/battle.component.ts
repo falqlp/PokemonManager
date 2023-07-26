@@ -1,6 +1,5 @@
 import type { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { tap, switchMap, map } from 'rxjs';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
@@ -17,11 +16,9 @@ import { BattleOpponentAiService } from './battle-opponent-ai.service';
 })
 export class BattleComponent implements OnInit {
   protected opponent: TrainerModel;
-  protected opponentPokemons: PokemonModel[];
   protected opponentSelectedAttack: AttackModel;
   protected opponentDamage: DamageModel;
   protected player: TrainerModel;
-  protected playerPokemons: PokemonModel[];
   protected playerSelectedAttack: AttackModel;
   protected playerDamage: DamageModel;
 
@@ -39,11 +36,14 @@ export class BattleComponent implements OnInit {
   }
 
   protected changePlayerActivePokemon(pokemon: PokemonModel): void {
-    this.playerPokemons = this.changePokemon(this.playerPokemons, pokemon);
+    this.player.pokemons = this.changePokemon(this.player.pokemons, pokemon);
   }
 
   protected changeOpponentActivePokemon(pokemon: PokemonModel): void {
-    this.opponentPokemons = this.changePokemon(this.opponentPokemons, pokemon);
+    this.opponent.pokemons = this.changePokemon(
+      this.opponent.pokemons,
+      pokemon
+    );
   }
 
   protected changePokemon(
@@ -58,46 +58,29 @@ export class BattleComponent implements OnInit {
   }
 
   protected getPlayer(): void {
-    this.playerService.player$
-      .pipe(
-        tap((player) => (this.player = player)),
-        switchMap((player) =>
-          this.trainerService.getTrainerPokemon(player._id)
-        ),
-        map((pokemons) =>
-          pokemons.map((pokemon) => {
-            if (!pokemon.currentHp) {
-              pokemon.currentHp = pokemon.stats.hp;
-            }
-            return pokemon;
-          })
-        )
-      )
-      .subscribe((pokemons) => {
-        this.playerPokemons = pokemons;
+    this.playerService.player$.subscribe((trainer) => {
+      trainer.pokemons.map((pokemon) => {
+        if (!pokemon.currentHp) {
+          pokemon.currentHp = pokemon.stats.hp;
+        }
+        return pokemon;
       });
+      this.player = trainer;
+    });
   }
 
   protected getOpponent(): void {
     this.trainerService
       .getTrainer('6496f985f15bc10f660c1958')
-      .pipe(
-        tap((trainer) => (this.opponent = trainer)),
-        switchMap(() =>
-          this.trainerService.getTrainerPokemon('6496f985f15bc10f660c1958')
-        ),
-        map((pokemons) =>
-          pokemons.map((pokemon) => {
-            if (!pokemon.currentHp) {
-              pokemon.currentHp = pokemon.stats.hp;
-            }
-            return pokemon;
-          })
-        )
-      )
-      .subscribe((pokemons) => {
-        this.opponentPokemons = pokemons;
-        this.aiService.init(this.opponentPokemons);
+      .subscribe((trainer) => {
+        trainer.pokemons.map((pokemon) => {
+          if (!pokemon.currentHp) {
+            pokemon.currentHp = pokemon.stats.hp;
+          }
+          return pokemon;
+        });
+        this.opponent = trainer;
+        this.aiService.init(trainer);
       });
   }
 
@@ -113,35 +96,36 @@ export class BattleComponent implements OnInit {
 
       if (
         this.opponentSelectedAttack &&
-        this.playerPokemons[0].currentHp !== 0 &&
-        this.opponentPokemons[0].currentHp !== 0
+        this.player.pokemons[0].currentHp !== 0 &&
+        this.opponent.pokemons[0].currentHp !== 0
       ) {
         this.playerDamage = this.service.calcDamage(
-          this.opponentPokemons[0],
-          this.playerPokemons[0],
+          this.opponent.pokemons[0],
+          this.player.pokemons[0],
           this.opponentSelectedAttack
         );
-        this.playerPokemons[0] = this.service.damageOnPokemon(
-          this.playerPokemons[0],
+        this.player.pokemons[0] = this.service.damageOnPokemon(
+          this.player.pokemons[0],
           this.playerDamage
         );
       }
 
       if (
         this.playerSelectedAttack &&
-        this.playerPokemons[0].currentHp !== 0 &&
-        this.opponentPokemons[0].currentHp !== 0
+        this.player.pokemons[0].currentHp !== 0 &&
+        this.opponent.pokemons[0].currentHp !== 0
       ) {
         this.opponentDamage = this.service.calcDamage(
-          this.playerPokemons[0],
-          this.opponentPokemons[0],
+          this.player.pokemons[0],
+          this.opponent.pokemons[0],
           this.playerSelectedAttack
         );
-        this.opponentPokemons[0] = this.service.damageOnPokemon(
-          this.opponentPokemons[0],
+        this.opponent.pokemons[0] = this.service.damageOnPokemon(
+          this.opponent.pokemons[0],
           this.opponentDamage
         );
       }
+      this.aiService.update();
     }, 500);
   }
 }

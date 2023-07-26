@@ -2,13 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import type { Observable } from 'rxjs';
 import type { TrainerModel } from '../models/TrainersModels/trainer.model';
-import type { PokemonModel } from '../models/PokemonModels/pokemon.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TrainerQueriesService {
-  constructor(protected http: HttpClient) {}
+  public constructor(protected http: HttpClient) {}
 
   public getTrainer(id: string): Observable<TrainerModel> {
     return this.http.get<TrainerModel>('api/trainer/' + id);
@@ -16,10 +15,6 @@ export class TrainerQueriesService {
 
   public getTrainers(): Observable<TrainerModel[]> {
     return this.http.get<TrainerModel[]>('api/trainer');
-  }
-
-  public getTrainerPokemon(id: string): Observable<PokemonModel[]> {
-    return this.http.get<PokemonModel[]>('api/trainer/pokemons/' + id);
   }
 
   public updateTrainer(

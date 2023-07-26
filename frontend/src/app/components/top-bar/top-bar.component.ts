@@ -16,25 +16,15 @@ import { TrainerQueriesService } from 'src/app/services/trainer-queries.service'
 })
 export class TopBarComponent implements OnInit {
   protected player$: Observable<TrainerModel>;
-  protected playerPokemons: PokemonModel[];
   private destroy$ = new Subject<void>();
 
   constructor(
     protected playerService: PlayerService,
-    protected trainerService: TrainerQueriesService,
     protected dialog: MatDialog
   ) {}
 
   public ngOnInit(): void {
     this.player$ = this.playerService.player$;
-    this.player$
-      .pipe(
-        takeUntil(this.destroy$),
-        switchMap((player) => this.trainerService.getTrainerPokemon(player._id))
-      )
-      .subscribe((pokemons) => {
-        this.playerPokemons = pokemons;
-      });
   }
 
   public ngOnDestroy(): void {

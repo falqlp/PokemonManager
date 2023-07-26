@@ -1,29 +1,27 @@
 <div
-  *ngIf="player && playerPokemons && opponent && opponentPokemons"
+  *ngIf="player && player.pokemons && opponent && opponent.pokemons"
   class="battle"
 >
   <div class="battle__trainer-pokemons">
     <app-battle-trainer-pokemons
       [trainer]="player"
-      [trainerPokemons]="playerPokemons"
       (clickOnPokemon)="changePlayerActivePokemon($event)"
     />
   </div>
   <div class="battle__scene">
     <app-battle-scene
-      [opponentActivePokemon]="opponentPokemons[0]"
-      [playerActivePokemon]="playerPokemons[0]"
+      [opponentActivePokemon]="opponent.pokemons[0]"
+      [playerActivePokemon]="player.pokemons[0]"
       [opponentDamage]="opponentDamage"
     />
     <app-battle-attack
-      [activePokemon]="playerPokemons[0]"
+      [activePokemon]="player.pokemons[0]"
       (onAttackChange)="onAttackChange($event)"
     />
   </div>
   <div class="battle__trainer-pokemons">
     <app-battle-oppenent-pokemons
       [trainer]="opponent"
-      [trainerPokemons]="opponentPokemons"
       [selectedAttack]="opponentSelectedAttack"
       (clickOnPokemon)="changeOpponentActivePokemon($event)"
     />
