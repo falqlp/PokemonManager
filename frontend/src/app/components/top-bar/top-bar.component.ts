@@ -15,7 +15,6 @@ import { PlayerService } from 'src/app/services/player.service';
 })
 export class TopBarComponent implements OnInit {
   protected player$: Observable<TrainerModel>;
-  private destroy$ = new Subject<void>();
 
   constructor(
     protected playerService: PlayerService,

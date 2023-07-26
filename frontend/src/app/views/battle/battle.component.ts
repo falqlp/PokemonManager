@@ -125,7 +125,7 @@ export class BattleComponent implements OnInit {
           this.opponentDamage
         );
       }
-      this.aiService.update();
+      this.aiService.update(this.player.pokemons[0], this.playerSelectedAttack);
     }, 500);
   }
 }

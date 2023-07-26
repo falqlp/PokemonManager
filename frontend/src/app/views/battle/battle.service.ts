@@ -111,4 +111,16 @@ export class BattleService {
     );
     return pokemon;
   }
+
+  public estimator(
+    attPokemon: PokemonModel,
+    defPokemon: PokemonModel,
+    attack: AttackModel
+  ): number {
+    return (
+      this.calcDamageBase(attPokemon, defPokemon, attack) *
+      this.calcEffectivness(attack, defPokemon) *
+      this.stab(attack, attPokemon)
+    );
+  }
 }
