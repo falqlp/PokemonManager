@@ -33,10 +33,12 @@ export class BattleComponent implements OnInit {
     this.getPlayer();
     this.getOpponent();
     this.battleLoop();
+    this.suscribeAiDecision();
   }
 
   protected changePlayerActivePokemon(pokemon: PokemonModel): void {
     this.player.pokemons = this.changePokemon(this.player.pokemons, pokemon);
+    this.updateAiOpponent();
   }
 
   protected changeOpponentActivePokemon(pokemon: PokemonModel): void {
@@ -86,13 +88,13 @@ export class BattleComponent implements OnInit {
 
   protected onAttackChange(newAttack: AttackModel): void {
     this.playerSelectedAttack = newAttack;
+    this.updateAiOpponent();
   }
 
   protected battleLoop(): void {
     setInterval(() => {
       this.opponentDamage = undefined;
       this.playerDamage = undefined;
-      this.opponentSelectedAttack = this.aiService.decision.attack;
 
       if (
         this.opponentSelectedAttack &&
@@ -125,7 +127,33 @@ export class BattleComponent implements OnInit {
           this.opponentDamage
         );
       }
-      this.aiService.update(this.player.pokemons[0], this.playerSelectedAttack);
+      if (this.opponent.pokemons[0].currentHp === 0) {
+        this.opponentPokemonKO();
+      }
+      if (this.player.pokemons[0].currentHp === 0) {
+        this.playerPokemonKO();
+      }
     }, 500);
   }
+
+  protected updateAiOpponent(): void {
+    if (this.playerSelectedAttack) {
+      this.aiService.update(this.player.pokemons[0], this.playerSelectedAttack);
+    }
+  }
+
+  protected suscribeAiDecision(): void {
+    this.aiService.decision$.subscribe((decision) => {
+      if (decision.attack && decision.pokemon) {
+        this.opponentSelectedAttack = decision.attack;
+        this.changeOpponentActivePokemon(decision.pokemon);
+      }
+    });
+  }
+
+  protected opponentPokemonKO(): void {
+    this.aiService.update(this.player.pokemons[0], this.playerSelectedAttack);
+  }
+
+  protected playerPokemonKO(): void {}
 }

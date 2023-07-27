@@ -2,7 +2,7 @@ import type { OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import type { AttackModel } from 'src/app/models/attack.model';
-import { AttackQueriesService } from '../../../../services/attack-queries.service';
+import { BattleService } from '../../battle.service';
 
 @Component({
   selector: 'app-battle-attack',
@@ -16,7 +16,7 @@ export class BattleAttackComponent implements OnInit, OnChanges {
   protected selectedAttack: AttackModel;
   protected disabled = false;
   protected progress = 0;
-  public constructor(protected attackQueriesService: AttackQueriesService) {}
+  public constructor(protected battleService: BattleService) {}
 
   public ngOnInit(): void {
     this.getAttacks();
@@ -53,6 +53,6 @@ export class BattleAttackComponent implements OnInit, OnChanges {
         this.disabled = false;
         this.progress = 0;
       }
-    }, 6 + 200 / Math.sqrt(this.activePokemon.stats.spe));
+    }, this.battleService.getCooldownMs(this.activePokemon));
   }
 }

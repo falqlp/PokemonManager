@@ -123,4 +123,8 @@ export class BattleService {
       this.stab(attack, attPokemon)
     );
   }
+
+  public getCooldownMs(pokemon: PokemonModel): number {
+    return 6 + 200 / Math.sqrt(pokemon.stats.spe);
+  }
 }

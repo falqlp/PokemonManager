@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TrainerModel } from '../../../../models/TrainersModels/trainer.model';
 import { PokemonModel } from '../../../../models/PokemonModels/pokemon.model';
 import { AttackModel } from '../../../../models/attack.model';
+import { BattleService } from '../../battle.service';
 
 @Component({
   selector: 'app-battle-oppenent-pokemons',
@@ -15,6 +16,8 @@ export class BattleOppenentPokemonsComponent {
   protected disabled = false;
   protected progress = 0;
 
+  public constructor(protected battleService: BattleService) {}
+
   protected click(pokemon: PokemonModel): void {
     this.clickOnPokemon.emit(pokemon);
     this.disabled = true;
@@ -26,6 +29,6 @@ export class BattleOppenentPokemonsComponent {
         this.disabled = false;
         this.progress = 0;
       }
-    }, 50);
+    }, this.battleService.getCooldownMs(pokemon));
   }
 }

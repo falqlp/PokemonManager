@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
+import { BattleService } from '../../battle.service';
 
 @Component({
   selector: 'app-battle-trainer-pokemons',
@@ -13,6 +14,8 @@ export class BattleTrainerPokemonsComponent {
   protected disabled = false;
   protected progress = 0;
 
+  public constructor(protected battleService: BattleService) {}
+
   protected click(pokemon: PokemonModel): void {
     this.clickOnPokemon.emit(pokemon);
     this.disabled = true;
@@ -24,6 +27,6 @@ export class BattleTrainerPokemonsComponent {
         this.disabled = false;
         this.progress = 0;
       }
-    }, 50); // ajustez cette valeur en fonction de la durée du cooldown
+    }, this.battleService.getCooldownMs(pokemon)); // ajustez cette valeur en fonction de la durée du cooldown
   }
 }
