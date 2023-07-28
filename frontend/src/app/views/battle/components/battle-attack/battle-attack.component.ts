@@ -1,4 +1,4 @@
-import type { OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import type { OnChanges, SimpleChanges } from '@angular/core';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import type { AttackModel } from 'src/app/models/attack.model';
@@ -9,50 +9,38 @@ import { BattleService } from '../../battle.service';
   templateUrl: './battle-attack.component.html',
   styleUrls: ['./battle-attack.component.scss'],
 })
-export class BattleAttackComponent implements OnInit, OnChanges {
+export class BattleAttackComponent implements OnChanges {
   @Input() public activePokemon: PokemonModel;
-  @Output() public onAttackChange = new EventEmitter<AttackModel>();
-  protected attacks: AttackModel[];
-  protected selectedAttack: AttackModel;
-  protected disabled = false;
-  protected progress = 0;
-  public constructor(protected battleService: BattleService) {}
-
-  public ngOnInit(): void {
-    this.getAttacks();
+  @Input() public set disabled(value: boolean) {
+    this._disabled = value;
   }
+
+  public get disabled(): boolean {
+    return this._disabled;
+  }
+
+  @Input() public set progress(value: number) {
+    this._progress = value;
+  }
+
+  public get progress(): number {
+    return this._progress;
+  }
+
+  @Output() public onAttackChange = new EventEmitter<AttackModel>();
+  protected selectedAttack: AttackModel;
+  protected _disabled: boolean;
+  protected _progress: number;
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['activePokemon']) {
-      this.getAttacks();
       this.selectedAttack = undefined;
       this.onAttackChange.emit(this.selectedAttack);
-      this.setCooldown();
     }
   }
 
   protected onClick(attack: AttackModel): void {
     this.selectedAttack = attack;
     this.onAttackChange.emit(this.selectedAttack);
-    this.setCooldown();
-  }
-
-  protected getAttacks(): void {
-    if (this.activePokemon?.attacks) {
-      this.attacks = this.activePokemon.attacks;
-    }
-  }
-
-  protected setCooldown(): void {
-    this.disabled = true;
-    this.progress = 100;
-    const interval = setInterval(() => {
-      this.progress -= 1;
-      if (this.progress <= 0) {
-        clearInterval(interval);
-        this.disabled = false;
-        this.progress = 0;
-      }
-    }, this.battleService.getCooldownMs(this.activePokemon));
   }
 }

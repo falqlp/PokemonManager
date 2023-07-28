@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { AttackModel } from '../../models/attack.model';
 import { DecisionModel } from './battle.model';
-import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { BattleService } from './battle.service';
 import { BehaviorSubject } from 'rxjs';
 
@@ -10,7 +9,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class BattleOpponentAiService {
-  protected pokemons: PokemonModel[];
   protected decisionSubject = new BehaviorSubject<DecisionModel>({
     pokemon: undefined,
     attack: undefined,
@@ -19,24 +17,22 @@ export class BattleOpponentAiService {
   public decision$ = this.decisionSubject.asObservable();
   public constructor(protected battleService: BattleService) {}
 
-  public init(trainer: TrainerModel): void {
-    this.pokemons = trainer.pokemons;
-  }
-
   public update(
     opponentPokemon: PokemonModel,
-    selectedAttack: AttackModel
+    selectedAttack: AttackModel,
+    pokemons: PokemonModel[]
   ): void {
-    this.decisionMaking(opponentPokemon, selectedAttack);
+    this.decisionMaking(opponentPokemon, selectedAttack, pokemons);
   }
 
   protected decisionMaking(
     opponentPokemon: PokemonModel,
-    selectedAttack: AttackModel
+    selectedAttack: AttackModel,
+    pokemons: PokemonModel[]
   ): void {
     let decision: DecisionModel;
     let damageBeforeKO = 0;
-    this.pokemons.forEach((pokemon) => {
+    pokemons.forEach((pokemon) => {
       if (pokemon.currentHp !== 0) {
         const opponentDamage = this.battleService.estimator(
           opponentPokemon,
@@ -44,7 +40,7 @@ export class BattleOpponentAiService {
           selectedAttack
         );
         const changeDamage = this.getChangeDamage(
-          this.pokemons,
+          pokemons,
           pokemon,
           opponentDamage
         );

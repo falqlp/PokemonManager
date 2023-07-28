@@ -8,6 +8,7 @@ import { AttackModel } from '../../models/attack.model';
 import { BattleService } from './battle.service';
 import { DamageModel } from '../../models/damage.model';
 import { BattleOpponentAiService } from './battle-opponent-ai.service';
+import { ROUND_TIME_MS } from './battel.const';
 
 @Component({
   selector: 'app-battle',
@@ -21,6 +22,8 @@ export class BattleComponent implements OnInit {
   protected player: TrainerModel;
   protected playerSelectedAttack: AttackModel;
   protected playerDamage: DamageModel;
+  protected playerAttackCooldown = 0;
+  protected playerCanAttack = true;
 
   constructor(
     protected trainerService: TrainerQueriesService,
@@ -33,7 +36,7 @@ export class BattleComponent implements OnInit {
     this.getPlayer();
     this.getOpponent();
     this.battleLoop();
-    this.suscribeAiDecision();
+    this.susbcribeAiDecision();
   }
 
   protected changePlayerActivePokemon(pokemon: PokemonModel): void {
@@ -82,11 +85,11 @@ export class BattleComponent implements OnInit {
           return pokemon;
         });
         this.opponent = trainer;
-        this.aiService.init(trainer);
       });
   }
 
   protected onAttackChange(newAttack: AttackModel): void {
+    this.setPlayerAttackCooldown();
     this.playerSelectedAttack = newAttack;
     this.updateAiOpponent();
   }
@@ -133,27 +136,56 @@ export class BattleComponent implements OnInit {
       if (this.player.pokemons[0].currentHp === 0) {
         this.playerPokemonKO();
       }
-    }, 500);
+    }, ROUND_TIME_MS);
   }
 
   protected updateAiOpponent(): void {
     if (this.playerSelectedAttack) {
-      this.aiService.update(this.player.pokemons[0], this.playerSelectedAttack);
+      this.aiService.update(
+        this.player.pokemons[0],
+        this.playerSelectedAttack,
+        this.opponent.pokemons
+      );
     }
   }
 
-  protected suscribeAiDecision(): void {
+  protected susbcribeAiDecision(): void {
     this.aiService.decision$.subscribe((decision) => {
       if (decision.attack && decision.pokemon) {
-        this.opponentSelectedAttack = decision.attack;
-        this.changeOpponentActivePokemon(decision.pokemon);
+        if (decision.pokemon !== this.opponent.pokemons[0]) {
+          setTimeout(() => {
+            this.changeOpponentActivePokemon(decision.pokemon);
+          }, 4 * ROUND_TIME_MS);
+        }
+        if (decision.attack !== this.opponentSelectedAttack) {
+          setTimeout(() => {
+            this.opponentSelectedAttack = decision.attack;
+          }, 4 * ROUND_TIME_MS);
+        }
       }
     });
   }
 
   protected opponentPokemonKO(): void {
-    this.aiService.update(this.player.pokemons[0], this.playerSelectedAttack);
+    this.aiService.update(
+      this.player.pokemons[0],
+      this.playerSelectedAttack,
+      this.opponent.pokemons
+    );
   }
 
   protected playerPokemonKO(): void {}
+
+  protected setPlayerAttackCooldown(): void {
+    this.playerCanAttack = false;
+    this.playerAttackCooldown = 100;
+    const interval = setInterval(() => {
+      this.playerAttackCooldown -= 1;
+      if (this.playerAttackCooldown <= 0) {
+        clearInterval(interval);
+        this.playerCanAttack = true;
+        this.playerAttackCooldown = 0;
+      }
+    }, this.service.getCooldownMs(this.player.pokemons[0]));
+  }
 }

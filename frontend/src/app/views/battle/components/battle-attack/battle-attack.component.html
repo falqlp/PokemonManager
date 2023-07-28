@@ -1,6 +1,6 @@
 <div class="battle-attack">
   <div
-    *ngFor="let attack of attacks"
+    *ngFor="let attack of activePokemon.attacks"
     class="battle-attack__attack"
     [ngClass]="{ selectedAttack: selectedAttack?.name === attack.name }"
     (click)="
@@ -27,5 +27,8 @@
       </div>
     </div>
   </div>
-  <div class="cooldown-vertical" [style.height.%]="progress"></div>
+  <div
+    class="cooldown-vertical battle-attack__progress"
+    [style.height.%]="progress"
+  ></div>
 </div>

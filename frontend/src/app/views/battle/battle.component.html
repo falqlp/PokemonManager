@@ -16,6 +16,8 @@
     />
     <app-battle-attack
       [activePokemon]="player.pokemons[0]"
+      [disabled]="!playerCanAttack"
+      [progress]="playerAttackCooldown"
       (onAttackChange)="onAttackChange($event)"
     />
   </div>
@@ -23,7 +25,6 @@
     <app-battle-oppenent-pokemons
       [trainer]="opponent"
       [selectedAttack]="opponentSelectedAttack"
-      (clickOnPokemon)="changeOpponentActivePokemon($event)"
     />
   </div>
 </div>

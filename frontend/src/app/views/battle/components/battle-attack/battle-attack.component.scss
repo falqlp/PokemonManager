@@ -6,6 +6,9 @@
   position: relative;
   margin: 10px 0;
   gap: 20px;
+  &__progress {
+    border-radius: 8px;
+  }
   &__attack {
     @include flexbox(flex-start, 1, column);
     border: $background-color1 2px solid;

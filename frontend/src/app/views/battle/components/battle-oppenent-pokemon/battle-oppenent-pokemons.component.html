@@ -8,7 +8,6 @@
       *ngFor="let pokemon of trainer.pokemons.slice(1)"
       class="battle-trainer-pokemons__pokemon-box"
       [ngClass]="{ ko: pokemon.currentHp === 0 }"
-      (click)="!disabled && pokemon.currentHp !== 0 && click(pokemon)"
     >
       <div class="battle-trainer-pokemons__pokemon-box__info">
         <app-circular-hp-pokemon [pokemon]="pokemon" />
