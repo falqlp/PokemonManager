@@ -88,6 +88,8 @@ export class BattleOpponentAiService {
     if (pokemon === pokemons[0]) {
       return 0;
     }
-    return Math.ceil(this.battleService.getCooldownMs(pokemon) / 500) * edp;
+    return (
+      Math.ceil(this.battleService.getCooldownMs(pokemon) / ROUND_TIME_MS) * edp
+    );
   }
 }

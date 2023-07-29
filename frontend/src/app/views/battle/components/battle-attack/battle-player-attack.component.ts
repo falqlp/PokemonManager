@@ -34,7 +34,6 @@ export class BattlePlayerAttackComponent implements OnChanges {
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['activePokemon']) {
       this.selectedAttack = undefined;
-      this.onAttackChange.emit(this.selectedAttack);
     }
   }
 }

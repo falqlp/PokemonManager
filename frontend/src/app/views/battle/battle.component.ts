@@ -10,7 +10,7 @@ import { DamageModel } from '../../models/damage.model';
 import { BattleOpponentAiService } from './battle-opponent-ai.service';
 import { ROUND_TIME_MS } from './battel.const';
 import { combineLatest } from 'rxjs';
-import { TrainerAutorizationsModel } from './battle.model';
+import { DecisionModel, TrainerAutorizationsModel } from './battle.model';
 
 @Component({
   selector: 'app-battle',
@@ -18,6 +18,8 @@ import { TrainerAutorizationsModel } from './battle.model';
   styleUrls: ['./battle.component.scss'],
 })
 export class BattleComponent implements OnInit {
+  protected started = false;
+
   protected opponent: TrainerModel;
   protected opponentSelectedAttack: AttackModel;
   protected opponentDamage: DamageModel;
@@ -27,6 +29,8 @@ export class BattleComponent implements OnInit {
     canChangePokemon: true,
     pokemonCooldown: 0,
   };
+
+  protected opponentAIdecision: DecisionModel;
 
   protected player: TrainerModel;
   protected playerSelectedAttack: AttackModel;
@@ -38,7 +42,7 @@ export class BattleComponent implements OnInit {
     pokemonCooldown: 0,
   };
 
-  constructor(
+  public constructor(
     protected trainerService: TrainerQueriesService,
     protected playerService: PlayerService,
     protected service: BattleService,
@@ -70,12 +74,12 @@ export class BattleComponent implements OnInit {
           return pokemon;
         });
         this.opponent = opponent;
-        this.init();
       }
     );
   }
 
-  protected init(): void {
+  protected startBattle(): void {
+    this.started = true;
     this.battleLoop();
     this.susbcribeAiDecision();
   }
@@ -138,6 +142,7 @@ export class BattleComponent implements OnInit {
   protected susbcribeAiDecision(): void {
     this.aiService.decision$.subscribe((decision) => {
       if (decision.attack && decision.pokemon) {
+        this.opponentAIdecision = decision;
         if (decision.pokemon !== this.opponent.pokemons[0]) {
           this.changeOpponentActivePokemon(decision.pokemon);
         }
@@ -156,7 +161,10 @@ export class BattleComponent implements OnInit {
 
   protected onPlayerAttackChange(newAttack: AttackModel): void {
     if (this.playerAutorizations.canChangeAttack) {
-      this.setAttackCooldown(this.playerAutorizations, this.player.pokemons[0]);
+      this.setPlayerAttackCooldown(
+        this.playerAutorizations,
+        this.player.pokemons[0]
+      );
       this.playerSelectedAttack = newAttack;
       this.updateAiOpponent();
     }
@@ -164,7 +172,7 @@ export class BattleComponent implements OnInit {
 
   protected onOpponentAttackChange(newAttack: AttackModel): void {
     if (this.opponentAutorizations.canChangeAttack) {
-      this.setAttackCooldown(
+      this.setOpponentAttackCooldown(
         this.opponentAutorizations,
         this.opponent.pokemons[0]
       );
@@ -172,7 +180,7 @@ export class BattleComponent implements OnInit {
     }
   }
 
-  protected setAttackCooldown(
+  protected setOpponentAttackCooldown(
     autorization: TrainerAutorizationsModel,
     pokemon: PokemonModel
   ): void {
@@ -180,7 +188,32 @@ export class BattleComponent implements OnInit {
     autorization.attackCooldown = 100;
     const interval = setInterval(() => {
       autorization.attackCooldown -= 1;
-      if (autorization.attackCooldown <= 0) {
+      if (
+        autorization.attackCooldown <= 0 ||
+        this.opponent.pokemons[0].currentHp === 0
+      ) {
+        clearInterval(interval);
+        autorization.canChangeAttack = true;
+        autorization.attackCooldown = 0;
+        if (this.opponentSelectedAttack !== this.opponentAIdecision.attack) {
+          this.onOpponentAttackChange(this.opponentAIdecision.attack);
+        }
+      }
+    }, this.service.getCooldownMs(pokemon));
+  }
+
+  protected setPlayerAttackCooldown(
+    autorization: TrainerAutorizationsModel,
+    pokemon: PokemonModel
+  ): void {
+    autorization.canChangeAttack = false;
+    autorization.attackCooldown = 100;
+    const interval = setInterval(() => {
+      autorization.attackCooldown -= 1;
+      if (
+        autorization.attackCooldown <= 0 ||
+        this.player.pokemons[0].currentHp === 0
+      ) {
         clearInterval(interval);
         autorization.canChangeAttack = true;
         autorization.attackCooldown = 0;
@@ -190,24 +223,27 @@ export class BattleComponent implements OnInit {
 
   protected changePlayerActivePokemon(pokemon: PokemonModel): void {
     if (this.playerAutorizations.canChangePokemon) {
+      if (this.player.pokemons[0].currentHp !== 0) {
+        this.setPlayerPokemonCooldown(this.playerAutorizations, pokemon);
+        this.setPlayerAttackCooldown(this.playerAutorizations, pokemon);
+      }
       this.player.pokemons = this.changePokemon(this.player.pokemons, pokemon);
-      this.setPokemonCooldown(
-        this.playerAutorizations,
-        this.player.pokemons[0]
-      );
+      this.playerSelectedAttack = undefined;
       this.updateAiOpponent();
     }
   }
 
   protected changeOpponentActivePokemon(pokemon: PokemonModel): void {
-    this.opponent.pokemons = this.changePokemon(
-      this.opponent.pokemons,
-      pokemon
-    );
-    this.setPokemonCooldown(
-      this.opponentAutorizations,
-      this.opponent.pokemons[0]
-    );
+    if (this.opponentAutorizations.canChangePokemon) {
+      if (this.opponent.pokemons[0].currentHp !== 0) {
+        this.setOpponentPokemonCooldown(this.opponentAutorizations, pokemon);
+        this.setOpponentAttackCooldown(this.opponentAutorizations, pokemon);
+        this.opponent.pokemons = this.changePokemon(
+          this.opponent.pokemons,
+          pokemon
+        );
+      }
+    }
   }
 
   protected changePokemon(
@@ -221,7 +257,7 @@ export class BattleComponent implements OnInit {
     return pokemons;
   }
 
-  protected setPokemonCooldown(
+  protected setOpponentPokemonCooldown(
     autorization: TrainerAutorizationsModel,
     pokemon: PokemonModel
   ): void {
@@ -229,7 +265,32 @@ export class BattleComponent implements OnInit {
     autorization.pokemonCooldown = 100;
     const interval = setInterval(() => {
       autorization.pokemonCooldown -= 1;
-      if (autorization.pokemonCooldown <= 0) {
+      if (
+        autorization.pokemonCooldown <= 0 ||
+        this.opponent.pokemons[0].currentHp === 0
+      ) {
+        clearInterval(interval);
+        autorization.canChangePokemon = true;
+        autorization.pokemonCooldown = 0;
+        if (this.opponent.pokemons[0] !== this.opponentAIdecision.pokemon) {
+          this.changeOpponentActivePokemon(this.opponentAIdecision.pokemon);
+        }
+      }
+    }, this.service.getCooldownMs(pokemon));
+  }
+
+  protected setPlayerPokemonCooldown(
+    autorization: TrainerAutorizationsModel,
+    pokemon: PokemonModel
+  ): void {
+    autorization.canChangePokemon = false;
+    autorization.pokemonCooldown = 100;
+    const interval = setInterval(() => {
+      autorization.pokemonCooldown -= 1;
+      if (
+        autorization.pokemonCooldown <= 0 ||
+        this.player.pokemons[0].currentHp === 0
+      ) {
         clearInterval(interval);
         autorization.canChangePokemon = true;
         autorization.pokemonCooldown = 0;

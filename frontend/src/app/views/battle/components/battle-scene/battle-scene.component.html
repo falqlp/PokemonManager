@@ -1,4 +1,7 @@
 <div class="host">
+  <button *ngIf="!started" class="btn-primary btn-play" (click)="onStart()">
+    Play
+  </button>
   <div class="battle-scene">
     <div class="opponent">
       <app-battle-scene-opponent

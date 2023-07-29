@@ -2,8 +2,15 @@
 @import "src/styles/flexbox";
 
 .host {
+  position: relative;
   display: flex;
   justify-content: center;
+}
+.btn-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .battle-scene {
   width: 100%;

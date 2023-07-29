@@ -22,7 +22,7 @@ router.post("/", (req, res, next) => {
   const pokemonData = pokemonService.createPokemon(req.body);
   const newPokemon = new Pokemon({
     ...pokemonData,
-    attacks: pokemonData.attacks.map((attack) => attack._id),
+    attacks: pokemonData.attacks?.map((attack) => attack._id),
   });
 
   newPokemon
