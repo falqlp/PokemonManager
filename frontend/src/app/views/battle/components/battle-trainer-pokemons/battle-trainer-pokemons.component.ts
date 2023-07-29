@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
-import { BattleService } from '../../battle.service';
 
 @Component({
   selector: 'app-battle-trainer-pokemons',
@@ -9,24 +8,19 @@ import { BattleService } from '../../battle.service';
   styleUrls: ['./battle-trainer-pokemons.component.scss'],
 })
 export class BattleTrainerPokemonsComponent {
+  @Input() public set progress(value: number) {
+    this._progress = value;
+  }
+
+  public get progress(): number {
+    return this._progress;
+  }
+
   @Input() public trainer: TrainerModel;
   @Output() public clickOnPokemon = new EventEmitter<PokemonModel>();
-  protected disabled = false;
-  protected progress = 0;
-
-  public constructor(protected battleService: BattleService) {}
+  protected _progress: number;
 
   protected click(pokemon: PokemonModel): void {
     this.clickOnPokemon.emit(pokemon);
-    this.disabled = true;
-    this.progress = 100;
-    const interval = setInterval(() => {
-      this.progress -= 1; // ajustez cette valeur en fonction de la durée du cooldown
-      if (this.progress <= 0) {
-        clearInterval(interval);
-        this.disabled = false;
-        this.progress = 0;
-      }
-    }, this.battleService.getCooldownMs(pokemon)); // ajustez cette valeur en fonction de la durée du cooldown
   }
 }

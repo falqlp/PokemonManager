@@ -5,6 +5,7 @@
   <div class="battle__trainer-pokemons">
     <app-battle-trainer-pokemons
       [trainer]="player"
+      [progress]="playerAutorizations.pokemonCooldown"
       (clickOnPokemon)="changePlayerActivePokemon($event)"
     />
   </div>
@@ -14,15 +15,17 @@
       [playerActivePokemon]="player.pokemons[0]"
       [opponentDamage]="opponentDamage"
     />
-    <app-battle-attack
+    <app-battle-player-attack
       [activePokemon]="player.pokemons[0]"
-      [disabled]="!playerCanAttack"
-      [progress]="playerAttackCooldown"
-      (onAttackChange)="onAttackChange($event)"
+      [selectedAttack]="playerSelectedAttack"
+      [progress]="playerAutorizations.attackCooldown"
+      (onAttackChange)="onPlayerAttackChange($event)"
     />
   </div>
   <div class="battle__trainer-pokemons">
     <app-battle-oppenent-pokemons
+      [pokemonProgress]="opponentAutorizations.pokemonCooldown"
+      [attackProgress]="opponentAutorizations.attackCooldown"
       [trainer]="opponent"
       [selectedAttack]="opponentSelectedAttack"
     />

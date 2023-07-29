@@ -4,7 +4,7 @@
     class="battle-attack__attack"
     [ngClass]="{ selectedAttack: selectedAttack?.name === attack.name }"
     (click)="
-      !disabled && selectedAttack?.name !== attack.name && onClick(attack)
+      selectedAttack?.name !== attack.name && onAttackChange.emit(attack)
     "
   >
     <div class="battle-attack__attack__top">

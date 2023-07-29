@@ -4,6 +4,7 @@ import { AttackModel } from '../../models/attack.model';
 import { DecisionModel } from './battle.model';
 import { BattleService } from './battle.service';
 import { BehaviorSubject } from 'rxjs';
+import { ROUND_TIME_MS } from './battel.const';
 
 @Injectable({
   providedIn: 'root',
@@ -63,7 +64,9 @@ export class BattleOpponentAiService {
         });
       }
     });
-    this.decisionSubject.next(decision);
+    setTimeout(() => {
+      this.decisionSubject.next(decision);
+    }, 4 * ROUND_TIME_MS);
   }
 
   protected getDamageBeforeKO(

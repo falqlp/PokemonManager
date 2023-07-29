@@ -22,7 +22,7 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 import { BattleComponent } from './views/battle/battle.component';
 import { BattleSceneComponent } from './views/battle/components/battle-scene/battle-scene.component';
 import { BattleTrainerPokemonsComponent } from './views/battle/components/battle-trainer-pokemons/battle-trainer-pokemons.component';
-import { BattleAttackComponent } from './views/battle/components/battle-attack/battle-attack.component';
+import { BattlePlayerAttackComponent } from './views/battle/components/battle-attack/battle-player-attack.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BattleSceneAttackInfoComponent } from './views/battle/components/battle-scene-attack-info/battle-scene-attack-info.component';
@@ -30,7 +30,7 @@ import { BattleSceneOpponentComponent } from './views/battle/components/battle-s
 import { DisplayPokemonImageComponent } from './components/display-pokemon-image/display-pokemon-image.component';
 import { CircularProgressBarComponent } from './components/circular-progress-bar/circular-progress-bar.component';
 import { CircularHpPokemonComponent } from './components/circular-hp-pokemon/circular-hp-pokemon.component';
-import { BattleOppenentPokemonsComponent } from './views/battle/components/battle-oppenent-pokemon/battle-oppenent-pokemons.component';
+import { BattleOpponentPokemonsComponent } from './views/battle/components/battle-oppenent-pokemon/battle-opponent-pokemons.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -51,13 +51,13 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     BattleComponent,
     BattleSceneComponent,
     BattleTrainerPokemonsComponent,
-    BattleAttackComponent,
+    BattlePlayerAttackComponent,
     BattleSceneAttackInfoComponent,
     BattleSceneOpponentComponent,
     DisplayPokemonImageComponent,
     CircularProgressBarComponent,
     CircularHpPokemonComponent,
-    BattleOppenentPokemonsComponent,
+    BattleOpponentPokemonsComponent,
   ],
   imports: [
     BrowserModule,
