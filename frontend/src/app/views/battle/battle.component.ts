@@ -161,10 +161,12 @@ export class BattleComponent implements OnInit {
 
   protected onPlayerAttackChange(newAttack: AttackModel): void {
     if (this.playerAutorizations.canChangeAttack) {
-      this.setPlayerAttackCooldown(
-        this.playerAutorizations,
-        this.player.pokemons[0]
-      );
+      if (this.started) {
+        this.setPlayerAttackCooldown(
+          this.playerAutorizations,
+          this.player.pokemons[0]
+        );
+      }
       this.playerSelectedAttack = newAttack;
       this.updateAiOpponent();
     }
@@ -172,10 +174,12 @@ export class BattleComponent implements OnInit {
 
   protected onOpponentAttackChange(newAttack: AttackModel): void {
     if (this.opponentAutorizations.canChangeAttack) {
-      this.setOpponentAttackCooldown(
-        this.opponentAutorizations,
-        this.opponent.pokemons[0]
-      );
+      if (this.started) {
+        this.setOpponentAttackCooldown(
+          this.opponentAutorizations,
+          this.opponent.pokemons[0]
+        );
+      }
       this.opponentSelectedAttack = newAttack;
     }
   }
@@ -222,7 +226,7 @@ export class BattleComponent implements OnInit {
   }
 
   protected changePlayerActivePokemon(pokemon: PokemonModel): void {
-    if (this.playerAutorizations.canChangePokemon) {
+    if (this.playerAutorizations.canChangePokemon && this.started) {
       if (this.player.pokemons[0].currentHp !== 0) {
         this.setPlayerPokemonCooldown(this.playerAutorizations, pokemon);
         this.setPlayerAttackCooldown(this.playerAutorizations, pokemon);
@@ -234,7 +238,7 @@ export class BattleComponent implements OnInit {
   }
 
   protected changeOpponentActivePokemon(pokemon: PokemonModel): void {
-    if (this.opponentAutorizations.canChangePokemon) {
+    if (this.opponentAutorizations.canChangePokemon && this.started) {
       if (this.opponent.pokemons[0].currentHp !== 0) {
         this.setOpponentPokemonCooldown(this.opponentAutorizations, pokemon);
         this.setOpponentAttackCooldown(this.opponentAutorizations, pokemon);
