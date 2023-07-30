@@ -8,6 +8,7 @@ import type { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.
 import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { PokemonQueriesService } from 'src/app/services/pokemon-queries.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
   protected progress = 50;
 
   constructor(
+    protected router: Router,
     protected dialog: MatDialog,
     protected playerService: PlayerService,
     protected pokemonService: PokemonQueriesService
@@ -65,5 +67,14 @@ export class HomeComponent implements OnInit {
       pokemon.id.toString().padStart(3, '0') +
       'MS.png'
     );
+  }
+
+  protected startBattle(): void {
+    this.router.navigate(['battle'], {
+      queryParams: {
+        player: this.player._id,
+        opponent: '6496f985f15bc10f660c1958',
+      },
+    });
   }
 }

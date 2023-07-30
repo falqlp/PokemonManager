@@ -4,8 +4,9 @@ import { PlayerService } from 'src/app/services/player.service';
 import { TrainerQueriesService } from 'src/app/services/trainer-queries.service';
 import { BattleService } from './battle.service';
 import { ROUND_TIME_MS } from './battel.const';
-import { combineLatest } from 'rxjs';
+import { combineLatest, switchMap } from 'rxjs';
 import { BattleTrainer } from './battle-trainer';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-battle',
@@ -22,7 +23,8 @@ export class BattleComponent implements OnInit {
   public constructor(
     protected trainerService: TrainerQueriesService,
     protected playerService: PlayerService,
-    protected service: BattleService
+    protected service: BattleService,
+    protected route: ActivatedRoute
   ) {}
 
   public ngOnInit(): void {
@@ -30,12 +32,19 @@ export class BattleComponent implements OnInit {
   }
 
   protected getPlayerAndOpponent(): void {
-    const playerObservable = this.playerService.player$;
-    const opponentObservable = this.trainerService.getTrainer(
-      '6496f985f15bc10f660c1958'
-    );
-    combineLatest([playerObservable, opponentObservable]).subscribe(
-      ([player, opponent]) => {
+    this.route.queryParams
+      .pipe(
+        switchMap((params) => {
+          const playerObservable = this.trainerService.getTrainer(
+            params['player']
+          );
+          const opponentObservable = this.trainerService.getTrainer(
+            params['opponent']
+          );
+          return combineLatest([playerObservable, opponentObservable]);
+        })
+      )
+      .subscribe(([player, opponent]) => {
         player.pokemons.map((pokemon) => {
           if (!pokemon.currentHp) {
             pokemon.currentHp = pokemon.stats.hp;
@@ -50,8 +59,7 @@ export class BattleComponent implements OnInit {
           return pokemon;
         });
         this.opponent = new BattleTrainer(opponent, true, this.service, this);
-      }
-    );
+      });
   }
 
   protected startBattle(): void {

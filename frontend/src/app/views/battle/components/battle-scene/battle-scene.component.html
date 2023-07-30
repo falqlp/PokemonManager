@@ -1,7 +1,11 @@
 <div class="host">
-  <button *ngIf="!started" class="btn-primary btn-play" (click)="onStart()">
-    Play
-  </button>
+  <div *ngIf="!started" class="btn-play" #start>
+    <button class="btn-primary" (click)="onStart()">
+      {{ "PLAY" | translate }}
+    </button>
+    <span *ngIf="!canStart">{{ "PLEASE_SELECT_ATTACK" | translate }}</span>
+  </div>
+
   <div class="battle-scene">
     <div class="opponent">
       <app-battle-scene-opponent
