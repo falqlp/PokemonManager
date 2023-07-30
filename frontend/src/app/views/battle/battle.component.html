@@ -5,31 +5,31 @@
   <div class="battle__trainer-pokemons">
     <app-battle-trainer-pokemons
       [trainer]="player"
-      [progress]="playerAutorizations.pokemonCooldown"
-      (clickOnPokemon)="changePlayerActivePokemon($event)"
+      [progress]="player.autorizations.pokemonCooldown"
+      (clickOnPokemon)="player.changeActivePokemon($event)"
     />
   </div>
   <div class="battle__scene">
     <app-battle-scene
       [opponentActivePokemon]="opponent.pokemons[0]"
       [playerActivePokemon]="player.pokemons[0]"
-      [opponentDamage]="opponentDamage"
-      [canStart]="!!playerSelectedAttack"
+      [opponentDamage]="opponent.damage"
+      [canStart]="!!player.selectedAttack"
       (battleStart)="startBattle()"
     />
     <app-battle-player-attack
       [activePokemon]="player.pokemons[0]"
-      [selectedAttack]="playerSelectedAttack"
-      [progress]="playerAutorizations.attackCooldown"
-      (onAttackChange)="onPlayerAttackChange($event)"
+      [selectedAttack]="player.selectedAttack"
+      [progress]="player.autorizations.attackCooldown"
+      (onAttackChange)="player.onAttackChange($event)"
     />
   </div>
   <div class="battle__trainer-pokemons">
     <app-battle-oppenent-pokemons
-      [pokemonProgress]="opponentAutorizations.pokemonCooldown"
-      [attackProgress]="opponentAutorizations.attackCooldown"
+      [pokemonProgress]="opponent.autorizations.pokemonCooldown"
+      [attackProgress]="opponent.autorizations.attackCooldown"
       [trainer]="opponent"
-      [selectedAttack]="opponentSelectedAttack"
+      [selectedAttack]="opponent.selectedAttack"
     />
   </div>
 </div>

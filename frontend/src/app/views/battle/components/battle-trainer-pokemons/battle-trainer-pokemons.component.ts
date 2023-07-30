@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
-import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
+import { BattleTrainer } from '../../battle-trainer';
 
 @Component({
   selector: 'app-battle-trainer-pokemons',
@@ -16,7 +16,7 @@ export class BattleTrainerPokemonsComponent {
     return this._progress;
   }
 
-  @Input() public trainer: TrainerModel;
+  @Input() public trainer: BattleTrainer;
   @Output() public clickOnPokemon = new EventEmitter<PokemonModel>();
   protected _progress: number;
 

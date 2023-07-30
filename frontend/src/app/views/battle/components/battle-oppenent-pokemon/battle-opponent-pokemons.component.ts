@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { TrainerModel } from '../../../../models/TrainersModels/trainer.model';
 import { AttackModel } from '../../../../models/attack.model';
+import { BattleTrainer } from '../../battle-trainer';
 
 @Component({
   selector: 'app-battle-oppenent-pokemons',
@@ -24,7 +24,7 @@ export class BattleOpponentPokemonsComponent {
     return this._attackProgress;
   }
 
-  @Input() public trainer: TrainerModel;
+  @Input() public trainer: BattleTrainer;
   @Input() public selectedAttack: AttackModel;
   protected _pokemonProgress: number;
   protected _attackProgress: number;

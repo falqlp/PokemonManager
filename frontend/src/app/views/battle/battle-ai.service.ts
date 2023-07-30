@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { AttackModel } from '../../models/attack.model';
 import { DecisionModel } from './battle.model';
@@ -6,10 +5,7 @@ import { BattleService } from './battle.service';
 import { BehaviorSubject } from 'rxjs';
 import { ROUND_TIME_MS } from './battel.const';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class BattleOpponentAiService {
+export class BattleAiService {
   protected decisionSubject = new BehaviorSubject<DecisionModel>({
     pokemon: undefined,
     attack: undefined,
