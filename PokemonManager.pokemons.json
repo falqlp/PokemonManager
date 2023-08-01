@@ -1,0 +1,492 @@
+[{
+  "_id": {
+    "$oid": "649c603c6b6740d774313371"
+  },
+  "trainerId": "6496f985f15bc10f660c1958",
+  "nickname": "",
+  "basePokemon": {
+    "id": "001",
+    "name": "BULBASAUR",
+    "types": [
+      "GRASS",
+      "POISON"
+    ],
+    "baseStats": {
+      "hp": 45,
+      "atk": 49,
+      "def": 49,
+      "spAtk": 65,
+      "spDef": 65,
+      "spe": 45,
+      "_id": {
+        "$oid": "649c603a6b6740d77431306e"
+      }
+    },
+    "_id": {
+      "$oid": "6493842f36d22137f592ab40"
+    },
+    "__v": 0
+  },
+  "level": 1,
+  "attacks": [
+    "64b0026d3ca816e9336d9478"
+  ],
+  "stats": {
+    "hp": 12,
+    "atk": 6,
+    "def": 6,
+    "spAtk": 6,
+    "spDef": 6,
+    "spe": 6,
+    "_id": {
+      "$oid": "649c603c6b6740d774313374"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "649c603c6b6740d774313375"
+    }
+  },
+  "iv": {
+    "hp": 14,
+    "atk": 15,
+    "def": 11,
+    "spAtk": 9,
+    "spDef": 10,
+    "spe": 14,
+    "_id": {
+      "$oid": "649c603c6b6740d774313376"
+    }
+  },
+  "__v": 0,
+  "exp": 40,
+  "expMax": 100
+},
+{
+  "_id": {
+    "$oid": "649c60416b6740d774313682"
+  },
+  "trainerId": "6496f985f15bc10f660c1958",
+  "nickname": "",
+  "basePokemon": {
+    "id": "004",
+    "name": "CHARMANDER",
+    "types": [
+      "FIRE"
+    ],
+    "baseStats": {
+      "hp": 39,
+      "atk": 52,
+      "def": 43,
+      "spAtk": 60,
+      "spDef": 50,
+      "spe": 65,
+      "_id": {
+        "$oid": "649c603e6b6740d774313382"
+      }
+    },
+    "_id": {
+      "$oid": "6493842f36d22137f592ab43"
+    },
+    "__v": 0
+  },
+  "level": 1,
+  "attacks": [
+    "64b0026d3ca816e9336d9177"
+  ],
+  "stats": {
+    "hp": 12,
+    "atk": 6,
+    "def": 5,
+    "spAtk": 6,
+    "spDef": 6,
+    "spe": 6,
+    "_id": {
+      "$oid": "649c60416b6740d774313685"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "649c60416b6740d774313686"
+    }
+  },
+  "iv": {
+    "hp": 30,
+    "atk": 19,
+    "def": 2,
+    "spAtk": 16,
+    "spDef": 2,
+    "spe": 15,
+    "_id": {
+      "$oid": "649c60416b6740d774313687"
+    }
+  },
+  "__v": 0,
+  "exp": 0,
+  "expMax": 100
+},
+{
+  "_id": {
+    "$oid": "649d6f02127a82d831ec9dd1"
+  },
+  "trainerId": "6496f985f15bc10f660c1958",
+  "nickname": "papi",
+  "basePokemon": {
+    "id": "012",
+    "name": "BUTTERFREE",
+    "types": [
+      "BUG",
+      "FLYING"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 45,
+      "def": 50,
+      "spAtk": 90,
+      "spDef": 80,
+      "spe": 70,
+      "_id": {
+        "$oid": "649d6eef127a82d831ec9ad9"
+      }
+    },
+    "_id": {
+      "$oid": "6493842f36d22137f592ab4b"
+    },
+    "__v": 0
+  },
+  "level": 8,
+  "attacks": [
+    "64b0026d3ca816e9336d9478",
+    "64b0026d3ca816e9336d923d"
+  ],
+  "stats": {
+    "hp": 29,
+    "atk": 13,
+    "def": 14,
+    "spAtk": 20,
+    "spDef": 18,
+    "spe": 17,
+    "_id": {
+      "$oid": "649d6f02127a82d831ec9dd4"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "649d6f02127a82d831ec9dd5"
+    }
+  },
+  "iv": {
+    "hp": 22,
+    "atk": 16,
+    "def": 17,
+    "spAtk": 9,
+    "spDef": 11,
+    "spe": 17,
+    "_id": {
+      "$oid": "649d6f02127a82d831ec9dd6"
+    }
+  },
+  "__v": 0,
+  "exp": 0,
+  "expMax": 100
+},
+{
+  "_id": {
+    "$oid": "649e0eff7b1e9771b623293c"
+  },
+  "trainerId": "649e0e86e45d3dab76652543",
+  "nickname": "",
+  "basePokemon": {
+    "id": "006",
+    "name": "CHARIZARD",
+    "types": [
+      "FIRE",
+      "FLYING"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 84,
+      "def": 78,
+      "spAtk": 109,
+      "spDef": 85,
+      "spe": 100,
+      "_id": {
+        "$oid": "649e0ef87b1e9771b623263e"
+      }
+    },
+    "_id": {
+      "$oid": "6493842f36d22137f592ab45"
+    },
+    "__v": 0
+  },
+  "level": 50,
+  "exp": 0,
+  "expMax": 100,
+  "attacks": [
+    "64b0026d3ca816e9336d93c0",
+    "64b0026d3ca816e9336d921d"
+  ],
+  "stats": {
+    "hp": 148,
+    "atk": 97,
+    "def": 97,
+    "spAtk": 122,
+    "spDef": 94,
+    "spe": 120,
+    "_id": {
+      "$oid": "649e0eff7b1e9771b623293f"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "649e0eff7b1e9771b6232940"
+    }
+  },
+  "iv": {
+    "hp": 20,
+    "atk": 17,
+    "def": 28,
+    "spAtk": 17,
+    "spDef": 9,
+    "spe": 31,
+    "_id": {
+      "$oid": "649e0eff7b1e9771b6232941"
+    }
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "649e0f3f7b1e9771b6232c4d"
+  },
+  "trainerId": "649e0e86e45d3dab76652543",
+  "nickname": "",
+  "basePokemon": {
+    "id": "013",
+    "name": "WEEDLE",
+    "types": [
+      "BUG",
+      "POISON"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 35,
+      "def": 30,
+      "spAtk": 20,
+      "spDef": 20,
+      "spe": 50,
+      "_id": {
+        "$oid": "649e0f357b1e9771b6232956"
+      }
+    },
+    "_id": {
+      "$oid": "6493842f36d22137f592ab4c"
+    },
+    "__v": 0
+  },
+  "level": 1,
+  "exp": 0,
+  "expMax": 100,
+  "attacks": [
+    "64b0026d3ca816e9336d9478",
+    "64b0026d3ca816e9336d916b"
+  ],
+  "stats": {
+    "hp": 12,
+    "atk": 5,
+    "def": 5,
+    "spAtk": 5,
+    "spDef": 5,
+    "spe": 6,
+    "_id": {
+      "$oid": "649e0f3f7b1e9771b6232c50"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "649e0f3f7b1e9771b6232c51"
+    }
+  },
+  "iv": {
+    "hp": 20,
+    "atk": 26,
+    "def": 27,
+    "spAtk": 8,
+    "spDef": 6,
+    "spe": 7,
+    "_id": {
+      "$oid": "649e0f3f7b1e9771b6232c52"
+    }
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "649e0eff7b1e9771b623293d"
+  },
+  "__v": 0,
+  "attacks": [
+    "64b0026d3ca816e9336d93c0",
+    "64b0026d3ca816e9336d921d"
+  ],
+  "basePokemon": {
+    "id": "006",
+    "name": "CHARIZARD",
+    "types": [
+      "FIRE",
+      "FLYING"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 84,
+      "def": 78,
+      "spAtk": 109,
+      "spDef": 85,
+      "spe": 100,
+      "_id": {
+        "$oid": "649e0ef87b1e9771b623263e"
+      }
+    },
+    "_id": {
+      "$oid": "6493842f36d22137f592ab45"
+    },
+    "__v": 0
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "649e0eff7b1e9771b6232940"
+    }
+  },
+  "exp": 0,
+  "expMax": 100,
+  "iv": {
+    "hp": 20,
+    "atk": 17,
+    "def": 28,
+    "spAtk": 17,
+    "spDef": 9,
+    "spe": 31,
+    "_id": {
+      "$oid": "649e0eff7b1e9771b6232941"
+    }
+  },
+  "level": 50,
+  "nickname": "",
+  "stats": {
+    "hp": 148,
+    "atk": 97,
+    "def": 97,
+    "spAtk": 122,
+    "spDef": 94,
+    "spe": 120,
+    "_id": {
+      "$oid": "649e0eff7b1e9771b623293f"
+    }
+  },
+  "trainerId": "6496f985f15bc10f660c1958"
+},
+{
+  "_id": {
+    "$oid": "64c559fd900a4f737a512be7"
+  },
+  "trainerId": "6496f985f15bc10f660c1958",
+  "nickname": "",
+  "basePokemon": {
+    "id": "243",
+    "name": "RAIKOU",
+    "types": [
+      "ELECTRIC"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 85,
+      "def": 75,
+      "spAtk": 115,
+      "spDef": 100,
+      "spe": 115,
+      "_id": {
+        "$oid": "64af2e2212732458259894e5"
+      }
+    },
+    "_id": {
+      "$oid": "6493842f36d22137f592ac32"
+    },
+    "__v": 1
+  },
+  "level": 50,
+  "exp": 0,
+  "expMax": 100,
+  "attacks": [
+    "64b0026d3ca816e9336d93c4"
+  ],
+  "stats": {
+    "hp": 158,
+    "atk": 93,
+    "def": 87,
+    "spAtk": 123,
+    "spDef": 109,
+    "spe": 132,
+    "_id": {
+      "$oid": "64c559fe900a4f737a512bea"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "64c559fe900a4f737a512beb"
+    }
+  },
+  "iv": {
+    "hp": 17,
+    "atk": 7,
+    "def": 14,
+    "spAtk": 6,
+    "spDef": 8,
+    "spe": 24,
+    "_id": {
+      "$oid": "64c559fe900a4f737a512bec"
+    }
+  },
+  "__v": 0
+}]
