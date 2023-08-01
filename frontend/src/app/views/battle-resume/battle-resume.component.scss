@@ -1,0 +1,26 @@
+@import "src/styles/flexbox";
+
+.battle-resume {
+  display: flex;
+  &__opponent,
+  &__player {
+    flex: 1;
+    @include flexbox(flex-start, 2, column);
+    align-items: center;
+    margin: 10px;
+    height: 100%;
+  }
+  &__center {
+    flex: 1;
+    @include flexbox(flex-start, 2, column);
+    align-items: center;
+    margin: 10px;
+    height: 100%;
+  }
+}
+.winner {
+  background-color: #135c13;
+}
+.looser {
+  background-color: #881818;
+}

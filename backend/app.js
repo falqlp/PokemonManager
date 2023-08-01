@@ -1,14 +1,15 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const pokemonBaseRoutes = require("./routes/pokemon/pokemonBaseRoute");
-const pokemonRoutes = require("./routes/pokemon/pokemonRoute");
-const trainerRoutes = require("./routes/trainerRoute");
+const pokemonBaseRoutes = require("./routes/pokemon/pokemonBase.route");
+const pokemonRoutes = require("./routes/pokemon/pokemon.route");
+const trainerRoutes = require("./routes/trainer.route");
 const bodyParser = require("body-parser");
 const loginRoutes = require("./routes/login");
-const attackRoute = require("./routes/attackRoute");
+const attackRoute = require("./routes/attack.route");
 const migrationService = require("./migration.service");
 const i18nService = require("./i18n.service");
+const battleRoute = require("./routes/battle.route");
 
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
@@ -48,5 +49,6 @@ app.use("/api/pokemon", pokemonRoutes);
 app.use("/api/trainer", trainerRoutes);
 app.use("/api/login", loginRoutes);
 app.use("/api/attack", attackRoute);
+app.use("/api/battle", battleRoute);
 
 module.exports = app;

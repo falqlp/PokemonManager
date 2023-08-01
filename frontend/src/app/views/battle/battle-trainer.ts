@@ -110,7 +110,11 @@ export class BattleTrainer {
   }
 
   public pokemonKO(): void {
-    this.battle.updateAiOpponent(this, true);
+    if (this.pokemons.some((pokemon) => pokemon.currentHp !== 0)) {
+      this.battle.updateAiOpponent(this, true);
+    } else {
+      this.battle.onDefeat(this);
+    }
   }
 
   protected susbcribeAiDecision(): void {

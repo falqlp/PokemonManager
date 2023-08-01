@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Trainer = require("../models/TrainerModels/trainer");
-const Pokemon = require("../models/PokemonModels/pokemon");
 
 router.get("/", (req, res, next) => {
   Trainer.find()

@@ -1,31 +1,38 @@
-import type { OnInit } from '@angular/core';
+import type { OnDestroy, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { PlayerService } from 'src/app/services/player.service';
 import { TrainerQueriesService } from 'src/app/services/trainer-queries.service';
 import { BattleService } from './battle.service';
 import { ROUND_TIME_MS } from './battel.const';
 import { combineLatest, switchMap } from 'rxjs';
 import { BattleTrainer } from './battle-trainer';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BattleQueriesService } from '../../services/battle-queries.service';
+import { BattleModel } from '../../models/Battle.model';
 
 @Component({
   selector: 'app-battle',
   templateUrl: './battle.component.html',
   styleUrls: ['./battle.component.scss'],
 })
-export class BattleComponent implements OnInit {
+export class BattleComponent implements OnInit, OnDestroy {
   public started = false;
+  protected battleLoop: number;
+  protected battle: BattleModel;
 
   protected opponent: BattleTrainer;
-
   protected player: BattleTrainer;
 
   public constructor(
     protected trainerService: TrainerQueriesService,
-    protected playerService: PlayerService,
     protected service: BattleService,
-    protected route: ActivatedRoute
+    protected battleQueries: BattleQueriesService,
+    protected route: ActivatedRoute,
+    protected router: Router
   ) {}
+
+  public ngOnDestroy(): void {
+    clearInterval(this.battleLoop);
+  }
 
   public ngOnInit(): void {
     this.getPlayerAndOpponent();
@@ -45,6 +52,11 @@ export class BattleComponent implements OnInit {
         })
       )
       .subscribe(([player, opponent]) => {
+        const battle: BattleModel = { player, opponent };
+        this.battleQueries.create(battle).subscribe((newBattle) => {
+          this.battle = newBattle;
+        });
+
         player.pokemons.map((pokemon) => {
           if (!pokemon.currentHp) {
             pokemon.currentHp = pokemon.stats.hp;
@@ -52,6 +64,7 @@ export class BattleComponent implements OnInit {
           return pokemon;
         });
         this.player = new BattleTrainer(player, true, this.service, this);
+
         opponent.pokemons.map((pokemon) => {
           if (!pokemon.currentHp) {
             pokemon.currentHp = pokemon.stats.hp;
@@ -64,11 +77,11 @@ export class BattleComponent implements OnInit {
 
   protected startBattle(): void {
     this.started = true;
-    this.battleLoop();
+    this.startBattleLoop();
   }
 
-  protected battleLoop(): void {
-    setInterval(() => {
+  protected startBattleLoop(): void {
+    this.battleLoop = setInterval(() => {
       this.opponent.damage = undefined;
       this.player.damage = undefined;
 
@@ -135,5 +148,14 @@ export class BattleComponent implements OnInit {
         this.player.pokemons
       );
     }
+  }
+
+  public onDefeat(trainer: BattleTrainer): void {
+    this.router.navigate(['battle-resume'], {
+      queryParams: {
+        battle: this.battle._id,
+        winner: this.player === trainer ? this.opponent.name : this.player.name,
+      },
+    });
   }
 }

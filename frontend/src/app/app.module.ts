@@ -31,6 +31,7 @@ import { DisplayPokemonImageComponent } from './components/display-pokemon-image
 import { CircularProgressBarComponent } from './components/circular-progress-bar/circular-progress-bar.component';
 import { CircularHpPokemonComponent } from './components/circular-hp-pokemon/circular-hp-pokemon.component';
 import { BattleOpponentPokemonsComponent } from './views/battle/components/battle-oppenent-pokemon/battle-opponent-pokemons.component';
+import { BattleResumeComponent } from './views/battle-resume/battle-resume.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -58,6 +59,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     CircularProgressBarComponent,
     CircularHpPokemonComponent,
     BattleOpponentPokemonsComponent,
+    BattleResumeComponent,
   ],
   imports: [
     BrowserModule,
