@@ -1,4 +1,5 @@
 @import "src/styles/flexbox";
+@import "src/styles/colors";
 
 .battle-resume {
   display: flex;
@@ -19,8 +20,8 @@
   }
 }
 .winner {
-  background-color: #135c13;
+  background-color: $green-good-color;
 }
 .looser {
-  background-color: #881818;
+  background-color: $red-bad-color;
 }

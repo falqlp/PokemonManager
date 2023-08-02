@@ -14,28 +14,10 @@
       />
     </div>
     <div class="player">
-      <app-display-pokemon-image
-        class="battle-scene__pokemons--back"
-        [pokemon]="playerActivePokemon"
-        [type]="'back'"
+      <app-battle-scene-player
+        [playerActivePokemon]="playerActivePokemon"
+        [playerDamage]="playerDamage"
       />
-      <div class="battle-scene__pokemons__box">
-        <div class="battle-scene__pokemons__box--info">
-          <span>{{
-            playerActivePokemon.nickname
-              ? playerActivePokemon.nickname
-              : (playerActivePokemon.basePokemon.name | translate)
-          }}</span>
-          <span>{{ "LVL" | translate }}: {{ playerActivePokemon.level }}</span>
-        </div>
-        <progress-bar
-          [style]="'hp'"
-          [currentProgress]="
-            playerActivePokemon.currentHp ?? playerActivePokemon.stats.hp
-          "
-          [max]="playerActivePokemon.stats.hp"
-        />
-      </div>
     </div>
   </div>
 </div>

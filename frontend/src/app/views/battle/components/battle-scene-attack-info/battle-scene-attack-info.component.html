@@ -1,8 +1,7 @@
-<div *ngIf="damage" class="battle-scene__attack">
-  <div
-    class="battle-scene__attack--effectivness"
-    [ngClass]="damage.effectivness"
-  >
-    {{ damage.effectivness | translate }}
-  </div>
+<div
+  *ngIf="damage"
+  class="battle-scene__attack"
+  [ngClass]="damage.effectivness + ' ' + (up ? 'up' : 'down')"
+>
+  {{ damage.effectivness | translate }}
 </div>

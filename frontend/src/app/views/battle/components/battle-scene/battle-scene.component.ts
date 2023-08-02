@@ -18,8 +18,9 @@ export class BattleSceneComponent {
   @ViewChild('start') protected startBtn: ElementRef;
 
   @Input() public opponentActivePokemon: PokemonModel;
-  @Input() public playerActivePokemon: PokemonModel;
   @Input() public opponentDamage: DamageModel;
+  @Input() public playerActivePokemon: PokemonModel;
+  @Input() public playerDamage: DamageModel;
   @Input() public canStart: boolean;
   @Output() public battleStart = new EventEmitter<void>();
   protected started = false;

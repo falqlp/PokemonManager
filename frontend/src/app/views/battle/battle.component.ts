@@ -1,4 +1,4 @@
-import type { OnDestroy, OnInit } from '@angular/core';
+import type { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { TrainerQueriesService } from 'src/app/services/trainer-queries.service';
 import { BattleService } from './battle.service';
@@ -14,7 +14,7 @@ import { BattleModel } from '../../models/Battle.model';
   templateUrl: './battle.component.html',
   styleUrls: ['./battle.component.scss'],
 })
-export class BattleComponent implements OnInit, OnDestroy {
+export class BattleComponent implements OnInit {
   public started = false;
   protected battleLoop: number;
   protected battle: BattleModel;
@@ -29,10 +29,6 @@ export class BattleComponent implements OnInit, OnDestroy {
     protected route: ActivatedRoute,
     protected router: Router
   ) {}
-
-  public ngOnDestroy(): void {
-    clearInterval(this.battleLoop);
-  }
 
   public ngOnInit(): void {
     this.getPlayerAndOpponent();
@@ -151,6 +147,7 @@ export class BattleComponent implements OnInit, OnDestroy {
   }
 
   public onDefeat(trainer: BattleTrainer): void {
+    clearInterval(this.battleLoop);
     this.router.navigate(['battle-resume'], {
       queryParams: {
         battle: this.battle._id,

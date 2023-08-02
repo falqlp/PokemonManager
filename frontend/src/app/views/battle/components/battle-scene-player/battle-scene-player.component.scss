@@ -1,0 +1,63 @@
+@import "src/styles/colors";
+@import "src/styles/flexbox";
+:host {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 100%;
+  .player__pokemon {
+    &__info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      &__box {
+        @include flexbox(flex-start, 1, column);
+        border: black 2px solid;
+        height: fit-content;
+        width: 100%;
+        max-width: 250px;
+        &--info {
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+    }
+
+    &__image {
+      position: relative;
+      &__damage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        &--critical {
+          border: black 2px solid;
+          border-radius: 4px;
+          padding: 5px 10px;
+          background-color: #851a1a;
+          opacity: 0.8;
+          animation: disapear 0.5s ease;
+        }
+
+        &--missed {
+          border: black 2px solid;
+          border-radius: 4px;
+          padding: 5px 10px;
+          background-color: #847a7a;
+          opacity: 0.8;
+          animation: disapear 0.5s ease;
+        }
+      }
+
+      &--back {
+        height: 288px;
+        width: 288px;
+      }
+    }
+  }
+}

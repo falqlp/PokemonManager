@@ -1,5 +1,6 @@
+@import "src/styles/colors";
+
 .battle-scene__attack {
-  animation: slideDown 0.3s ease-out;
   z-index: -1;
   position: relative;
   margin: 0 10px;
@@ -7,23 +8,19 @@
   flex-direction: column;
   text-align: center;
   align-items: center;
-  &--effectivness {
-    min-width: 200px;
-    border: black 2px solid;
-    border-radius: 0 0 4px 4px;
-    border-top-style: hidden;
-    padding: 5px 10px;
-  }
-  &--critical {
-    position: relative;
-    z-index: -2;
-    animation: slideDown 0.2s ease-out;
-    border: black 2px solid;
-    border-radius: 0 0 4px 4px;
-    border-top-style: hidden;
-    padding: 5px 10px;
-    background-color: #851a1a;
-  }
+  min-width: 200px;
+  border: black 2px solid;
+  padding: 5px 10px;
+}
+.up {
+  animation: slideUp 0.3s ease-out;
+  border-radius: 4px 4px 0 0;
+  border-bottom-style: hidden;
+}
+.down {
+  animation: slideDown 0.3s ease-out;
+  border-radius: 0 0 4px 4px;
+  border-top-style: hidden;
 }
 @keyframes slideDown {
   0% {
@@ -33,6 +30,14 @@
     transform: translateY(0);
   }
 }
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
 
 .EFFECTIVE {
   background-color: white;
@@ -40,12 +45,12 @@
 }
 
 .NOT_VERY_EFFECTIVE {
-  background-color: #8b3232;
+  background-color: $red-bad-color;
   color: black;
 }
 
 .SUPER_EFFECTIVE {
-  background-color: #3c9441;
+  background-color: $green-good-color;
   color: black;
 }
 

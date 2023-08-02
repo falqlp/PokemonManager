@@ -8,4 +8,5 @@ import { DamageModel } from '../../../../models/damage.model';
 })
 export class BattleSceneAttackInfoComponent {
   @Input() public damage: DamageModel;
+  @Input() public up = false;
 }
