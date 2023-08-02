@@ -23,6 +23,14 @@
     </div>
   </div>
   <div class="opponent__pokemon__image">
+    <div class="opponent__pokemon__image__damage">
+      <div *ngIf="opponentDamage?.critical" class="opponent__pokemon__image__damage--critical">
+        {{ "CRITICAL_HIT!" | translate }}
+      </div>
+      <div *ngIf="opponentDamage?.missed" class="opponent__pokemon__image__damage--missed">
+        {{ "MISS!" | translate }}
+      </div>
+    </div>
     <app-display-pokemon-image
       class="opponent__pokemon__image--thumbnails"
       [pokemon]="opponentActivePokemon"

@@ -13,17 +13,21 @@ export class BattleService {
     defPokemon: PokemonModel,
     attack: AttackModel
   ): DamageModel {
+    const missed = this.attackOnTarget(attack);
     const effectivness = this.calcEffectivness(attack, defPokemon);
-    const criticalHit = effectivness === 0 ? 1 : this.criticalHit(attPokemon);
+    const criticalHit =
+      effectivness === 0 || missed ? 1 : this.criticalHit(attPokemon);
     return {
       damage:
         this.calcDamageBase(attPokemon, defPokemon, attack) *
         effectivness *
         this.stab(attack, attPokemon) *
         criticalHit *
-        this.roll(),
+        this.roll() *
+        (missed ? 0 : 1),
       effectivness: this.getEffectiveness(effectivness),
-      critical: criticalHit !== 1,
+      critical: criticalHit !== 1 && !missed,
+      missed,
     };
   }
 
@@ -112,6 +116,10 @@ export class BattleService {
     return pokemon;
   }
 
+  public attackOnTarget(attack: AttackModel): boolean {
+    return Math.random() > attack.accuracy / 100;
+  }
+
   public estimator(
     attPokemon: PokemonModel,
     defPokemon: PokemonModel,
@@ -120,7 +128,8 @@ export class BattleService {
     return (
       this.calcDamageBase(attPokemon, defPokemon, attack) *
       this.calcEffectivness(attack, defPokemon) *
-      this.stab(attack, attPokemon)
+      this.stab(attack, attPokemon) *
+      (attack.accuracy / 100)
     );
   }
 

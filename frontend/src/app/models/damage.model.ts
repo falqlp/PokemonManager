@@ -8,4 +8,5 @@ export interface DamageModel {
   damage: number;
   critical: boolean;
   effectivness: Effectiveness;
+  missed: boolean;
 }

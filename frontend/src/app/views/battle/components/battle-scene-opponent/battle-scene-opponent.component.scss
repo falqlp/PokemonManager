@@ -27,10 +27,45 @@
 
     &__image {
       display: flex;
+      position: relative;
+      &__damage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        &--critical {
+          border: black 2px solid;
+          border-radius: 4px;
+          padding: 5px 10px;
+          background-color: #851a1a;
+          opacity: 0.8;
+          animation: disapear 0.5s ease;
+        }
+        &--missed {
+          border: black 2px solid;
+          border-radius: 4px;
+          padding: 5px 10px;
+          background-color: #847a7a;
+          opacity: 0.8;
+          animation: disapear 0.5s ease;
+        }
+      }
       &--thumbnails {
         height: 240px;
         width: 240px;
       }
     }
+  }
+}
+
+@keyframes disapear {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
   }
 }
