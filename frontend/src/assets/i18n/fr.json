@@ -1,6 +1,4 @@
 {
-  "WINNER": "Vainqueur",
-  "BACK_HOME": "Retour au menu",
   "10-000-000-VOLT-THUNDERBOLT": "Giga-Tonnerre",
   "ABOMASNOW": "Blizzaroi",
   "ABRA": "Abra",
@@ -81,6 +79,7 @@
   "AZUMARILL": "Azumarill",
   "AZURILL": "Azurill",
   "BABY-DOLL-EYES": "Regard Touchant",
+  "BACK_HOME": "Retour au menu",
   "BADDY-BAD": "Évo-Ténébro",
   "BAGON": "Draby",
   "BALTOY": "Balbuto",
@@ -1649,6 +1648,7 @@
   "WIMPOD": "Sovkipou",
   "WING-ATTACK": "Cru-Ailes",
   "WINGULL": "Goélise",
+  "WINNER": "Vainqueur",
   "WISH": "Vœu",
   "WISHIWASHI": "Froussardine",
   "WITHDRAW": "Repli",
