@@ -1,7 +1,7 @@
 <div *ngIf="battle" class="battle-resume">
   <div
     class="battle-resume__player"
-    [ngClass]="battle.player.name === winner ? 'winner' : 'looser'"
+    [ngClass]="battle.winner === 'player' ? 'winner' : 'looser'"
   >
     <h3 class="battle-resume__player__name">{{ battle.player.name }}</h3>
     <div *ngFor="let pokemon of battle.player.pokemons">
@@ -10,14 +10,14 @@
   </div>
   <div class="battle-resume__center">
     <h2>{{ "WINNER" | translate }}</h2>
-    <h3>{{ winner }}</h3>
+    <h3>{{ battle.winner === 'player' ? battle.player.name: battle.opponent.name }}</h3>
     <button class="btn-primary" (click)="backHome()">
       {{ "BACK_HOME" | translate }}
     </button>
   </div>
   <div
     class="battle-resume__opponent"
-    [ngClass]="battle.opponent.name === winner ? 'winner' : 'looser'"
+    [ngClass]="battle.winner === 'opponent' ? 'winner' : 'looser'"
   >
     <h3 class="battle-resume__opponent__name">{{ battle.opponent.name }}</h3>
     <div *ngFor="let pokemon of battle.opponent.pokemons">

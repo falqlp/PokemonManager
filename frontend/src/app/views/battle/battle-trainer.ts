@@ -8,6 +8,7 @@ import { DamageModel } from '../../models/damage.model';
 import { BattleAiService } from './battle-ai.service';
 
 export class BattleTrainer {
+  public _id: string;
   public name: string;
   public pokemons: PokemonModel[];
   public selectedAttack: AttackModel;
@@ -33,6 +34,7 @@ export class BattleTrainer {
 
   protected init(trainer: TrainerModel): void {
     this.name = trainer.name;
+    this._id = trainer.name;
     this.pokemons = trainer.pokemons;
     if (this.isAI) {
       this.aiService = new BattleAiService(this.service);

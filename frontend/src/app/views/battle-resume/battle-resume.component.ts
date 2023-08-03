@@ -10,7 +10,6 @@ import { switchMap } from 'rxjs';
   styleUrls: ['./battle-resume.component.scss'],
 })
 export class BattleResumeComponent implements OnInit {
-  protected winner: string;
   protected battle: BattleModel;
 
   public constructor(
@@ -23,7 +22,6 @@ export class BattleResumeComponent implements OnInit {
     this.route.queryParams
       .pipe(
         switchMap((params) => {
-          this.winner = params['winner'];
           return this.battleQueries.get(params['battle']);
         })
       )

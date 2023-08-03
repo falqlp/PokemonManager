@@ -38,21 +38,20 @@ export class BattleComponent implements OnInit {
     this.route.queryParams
       .pipe(
         switchMap((params) => {
+          return this.battleQueries.get(params['battle']);
+        }),
+        switchMap((battle) => {
+          this.battle = battle;
           const playerObservable = this.trainerService.getTrainer(
-            params['player']
+            battle.player._id
           );
           const opponentObservable = this.trainerService.getTrainer(
-            params['opponent']
+            battle.opponent._id
           );
           return combineLatest([playerObservable, opponentObservable]);
         })
       )
       .subscribe(([player, opponent]) => {
-        const battle: BattleModel = { player, opponent };
-        this.battleQueries.create(battle).subscribe((newBattle) => {
-          this.battle = newBattle;
-        });
-
         player.pokemons.map((pokemon) => {
           if (!pokemon.currentHp) {
             pokemon.currentHp = pokemon.stats.hp;
@@ -148,11 +147,10 @@ export class BattleComponent implements OnInit {
 
   public onDefeat(trainer: BattleTrainer): void {
     clearInterval(this.battleLoop);
-    this.router.navigate(['battle-resume'], {
-      queryParams: {
-        battle: this.battle._id,
-        winner: this.player === trainer ? this.opponent.name : this.player.name,
-      },
+    this.battleQueries.setWinner(this.battle, trainer._id).subscribe(() => {
+      this.router.navigate(['battle-resume'], {
+        queryParams: { battle: this.battle._id },
+      });
     });
   }
 }

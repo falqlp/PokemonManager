@@ -11,6 +11,7 @@ const battleSchema = new mongoose.Schema({
     ref: "Trainer",
     require: true,
   },
+  winner: { type: String },
 });
 
 module.exports = mongoose.model("Battle", battleSchema);

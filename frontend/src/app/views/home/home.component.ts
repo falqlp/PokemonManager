@@ -9,6 +9,7 @@ import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { PokemonQueriesService } from 'src/app/services/pokemon-queries.service';
 import { Router } from '@angular/router';
+import { BattleQueriesService } from '../../services/battle-queries.service';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,8 @@ export class HomeComponent implements OnInit {
     protected router: Router,
     protected dialog: MatDialog,
     protected playerService: PlayerService,
-    protected pokemonService: PokemonQueriesService
+    protected pokemonService: PokemonQueriesService,
+    protected battleQueries: BattleQueriesService
   ) {}
 
   public ngOnInit(): void {
@@ -70,11 +72,15 @@ export class HomeComponent implements OnInit {
   }
 
   protected startBattle(): void {
-    this.router.navigate(['battle'], {
-      queryParams: {
-        player: this.player._id,
-        opponent: '6496f985f15bc10f660c1958',
-      },
-    });
+    this.battleQueries
+      .create({
+        playerId: this.player._id,
+        opponentId: '6496f985f15bc10f660c1958',
+      })
+      .subscribe((battle) => {
+        this.router.navigate(['battle'], {
+          queryParams: { battle: battle._id },
+        });
+      });
   }
 }
