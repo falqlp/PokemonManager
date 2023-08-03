@@ -22,9 +22,9 @@ export class BattleQueriesService {
 
   public setWinner(
     battle: BattleModel,
-    winnerId: string
+    looserId: string
   ): Observable<BattleModel> {
-    battle.winner = winnerId === battle.player._id ? 'player' : 'opponent';
+    battle.winner = looserId === battle.player._id ? 'opponent' : 'player';
     return this.http.post<BattleModel>(`api/battle/${battle._id}`, battle);
   }
 }
