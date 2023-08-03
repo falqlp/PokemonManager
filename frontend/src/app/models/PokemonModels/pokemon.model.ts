@@ -1,6 +1,6 @@
 import type { PokemonBaseModel } from './pokemonBase.model';
 import type { PokemonStatsModel } from './pokemonStats.model';
-import { AttackModel } from '../attack.model';
+import { MoveModel } from '../move.model';
 
 export interface PokemonModel {
   _id?: string;
@@ -10,7 +10,7 @@ export interface PokemonModel {
   level: number;
   exp: number;
   expMax: number;
-  attacks?: AttackModel[];
+  moves?: MoveModel[];
   stats: PokemonStatsModel;
   ev?: PokemonStatsModel;
   iv?: PokemonStatsModel;

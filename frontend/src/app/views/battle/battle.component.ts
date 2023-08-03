@@ -81,14 +81,14 @@ export class BattleComponent implements OnInit {
       this.player.damage = undefined;
 
       if (
-        this.opponent.selectedAttack &&
+        this.opponent.selectedMove &&
         this.player.pokemons[0].currentHp !== 0 &&
         this.opponent.pokemons[0].currentHp !== 0
       ) {
         this.player.damage = this.service.calcDamage(
           this.opponent.pokemons[0],
           this.player.pokemons[0],
-          this.opponent.selectedAttack
+          this.opponent.selectedMove
         );
         this.player.pokemons[0] = this.service.damageOnPokemon(
           this.player.pokemons[0],
@@ -97,14 +97,14 @@ export class BattleComponent implements OnInit {
       }
 
       if (
-        this.player.selectedAttack &&
+        this.player.selectedMove &&
         this.player.pokemons[0].currentHp !== 0 &&
         this.opponent.pokemons[0].currentHp !== 0
       ) {
         this.opponent.damage = this.service.calcDamage(
           this.player.pokemons[0],
           this.opponent.pokemons[0],
-          this.player.selectedAttack
+          this.player.selectedMove
         );
         this.opponent.pokemons[0] = this.service.damageOnPokemon(
           this.opponent.pokemons[0],
@@ -124,22 +124,22 @@ export class BattleComponent implements OnInit {
     if (
       ((battleTrainer === this.player && !ownAI) ||
         (battleTrainer !== this.player && ownAI)) &&
-      this.player.selectedAttack
+      this.player.selectedMove
     ) {
       this.opponent.aiService.update(
         this.player.pokemons[0],
-        this.player.selectedAttack,
+        this.player.selectedMove,
         this.opponent.pokemons
       );
     }
     if (
       ((battleTrainer === this.opponent && !ownAI) ||
         (battleTrainer !== this.opponent && ownAI)) &&
-      this.player.selectedAttack
+      this.player.selectedMove
     ) {
       this.player.aiService.update(
         this.opponent.pokemons[0],
-        this.opponent.selectedAttack,
+        this.opponent.selectedMove,
         this.player.pokemons
       );
     }

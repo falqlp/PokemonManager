@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import type { PokemonModel } from '../../models/PokemonModels/pokemon.model';
-import type { AttackModel } from '../../models/attack.model';
+import type { MoveModel } from '../../models/move.model';
 import { MIN_ROLL, STAB_MODIFIER, TYPE_EFFECTIVENESS } from './battel.const';
 import type { DamageModel, Effectiveness } from '../../models/damage.model';
 
@@ -11,17 +11,17 @@ export class BattleService {
   public calcDamage(
     attPokemon: PokemonModel,
     defPokemon: PokemonModel,
-    attack: AttackModel
+    move: MoveModel
   ): DamageModel {
-    const missed = this.attackOnTarget(attack);
-    const effectivness = this.calcEffectivness(attack, defPokemon);
+    const missed = this.moveOnTarget(move);
+    const effectivness = this.calcEffectivness(move, defPokemon);
     const criticalHit =
       effectivness === 0 || missed ? 1 : this.criticalHit(attPokemon);
     return {
       damage:
-        this.calcDamageBase(attPokemon, defPokemon, attack) *
+        this.calcDamageBase(attPokemon, defPokemon, move) *
         effectivness *
-        this.stab(attack, attPokemon) *
+        this.stab(move, attPokemon) *
         criticalHit *
         this.roll() *
         (missed ? 0 : 1),
@@ -34,33 +34,30 @@ export class BattleService {
   public calcDamageBase(
     attPokemon: PokemonModel,
     defPokemon: PokemonModel,
-    attack: AttackModel
+    move: MoveModel
   ): number {
-    if (attack.category === 'status' || attack.power === 0) {
+    if (move.category === 'status' || move.power === 0) {
       return 0;
     }
     let pokemonAtt: number;
     let pokemonDef: number;
-    if (attack.category === 'physical') {
+    if (move.category === 'physical') {
       pokemonAtt = attPokemon.stats.atk;
       pokemonDef = defPokemon.stats.def;
-    } else if (attack.category === 'special') {
+    } else if (move.category === 'special') {
       pokemonAtt = attPokemon.stats.spAtk;
       pokemonDef = defPokemon.stats.spDef;
     }
     return (
-      (attPokemon.level * 0.4 * pokemonAtt * attack.power) / pokemonDef / 50 + 2
+      (attPokemon.level * 0.4 * pokemonAtt * move.power) / pokemonDef / 50 + 2
     );
   }
 
-  public calcEffectivness(
-    attack: AttackModel,
-    defPokemon: PokemonModel
-  ): number {
+  public calcEffectivness(move: MoveModel, defPokemon: PokemonModel): number {
     let modifier = 1;
     defPokemon.basePokemon.types.forEach((type) => {
-      if (TYPE_EFFECTIVENESS[attack.type][type] !== undefined) {
-        modifier *= TYPE_EFFECTIVENESS[attack.type][type];
+      if (TYPE_EFFECTIVENESS[move.type][type] !== undefined) {
+        modifier *= TYPE_EFFECTIVENESS[move.type][type];
       }
     });
     return modifier;
@@ -77,10 +74,10 @@ export class BattleService {
     return 'EFFECTIVE';
   }
 
-  public stab(attack: AttackModel, attPokemon: PokemonModel): number {
+  public stab(move: MoveModel, attPokemon: PokemonModel): number {
     let modifier = 1;
     attPokemon.basePokemon.types.forEach((type) => {
-      if (type === attack.type) {
+      if (type === move.type) {
         modifier = STAB_MODIFIER;
       }
     });
@@ -116,20 +113,20 @@ export class BattleService {
     return pokemon;
   }
 
-  public attackOnTarget(attack: AttackModel): boolean {
-    return Math.random() > attack.accuracy / 100;
+  public moveOnTarget(move: MoveModel): boolean {
+    return Math.random() > move.accuracy / 100;
   }
 
   public estimator(
     attPokemon: PokemonModel,
     defPokemon: PokemonModel,
-    attack: AttackModel
+    move: MoveModel
   ): number {
     return (
-      this.calcDamageBase(attPokemon, defPokemon, attack) *
-      this.calcEffectivness(attack, defPokemon) *
-      this.stab(attack, attPokemon) *
-      (attack.accuracy / 100)
+      this.calcDamageBase(attPokemon, defPokemon, move) *
+      this.calcEffectivness(move, defPokemon) *
+      this.stab(move, attPokemon) *
+      (move.accuracy / 100)
     );
   }
 

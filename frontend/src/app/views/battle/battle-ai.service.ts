@@ -1,5 +1,5 @@
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
-import { AttackModel } from '../../models/attack.model';
+import { MoveModel } from '../../models/move.model';
 import { DecisionModel } from './battle.model';
 import { BattleService } from './battle.service';
 import { BehaviorSubject } from 'rxjs';
@@ -8,7 +8,7 @@ import { ROUND_TIME_MS } from './battel.const';
 export class BattleAiService {
   protected decisionSubject = new BehaviorSubject<DecisionModel>({
     pokemon: undefined,
-    attack: undefined,
+    move: undefined,
   });
 
   public decision$ = this.decisionSubject.asObservable();
@@ -16,15 +16,15 @@ export class BattleAiService {
 
   public update(
     opponentPokemon: PokemonModel,
-    selectedAttack: AttackModel,
+    selectedMove: MoveModel,
     pokemons: PokemonModel[]
   ): void {
-    this.decisionMaking(opponentPokemon, selectedAttack, pokemons);
+    this.decisionMaking(opponentPokemon, selectedMove, pokemons);
   }
 
   protected decisionMaking(
     opponentPokemon: PokemonModel,
-    selectedAttack: AttackModel,
+    selectedMove: MoveModel,
     pokemons: PokemonModel[]
   ): void {
     let decision: DecisionModel;
@@ -34,18 +34,18 @@ export class BattleAiService {
         const opponentDamage = this.battleService.estimator(
           opponentPokemon,
           pokemon,
-          selectedAttack
+          selectedMove
         );
         const changeDamage = this.getChangeDamage(
           pokemons,
           pokemon,
           opponentDamage
         );
-        pokemon.attacks.forEach((attack) => {
+        pokemon.moves.forEach((move) => {
           const damage = this.battleService.estimator(
             pokemon,
             opponentPokemon,
-            attack
+            move
           );
           const damageBeforeKOindicator = this.getDamageBeforeKO(
             pokemon,
@@ -55,7 +55,7 @@ export class BattleAiService {
           );
           if (damageBeforeKOindicator >= damageBeforeKO) {
             damageBeforeKO = damageBeforeKOindicator;
-            decision = { pokemon, attack };
+            decision = { pokemon, move };
           }
         });
       }

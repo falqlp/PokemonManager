@@ -1,9 +1,10 @@
 const axios = require("axios");
-const Attack = require("./models/attack");
+const Move = require("./models/move");
 const PokemonBase = require("./models/PokemonModels/pokemonBase");
+const MoveLearning = require("./models/moveLearning");
 
 const MigrationService = {
-  attack: function () {
+  move: function () {
     for (let i = 0; i < 1000; i++) {
       axios
         .get("https://pokeapi.co/api/v2/move/" + (i + 1))
@@ -21,7 +22,7 @@ const MigrationService = {
               }
             });
           }
-          let attackData = {
+          let moveData = {
             id: i + 1,
             name: response.data.name.toUpperCase(),
             type: response.data.type.name.toUpperCase(),
@@ -30,13 +31,13 @@ const MigrationService = {
             power: response.data.power,
           };
 
-          Attack.findOneAndUpdate({ name: attackData.name }, attackData, {
+          Move.findOneAndUpdate({ name: moveData.name }, moveData, {
             upsert: true,
             new: true,
             runValidators: true,
           })
             .then((doc) => {
-              console.log(attackData.id, " ok");
+              console.log(moveData.id, " ok");
             })
             .catch((err) => {
               console.log("Something went wrong when updating the data!", err);
@@ -167,23 +168,23 @@ const MigrationService = {
       });
     });
   },
-  updateAttackTypeToEn: function () {
-    Attack.find().then((attacks) => {
-      attacks.forEach((attack) => {
-        attack.type = this.typeFrToEn(attack.type).toUpperCase();
-        attack.save().then(() => console.log(attack.name));
+  updateMoveTypeToEn: function () {
+    Move.find().then((moves) => {
+      moves.forEach((move) => {
+        move.type = this.typeFrToEn(move.type).toUpperCase();
+        move.save().then(() => console.log(move.name));
       });
     });
   },
-  updateAttackName: function () {
+  updateMoveName: function () {
     let translations = {};
-    Attack.find()
-      .then((attacks) => {
-        let requests = attacks.map((attack) => {
+    Move.find()
+      .then((moves) => {
+        let requests = moves.map((move) => {
           return axios
-            .get(`https://pokeapi.co/api/v2/move/${attack.id}`)
+            .get(`https://pokeapi.co/api/v2/move/${move.id}`)
             .then((response) => {
-              attack.name = response.data.name.toUpperCase();
+              move.name = response.data.name.toUpperCase();
               let englishName = response.data.name.toUpperCase();
 
               let nameObj = response.data.names.find(
@@ -196,7 +197,7 @@ const MigrationService = {
               }
               let frenchName = nameObj.name;
               translations[englishName] = frenchName;
-              // attack.save().then(console.log(attack.name));
+              // move.save().then(console.log(move.name));
             });
         });
 
@@ -205,6 +206,54 @@ const MigrationService = {
         });
       })
       .catch((error) => console.log(error));
+  },
+
+  getPokemonMoveLearning: function () {
+    for (let i = 1; i < 1011; i++) {
+      axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`).then((response) => {
+        let moves = response.data.moves;
+        moves.forEach((move) => {
+          let learnMethod =
+            move.version_group_details[move.version_group_details.length - 1]
+              .move_learn_method.name;
+          let levelLearnAt =
+            move.version_group_details[move.version_group_details.length - 1]
+              .level_learned_at;
+          if (learnMethod === "level-up") {
+            Move.findOne({ name: move.move.name.toUpperCase() }).then(
+              (newMove) => {
+                const dataToInsert = {
+                  pokemonId: i,
+                  moveId: newMove._id,
+                  levelLearnAt,
+                  learnMethod: learnMethod.toUpperCase(),
+                };
+                MoveLearning.findOneAndUpdate(
+                  {
+                    pokemonId: dataToInsert.pokemonId,
+                    moveId: dataToInsert.moveId,
+                    levelLearnAt: dataToInsert.levelLearnAt,
+                    learnMethod: dataToInsert.learnMethod,
+                  },
+                  dataToInsert,
+                  {
+                    upsert: true,
+                    new: true,
+                    rawResult: true,
+                  }
+                )
+                  .then((result) => {
+                    if (result.lastErrorObject.upserted) {
+                      console.log("The doc was new and upserted!", result);
+                    }
+                  })
+                  .catch((error) => console.log(error));
+              }
+            );
+          }
+        });
+      });
+    }
   },
 };
 module.exports = MigrationService;

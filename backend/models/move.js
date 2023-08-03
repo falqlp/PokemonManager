@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const attackSchema = new mongoose.Schema({
+const moveSchema = new mongoose.Schema({
   id: { type: Number, require: true, unique: true },
   name: { type: String, require: true, unique: true },
   type: { type: String, require: true },
@@ -10,4 +10,4 @@ const attackSchema = new mongoose.Schema({
   effect: { type: String },
 });
 
-module.exports = mongoose.model("Attack", attackSchema);
+module.exports = mongoose.model("Move", moveSchema);

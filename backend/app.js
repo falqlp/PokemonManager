@@ -6,7 +6,7 @@ const pokemonRoutes = require("./routes/pokemon/pokemon.route");
 const trainerRoutes = require("./routes/trainer.route");
 const bodyParser = require("body-parser");
 const loginRoutes = require("./routes/login");
-const attackRoute = require("./routes/attack.route");
+const moveRoute = require("./routes/move.route");
 const migrationService = require("./migration.service");
 const i18nService = require("./i18n.service");
 const battleRoute = require("./routes/battle.route");
@@ -27,7 +27,7 @@ mongoose
     console.error("Connection error to MongoDB", error);
   });
 
-// migrationService.updateAttackName();
+// migrationService.getPokemonMoveLearning();
 i18nService.checkAndSortLanguageFiles();
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -48,7 +48,7 @@ app.use("/api/pokemonBase", pokemonBaseRoutes);
 app.use("/api/pokemon", pokemonRoutes);
 app.use("/api/trainer", trainerRoutes);
 app.use("/api/login", loginRoutes);
-app.use("/api/attack", attackRoute);
+app.use("/api/move", moveRoute);
 app.use("/api/battle", battleRoute);
 
 module.exports = app;

@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const Attack = require("../models/attack");
+const Move = require("../models/move");
 
 router.post("/", (req, res, next) => {
-  const attackNames = req.body;
-  Attack.find({ name: { $in: attackNames } })
-    .then((attacks) => res.status(200).json(attacks))
+  const moveNames = req.body;
+  Move.find({ name: { $in: moveNames } })
+    .then((moves) => res.status(200).json(moves))
     .catch((error) => console.log(error));
 });
 

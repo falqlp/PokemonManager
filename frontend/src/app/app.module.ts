@@ -22,10 +22,10 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 import { BattleComponent } from './views/battle/battle.component';
 import { BattleSceneComponent } from './views/battle/components/battle-scene/battle-scene.component';
 import { BattleTrainerPokemonsComponent } from './views/battle/components/battle-trainer-pokemons/battle-trainer-pokemons.component';
-import { BattlePlayerAttackComponent } from './views/battle/components/battle-attack/battle-player-attack.component';
+import { BattlePlayerMoveComponent } from './views/battle/components/battle-move/battle-player-move.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { BattleSceneAttackInfoComponent } from './views/battle/components/battle-scene-attack-info/battle-scene-attack-info.component';
+import { BattleSceneMoveInfoComponent } from './views/battle/components/battle-scene-move-info/battle-scene-move-info.component';
 import { BattleSceneOpponentComponent } from './views/battle/components/battle-scene-opponent/battle-scene-opponent.component';
 import { DisplayPokemonImageComponent } from './components/display-pokemon-image/display-pokemon-image.component';
 import { CircularProgressBarComponent } from './components/circular-progress-bar/circular-progress-bar.component';
@@ -53,8 +53,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     BattleComponent,
     BattleSceneComponent,
     BattleTrainerPokemonsComponent,
-    BattlePlayerAttackComponent,
-    BattleSceneAttackInfoComponent,
+    BattlePlayerMoveComponent,
+    BattleSceneMoveInfoComponent,
     BattleSceneOpponentComponent,
     DisplayPokemonImageComponent,
     CircularProgressBarComponent,

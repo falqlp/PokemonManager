@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AttackModel } from '../../../../models/attack.model';
+import { MoveModel } from '../../../../models/move.model';
 import { BattleTrainer } from '../../battle-trainer';
 
 @Component({
@@ -16,16 +16,16 @@ export class BattleOpponentPokemonsComponent {
     return this._pokemonProgress;
   }
 
-  @Input() public set attackProgress(value: number) {
-    this._attackProgress = value;
+  @Input() public set moveProgress(value: number) {
+    this._moveProgress = value;
   }
 
-  public get attackProgress(): number {
-    return this._attackProgress;
+  public get moveProgress(): number {
+    return this._moveProgress;
   }
 
   @Input() public trainer: BattleTrainer;
-  @Input() public selectedAttack: AttackModel;
+  @Input() public selectedMove: MoveModel;
   protected _pokemonProgress: number;
-  protected _attackProgress: number;
+  protected _moveProgress: number;
 }

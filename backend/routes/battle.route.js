@@ -15,7 +15,9 @@ router.post("/", (req, res, next) => {
 });
 
 router.post("/:id", (req, res, next) => {
-  Battle.updateOne({_id: req.params.id}, {...req.body, _id: req.params._id}).then((battle) => res.status(200).json(battle)).catch((error)=>console.log(error));
+  Battle.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params._id })
+    .then((battle) => res.status(200).json(battle))
+    .catch((error) => console.log(error));
 });
 
 router.get("/:id", (req, res, next) => {
@@ -25,7 +27,7 @@ router.get("/:id", (req, res, next) => {
       populate: {
         path: "pokemons",
         populate: {
-          path: "attacks",
+          path: "moves",
         },
       },
     })
@@ -34,13 +36,11 @@ router.get("/:id", (req, res, next) => {
       populate: {
         path: "pokemons",
         populate: {
-          path: "attacks",
+          path: "moves",
         },
       },
     })
-    .then((battle) =>
-      res.status(200).json(battle)
-    )
+    .then((battle) => res.status(200).json(battle))
     .catch((error) => console.log(error));
 });
 

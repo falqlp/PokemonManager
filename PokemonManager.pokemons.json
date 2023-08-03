@@ -28,7 +28,7 @@
     "__v": 0
   },
   "level": 1,
-  "attacks": [
+  "moves": [
     "64b0026d3ca816e9336d9478"
   ],
   "stats": {
@@ -97,7 +97,7 @@
     "__v": 0
   },
   "level": 1,
-  "attacks": [
+  "moves": [
     "64b0026d3ca816e9336d9177"
   ],
   "stats": {
@@ -167,7 +167,7 @@
     "__v": 0
   },
   "level": 8,
-  "attacks": [
+  "moves": [
     "64b0026d3ca816e9336d9478",
     "64b0026d3ca816e9336d923d"
   ],
@@ -240,7 +240,7 @@
   "level": 50,
   "exp": 0,
   "expMax": 100,
-  "attacks": [
+  "moves": [
     "64b0026d3ca816e9336d93c0",
     "64b0026d3ca816e9336d921d"
   ],
@@ -311,7 +311,7 @@
   "level": 1,
   "exp": 0,
   "expMax": 100,
-  "attacks": [
+  "moves": [
     "64b0026d3ca816e9336d9478",
     "64b0026d3ca816e9336d916b"
   ],
@@ -355,7 +355,7 @@
     "$oid": "649e0eff7b1e9771b623293d"
   },
   "__v": 0,
-  "attacks": [
+  "moves": [
     "64b0026d3ca816e9336d93c0",
     "64b0026d3ca816e9336d921d"
   ],
@@ -452,7 +452,7 @@
   "level": 50,
   "exp": 0,
   "expMax": 100,
-  "attacks": [
+  "moves": [
     "64b0026d3ca816e9336d93c4"
   ],
   "stats": {

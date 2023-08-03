@@ -1,14 +1,14 @@
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
-import { AttackModel } from '../../models/attack.model';
+import { MoveModel } from '../../models/move.model';
 
 export interface DecisionModel {
   pokemon: PokemonModel;
-  attack: AttackModel;
+  move: MoveModel;
 }
 
 export interface TrainerAutorizationsModel {
   canChangePokemon: boolean;
   pokemonCooldown: number;
-  canChangeAttack: boolean;
-  attackCooldown: number;
+  canChangeMove: boolean;
+  moveCooldown: number;
 }

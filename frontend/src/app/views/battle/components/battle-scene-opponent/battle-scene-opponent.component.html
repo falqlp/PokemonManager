@@ -18,16 +18,22 @@
         [max]="opponentActivePokemon.stats.hp"
       />
     </div>
-    <div class="opponent__pokemon__info__attack">
-      <app-battle-scene-attack-info [damage]="opponentDamage" />
+    <div class="opponent__pokemon__info__move">
+      <app-battle-scene-move-info [damage]="opponentDamage" />
     </div>
   </div>
   <div class="opponent__pokemon__image">
     <div class="opponent__pokemon__image__damage">
-      <div *ngIf="opponentDamage?.critical" class="opponent__pokemon__image__damage--critical">
+      <div
+        *ngIf="opponentDamage?.critical"
+        class="opponent__pokemon__image__damage--critical"
+      >
         {{ "CRITICAL_HIT!" | translate }}
       </div>
-      <div *ngIf="opponentDamage?.missed" class="opponent__pokemon__image__damage--missed">
+      <div
+        *ngIf="opponentDamage?.missed"
+        class="opponent__pokemon__image__damage--missed"
+      >
         {{ "MISS!" | translate }}
       </div>
     </div>

@@ -15,22 +15,22 @@
       [playerActivePokemon]="player.pokemons[0]"
       [opponentDamage]="opponent.damage"
       [playerDamage]="player.damage"
-      [canStart]="!!player.selectedAttack"
+      [canStart]="!!player.selectedMove"
       (battleStart)="startBattle()"
     />
-    <app-battle-player-attack
+    <app-battle-player-move
       [activePokemon]="player.pokemons[0]"
-      [selectedAttack]="player.selectedAttack"
-      [progress]="player.autorizations.attackCooldown"
-      (onAttackChange)="player.onAttackChange($event)"
+      [selectedMove]="player.selectedMove"
+      [progress]="player.autorizations.moveCooldown"
+      (onMoveChange)="player.onMoveChange($event)"
     />
   </div>
   <div class="battle__trainer-pokemons">
     <app-battle-oppenent-pokemons
       [pokemonProgress]="opponent.autorizations.pokemonCooldown"
-      [attackProgress]="opponent.autorizations.attackCooldown"
+      [moveProgress]="opponent.autorizations.moveCooldown"
       [trainer]="opponent"
-      [selectedAttack]="opponent.selectedAttack"
+      [selectedMove]="opponent.selectedMove"
     />
   </div>
 </div>

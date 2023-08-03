@@ -1,4 +1,4 @@
-export interface AttackModel {
+export interface MoveModel {
   name: string;
   type: string;
   category: string;

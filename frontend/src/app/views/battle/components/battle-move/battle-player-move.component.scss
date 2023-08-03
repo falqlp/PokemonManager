@@ -1,7 +1,7 @@
 @import "src/styles/colors";
 @import "src/styles/flexbox";
 
-.battle-attack {
+.battle-move {
   @include flexbox(space-around, 2, row, 20px);
   position: relative;
   margin: 10px 0;
@@ -9,7 +9,7 @@
   &__progress {
     border-radius: 8px;
   }
-  &__attack {
+  &__move {
     @include flexbox(flex-start, 1, column);
     border: $background-color1 2px solid;
     flex: 1;
@@ -29,14 +29,14 @@
       }
     }
   }
-  &__attack:hover {
+  &__move:hover {
     border-color: $select-border;
     cursor: pointer;
   }
 }
-.selectedAttack {
+.selectedMove {
   border-color: green;
 }
-.selectedAttack:hover {
+.selectedMove:hover {
   border-color: rgb(3, 43, 3);
 }

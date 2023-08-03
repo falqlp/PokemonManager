@@ -8,7 +8,7 @@ router.get("/", (req, res, next) => {
     .populate({
       path: "pokemons",
       populate: {
-        path: "attacks",
+        path: "moves",
       },
     })
     .then((trainers) => res.status(200).json(trainers))
@@ -20,7 +20,7 @@ router.get("/:id", (req, res, next) => {
     .populate({
       path: "pokemons",
       populate: {
-        path: "attacks",
+        path: "moves",
       },
     })
     .then((trainer) => {
