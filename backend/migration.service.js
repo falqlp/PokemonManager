@@ -2,6 +2,7 @@ const axios = require("axios");
 const Move = require("./models/move");
 const PokemonBase = require("./models/PokemonModels/pokemonBase");
 const MoveLearning = require("./models/moveLearning");
+const Evolution = require("./models/evolution");
 
 const MigrationService = {
   move: function () {
@@ -244,7 +245,7 @@ const MigrationService = {
                 )
                   .then((result) => {
                     if (result.lastErrorObject.upserted) {
-                      console.log("The doc was new and upserted!", result);
+                      console.log("The doc was new and upserted!");
                     }
                   })
                   .catch((error) => console.log(error));
@@ -254,6 +255,120 @@ const MigrationService = {
         });
       });
     }
+  },
+  getEvolution: function () {
+    for (let i = 1; i < 538; i++) {
+      axios
+        .get(`https://pokeapi.co/api/v2/evolution-chain/${i}`)
+        .then((response) => {
+          const newChain = response.data.chain;
+          // Utilisez une fonction auto-invoquée pour pouvoir utiliser async/await
+          (async () => {
+            for (const evolution of newChain.evolves_to) {
+              if (
+                this.checkNullorFalse(evolution.evolution_details[0]) &&
+                evolution.evolution_details[0].trigger.name === "level-up"
+              ) {
+                try {
+                  const pokemon = await PokemonBase.findOne({
+                    name: newChain.species.name.toUpperCase(),
+                  });
+
+                  const pokemon2 = await PokemonBase.findOne({
+                    name: evolution.species.name.toUpperCase(),
+                  });
+
+                  // console.log(
+                  //   pokemon.id,
+                  //   pokemon2.id,
+                  //   evolution.evolution_details[0].min_level,
+                  //   evolution.evolution_details[0].trigger.name.toUpperCase()
+                  // );
+                  const evolutionData = {
+                    evolutionMethod:
+                      evolution.evolution_details[0].trigger.name.toUpperCase(),
+                    minLevel: evolution.evolution_details[0].min_level,
+                    pokemonId: pokemon.id,
+                    evolveTo: pokemon2.id,
+                  };
+                  Evolution.findOneAndUpdate(
+                    { ...evolutionData },
+                    evolutionData,
+                    {
+                      upsert: true,
+                      new: true,
+                      rawResult: true,
+                    }
+                  )
+                    .then((result) => {
+                      if (result.lastErrorObject.upserted) {
+                        console.log("The doc was new and upserted!");
+                      }
+                    })
+                    .catch((error) => console.log(error));
+
+                  for (const evolution2 of evolution.evolves_to) {
+                    if (
+                      this.checkNullorFalse(evolution2.evolution_details[0]) &&
+                      evolution2.evolution_details[0].trigger.name ===
+                        "level-up"
+                    ) {
+                      const pokemon3 = await PokemonBase.findOne({
+                        name: evolution2.species.name.toUpperCase(),
+                      });
+
+                      // console.log(
+                      //   pokemon2.id,
+                      //   pokemon3.id,
+                      //   evolution2.evolution_details[0].min_level,
+                      //   evolution2.evolution_details[0].trigger.name.toUpperCase()
+                      // );
+                      const evolutionData = {
+                        evolutionMethod:
+                          evolution2.evolution_details[0].trigger.name.toUpperCase(),
+                        minLevel: evolution2.evolution_details[0].min_level,
+                        pokemonId: pokemon2.id,
+                        evolveTo: pokemon3.id,
+                      };
+                      Evolution.findOneAndUpdate(
+                        { ...evolutionData },
+                        evolutionData,
+                        {
+                          upsert: true,
+                          new: true,
+                          rawResult: true,
+                        }
+                      )
+                        .then((result) => {
+                          if (result.lastErrorObject.upserted) {
+                            console.log("The doc was new and upserted!");
+                          }
+                        })
+                        .catch((error) => console.log(error));
+                    }
+                  }
+                } catch (error) {
+                  console.log(error);
+                }
+              }
+            }
+          })();
+        })
+        .catch((error) => console.log("pb"));
+    }
+  },
+  checkNullorFalse: function (obj) {
+    if (obj) {
+      return !Object.values(obj).some(
+        (value) =>
+          value !== null &&
+          value !== false &&
+          value !== "" &&
+          value !== obj.min_level &&
+          value !== obj.trigger
+      );
+    }
+    return false;
   },
 };
 module.exports = MigrationService;

@@ -27,7 +27,7 @@ mongoose
     console.error("Connection error to MongoDB", error);
   });
 
-// migrationService.getPokemonMoveLearning();
+// migrationService.getEvolution();
 i18nService.checkAndSortLanguageFiles();
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
