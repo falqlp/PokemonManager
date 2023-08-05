@@ -2,14 +2,14 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const pokemonBaseRoutes = require("./routes/pokemon/pokemonBase.route");
-const pokemonRoutes = require("./routes/pokemon/pokemon.route");
-const trainerRoutes = require("./routes/trainer.route");
+const pokemonRoutes = require("./api/pokemon/pokemon.route");
+const trainerRoutes = require("./api/trainer/trainer.route");
 const bodyParser = require("body-parser");
 const loginRoutes = require("./routes/login");
-const moveRoute = require("./routes/move.route");
+const moveRoute = require("./api/move/move.route");
 const migrationService = require("./migration.service");
 const i18nService = require("./i18n.service");
-const battleRoute = require("./routes/battle.route");
+const battleRoute = require("./api/battle/battle.route");
 
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
@@ -27,7 +27,7 @@ mongoose
     console.error("Connection error to MongoDB", error);
   });
 
-// migrationService.getEvolution();
+// migrationService.getPokemonBase();
 i18nService.checkAndSortLanguageFiles();
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");

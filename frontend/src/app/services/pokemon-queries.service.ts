@@ -19,6 +19,10 @@ export class PokemonQueriesService {
     return this.http.post<PokemonModel>('api/pokemon', pokemon);
   }
 
+  public get(id: string): Observable<PokemonModel> {
+    return this.http.get<PokemonModel>('api/pokemon/' + id);
+  }
+
   public createPokemonForTrainer(
     pokemon: PokemonModel,
     trainer: TrainerModel

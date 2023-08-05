@@ -29,16 +29,20 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
     }
   }
 
-  private updateImageUrl(): void {
+  protected updateImageUrl(): void {
+    const idString = this.pokemon.basePokemon.id.toString().padStart(3, '0');
     switch (this.type) {
       case 'icon':
-        this.imageUrl = `assets/images/sprites/${this.pokemon.basePokemon.id}MS.png`;
+        this.imageUrl = `assets/images/sprites/${idString}MS.png`;
         break;
       case 'back':
-        this.imageUrl = `assets/images/back/${this.pokemon.basePokemon.id}.png`;
+        this.imageUrl = `assets/images/back/${idString}.png`;
         break;
       case 'thumbnails':
-        this.imageUrl = `assets/images/thumbnails/${this.pokemon.basePokemon.id}.png`;
+        this.imageUrl = `assets/images/thumbnails/${idString}.png`;
+        break;
+      case 'max-size':
+        this.imageUrl = `assets/images/max-size/${idString}.png`;
         break;
     }
   }

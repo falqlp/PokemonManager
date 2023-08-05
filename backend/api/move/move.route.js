@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Move = require("../models/move");
+const Move = require("./move");
 
 router.post("/", (req, res, next) => {
   const moveNames = req.body;

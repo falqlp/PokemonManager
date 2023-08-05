@@ -1,5 +1,5 @@
 const axios = require("axios");
-const Move = require("./models/move");
+const Move = require("./api/move/move");
 const PokemonBase = require("./models/PokemonModels/pokemonBase");
 const MoveLearning = require("./models/moveLearning");
 const Evolution = require("./models/evolution");
@@ -369,6 +369,46 @@ const MigrationService = {
       );
     }
     return false;
+  },
+  getPokemonBase: function () {
+    for (let i = 1; i < 1011; i++) {
+      axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`).then((result) => {
+        const pokemon = result.data;
+        const types = [];
+        const baseStats = {
+          hp: pokemon.stats[0].base_stat,
+          atk: pokemon.stats[1].base_stat,
+          def: pokemon.stats[2].base_stat,
+          spAtk: pokemon.stats[3].base_stat,
+          spDef: pokemon.stats[4].base_stat,
+          spe: pokemon.stats[5].base_stat,
+        };
+        pokemon.types.forEach((type) => {
+          types.push(type.type.name.toUpperCase());
+        });
+        console.log(pokemon.id, pokemon.name.toUpperCase(), types, baseStats);
+        PokemonBase.findOneAndUpdate(
+          { id: pokemon.id },
+          {
+            id: pokemon.id,
+            name: pokemon.name.toUpperCase(),
+            types,
+            baseStats,
+          },
+          {
+            upsert: true,
+            new: true,
+            rawResult: true,
+          }
+        )
+          .then((result) => {
+            if (result.lastErrorObject.upserted) {
+              console.log("The doc was new and upserted!");
+            }
+          })
+          .catch((error) => console.log(error));
+      });
+    }
   },
 };
 module.exports = MigrationService;

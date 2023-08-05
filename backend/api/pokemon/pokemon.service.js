@@ -1,3 +1,6 @@
+const Pokemon = require("./pokemon");
+const moveService = require("../move/move.service");
+
 const PokemonService = {
   createPokemon: function (pokemon) {
     if (pokemon.exp === undefined) {
@@ -95,6 +98,31 @@ const PokemonService = {
       niv +
       10
     );
+  },
+
+  get: async function (_id) {
+    try {
+      return await Pokemon.findOne({ _id }).populate("moves");
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
+
+  list: async function (ids) {
+    try {
+      return await Pokemon.find({ _id: { $in: ids } }).populate("moves");
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
+
+  create: function (pokemon) {
+    const pokemonData = this.createPokemon(pokemon);
+    const newPokemon = new Pokemon({
+      ...pokemonData,
+      moves: pokemonData.moves?.map((move) => move._id),
+    });
+    return newPokemon.save();
   },
 };
 

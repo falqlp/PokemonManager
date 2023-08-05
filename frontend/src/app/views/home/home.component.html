@@ -1,7 +1,7 @@
 <button class="btn btn-default" (click)="click()">Default</button>
 <button class="btn btn-primary" (click)="clickP()">Primary</button>
 <button class="btn btn-success" (click)="startBattle()">Success</button>
-<button class="btn btn-danger">Danger</button>
+<button class="btn btn-danger" (click)="testRoute()">Danger</button>
 <search-input (pokemonsChanged)="onPokemonsChanged($event)"></search-input>
 <div class="flex">
   <div *ngFor="let pokemon of pokemonBases">

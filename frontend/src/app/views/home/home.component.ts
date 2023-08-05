@@ -74,13 +74,19 @@ export class HomeComponent implements OnInit {
   protected startBattle(): void {
     this.battleQueries
       .create({
-        playerId: this.player._id,
-        opponentId: '6496f985f15bc10f660c1958',
+        player: this.player._id,
+        opponent: '6496f985f15bc10f660c1958',
       })
       .subscribe((battle) => {
         this.router.navigate(['battle'], {
           queryParams: { battle: battle._id },
         });
       });
+  }
+
+  protected testRoute(): void {
+    this.pokemonService
+      .get('64c559fd900a4f737a512be7')
+      .subscribe((pokemon) => console.log(pokemon));
   }
 }

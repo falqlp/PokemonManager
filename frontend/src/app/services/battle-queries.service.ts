@@ -10,8 +10,8 @@ export class BattleQueriesService {
   public constructor(protected http: HttpClient) {}
 
   public create(battle: {
-    playerId: string;
-    opponentId: string;
+    player: string;
+    opponent: string;
   }): Observable<BattleModel> {
     return this.http.post<BattleModel>('api/battle', battle);
   }
@@ -25,6 +25,6 @@ export class BattleQueriesService {
     looserId: string
   ): Observable<BattleModel> {
     battle.winner = looserId === battle.player._id ? 'opponent' : 'player';
-    return this.http.post<BattleModel>(`api/battle/${battle._id}`, battle);
+    return this.http.put<BattleModel>(`api/battle/${battle._id}`, battle);
   }
 }

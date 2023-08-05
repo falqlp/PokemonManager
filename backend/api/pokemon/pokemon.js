@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const PokemonBase = require("./pokemonBase");
-const PokemonStats = require("./pokemonStats");
+const PokemonBase = require("../../models/PokemonModels/pokemonBase");
+const PokemonStats = require("../../models/PokemonModels/pokemonStats");
 
 const pokemonSchema = new mongoose.Schema({
   trainerId: { type: String, required: false },

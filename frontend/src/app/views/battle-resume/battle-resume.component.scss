@@ -10,6 +10,10 @@
     align-items: center;
     margin: 10px;
     height: 100%;
+    &__pokemons {
+      display: flex;
+      justify-content: center;
+    }
   }
   &__center {
     flex: 1;
@@ -18,6 +22,10 @@
     margin: 10px;
     height: 100%;
   }
+}
+.pokemon-image {
+  height: 50%;
+  width: 50%;
 }
 .winner {
   background-color: $green-good-color;
