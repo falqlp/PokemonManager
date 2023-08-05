@@ -2,22 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BattleModel } from '../models/Battle.model';
+import { CompleteQuery } from './complete-query';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BattleQueriesService {
-  public constructor(protected http: HttpClient) {}
-
-  public create(battle: {
-    player: string;
-    opponent: string;
-  }): Observable<BattleModel> {
-    return this.http.post<BattleModel>('api/battle', battle);
-  }
-
-  public get(id: string): Observable<BattleModel> {
-    return this.http.get<BattleModel>('api/battle/' + id);
+export class BattleQueriesService extends CompleteQuery<BattleModel> {
+  public static readonly url = 'api/battle';
+  public constructor(protected override http: HttpClient) {
+    super(BattleQueriesService.url, http);
   }
 
   public setWinner(
@@ -25,6 +18,6 @@ export class BattleQueriesService {
     looserId: string
   ): Observable<BattleModel> {
     battle.winner = looserId === battle.player._id ? 'opponent' : 'player';
-    return this.http.put<BattleModel>(`api/battle/${battle._id}`, battle);
+    return this.update(battle, battle._id);
   }
 }

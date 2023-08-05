@@ -26,6 +26,6 @@ export class PlayerService {
   }
 
   public getPlayer(id: string): Observable<TrainerModel> {
-    return this.trainerService.getTrainer(id);
+    return this.trainerService.get(id);
   }
 }

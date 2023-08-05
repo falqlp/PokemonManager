@@ -1,4 +1,5 @@
 const Pokemon = require("./pokemon");
+const Trainer = require("../trainer/trainer");
 const pokemonMapper = require("./pokemon.mapper");
 const CompleteService = require("../CompleteService");
 
@@ -104,6 +105,14 @@ const PokemonService = {
   },
 
   create: function (pokemon) {
+    if (pokemon.trainerId) {
+      Trainer.findOneAndUpdate(
+        { _id: pokemon.trainerId },
+        { $push: { pokemons: pokemon._id } }
+      )
+        .then()
+        .catch((error) => console.log(error));
+    }
     const pokemonData = this.createPokemon(pokemon);
     const newPokemon = new Pokemon({
       ...pokemonData,

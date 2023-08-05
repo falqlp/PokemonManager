@@ -4,5 +4,5 @@ export interface BattleModel {
   player: TrainerModel;
   opponent: TrainerModel;
   _id?: string;
-  winner: 'player' | 'opponent';
+  winner?: 'player' | 'opponent';
 }

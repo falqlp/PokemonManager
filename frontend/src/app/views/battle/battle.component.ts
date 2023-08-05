@@ -42,10 +42,8 @@ export class BattleComponent implements OnInit {
         }),
         switchMap((battle) => {
           this.battle = battle;
-          const playerObservable = this.trainerService.getTrainer(
-            battle.player._id
-          );
-          const opponentObservable = this.trainerService.getTrainer(
+          const playerObservable = this.trainerService.get(battle.player._id);
+          const opponentObservable = this.trainerService.get(
             battle.opponent._id
           );
           return combineLatest([playerObservable, opponentObservable]);

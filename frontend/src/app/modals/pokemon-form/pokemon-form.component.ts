@@ -48,7 +48,7 @@ export class PokemonFormComponent implements OnInit {
             map((value) => this.filter(value as string))
           );
       });
-    this.trainerService.list(null).subscribe((trainers) => {
+    this.trainerService.getAll().subscribe((trainers) => {
       this.trainers = trainers;
     });
   }
@@ -63,7 +63,7 @@ export class PokemonFormComponent implements OnInit {
 
   protected submit(): void {
     this.dialogRef.close({
-      trainerId: '6496f985f15bc10f660c1958',
+      trainerId: this.pokemonForm.controls.trainer.value,
       nickname: this.pokemonForm.controls.nickname.value,
       basePokemon: this.options.find(
         (option) => option.name === this.pokemonForm.controls.pokemon.value

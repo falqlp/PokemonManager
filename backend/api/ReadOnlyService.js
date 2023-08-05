@@ -13,11 +13,22 @@ class ReadOnlyService {
     }
   }
 
+  async getAll() {
+    try {
+      const dtos = await this.schema.find();
+      return await Promise.all(
+        dtos.map(async (dto) => {
+          return this.mapper.map(dto);
+        })
+      );
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
   async list(ids) {
     try {
-      const dtos = await this.schema.find(
-        Object.keys(ids).length !== 0 ? { _id: { $in: ids } } : {}
-      );
+      const dtos = await this.schema.find({ _id: { $in: ids } });
       return await Promise.all(
         dtos.map(async (dto) => {
           return this.mapper.map(dto);

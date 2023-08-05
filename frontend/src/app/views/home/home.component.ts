@@ -10,6 +10,7 @@ import { PlayerService } from 'src/app/services/player.service';
 import { PokemonQueriesService } from 'src/app/services/pokemon-queries.service';
 import { Router } from '@angular/router';
 import { BattleQueriesService } from '../../services/battle-queries.service';
+import { TrainerQueriesService } from '../../services/trainer-queries.service';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,7 @@ import { BattleQueriesService } from '../../services/battle-queries.service';
 export class HomeComponent implements OnInit {
   protected pokemonBases: PokemonBaseModel[];
   protected player: TrainerModel;
+  protected opponent: TrainerModel;
   protected progress = 50;
 
   constructor(
@@ -26,12 +28,16 @@ export class HomeComponent implements OnInit {
     protected dialog: MatDialog,
     protected playerService: PlayerService,
     protected pokemonService: PokemonQueriesService,
-    protected battleQueries: BattleQueriesService
+    protected battleQueries: BattleQueriesService,
+    protected trainerService: TrainerQueriesService
   ) {}
 
   public ngOnInit(): void {
     this.playerService.player$.subscribe((player) => {
       this.player = player;
+    });
+    this.trainerService.get('6496f985f15bc10f660c1958').subscribe((trainer) => {
+      this.opponent = trainer;
     });
   }
 
@@ -54,13 +60,8 @@ export class HomeComponent implements OnInit {
 
   protected createPokemon(pokemon: PokemonModel): void {
     this.pokemonService
-      .createPokemonForTrainer(pokemon, this.player)
-      .pipe(
-        tap(() => {
-          this.playerService.updatePlayer(this.player._id);
-        })
-      )
-      .subscribe();
+      .create(pokemon)
+      .subscribe((newpokemon) => console.log(newpokemon));
   }
 
   protected imgNumber(pokemon: PokemonBaseModel): string {
@@ -74,8 +75,8 @@ export class HomeComponent implements OnInit {
   protected startBattle(): void {
     this.battleQueries
       .create({
-        player: this.player._id,
-        opponent: '6496f985f15bc10f660c1958',
+        player: this.player,
+        opponent: this.opponent,
       })
       .subscribe((battle) => {
         this.router.navigate(['battle'], {
