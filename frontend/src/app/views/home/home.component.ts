@@ -85,8 +85,6 @@ export class HomeComponent implements OnInit {
   }
 
   protected testRoute(): void {
-    this.pokemonService
-      .get('64c559fd900a4f737a512be7')
-      .subscribe((pokemon) => console.log(pokemon));
+    this.pokemonService.delete('64c559fd900a4f737a512be7').subscribe();
   }
 }

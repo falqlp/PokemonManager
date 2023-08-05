@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const PokemonStats = require("./pokemonStats");
+const PokemonStats = require("../../models/PokemonModels/pokemonStats");
 
 const pokemonBaseSchema = mongoose.Schema({
   id: { type: Number, required: true },

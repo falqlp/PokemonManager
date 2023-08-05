@@ -17,6 +17,10 @@ export class TrainerQueriesService {
     return this.http.get<TrainerModel[]>('api/trainer');
   }
 
+  public list(ids: string[]): Observable<TrainerModel[]> {
+    return this.http.put<TrainerModel[]>('api/trainer', ids);
+  }
+
   public updateTrainer(
     id: string,
     trainer: TrainerModel

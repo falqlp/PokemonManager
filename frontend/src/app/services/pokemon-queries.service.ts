@@ -23,6 +23,10 @@ export class PokemonQueriesService {
     return this.http.get<PokemonModel>('api/pokemon/' + id);
   }
 
+  public delete(id: string): Observable<unknown> {
+    return this.http.delete('api/pokemon/' + id);
+  }
+
   public createPokemonForTrainer(
     pokemon: PokemonModel,
     trainer: TrainerModel

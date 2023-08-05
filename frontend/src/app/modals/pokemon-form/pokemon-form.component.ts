@@ -7,6 +7,8 @@ import type { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import type { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
+import { TrainerQueriesService } from '../../services/trainer-queries.service';
+import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 
 @Component({
   selector: 'app-pokemon-form',
@@ -22,19 +24,22 @@ export class PokemonFormComponent implements OnInit {
       Validators.min(1),
       Validators.max(100),
     ]),
+    trainer: new FormControl('kjg', Validators.required),
   });
 
+  trainers: TrainerModel[];
   options: PokemonBaseModel[];
   filteredPokemons: Observable<PokemonBaseModel[]>;
 
   constructor(
     protected dialogRef: MatDialogRef<PokemonFormComponent>,
-    protected http: HttpClient
+    protected http: HttpClient,
+    protected trainerService: TrainerQueriesService
   ) {}
 
   public ngOnInit(): void {
     this.http
-      .get<PokemonBaseModel[]>('api/PokemonBase')
+      .put<PokemonBaseModel[]>('api/pokemonBase', null)
       .subscribe((pokemons) => {
         this.options = pokemons;
         this.filteredPokemons =
@@ -43,6 +48,9 @@ export class PokemonFormComponent implements OnInit {
             map((value) => this.filter(value as string))
           );
       });
+    this.trainerService.list(null).subscribe((trainers) => {
+      this.trainers = trainers;
+    });
   }
 
   protected filter(value: string): PokemonBaseModel[] {

@@ -20,6 +20,7 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
   protected imageUrl: string;
 
   public ngOnInit(): void {
+    console.log(this.pokemon);
     this.updateImageUrl();
   }
 

@@ -1,12 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const Move = require("./move");
+const moveService = require("./move.service");
+const ReadOnlyRouter = require("../ReadOnlyRouter");
+const readOnlyRouter = new ReadOnlyRouter(moveService);
 
-router.post("/", (req, res, next) => {
-  const moveNames = req.body;
-  Move.find({ name: { $in: moveNames } })
-    .then((moves) => res.status(200).json(moves))
-    .catch((error) => console.log(error));
-});
+router.use("/", readOnlyRouter.router);
 
 module.exports = router;

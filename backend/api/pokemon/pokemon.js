@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
-const PokemonBase = require("../../models/PokemonModels/pokemonBase");
 const PokemonStats = require("../../models/PokemonModels/pokemonStats");
 
 const pokemonSchema = new mongoose.Schema({
   trainerId: { type: String, required: false },
   nickname: { type: String, required: false },
-  basePokemon: { type: PokemonBase.schema, required: true },
+  basePokemon: { type: mongoose.Schema.Types.ObjectId, ref: "PokemonBase" },
   level: { type: Number, required: true },
   exp: { type: Number, required: true },
   expMax: { type: Number, required: true },

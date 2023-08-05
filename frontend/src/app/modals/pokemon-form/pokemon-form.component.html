@@ -15,7 +15,7 @@
           *ngFor="let pokemon of filteredPokemons | async"
           [value]="pokemon.name"
         >
-          {{ pokemon.name }}
+          {{ pokemon.name | translate }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
@@ -28,6 +28,15 @@
     <mat-form-field>
       <label>Niveau</label>
       <input matInput formControlName="level" type="number" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Trainers</mat-label>
+      <mat-select formControlName="trainer">
+        <mat-option *ngFor="let trainer of trainers" [value]="trainer._id">
+          {{ trainer.name }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
   </form>
 </mat-dialog-content>
