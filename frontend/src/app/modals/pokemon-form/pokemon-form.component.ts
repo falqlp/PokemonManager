@@ -28,7 +28,7 @@ export class PokemonFormComponent implements OnInit {
   });
 
   trainers: TrainerModel[];
-  options: PokemonBaseModel[];
+  pokemons: PokemonBaseModel[];
   filteredPokemons: Observable<PokemonBaseModel[]>;
 
   constructor(
@@ -39,9 +39,9 @@ export class PokemonFormComponent implements OnInit {
 
   public ngOnInit(): void {
     this.http
-      .put<PokemonBaseModel[]>('api/pokemonBase', null)
+      .get<PokemonBaseModel[]>('api/pokemonBase')
       .subscribe((pokemons) => {
-        this.options = pokemons;
+        this.pokemons = pokemons;
         this.filteredPokemons =
           this.pokemonForm.controls.pokemon.valueChanges.pipe(
             startWith(''),
@@ -56,7 +56,7 @@ export class PokemonFormComponent implements OnInit {
   protected filter(value: string): PokemonBaseModel[] {
     const filterValue = value.toLowerCase();
 
-    return this.options.filter((option) =>
+    return this.pokemons.filter((option) =>
       option.name.toLowerCase().startsWith(filterValue)
     );
   }
@@ -65,7 +65,7 @@ export class PokemonFormComponent implements OnInit {
     this.dialogRef.close({
       trainerId: this.pokemonForm.controls.trainer.value,
       nickname: this.pokemonForm.controls.nickname.value,
-      basePokemon: this.options.find(
+      basePokemon: this.pokemons.find(
         (option) => option.name === this.pokemonForm.controls.pokemon.value
       ),
       level: this.pokemonForm.controls.level.value,

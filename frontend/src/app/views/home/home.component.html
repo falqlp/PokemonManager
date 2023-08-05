@@ -8,12 +8,3 @@
     <pokemon-panel [pokemon]="pokemon"></pokemon-panel>
   </div>
 </div>
-<cooldown-button></cooldown-button>
-<div class="pokemon-trainer">
-  <app-circular-hp-pokemon
-    *ngFor="let pokemon of player.pokemons"
-    [pokemon]="pokemon"
-  />
-</div>
-<progress-bar [currentProgress]="progress"></progress-bar>
-<progress-bar [currentProgress]="progress" [style]="'hp'"></progress-bar>

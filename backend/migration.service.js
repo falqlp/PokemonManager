@@ -3,6 +3,9 @@ const Move = require("./api/move/move");
 const PokemonBase = require("./api/pokemonBase/pokemonBase");
 const MoveLearning = require("./models/moveLearning");
 const Evolution = require("./models/evolution");
+const { response } = require("express");
+const fs = require("fs");
+const path = require("path");
 
 const MigrationService = {
   move: function () {
@@ -135,27 +138,58 @@ const MigrationService = {
   },
 
   updatePokemonName: function () {
-    let translations = {};
-    PokemonBase.find().then((pokemons) => {
-      let requests = pokemons.map((pokemon) => {
-        return axios
-          .get(
-            `https://pokeapi.co/api/v2/pokemon-species/${parseInt(pokemon.id)}`
-          )
-          .then((response) => {
-            pokemon.name = response.data.name.toUpperCase();
-            let englishName = response.data.name.toUpperCase();
-            let frenchName = response.data.names.find(
-              (name) => name.language.name === "en"
-            ).name;
-            translations[englishName] = frenchName;
-          });
-      });
+    for (let i = 600; i < 1011; i++) {
+      setTimeout(
+        () =>
+          axios
+            .get(`https://pokeapi.co/api/v2/pokemon-species/${i}`)
+            .then((response) => {
+              const specie = response.data;
+              const key = specie.name.toUpperCase();
+              const value = specie.names.find(
+                (name) => name.language.name === "en"
+              ).name;
+              const newEntry = { [key]: value };
 
-      Promise.all(requests).then(() => {
-        console.log(translations);
-      });
-    });
+              const filePath = path.join(
+                "../frontend/src/assets/i18n",
+                "en.json"
+              );
+              fs.readFile(filePath, "utf8", (err, data) => {
+                if (err) {
+                  console.error(
+                    "Une erreur s'est produite lors de la lecture du fichier.",
+                    err
+                  );
+                  return;
+                }
+
+                const jsonContent = JSON.parse(data);
+                Object.assign(jsonContent, newEntry);
+
+                fs.writeFile(
+                  filePath,
+                  JSON.stringify(jsonContent, null, 2),
+                  "utf8",
+                  (err) => {
+                    if (err) {
+                      console.error(
+                        "Une erreur s'est produite lors de l'écriture dans le fichier.",
+                        err
+                      );
+                    } else {
+                      console.log("Mise à jour réussie.");
+                    }
+                  }
+                );
+              });
+            })
+            .catch((error) => {
+              console.error("Erreur lors de la requête API:", error);
+            }),
+        200 * (i - 599)
+      );
+    }
   },
   updateTypeToEn: function () {
     PokemonBase.find().then((pokemons) => {

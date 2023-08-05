@@ -2,6 +2,7 @@ class ReadOnlyService {
   constructor(schema, mapper) {
     this.schema = schema;
     this.mapper = mapper;
+    this.getAll = this.getAll.bind(this);
     this.get = this.get.bind(this);
     this.list = this.list.bind(this);
   }

@@ -7,6 +7,7 @@ class CompleteService {
     this.readOnlyService = new ReadOnlyService(schema, mapper);
     this.get = this.readOnlyService.get;
     this.list = this.readOnlyService.list;
+    this.getAll = this.readOnlyService.getAll;
     this.update = this.update.bind(this);
     this.create = this.create.bind(this);
     this.delete = this.delete.bind(this);
