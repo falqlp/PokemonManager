@@ -2,7 +2,7 @@ const axios = require("axios");
 const Move = require("./api/move/move");
 const PokemonBase = require("./api/pokemonBase/pokemonBase");
 const MoveLearning = require("./api/moveLearning/moveLearning");
-const Evolution = require("./models/evolution");
+const Evolution = require("./api/evolution/evolution");
 const { response } = require("express");
 const fs = require("fs");
 const path = require("path");
@@ -248,20 +248,26 @@ const MigrationService = {
       axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`).then((response) => {
         let moves = response.data.moves;
         moves.forEach((move) => {
-          let learnMethod =
-            move.version_group_details[move.version_group_details.length - 1]
-              .move_learn_method.name;
-          let levelLearnAt =
-            move.version_group_details[move.version_group_details.length - 1]
-              .level_learned_at;
-          if (learnMethod === "level-up") {
+          let levelLearnAt = 0;
+          for (
+            let index = 0;
+            index < move.version_group_details.length;
+            index++
+          ) {
+            let learnMethod =
+              move.version_group_details[index].move_learn_method.name;
+            if (learnMethod === "level-up") {
+              levelLearnAt = move.version_group_details[index].level_learned_at;
+            }
+          }
+          if (levelLearnAt !== 0) {
             Move.findOne({ name: move.move.name.toUpperCase() }).then(
               (newMove) => {
                 const dataToInsert = {
                   pokemonId: i,
                   moveId: newMove._id,
                   levelLearnAt,
-                  learnMethod: learnMethod.toUpperCase(),
+                  learnMethod: "LEVEL-UP",
                 };
                 MoveLearning.findOneAndUpdate(
                   {

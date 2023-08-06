@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 import { BattleQueriesService } from '../../services/battle-queries.service';
 import { TrainerQueriesService } from '../../services/trainer-queries.service';
 import { HttpClient } from '@angular/common/http';
+import { MoveModel } from '../../models/move.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +33,8 @@ export class HomeComponent implements OnInit {
     protected playerService: PlayerService,
     protected pokemonService: PokemonQueriesService,
     protected battleQueries: BattleQueriesService,
-    protected trainerService: TrainerQueriesService
+    protected trainerService: TrainerQueriesService,
+    protected translateService: TranslateService
   ) {}
 
   public ngOnInit(): void {
@@ -54,8 +57,17 @@ export class HomeComponent implements OnInit {
 
   protected clickP(): void {
     this.http
-      .put('api/moveLearning/learnableMoves', this.player.pokemons[0])
-      .subscribe();
+      .put<MoveModel[]>(
+        'api/moveLearning/learnableMoves',
+        this.player.pokemons[1]
+      )
+      .subscribe((moves) => {
+        console.log(
+          moves
+            .sort((a, b) => a.power - b.power)
+            .map((move) => this.translateService.instant(move.name))
+        );
+      });
   }
 
   protected onPokemonsChanged(pokemons: PokemonBaseModel[]): void {
