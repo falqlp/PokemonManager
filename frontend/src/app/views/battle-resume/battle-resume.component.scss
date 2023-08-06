@@ -2,17 +2,21 @@
 @import "src/styles/colors";
 
 .battle-resume {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 33.333333%);
+  grid-template-rows: calc(100vh - 65px);
   &__opponent,
   &__player {
     flex: 1;
     @include flexbox(flex-start, 2, column);
     align-items: center;
     margin: 10px;
-    height: 100%;
-    &__pokemons {
-      display: flex;
-      justify-content: center;
+    &__pokemon {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 33%);
+      height: 100%;
+      overflow: auto;
     }
   }
   &__center {
@@ -20,12 +24,13 @@
     @include flexbox(flex-start, 2, column);
     align-items: center;
     margin: 10px;
-    height: 100%;
   }
 }
+//.flex {
+//  width: 100%;
+//}
 .pokemon-image {
-  height: 50%;
-  width: 50%;
+  height: 100%;
 }
 .winner {
   background-color: $green-good-color;

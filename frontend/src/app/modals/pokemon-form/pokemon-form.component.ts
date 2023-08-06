@@ -1,6 +1,12 @@
 import type { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  ValidatorFn,
+  AbstractControl,
+} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import type { Observable } from 'rxjs';
 import { combineLatest, debounceTime, map, startWith, switchMap } from 'rxjs';
@@ -13,7 +19,6 @@ import { PokemonBaseQueriesService } from '../../services/pokemon-base-queries.s
 import { MoveModel } from '../../models/move.model';
 import { MoveLearningService } from '../../services/move-learning.service';
 import { MatSelectChange } from '@angular/material/select';
-import { MoveQueriesService } from '../../services/move-queries.service';
 
 @Component({
   selector: 'app-pokemon-form',
@@ -22,66 +27,33 @@ import { MoveQueriesService } from '../../services/move-queries.service';
 })
 export class PokemonFormComponent implements OnInit {
   protected pokemonForm = new FormGroup({
-    basePokemon: new FormControl('', Validators.required),
-    nickname: new FormControl(''),
-    level: new FormControl(1, [
+    basePokemon: new FormControl<PokemonBaseModel>(null, Validators.required),
+    nickname: new FormControl<string>(''),
+    level: new FormControl<number>(1, [
       Validators.required,
       Validators.min(1),
       Validators.max(100),
     ]),
-    trainerId: new FormControl('', Validators.required),
-    moves: new FormControl([]),
+    trainerId: new FormControl<string>('', Validators.required),
+    moves: new FormControl<MoveModel[]>([], this.arrayMaxLength(2)),
   });
 
   protected trainers: TrainerModel[];
   protected pokemons: PokemonBaseModel[];
   protected filteredPokemons: Observable<PokemonBaseModel[]>;
   protected moves: MoveModel[];
-  protected displayedMoves: MoveModel[] = [];
 
   public constructor(
     protected dialogRef: MatDialogRef<PokemonFormComponent>,
     protected pokemonBaseService: PokemonBaseQueriesService,
     protected trainerService: TrainerQueriesService,
     protected translateService: TranslateService,
-    protected moveLearningService: MoveLearningService,
-    protected moveService: MoveQueriesService
+    protected moveLearningService: MoveLearningService
   ) {}
 
   public ngOnInit(): void {
     this.getData();
-    combineLatest([
-      this.pokemonForm.controls.basePokemon.valueChanges,
-      this.pokemonForm.controls.level.valueChanges.pipe(
-        startWith(1),
-        debounceTime(500)
-      ),
-    ])
-      .pipe(
-        switchMap(() => {
-          const pokemonId = this.pokemons.find(
-            (pokemon) =>
-              pokemon._id === this.pokemonForm.controls.basePokemon.value
-          )?.id;
-          return this.moveLearningService.learnableMove(
-            pokemonId,
-            this.pokemonForm.controls.level.value
-          );
-        })
-      )
-      .subscribe((moves) => {
-        this.displayedMoves = [];
-        this.moves = moves;
-      });
-    this.pokemonForm.controls.moves.valueChanges
-      .pipe(
-        switchMap((moves) => {
-          return this.moveService.list(moves);
-        })
-      )
-      .subscribe((displayedMoves) => {
-        this.displayedMoves = displayedMoves;
-      });
+    this.subscribeLearnableMove();
   }
 
   protected getData(): void {
@@ -98,28 +70,52 @@ export class PokemonFormComponent implements OnInit {
     });
   }
 
-  protected filter(value: string): PokemonBaseModel[] {
-    const filterValue = value.toLowerCase();
+  protected subscribeLearnableMove(): void {
+    combineLatest([
+      this.pokemonForm.controls.basePokemon.valueChanges,
+      this.pokemonForm.controls.level.valueChanges.pipe(startWith(1)),
+    ])
+      .pipe(
+        debounceTime(500),
+        switchMap(() => {
+          const pokemonId = this.pokemons.find(
+            (pokemon) =>
+              pokemon._id === this.pokemonForm.controls.basePokemon.value._id
+          )?.id;
+          return this.moveLearningService.learnableMove(
+            pokemonId,
+            this.pokemonForm.controls.level.value
+          );
+        })
+      )
+      .subscribe((moves) => {
+        this.moves = moves;
+      });
+  }
 
-    return this.pokemons.filter((option) =>
-      this.translateService
-        .instant(option.name)
-        .toLowerCase()
-        .startsWith(filterValue)
-    );
+  protected filter(value: string): PokemonBaseModel[] {
+    if (typeof value === 'string') {
+      const filterValue = value.toLowerCase();
+
+      return this.pokemons.filter((option) =>
+        this.translateService
+          .instant(option.name)
+          .toLowerCase()
+          .startsWith(filterValue)
+      );
+    }
+    return [];
   }
 
   protected submit(): void {
     this.dialogRef.close({
       ...this.pokemonForm.value,
-    } as unknown as PokemonModel);
+    } as PokemonModel);
   }
 
-  protected displayPokemon(_id: string): string {
-    if (_id) {
-      return this.translateService.instant(
-        this.pokemons.find((pokemon) => pokemon._id === _id).name
-      );
+  protected displayPokemon(pokemon: PokemonBaseModel): string {
+    if (pokemon) {
+      return this.translateService.instant(pokemon.name);
     }
     return '';
   }
@@ -130,5 +126,12 @@ export class PokemonFormComponent implements OnInit {
       const updatedMoves = [...oldValue, event.value];
       this.pokemonForm.controls.moves.setValue(updatedMoves);
     }
+  }
+
+  protected arrayMaxLength(max: number): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: unknown } | null => {
+      const arrayLength = control.value.length;
+      return arrayLength > max ? { maxLength: { value: arrayLength } } : null;
+    };
   }
 }

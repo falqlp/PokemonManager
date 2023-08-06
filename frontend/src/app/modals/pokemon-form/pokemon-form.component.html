@@ -16,7 +16,7 @@
       >
         <mat-option
           *ngFor="let pokemon of filteredPokemons | async"
-          [value]="pokemon._id"
+          [value]="pokemon"
         >
           {{ pokemon.name | translate }}
         </mat-option>
@@ -48,17 +48,24 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field *ngIf="pokemonForm.controls.basePokemon.value">
+    <mat-form-field>
       <mat-label>Moves</mat-label>
-      <mat-select (selectionChange)="moveSelectionChange($event)">
-        <mat-option *ngFor="let move of moves" [value]="move._id">
+      <mat-select multiple [formControl]="pokemonForm.controls.moves">
+        <mat-option
+          *ngFor="let move of moves"
+          [value]="move"
+          [disabled]="
+            pokemonForm.controls.moves.value?.length > 1 &&
+            !pokemonForm.controls.moves.value?.includes(move)
+          "
+        >
           {{ move.name | translate }}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
     <div>
-      <span *ngFor="let displayedMove of displayedMoves">{{
+      <span *ngFor="let displayedMove of pokemonForm.controls.moves.value">{{
         displayedMove.name | translate
       }}</span>
     </div>
