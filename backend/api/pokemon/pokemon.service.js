@@ -104,20 +104,18 @@ const PokemonService = {
     );
   },
 
-  create: function (pokemon) {
-    if (pokemon.trainerId) {
+  create: async function (pokemon) {
+    const newPokemon = new Pokemon({
+      ...this.mapper.update(this.createPokemon(pokemon)),
+    });
+    if (newPokemon.trainerId) {
       Trainer.findOneAndUpdate(
-        { _id: pokemon.trainerId },
-        { $push: { pokemons: pokemon._id } }
+        { _id: newPokemon.trainerId },
+        { $push: { pokemons: newPokemon._id } }
       )
         .then()
         .catch((error) => console.log(error));
     }
-    const pokemonData = this.createPokemon(pokemon);
-    const newPokemon = new Pokemon({
-      ...pokemonData,
-      moves: pokemonData.moves?.map((move) => move._id),
-    });
     return newPokemon.save();
   },
 };

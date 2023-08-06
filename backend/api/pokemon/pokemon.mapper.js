@@ -9,7 +9,7 @@ const PokemonMapper = {
   },
 
   update: function (pokemon) {
-    pokemon.moves = pokemon.pokemons.map((moves) => moves._id);
+    pokemon.moves = pokemon.moves?.map((moves) => moves._id);
     pokemon.basePokemon = pokemon.basePokemon._id;
     return pokemon;
   },
