@@ -10,6 +10,7 @@ const moveRoute = require("./api/move/move.route");
 const migrationService = require("./migration.service");
 const i18nService = require("./i18n.service");
 const battleRoute = require("./api/battle/battle.route");
+const moveLearningRoutes = require("./api/moveLearning/moveLearning.routes");
 
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
@@ -50,5 +51,6 @@ app.use("/api/trainer", trainerRoutes);
 app.use("/api/login", loginRoutes);
 app.use("/api/move", moveRoute);
 app.use("/api/battle", battleRoute);
+app.use("/api/moveLearning", moveLearningRoutes);
 
 module.exports = app;

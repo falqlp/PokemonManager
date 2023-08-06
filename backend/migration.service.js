@@ -1,7 +1,7 @@
 const axios = require("axios");
 const Move = require("./api/move/move");
 const PokemonBase = require("./api/pokemonBase/pokemonBase");
-const MoveLearning = require("./models/moveLearning");
+const MoveLearning = require("./api/moveLearning/moveLearning");
 const Evolution = require("./models/evolution");
 const { response } = require("express");
 const fs = require("fs");

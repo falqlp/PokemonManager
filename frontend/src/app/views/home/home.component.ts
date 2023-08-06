@@ -11,6 +11,7 @@ import { PokemonQueriesService } from 'src/app/services/pokemon-queries.service'
 import { Router } from '@angular/router';
 import { BattleQueriesService } from '../../services/battle-queries.service';
 import { TrainerQueriesService } from '../../services/trainer-queries.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
   protected progress = 50;
 
   constructor(
+    protected http: HttpClient,
     protected router: Router,
     protected dialog: MatDialog,
     protected playerService: PlayerService,
@@ -51,7 +53,9 @@ export class HomeComponent implements OnInit {
   }
 
   protected clickP(): void {
-    this.progress -= 10;
+    this.http
+      .put('api/moveLearning/learnableMoves', this.player.pokemons[0])
+      .subscribe();
   }
 
   protected onPokemonsChanged(pokemons: PokemonBaseModel[]): void {

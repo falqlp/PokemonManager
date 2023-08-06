@@ -9,6 +9,7 @@ import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import type { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
 import { TrainerQueriesService } from '../../services/trainer-queries.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-pokemon-form',
@@ -34,14 +35,15 @@ export class PokemonFormComponent implements OnInit {
   constructor(
     protected dialogRef: MatDialogRef<PokemonFormComponent>,
     protected http: HttpClient,
-    protected trainerService: TrainerQueriesService
+    protected trainerService: TrainerQueriesService,
+    protected translateService: TranslateService
   ) {}
 
   public ngOnInit(): void {
     this.http
       .get<PokemonBaseModel[]>('api/pokemonBase')
       .subscribe((pokemons) => {
-        this.pokemons = pokemons;
+        this.pokemons = pokemons.sort((a, b) => a.id - b.id);
         this.filteredPokemons =
           this.pokemonForm.controls.pokemon.valueChanges.pipe(
             startWith(''),
@@ -49,7 +51,7 @@ export class PokemonFormComponent implements OnInit {
           );
       });
     this.trainerService.getAll().subscribe((trainers) => {
-      this.trainers = trainers;
+      this.trainers = trainers.sort((a, b) => a.name.localeCompare(b.name));
     });
   }
 
@@ -57,7 +59,10 @@ export class PokemonFormComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.pokemons.filter((option) =>
-      option.name.toLowerCase().startsWith(filterValue)
+      this.translateService
+        .instant(option.name)
+        .toLowerCase()
+        .startsWith(filterValue)
     );
   }
 
