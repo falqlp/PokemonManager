@@ -3,35 +3,33 @@ const moveService = require("../move/move.service");
 const evolutionService = require("../evolution/evolution.service");
 
 const MoveLearningService = {
-  learnableMoves: async function (pokemon) {
-    const allMoves = await this.getMovesOfAllEvolutions(pokemon);
+  learnableMoves: async function (id, level) {
+    const allMoves = await this.getMovesOfAllEvolutions(id, level);
     return moveService.list(allMoves.map((move) => move.moveId));
   },
 
-  getMovesOfAllEvolutions: async function (pokemon) {
+  getMovesOfAllEvolutions: async function (id, level) {
     let moveLearn = await MoveLearning.find({
-      pokemonId: pokemon.basePokemon.id,
-      levelLearnAt: { $lt: pokemon.level },
+      pokemonId: id,
+      levelLearnAt: { $lt: level + 1 },
       learnMethod: "LEVEL-UP",
     });
 
-    const evolution = await evolutionService.isEvolution(
-      pokemon.basePokemon.id
-    );
+    const evolution = await evolutionService.isEvolution(id);
 
     if (evolution !== null) {
       const moveLearn2 = await MoveLearning.find({
         pokemonId: evolution.pokemonId,
-        levelLearnAt: { $lt: evolution.minLevel },
+        levelLearnAt: { $lt: evolution.minLevel + 1 },
         learnMethod: "LEVEL-UP",
       });
 
       moveLearn = this.mergeAndOverwrite(moveLearn, moveLearn2);
 
-      const previousEvolutionMoves = await this.getMovesOfAllEvolutions({
-        basePokemon: { id: evolution.pokemonId },
-        level: evolution.minLevel,
-      });
+      const previousEvolutionMoves = await this.getMovesOfAllEvolutions(
+        evolution.pokemonId,
+        evolution.minLevel
+      );
       moveLearn = this.mergeAndOverwrite(moveLearn, previousEvolutionMoves);
     }
 

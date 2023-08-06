@@ -7,13 +7,16 @@
       <input
         type="text"
         matInput
-        formControlName="pokemon"
+        [formControl]="pokemonForm.controls.basePokemon"
         [matAutocomplete]="auto"
       />
-      <mat-autocomplete #auto="matAutocomplete">
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="displayPokemon.bind(this)"
+      >
         <mat-option
           *ngFor="let pokemon of filteredPokemons | async"
-          [value]="pokemon.name"
+          [value]="pokemon._id"
         >
           {{ pokemon.name | translate }}
         </mat-option>
@@ -22,22 +25,43 @@
 
     <mat-form-field>
       <label>Surnom</label>
-      <input matInput formControlName="nickname" />
+      <input matInput [formControl]="pokemonForm.controls.nickname" />
     </mat-form-field>
 
     <mat-form-field>
       <label>Niveau</label>
-      <input matInput formControlName="level" type="number" />
+      <input
+        matInput
+        max="100"
+        min="1"
+        type="number"
+        [formControl]="pokemonForm.controls.level"
+      />
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Trainers</mat-label>
-      <mat-select formControlName="trainer">
+      <mat-select [formControl]="pokemonForm.controls.trainerId">
         <mat-option *ngFor="let trainer of trainers" [value]="trainer._id">
           {{ trainer.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field *ngIf="pokemonForm.controls.basePokemon.value">
+      <mat-label>Moves</mat-label>
+      <mat-select (selectionChange)="moveSelectionChange($event)">
+        <mat-option *ngFor="let move of moves" [value]="move._id">
+          {{ move.name | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div>
+      <span *ngFor="let displayedMove of displayedMoves">{{
+        displayedMove.name | translate
+      }}</span>
+    </div>
   </form>
 </mat-dialog-content>
 

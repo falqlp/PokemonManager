@@ -1,5 +1,6 @@
 const Pokemon = require("./pokemon");
 const Trainer = require("../trainer/trainer");
+const pokemonBaseService = require("../pokemonBase/pokemonBase.service");
 const pokemonMapper = require("./pokemon.mapper");
 const CompleteService = require("../CompleteService");
 
@@ -105,6 +106,7 @@ const PokemonService = {
   },
 
   create: async function (pokemon) {
+    pokemon.basePokemon = await pokemonBaseService.get(pokemon.basePokemon);
     const newPokemon = new Pokemon({
       ...this.mapper.update(this.createPokemon(pokemon)),
     });

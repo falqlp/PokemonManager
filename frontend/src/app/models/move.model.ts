@@ -5,4 +5,5 @@ export interface MoveModel {
   accuracy: number;
   power?: number;
   effect?: string;
+  _id?: string;
 }

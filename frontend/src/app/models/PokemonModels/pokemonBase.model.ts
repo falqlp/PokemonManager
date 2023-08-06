@@ -5,4 +5,5 @@ export interface PokemonBaseModel {
   name: string;
   types: string[];
   baseStats: PokemonStatsModel;
+  _id?: string;
 }

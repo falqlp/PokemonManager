@@ -14,6 +14,7 @@ import { TrainerQueriesService } from '../../services/trainer-queries.service';
 import { HttpClient } from '@angular/common/http';
 import { MoveModel } from '../../models/move.model';
 import { TranslateService } from '@ngx-translate/core';
+import { MoveLearningService } from '../../services/move-learning.service';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit {
   protected progress = 50;
 
   constructor(
-    protected http: HttpClient,
+    protected moveLearningService: MoveLearningService,
     protected router: Router,
     protected dialog: MatDialog,
     protected playerService: PlayerService,
@@ -56,10 +57,10 @@ export class HomeComponent implements OnInit {
   }
 
   protected clickP(): void {
-    this.http
-      .put<MoveModel[]>(
-        'api/moveLearning/learnableMoves',
-        this.player.pokemons[1]
+    this.moveLearningService
+      .learnableMove(
+        this.player.pokemons[1].basePokemon.id,
+        this.player.pokemons[1].level
       )
       .subscribe((moves) => {
         console.log(
