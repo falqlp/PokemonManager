@@ -3,13 +3,13 @@
     "$oid": "6496f985f15bc10f660c1958"
   },
   "name": "Adversaire",
+  "__v": 0,
   "pokemons": [
-    "649c603c6b6740d774313371",
-    "649c60416b6740d774313682",
-    "649d6f02127a82d831ec9dd1",
-    "649e0eff7b1e9771b623293d"
+    {
+      "$oid": "64cffba437682ecceed4cb29"
+    }
   ],
-  "__v": 0
+  "pcStorage": "64d295c8487e7adbae453413"
 },
 {
   "_id": {
@@ -17,23 +17,34 @@
   },
   "name": "Disconnected",
   "pokemons": [],
-  "__v": 0
+  "__v": 0,
+  "pcStorage": "64d295d38af14fe63a1c1142"
 },
 {
   "_id": {
     "$oid": "649e0e86e45d3dab76652543"
   },
   "name": "Popole",
+  "__v": 0,
   "pokemons": [
     {
-      "$oid": "649e0eff7b1e9771b623293c"
+      "$oid": "64cff59537682ecceed4ca13"
     },
     {
-      "$oid": "649e0f3f7b1e9771b6232c4d"
+      "$oid": "64cffbdd37682ecceed4cb65"
     },
     {
-      "$oid": "64c559fd900a4f737a512be7"
+      "$oid": "64cffc0d37682ecceed4cb8f"
+    },
+    {
+      "$oid": "64cffc3837682ecceed4cbb7"
+    },
+    {
+      "$oid": "64cffc5237682ecceed4cbe6"
+    },
+    {
+      "$oid": "64cffc7237682ecceed4cc0c"
     }
   ],
-  "__v": 0
+  "pcStorage": "64d295d602f276756870fd45"
 }]

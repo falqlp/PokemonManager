@@ -1,0 +1,2640 @@
+[{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f653"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 80,
+  "minLevel": 37,
+  "pokemonId": 79,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f655"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 49,
+  "minLevel": 31,
+  "pokemonId": 48,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f657"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 8,
+  "minLevel": 16,
+  "pokemonId": 7,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f65a"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 5,
+  "minLevel": 16,
+  "pokemonId": 4,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f65d"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 44,
+  "minLevel": 21,
+  "pokemonId": 43,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f65f"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 78,
+  "minLevel": 40,
+  "pokemonId": 77,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f661"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 2,
+  "minLevel": 16,
+  "pokemonId": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f664"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 64,
+  "minLevel": 16,
+  "pokemonId": 63,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f668"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 14,
+  "minLevel": 7,
+  "pokemonId": 13,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f66b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 53,
+  "minLevel": 28,
+  "pokemonId": 52,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f66e"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 22,
+  "minLevel": 20,
+  "pokemonId": 21,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f670"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 67,
+  "minLevel": 28,
+  "pokemonId": 66,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f672"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 42,
+  "minLevel": 22,
+  "pokemonId": 41,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f674"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 51,
+  "minLevel": 26,
+  "pokemonId": 50,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f676"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 47,
+  "minLevel": 24,
+  "pokemonId": 46,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f678"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 61,
+  "minLevel": 25,
+  "pokemonId": 60,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f67a"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 124,
+  "minLevel": 30,
+  "pokemonId": 238,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f67c"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 85,
+  "minLevel": 31,
+  "pokemonId": 84,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f67e"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 153,
+  "minLevel": 16,
+  "pokemonId": 152,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f681"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 99,
+  "minLevel": 28,
+  "pokemonId": 98,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f683"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 141,
+  "minLevel": 40,
+  "pokemonId": 140,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f685"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 28,
+  "minLevel": 22,
+  "pokemonId": 27,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f689"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 73,
+  "minLevel": 30,
+  "pokemonId": 72,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f68b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 11,
+  "minLevel": 7,
+  "pokemonId": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f68e"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 70,
+  "minLevel": 21,
+  "pokemonId": 69,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f690"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 93,
+  "minLevel": 25,
+  "pokemonId": 92,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f692"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 87,
+  "minLevel": 34,
+  "pokemonId": 86,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f694"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 139,
+  "minLevel": 40,
+  "pokemonId": 138,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f69a"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 89,
+  "minLevel": 38,
+  "pokemonId": 88,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f69c"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 17,
+  "minLevel": 18,
+  "pokemonId": 16,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f69f"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 75,
+  "minLevel": 25,
+  "pokemonId": 74,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6a1"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 33,
+  "minLevel": 16,
+  "pokemonId": 32,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6a3"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 97,
+  "minLevel": 26,
+  "pokemonId": 96,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6a5"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 101,
+  "minLevel": 30,
+  "pokemonId": 100,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6a7"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 55,
+  "minLevel": 33,
+  "pokemonId": 54,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6a9"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 82,
+  "minLevel": 30,
+  "pokemonId": 81,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6ab"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 119,
+  "minLevel": 33,
+  "pokemonId": 118,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6ad"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 130,
+  "minLevel": 20,
+  "pokemonId": 129,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6b1"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 125,
+  "minLevel": 30,
+  "pokemonId": 239,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6b3"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 117,
+  "minLevel": 32,
+  "pokemonId": 116,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6b5"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 126,
+  "minLevel": 30,
+  "pokemonId": 240,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6b7"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 159,
+  "minLevel": 18,
+  "pokemonId": 158,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6ba"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 166,
+  "minLevel": 18,
+  "pokemonId": 165,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6bc"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 110,
+  "minLevel": 35,
+  "pokemonId": 109,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6dc"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 156,
+  "minLevel": 14,
+  "pokemonId": 155,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6df"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 178,
+  "minLevel": 25,
+  "pokemonId": 177,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6e1"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 168,
+  "minLevel": 22,
+  "pokemonId": 167,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6e3"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 188,
+  "minLevel": 18,
+  "pokemonId": 187,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6e6"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 20,
+  "minLevel": 20,
+  "pokemonId": 19,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6e8"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 30,
+  "minLevel": 16,
+  "pokemonId": 29,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6ea"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 217,
+  "minLevel": 30,
+  "pokemonId": 216,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6ec"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 148,
+  "minLevel": 30,
+  "pokemonId": 147,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6ef"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 219,
+  "minLevel": 38,
+  "pokemonId": 218,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6f1"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 164,
+  "minLevel": 20,
+  "pokemonId": 163,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6f3"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 180,
+  "minLevel": 15,
+  "pokemonId": 179,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6f6"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 171,
+  "minLevel": 27,
+  "pokemonId": 170,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6f8"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 232,
+  "minLevel": 25,
+  "pokemonId": 231,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6fc"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 253,
+  "minLevel": 16,
+  "pokemonId": 252,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f6ff"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 205,
+  "minLevel": 31,
+  "pokemonId": 204,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f701"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 262,
+  "minLevel": 18,
+  "pokemonId": 261,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f703"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 297,
+  "minLevel": 24,
+  "pokemonId": 296,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f705"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 259,
+  "minLevel": 16,
+  "pokemonId": 258,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f708"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 247,
+  "minLevel": 30,
+  "pokemonId": 246,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f70b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 266,
+  "minLevel": 7,
+  "pokemonId": 265,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f70e"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 229,
+  "minLevel": 24,
+  "pokemonId": 228,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f710"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 256,
+  "minLevel": 16,
+  "pokemonId": 255,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f713"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 277,
+  "minLevel": 22,
+  "pokemonId": 276,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f715"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 288,
+  "minLevel": 18,
+  "pokemonId": 287,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f718"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 284,
+  "minLevel": 22,
+  "pokemonId": 283,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f71a"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 294,
+  "minLevel": 20,
+  "pokemonId": 293,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f71d"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 274,
+  "minLevel": 14,
+  "pokemonId": 273,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f71f"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 281,
+  "minLevel": 20,
+  "pokemonId": 280,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f722"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 305,
+  "minLevel": 32,
+  "pokemonId": 304,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f725"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 286,
+  "minLevel": 23,
+  "pokemonId": 285,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f727"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 291,
+  "minLevel": 20,
+  "pokemonId": 290,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f729"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 279,
+  "minLevel": 25,
+  "pokemonId": 278,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f72b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 271,
+  "minLevel": 14,
+  "pokemonId": 270,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f72d"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 308,
+  "minLevel": 37,
+  "pokemonId": 307,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f72f"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 310,
+  "minLevel": 26,
+  "pokemonId": 309,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f731"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 321,
+  "minLevel": 40,
+  "pokemonId": 320,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f733"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 57,
+  "minLevel": 28,
+  "pokemonId": 56,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f735"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 105,
+  "minLevel": 28,
+  "pokemonId": 104,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f737"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 317,
+  "minLevel": 26,
+  "pokemonId": 316,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f739"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 334,
+  "minLevel": 35,
+  "pokemonId": 333,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f73b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 326,
+  "minLevel": 32,
+  "pokemonId": 325,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f73d"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 342,
+  "minLevel": 30,
+  "pokemonId": 341,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f73f"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 264,
+  "minLevel": 20,
+  "pokemonId": 263,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f741"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 329,
+  "minLevel": 35,
+  "pokemonId": 328,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f744"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 332,
+  "minLevel": 32,
+  "pokemonId": 331,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f746"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 344,
+  "minLevel": 36,
+  "pokemonId": 343,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f748"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 364,
+  "minLevel": 32,
+  "pokemonId": 363,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f74b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 375,
+  "minLevel": 20,
+  "pokemonId": 374,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f74e"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 372,
+  "minLevel": 30,
+  "pokemonId": 371,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f751"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 362,
+  "minLevel": 42,
+  "pokemonId": 361,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f753"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 391,
+  "minLevel": 14,
+  "pokemonId": 390,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f756"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 402,
+  "minLevel": 10,
+  "pokemonId": 401,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f758"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 394,
+  "minLevel": 16,
+  "pokemonId": 393,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f75b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 202,
+  "minLevel": 15,
+  "pokemonId": 360,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f75d"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 400,
+  "minLevel": 15,
+  "pokemonId": 399,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f761"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 432,
+  "minLevel": 38,
+  "pokemonId": 431,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f763"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 411,
+  "minLevel": 30,
+  "pokemonId": 410,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f765"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 397,
+  "minLevel": 14,
+  "pokemonId": 396,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f768"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 419,
+  "minLevel": 26,
+  "pokemonId": 418,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f76a"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 409,
+  "minLevel": 30,
+  "pokemonId": 408,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f76c"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 388,
+  "minLevel": 18,
+  "pokemonId": 387,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f76f"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 452,
+  "minLevel": 40,
+  "pokemonId": 451,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f771"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 423,
+  "minLevel": 30,
+  "pokemonId": 422,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f773"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 435,
+  "minLevel": 34,
+  "pokemonId": 434,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f775"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 457,
+  "minLevel": 31,
+  "pokemonId": 456,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f777"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 454,
+  "minLevel": 37,
+  "pokemonId": 453,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f779"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 421,
+  "minLevel": 25,
+  "pokemonId": 420,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f77b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 450,
+  "minLevel": 34,
+  "pokemonId": 449,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f77d"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 426,
+  "minLevel": 28,
+  "pokemonId": 425,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae13ca816e93374f77f"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 437,
+  "minLevel": 33,
+  "pokemonId": 436,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f781"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 460,
+  "minLevel": 40,
+  "pokemonId": 459,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f783"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 404,
+  "minLevel": 15,
+  "pokemonId": 403,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f786"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 496,
+  "minLevel": 17,
+  "pokemonId": 495,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f788"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 323,
+  "minLevel": 33,
+  "pokemonId": 322,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f78a"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 319,
+  "minLevel": 30,
+  "pokemonId": 318,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f78d"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 510,
+  "minLevel": 20,
+  "pokemonId": 509,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f78f"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 525,
+  "minLevel": 25,
+  "pokemonId": 524,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f791"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 505,
+  "minLevel": 20,
+  "pokemonId": 504,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f793"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 499,
+  "minLevel": 17,
+  "pokemonId": 498,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f796"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 507,
+  "minLevel": 16,
+  "pokemonId": 506,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f799"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 523,
+  "minLevel": 27,
+  "pokemonId": 522,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f79b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 520,
+  "minLevel": 21,
+  "pokemonId": 519,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f79e"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 530,
+  "minLevel": 31,
+  "pokemonId": 529,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7a0"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 569,
+  "minLevel": 36,
+  "pokemonId": 568,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7a2"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 571,
+  "minLevel": 30,
+  "pokemonId": 570,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7a4"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 567,
+  "minLevel": 37,
+  "pokemonId": 566,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7a6"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 578,
+  "minLevel": 32,
+  "pokemonId": 577,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7a9"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 575,
+  "minLevel": 32,
+  "pokemonId": 574,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7ac"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 591,
+  "minLevel": 39,
+  "pokemonId": 590,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7ae"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 533,
+  "minLevel": 25,
+  "pokemonId": 532,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7b0"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 583,
+  "minLevel": 35,
+  "pokemonId": 582,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7b3"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 600,
+  "minLevel": 38,
+  "pokemonId": 599,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7b7"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 593,
+  "minLevel": 40,
+  "pokemonId": 592,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7ba"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 603,
+  "minLevel": 39,
+  "pokemonId": 602,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7bc"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 606,
+  "minLevel": 42,
+  "pokemonId": 605,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7be"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 586,
+  "minLevel": 34,
+  "pokemonId": 585,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7c0"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 581,
+  "minLevel": 35,
+  "pokemonId": 580,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7c2"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 598,
+  "minLevel": 40,
+  "pokemonId": 597,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7c4"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 628,
+  "minLevel": 54,
+  "pokemonId": 627,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7c6"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 596,
+  "minLevel": 36,
+  "pokemonId": 595,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7c8"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 630,
+  "minLevel": 54,
+  "pokemonId": 629,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7ca"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 634,
+  "minLevel": 50,
+  "pokemonId": 633,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7cd"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 637,
+  "minLevel": 59,
+  "pokemonId": 636,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7cf"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 660,
+  "minLevel": 20,
+  "pokemonId": 659,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7d1"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 673,
+  "minLevel": 32,
+  "pokemonId": 672,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7d3"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 670,
+  "minLevel": 19,
+  "pokemonId": 669,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7d5"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 668,
+  "minLevel": 35,
+  "pokemonId": 667,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7d7"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 657,
+  "minLevel": 16,
+  "pokemonId": 656,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7da"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 654,
+  "minLevel": 16,
+  "pokemonId": 653,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7dd"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 651,
+  "minLevel": 16,
+  "pokemonId": 650,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7e0"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 693,
+  "minLevel": 37,
+  "pokemonId": 692,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7e2"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 502,
+  "minLevel": 17,
+  "pokemonId": 501,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7e4"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 662,
+  "minLevel": 17,
+  "pokemonId": 661,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7e7"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 715,
+  "minLevel": 48,
+  "pokemonId": 714,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7e9"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 678,
+  "minLevel": 25,
+  "pokemonId": 677,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7eb"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 195,
+  "minLevel": 20,
+  "pokemonId": 194,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7ee"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 162,
+  "minLevel": 15,
+  "pokemonId": 161,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7f0"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 705,
+  "minLevel": 40,
+  "pokemonId": 704,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7f2"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 713,
+  "minLevel": 37,
+  "pokemonId": 712,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7f4"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 729,
+  "minLevel": 17,
+  "pokemonId": 728,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7f7"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 665,
+  "minLevel": 9,
+  "pokemonId": 664,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7fa"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 723,
+  "minLevel": 17,
+  "pokemonId": 722,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f7fd"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 732,
+  "minLevel": 14,
+  "pokemonId": 731,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f800"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 726,
+  "minLevel": 17,
+  "pokemonId": 725,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f803"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 756,
+  "minLevel": 24,
+  "pokemonId": 755,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f805"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 750,
+  "minLevel": 30,
+  "pokemonId": 749,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f807"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 743,
+  "minLevel": 25,
+  "pokemonId": 742,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f809"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 762,
+  "minLevel": 18,
+  "pokemonId": 761,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f80b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 770,
+  "minLevel": 42,
+  "pokemonId": 769,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f80d"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 768,
+  "minLevel": 30,
+  "pokemonId": 767,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f80f"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 24,
+  "minLevel": 22,
+  "pokemonId": 23,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f811"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 112,
+  "minLevel": 42,
+  "pokemonId": 111,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f813"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 760,
+  "minLevel": 27,
+  "pokemonId": 759,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f815"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 9,
+  "minLevel": 36,
+  "pokemonId": 8,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f817"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 6,
+  "minLevel": 36,
+  "pokemonId": 5,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f819"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 3,
+  "minLevel": 32,
+  "pokemonId": 2,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f81b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 15,
+  "minLevel": 10,
+  "pokemonId": 14,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f81e"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 154,
+  "minLevel": 32,
+  "pokemonId": 153,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f820"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 12,
+  "minLevel": 10,
+  "pokemonId": 11,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f823"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 691,
+  "minLevel": 48,
+  "pokemonId": 690,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f826"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 625,
+  "minLevel": 52,
+  "pokemonId": 624,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f828"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 18,
+  "minLevel": 36,
+  "pokemonId": 17,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f82a"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 210,
+  "minLevel": 23,
+  "pokemonId": 209,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f82c"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 221,
+  "minLevel": 33,
+  "pokemonId": 220,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f82e"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 346,
+  "minLevel": 40,
+  "pokemonId": 345,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f830"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 356,
+  "minLevel": 37,
+  "pokemonId": 355,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f832"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 348,
+  "minLevel": 40,
+  "pokemonId": 347,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f834"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 354,
+  "minLevel": 37,
+  "pokemonId": 353,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f836"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 340,
+  "minLevel": 30,
+  "pokemonId": 339,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f838"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 444,
+  "minLevel": 24,
+  "pokemonId": 443,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f83b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 555,
+  "minLevel": 35,
+  "pokemonId": 554,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f83d"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 558,
+  "minLevel": 34,
+  "pokemonId": 557,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f83f"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 560,
+  "minLevel": 39,
+  "pokemonId": 559,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f841"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 565,
+  "minLevel": 37,
+  "pokemonId": 564,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f843"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 544,
+  "minLevel": 22,
+  "pokemonId": 543,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f846"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 536,
+  "minLevel": 25,
+  "pokemonId": 535,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f849"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 552,
+  "minLevel": 29,
+  "pokemonId": 551,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f84c"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 563,
+  "minLevel": 34,
+  "pokemonId": 562,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f84e"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 680,
+  "minLevel": 35,
+  "pokemonId": 679,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f850"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 614,
+  "minLevel": 37,
+  "pokemonId": 613,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f852"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 608,
+  "minLevel": 41,
+  "pokemonId": 607,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f854"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 620,
+  "minLevel": 50,
+  "pokemonId": 619,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f856"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 623,
+  "minLevel": 43,
+  "pokemonId": 622,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f858"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 611,
+  "minLevel": 38,
+  "pokemonId": 610,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f85b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 737,
+  "minLevel": 20,
+  "pokemonId": 736,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f85f"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 689,
+  "minLevel": 39,
+  "pokemonId": 688,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f860"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 748,
+  "minLevel": 38,
+  "pokemonId": 747,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f862"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 752,
+  "minLevel": 22,
+  "pokemonId": 751,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f864"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 157,
+  "minLevel": 36,
+  "pokemonId": 156,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f866"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 189,
+  "minLevel": 27,
+  "pokemonId": 188,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f868"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 160,
+  "minLevel": 30,
+  "pokemonId": 159,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f86b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 224,
+  "minLevel": 25,
+  "pokemonId": 223,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f86c"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 149,
+  "minLevel": 55,
+  "pokemonId": 148,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f86e"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 181,
+  "minLevel": 30,
+  "pokemonId": 180,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f870"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 254,
+  "minLevel": 36,
+  "pokemonId": 253,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f872"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 260,
+  "minLevel": 36,
+  "pokemonId": 259,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f874"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 248,
+  "minLevel": 55,
+  "pokemonId": 247,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f876"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 257,
+  "minLevel": 36,
+  "pokemonId": 256,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f878"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 289,
+  "minLevel": 36,
+  "pokemonId": 288,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f87a"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 295,
+  "minLevel": 40,
+  "pokemonId": 294,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f87d"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 282,
+  "minLevel": 30,
+  "pokemonId": 281,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f880"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 306,
+  "minLevel": 42,
+  "pokemonId": 305,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f883"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 267,
+  "minLevel": 10,
+  "pokemonId": 266,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f886"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 376,
+  "minLevel": 45,
+  "pokemonId": 375,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f887"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 373,
+  "minLevel": 50,
+  "pokemonId": 372,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f889"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 392,
+  "minLevel": 36,
+  "pokemonId": 391,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f88b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 330,
+  "minLevel": 45,
+  "pokemonId": 329,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f88d"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 365,
+  "minLevel": 44,
+  "pokemonId": 364,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f88f"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 395,
+  "minLevel": 36,
+  "pokemonId": 394,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f891"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 389,
+  "minLevel": 32,
+  "pokemonId": 388,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f893"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 398,
+  "minLevel": 34,
+  "pokemonId": 397,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f895"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 503,
+  "minLevel": 36,
+  "pokemonId": 502,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f897"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 500,
+  "minLevel": 36,
+  "pokemonId": 499,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f899"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 508,
+  "minLevel": 32,
+  "pokemonId": 507,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f89b"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 579,
+  "minLevel": 41,
+  "pokemonId": 578,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f89d"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 405,
+  "minLevel": 30,
+  "pokemonId": 404,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f89f"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 521,
+  "minLevel": 32,
+  "pokemonId": 520,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8a1"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 576,
+  "minLevel": 41,
+  "pokemonId": 575,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8a3"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 601,
+  "minLevel": 49,
+  "pokemonId": 600,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8a5"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 584,
+  "minLevel": 47,
+  "pokemonId": 583,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8a7"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 635,
+  "minLevel": 64,
+  "pokemonId": 634,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8a9"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 658,
+  "minLevel": 36,
+  "pokemonId": 657,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8ab"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 497,
+  "minLevel": 36,
+  "pokemonId": 496,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8af"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 541,
+  "minLevel": 20,
+  "pokemonId": 540,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8b1"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 666,
+  "minLevel": 12,
+  "pokemonId": 665,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8b3"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 724,
+  "minLevel": 34,
+  "pokemonId": 723,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8b5"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 733,
+  "minLevel": 28,
+  "pokemonId": 732,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8b7"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 727,
+  "minLevel": 34,
+  "pokemonId": 726,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8b9"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 655,
+  "minLevel": 36,
+  "pokemonId": 654,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8bc"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 445,
+  "minLevel": 48,
+  "pokemonId": 444,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8bd"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 545,
+  "minLevel": 30,
+  "pokemonId": 544,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8bf"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 537,
+  "minLevel": 36,
+  "pokemonId": 536,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8c1"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 652,
+  "minLevel": 36,
+  "pokemonId": 651,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8c3"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 612,
+  "minLevel": 48,
+  "pokemonId": 611,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8c5"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 738,
+  "minLevel": null,
+  "pokemonId": 737,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8c8"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 553,
+  "minLevel": 40,
+  "pokemonId": 552,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8cd"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 268,
+  "minLevel": 7,
+  "pokemonId": 265,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8d0"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 663,
+  "minLevel": 35,
+  "pokemonId": 662,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8d1"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 730,
+  "minLevel": 34,
+  "pokemonId": 729,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cd4ae23ca816e93374f8d3"
+  },
+  "evolutionMethod": "LEVEL-UP",
+  "evolveTo": 269,
+  "minLevel": 10,
+  "pokemonId": 268,
+  "__v": 0
+}]
