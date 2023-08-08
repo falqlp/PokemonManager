@@ -1,6 +1,6 @@
 const pokemonService = require("../pokemon/pokemon.service");
 
-const TrainerMapper = {
+const PcStorageMapper = {
   map: async function (pcStorage) {
     pcStorage.storage.map(async (el) => {
       el.pokemon = await pokemonService.get(el.pokemon);
@@ -15,4 +15,4 @@ const TrainerMapper = {
     return pcStorage;
   },
 };
-module.exports = TrainerMapper;
+module.exports = PcStorageMapper;

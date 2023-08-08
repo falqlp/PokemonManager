@@ -1,0 +1,11 @@
+<div>
+  <div class="pc-storage__team" *ngFor="let pokemon of player.pokemons">
+    <app-display-pokemon-image [pokemon]="pokemon" type="thumbnails" />
+    {{ pokemon.basePokemon.name | translate }}
+  </div>
+</div>
+<div class="pc-storage__box" *ngIf="pcStorage">
+  <div class="pc-storage__box__cell" *ngFor="let index of indices">
+    {{ index }}
+  </div>
+</div>

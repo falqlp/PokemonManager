@@ -11,6 +11,7 @@ const migrationService = require("./migration.service");
 const i18nService = require("./i18n.service");
 const battleRoute = require("./api/battle/battle.route");
 const moveLearningRoutes = require("./api/moveLearning/moveLearning.routes");
+const pcStorageRoutes = require("./api/pcStorage/pcStorage.route");
 
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
@@ -52,5 +53,6 @@ app.use("/api/login", loginRoutes);
 app.use("/api/move", moveRoute);
 app.use("/api/battle", battleRoute);
 app.use("/api/moveLearning", moveLearningRoutes);
+app.use("/api/pcStorage", pcStorageRoutes);
 
 module.exports = app;

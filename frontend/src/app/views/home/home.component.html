@@ -1,7 +1,10 @@
-<button class="btn btn-default" (click)="click()">Default</button>
-<button class="btn btn-primary" (click)="clickP()">Primary</button>
-<button class="btn btn-success" (click)="startBattle()">Success</button>
-<button class="btn btn-danger" (click)="testRoute()">Danger</button>
+<button class="btn btn-default" (click)="click()">Creer pokemon</button>
+<button class="btn btn-primary" (click)="clickP()">Test</button>
+<button class="btn btn-success" (click)="startBattle()">
+  Lancer un combat
+</button>
+<button class="btn btn-primary" (click)="goToPc()">PC</button>
+<button class="btn btn-danger" (click)="testRoute()">Test route</button>
 <search-input (pokemonsChanged)="onPokemonsChanged($event)"></search-input>
 <div class="flex">
   <div *ngFor="let pokemon of pokemonBases">

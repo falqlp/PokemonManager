@@ -102,6 +102,10 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  protected goToPc(): void {
+    this.router.navigate(['pcStorage']);
+  }
+
   protected testRoute(): void {
     this.pokemonService.delete('64c559fd900a4f737a512be7').subscribe();
   }

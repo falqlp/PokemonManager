@@ -12,6 +12,7 @@ export class PlayerService {
     _id: '649e0e86e45d3dab76652543',
     name: 'Popole',
     pokemons: [],
+    pcStorage: '64d295d602f276756870fd45',
   });
 
   public player$ = this.playerSubject.asObservable();

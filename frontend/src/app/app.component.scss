@@ -1,8 +1,5 @@
-.btn {
-  margin: 5px;
-}
-.flex {
-  gap: 15px;
-  display: flex;
-  flex-direction: row;
+:host {
+  overflow: hidden;
+  height: 100%;
+  display: block;
 }

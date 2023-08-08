@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  .pc-storage {
+    &__team {
+    }
+    &__box {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr); /* 6 columns of equal width */
+      grid-template-rows: repeat(6, 1fr); /* 6 rows of equal height */
+      height: fit-content;
+      &__cell {
+        padding: 20px;
+      }
+    }
+  }
+}
