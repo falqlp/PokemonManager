@@ -5,7 +5,7 @@
   >
     <h3>{{ battle.player.name }}</h3>
     <div class="battle-resume__player__pokemon">
-      <div class="flex" *ngFor="let pokemon of battle.player.pokemons">
+      <div *ngFor="let pokemon of battle.player.pokemons">
         <app-display-pokemon-image
           class="pokemon-image"
           [pokemon]="pokemon"
@@ -31,7 +31,7 @@
   >
     <h3>{{ battle.opponent.name }}</h3>
     <div class="battle-resume__opponent__pokemon">
-      <div class="flex" *ngFor="let pokemon of battle.opponent.pokemons">
+      <div *ngFor="let pokemon of battle.opponent.pokemons">
         <app-display-pokemon-image
           class="pokemon-image"
           [pokemon]="pokemon"
