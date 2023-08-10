@@ -3,7 +3,10 @@ import { PcStorageQueriesService } from '../../services/pc-storage-queries.servi
 import { PlayerService } from '../../services/player.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { switchMap } from 'rxjs';
-import { PcStorageModel } from '../../models/pc-storage.model';
+import {
+  PcStorageModel,
+  StorageArrayModel,
+} from '../../models/pc-storage.model';
 
 @Component({
   selector: 'app-pc-storage',
@@ -13,6 +16,7 @@ import { PcStorageModel } from '../../models/pc-storage.model';
 export class PcStorageComponent implements OnInit {
   protected player: TrainerModel;
   protected pcStorage: PcStorageModel;
+  protected storageArray: StorageArrayModel[] = [];
   public constructor(
     protected pcStorageQueriesService: PcStorageQueriesService,
     protected playerService: PlayerService
@@ -28,10 +32,25 @@ export class PcStorageComponent implements OnInit {
       )
       .subscribe((pcStorage) => {
         this.pcStorage = pcStorage;
+        if (this.storageArray.length === 0) {
+          for (let i = 0; i < 36; i++) {
+            const pokemon = this.pcStorage.storage.find(
+              (el) => el.position === i
+            )?.pokemon;
+            const disabled = i >= this.pcStorage.maxSize;
+            if (pokemon) {
+              this.storageArray.push({ pokemon, disabled });
+            } else {
+              this.storageArray.push({ disabled });
+            }
+          }
+        }
       });
   }
 
-  get indices(): number[] {
-    return Array.from({ length: this.pcStorage.maxSize }, (_, i) => i + 1);
+  protected click(): void {
+    this.player.pokemons.forEach((pokemon, index) => {
+      this.storageArray[index].pokemon = pokemon;
+    });
   }
 }

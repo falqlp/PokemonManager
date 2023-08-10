@@ -1,16 +1,41 @@
+@import "src/styles/colors";
+
 :host {
   display: flex;
+  height: 85vh;
   .pc-storage {
     &__team {
+      display: flex;
+      flex-direction: column;
+      &__pokemon {
+        flex: 1;
+        height: 1vh;
+      }
     }
     &__box {
       display: grid;
-      grid-template-columns: repeat(6, 1fr); /* 6 columns of equal width */
-      grid-template-rows: repeat(6, 1fr); /* 6 rows of equal height */
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(6, 1fr);
       height: fit-content;
+      background-color: $background-color1;
+      border-radius: 8px;
       &__cell {
-        padding: 20px;
+        background-color: $background-color2;
+        display: flex;
+        border-radius: 4px;
+        padding: 10px;
+        margin: 10px;
+        min-height: 60px;
+        min-width: 60px;
       }
     }
   }
+}
+.flex {
+  display: flex;
+  height: 100%;
+}
+.empty-div {
+  min-height: 60px;
+  min-width: 60px;
 }

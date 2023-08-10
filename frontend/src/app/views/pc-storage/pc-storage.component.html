@@ -1,11 +1,27 @@
-<div>
-  <div class="pc-storage__team" *ngFor="let pokemon of player.pokemons">
-    <app-display-pokemon-image [pokemon]="pokemon" type="thumbnails" />
-    {{ pokemon.basePokemon.name | translate }}
+<div class="pc-storage__team">
+  <div
+    class="pc-storage__team__pokemon"
+    *ngFor="let pokemon of player.pokemons"
+  >
+    <app-display-pokemon-image
+      class="flex"
+      [pokemon]="pokemon"
+      type="thumbnails"
+    />
+    <span>{{ pokemon.basePokemon.name | translate }}</span>
   </div>
 </div>
 <div class="pc-storage__box" *ngIf="pcStorage">
-  <div class="pc-storage__box__cell" *ngFor="let index of indices">
-    {{ index }}
+  <div class="pc-storage__box__cell" *ngFor="let storage of storageArray">
+    <app-display-pokemon-image
+      *ngIf="storage.pokemon; else emptyDiv"
+      [pokemon]="storage.pokemon"
+      type="icon"
+    />
   </div>
 </div>
+<button class="btn-primary" (click)="click()">Déplacer</button>
+
+<ng-template #emptyDiv>
+  <div class="empty-div"></div>
+</ng-template>
