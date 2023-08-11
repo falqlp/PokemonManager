@@ -1,36 +1,47 @@
 @import "src/styles/colors";
 
-:host {
+.pc-storage {
   display: flex;
-  height: 85vh;
-  .pc-storage {
-    &__team {
-      display: flex;
-      flex-direction: column;
-      &__pokemon {
-        flex: 1;
-        height: 1vh;
-      }
+  gap: 20px;
+  margin: 20px;
+  height: calc(100vh - 92px);
+  &__team {
+    background-color: $background-color1;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    &__pokemon {
+      background-color: $background-color2;
+      border-radius: 4px;
+      padding: 10px;
+      margin: 10px;
+      height: 0px;
+      flex: 1;
     }
-    &__box {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: repeat(6, 1fr);
-      height: fit-content;
-      background-color: $background-color1;
-      border-radius: 8px;
-      &__cell {
-        background-color: $background-color2;
-        display: flex;
-        border-radius: 4px;
-        padding: 10px;
-        margin: 10px;
-        min-height: 60px;
-        min-width: 60px;
+  }
+  &__box {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    height: fit-content;
+    background-color: $background-color1;
+    border-radius: 8px;
+    &__cell {
+      background-color: $background-color2;
+      display: flex;
+      border-radius: 4px;
+      padding: 10px;
+      margin: 10px;
+      min-height: 60px;
+      min-width: 60px;
+      &__icon {
+        width: 100%;
       }
     }
   }
 }
+
 .flex {
   display: flex;
   height: 100%;

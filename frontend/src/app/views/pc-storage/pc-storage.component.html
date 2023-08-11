@@ -1,27 +1,29 @@
-<div class="pc-storage__team">
-  <div
-    class="pc-storage__team__pokemon"
-    *ngFor="let pokemon of player.pokemons"
-  >
-    <app-display-pokemon-image
-      class="flex"
-      [pokemon]="pokemon"
-      type="thumbnails"
-    />
-    <span>{{ pokemon.basePokemon.name | translate }}</span>
+<div class="pc-storage">
+  <div class="pc-storage__team">
+    <div
+      class="pc-storage__team__pokemon"
+      *ngFor="let pokemon of player.pokemons"
+    >
+      <app-display-pokemon-image
+        class="flex"
+        [pokemon]="pokemon"
+        type="thumbnails"
+      />
+    </div>
   </div>
-</div>
-<div class="pc-storage__box" *ngIf="pcStorage">
-  <div class="pc-storage__box__cell" *ngFor="let storage of storageArray">
-    <app-display-pokemon-image
-      *ngIf="storage.pokemon; else emptyDiv"
-      [pokemon]="storage.pokemon"
-      type="icon"
-    />
+  <div class="pc-storage__box" *ngIf="pcStorage">
+    <div class="pc-storage__box__cell" *ngFor="let storage of storageArray">
+      <app-display-pokemon-image
+        class="pc-storage__box__cell__icon"
+        *ngIf="storage.pokemon; else emptyDiv"
+        [pokemon]="storage.pokemon"
+        type="icon"
+      />
+    </div>
   </div>
-</div>
-<button class="btn-primary" (click)="click()">Déplacer</button>
+  <button class="btn-primary" (click)="click()">Déplacer</button>
 
-<ng-template #emptyDiv>
-  <div class="empty-div"></div>
-</ng-template>
+  <ng-template #emptyDiv>
+    <div class="empty-div"></div>
+  </ng-template>
+</div>
