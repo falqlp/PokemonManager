@@ -1,18 +1,33 @@
 <div class="pc-storage">
-  <div class="pc-storage__team">
+  <div class="pc-storage__team" *ngIf="playerTeam.length > 0">
     <div
       class="pc-storage__team__pokemon"
-      *ngFor="let pokemon of player.pokemons"
+      *ngFor="let storage of playerTeam"
+      [ngClass]="{
+        firstSelected: storage.firstSelected,
+        secondSelected: storage.secondSelected
+      }"
+      (click)="setFirstSelected(storage)"
+      (contextmenu)="setSecondSelected(storage, $event)"
     >
       <app-display-pokemon-image
         class="flex"
-        [pokemon]="pokemon"
+        [pokemon]="storage.pokemon"
         type="thumbnails"
       />
     </div>
   </div>
   <div class="pc-storage__box" *ngIf="pcStorage">
-    <div class="pc-storage__box__cell" *ngFor="let storage of storageArray">
+    <div
+      class="pc-storage__box__cell"
+      *ngFor="let storage of storageArray"
+      [ngClass]="{
+        firstSelected: storage.firstSelected,
+        secondSelected: storage.secondSelected
+      }"
+      (click)="setFirstSelected(storage)"
+      (contextmenu)="setSecondSelected(storage, $event)"
+    >
       <app-display-pokemon-image
         class="pc-storage__box__cell__icon"
         *ngIf="storage.pokemon; else emptyDiv"

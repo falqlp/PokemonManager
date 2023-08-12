@@ -17,6 +17,7 @@ export class PcStorageComponent implements OnInit {
   protected player: TrainerModel;
   protected pcStorage: PcStorageModel;
   protected storageArray: StorageArrayModel[] = [];
+  protected playerTeam: StorageArrayModel[] = [];
   public constructor(
     protected pcStorageQueriesService: PcStorageQueriesService,
     protected playerService: PlayerService
@@ -39,10 +40,21 @@ export class PcStorageComponent implements OnInit {
             )?.pokemon;
             const disabled = i >= this.pcStorage.maxSize;
             if (pokemon) {
-              this.storageArray.push({ pokemon, disabled });
+              this.storageArray.push({
+                pokemon,
+                disabled,
+              });
             } else {
               this.storageArray.push({ disabled });
             }
+          }
+        }
+        if (this.player.pokemons) {
+          for (let i = 0; i < 6; i++) {
+            this.playerTeam.push({
+              pokemon: this.player.pokemons[i],
+              disabled: false,
+            });
           }
         }
       });
@@ -51,6 +63,41 @@ export class PcStorageComponent implements OnInit {
   protected click(): void {
     this.player.pokemons.forEach((pokemon, index) => {
       this.storageArray[index].pokemon = pokemon;
+    });
+  }
+
+  protected setFirstSelected(storage: StorageArrayModel): void {
+    if (storage.secondSelected) {
+      this.deselectSecondSelected();
+    }
+    this.deselectFirstSelected();
+    storage.firstSelected = true;
+  }
+
+  protected deselectFirstSelected(): void {
+    this.storageArray.map((storage) => (storage.firstSelected = false));
+    this.playerTeam.map((storage) => {
+      storage.firstSelected = false;
+    });
+  }
+
+  protected setSecondSelected(
+    storage: StorageArrayModel,
+    event: MouseEvent
+  ): void {
+    console.log(1);
+    if (storage.firstSelected) {
+      this.deselectFirstSelected();
+    }
+    this.deselectSecondSelected();
+    storage.secondSelected = true;
+    event.preventDefault();
+  }
+
+  protected deselectSecondSelected(): void {
+    this.storageArray.map((storage) => (storage.secondSelected = false));
+    this.playerTeam.map((storage) => {
+      storage.secondSelected = false;
     });
   }
 }

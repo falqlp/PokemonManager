@@ -13,4 +13,6 @@ export interface PcStorageModel {
 export interface StorageArrayModel {
   pokemon?: PokemonModel;
   disabled?: boolean;
+  firstSelected?: boolean;
+  secondSelected?: boolean;
 }

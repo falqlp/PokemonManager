@@ -13,6 +13,7 @@
     width: 150px;
     &__pokemon {
       background-color: $background-color2;
+      border: $background-color2 2px solid;
       border-radius: 4px;
       padding: 10px;
       margin: 10px;
@@ -29,6 +30,7 @@
     border-radius: 8px;
     &__cell {
       background-color: $background-color2;
+      border: $background-color2 2px solid;
       display: flex;
       border-radius: 4px;
       padding: 10px;
@@ -49,4 +51,12 @@
 .empty-div {
   min-height: 60px;
   min-width: 60px;
+}
+
+.firstSelected {
+  border-color: red;
+}
+
+.secondSelected {
+  border-color: lightgray;
 }
