@@ -1,0 +1,9 @@
+@import "src/styles/flexbox";
+@import "src/styles/colors";
+
+.pokemon-resume {
+  @include flexbox(flex-start, 2);
+  &__image {
+    height: 100%;
+  }
+}

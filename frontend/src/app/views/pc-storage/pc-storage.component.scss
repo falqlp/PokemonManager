@@ -1,4 +1,5 @@
 @import "src/styles/colors";
+@import "src/styles/flexbox";
 
 .pc-storage {
   display: flex;
@@ -42,6 +43,17 @@
       }
     }
   }
+  &__resumes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    &__box {
+      flex: 1;
+      height: 0;
+      display: flex;
+      width: max-content;
+    }
+  }
 }
 
 .flex {
@@ -51,6 +63,11 @@
 .empty-div {
   min-height: 60px;
   min-width: 60px;
+}
+.empty-resume {
+  @include flexbox(flex-start, 2);
+  flex: 1;
+  width: 300px;
 }
 
 .firstSelected {
@@ -62,10 +79,11 @@
 }
 
 .disabled {
+  cursor: not-allowed;
   background-image: repeating-linear-gradient(
     -45deg,
-    transparent,
-    transparent 5px,
+    #6d6971,
+    #6d6971 5px,
     rgba(0, 0, 0, 0.2) 5px,
     rgba(0, 0, 0, 0.2) 10px
   );

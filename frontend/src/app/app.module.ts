@@ -35,6 +35,7 @@ import { BattleResumeComponent } from './views/battle-resume/battle-resume.compo
 import { BattleScenePlayerComponent } from './views/battle/components/battle-scene-player/battle-scene-player.component';
 import { MatSelectModule } from '@angular/material/select';
 import { PcStorageComponent } from './views/pc-storage/pc-storage.component';
+import { PokemonResumeComponent } from './components/pokemon-resume/pokemon-resume.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -65,6 +66,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     BattleResumeComponent,
     BattleScenePlayerComponent,
     PcStorageComponent,
+    PokemonResumeComponent,
   ],
   imports: [
     BrowserModule,

@@ -38,9 +38,24 @@
       />
     </div>
   </div>
+  <div class="pc-storage__resumes">
+    <app-pokemon-resume
+      *ngIf="firstSelected; else emptyResume"
+      class="pc-storage__resumes__box"
+      [pokemon]="firstSelected"
+    />
+    <app-pokemon-resume
+      *ngIf="secondSelected; else emptyResume"
+      class="pc-storage__resumes__box"
+      [pokemon]="secondSelected"
+    />
+  </div>
   <button class="btn-primary" (click)="switchPokemon()">Déplacer</button>
-
-  <ng-template #emptyDiv>
-    <div class="empty-div"></div>
-  </ng-template>
 </div>
+<ng-template #emptyDiv>
+  <div class="empty-div"></div>
+</ng-template>
+
+<ng-template #emptyResume>
+  <div class="empty-resume"></div>
+</ng-template>

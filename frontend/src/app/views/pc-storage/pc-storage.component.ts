@@ -76,6 +76,7 @@ export class PcStorageComponent implements OnInit {
   }
 
   protected deselectFirstSelected(): void {
+    this.firstSelected = undefined;
     this.storageArray.map((storage) => (storage.firstSelected = false));
     this.playerTeam.map((storage) => {
       storage.firstSelected = false;
@@ -96,6 +97,7 @@ export class PcStorageComponent implements OnInit {
   }
 
   protected deselectSecondSelected(): void {
+    this.secondSelected = undefined;
     this.storageArray.map((storage) => (storage.secondSelected = false));
     this.playerTeam.map((storage) => {
       storage.secondSelected = false;
