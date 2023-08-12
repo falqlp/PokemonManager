@@ -30,6 +30,11 @@ class ReadOnlyService {
   async list(ids) {
     try {
       const dtos = await this.schema.find({ _id: { $in: ids } });
+
+      dtos.sort((a, b) => {
+        return ids.indexOf(a._id.toString()) - ids.indexOf(b._id.toString());
+      });
+
       return await Promise.all(
         dtos.map(async (dto) => {
           return this.mapper.map(dto);

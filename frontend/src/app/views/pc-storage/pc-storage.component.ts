@@ -55,12 +55,13 @@ export class PcStorageComponent implements OnInit {
             }
           }
         }
-        console.log(this.storageArray);
-        for (let i = 0; i < 6; i++) {
-          this.playerTeam.push({
-            pokemon: this.player.pokemons[i],
-            disabled: false,
-          });
+        if (this.playerTeam.length === 0) {
+          for (let i = 0; i < 6; i++) {
+            this.playerTeam.push({
+              pokemon: this.player.pokemons[i],
+              disabled: false,
+            });
+          }
         }
       });
   }

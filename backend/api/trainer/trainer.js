@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const trainerSchema = new mongoose.Schema({
-  name: { type: String, require: true, unique: true },
+  name: { type: String, required: true, unique: true },
   pokemons: [{ type: mongoose.Schema.Types.ObjectId, ref: "Pokemon" }],
   pcStorage: {
     type: mongoose.Schema.Types.ObjectId,
