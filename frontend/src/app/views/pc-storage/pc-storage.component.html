@@ -11,6 +11,7 @@
       (contextmenu)="setSecondSelected(storage, $event)"
     >
       <app-display-pokemon-image
+        *ngIf="storage.pokemon"
         class="flex"
         [pokemon]="storage.pokemon"
         type="thumbnails"
@@ -23,10 +24,11 @@
       *ngFor="let storage of storageArray"
       [ngClass]="{
         firstSelected: storage.firstSelected,
-        secondSelected: storage.secondSelected
+        secondSelected: storage.secondSelected,
+        disabled: storage.disabled
       }"
-      (click)="setFirstSelected(storage)"
-      (contextmenu)="setSecondSelected(storage, $event)"
+      (click)="!storage.disabled && setFirstSelected(storage)"
+      (contextmenu)="!storage.disabled && setSecondSelected(storage, $event)"
     >
       <app-display-pokemon-image
         class="pc-storage__box__cell__icon"
@@ -36,7 +38,7 @@
       />
     </div>
   </div>
-  <button class="btn-primary" (click)="click()">Déplacer</button>
+  <button class="btn-primary" (click)="switchPokemon()">Déplacer</button>
 
   <ng-template #emptyDiv>
     <div class="empty-div"></div>

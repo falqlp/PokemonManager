@@ -6,6 +6,7 @@ export interface StorageModel {
 }
 
 export interface PcStorageModel {
+  _id?: string;
   maxSize: number;
   storage: StorageModel[];
 }

@@ -6,7 +6,10 @@ import { switchMap } from 'rxjs';
 import {
   PcStorageModel,
   StorageArrayModel,
+  StorageModel,
 } from '../../models/pc-storage.model';
+import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
+import { TrainerQueriesService } from '../../services/trainer-queries.service';
 
 @Component({
   selector: 'app-pc-storage',
@@ -18,9 +21,12 @@ export class PcStorageComponent implements OnInit {
   protected pcStorage: PcStorageModel;
   protected storageArray: StorageArrayModel[] = [];
   protected playerTeam: StorageArrayModel[] = [];
+  protected firstSelected: PokemonModel;
+  protected secondSelected: PokemonModel;
   public constructor(
     protected pcStorageQueriesService: PcStorageQueriesService,
-    protected playerService: PlayerService
+    protected playerService: PlayerService,
+    protected trainerService: TrainerQueriesService
   ) {}
 
   public ngOnInit(): void {
@@ -49,21 +55,14 @@ export class PcStorageComponent implements OnInit {
             }
           }
         }
-        if (this.player.pokemons) {
-          for (let i = 0; i < 6; i++) {
-            this.playerTeam.push({
-              pokemon: this.player.pokemons[i],
-              disabled: false,
-            });
-          }
+        console.log(this.storageArray);
+        for (let i = 0; i < 6; i++) {
+          this.playerTeam.push({
+            pokemon: this.player.pokemons[i],
+            disabled: false,
+          });
         }
       });
-  }
-
-  protected click(): void {
-    this.player.pokemons.forEach((pokemon, index) => {
-      this.storageArray[index].pokemon = pokemon;
-    });
   }
 
   protected setFirstSelected(storage: StorageArrayModel): void {
@@ -72,6 +71,7 @@ export class PcStorageComponent implements OnInit {
     }
     this.deselectFirstSelected();
     storage.firstSelected = true;
+    this.firstSelected = storage.pokemon;
   }
 
   protected deselectFirstSelected(): void {
@@ -85,12 +85,12 @@ export class PcStorageComponent implements OnInit {
     storage: StorageArrayModel,
     event: MouseEvent
   ): void {
-    console.log(1);
     if (storage.firstSelected) {
       this.deselectFirstSelected();
     }
     this.deselectSecondSelected();
     storage.secondSelected = true;
+    this.secondSelected = storage.pokemon;
     event.preventDefault();
   }
 
@@ -99,5 +99,108 @@ export class PcStorageComponent implements OnInit {
     this.playerTeam.map((storage) => {
       storage.secondSelected = false;
     });
+  }
+
+  protected switchPokemon(): void {
+    if (this.canSwitchPokemon()) {
+      this.findAndSwapFirstSelected();
+      this.findAndSwapSecondSelected();
+      [this.secondSelected, this.firstSelected] = [
+        this.firstSelected,
+        this.secondSelected,
+      ];
+      this.rearrangePokemons(this.playerTeam);
+    }
+    this.update();
+  }
+
+  protected findAndSwapFirstSelected(): void {
+    let firstSelectedIndex = this.playerTeam.findIndex((storage) => {
+      return storage.firstSelected;
+    });
+    if (firstSelectedIndex === -1) {
+      firstSelectedIndex = this.storageArray.findIndex((storage) => {
+        return storage.firstSelected;
+      });
+      this.storageArray[firstSelectedIndex].pokemon = this.secondSelected;
+    } else {
+      this.playerTeam[firstSelectedIndex].pokemon = this.secondSelected;
+    }
+  }
+
+  protected findAndSwapSecondSelected(): void {
+    let secondSelectedIndex = this.playerTeam.findIndex((storage) => {
+      return storage.secondSelected;
+    });
+    if (secondSelectedIndex === -1) {
+      secondSelectedIndex = this.storageArray.findIndex((storage) => {
+        return storage.secondSelected;
+      });
+      this.storageArray[secondSelectedIndex].pokemon = this.firstSelected;
+    } else {
+      this.playerTeam[secondSelectedIndex].pokemon = this.firstSelected;
+    }
+  }
+
+  protected rearrangePokemons(storages: StorageArrayModel[]): void {
+    for (let i = 0; i < storages.length - 1; i++) {
+      if (!storages[i].pokemon) {
+        let nextPokemonIndex = -1;
+        for (let j = i + 1; j < storages.length; j++) {
+          if (storages[j].pokemon) {
+            nextPokemonIndex = j;
+            break;
+          }
+        }
+
+        if (nextPokemonIndex !== -1) {
+          storages[i].pokemon = storages[nextPokemonIndex].pokemon;
+          if (storages[i].firstSelected) {
+            this.firstSelected = storages[i].pokemon;
+          }
+          if (storages[i].secondSelected) {
+            this.secondSelected = storages[i].pokemon;
+          }
+          storages[nextPokemonIndex].pokemon = undefined;
+        }
+      }
+    }
+  }
+
+  protected canSwitchPokemon(): boolean {
+    return (
+      this.playerTeam[1].pokemon !== undefined ||
+      (this.playerTeam[0].firstSelected && !!this.secondSelected) ||
+      (this.playerTeam[0].secondSelected && !!this.firstSelected)
+    );
+  }
+
+  protected update(): void {
+    this.updatePc();
+    this.updateTrainer();
+  }
+
+  protected updatePc(): void {
+    const newStorage: StorageModel[] = [];
+    this.storageArray.forEach((storage, position) => {
+      if (storage.pokemon) {
+        newStorage.push({ pokemon: storage.pokemon, position });
+      }
+    });
+    this.pcStorage.storage = newStorage;
+    this.pcStorageQueriesService
+      .update(this.pcStorage, this.pcStorage._id)
+      .subscribe();
+  }
+
+  protected updateTrainer(): void {
+    const newPokemons: PokemonModel[] = [];
+    this.playerTeam.forEach((storage) => {
+      if (storage.pokemon) {
+        newPokemons.push(storage.pokemon);
+      }
+    });
+    this.player.pokemons = newPokemons;
+    this.trainerService.update(this.player, this.player._id).subscribe();
   }
 }
