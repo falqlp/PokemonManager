@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -36,7 +36,9 @@ import { BattleScenePlayerComponent } from './views/battle/components/battle-sce
 import { MatSelectModule } from '@angular/material/select';
 import { PcStorageComponent } from './views/pc-storage/pc-storage.component';
 import { PokemonResumeComponent } from './components/pokemon-resume/pokemon-resume.component';
+import { register } from 'swiper/element/bundle';
 
+register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -90,6 +92,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     }),
     MatSelectModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,7 +1,27 @@
 <div class="pokemon-resume">
-  <app-display-pokemon-image
-    class="pokemon-resume__image"
-    [pokemon]="pokemon"
-    type="max-size"
-  />
+  <span class="pokemon-resume__title" [ngClass]="pokemon.basePokemon.types[0]">
+    {{ pokemon.basePokemon.name | translate }}
+  </span>
+  <div class="pokemon-resume__content">
+    <div class="pokemon-resume__content__main-infos">
+      <app-display-pokemon-image
+        class="pokemon-resume__content__main-infos__image"
+        [pokemon]="pokemon"
+        type="max-size"
+      />
+      <div class="pokemon-resume__content__main-infos__types">
+        <img
+          *ngFor="let type of pokemon.basePokemon.types"
+          class="type-displayText"
+          [src]="'assets/types/displayText/' + type + '.png'"
+        />
+      </div>
+    </div>
+    <swiper-container class="swiper" pagination="true" navigation="true">
+      <swiper-slide>Slide 1</swiper-slide>
+      <swiper-slide>Slide 2</swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
+      ...
+    </swiper-container>
+  </div>
 </div>

@@ -51,7 +51,6 @@
       flex: 1;
       height: 0;
       display: flex;
-      width: max-content;
     }
   }
 }
@@ -67,7 +66,7 @@
 .empty-resume {
   @include flexbox(flex-start, 2);
   flex: 1;
-  width: 300px;
+  min-width: 300px;
 }
 
 .firstSelected {

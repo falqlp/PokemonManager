@@ -2,8 +2,35 @@
 @import "src/styles/colors";
 
 .pokemon-resume {
-  @include flexbox(flex-start, 2);
-  &__image {
-    height: 100%;
+  @include flexbox(flex-start, 2, column);
+  padding: 0;
+  &__title {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
+  &__content {
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    &__main-infos {
+      display: flex;
+      flex-direction: column;
+      height: 250px;
+
+      &__image {
+        justify-content: flex-start;
+        height: 100%;
+      }
+      &__types {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
+.swiper {
+  width: 300px;
 }

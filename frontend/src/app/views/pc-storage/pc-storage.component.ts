@@ -165,6 +165,12 @@ export class PcStorageComponent implements OnInit {
             this.secondSelected = storages[i].pokemon;
           }
           storages[nextPokemonIndex].pokemon = undefined;
+          if (storages[nextPokemonIndex].firstSelected) {
+            this.firstSelected = storages[nextPokemonIndex].pokemon;
+          }
+          if (storages[nextPokemonIndex].secondSelected) {
+            this.secondSelected = storages[nextPokemonIndex].pokemon;
+          }
         }
       }
     }
@@ -173,6 +179,8 @@ export class PcStorageComponent implements OnInit {
   protected canSwitchPokemon(): boolean {
     return (
       this.playerTeam[1].pokemon !== undefined ||
+      (!this.playerTeam[0].firstSelected &&
+        !this.playerTeam[0].secondSelected) ||
       (this.playerTeam[0].firstSelected && !!this.secondSelected) ||
       (this.playerTeam[0].secondSelected && !!this.firstSelected)
     );
