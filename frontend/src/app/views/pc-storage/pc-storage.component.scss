@@ -11,7 +11,7 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    width: 150px;
+    min-width: 130px;
     &__pokemon {
       background-color: $background-color2;
       border: $background-color2 2px solid;

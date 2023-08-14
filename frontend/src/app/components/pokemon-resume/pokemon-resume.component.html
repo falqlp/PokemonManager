@@ -14,14 +14,51 @@
           *ngFor="let type of pokemon.basePokemon.types"
           class="type-displayText"
           [src]="'assets/types/displayText/' + type + '.png'"
+          [alt]="type"
         />
       </div>
     </div>
-    <swiper-container class="swiper" pagination="true" navigation="true">
-      <swiper-slide>Slide 1</swiper-slide>
-      <swiper-slide>Slide 2</swiper-slide>
+    <swiper-container class="swiper" [pagination]="{ clickable: true }">
+      <swiper-slide class="swiper__slide1">
+        <span>{{ "HP" | translate }}: {{ pokemon.stats.hp }}</span>
+        <span>{{ "ATTACK" | translate }}: {{ pokemon.stats.atk }}</span>
+        <span>{{ "DEFENSE" | translate }}: {{ pokemon.stats.def }}</span>
+        <span
+          >{{ "SPECIAL_ATTACK" | translate }}: {{ pokemon.stats.spAtk }}</span
+        >
+        <span
+          >{{ "SPECIAL_DEFENSE" | translate }}: {{ pokemon.stats.spDef }}</span
+        >
+        <span
+          >{{ "SPEED" | translate }}: {{ pokemon.stats.spe }}</span
+        ></swiper-slide
+      >
+      <swiper-slide>
+        <div class="swiper__slide2">
+          <div *ngFor="let move of pokemon.moves" class="swiper__slide2__move">
+            <div class="swiper__slide2__move__top">
+              <img
+                class="icon-type"
+                src="assets/types/simple/{{ move.type }}.png"
+                [alt]="move.type"
+              />
+              <span>{{ move.name | translate }}</span>
+            </div>
+            <div class="swiper__slide2__move__bottom">
+              <img
+                class="img-category"
+                src="assets/move/{{ move.category }}.png"
+                [alt]="move.type"
+              />
+              <div class="swiper__slide2__move__bottom--info">
+                <span>{{ "POWER" | translate }}: {{ move.power }}</span>
+                <span>{{ "ACCURACY" | translate }}: {{ move.accuracy }}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
       <swiper-slide>Slide 3</swiper-slide>
-      ...
     </swiper-container>
   </div>
 </div>
