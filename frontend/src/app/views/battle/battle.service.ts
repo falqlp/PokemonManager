@@ -42,11 +42,11 @@ export class BattleService {
     let pokemonAtt: number;
     let pokemonDef: number;
     if (move.category === 'physical') {
-      pokemonAtt = attPokemon.stats.atk;
-      pokemonDef = defPokemon.stats.def;
+      pokemonAtt = attPokemon.stats['atk'];
+      pokemonDef = defPokemon.stats['def'];
     } else if (move.category === 'special') {
-      pokemonAtt = attPokemon.stats.spAtk;
-      pokemonDef = defPokemon.stats.spDef;
+      pokemonAtt = attPokemon.stats['spAtk'];
+      pokemonDef = defPokemon.stats['spDef'];
     }
     return (
       (attPokemon.level * 0.4 * pokemonAtt * move.power) / pokemonDef / 50 + 2
@@ -131,6 +131,6 @@ export class BattleService {
   }
 
   public getCooldownMs(pokemon: PokemonModel): number {
-    return 6 + 200 / Math.sqrt(pokemon.stats.spe);
+    return 6 + 200 / Math.sqrt(pokemon.stats['spe']);
   }
 }

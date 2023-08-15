@@ -52,7 +52,7 @@ export class BattleComponent implements OnInit {
       .subscribe(([player, opponent]) => {
         player.pokemons.map((pokemon) => {
           if (!pokemon.currentHp) {
-            pokemon.currentHp = pokemon.stats.hp;
+            pokemon.currentHp = pokemon.stats['hp'];
           }
           return pokemon;
         });
@@ -60,7 +60,7 @@ export class BattleComponent implements OnInit {
 
         opponent.pokemons.map((pokemon) => {
           if (!pokemon.currentHp) {
-            pokemon.currentHp = pokemon.stats.hp;
+            pokemon.currentHp = pokemon.stats['hp'];
           }
           return pokemon;
         });

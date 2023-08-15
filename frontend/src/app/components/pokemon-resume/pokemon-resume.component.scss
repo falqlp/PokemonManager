@@ -36,6 +36,7 @@
   &__slide1 {
     display: flex;
     flex-direction: column;
+    align-items: baseline;
   }
   &__slide2 {
     display: flex;
@@ -45,7 +46,6 @@
       @include flexbox(space-between, 1, row);
       border: $background-color1 2px solid;
       flex: 1;
-
       &__top {
         display: flex;
         align-items: center;
