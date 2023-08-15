@@ -17,6 +17,10 @@
           [alt]="type"
         />
       </div>
+      <div class="pokemon-resume__content__main-infos__level">
+        <span>{{ "LVL" | translate }}: {{ pokemon.level }}</span>
+        <progress-bar [currentProgress]="pokemon.exp" [max]="pokemon.expMax" />
+      </div>
     </div>
     <swiper-container class="swiper" [pagination]="{ clickable: true }">
       <swiper-slide class="swiper__slide1">
@@ -47,7 +51,6 @@
           </div>
         </div>
       </swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
     </swiper-container>
   </div>
 </div>

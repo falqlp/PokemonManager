@@ -22,24 +22,36 @@
       flex: 1;
     }
   }
-  &__box {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    height: fit-content;
-    background-color: $background-color1;
-    border-radius: 8px;
-    &__cell {
-      background-color: $background-color2;
-      border: $background-color2 2px solid;
+
+  &__main-part {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    &__buttons {
       display: flex;
-      border-radius: 4px;
-      padding: 10px;
-      margin: 10px;
-      min-height: 60px;
-      min-width: 60px;
-      &__icon {
-        width: 100%;
+      gap: 10px;
+    }
+    &__box {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      height: fit-content;
+      background-color: $background-color1;
+      border-radius: 8px;
+
+      &__cell {
+        background-color: $background-color2;
+        border: $background-color2 2px solid;
+        display: flex;
+        border-radius: 4px;
+        padding: 10px;
+        margin: 10px;
+        min-height: 60px;
+        min-width: 60px;
+
+        &__icon {
+          width: 100%;
+        }
       }
     }
   }

@@ -18,13 +18,15 @@
       />
     </div>
   </div>
-  <div>
-    <button class="btn-primary" (click)="switchPokemon()">
-      {{ "SWAP" | translate }}
-    </button>
-    <div class="pc-storage__box" *ngIf="pcStorage">
+  <div class="pc-storage__main-part">
+    <div class="pc-storage__main-part__buttons">
+      <button class="btn-primary" (click)="switchPokemon()">
+        {{ "SWAP" | translate }}
+      </button>
+    </div>
+    <div class="pc-storage__main-part__box" *ngIf="pcStorage">
       <div
-        class="pc-storage__box__cell"
+        class="pc-storage__main-part__box__cell"
         *ngFor="let storage of storageArray"
         [ngClass]="{
           firstSelected: storage.firstSelected,
@@ -35,7 +37,7 @@
         (contextmenu)="!storage.disabled && setSecondSelected(storage, $event)"
       >
         <app-display-pokemon-image
-          class="pc-storage__box__cell__icon"
+          class="pc-storage__main-part__box__cell__icon"
           *ngIf="storage.pokemon; else emptyDiv"
           [pokemon]="storage.pokemon"
           type="icon"

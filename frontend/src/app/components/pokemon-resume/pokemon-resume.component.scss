@@ -19,6 +19,7 @@
     &__main-infos {
       display: flex;
       flex-direction: column;
+      gap: 10px;
       height: 250px;
       &__image {
         justify-content: flex-start;
