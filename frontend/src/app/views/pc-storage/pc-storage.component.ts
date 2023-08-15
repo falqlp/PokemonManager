@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit } from '@angular/core';
 import { PcStorageQueriesService } from '../../services/pc-storage-queries.service';
 import { PlayerService } from '../../services/player.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
@@ -10,6 +10,7 @@ import {
 } from '../../models/pc-storage.model';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { TrainerQueriesService } from '../../services/trainer-queries.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-pc-storage',
@@ -26,12 +27,14 @@ export class PcStorageComponent implements OnInit {
   public constructor(
     protected pcStorageQueriesService: PcStorageQueriesService,
     protected playerService: PlayerService,
-    protected trainerService: TrainerQueriesService
+    protected trainerService: TrainerQueriesService,
+    protected destroyRef: DestroyRef
   ) {}
 
   public ngOnInit(): void {
     this.playerService.player$
       .pipe(
+        takeUntilDestroyed(this.destroyRef),
         switchMap((player) => {
           this.player = player;
           return this.pcStorageQueriesService.get(player.pcStorage);
@@ -201,6 +204,7 @@ export class PcStorageComponent implements OnInit {
     this.pcStorage.storage = newStorage;
     this.pcStorageQueriesService
       .update(this.pcStorage, this.pcStorage._id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
   }
 
@@ -212,6 +216,9 @@ export class PcStorageComponent implements OnInit {
       }
     });
     this.player.pokemons = newPokemons;
-    this.trainerService.update(this.player, this.player._id).subscribe();
+    this.trainerService
+      .update(this.player, this.player._id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe();
   }
 }

@@ -2,7 +2,7 @@
   <app-circular-progress-bar
     class="circular-hp-pokemon__progress-bar"
     [currentProgress]="pokemon.currentHp"
-    [max]="pokemon.stats.hp"
+    [max]="pokemon.stats['hp']"
   />
   <app-display-pokemon-image
     class="circular-hp-pokemon__pokemon"

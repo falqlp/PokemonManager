@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BattleModel } from '../../models/Battle.model';
 import { BattleQueriesService } from '../../services/battle-queries.service';
 import { switchMap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-battle-resume',
@@ -15,12 +16,14 @@ export class BattleResumeComponent implements OnInit {
   public constructor(
     protected route: ActivatedRoute,
     protected router: Router,
-    protected battleQueries: BattleQueriesService
+    protected battleQueries: BattleQueriesService,
+    protected destroyRef: DestroyRef
   ) {}
 
   public ngOnInit(): void {
     this.route.queryParams
       .pipe(
+        takeUntilDestroyed(this.destroyRef),
         switchMap((params) => {
           return this.battleQueries.get(params['battle']);
         })

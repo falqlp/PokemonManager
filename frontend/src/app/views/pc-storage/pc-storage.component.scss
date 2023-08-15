@@ -64,7 +64,6 @@
   min-width: 60px;
 }
 .empty-resume {
-  @include flexbox(flex-start, 2);
   flex: 1;
   min-width: 300px;
 }

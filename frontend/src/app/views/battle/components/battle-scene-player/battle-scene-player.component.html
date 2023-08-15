@@ -33,9 +33,9 @@
     <progress-bar
       [style]="'hp'"
       [currentProgress]="
-        playerActivePokemon.currentHp ?? playerActivePokemon.stats.hp
+        playerActivePokemon.currentHp ?? playerActivePokemon.stats['hp']
       "
-      [max]="playerActivePokemon.stats.hp"
+      [max]="playerActivePokemon.stats['hp']"
     />
   </div>
 </div>

@@ -1,4 +1,4 @@
-import type { OnInit } from '@angular/core';
+import { DestroyRef, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import {
   FormGroup,
@@ -19,6 +19,7 @@ import { PokemonBaseQueriesService } from '../../services/pokemon-base-queries.s
 import { MoveModel } from '../../models/move.model';
 import { MoveLearningService } from '../../services/move-learning.service';
 import { MatSelectChange } from '@angular/material/select';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-pokemon-form',
@@ -48,7 +49,8 @@ export class PokemonFormComponent implements OnInit {
     protected pokemonBaseService: PokemonBaseQueriesService,
     protected trainerService: TrainerQueriesService,
     protected translateService: TranslateService,
-    protected moveLearningService: MoveLearningService
+    protected moveLearningService: MoveLearningService,
+    protected destroyRef: DestroyRef
   ) {}
 
   public ngOnInit(): void {
@@ -57,17 +59,23 @@ export class PokemonFormComponent implements OnInit {
   }
 
   protected getData(): void {
-    this.pokemonBaseService.getAll().subscribe((pokemons) => {
-      this.pokemons = pokemons.sort((a, b) => a.id - b.id);
-      this.filteredPokemons =
-        this.pokemonForm.controls.basePokemon.valueChanges.pipe(
-          startWith(''),
-          map((value) => this.filter(value as string))
-        );
-    });
-    this.trainerService.getAll().subscribe((trainers) => {
-      this.trainers = trainers.sort((a, b) => a.name.localeCompare(b.name));
-    });
+    this.pokemonBaseService
+      .getAll()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((pokemons) => {
+        this.pokemons = pokemons.sort((a, b) => a.id - b.id);
+        this.filteredPokemons =
+          this.pokemonForm.controls.basePokemon.valueChanges.pipe(
+            startWith(''),
+            map((value) => this.filter(value as string))
+          );
+      });
+    this.trainerService
+      .getAll()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((trainers) => {
+        this.trainers = trainers.sort((a, b) => a.name.localeCompare(b.name));
+      });
   }
 
   protected subscribeLearnableMove(): void {
@@ -76,6 +84,7 @@ export class PokemonFormComponent implements OnInit {
       this.pokemonForm.controls.level.valueChanges.pipe(startWith(1)),
     ])
       .pipe(
+        takeUntilDestroyed(this.destroyRef),
         debounceTime(500),
         switchMap(() => {
           const pokemonId = this.pokemons.find(

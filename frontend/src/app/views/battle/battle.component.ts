@@ -1,4 +1,4 @@
-import type { OnInit } from '@angular/core';
+import { DestroyRef, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { TrainerQueriesService } from 'src/app/services/trainer-queries.service';
 import { BattleService } from './battle.service';
@@ -8,6 +8,7 @@ import { BattleTrainer } from './battle-trainer';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BattleQueriesService } from '../../services/battle-queries.service';
 import { BattleModel } from '../../models/Battle.model';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-battle',
@@ -27,7 +28,8 @@ export class BattleComponent implements OnInit {
     protected service: BattleService,
     protected battleQueries: BattleQueriesService,
     protected route: ActivatedRoute,
-    protected router: Router
+    protected router: Router,
+    protected destroyRef: DestroyRef
   ) {}
 
   public ngOnInit(): void {
@@ -49,6 +51,7 @@ export class BattleComponent implements OnInit {
           return combineLatest([playerObservable, opponentObservable]);
         })
       )
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(([player, opponent]) => {
         player.pokemons.map((pokemon) => {
           if (!pokemon.currentHp) {
@@ -145,10 +148,13 @@ export class BattleComponent implements OnInit {
 
   public onDefeat(trainer: BattleTrainer): void {
     clearInterval(this.battleLoop);
-    this.battleQueries.setWinner(this.battle, trainer._id).subscribe(() => {
-      this.router.navigate(['battle-resume'], {
-        queryParams: { battle: this.battle._id },
+    this.battleQueries
+      .setWinner(this.battle, trainer._id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.router.navigate(['battle-resume'], {
+          queryParams: { battle: this.battle._id },
+        });
       });
-    });
   }
 }

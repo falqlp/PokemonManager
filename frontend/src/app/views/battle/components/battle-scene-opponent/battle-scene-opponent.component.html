@@ -13,9 +13,9 @@
         [style]="'hp'"
         [displayHp]="false"
         [currentProgress]="
-          opponentActivePokemon.currentHp ?? opponentActivePokemon.stats.hp
+          opponentActivePokemon.currentHp ?? opponentActivePokemon.stats['hp']
         "
-        [max]="opponentActivePokemon.stats.hp"
+        [max]="opponentActivePokemon.stats['hp']"
       />
     </div>
     <div class="opponent__pokemon__info__move">

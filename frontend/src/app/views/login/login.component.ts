@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { PlayerService } from 'src/app/services/player.service';
 import { Router } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent {
   constructor(
     protected authService: AuthService,
     protected playerService: PlayerService,
-    protected rooter: Router
+    protected rooter: Router,
+    protected destroyRef: DestroyRef
   ) {}
 
   public login(): void {
@@ -28,6 +30,7 @@ export class LoginComponent {
           username: this.loginForm.controls.username.value as string,
           password: this.loginForm.controls.password.value as string,
         })
+        .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((response) => {
           if (response) {
             this.playerService.updatePlayer(response);

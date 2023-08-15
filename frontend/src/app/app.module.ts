@@ -5,8 +5,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PokemonPanelComponent } from './components/pokemon-panel/pokemon-panel.component';
-import { SearchInputComponent } from './components/search-input/search-input.component';
 import { CooldownButtonComponent } from './components/cooldown-button/cooldown-button.component';
 import { HomeComponent } from './views/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -37,6 +35,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { PcStorageComponent } from './views/pc-storage/pc-storage.component';
 import { PokemonResumeComponent } from './components/pokemon-resume/pokemon-resume.component';
 import { register } from 'swiper/element/bundle';
+import { PokemonStatsComponent } from './components/pokemon-stats/pokemon-stats.component';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -46,8 +45,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 @NgModule({
   declarations: [
     AppComponent,
-    PokemonPanelComponent,
-    SearchInputComponent,
     CooldownButtonComponent,
     HomeComponent,
     PokemonFormComponent,
@@ -69,6 +66,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     BattleScenePlayerComponent,
     PcStorageComponent,
     PokemonResumeComponent,
+    PokemonStatsComponent,
   ],
   imports: [
     BrowserModule,

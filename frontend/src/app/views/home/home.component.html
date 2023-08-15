@@ -5,9 +5,3 @@
 </button>
 <button class="btn btn-primary" (click)="goToPc()">PC</button>
 <button class="btn btn-danger" (click)="testRoute()">Test route</button>
-<search-input (pokemonsChanged)="onPokemonsChanged($event)"></search-input>
-<div class="flex">
-  <div *ngFor="let pokemon of pokemonBases">
-    <pokemon-panel [pokemon]="pokemon"></pokemon-panel>
-  </div>
-</div>

@@ -20,55 +20,8 @@
     </div>
     <swiper-container class="swiper" [pagination]="{ clickable: true }">
       <swiper-slide class="swiper__slide1">
-        <span>{{ "HP" | translate }}: {{ pokemon.stats["hp"] }}</span>
-        <progress-bar
-          [min]="0"
-          [max]="max"
-          [style]="'hp'"
-          [displayHp]="false"
-          [currentProgress]="pokemon.stats['hp'] - pokemon.level - 5" />
-        <span>{{ "ATTACK" | translate }}: {{ pokemon.stats["atk"] }}</span>
-        <progress-bar
-          [min]="0"
-          [max]="max"
-          [style]="'hp'"
-          [displayHp]="false"
-          [currentProgress]="pokemon.stats['atk']" />
-        <span>{{ "DEFENSE" | translate }}: {{ pokemon.stats["def"] }}</span>
-        <progress-bar
-          [min]="0"
-          [max]="max"
-          [style]="'hp'"
-          [displayHp]="false"
-          [currentProgress]="pokemon.stats['def']" />
-        <span
-          >{{ "SPECIAL_ATTACK" | translate }}:
-          {{ pokemon.stats["spAtk"] }}</span
-        >
-        <progress-bar
-          [min]="0"
-          [max]="max"
-          [style]="'hp'"
-          [displayHp]="false"
-          [currentProgress]="pokemon.stats['spAtk']" />
-        <span
-          >{{ "SPECIAL_DEFENSE" | translate }}:
-          {{ pokemon.stats["spDef"] }}</span
-        >
-        <progress-bar
-          [min]="0"
-          [max]="max"
-          [style]="'hp'"
-          [displayHp]="false"
-          [currentProgress]="pokemon.stats['spDef']" />
-        <span>{{ "SPEED" | translate }}: {{ pokemon.stats["spe"] }}</span>
-        <progress-bar
-          [min]="0"
-          [max]="max"
-          [style]="'hp'"
-          [displayHp]="false"
-          [currentProgress]="pokemon.stats['spe']"
-      /></swiper-slide>
+        <app-pokemon-stats [pokemon]="pokemon"></app-pokemon-stats>
+      </swiper-slide>
       <swiper-slide>
         <div class="swiper__slide2">
           <div *ngFor="let move of pokemon.moves" class="swiper__slide2__move">
