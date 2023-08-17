@@ -22,7 +22,7 @@
         <progress-bar [currentProgress]="pokemon.exp" [max]="pokemon.expMax" />
       </div>
     </div>
-    <swiper-container class="swiper" [pagination]="{ clickable: true }">
+    <swiper-container class="swiper" #swiperContainer init="false">
       <swiper-slide class="swiper__slide1">
         <app-pokemon-stats [pokemon]="pokemon"></app-pokemon-stats>
       </swiper-slide>
