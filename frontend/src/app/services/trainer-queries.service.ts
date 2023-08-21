@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import type { TrainerModel } from '../models/TrainersModels/trainer.model';
-import { CompleteQuery } from './complete-query';
+import { CompleteQuery } from '../core/complete-query';
 
 @Injectable({
   providedIn: 'root',

@@ -2,7 +2,7 @@ const pokemonService = require("../pokemon/pokemon.service");
 
 const TrainerMapper = {
   map: async function (trainer) {
-    trainer.pokemons = await pokemonService.list(trainer.pokemons);
+    trainer.pokemons = await pokemonService.list({ ids: trainer.pokemons });
     return trainer;
   },
 

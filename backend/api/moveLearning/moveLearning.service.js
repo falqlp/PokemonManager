@@ -4,8 +4,10 @@ const evolutionService = require("../evolution/evolution.service");
 
 const MoveLearningService = {
   learnableMoves: async function (id, level) {
-    const allMoves = await this.getMovesOfAllEvolutions(id, level);
-    return moveService.list(allMoves.map((move) => move.moveId));
+    const allMoves = await this.getMovesOfAllEvolutions(id, level).map(
+      (move) => move.moveId
+    );
+    return moveService.list({ ids: allMoves });
   },
 
   getMovesOfAllEvolutions: async function (id, level) {

@@ -6,6 +6,7 @@ import { LoginComponent } from './views/login/login.component';
 import { BattleComponent } from './views/battle/battle.component';
 import { BattleResumeComponent } from './views/battle-resume/battle-resume.component';
 import { PcStorageComponent } from './views/pc-storage/pc-storage.component';
+import { TrainersComponent } from './views/trainers/trainers.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'battle', component: BattleComponent },
   { path: 'battle-resume', component: BattleResumeComponent },
   { path: 'pcStorage', component: PcStorageComponent },
+  { path: 'trainers', component: TrainersComponent },
 ];
 
 @NgModule({

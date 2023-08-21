@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import type { PokemonModel } from '../models/PokemonModels/pokemon.model';
-import { CompleteQuery } from './complete-query';
+import { CompleteQuery } from '../core/complete-query';
 
 @Injectable({
   providedIn: 'root',

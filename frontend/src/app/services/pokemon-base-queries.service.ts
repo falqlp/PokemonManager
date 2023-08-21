@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReadonlyQuery } from './readonly-query';
+import { ReadonlyQuery } from '../core/readonly-query';
 import { PokemonBaseModel } from '../models/PokemonModels/pokemonBase.model';
 import { HttpClient } from '@angular/common/http';
 

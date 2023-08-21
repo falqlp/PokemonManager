@@ -60,7 +60,7 @@ export class PokemonFormComponent implements OnInit {
 
   protected getData(): void {
     this.pokemonBaseService
-      .getAll()
+      .list()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((pokemons) => {
         this.pokemons = pokemons.sort((a, b) => a.id - b.id);
@@ -71,7 +71,7 @@ export class PokemonFormComponent implements OnInit {
           );
       });
     this.trainerService
-      .getAll()
+      .list()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((trainers) => {
         this.trainers = trainers.sort((a, b) => a.name.localeCompare(b.name));

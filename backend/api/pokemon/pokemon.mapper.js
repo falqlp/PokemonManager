@@ -3,7 +3,7 @@ const pokemonBaseService = require("../pokemonBase/pokemonBase.service");
 
 const PokemonMapper = {
   map: async function (pokemon) {
-    pokemon.moves = await moveService.list(pokemon.moves);
+    pokemon.moves = await moveService.list({ ids: pokemon.moves });
     pokemon.basePokemon = await pokemonBaseService.get(pokemon.basePokemon);
     return pokemon;
   },

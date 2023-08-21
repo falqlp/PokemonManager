@@ -2,7 +2,6 @@ class ReadOnlyService {
   constructor(schema, mapper) {
     this.schema = schema;
     this.mapper = mapper;
-    this.getAll = this.getAll.bind(this);
     this.get = this.get.bind(this);
     this.list = this.list.bind(this);
   }
@@ -14,27 +13,22 @@ class ReadOnlyService {
     }
   }
 
-  async getAll() {
+  async list(body) {
     try {
-      const dtos = await this.schema.find();
-      return await Promise.all(
-        dtos.map(async (dto) => {
-          return this.mapper.map(dto);
-        })
-      );
-    } catch (error) {
-      return Promise.reject(error);
-    }
-  }
+      const query = { ...body.custom };
+      if (body.ids?.length) {
+        query._id = { $in: body.ids };
+      }
 
-  async list(ids) {
-    try {
-      const dtos = await this.schema.find({ _id: { $in: ids } });
-
-      dtos.sort((a, b) => {
-        return ids.indexOf(a._id.toString()) - ids.indexOf(b._id.toString());
-      });
-
+      const dtos = await this.schema.find(query).limit(body.limit);
+      if (body.ids?.length) {
+        dtos.sort((a, b) => {
+          return (
+            body.ids.indexOf(a._id.toString()) -
+            body.ids.indexOf(b._id.toString())
+          );
+        });
+      }
       return await Promise.all(
         dtos.map(async (dto) => {
           return this.mapper.map(dto);
