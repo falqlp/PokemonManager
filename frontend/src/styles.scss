@@ -1,6 +1,7 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use "@angular/material" as mat;
+@use "sass:map";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -8,10 +9,86 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+$light-primary-text: rgba(white, 0.87);
+$light-focused: rgba(white, 0.12);
+$light-dividers: rgba(white, 0.12);
+$light-disabled-text: rgba(white, 0.5);
+$light-secondary-text: rgba(white, 0.7);
+
+$grey-palette: (
+  50: #fafafa,
+  100: #f5f5f5,
+  200: #eeeeee,
+  300: #e0e0e0,
+  400: #bdbdbd,
+  500: #9e9e9e,
+  600: #757575,
+  700: #616161,
+  800: #424242,
+  900: #212121,
+  A100: #ffffff,
+  A200: #eeeeee,
+  A400: #bdbdbd,
+  A700: #616161,
+  contrast: (
+    50: $light-primary-text,
+    100: $light-primary-text,
+    200: $light-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $light-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  ),
+);
+
+$dark-theme-background-palette: (
+  status-bar: black,
+  app-bar: map.get($grey-palette, 900),
+  background: #1f1c3d,
+  hover: rgba(white, 0.04),
+  // TODO(kara): check style with Material Design UX
+  card: map.get($grey-palette, 800),
+  dialog: #161616,
+  disabled-button: rgba(white, 0.12),
+  raised-button: map.get($grey-palette, 800),
+  focused-button: $light-focused,
+  selected-button: map.get($grey-palette, 900),
+  selected-disabled-button: map.get($grey-palette, 800),
+  disabled-button-toggle: black,
+  unselected-chip: map.get($grey-palette, 700),
+  disabled-list-option: rgba(white, 0.12),
+  tooltip: map.get($grey-palette, 700),
+);
+
+$dark-theme-foreground-palette: (
+  base: white,
+  divider: $light-dividers,
+  dividers: $light-dividers,
+  disabled: $light-disabled-text,
+  disabled-button: rgba(white, 0.3),
+  disabled-text: $light-disabled-text,
+  elevation: black,
+  hint-text: $light-disabled-text,
+  secondary-text: $light-secondary-text,
+  icon: white,
+  icons: white,
+  text: white,
+  slider-min: white,
+  slider-off: rgba(white, 0.3),
+  slider-off-active: rgba(white, 0.3),
+);
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$pokemon-manager-primary: mat.define-palette(mat.$indigo-palette);
+$pokemon-manager-primary: mat.define-palette($grey-palette);
 $pokemon-manager-accent: mat.define-palette(
   mat.$pink-palette,
   A200,
@@ -24,13 +101,24 @@ $pokemon-manager-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$pokemon-manager-theme: mat.define-light-theme(
+$pokemon-manager-theme: mat.define-dark-theme(
   (
     color: (
       primary: $pokemon-manager-primary,
       accent: $pokemon-manager-accent,
       warn: $pokemon-manager-warn,
+      //background: $dark-theme-background-palette,
+      //foreground: $dark-theme-foreground-palette,,,,,
     ),
+  )
+);
+$pokemon-manager-theme: map-merge(
+  $pokemon-manager-theme,
+  map-merge(
+    map-get($pokemon-manager-theme, background),
+    (
+      background: $dark-theme-background-palette,
+    )
   )
 );
 
@@ -43,6 +131,7 @@ $pokemon-manager-theme: mat.define-light-theme(
 @import "./styles/buttons/btn-default.scss";
 @import "./styles/buttons/btn-success.scss";
 @import "./styles/buttons/btn-danger.scss";
+@import "./styles/modal";
 
 body {
   background-color: #1f1c3d;
