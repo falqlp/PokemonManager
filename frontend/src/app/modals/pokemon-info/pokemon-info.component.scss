@@ -2,7 +2,6 @@
   .pokemon-info {
     min-width: 200px;
     width: fit-content;
-    background-color: #0f0e0e;
     &__header {
       display: flex;
       justify-content: center;
@@ -11,7 +10,6 @@
       width: 100%;
       height: 100%;
       font-size: 20px;
-      color: white;
       padding: 0;
     }
     &__content {
@@ -25,7 +23,6 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        color: white;
         text-wrap: nowrap;
         padding: 10px 10px 0 10px;
       }
@@ -36,7 +33,6 @@
         border-color: #c2c3c7;
       }
       &--stats {
-        color: white;
         padding: 10px;
       }
     }
