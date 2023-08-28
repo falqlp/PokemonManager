@@ -13,7 +13,6 @@ import { PokemonFormComponent } from './modals/pokemon-form/pokemon-form.compone
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { LoginComponent } from './views/login/login.component';
 import { PokemonInfoComponent } from './modals/pokemon-info/pokemon-info.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
@@ -25,7 +24,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BattleSceneMoveInfoComponent } from './views/battle/components/battle-scene-move-info/battle-scene-move-info.component';
 import { BattleSceneOpponentComponent } from './views/battle/components/battle-scene-opponent/battle-scene-opponent.component';
-import { DisplayPokemonImageComponent } from './components/display-pokemon-image/display-pokemon-image.component';
 import { CircularProgressBarComponent } from './components/circular-progress-bar/circular-progress-bar.component';
 import { CircularHpPokemonComponent } from './components/circular-hp-pokemon/circular-hp-pokemon.component';
 import { BattleOpponentPokemonsComponent } from './views/battle/components/battle-oppenent-pokemon/battle-opponent-pokemons.component';
@@ -36,6 +34,9 @@ import { PcStorageComponent } from './views/pc-storage/pc-storage.component';
 import { PokemonResumeComponent } from './components/pokemon-resume/pokemon-resume.component';
 import { register } from 'swiper/element/bundle';
 import { PokemonStatsComponent } from './components/pokemon-stats/pokemon-stats.component';
+import { MatIconModule } from '@angular/material/icon';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { DisplayPokemonImageComponent } from './components/display-pokemon-image/display-pokemon-image.component';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -48,7 +49,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     CooldownButtonComponent,
     HomeComponent,
     PokemonFormComponent,
-    TopBarComponent,
     LoginComponent,
     PokemonInfoComponent,
     ProgressBarComponent,
@@ -58,7 +58,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     BattlePlayerMoveComponent,
     BattleSceneMoveInfoComponent,
     BattleSceneOpponentComponent,
-    DisplayPokemonImageComponent,
     CircularProgressBarComponent,
     CircularHpPokemonComponent,
     BattleOpponentPokemonsComponent,
@@ -67,6 +66,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     PcStorageComponent,
     PokemonResumeComponent,
     PokemonStatsComponent,
+    TopBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,9 +89,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       },
     }),
     MatSelectModule,
+    MatIconModule,
+    DisplayPokemonImageComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent],
+  exports: [],
 })
 export class AppModule {}

@@ -11,7 +11,11 @@ import { TrainersComponent } from './views/trainers/trainers.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'battle', component: BattleComponent },
+  {
+    path: 'battle',
+    component: BattleComponent,
+    data: { goHomeDisabled: true },
+  },
   { path: 'battle-resume', component: BattleResumeComponent },
   { path: 'pcStorage', component: PcStorageComponent },
   { path: 'trainers', component: TrainersComponent },

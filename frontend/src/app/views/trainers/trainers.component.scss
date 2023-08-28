@@ -1,0 +1,8 @@
+:host {
+  display: block;
+  padding: 15px;
+  .trainers__table__pokemons {
+    display: flex;
+    flex-direction: row;
+  }
+}

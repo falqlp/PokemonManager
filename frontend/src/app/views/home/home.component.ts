@@ -71,22 +71,10 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  protected onPokemonsChanged(pokemons: PokemonBaseModel[]): void {
-    this.pokemonBases = pokemons;
-  }
-
   protected createPokemon(pokemon: PokemonModel): void {
     this.pokemonService
       .create(pokemon)
       .subscribe((newpokemon) => console.log(newpokemon));
-  }
-
-  protected imgNumber(pokemon: PokemonBaseModel): string {
-    return (
-      'assets/images/sprites/' +
-      pokemon.id.toString().padStart(3, '0') +
-      'MS.png'
-    );
   }
 
   protected startBattle(): void {
@@ -107,6 +95,6 @@ export class HomeComponent implements OnInit {
   }
 
   protected testRoute(): void {
-    this.pokemonService.delete('64c559fd900a4f737a512be7').subscribe();
+    this.pokemonService.get('64e7cf7de9cf81a76d72a237').subscribe();
   }
 }

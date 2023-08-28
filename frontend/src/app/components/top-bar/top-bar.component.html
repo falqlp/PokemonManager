@@ -1,4 +1,11 @@
 <div *ngIf="player$ | async as player" class="top-bar">
+  <button
+    mat-icon-button
+    [disabled]="goHomeDisabled$ | async"
+    (click)="goHome()"
+  >
+    <mat-icon>home</mat-icon>
+  </button>
   <span>{{ player.name }}</span>
   <div class="top-bar__pokemons">
     <app-display-pokemon-image

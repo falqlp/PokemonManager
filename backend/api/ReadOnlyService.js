@@ -16,7 +16,7 @@ class ReadOnlyService {
   async list(body) {
     try {
       const query = { ...body.custom };
-      if (body.ids?.length) {
+      if (body.ids) {
         query._id = { $in: body.ids };
       }
 

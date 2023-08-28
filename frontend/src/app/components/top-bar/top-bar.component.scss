@@ -6,12 +6,11 @@
   color: white;
   display: flex;
   align-items: center;
-  padding: 0 10px;
   border-bottom: #252525 2px solid;
+  gap: 10px;
   margin-bottom: 10px;
   &__pokemons {
     height: fit-content;
-    margin: 0 10px;
     display: flex;
     align-items: center;
     border: #252525 2px solid;

@@ -7,11 +7,14 @@ import {
 } from '@angular/core';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { DisplayType } from './display-pokemon-image.model';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
+  standalone: true,
   selector: 'app-display-pokemon-image',
   templateUrl: './display-pokemon-image.component.html',
   styleUrls: ['./display-pokemon-image.component.scss'],
+  imports: [TranslateModule],
 })
 export class DisplayPokemonImageComponent implements OnInit, OnChanges {
   @Input() public pokemon: PokemonModel;
