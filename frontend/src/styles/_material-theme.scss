@@ -7,3 +7,8 @@
 .mdc-floating-label {
   color: inherit !important;
 }
+
+.mat-mdc-table .mat-mdc-row:hover,
+.mat-mdc-table .mat-mdc-footer-row:hover {
+  background-color: #1c1c1c !important;
+}

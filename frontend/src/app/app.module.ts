@@ -14,8 +14,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './views/login/login.component';
-import { PokemonInfoComponent } from './modals/pokemon-info/pokemon-info.component';
-import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { BattleComponent } from './views/battle/battle.component';
 import { BattleSceneComponent } from './views/battle/components/battle-scene/battle-scene.component';
 import { BattleTrainerPokemonsComponent } from './views/battle/components/battle-trainer-pokemons/battle-trainer-pokemons.component';
@@ -33,10 +31,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { PcStorageComponent } from './views/pc-storage/pc-storage.component';
 import { PokemonResumeComponent } from './components/pokemon-resume/pokemon-resume.component';
 import { register } from 'swiper/element/bundle';
-import { PokemonStatsComponent } from './components/pokemon-stats/pokemon-stats.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { DisplayPokemonImageComponent } from './components/display-pokemon-image/display-pokemon-image.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { PokemonStatsComponent } from './components/pokemon-stats/pokemon-stats.component';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -50,8 +49,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     HomeComponent,
     PokemonFormComponent,
     LoginComponent,
-    PokemonInfoComponent,
-    ProgressBarComponent,
     BattleComponent,
     BattleSceneComponent,
     BattleTrainerPokemonsComponent,
@@ -65,7 +62,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     BattleScenePlayerComponent,
     PcStorageComponent,
     PokemonResumeComponent,
-    PokemonStatsComponent,
     TopBarComponent,
   ],
   imports: [
@@ -91,6 +87,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MatSelectModule,
     MatIconModule,
     DisplayPokemonImageComponent,
+    ProgressBarComponent,
+    PokemonStatsComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

@@ -97,4 +97,8 @@ export class HomeComponent implements OnInit {
   protected testRoute(): void {
     this.pokemonService.get('64e7cf7de9cf81a76d72a237').subscribe();
   }
+
+  protected goToTrainers(): void {
+    this.router.navigate(['trainers']);
+  }
 }

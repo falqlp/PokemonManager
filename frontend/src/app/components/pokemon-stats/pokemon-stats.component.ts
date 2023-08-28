@@ -1,11 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { PlayerService } from '../../services/player.service';
+import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
+  standalone: true,
   selector: 'app-pokemon-stats',
   templateUrl: './pokemon-stats.component.html',
   styleUrls: ['./pokemon-stats.component.scss'],
+  imports: [ProgressBarComponent, TranslateModule],
 })
 export class PokemonStatsComponent {
   @Input()

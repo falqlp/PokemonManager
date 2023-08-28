@@ -29,17 +29,8 @@
     <div class="pokemon-info__content--stats">
       <app-pokemon-stats [pokemon]="data"></app-pokemon-stats>
     </div>
-
-    <!--        <div class="pokemon-info__content&#45;&#45;stats">-->
-    <!--          <span>{{ "HP" | translate }}: {{ data.stats.hp }}</span>-->
-    <!--          <span>{{ "ATTACK" | translate }}: {{ data.stats.atk }}</span>-->
-    <!--          <span>{{ "DEFENSE" | translate }}: {{ data.stats.def }}</span>-->
-    <!--          <span>{{ "SPECIAL_ATTACK" | translate }}: {{ data.stats.spAtk }}</span>-->
-    <!--          <span>{{ "SPECIAL_DEFENSE" | translate }}: {{ data.stats.spDef }}</span>-->
-    <!--          <span>{{ "SPEED" | translate }}: {{ data.stats.spe }}</span>-->
-    <!--        </div>-->
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button class="btn-default" mat-dialog-close>Fermer</button>
+    <button mat-flat-button mat-dialog-close>Fermer</button>
   </mat-dialog-actions>
 </div>

@@ -23,4 +23,8 @@ export class TrainersComponent implements OnInit {
   public ngOnInit(): void {
     this.trainers$ = this.trainerService.list();
   }
+
+  protected click(row: TrainerModel) {
+    console.log(row);
+  }
 }

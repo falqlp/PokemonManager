@@ -1,11 +1,15 @@
 import type { OnInit } from '@angular/core';
 import { Component, Input } from '@angular/core';
 import { ColorService } from '../../services/color.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'progress-bar',
   templateUrl: './progress-bar.component.html',
   styleUrls: ['./progress-bar.component.scss'],
+  imports: [TranslateModule, NgClass, NgIf],
 })
 export class ProgressBarComponent implements OnInit {
   @Input() public style = 'level';

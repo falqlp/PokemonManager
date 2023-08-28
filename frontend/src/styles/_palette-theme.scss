@@ -1,4 +1,5 @@
 @use "sass:map";
+@import "./colors";
 
 $dark-primary-text: rgba(black, 0.87);
 $light-primary-text: rgba(white, 0.87);
@@ -15,9 +16,9 @@ $primary-palette: (
   400: #bdbdbd,
   500: #9e9e9e,
   600: #757575,
-  700: #616161,
-  800: #161616,
-  900: #0e0e0e,
+  700: $background-color-hover,
+  800: $background-color2,
+  900: $background-color1,
   A100: #ffffff,
   A200: #eeeeee,
   A400: #bdbdbd,
