@@ -5,10 +5,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TimeService {
-  protected actualDate = new Date(Date.now());
+  protected actualDate: Date;
   protected actualDaySubject: BehaviorSubject<string>;
 
   public constructor() {
+    const actualDate = new Date(Date.now());
+    actualDate.setHours(0, 0, 0, 0);
+    this.actualDate = actualDate;
     this.actualDaySubject = new BehaviorSubject(
       this.dateToLocalDate(this.actualDate)
     );
