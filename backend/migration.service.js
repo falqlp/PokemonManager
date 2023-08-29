@@ -263,12 +263,12 @@ const MigrationService = {
           if (levelLearnAt !== 0) {
             Move.findOne({ name: move.move.name.toUpperCase() }).then(
               (newMove) => {
-                const dataToInsert = {
+                const dataToInsert = newMove? {
                   pokemonId: i,
                   moveId: newMove._id,
                   levelLearnAt,
                   learnMethod: "LEVEL-UP",
-                };
+                }: {};
                 MoveLearning.findOneAndUpdate(
                   {
                     pokemonId: dataToInsert.pokemonId,

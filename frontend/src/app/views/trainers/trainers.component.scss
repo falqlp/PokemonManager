@@ -1,8 +1,13 @@
+@import "src/styles/flexbox";
+
 :host {
   display: block;
   padding: 15px;
-  .trainers__table__pokemons {
-    display: flex;
-    flex-direction: row;
+  .trainers {
+    @include flexbox(flex-start, 2);
+    &__table__pokemons {
+      display: flex;
+      flex-direction: row;
+    }
   }
 }

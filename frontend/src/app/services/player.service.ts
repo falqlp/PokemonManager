@@ -3,6 +3,7 @@ import type { TrainerModel } from '../models/TrainersModels/trainer.model';
 import type { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { TrainerQueriesService } from './trainer-queries.service';
+import { PcStorageQueriesService } from './pc-storage-queries.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,10 @@ export class PlayerService {
   public maxStat = 0;
 
   public player$ = this.playerSubject.asObservable();
-  public constructor(protected trainerService: TrainerQueriesService) {
+  public constructor(
+    protected trainerService: TrainerQueriesService,
+    protected pcStorgaeService: PcStorageQueriesService
+  ) {
     this.updatePlayer('649e0e86e45d3dab76652543');
   }
 
@@ -34,18 +38,22 @@ export class PlayerService {
   }
 
   public getMaxStat(player: TrainerModel): void {
-    this.maxStat = 0;
-    player.pokemons.forEach((pokemon) => {
-      for (const key in pokemon.stats) {
-        if (key === 'hp') {
-          this.maxStat = Math.max(
-            this.maxStat,
-            pokemon.stats['hp'] - pokemon.level - 5
-          );
-        } else if (key !== '_id') {
-          this.maxStat = Math.max(this.maxStat, pokemon.stats[key]);
+    this.pcStorgaeService.get(player.pcStorage).subscribe((pc) => {
+      const pcPokemons = pc.storage.map((storage) => storage.pokemon);
+      const allPokemons = player.pokemons.concat(pcPokemons);
+      this.maxStat = 0;
+      allPokemons.forEach((pokemon) => {
+        for (const key in pokemon.stats) {
+          if (key === 'hp') {
+            this.maxStat = Math.max(
+              this.maxStat,
+              pokemon.stats['hp'] - pokemon.level - 5
+            );
+          } else if (key !== '_id') {
+            this.maxStat = Math.max(this.maxStat, pokemon.stats[key]);
+          }
         }
-      }
+      });
     });
   }
 }

@@ -20,7 +20,7 @@ class ReadOnlyService {
         query._id = { $in: body.ids };
       }
 
-      const dtos = await this.schema.find(query).limit(body.limit);
+      const dtos = await this.schema.find(query).limit(body.limit).sort(body.sort);
       if (body.ids?.length) {
         dtos.sort((a, b) => {
           return (
