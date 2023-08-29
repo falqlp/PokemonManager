@@ -7,14 +7,14 @@ import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import type { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
 import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
-import { PokemonQueriesService } from 'src/app/services/pokemon-queries.service';
+import { PokemonQueriesService } from 'src/app/services/queries/pokemon-queries.service';
 import { Router } from '@angular/router';
-import { BattleQueriesService } from '../../services/battle-queries.service';
-import { TrainerQueriesService } from '../../services/trainer-queries.service';
+import { BattleQueriesService } from '../../services/queries/battle-queries.service';
+import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { HttpClient } from '@angular/common/http';
 import { MoveModel } from '../../models/move.model';
 import { TranslateService } from '@ngx-translate/core';
-import { MoveLearningService } from '../../services/move-learning.service';
+import { MoveLearningService } from '../../services/queries/move-learning.service';
 
 @Component({
   selector: 'app-home',

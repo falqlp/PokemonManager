@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BattleModel } from '../models/Battle.model';
-import { CompleteQuery } from '../core/complete-query';
+import { BattleModel } from '../../models/Battle.model';
+import { CompleteQuery } from '../../core/complete-query';
 
 @Injectable({
   providedIn: 'root',

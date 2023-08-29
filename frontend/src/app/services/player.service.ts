@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import type { TrainerModel } from '../models/TrainersModels/trainer.model';
 import type { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
-import { TrainerQueriesService } from './trainer-queries.service';
-import { PcStorageQueriesService } from './pc-storage-queries.service';
+import { TrainerQueriesService } from './queries/trainer-queries.service';
+import { PcStorageQueriesService } from './queries/pc-storage-queries.service';
 
 @Injectable({
   providedIn: 'root',

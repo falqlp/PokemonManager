@@ -1,7 +1,7 @@
 import { Component, DestroyRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BattleModel } from '../../models/Battle.model';
-import { BattleQueriesService } from '../../services/battle-queries.service';
+import { BattleQueriesService } from '../../services/queries/battle-queries.service';
 import { switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 

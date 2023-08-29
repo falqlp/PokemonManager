@@ -1,5 +1,5 @@
 import { Component, DestroyRef, OnInit } from '@angular/core';
-import { PcStorageQueriesService } from '../../services/pc-storage-queries.service';
+import { PcStorageQueriesService } from '../../services/queries/pc-storage-queries.service';
 import { PlayerService } from '../../services/player.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { switchMap } from 'rxjs';
@@ -9,7 +9,7 @@ import {
   StorageModel,
 } from '../../models/pc-storage.model';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
-import { TrainerQueriesService } from '../../services/trainer-queries.service';
+import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({

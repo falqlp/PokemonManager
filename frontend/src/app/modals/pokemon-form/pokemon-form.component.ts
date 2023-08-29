@@ -12,12 +12,12 @@ import type { Observable } from 'rxjs';
 import { combineLatest, debounceTime, map, startWith, switchMap } from 'rxjs';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import type { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
-import { TrainerQueriesService } from '../../services/trainer-queries.service';
+import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { TranslateService } from '@ngx-translate/core';
-import { PokemonBaseQueriesService } from '../../services/pokemon-base-queries.service';
+import { PokemonBaseQueriesService } from '../../services/queries/pokemon-base-queries.service';
 import { MoveModel } from '../../models/move.model';
-import { MoveLearningService } from '../../services/move-learning.service';
+import { MoveLearningService } from '../../services/queries/move-learning.service';
 import { MatSelectChange } from '@angular/material/select';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 

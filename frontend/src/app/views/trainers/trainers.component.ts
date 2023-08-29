@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
-import { TrainerQueriesService } from '../../services/trainer-queries.service';
+import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { MatTableModule } from '@angular/material/table';
 import { NgForOf } from '@angular/common';

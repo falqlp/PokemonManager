@@ -1,12 +1,12 @@
 import { DestroyRef, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { TrainerQueriesService } from 'src/app/services/trainer-queries.service';
+import { TrainerQueriesService } from 'src/app/services/queries/trainer-queries.service';
 import { BattleService } from './battle.service';
 import { ROUND_TIME_MS } from './battel.const';
 import { combineLatest, switchMap } from 'rxjs';
 import { BattleTrainer } from './battle-trainer';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BattleQueriesService } from '../../services/battle-queries.service';
+import { BattleQueriesService } from '../../services/queries/battle-queries.service';
 import { BattleModel } from '../../models/Battle.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 

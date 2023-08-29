@@ -9,16 +9,28 @@ import { PcStorageComponent } from './views/pc-storage/pc-storage.component';
 import { TrainersComponent } from './views/trainers/trainers.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent, data: { title: 'HOME' } },
+  { path: 'login', component: LoginComponent, data: { title: 'LOGIN' } },
   {
     path: 'battle',
     component: BattleComponent,
-    data: { goHomeDisabled: true },
+    data: { goHomeDisabled: true, title: 'BATTLE' },
   },
-  { path: 'battle-resume', component: BattleResumeComponent },
-  { path: 'pcStorage', component: PcStorageComponent },
-  { path: 'trainers', component: TrainersComponent },
+  {
+    path: 'battle-resume',
+    component: BattleResumeComponent,
+    data: { title: 'BATTLE-RESUME' },
+  },
+  {
+    path: 'pcStorage',
+    component: PcStorageComponent,
+    data: { title: 'PC-STORAGE' },
+  },
+  {
+    path: 'trainers',
+    component: TrainersComponent,
+    data: { title: 'TRAINERS' },
+  },
 ];
 
 @NgModule({

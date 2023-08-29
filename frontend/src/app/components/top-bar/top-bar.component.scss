@@ -1,19 +1,28 @@
 @import "src/styles/colors";
 
 .top-bar {
+  display: flex;
   background-color: $background-color1;
   height: 50px;
-  color: white;
-  display: flex;
-  align-items: center;
   border-bottom: #252525 2px solid;
-  gap: 10px;
-  margin-bottom: 10px;
-  &__pokemons {
-    height: fit-content;
+  align-items: center;
+  justify-content: space-between;
+  &__left-content {
     display: flex;
     align-items: center;
-    border: #252525 2px solid;
-    border-radius: 4px;
+    gap: 10px;
+    &__pokemons {
+      height: fit-content;
+      display: flex;
+      align-items: center;
+      border: #252525 2px solid;
+      border-radius: 4px;
+    }
+  }
+  &__right-content {
+    display: flex;
+    margin-right: 10px;
+    gap: 10px;
+    align-items: center;
   }
 }

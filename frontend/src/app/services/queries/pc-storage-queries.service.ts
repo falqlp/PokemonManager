@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CompleteQuery } from '../core/complete-query';
-import { PcStorageModel } from '../models/pc-storage.model';
+import { CompleteQuery } from '../../core/complete-query';
+import { PcStorageModel } from '../../models/pc-storage.model';
 
 @Injectable({
   providedIn: 'root',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ReadonlyQuery } from '../core/readonly-query';
-import { MoveModel } from '../models/move.model';
+import { ReadonlyQuery } from '../../core/readonly-query';
+import { MoveModel } from '../../models/move.model';
 
 @Injectable({
   providedIn: 'root',

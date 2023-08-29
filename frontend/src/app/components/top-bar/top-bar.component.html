@@ -1,19 +1,28 @@
 <div *ngIf="player$ | async as player" class="top-bar">
-  <button
-    mat-icon-button
-    [disabled]="goHomeDisabled$ | async"
-    (click)="goHome()"
-  >
-    <mat-icon>home</mat-icon>
-  </button>
-  <span>{{ player.name }}</span>
-  <div class="top-bar__pokemons">
-    <app-display-pokemon-image
-      *ngFor="let pokemon of player.pokemons"
-      class="clickable-icon"
-      [pokemon]="pokemon"
-      [type]="'icon'"
-      (click)="openInfo(pokemon)"
-    />
+  <div class="top-bar__left-content">
+    <button
+      mat-icon-button
+      [disabled]="goHomeDisabled$ | async"
+      (click)="goHome()"
+    >
+      <mat-icon>home</mat-icon>
+    </button>
+    <span>{{ player.name }}</span>
+    <div class="top-bar__left-content__pokemons">
+      <app-display-pokemon-image
+        *ngFor="let pokemon of player.pokemons"
+        class="clickable-icon"
+        [pokemon]="pokemon"
+        [type]="'icon'"
+        (click)="openInfo(pokemon)"
+      />
+    </div>
+  </div>
+  {{ title$ | async | translate }}
+  <div class="top-bar__right-content">
+    <span> {{ date$ | async }}</span>
+    <button mat-flat-button (click)="simulate()">
+      {{ "CONTINUE" | translate }}
+    </button>
   </div>
 </div>
