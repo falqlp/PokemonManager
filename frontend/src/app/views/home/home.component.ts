@@ -9,7 +9,7 @@ import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { PokemonQueriesService } from 'src/app/services/queries/pokemon-queries.service';
 import { Router } from '@angular/router';
-import { BattleQueriesService } from '../../services/queries/battle-queries.service';
+import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { HttpClient } from '@angular/common/http';
 import { MoveModel } from '../../models/move.model';
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     protected dialog: MatDialog,
     protected playerService: PlayerService,
     protected pokemonService: PokemonQueriesService,
-    protected battleQueries: BattleQueriesService,
+    protected battleQueries: BattleInstanceQueriesService,
     protected trainerService: TrainerQueriesService,
     protected translateService: TranslateService
   ) {}

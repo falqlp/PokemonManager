@@ -3,6 +3,7 @@
   class="battle"
 >
   <div class="battle__trainer-pokemons">
+    {{ player.selectedMove?.name }}
     <app-battle-trainer-pokemons
       [trainer]="player"
       [progress]="player.autorizations.pokemonCooldown"

@@ -3,12 +3,15 @@ import { Component } from '@angular/core';
 import { TrainerQueriesService } from 'src/app/services/queries/trainer-queries.service';
 import { BattleService } from './battle.service';
 import { ROUND_TIME_MS } from './battel.const';
-import { combineLatest, switchMap } from 'rxjs';
+import { combineLatest, forkJoin, Observable, of, switchMap } from 'rxjs';
 import { BattleTrainer } from './battle-trainer';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BattleQueriesService } from '../../services/queries/battle-queries.service';
+import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
 import { BattleModel } from '../../models/Battle.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { BattleQueriesService } from './battle-queries.service';
+import { DamageModel } from '../../models/damage.model';
+import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 
 @Component({
   selector: 'app-battle',
@@ -26,7 +29,8 @@ export class BattleComponent implements OnInit {
   public constructor(
     protected trainerService: TrainerQueriesService,
     protected service: BattleService,
-    protected battleQueries: BattleQueriesService,
+    protected battleInstanceQueriesService: BattleInstanceQueriesService,
+    protected battleQueriesService: BattleQueriesService,
     protected route: ActivatedRoute,
     protected router: Router,
     protected destroyRef: DestroyRef
@@ -40,7 +44,7 @@ export class BattleComponent implements OnInit {
     this.route.queryParams
       .pipe(
         switchMap((params) => {
-          return this.battleQueries.get(params['battle']);
+          return this.battleInstanceQueriesService.get(params['battle']);
         }),
         switchMap((battle) => {
           this.battle = battle;
@@ -78,54 +82,69 @@ export class BattleComponent implements OnInit {
 
   protected startBattleLoop(): void {
     this.battleLoop = setInterval(() => {
-      this.opponent.damage = undefined;
-      this.player.damage = undefined;
-
+      let opponentDamage$: Observable<{
+        damage: DamageModel;
+        pokemon: PokemonModel;
+      }>;
       if (
         this.opponent.selectedMove &&
         this.player.pokemons[0].currentHp !== 0 &&
         this.opponent.pokemons[0].currentHp !== 0
       ) {
-        this.player.damage = this.service.calcDamage(
+        opponentDamage$ = this.battleQueriesService.calcDamage(
           this.opponent.pokemons[0],
           this.player.pokemons[0],
           this.opponent.selectedMove
         );
-        this.player.pokemons[0] = this.service.damageOnPokemon(
-          this.player.pokemons[0],
-          this.player.damage
-        );
+      } else {
+        opponentDamage$ = of(null);
       }
 
+      let playerDamage$: Observable<{
+        damage: DamageModel;
+        pokemon: PokemonModel;
+      }>;
       if (
         this.player.selectedMove &&
         this.player.pokemons[0].currentHp !== 0 &&
         this.opponent.pokemons[0].currentHp !== 0
       ) {
-        this.opponent.damage = this.service.calcDamage(
+        playerDamage$ = this.battleQueriesService.calcDamage(
           this.player.pokemons[0],
           this.opponent.pokemons[0],
           this.player.selectedMove
         );
-        this.opponent.pokemons[0] = this.service.damageOnPokemon(
-          this.opponent.pokemons[0],
-          this.opponent.damage
-        );
+      } else {
+        playerDamage$ = of(null);
       }
-      if (this.opponent.pokemons[0].currentHp === 0) {
-        this.opponent.pokemonKO();
-      }
-      if (this.player.pokemons[0].currentHp === 0) {
-        this.player.pokemonKO();
-      }
+      forkJoin({
+        opponentDamage: opponentDamage$,
+        playerDamage: playerDamage$,
+      }).subscribe((res) => {
+        this.opponent.damage = undefined;
+        this.player.damage = undefined;
+        if (res.opponentDamage) {
+          this.player.damage = res.opponentDamage.damage;
+          this.player.pokemons[0] = res.opponentDamage.pokemon;
+        }
+        if (res.playerDamage) {
+          this.opponent.damage = res.playerDamage.damage;
+          this.opponent.pokemons[0] = res.playerDamage.pokemon;
+        }
+        if (this.opponent.pokemons[0].currentHp === 0) {
+          this.opponent.pokemonKO();
+        }
+        if (this.player.pokemons[0].currentHp === 0) {
+          this.player.pokemonKO();
+        }
+      });
     }, ROUND_TIME_MS);
   }
 
   public updateAiOpponent(battleTrainer: BattleTrainer, ownAI = false): void {
     if (
-      ((battleTrainer === this.player && !ownAI) ||
-        (battleTrainer !== this.player && ownAI)) &&
-      this.player.selectedMove
+      (battleTrainer === this.player && !ownAI) ||
+      (battleTrainer !== this.player && ownAI)
     ) {
       this.opponent.aiService.update(
         this.player.pokemons[0],
@@ -134,9 +153,8 @@ export class BattleComponent implements OnInit {
       );
     }
     if (
-      ((battleTrainer === this.opponent && !ownAI) ||
-        (battleTrainer !== this.opponent && ownAI)) &&
-      this.player.selectedMove
+      (battleTrainer === this.opponent && !ownAI) ||
+      (battleTrainer !== this.opponent && ownAI)
     ) {
       this.player.aiService.update(
         this.opponent.pokemons[0],
@@ -148,7 +166,7 @@ export class BattleComponent implements OnInit {
 
   public onDefeat(trainer: BattleTrainer): void {
     clearInterval(this.battleLoop);
-    this.battleQueries
+    this.battleInstanceQueriesService
       .setWinner(this.battle, trainer._id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {

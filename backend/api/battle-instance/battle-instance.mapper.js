@@ -1,6 +1,6 @@
 const trainerService = require("../trainer/trainer.service");
 
-const BattleMapper = {
+const BattleInstanceMapper = {
   map: async function (battle) {
     battle.player = await trainerService.get(battle.player);
     battle.opponent = await trainerService.get(battle.opponent);
@@ -13,4 +13,4 @@ const BattleMapper = {
     return battle;
   },
 };
-module.exports = BattleMapper;
+module.exports = BattleInstanceMapper;

@@ -31,16 +31,20 @@ export class BattleAiService {
     let damageBeforeKO = 0;
     pokemons.forEach((pokemon) => {
       if (pokemon.currentHp !== 0) {
-        const opponentDamage = this.battleService.estimator(
-          opponentPokemon,
-          pokemon,
-          selectedMove
-        );
-        const changeDamage = this.getChangeDamage(
-          pokemons,
-          pokemon,
-          opponentDamage
-        );
+        let opponentDamage = 0;
+        let changeDamage = 0;
+        if (selectedMove) {
+          opponentDamage = this.battleService.estimator(
+            opponentPokemon,
+            pokemon,
+            selectedMove
+          );
+          changeDamage = this.getChangeDamage(
+            pokemons,
+            pokemon,
+            opponentDamage
+          );
+        }
         pokemon.moves.forEach((move) => {
           const damage = this.battleService.estimator(
             pokemon,
@@ -61,6 +65,9 @@ export class BattleAiService {
       }
     });
     setTimeout(() => {
+      // if (decision.pokemon.basePokemon.name === 'CARRACOSTA') {
+      //   console.log(decision.pokemon);
+      // }
       this.decisionSubject.next(decision);
     }, 4 * ROUND_TIME_MS);
   }
@@ -81,7 +88,7 @@ export class BattleAiService {
     pokemon: PokemonModel,
     edp: number
   ): number {
-    if (pokemon === pokemons[0]) {
+    if (pokemon._id === pokemons[0]._id) {
       return 0;
     }
     return (

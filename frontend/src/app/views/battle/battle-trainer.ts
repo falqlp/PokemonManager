@@ -64,7 +64,10 @@ export class BattleTrainer {
         clearInterval(interval);
         this.autorizations.canChangeMove = true;
         this.autorizations.moveCooldown = 0;
-        if (this.isAI && this.selectedMove !== this.aiDecision.move) {
+        if (
+          this.isAI &&
+          this.selectedMove?.name !== this.aiDecision.move.name
+        ) {
           this.onMoveChange(this.aiDecision.move);
         }
       }
@@ -84,12 +87,16 @@ export class BattleTrainer {
   }
 
   public changePokemon(pokemon: PokemonModel): void {
+    const oldPokemon = this.pokemons[0];
     this.pokemons[
       this.pokemons.findIndex(
         (playerPokemon) => playerPokemon?._id === pokemon?._id
       )
     ] = this.pokemons[0];
     this.pokemons[0] = pokemon;
+    if (pokemon.trainerId === '6496f985f15bc10f660c1958') {
+      console.log(oldPokemon, pokemon);
+    }
   }
 
   public setPokemonCooldown(pokemon: PokemonModel): void {
@@ -104,7 +111,7 @@ export class BattleTrainer {
         clearInterval(interval);
         this.autorizations.canChangePokemon = true;
         this.autorizations.pokemonCooldown = 0;
-        if (this.pokemons[0] !== this.aiDecision.pokemon) {
+        if (this.pokemons[0]._id !== this.aiDecision.pokemon._id) {
           this.changeActivePokemon(this.aiDecision.pokemon);
         }
       }
@@ -123,10 +130,10 @@ export class BattleTrainer {
     this.aiService.decision$.subscribe((decision) => {
       if (decision.move && decision.pokemon) {
         this.aiDecision = decision;
-        if (decision.pokemon !== this.pokemons[0]) {
+        if (decision.pokemon._id !== this.pokemons[0]._id) {
           this.changeActivePokemon(decision.pokemon);
         }
-        if (decision.move !== this.selectedMove) {
+        if (decision.move.name !== this.selectedMove?.name) {
           this.onMoveChange(decision.move);
         }
       }

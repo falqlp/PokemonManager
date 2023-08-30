@@ -1,8 +1,6 @@
-const Battle = require("./battle");
-const battleMapper = require("./battle.mapper");
-const CompleteService = require("../CompleteService");
-
 const BattleService = {
-  ...new CompleteService(Battle, battleMapper),
+  getCooldownMs(pokemon) {
+    return 6 + 200 / Math.sqrt(pokemon.stats["spe"]);
+  },
 };
 module.exports = BattleService;
