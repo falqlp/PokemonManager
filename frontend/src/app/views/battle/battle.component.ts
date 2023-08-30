@@ -63,7 +63,13 @@ export class BattleComponent implements OnInit {
           }
           return pokemon;
         });
-        this.player = new BattleTrainer(player, true, this.service, this);
+        this.player = new BattleTrainer(
+          player,
+          true,
+          this.service,
+          this,
+          this.battleQueriesService
+        );
 
         opponent.pokemons.map((pokemon) => {
           if (!pokemon.currentHp) {
@@ -71,7 +77,13 @@ export class BattleComponent implements OnInit {
           }
           return pokemon;
         });
-        this.opponent = new BattleTrainer(opponent, true, this.service, this);
+        this.opponent = new BattleTrainer(
+          opponent,
+          true,
+          this.service,
+          this,
+          this.battleQueriesService
+        );
       });
   }
 
@@ -146,21 +158,25 @@ export class BattleComponent implements OnInit {
       (battleTrainer === this.player && !ownAI) ||
       (battleTrainer !== this.player && ownAI)
     ) {
-      this.opponent.aiService.update(
-        this.player.pokemons[0],
-        this.player.selectedMove,
-        this.opponent.pokemons
-      );
+      this.opponent
+        .update(
+          this.player.pokemons[0],
+          this.player.selectedMove,
+          this.opponent.pokemons
+        )
+        .subscribe();
     }
     if (
       (battleTrainer === this.opponent && !ownAI) ||
       (battleTrainer !== this.opponent && ownAI)
     ) {
-      this.player.aiService.update(
-        this.opponent.pokemons[0],
-        this.opponent.selectedMove,
-        this.player.pokemons
-      );
+      this.player
+        .update(
+          this.opponent.pokemons[0],
+          this.opponent.selectedMove,
+          this.player.pokemons
+        )
+        .subscribe();
     }
   }
 

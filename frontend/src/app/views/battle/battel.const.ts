@@ -128,5 +128,4 @@ export const TYPE_EFFECTIVENESS: {
 };
 
 export const STAB_MODIFIER = 1.5;
-export const MIN_ROLL = 0.85;
 export const ROUND_TIME_MS = 500;

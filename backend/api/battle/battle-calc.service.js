@@ -236,5 +236,8 @@ const BattleCalcService = {
       (move.accuracy / 100)
     );
   },
+  getCooldownMs(pokemon) {
+    return 6 + 200 / Math.sqrt(pokemon.stats["spe"]);
+  },
 };
 module.exports = BattleCalcService;

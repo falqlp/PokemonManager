@@ -5,9 +5,17 @@ import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { BattleService } from './battle.service';
 import { BattleComponent } from './battle.component';
 import { DamageModel } from '../../models/damage.model';
-import { BattleAiService } from './battle-ai.service';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { ROUND_TIME_MS } from './battel.const';
+import { BattleQueriesService } from './battle-queries.service';
 
 export class BattleTrainer {
+  protected decisionSubject = new BehaviorSubject<DecisionModel>({
+    pokemon: undefined,
+    move: undefined,
+  });
+
+  public decision$ = this.decisionSubject.asObservable();
   public _id: string;
   public name: string;
   public pokemons: PokemonModel[];
@@ -20,14 +28,14 @@ export class BattleTrainer {
   };
 
   public damage: DamageModel;
-  public aiService: BattleAiService;
   public aiDecision: DecisionModel;
 
   public constructor(
     trainer: TrainerModel,
     protected isAI: boolean,
     protected service: BattleService,
-    protected battle: BattleComponent
+    protected battle: BattleComponent,
+    protected battleQueriesService: BattleQueriesService
   ) {
     this.init(trainer);
   }
@@ -37,7 +45,6 @@ export class BattleTrainer {
     this._id = trainer.name;
     this.pokemons = trainer.pokemons;
     if (this.isAI) {
-      this.aiService = new BattleAiService(this.service);
       this.susbcribeAiDecision();
     }
   }
@@ -127,7 +134,7 @@ export class BattleTrainer {
   }
 
   protected susbcribeAiDecision(): void {
-    this.aiService.decision$.subscribe((decision) => {
+    this.decision$.subscribe((decision) => {
       if (decision.move && decision.pokemon) {
         this.aiDecision = decision;
         if (decision.pokemon._id !== this.pokemons[0]._id) {
@@ -138,5 +145,29 @@ export class BattleTrainer {
         }
       }
     });
+  }
+
+  public update(
+    opponentPokemon: PokemonModel,
+    selectedMove: MoveModel,
+    pokemons: PokemonModel[]
+  ): Observable<DecisionModel> {
+    return this.decisionMaking(opponentPokemon, selectedMove, pokemons);
+  }
+
+  protected decisionMaking(
+    opponentPokemon: PokemonModel,
+    selectedMove: MoveModel,
+    pokemons: PokemonModel[]
+  ): Observable<DecisionModel> {
+    return this.battleQueriesService
+      .decisionMaking(opponentPokemon, selectedMove, pokemons)
+      .pipe(
+        tap((decision) => {
+          setTimeout(() => {
+            this.decisionSubject.next(decision);
+          }, 4 * ROUND_TIME_MS);
+        })
+      );
   }
 }
