@@ -42,7 +42,7 @@ export class BattleTrainer {
 
   protected init(trainer: TrainerModel): void {
     this.name = trainer.name;
-    this._id = trainer.name;
+    this._id = trainer._id;
     this.pokemons = trainer.pokemons;
     if (this.isAI) {
       this.susbcribeAiDecision();
@@ -94,16 +94,12 @@ export class BattleTrainer {
   }
 
   public changePokemon(pokemon: PokemonModel): void {
-    const oldPokemon = this.pokemons[0];
     this.pokemons[
       this.pokemons.findIndex(
         (playerPokemon) => playerPokemon?._id === pokemon?._id
       )
     ] = this.pokemons[0];
     this.pokemons[0] = pokemon;
-    if (pokemon.trainerId === '6496f985f15bc10f660c1958') {
-      console.log(oldPokemon, pokemon);
-    }
   }
 
   public setPokemonCooldown(pokemon: PokemonModel): void {

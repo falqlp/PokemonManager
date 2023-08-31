@@ -32,8 +32,12 @@ export class BattlePlayerMoveComponent implements OnChanges {
   protected _progress: number;
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['activePokemon']) {
-      this.selectedMove = undefined;
+    if (
+      changes['activePokemon'] &&
+      changes['activePokemon'].previousValue._id !==
+        changes['activePokemon'].currentValue._id
+    ) {
+      this._selectedMove = undefined;
     }
   }
 }
