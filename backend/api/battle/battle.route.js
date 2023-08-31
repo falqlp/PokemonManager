@@ -5,16 +5,15 @@ const battleCalcService = require("./battle-calc.service");
 const battleAiService = require("./battle-ai.service");
 
 router.post("/calcDamage", (req, res, next) => {
-  const damage = battleCalcService.calcDamage(
-    req.body.attPokemon,
-    req.body.defPokemon,
-    req.body.move
-  );
-  const pokemon = battleCalcService.damageOnPokemon(
-    req.body.defPokemon,
-    damage
-  );
-  res.status(200).json({ damage, pokemon });
+  res
+    .status(200)
+    .json(
+      battleCalcService.moveDamage(
+        req.body.attPokemon,
+        req.body.defPokemon,
+        req.body.move
+      )
+    );
 });
 
 router.post("/decisionMaking", (req, res, next) => {
@@ -24,6 +23,14 @@ router.post("/decisionMaking", (req, res, next) => {
     req.body.pokemons
   );
   res.status(200).json(estimator);
+});
+
+router.post("/simulateBattleTurn", (req, res, next) => {
+  const turn = battleService.simulateBattleTurn(
+    req.body.trainer1,
+    req.body.trainer2
+  );
+  res.status(200).json(turn);
 });
 
 module.exports = router;

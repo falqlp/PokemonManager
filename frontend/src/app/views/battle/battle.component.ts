@@ -65,7 +65,7 @@ export class BattleComponent implements OnInit {
         });
         this.player = new BattleTrainer(
           player,
-          true,
+          false,
           this.service,
           this,
           this.battleQueriesService
@@ -155,8 +155,9 @@ export class BattleComponent implements OnInit {
 
   public updateAiOpponent(battleTrainer: BattleTrainer, ownAI = false): void {
     if (
-      (battleTrainer === this.player && !ownAI) ||
-      (battleTrainer !== this.player && ownAI)
+      ((battleTrainer === this.player && !ownAI) ||
+        (battleTrainer !== this.player && ownAI)) &&
+      this.player.selectedMove
     ) {
       this.opponent
         .update(
@@ -167,8 +168,9 @@ export class BattleComponent implements OnInit {
         .subscribe();
     }
     if (
-      (battleTrainer === this.opponent && !ownAI) ||
-      (battleTrainer !== this.opponent && ownAI)
+      ((battleTrainer === this.opponent && !ownAI) ||
+        (battleTrainer !== this.opponent && ownAI)) &&
+      this.opponent.selectedMove
     ) {
       this.player
         .update(

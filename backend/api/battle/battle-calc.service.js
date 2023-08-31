@@ -130,6 +130,12 @@ const MIN_ROLL = 0.85;
 const ROUND_TIME_MS = 500;
 
 const BattleCalcService = {
+  moveDamage(attPokemon, defPokemon, move) {
+    const damage = this.calcDamage(attPokemon, defPokemon, move);
+    const damagedPokemon = this.damageOnPokemon(defPokemon, damage);
+    return { damage, damagedPokemon };
+  },
+
   calcDamage(attPokemon, defPokemon, move) {
     const missed = this.moveOnTarget(move);
     const effectivness = this.calcEffectivness(move, defPokemon);

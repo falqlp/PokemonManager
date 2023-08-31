@@ -9,18 +9,12 @@ const BattleAiService = {
       if (pokemon.currentHp !== 0) {
         let opponentDamage = 0;
         let changeDamage = 0;
-        if (selectedMove) {
-          opponentDamage = battleService.estimator(
-            opponentPokemon,
-            pokemon,
-            selectedMove
-          );
-          changeDamage = this.getChangeDamage(
-            pokemons,
-            pokemon,
-            opponentDamage
-          );
-        }
+        opponentDamage = battleService.estimator(
+          opponentPokemon,
+          pokemon,
+          selectedMove
+        );
+        changeDamage = this.getChangeDamage(pokemons, pokemon, opponentDamage);
         pokemon.moves.forEach((move) => {
           const damage = battleService.estimator(
             pokemon,
