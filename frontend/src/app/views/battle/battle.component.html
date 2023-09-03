@@ -7,7 +7,7 @@
     <app-battle-trainer-pokemons
       [trainer]="player"
       [progress]="player.autorizations.pokemonCooldown"
-      (clickOnPokemon)="player.changeActivePokemon($event)"
+      (clickOnPokemon)="onPokemonChange($event)"
     />
   </div>
   <div class="battle__scene">
@@ -23,7 +23,7 @@
       [activePokemon]="player.pokemons[0]"
       [selectedMove]="player.selectedMove"
       [progress]="player.autorizations.moveCooldown"
-      (onMoveChange)="player.onMoveChange($event)"
+      (onMoveChange)="onMoveChange($event)"
     />
   </div>
   <div class="battle__trainer-pokemons">

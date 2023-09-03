@@ -12,6 +12,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BattleQueriesService } from './battle-queries.service';
 import { DamageModel } from '../../models/damage.model';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
+import { TrainerModel } from '../../models/TrainersModels/trainer.model';
+import { BattleTrainerModel } from './battle.model';
+import { MoveModel } from '../../models/move.model';
 
 @Component({
   selector: 'app-battle',
@@ -23,8 +26,8 @@ export class BattleComponent implements OnInit {
   protected battleLoop: number;
   protected battle: BattleModel;
 
-  protected opponent: BattleTrainer;
-  protected player: BattleTrainer;
+  protected opponent: BattleTrainerModel;
+  protected player: BattleTrainerModel;
 
   public constructor(
     protected trainerService: TrainerQueriesService,
@@ -63,13 +66,7 @@ export class BattleComponent implements OnInit {
           }
           return pokemon;
         });
-        this.player = new BattleTrainer(
-          player,
-          false,
-          this.service,
-          this,
-          this.battleQueriesService
-        );
+        this.player = this.mapBattleTrainer(player);
 
         opponent.pokemons.map((pokemon) => {
           if (!pokemon.currentHp) {
@@ -77,13 +74,7 @@ export class BattleComponent implements OnInit {
           }
           return pokemon;
         });
-        this.opponent = new BattleTrainer(
-          opponent,
-          true,
-          this.service,
-          this,
-          this.battleQueriesService
-        );
+        this.opponent = this.mapBattleTrainer(opponent);
       });
   }
 
@@ -94,95 +85,130 @@ export class BattleComponent implements OnInit {
 
   protected startBattleLoop(): void {
     this.battleLoop = setInterval(() => {
-      let opponentDamage$: Observable<{
-        damage: DamageModel;
-        pokemon: PokemonModel;
-      }>;
-      if (
-        this.opponent.selectedMove &&
-        this.player.pokemons[0].currentHp !== 0 &&
-        this.opponent.pokemons[0].currentHp !== 0
-      ) {
-        opponentDamage$ = this.battleQueriesService.calcDamage(
-          this.opponent.pokemons[0],
-          this.player.pokemons[0],
-          this.opponent.selectedMove
-        );
-      } else {
-        opponentDamage$ = of(null);
-      }
-
-      let playerDamage$: Observable<{
-        damage: DamageModel;
-        pokemon: PokemonModel;
-      }>;
-      if (
-        this.player.selectedMove &&
-        this.player.pokemons[0].currentHp !== 0 &&
-        this.opponent.pokemons[0].currentHp !== 0
-      ) {
-        playerDamage$ = this.battleQueriesService.calcDamage(
-          this.player.pokemons[0],
-          this.opponent.pokemons[0],
-          this.player.selectedMove
-        );
-      } else {
-        playerDamage$ = of(null);
-      }
-      forkJoin({
-        opponentDamage: opponentDamage$,
-        playerDamage: playerDamage$,
-      }).subscribe((res) => {
-        this.opponent.damage = undefined;
-        this.player.damage = undefined;
-        if (res.opponentDamage) {
-          this.player.damage = res.opponentDamage.damage;
-          this.player.pokemons[0] = res.opponentDamage.pokemon;
-        }
-        if (res.playerDamage) {
-          this.opponent.damage = res.playerDamage.damage;
-          this.opponent.pokemons[0] = res.playerDamage.pokemon;
-        }
-        if (this.opponent.pokemons[0].currentHp === 0) {
-          this.opponent.pokemonKO();
-        }
-        if (this.player.pokemons[0].currentHp === 0) {
-          this.player.pokemonKO();
-        }
-      });
+      this.simulateTurn();
+      // let opponentDamage$: Observable<{
+      //   damage: DamageModel;
+      //   pokemon: PokemonModel;
+      // }>;
+      // if (
+      //   this.opponent.selectedMove &&
+      //   this.player.pokemons[0].currentHp !== 0 &&
+      //   this.opponent.pokemons[0].currentHp !== 0
+      // ) {
+      //   opponentDamage$ = this.battleQueriesService.calcDamage(
+      //     this.opponent.pokemons[0],
+      //     this.player.pokemons[0],
+      //     this.opponent.selectedMove
+      //   );
+      // } else {
+      //   opponentDamage$ = of(null);
+      // }
+      //
+      // let playerDamage$: Observable<{
+      //   damage: DamageModel;
+      //   pokemon: PokemonModel;
+      // }>;
+      // if (
+      //   this.player.selectedMove &&
+      //   this.player.pokemons[0].currentHp !== 0 &&
+      //   this.opponent.pokemons[0].currentHp !== 0
+      // ) {
+      //   playerDamage$ = this.battleQueriesService.calcDamage(
+      //     this.player.pokemons[0],
+      //     this.opponent.pokemons[0],
+      //     this.player.selectedMove
+      //   );
+      // } else {
+      //   playerDamage$ = of(null);
+      // }
+      // forkJoin({
+      //   opponentDamage: opponentDamage$,
+      //   playerDamage: playerDamage$,
+      // }).subscribe((res) => {
+      //   this.opponent.damage = undefined;
+      //   this.player.damage = undefined;
+      //   if (res.opponentDamage) {
+      //     this.player.damage = res.opponentDamage.damage;
+      //     this.player.pokemons[0] = res.opponentDamage.pokemon;
+      //   }
+      //   if (res.playerDamage) {
+      //     this.opponent.damage = res.playerDamage.damage;
+      //     this.opponent.pokemons[0] = res.playerDamage.pokemon;
+      //   }
+      //   if (this.opponent.pokemons[0].currentHp === 0) {
+      //     this.opponent.pokemonKO();
+      //   }
+      //   if (this.player.pokemons[0].currentHp === 0) {
+      //     this.player.pokemonKO();
+      //   }
+      // });
     }, ROUND_TIME_MS);
   }
 
-  public updateAiOpponent(battleTrainer: BattleTrainer, ownAI = false): void {
-    if (
-      ((battleTrainer === this.player && !ownAI) ||
-        (battleTrainer !== this.player && ownAI)) &&
-      this.player.selectedMove
-    ) {
-      this.opponent
-        .update(
-          this.player.pokemons[0],
-          this.player.selectedMove,
-          this.opponent.pokemons
-        )
-        .subscribe();
-    }
-    if (
-      ((battleTrainer === this.opponent && !ownAI) ||
-        (battleTrainer !== this.opponent && ownAI)) &&
-      this.opponent.selectedMove
-    ) {
-      this.player
-        .update(
-          this.opponent.pokemons[0],
-          this.opponent.selectedMove,
-          this.player.pokemons
-        )
-        .subscribe();
-    }
+  // public updateAiOpponent(battleTrainer: BattleTrainer, ownAI = false): void {
+  //   if (
+  //     ((battleTrainer === this.player && !ownAI) ||
+  //       (battleTrainer !== this.player && ownAI)) &&
+  //     this.player.selectedMove
+  //   ) {
+  //     this.opponent
+  //       .update(
+  //         this.player.pokemons[0],
+  //         this.player.selectedMove,
+  //         this.opponent.pokemons
+  //       )
+  //       .subscribe();
+  //   }
+  //   if (
+  //     ((battleTrainer === this.opponent && !ownAI) ||
+  //       (battleTrainer !== this.opponent && ownAI)) &&
+  //     this.opponent.selectedMove
+  //   ) {
+  //     this.player
+  //       .update(
+  //         this.opponent.pokemons[0],
+  //         this.opponent.selectedMove,
+  //         this.player.pokemons
+  //       )
+  //       .subscribe();
+  //   }
+  // }
+
+  protected simulateTurn(): void {
+    this.battleQueriesService
+      .simulateTurn(this.player, this.opponent)
+      .subscribe((turn) => {
+        this.player = turn.trainer1;
+        this.opponent = turn.trainer2;
+        if (this.player.defeat) {
+          this.onDefeat(this.player);
+        }
+        if (this.opponent.defeat) {
+          this.onDefeat(this.opponent);
+        }
+      });
   }
 
-  public onDefeat(trainer: BattleTrainer): void {
+  protected mapBattleTrainer(trainer: TrainerModel): BattleTrainerModel {
+    return {
+      _id: trainer._id,
+      name: trainer.name,
+      pokemons: trainer.pokemons,
+      selectedMove: undefined,
+      damage: undefined,
+      decision: undefined,
+      updateDecision: true,
+      autorizations: {
+        canChangePokemon: true,
+        pokemonCooldown: 0,
+        canChangeMove: true,
+        moveCooldown: 0,
+      },
+      defeat: false,
+    };
+  }
+
+  public onDefeat(trainer: BattleTrainerModel): void {
     clearInterval(this.battleLoop);
     this.battleInstanceQueriesService
       .setWinner(this.battle, trainer._id)
@@ -192,5 +218,22 @@ export class BattleComponent implements OnInit {
           queryParams: { battle: this.battle._id },
         });
       });
+  }
+
+  protected onMoveChange(move: MoveModel): void {
+    this.player.selectedMove = move;
+  }
+
+  protected onPokemonChange(pokemon: PokemonModel): void {
+    this.changePokemon(pokemon);
+  }
+
+  public changePokemon(pokemon: PokemonModel): void {
+    this.player.pokemons[
+      this.player.pokemons.findIndex(
+        (playerPokemon) => playerPokemon?._id === pokemon?._id
+      )
+    ] = this.player.pokemons[0];
+    this.player.pokemons[0] = pokemon;
   }
 }

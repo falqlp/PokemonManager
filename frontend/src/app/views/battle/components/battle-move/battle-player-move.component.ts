@@ -34,7 +34,7 @@ export class BattlePlayerMoveComponent implements OnChanges {
   public ngOnChanges(changes: SimpleChanges): void {
     if (
       changes['activePokemon'] &&
-      changes['activePokemon'].previousValue._id !==
+      changes['activePokemon'].previousValue?._id !==
         changes['activePokemon'].currentValue._id
     ) {
       this._selectedMove = undefined;

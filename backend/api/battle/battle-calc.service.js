@@ -127,7 +127,7 @@ const TYPE_EFFECTIVENESS = {
 
 const STAB_MODIFIER = 1.5;
 const MIN_ROLL = 0.85;
-const ROUND_TIME_MS = 500;
+const TURN_TIME_MS = 500;
 
 const BattleCalcService = {
   moveDamage(attPokemon, defPokemon, move) {
@@ -137,6 +137,9 @@ const BattleCalcService = {
   },
 
   calcDamage(attPokemon, defPokemon, move) {
+    if (attPokemon.currentHp === 0 || move === undefined) {
+      return;
+    }
     const missed = this.moveOnTarget(move);
     const effectivness = this.calcEffectivness(move, defPokemon);
     const criticalHit =
@@ -225,7 +228,7 @@ const BattleCalcService = {
   damageOnPokemon(pokemon, damage) {
     pokemon.currentHp = Math.max(
       0,
-      Math.round((pokemon.currentHp - damage.damage / 5) * 10) / 10
+      Math.round((pokemon.currentHp - damage?.damage / 5) * 10) / 10
     );
     return pokemon;
   },
@@ -235,6 +238,9 @@ const BattleCalcService = {
   },
 
   estimator(attPokemon, defPokemon, move) {
+    if (!move) {
+      return 0;
+    }
     return (
       this.calcDamageBase(attPokemon, defPokemon, move) *
       this.calcEffectivness(move, defPokemon) *
@@ -244,6 +250,9 @@ const BattleCalcService = {
   },
   getCooldownMs(pokemon) {
     return 6 + 200 / Math.sqrt(pokemon.stats["spe"]);
+  },
+  getCooldownTurn(pokemon) {
+    return Math.floor((this.getCooldownMs(pokemon) * 100) / TURN_TIME_MS);
   },
 };
 module.exports = BattleCalcService;

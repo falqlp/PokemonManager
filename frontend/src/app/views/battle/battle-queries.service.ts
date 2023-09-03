@@ -4,7 +4,11 @@ import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { MoveModel } from '../../models/move.model';
 import { Observable } from 'rxjs';
 import { DamageModel } from '../../models/damage.model';
-import { DecisionModel } from './battle.model';
+import {
+  BattleTrainerModel,
+  BattleTurnModel,
+  DecisionModel,
+} from './battle.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +16,7 @@ import { DecisionModel } from './battle.model';
 export class BattleQueriesService {
   public readonly calcDamageUrl = 'api/battle/calcDamage';
   public readonly decisionMakingUrl = 'api/battle/decisionMaking';
+  public readonly simulateTurnUrl = 'api/battle/simulateBattleTurn';
   public constructor(protected http: HttpClient) {}
 
   public calcDamage(
@@ -38,6 +43,16 @@ export class BattleQueriesService {
       opponentPokemon,
       selectedMove,
       pokemons,
+    });
+  }
+
+  public simulateTurn(
+    battleTrainer1: BattleTrainerModel,
+    battleTrainer2: BattleTrainerModel
+  ): Observable<BattleTurnModel> {
+    return this.http.post<BattleTurnModel>(this.simulateTurnUrl, {
+      trainer1: battleTrainer1,
+      trainer2: battleTrainer2,
     });
   }
 }

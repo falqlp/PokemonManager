@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MoveModel } from '../../../../models/move.model';
-import { BattleTrainer } from '../../battle-trainer';
+import { BattleTrainerModel } from '../../battle.model';
 
 @Component({
   selector: 'app-battle-oppenent-pokemons',
@@ -24,7 +24,7 @@ export class BattleOpponentPokemonsComponent {
     return this._moveProgress;
   }
 
-  @Input() public trainer: BattleTrainer;
+  @Input() public trainer: BattleTrainerModel;
   @Input() public selectedMove: MoveModel;
   protected _pokemonProgress: number;
   protected _moveProgress: number;

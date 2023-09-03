@@ -50,13 +50,13 @@ export class BattleTrainer {
   }
 
   public onMoveChange(newMove: MoveModel): void {
-    if (this.autorizations.canChangeMove) {
-      if (this.battle.started) {
-        this.setMoveCooldown(this.pokemons[0]);
-      }
-      this.selectedMove = newMove;
-      this.battle.updateAiOpponent(this);
-    }
+    // if (this.autorizations.canChangeMove) {
+    //   if (this.battle.started) {
+    //     this.setMoveCooldown(this.pokemons[0]);
+    //   }
+    //   this.selectedMove = newMove;
+    //   this.battle.updateAiOpponent(this);
+    // }
   }
 
   public setMoveCooldown(pokemon: PokemonModel): void {
@@ -82,15 +82,15 @@ export class BattleTrainer {
   }
 
   public changeActivePokemon(pokemon: PokemonModel): void {
-    if (this.autorizations.canChangePokemon && this.battle.started) {
-      if (this.pokemons[0].currentHp !== 0) {
-        this.setPokemonCooldown(pokemon);
-        this.setMoveCooldown(pokemon);
-      }
-      this.changePokemon(pokemon);
-      this.selectedMove = undefined;
-      this.battle.updateAiOpponent(this);
-    }
+    // if (this.autorizations.canChangePokemon && this.battle.started) {
+    //   if (this.pokemons[0].currentHp !== 0) {
+    //     this.setPokemonCooldown(pokemon);
+    //     this.setMoveCooldown(pokemon);
+    //   }
+    //   this.changePokemon(pokemon);
+    //   this.selectedMove = undefined;
+    //   this.battle.updateAiOpponent(this);
+    // }
   }
 
   public changePokemon(pokemon: PokemonModel): void {
@@ -122,11 +122,11 @@ export class BattleTrainer {
   }
 
   public pokemonKO(): void {
-    if (this.pokemons.some((pokemon) => pokemon.currentHp !== 0)) {
-      this.battle.updateAiOpponent(this, true);
-    } else {
-      this.battle.onDefeat(this);
-    }
+    // if (this.pokemons.some((pokemon) => pokemon.currentHp !== 0)) {
+    //   this.battle.updateAiOpponent(this, true);
+    // } else {
+    //   this.battle.onDefeat(this);
+    // }
   }
 
   protected susbcribeAiDecision(): void {
