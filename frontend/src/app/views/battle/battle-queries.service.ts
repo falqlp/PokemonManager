@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { DamageModel } from '../../models/damage.model';
 import {
   BattleTrainerModel,
-  BattleTurnModel,
+  BattleRoundModel,
   DecisionModel,
 } from './battle.model';
 
@@ -16,7 +16,7 @@ import {
 export class BattleQueriesService {
   public readonly calcDamageUrl = 'api/battle/calcDamage';
   public readonly decisionMakingUrl = 'api/battle/decisionMaking';
-  public readonly simulateTurnUrl = 'api/battle/simulateBattleTurn';
+  public readonly simulateTurnUrl = 'api/battle/simulateBattleRound';
   public constructor(protected http: HttpClient) {}
 
   public calcDamage(
@@ -49,8 +49,8 @@ export class BattleQueriesService {
   public simulateTurn(
     battleTrainer1: BattleTrainerModel,
     battleTrainer2: BattleTrainerModel
-  ): Observable<BattleTurnModel> {
-    return this.http.post<BattleTurnModel>(this.simulateTurnUrl, {
+  ): Observable<BattleRoundModel> {
+    return this.http.post<BattleRoundModel>(this.simulateTurnUrl, {
       trainer1: battleTrainer1,
       trainer2: battleTrainer2,
     });

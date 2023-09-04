@@ -228,7 +228,8 @@ const BattleCalcService = {
   damageOnPokemon(pokemon, damage) {
     pokemon.currentHp = Math.max(
       0,
-      Math.round((pokemon.currentHp - damage?.damage / 5) * 10) / 10
+      Math.round((pokemon.currentHp - (damage ? damage.damage : 0) / 10) * 10) /
+        10
     );
     return pokemon;
   },
@@ -252,7 +253,7 @@ const BattleCalcService = {
     return 6 + 200 / Math.sqrt(pokemon.stats["spe"]);
   },
   getCooldownTurn(pokemon) {
-    return Math.floor((this.getCooldownMs(pokemon) * 100) / TURN_TIME_MS);
+    return Math.ceil((this.getCooldownMs(pokemon) * 100) / TURN_TIME_MS);
   },
 };
 module.exports = BattleCalcService;

@@ -3,14 +3,12 @@ import { Component } from '@angular/core';
 import { TrainerQueriesService } from 'src/app/services/queries/trainer-queries.service';
 import { BattleService } from './battle.service';
 import { ROUND_TIME_MS } from './battel.const';
-import { combineLatest, forkJoin, Observable, of, switchMap } from 'rxjs';
-import { BattleTrainer } from './battle-trainer';
+import { combineLatest, switchMap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
 import { BattleModel } from '../../models/Battle.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BattleQueriesService } from './battle-queries.service';
-import { DamageModel } from '../../models/damage.model';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { BattleTrainerModel } from './battle.model';
@@ -66,7 +64,7 @@ export class BattleComponent implements OnInit {
           }
           return pokemon;
         });
-        this.player = this.mapBattleTrainer(player);
+        this.player = this.service.mapBattleTrainer(player);
 
         opponent.pokemons.map((pokemon) => {
           if (!pokemon.currentHp) {
@@ -74,7 +72,7 @@ export class BattleComponent implements OnInit {
           }
           return pokemon;
         });
-        this.opponent = this.mapBattleTrainer(opponent);
+        this.opponent = this.service.mapBattleTrainer(opponent);
       });
   }
 
@@ -86,100 +84,16 @@ export class BattleComponent implements OnInit {
   protected startBattleLoop(): void {
     this.battleLoop = setInterval(() => {
       this.simulateTurn();
-      // let opponentDamage$: Observable<{
-      //   damage: DamageModel;
-      //   pokemon: PokemonModel;
-      // }>;
-      // if (
-      //   this.opponent.selectedMove &&
-      //   this.player.pokemons[0].currentHp !== 0 &&
-      //   this.opponent.pokemons[0].currentHp !== 0
-      // ) {
-      //   opponentDamage$ = this.battleQueriesService.calcDamage(
-      //     this.opponent.pokemons[0],
-      //     this.player.pokemons[0],
-      //     this.opponent.selectedMove
-      //   );
-      // } else {
-      //   opponentDamage$ = of(null);
-      // }
-      //
-      // let playerDamage$: Observable<{
-      //   damage: DamageModel;
-      //   pokemon: PokemonModel;
-      // }>;
-      // if (
-      //   this.player.selectedMove &&
-      //   this.player.pokemons[0].currentHp !== 0 &&
-      //   this.opponent.pokemons[0].currentHp !== 0
-      // ) {
-      //   playerDamage$ = this.battleQueriesService.calcDamage(
-      //     this.player.pokemons[0],
-      //     this.opponent.pokemons[0],
-      //     this.player.selectedMove
-      //   );
-      // } else {
-      //   playerDamage$ = of(null);
-      // }
-      // forkJoin({
-      //   opponentDamage: opponentDamage$,
-      //   playerDamage: playerDamage$,
-      // }).subscribe((res) => {
-      //   this.opponent.damage = undefined;
-      //   this.player.damage = undefined;
-      //   if (res.opponentDamage) {
-      //     this.player.damage = res.opponentDamage.damage;
-      //     this.player.pokemons[0] = res.opponentDamage.pokemon;
-      //   }
-      //   if (res.playerDamage) {
-      //     this.opponent.damage = res.playerDamage.damage;
-      //     this.opponent.pokemons[0] = res.playerDamage.pokemon;
-      //   }
-      //   if (this.opponent.pokemons[0].currentHp === 0) {
-      //     this.opponent.pokemonKO();
-      //   }
-      //   if (this.player.pokemons[0].currentHp === 0) {
-      //     this.player.pokemonKO();
-      //   }
-      // });
     }, ROUND_TIME_MS);
   }
-
-  // public updateAiOpponent(battleTrainer: BattleTrainer, ownAI = false): void {
-  //   if (
-  //     ((battleTrainer === this.player && !ownAI) ||
-  //       (battleTrainer !== this.player && ownAI)) &&
-  //     this.player.selectedMove
-  //   ) {
-  //     this.opponent
-  //       .update(
-  //         this.player.pokemons[0],
-  //         this.player.selectedMove,
-  //         this.opponent.pokemons
-  //       )
-  //       .subscribe();
-  //   }
-  //   if (
-  //     ((battleTrainer === this.opponent && !ownAI) ||
-  //       (battleTrainer !== this.opponent && ownAI)) &&
-  //     this.opponent.selectedMove
-  //   ) {
-  //     this.player
-  //       .update(
-  //         this.opponent.pokemons[0],
-  //         this.opponent.selectedMove,
-  //         this.player.pokemons
-  //       )
-  //       .subscribe();
-  //   }
-  // }
 
   protected simulateTurn(): void {
     this.battleQueriesService
       .simulateTurn(this.player, this.opponent)
-      .subscribe((turn) => {
-        this.player = turn.trainer1;
-        this.opponent = turn.trainer2;
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((round) => {
+        this.player = round.trainer1;
+        this.opponent = round.trainer2;
         if (this.player.defeat) {
           this.onDefeat(this.player);
         }
@@ -187,25 +101,6 @@ export class BattleComponent implements OnInit {
           this.onDefeat(this.opponent);
         }
       });
-  }
-
-  protected mapBattleTrainer(trainer: TrainerModel): BattleTrainerModel {
-    return {
-      _id: trainer._id,
-      name: trainer.name,
-      pokemons: trainer.pokemons,
-      selectedMove: undefined,
-      damage: undefined,
-      decision: undefined,
-      updateDecision: true,
-      autorizations: {
-        canChangePokemon: true,
-        pokemonCooldown: 0,
-        canChangeMove: true,
-        moveCooldown: 0,
-      },
-      defeat: false,
-    };
   }
 
   public onDefeat(trainer: BattleTrainerModel): void {
@@ -228,7 +123,7 @@ export class BattleComponent implements OnInit {
     this.changePokemon(pokemon);
   }
 
-  public changePokemon(pokemon: PokemonModel): void {
+  protected changePokemon(pokemon: PokemonModel): void {
     this.player.pokemons[
       this.player.pokemons.findIndex(
         (playerPokemon) => playerPokemon?._id === pokemon?._id

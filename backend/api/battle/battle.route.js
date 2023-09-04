@@ -25,12 +25,12 @@ router.post("/decisionMaking", (req, res, next) => {
   res.status(200).json(estimator);
 });
 
-router.post("/simulateBattleTurn", (req, res, next) => {
-  const turn = battleService.simulateBattleTurn(
+router.post("/simulateBattleRound", (req, res, next) => {
+  const round = battleService.simulateBattleRound(
     req.body.trainer1,
     req.body.trainer2
   );
-  res.status(200).json(turn);
+  res.status(200).json(round);
 });
 
 module.exports = router;

@@ -8,17 +8,17 @@ import { BattleTrainerModel } from '../../battle.model';
   styleUrls: ['./battle-trainer-pokemons.component.scss'],
 })
 export class BattleTrainerPokemonsComponent {
-  @Input() public set progress(value: number) {
-    this._progress = value;
+  @Input() public set cooldown(value: number) {
+    this._cooldown = value;
   }
 
-  public get progress(): number {
-    return this._progress;
+  public get cooldown(): number {
+    return this._cooldown;
   }
 
   @Input() public trainer: BattleTrainerModel;
   @Output() public clickOnPokemon = new EventEmitter<PokemonModel>();
-  protected _progress: number;
+  protected _cooldown: number;
 
   protected click(pokemon: PokemonModel): void {
     this.clickOnPokemon.emit(pokemon);

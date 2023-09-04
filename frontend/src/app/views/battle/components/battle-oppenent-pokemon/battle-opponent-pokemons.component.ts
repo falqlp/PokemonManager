@@ -8,24 +8,24 @@ import { BattleTrainerModel } from '../../battle.model';
   styleUrls: ['./battle-opponent-pokemons.component.scss'],
 })
 export class BattleOpponentPokemonsComponent {
-  @Input() public set pokemonProgress(value: number) {
-    this._pokemonProgress = value;
+  @Input() public set pokemonCooldown(value: number) {
+    this._pokemonCooldown = value;
   }
 
-  public get pokemonProgress(): number {
-    return this._pokemonProgress;
+  public get pokemonCooldown(): number {
+    return this._pokemonCooldown;
   }
 
-  @Input() public set moveProgress(value: number) {
-    this._moveProgress = value;
+  @Input() public set moveCooldwon(value: number) {
+    this._moveCooldwon = value;
   }
 
-  public get moveProgress(): number {
-    return this._moveProgress;
+  public get moveCooldwon(): number {
+    return this._moveCooldwon;
   }
 
   @Input() public trainer: BattleTrainerModel;
   @Input() public selectedMove: MoveModel;
-  protected _pokemonProgress: number;
-  protected _moveProgress: number;
+  protected _pokemonCooldown: number;
+  protected _moveCooldwon: number;
 }

@@ -3,6 +3,9 @@ const ROUND_TIME_MS = 500;
 
 const BattleAiService = {
   decisionMaking(opponentPokemon, selectedMove, pokemons) {
+    if (selectedMove === undefined) {
+      return this.noSelectedMoveDecision(pokemons[0], opponentPokemon);
+    }
     let decision;
     let damageBeforeKO = 0;
     pokemons.forEach((pokemon) => {
@@ -35,6 +38,19 @@ const BattleAiService = {
       }
     });
     return decision;
+  },
+
+  noSelectedMoveDecision(pokemon, oppPokemon) {
+    let maxDamage = 0;
+    let bestMove;
+    pokemon.moves.forEach((move) => {
+      const estimator = battleService.estimator(pokemon, oppPokemon, move);
+      if (estimator >= maxDamage) {
+        bestMove = move;
+        maxDamage = estimator;
+      }
+    });
+    return { pokemon, move: bestMove };
   },
 
   getDamageBeforeKO(pokemon, opponentDamage, damage, changeDamage) {

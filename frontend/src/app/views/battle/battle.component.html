@@ -3,10 +3,9 @@
   class="battle"
 >
   <div class="battle__trainer-pokemons">
-    {{ player.selectedMove?.name }}
     <app-battle-trainer-pokemons
       [trainer]="player"
-      [progress]="player.autorizations.pokemonCooldown"
+      [cooldown]="player.autorizations.pokemonCooldown"
       (clickOnPokemon)="onPokemonChange($event)"
     />
   </div>
@@ -22,14 +21,14 @@
     <app-battle-player-move
       [activePokemon]="player.pokemons[0]"
       [selectedMove]="player.selectedMove"
-      [progress]="player.autorizations.moveCooldown"
+      [cooldown]="player.autorizations.moveCooldown"
       (onMoveChange)="onMoveChange($event)"
     />
   </div>
   <div class="battle__trainer-pokemons">
     <app-battle-oppenent-pokemons
-      [pokemonProgress]="opponent.autorizations.pokemonCooldown"
-      [moveProgress]="opponent.autorizations.moveCooldown"
+      [pokemonCooldown]="opponent.autorizations.pokemonCooldown"
+      [moveCooldwon]="opponent.autorizations.moveCooldown"
       [trainer]="opponent"
       [selectedMove]="opponent.selectedMove"
     />

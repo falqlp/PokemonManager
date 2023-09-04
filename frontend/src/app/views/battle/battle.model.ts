@@ -8,10 +8,9 @@ export interface DecisionModel {
 }
 
 export interface TrainerAutorizationsModel {
-  canChangePokemon: boolean;
   pokemonCooldown: number;
-  canChangeMove: boolean;
   moveCooldown: number;
+  updateCooldown: number;
 }
 
 export interface BattleTrainerModel {
@@ -24,9 +23,10 @@ export interface BattleTrainerModel {
   updateDecision: boolean;
   autorizations: TrainerAutorizationsModel;
   defeat: boolean;
+  onKo: boolean;
 }
 
-export interface BattleTurnModel {
+export interface BattleRoundModel {
   trainer1: BattleTrainerModel;
   trainer2: BattleTrainerModel;
 }
