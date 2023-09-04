@@ -6,23 +6,30 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class TimeService {
   protected actualDate: Date;
-  protected actualDaySubject: BehaviorSubject<string>;
+  protected actualDaySubjectToString: BehaviorSubject<string>;
+  protected actualDaySubject: BehaviorSubject<Date>;
 
   public constructor() {
     const actualDate = new Date(Date.now());
     actualDate.setHours(0, 0, 0, 0);
     this.actualDate = actualDate;
-    this.actualDaySubject = new BehaviorSubject(
+    this.actualDaySubjectToString = new BehaviorSubject(
       this.dateToLocalDate(this.actualDate)
     );
+    this.actualDaySubject = new BehaviorSubject(this.actualDate);
   }
 
   public simulateDay(): void {
     this.actualDate.setDate(this.actualDate.getDate() + 1);
-    this.actualDaySubject.next(this.dateToLocalDate(this.actualDate));
+    this.actualDaySubjectToString.next(this.dateToLocalDate(this.actualDate));
+    this.actualDaySubject.next(this.actualDate);
   }
 
-  public getActualDate(): Observable<string> {
+  public getActualDateToString(): Observable<string> {
+    return this.actualDaySubjectToString.asObservable();
+  }
+
+  public getActualDate(): Observable<Date> {
     return this.actualDaySubject.asObservable();
   }
 

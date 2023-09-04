@@ -20,8 +20,9 @@ export class TopBarComponent implements OnInit {
   protected goHomeDisabled$: Observable<boolean>;
   protected title$: Observable<string>;
   protected date$: Observable<string>;
+  protected showWeekCalendar = false;
 
-  constructor(
+  public constructor(
     protected playerService: PlayerService,
     protected dialog: MatDialog,
     protected router: Router,
@@ -33,7 +34,7 @@ export class TopBarComponent implements OnInit {
     this.player$ = this.playerService.player$;
     this.goHomeDisabled$ = this.routerService.goHomeDisabled();
     this.title$ = this.routerService.getTitle();
-    this.date$ = this.timeService.getActualDate();
+    this.date$ = this.timeService.getActualDateToString();
   }
 
   protected openInfo(pokemon: PokemonModel): void {
@@ -46,5 +47,9 @@ export class TopBarComponent implements OnInit {
 
   protected simulate(): void {
     this.timeService.simulateDay();
+  }
+
+  protected showCalendar(): void {
+    this.showWeekCalendar = !this.showWeekCalendar;
   }
 }

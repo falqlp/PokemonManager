@@ -1,0 +1,11 @@
+<div class="top-bar-week-calendar">
+  <div
+    class="top-bar-week-calendar__day"
+    *ngFor="let day of data$ | async"
+    [ngClass]="{
+      'top-bar-week-calendar__day--actual': day.split('-')[0] === actualDate
+    }"
+  >
+    {{ day.split("-")[0] }}
+  </div>
+</div>

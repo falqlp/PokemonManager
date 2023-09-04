@@ -13,16 +13,23 @@
         *ngFor="let pokemon of player.pokemons"
         class="clickable-icon"
         [pokemon]="pokemon"
-        [type]="'icon'"
+        type="icon"
         (click)="openInfo(pokemon)"
       />
     </div>
   </div>
   {{ title$ | async | translate }}
   <div class="top-bar__right-content">
-    <span> {{ date$ | async }}</span>
-    <button mat-flat-button (click)="simulate()">
+    <button mat-flat-button (click)="showCalendar()">
+      {{ date$ | async }} <mat-icon>calendar_today</mat-icon>
+    </button>
+    <button mat-flat-button color="accent" (click)="simulate()">
       {{ "CONTINUE" | translate }}
+      <mat-icon>arrow_forward</mat-icon>
     </button>
   </div>
+  <app-top-bar-week-calendar
+    *ngIf="showWeekCalendar"
+    (click)="showCalendar()"
+  ></app-top-bar-week-calendar>
 </div>

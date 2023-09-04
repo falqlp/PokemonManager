@@ -1,0 +1,35 @@
+@import "src/styles/flexbox";
+
+:host {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 2;
+  height: calc(100vh - 50px);
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  .top-bar-week-calendar {
+    @include flexbox(flex-start, 1);
+    align-items: normal;
+    gap: 10px;
+    height: 100px;
+    overflow: hidden;
+    &__day {
+      @include flexbox(flex-start, 2);
+      flex: 1;
+      word-break: break-word;
+      animation: translate 0.5s ease;
+      &--actual {
+        background-color: grey;
+      }
+    }
+  }
+}
+@keyframes translate {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

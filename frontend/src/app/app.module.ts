@@ -37,6 +37,7 @@ import { DisplayPokemonImageComponent } from './components/display-pokemon-image
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { PokemonStatsComponent } from './components/pokemon-stats/pokemon-stats.component';
 import { NumberCooldownComponent } from './components/number-cooldown/number-cooldown.component';
+import { TopBarWeekCalendarComponent } from './components/top-bar-week-calendar/top-bar-week-calendar.component';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -91,6 +92,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ProgressBarComponent,
     PokemonStatsComponent,
     NumberCooldownComponent,
+    TopBarWeekCalendarComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
