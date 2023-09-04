@@ -7,10 +7,10 @@ import { CompleteQuery } from '../../core/complete-query';
 @Injectable({
   providedIn: 'root',
 })
-export class BattleQueriesService extends CompleteQuery<BattleModel> {
-  public static readonly url = 'api/battle';
+export class BattleInstanceQueriesService extends CompleteQuery<BattleModel> {
+  public static readonly url = 'api/battleInstance';
   public constructor(protected override http: HttpClient) {
-    super(BattleQueriesService.url, http);
+    super(BattleInstanceQueriesService.url, http);
   }
 
   public setWinner(

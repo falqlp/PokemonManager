@@ -15,14 +15,8 @@
 
   .battle-trainer-pokemons {
     position: relative;
-    @include flexbox(flex-start, 2);
-
-    &__pokemon {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      width: 100%;
-    }
+    @include flexbox(flex-start, 2, column);
+    gap: 5px;
 
     &__pokemon-box {
       border-radius: 4px;

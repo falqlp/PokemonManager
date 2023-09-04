@@ -9,7 +9,8 @@ const loginRoutes = require("./routes/login");
 const moveRoute = require("./api/move/move.route");
 const migrationService = require("./migration.service");
 const i18nService = require("./i18n.service");
-const battleRoute = require("./api/battle/battle.route");
+const battleInstanceRoutes = require("./api/battle-instance/battle-instance.route");
+const battleRoutes = require("./api/battle/battle.route");
 const moveLearningRoutes = require("./api/moveLearning/moveLearning.routes");
 const pcStorageRoutes = require("./api/pcStorage/pcStorage.route");
 
@@ -51,7 +52,8 @@ app.use("/api/pokemon", pokemonRoutes);
 app.use("/api/trainer", trainerRoutes);
 app.use("/api/login", loginRoutes);
 app.use("/api/move", moveRoute);
-app.use("/api/battle", battleRoute);
+app.use("/api/battleInstance", battleInstanceRoutes);
+app.use("/api/battle", battleRoutes);
 app.use("/api/moveLearning", moveLearningRoutes);
 app.use("/api/pcStorage", pcStorageRoutes);
 

@@ -3,27 +3,25 @@
 </div>
 <div class="move">{{ selectedMove?.name | translate }}</div>
 <div class="battle-trainer-pokemons">
-  <div class="battle-trainer-pokemons__pokemon">
-    <div
-      *ngFor="let pokemon of trainer.pokemons.slice(1)"
-      class="battle-trainer-pokemons__pokemon-box"
-      [ngClass]="{ ko: pokemon.currentHp === 0 }"
-    >
-      <div class="battle-trainer-pokemons__pokemon-box__info">
-        <app-circular-hp-pokemon [pokemon]="pokemon" />
-        <span>{{
-          pokemon.nickname
-            ? pokemon.nickname
-            : (pokemon.basePokemon.name | translate)
-        }}</span>
-        <span>{{ "LVL" | translate }}: {{ pokemon.level }}</span>
-        <span
-          *ngIf="pokemon.currentHp === 0"
-          class="battle-trainer-pokemons__pokemon-box__info--ko"
-          >KO</span
-        >
-      </div>
+  <div
+    *ngFor="let pokemon of trainer.pokemons.slice(1)"
+    class="battle-trainer-pokemons__pokemon-box"
+    [ngClass]="{ ko: pokemon.currentHp === 0 }"
+  >
+    <div class="battle-trainer-pokemons__pokemon-box__info">
+      <app-circular-hp-pokemon [pokemon]="pokemon" />
+      <span>{{
+        pokemon.nickname
+          ? pokemon.nickname
+          : (pokemon.basePokemon.name | translate)
+      }}</span>
+      <span>{{ "LVL" | translate }}: {{ pokemon.level }}</span>
+      <span
+        *ngIf="pokemon.currentHp === 0"
+        class="battle-trainer-pokemons__pokemon-box__info--ko"
+        >KO</span
+      >
     </div>
   </div>
-  <div class="cooldown-horizontal" [style.width.%]="pokemonProgress"></div>
+  <app-number-cooldown [cooldown]="pokemonCooldown"></app-number-cooldown>
 </div>
