@@ -17,13 +17,8 @@ import pcStorageRoutes from "./api/pcStorage/pcStorage.route";
 
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
-const mongooseOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
-
 mongoose
-  .connect(mongoURI, mongooseOptions as any)
+  .connect(mongoURI)
   .then(() => {
     console.log("Connected to MongoDB");
   })
