@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-interface IPokemonStats extends Document {
+export interface IPokemonStats extends Document {
   hp: number;
   atk: number;
   def: number;

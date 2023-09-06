@@ -1,17 +1,20 @@
 import mongoose, { Document, Schema } from "mongoose";
-import PokemonStats from "../../models/PokemonModels/pokemonStats";
+import PokemonStats, {
+  IPokemonStats,
+} from "../../models/PokemonModels/pokemonStats";
+import { IPokemonBase } from "../pokemonBase/pokemonBase";
 
-interface IPokemon extends Document {
+export interface IPokemon extends Document {
   trainerId?: string;
   nickname?: string;
-  basePokemon: mongoose.Types.ObjectId;
+  basePokemon: IPokemonBase;
   level: number;
   exp: number;
   expMax: number;
   moves: mongoose.Types.ObjectId[];
-  stats: typeof PokemonStats.schema;
-  ev: typeof PokemonStats.schema;
-  iv: typeof PokemonStats.schema;
+  stats: IPokemonStats;
+  ev: IPokemonStats;
+  iv: IPokemonStats;
 }
 
 const pokemonSchema = new Schema<IPokemon>({

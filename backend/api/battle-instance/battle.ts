@@ -1,12 +1,13 @@
 import mongoose, { Document, Schema } from "mongoose";
+import { ITrainer } from "../trainer/trainer";
 
-interface IBattle extends Document {
-  player: Schema.Types.ObjectId;
-  opponent: Schema.Types.ObjectId;
+export interface IBattleInstance extends Document {
+  player: ITrainer;
+  opponent: ITrainer;
   winner?: string;
 }
 
-const battleSchema = new Schema<IBattle>({
+const battleSchema = new Schema<IBattleInstance>({
   player: {
     type: Schema.Types.ObjectId,
     ref: "Trainer",
@@ -22,5 +23,5 @@ const battleSchema = new Schema<IBattle>({
   },
 });
 
-const Battle = mongoose.model<IBattle>("Battle", battleSchema);
+const Battle = mongoose.model<IBattleInstance>("Battle", battleSchema);
 export default Battle;

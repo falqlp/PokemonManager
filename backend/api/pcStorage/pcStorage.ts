@@ -1,11 +1,12 @@
 import mongoose, { Document, Schema } from "mongoose";
+import { IPokemon } from "../pokemon/pokemon";
 
-interface IPcStorageStorage {
-  pokemon: mongoose.Types.ObjectId;
+export interface IPcStorageStorage {
+  pokemon: IPokemon;
   position: number;
 }
 
-interface IPcStorage extends Document {
+export interface IPcStorage extends Document {
   maxSize: number;
   storage: IPcStorageStorage[];
 }
