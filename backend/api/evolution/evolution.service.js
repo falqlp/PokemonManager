@@ -1,4 +1,4 @@
-const Evolution = require("./evolution");
+import Evolution from "./evolution";
 
 const evolutionService = {
   hasEvolution: async function (id) {

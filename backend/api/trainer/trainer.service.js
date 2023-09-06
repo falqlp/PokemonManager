@@ -1,4 +1,5 @@
-const Trainer = require("./trainer");
+import Trainer from "./trainer";
+
 const trainerMapper = require("./trainer.mapper");
 const CompleteService = require("../CompleteService");
 

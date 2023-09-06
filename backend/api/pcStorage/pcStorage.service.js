@@ -1,4 +1,5 @@
-const PcStorage = require("./pcStorage");
+import PcStorage from "./pcStorage";
+
 const pcStorageMapper = require("./pcStorage.mapper");
 const CompleteService = require("../CompleteService");
 

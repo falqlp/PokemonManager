@@ -1,4 +1,5 @@
-const PokemonBase = require("./pokemonBase");
+import PokemonBase from "./pokemonBase";
+
 const pokemonBaseMapper = require("./pokemonBase.mapper");
 const ReadOnlyService = require("../ReadOnlyService");
 

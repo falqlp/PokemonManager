@@ -1,4 +1,4 @@
-const moveService = require("../move/move.service");
+import moveService from "../move/move.service";
 const pokemonBaseService = require("../pokemonBase/pokemonBase.service");
 
 const PokemonMapper = {

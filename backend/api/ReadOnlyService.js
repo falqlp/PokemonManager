@@ -19,7 +19,7 @@ class ReadOnlyService {
       if (body.ids) {
         query._id = { $in: body.ids };
       }
-
+      console.log(this.schema);
       const dtos = await this.schema
         .find(query)
         .limit(body.limit)

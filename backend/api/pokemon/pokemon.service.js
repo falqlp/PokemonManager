@@ -1,4 +1,5 @@
-const Pokemon = require("./pokemon");
+import Pokemon from "./pokemon";
+
 const Trainer = require("../trainer/trainer");
 const pokemonMapper = require("./pokemon.mapper");
 const CompleteService = require("../CompleteService");

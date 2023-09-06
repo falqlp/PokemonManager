@@ -1,4 +1,5 @@
-const MoveLearning = require("./moveLearning");
+import MoveLearning from "./moveLearning";
+
 const moveService = require("../move/move.service");
 const evolutionService = require("../evolution/evolution.service");
 

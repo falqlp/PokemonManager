@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { HttpClient } from '@angular/common/http';
-import { MoveModel } from '../../models/move.model';
 import { TranslateService } from '@ngx-translate/core';
 import { MoveLearningService } from '../../services/queries/move-learning.service';
 
@@ -35,6 +34,7 @@ export class HomeComponent implements OnInit {
     protected pokemonService: PokemonQueriesService,
     protected battleQueries: BattleInstanceQueriesService,
     protected trainerService: TrainerQueriesService,
+    protected http: HttpClient,
     protected translateService: TranslateService
   ) {}
 
@@ -95,7 +95,8 @@ export class HomeComponent implements OnInit {
   }
 
   protected testRoute(): void {
-    this.pokemonService.get('64e7cf7de9cf81a76d72a237').subscribe();
+    this.http.get('/api/test').subscribe();
+    // this.pokemonService.get('64e7cf7de9cf81a76d72a237').subscribe();
   }
 
   protected goToTrainers(): void {

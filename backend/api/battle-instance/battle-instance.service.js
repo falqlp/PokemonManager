@@ -1,4 +1,5 @@
-const Battle = require("./battle");
+import Battle from "./battle";
+
 const battleMapper = require("./battle-instance.mapper");
 const CompleteService = require("../CompleteService");
 
