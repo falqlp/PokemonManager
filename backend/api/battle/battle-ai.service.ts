@@ -1,8 +1,14 @@
-const battleService = require("./battle-calc.service");
+import battleService from "./battle-calc.service";
+import { IPokemon } from "../pokemon/pokemon";
+import { IMove } from "../move/move";
 const ROUND_TIME_MS = 500;
 
 const BattleAiService = {
-  decisionMaking(opponentPokemon, selectedMove, pokemons) {
+  decisionMaking(
+    opponentPokemon: IPokemon,
+    selectedMove: IMove,
+    pokemons: IPokemon[]
+  ) {
     if (selectedMove === undefined) {
       return this.noSelectedMoveDecision(pokemons[0], opponentPokemon);
     }
@@ -40,7 +46,7 @@ const BattleAiService = {
     return decision;
   },
 
-  noSelectedMoveDecision(pokemon, oppPokemon) {
+  noSelectedMoveDecision(pokemon: IPokemon, oppPokemon: IPokemon) {
     let maxDamage = 0;
     let bestMove;
     pokemon.moves.forEach((move) => {
@@ -53,12 +59,17 @@ const BattleAiService = {
     return { pokemon, move: bestMove };
   },
 
-  getDamageBeforeKO(pokemon, opponentDamage, damage, changeDamage) {
+  getDamageBeforeKO(
+    pokemon: IPokemon,
+    opponentDamage: number,
+    damage: number,
+    changeDamage: number
+  ) {
     return Math.abs(
       Math.ceil((pokemon.currentHp - changeDamage) / opponentDamage) * damage
     );
   },
-  getChangeDamage(pokemons, pokemon, edp) {
+  getChangeDamage(pokemons: IPokemon[], pokemon: IPokemon, edp: number) {
     if (pokemon._id === pokemons[0]._id) {
       return 0;
     }
@@ -67,4 +78,4 @@ const BattleAiService = {
     );
   },
 };
-module.exports = BattleAiService;
+export default BattleAiService;

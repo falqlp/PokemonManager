@@ -1,30 +1,30 @@
-const ReadOnlyRouter = require("./ReadOnlyRouter");
+import ReadOnlyRouter from "./ReadOnlyRouter";
+import { Document } from "mongoose";
+import CompleteService from "./CompleteService";
 
-class CompleteRouter {
-  constructor(service) {
-    this.router = require("express").Router();
-    const readOnlyRouter = new ReadOnlyRouter(service);
-    this.router.use("/", readOnlyRouter.router);
-    this.initRouter(service);
+class CompleteRouter<T extends Document> extends ReadOnlyRouter<T> {
+  constructor(protected service: CompleteService<T>) {
+    super(service);
+    this.initCompleteRouter();
   }
 
-  initRouter(service) {
+  public initCompleteRouter() {
     this.router.post("/", (req, res, next) => {
-      service
+      this.service
         .create(req.body)
         .then((obj) => res.status(200).json(obj))
         .catch((error) => console.log(error));
     });
 
     this.router.put("/:id", (req, res, next) => {
-      service
+      this.service
         .update(req.params.id, req.body)
         .then((obj) => res.status(200).json(obj))
         .catch((error) => console.log(error));
     });
 
     this.router.delete("/:id", (req, res, next) => {
-      service
+      this.service
         .delete(req.params.id)
         .then()
         .catch((error) => console.log(error));
@@ -32,4 +32,4 @@ class CompleteRouter {
   }
 }
 
-module.exports = CompleteRouter;
+export default CompleteRouter;

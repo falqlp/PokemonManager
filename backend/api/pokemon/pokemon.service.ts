@@ -3,11 +3,21 @@ import pokemonMapper from "./pokemon.mapper";
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import Trainer from "../trainer/trainer";
 import CompleteService from "../CompleteService";
+import TrainerMapper from "../trainer/trainer.mapper";
+import PokemonMapper from "./pokemon.mapper";
 
-const PokemonService = {
-  ...new CompleteService(Pokemon, pokemonMapper),
-
-  createPokemon: function (pokemon: IPokemon): IPokemon {
+class PokemonService extends CompleteService<IPokemon> {
+  private static instance: PokemonService;
+  public static getInstance(): PokemonService {
+    if (!PokemonService.instance) {
+      PokemonService.instance = new PokemonService(
+        Pokemon,
+        PokemonMapper.getInstance()
+      );
+    }
+    return PokemonService.instance;
+  }
+  public createPokemon(pokemon: IPokemon): IPokemon {
     if (pokemon.exp === undefined) {
       pokemon.exp = 0;
     }
@@ -22,9 +32,9 @@ const PokemonService = {
     }
     pokemon.stats = this.updateStats(pokemon);
     return pokemon;
-  },
+  }
 
-  generateIvs: function (): IPokemonStats {
+  public generateIvs(): IPokemonStats {
     return {
       hp: Math.floor(Math.random() * 32),
       atk: Math.floor(Math.random() * 32),
@@ -33,9 +43,9 @@ const PokemonService = {
       spDef: Math.floor(Math.random() * 32),
       spe: Math.floor(Math.random() * 32),
     } as IPokemonStats;
-  },
+  }
 
-  initEvs: function (): IPokemonStats {
+  public initEvs(): IPokemonStats {
     return {
       hp: 0,
       atk: 0,
@@ -44,9 +54,9 @@ const PokemonService = {
       spDef: 0,
       spe: 0,
     } as IPokemonStats;
-  },
+  }
 
-  updateStats: function (pokemon: IPokemon): IPokemonStats {
+  public updateStats(pokemon: IPokemon): IPokemonStats {
     return {
       hp: this.calcHp(
         pokemon.basePokemon.baseStats.hp,
@@ -85,17 +95,17 @@ const PokemonService = {
         pokemon.ev.spe
       ),
     } as IPokemonStats;
-  },
+  }
 
-  calcStat: function (bs: number, niv: number, iv: number, ev: number): number {
+  public calcStat(bs: number, niv: number, iv: number, ev: number): number {
     return (
       Math.floor(
         ((2 * bs + (ev === 0 ? 0 : Math.floor(ev / 4)) + iv) * niv) / 100
       ) + 5
     );
-  },
+  }
 
-  calcHp: function (bs: number, niv: number, iv: number, ev: number): number {
+  public calcHp(bs: number, niv: number, iv: number, ev: number): number {
     return (
       Math.floor(
         ((2 * bs + (ev === 0 ? 0 : Math.floor(ev / 4)) + iv) * niv) / 100
@@ -103,9 +113,9 @@ const PokemonService = {
       niv +
       10
     );
-  },
+  }
 
-  create: async function (pokemon: IPokemon): Promise<any> {
+  public create(pokemon: IPokemon): Promise<any> {
     const newPokemon = new Pokemon({
       ...this.mapper.update(this.createPokemon(pokemon)),
     });
@@ -118,7 +128,7 @@ const PokemonService = {
         .catch((error: Error) => console.log(error));
     }
     return newPokemon.save();
-  },
-};
+  }
+}
 
 export default PokemonService;

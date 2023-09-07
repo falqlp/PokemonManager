@@ -1,18 +1,33 @@
-import trainerService from "../trainer/trainer.service";
-import { IBattleInstance } from "./battle";
+import Battle, { IBattleInstance } from "./battle";
+import { IMapper } from "../IMapper";
+import TrainerService from "../trainer/trainer.service";
 
-const BattleInstanceMapper = {
-  map: async function (battle: IBattleInstance): Promise<IBattleInstance> {
-    battle.player = await trainerService.get(battle.player);
-    battle.opponent = await trainerService.get(battle.opponent);
-    return battle;
-  },
+class BattleInstanceMapper implements IMapper<IBattleInstance> {
+  private static instance: BattleInstanceMapper;
+  constructor(protected trainerService: TrainerService) {}
+  async map(entity: IBattleInstance): Promise<IBattleInstance> {
+    entity.player = await this.trainerService.get(
+      entity.player as unknown as string
+    );
+    entity.opponent = await this.trainerService.get(
+      entity.opponent as unknown as string
+    );
+    return entity;
+  }
 
-  update: function (battle: IBattleInstance): IBattleInstance {
-    battle.player = battle.player._id;
-    battle.opponent = battle.opponent._id;
-    return battle;
-  },
-};
+  update(entity: IBattleInstance): IBattleInstance {
+    entity.player = entity.player._id;
+    entity.opponent = entity.opponent._id;
+    return entity;
+  }
+  public static getInstance(): BattleInstanceMapper {
+    if (!BattleInstanceMapper.instance) {
+      BattleInstanceMapper.instance = new BattleInstanceMapper(
+        TrainerService.getInstance()
+      );
+    }
+    return BattleInstanceMapper.instance;
+  }
+}
 
 export default BattleInstanceMapper;

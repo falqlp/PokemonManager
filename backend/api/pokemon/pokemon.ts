@@ -3,15 +3,17 @@ import PokemonStats, {
   IPokemonStats,
 } from "../../models/PokemonModels/pokemonStats";
 import { IPokemonBase } from "../pokemonBase/pokemonBase";
+import { IMove } from "../move/move";
 
 export interface IPokemon extends Document {
   trainerId?: string;
   nickname?: string;
+  currentHp?: number;
   basePokemon: IPokemonBase;
   level: number;
   exp: number;
   expMax: number;
-  moves: mongoose.Types.ObjectId[];
+  moves: IMove[];
   stats: IPokemonStats;
   ev: IPokemonStats;
   iv: IPokemonStats;

@@ -1,9 +1,9 @@
 import express from "express";
-import trainerService from "./trainer.service";
 import CompleteRouter from "../CompleteRouter";
+import TrainerService from "./trainer.service";
 
 const router = express.Router();
-const completeRouter = new CompleteRouter(trainerService);
+const completeRouter = new CompleteRouter(TrainerService.getInstance());
 
 router.use("/", completeRouter.router);
 

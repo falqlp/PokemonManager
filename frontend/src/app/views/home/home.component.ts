@@ -95,7 +95,8 @@ export class HomeComponent implements OnInit {
   }
 
   protected testRoute(): void {
-    this.http.get('/api/test').subscribe();
+    // this.battleQueries.get('64e7cf82e9cf81a76d72a23d').subscribe();
+    // this.battleQueries.delete('64e7cf82e9cf81a76d72a23d').subscribe();
     // this.pokemonService.get('64e7cf7de9cf81a76d72a237').subscribe();
   }
 
