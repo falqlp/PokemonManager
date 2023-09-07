@@ -1,0 +1,35 @@
+import ReadOnlyRouter from "./ReadOnlyRouter";
+import { Document } from "mongoose";
+import CompleteService from "./CompleteService";
+
+class CompleteRouter<T extends Document> extends ReadOnlyRouter<T> {
+  constructor(protected service: CompleteService<T>) {
+    super(service);
+    this.initCompleteRouter();
+  }
+
+  public initCompleteRouter() {
+    this.router.post("/", (req, res, next) => {
+      this.service
+        .create(req.body)
+        .then((obj) => res.status(200).json(obj))
+        .catch((error) => console.log(error));
+    });
+
+    this.router.put("/:id", (req, res, next) => {
+      this.service
+        .update(req.params.id, req.body)
+        .then((obj) => res.status(200).json(obj))
+        .catch((error) => console.log(error));
+    });
+
+    this.router.delete("/:id", (req, res, next) => {
+      this.service
+        .delete(req.params.id)
+        .then()
+        .catch((error) => console.log(error));
+    });
+  }
+}
+
+export default CompleteRouter;
