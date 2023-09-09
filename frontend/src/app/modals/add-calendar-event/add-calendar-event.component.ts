@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import {
   FormControl,
@@ -13,12 +13,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { NgForOf } from '@angular/common';
+import { AsyncPipe, NgForOf } from '@angular/common';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { CustomValidatorService } from '../../services/custom-validator.service';
 import { MatButtonModule } from '@angular/material/button';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
+import { Observable, tap } from 'rxjs';
+import { TimeService } from '../../services/time.service';
 
 @Component({
   selector: 'pm-add-calendar-event',
@@ -35,6 +37,7 @@ import { CalendarEventQueriesService } from '../../services/queries/calendar-eve
     NgForOf,
     ReactiveFormsModule,
     MatButtonModule,
+    AsyncPipe,
   ],
   templateUrl: './add-calendar-event.component.html',
   styleUrls: ['./add-calendar-event.component.scss'],
@@ -48,9 +51,14 @@ export class AddCalendarEventComponent implements OnInit {
     ]),
   });
 
+  protected currentDate$: Observable<Date>;
+  protected maxDate: Date;
+
   public constructor(
     protected trainerQueriesService: TrainerQueriesService,
     protected customValidatorService: CustomValidatorService,
+    protected timeService: TimeService,
+    protected dialogRef: MatDialogRef<AddCalendarEventComponent>,
     protected calendarEventQueriesService: CalendarEventQueriesService
   ) {}
 
@@ -58,14 +66,27 @@ export class AddCalendarEventComponent implements OnInit {
     this.trainerQueriesService.list().subscribe((trainers) => {
       this.trainers = trainers;
     });
+    this.currentDate$ = this.timeService.getActualDate().pipe(
+      tap((actualDate) => {
+        const currentYear = actualDate.getFullYear();
+        this.maxDate = new Date(currentYear, 11, 31);
+      })
+    );
   }
 
   protected submit(): void {
+    console.log(1);
     this.calendarEventQueriesService
       .createBattleEvent(
         this.calendarEventForm.controls.date.value,
         this.calendarEventForm.controls.trainers.value
       )
-      .subscribe(console.log);
+      .subscribe(() => {
+        this.dialogRef.close();
+      });
+  }
+
+  protected cancel(): void {
+    this.dialogRef.close();
   }
 }

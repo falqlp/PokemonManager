@@ -1,4 +1,5 @@
 @import "src/styles/flexbox";
+@import "src/styles/colors";
 
 :host {
   position: absolute;
@@ -12,7 +13,7 @@
     @include flexbox(flex-start, 1);
     align-items: normal;
     gap: 10px;
-    height: 100px;
+    max-height: 50vh;
     overflow: hidden;
     &__day {
       @include flexbox(flex-start, 2, column);
@@ -21,15 +22,28 @@
       word-break: break-word;
       animation: translateX 0.3s ease;
       overflow: hidden;
+      padding: 10px 0;
       &__date {
         text-align: center;
         width: 100%;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
+        font-weight: bold;
+        margin-bottom: 10px;
       }
       &--actual {
-        background-color: grey;
+        background-color: #9e9e9e;
+      }
+
+      &__event {
+        width: -webkit-fill-available;
+        text-align: center;
+        background-color: #9100ff;
+        padding: 5px;
+        &--passed {
+          background-color: #553d67;
+        }
       }
     }
   }
@@ -49,4 +63,12 @@
   100% {
     transform: translateX(0);
   }
+}
+.W_WIN {
+  color: $green-good-color;
+  font-weight: bold;
+}
+.L_LOOSE {
+  color: $red-bad-color;
+  font-weight: bold;
 }

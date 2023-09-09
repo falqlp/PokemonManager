@@ -3,9 +3,11 @@
 :host {
   margin: 0 10px;
   .progress-bar {
+    border-radius: 3px;
     height: 5px;
     background-color: $progress-bar-background-color;
     &--progress {
+      border-radius: 3px;
       height: 100%;
       background-color: $lvl-progress-bar-color;
       transition: width 0.5s linear, background-color 0.5s linear;

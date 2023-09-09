@@ -5,6 +5,8 @@
       <mat-label>{{ "CHOOSE_DATE" | translate }}</mat-label>
       <input
         matInput
+        [min]="currentDate$ | async"
+        [max]="maxDate"
         [formControl]="calendarEventForm.controls.date"
         [matDatepicker]="picker"
       />
@@ -31,7 +33,9 @@
     </mat-form-field>
   </div>
   <div mat-dialog-actions>
-    <button mat-flat-button>{{ "CANCEL" | translate }}</button>
+    <button mat-flat-button type="button" (click)="cancel()">
+      {{ "CANCEL" | translate }}
+    </button>
     <button
       mat-flat-button
       type="submit"

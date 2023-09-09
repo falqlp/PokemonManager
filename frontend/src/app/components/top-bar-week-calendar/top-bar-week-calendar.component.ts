@@ -6,13 +6,15 @@ import { AsyncPipe, NgClass, NgForOf } from '@angular/common';
 import { CalendarEventModel } from '../../models/calendar-event.model';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
+import { BattleModel } from '../../models/Battle.model';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
   selector: 'app-top-bar-week-calendar',
   templateUrl: './top-bar-week-calendar.component.html',
   styleUrls: ['./top-bar-week-calendar.component.scss'],
-  imports: [NgForOf, AsyncPipe, NgClass],
+  imports: [NgForOf, AsyncPipe, NgClass, TranslateModule],
 })
 export class TopBarWeekCalendarComponent implements OnInit {
   @Input() public player: TrainerModel;
@@ -55,5 +57,18 @@ export class TopBarWeekCalendarComponent implements OnInit {
         return week;
       })
     );
+  }
+
+  protected getBattleStatus(battle: BattleModel): string {
+    if (!battle.winner) {
+      return '';
+    }
+    if (
+      (battle.winner === 'player' && battle.player._id === this.player._id) ||
+      (battle.winner === 'opponent' && battle.opponent._id === this.player._id)
+    ) {
+      return 'W_WIN';
+    }
+    return 'L_LOOSE';
   }
 }

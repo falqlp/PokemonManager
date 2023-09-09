@@ -11,8 +11,19 @@
         day.split("-")[0].charAt(0).toUpperCase() + day.split("-")[0].slice(1)
       }}</label
     >
-    <div *ngFor="let event of events[i]">
-      {{ event?.event.player.name }} VS {{ event?.event.opponent.name }}
+    <div
+      *ngFor="let event of events[i]"
+      class="top-bar-week-calendar__day__event"
+      [ngClass]="{ 'top-bar-week-calendar__day__event--passed': i === 0 }"
+    >
+      <span>{{
+        event?.event.opponent.name !== player.name
+          ? event?.event.opponent.name
+          : event?.event.player.name
+      }}</span>
+      <span [ngClass]="getBattleStatus(event.event)">
+        {{ getBattleStatus(event.event) | translate }}</span
+      >
     </div>
   </div>
 </div>
