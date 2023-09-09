@@ -38,6 +38,7 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 import { PokemonStatsComponent } from './components/pokemon-stats/pokemon-stats.component';
 import { NumberCooldownComponent } from './components/number-cooldown/number-cooldown.component';
 import { TopBarWeekCalendarComponent } from './components/top-bar-week-calendar/top-bar-week-calendar.component';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -88,6 +89,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     }),
     MatSelectModule,
     MatIconModule,
+    MatNativeDateModule,
     DisplayPokemonImageComponent,
     ProgressBarComponent,
     PokemonStatsComponent,
@@ -95,7 +97,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     TopBarWeekCalendarComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [AppComponent],
   exports: [],
 })

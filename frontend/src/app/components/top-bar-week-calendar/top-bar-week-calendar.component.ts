@@ -1,8 +1,11 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, Input, OnInit } from '@angular/core';
 import { TimeService } from '../../services/time.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { map, Observable } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import { AsyncPipe, NgClass, NgForOf } from '@angular/common';
+import { CalendarEventModel } from '../../models/calendar-event.model';
+import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
+import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 
 @Component({
   standalone: true,
@@ -12,26 +15,39 @@ import { AsyncPipe, NgClass, NgForOf } from '@angular/common';
   imports: [NgForOf, AsyncPipe, NgClass],
 })
 export class TopBarWeekCalendarComponent implements OnInit {
+  @Input() public player: TrainerModel;
   protected data$: Observable<string[]>;
+  protected events: CalendarEventModel[][];
   protected version = 0;
   protected actualDate: string;
 
   public constructor(
     protected timeService: TimeService,
+    protected calendarEventQueriesService: CalendarEventQueriesService,
     protected destroyRef: DestroyRef
   ) {}
 
   public ngOnInit(): void {
     this.data$ = this.timeService.getActualDate().pipe(
       takeUntilDestroyed(this.destroyRef),
+      switchMap((actualDate) => {
+        return this.calendarEventQueriesService
+          .getWeekCalendar(this.player._id, actualDate)
+          .pipe(
+            map((res) => {
+              this.events = res;
+              return actualDate;
+            })
+          );
+      }),
       map((actualDate) => {
-        this.actualDate = this.timeService.dateToLocalDate(actualDate);
+        this.actualDate = this.timeService.dateToSimplifyLocalDate(actualDate);
         this.version += 1;
         const week: string[] = [];
         const newDate = new Date(actualDate);
         newDate.setDate(newDate.getDate() - 1);
         for (let i = 0; i < 7; i++) {
-          week[i] = `${this.timeService.dateToLocalDate(newDate)}-${
+          week[i] = `${this.timeService.dateToSimplifyLocalDate(newDate)}-${
             this.version
           }`;
           newDate.setDate(newDate.getDate() + 1);

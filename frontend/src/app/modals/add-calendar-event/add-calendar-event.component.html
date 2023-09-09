@@ -1,0 +1,44 @@
+<form [formGroup]="calendarEventForm" (submit)="submit()">
+  <h2 mat-dialog-title>{{ "CREATE_CALENDAR_EVENT" | translate }}</h2>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>{{ "CHOOSE_DATE" | translate }}</mat-label>
+      <input
+        matInput
+        [formControl]="calendarEventForm.controls.date"
+        [matDatepicker]="picker"
+      />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>trainers</mat-label>
+      <mat-select [formControl]="calendarEventForm.controls.trainers" multiple>
+        <mat-option
+          *ngFor="let trainer of trainers"
+          [value]="trainer"
+          [disabled]="
+            calendarEventForm.controls.trainers.value?.length > 1 &&
+            !calendarEventForm.controls.trainers.value?.includes(trainer)
+          "
+        >
+          {{ trainer.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-flat-button>{{ "CANCEL" | translate }}</button>
+    <button
+      mat-flat-button
+      type="submit"
+      color="accent"
+      [disabled]="calendarEventForm.invalid"
+    >
+      {{ "SUBMIT" | translate }}
+    </button>
+  </div>
+</form>

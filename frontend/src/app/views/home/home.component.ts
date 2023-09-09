@@ -1,7 +1,6 @@
 import type { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { tap } from 'rxjs';
 import { PokemonFormComponent } from 'src/app/modals/pokemon-form/pokemon-form.component';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import type { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
@@ -14,6 +13,9 @@ import { TrainerQueriesService } from '../../services/queries/trainer-queries.se
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { MoveLearningService } from '../../services/queries/move-learning.service';
+import { AddCalendarEventComponent } from '../../modals/add-calendar-event/add-calendar-event.component';
+import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
+import { TimeService } from '../../services/time.service';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +27,7 @@ export class HomeComponent implements OnInit {
   protected player: TrainerModel;
   protected opponent: TrainerModel;
   protected progress = 50;
+  protected actualDate: Date;
 
   constructor(
     protected moveLearningService: MoveLearningService,
@@ -34,6 +37,8 @@ export class HomeComponent implements OnInit {
     protected pokemonService: PokemonQueriesService,
     protected battleQueries: BattleInstanceQueriesService,
     protected trainerService: TrainerQueriesService,
+    protected calendarEventQueriesService: CalendarEventQueriesService,
+    protected timeService: TimeService,
     protected http: HttpClient,
     protected translateService: TranslateService
   ) {}
@@ -44,6 +49,9 @@ export class HomeComponent implements OnInit {
     });
     this.trainerService.get('6496f985f15bc10f660c1958').subscribe((trainer) => {
       this.opponent = trainer;
+    });
+    this.timeService.getActualDate().subscribe((date) => {
+      this.actualDate = date;
     });
   }
 
@@ -95,6 +103,9 @@ export class HomeComponent implements OnInit {
   }
 
   protected testRoute(): void {
+    this.calendarEventQueriesService
+      .getWeekCalendar('649e0e86e45d3dab76652543', this.actualDate)
+      .subscribe();
     // this.battleQueries.get('64e7cf82e9cf81a76d72a23d').subscribe();
     // this.battleQueries.delete('64e7cf82e9cf81a76d72a23d').subscribe();
     // this.pokemonService.get('64e7cf7de9cf81a76d72a237').subscribe();
@@ -102,5 +113,9 @@ export class HomeComponent implements OnInit {
 
   protected goToTrainers(): void {
     this.router.navigate(['trainers']);
+  }
+
+  protected goToCreateCalendarEvent(): void {
+    this.dialog.open(AddCalendarEventComponent);
   }
 }

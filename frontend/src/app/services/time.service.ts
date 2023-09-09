@@ -41,4 +41,13 @@ export class TimeService {
       weekday: 'long',
     });
   }
+
+  public dateToSimplifyLocalDate(date: Date): string {
+    return date.toLocaleString('fr-FR', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      weekday: 'long',
+    });
+  }
 }

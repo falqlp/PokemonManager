@@ -18,8 +18,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { PokemonBaseQueriesService } from '../../services/queries/pokemon-base-queries.service';
 import { MoveModel } from '../../models/move.model';
 import { MoveLearningService } from '../../services/queries/move-learning.service';
-import { MatSelectChange } from '@angular/material/select';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CustomValidatorService } from '../../services/custom-validator.service';
 
 @Component({
   selector: 'app-pokemon-form',
@@ -36,7 +36,10 @@ export class PokemonFormComponent implements OnInit {
       Validators.max(100),
     ]),
     trainerId: new FormControl<string>('', Validators.required),
-    moves: new FormControl<MoveModel[]>([], this.arrayMaxLength(2)),
+    moves: new FormControl<MoveModel[]>(
+      [],
+      this.customValidatorService.arrayMaxLength(2)
+    ),
   });
 
   protected trainers: TrainerModel[];
@@ -45,6 +48,7 @@ export class PokemonFormComponent implements OnInit {
   protected moves: MoveModel[];
 
   public constructor(
+    protected customValidatorService: CustomValidatorService,
     protected dialogRef: MatDialogRef<PokemonFormComponent>,
     protected pokemonBaseService: PokemonBaseQueriesService,
     protected trainerService: TrainerQueriesService,
@@ -127,20 +131,5 @@ export class PokemonFormComponent implements OnInit {
       return this.translateService.instant(pokemon.name);
     }
     return '';
-  }
-
-  protected moveSelectionChange(event: MatSelectChange): void {
-    const oldValue = this.pokemonForm.controls.moves.value;
-    if (!oldValue.includes(event.value)) {
-      const updatedMoves = [...oldValue, event.value];
-      this.pokemonForm.controls.moves.setValue(updatedMoves);
-    }
-  }
-
-  protected arrayMaxLength(max: number): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: unknown } | null => {
-      const arrayLength = control.value.length;
-      return arrayLength > max ? { maxLength: { value: arrayLength } } : null;
-    };
   }
 }

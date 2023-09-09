@@ -14,6 +14,7 @@ import battleInstanceRoutes from "./api/battle-instance/battle-instance.route";
 import battleRoutes from "./api/battle/battle.route";
 import moveLearningRoutes from "./api/moveLearning/moveLearning.routes";
 import pcStorageRoutes from "./api/pcStorage/pcStorage.route";
+import calendarEventRoutes from "./api/calendar-event/calendar-event.routes";
 
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
@@ -52,5 +53,6 @@ app.use("/api/battleInstance", battleInstanceRoutes);
 app.use("/api/battle", battleRoutes);
 app.use("/api/moveLearning", moveLearningRoutes);
 app.use("/api/pcStorage", pcStorageRoutes);
+app.use("/api/calendar-event", calendarEventRoutes);
 
 export default app;

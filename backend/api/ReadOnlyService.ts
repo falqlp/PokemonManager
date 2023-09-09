@@ -1,7 +1,7 @@
 import { IMapper } from "./IMapper";
 import { Document, Model } from "mongoose";
 
-interface ListBody {
+export interface ListBody {
   custom?: any;
   ids?: string[];
   limit?: number;

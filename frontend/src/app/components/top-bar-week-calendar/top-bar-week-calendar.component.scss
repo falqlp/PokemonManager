@@ -15,10 +15,19 @@
     height: 100px;
     overflow: hidden;
     &__day {
-      @include flexbox(flex-start, 2);
+      @include flexbox(flex-start, 2, column);
+      gap: 10px;
       flex: 1;
       word-break: break-word;
       animation: translateX 0.3s ease;
+      overflow: hidden;
+      &__date {
+        text-align: center;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
       &--actual {
         background-color: grey;
       }
