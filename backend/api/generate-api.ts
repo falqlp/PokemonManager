@@ -1,13 +1,20 @@
 import fs from "fs";
 import path from "path";
 
+function toCamelCase(str: string): string {
+  return str
+    .split("-")
+    .map((word) => capitalizeFirstLetter(word))
+    .join("");
+}
+
 function capitalizeFirstLetter(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function generateApi(objectName: string, isReadOnly: boolean): void {
-  const capObjectName = capitalizeFirstLetter(objectName);
-  const readOnlyStr = isReadOnly ? "Readonly" : "Complete";
+  const capObjectName = toCamelCase(objectName);
+  const readOnlyStr = isReadOnly ? "ReadOnly" : "Complete";
 
   const currentDir = process.cwd();
 
@@ -15,19 +22,17 @@ function generateApi(objectName: string, isReadOnly: boolean): void {
     fs.mkdirSync(`${currentDir}/${objectName}`);
   }
 
-  const modelContent = `
-import mongoose, { Document, Schema } from "mongoose";
+  const modelContent = `import mongoose, { Document, Schema } from "mongoose";
 
 export interface I${capObjectName} extends Document {}
 
-const ${objectName}Schema = new Schema<I${capObjectName}>({});
+const ${capObjectName}Schema = new Schema<I${capObjectName}>({});
 
-const ${capObjectName} = mongoose.model<I${capObjectName}>("${capObjectName}", ${objectName}Schema);
+const ${capObjectName} = mongoose.model<I${capObjectName}>("${capObjectName}", ${capObjectName}Schema);
 export default ${capObjectName};
 `;
 
-  const mapperContent = `
-import { IMapper } from "../IMapper";
+  const mapperContent = `import { IMapper } from "../IMapper";
 import { I${capObjectName} } from "./${objectName}";
 
 class ${capObjectName}Mapper implements IMapper<I${capObjectName}> {
@@ -52,8 +57,7 @@ class ${capObjectName}Mapper implements IMapper<I${capObjectName}> {
 export default ${capObjectName}Mapper;
 `;
 
-  const serviceContent = `
-import ${readOnlyStr}Service from "../${readOnlyStr}Service";
+  const serviceContent = `import ${readOnlyStr}Service from "../${readOnlyStr}Service";
 import ${capObjectName}, { I${capObjectName} } from "./${objectName}";
 import ${capObjectName}Mapper from "./${objectName}.mapper";
 
@@ -73,8 +77,7 @@ class ${capObjectName}Service extends ${readOnlyStr}Service<I${capObjectName}> {
 export default ${capObjectName}Service;
 `;
 
-  const routesContent = `
-import express from "express";
+  const routesContent = `import express from "express";
 import ${readOnlyStr}Router from "../${readOnlyStr}Router";
 import ${capObjectName}Service from "./${objectName}.service";
 
@@ -85,23 +88,45 @@ router.use("/", completeRouter.router);
 
 export default router;
 `;
+  try {
+    fs.writeFileSync(
+      path.join(`${currentDir}/${objectName}`, `${objectName}.ts`),
+      modelContent
+    );
+  } catch (error) {
+    console.error("DTO file creation failed");
+  }
+  console.info("DTO file created");
 
-  fs.writeFileSync(
-    path.join(`${currentDir}/${objectName}`, `${objectName}.ts`),
-    modelContent
-  );
-  fs.writeFileSync(
-    path.join(`${currentDir}/${objectName}`, `${objectName}.mapper.ts`),
-    mapperContent
-  );
-  fs.writeFileSync(
-    path.join(`${currentDir}/${objectName}`, `${objectName}.service.ts`),
-    serviceContent
-  );
-  fs.writeFileSync(
-    path.join(`${currentDir}/${objectName}`, `${objectName}.routes.ts`),
-    routesContent
-  );
+  try {
+    fs.writeFileSync(
+      path.join(`${currentDir}/${objectName}`, `${objectName}.mapper.ts`),
+      mapperContent
+    );
+  } catch (error) {
+    console.error("Mapper file creation failed");
+  }
+  console.info("Mapper file created");
+
+  try {
+    fs.writeFileSync(
+      path.join(`${currentDir}/${objectName}`, `${objectName}.service.ts`),
+      serviceContent
+    );
+  } catch (error) {
+    console.error("Service file creation failed");
+  }
+  console.info("Service file created");
+
+  try {
+    fs.writeFileSync(
+      path.join(`${currentDir}/${objectName}`, `${objectName}.routes.ts`),
+      routesContent
+    );
+  } catch (error) {
+    console.error("Routes file creation failed");
+  }
+  console.info("Routes file created");
 }
 
 const [objectName, isReadOnly] = process.argv.slice(2);
