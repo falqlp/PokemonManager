@@ -75,7 +75,6 @@ export class AddCalendarEventComponent implements OnInit {
   }
 
   protected submit(): void {
-    console.log(1);
     this.calendarEventQueriesService
       .createBattleEvent(
         this.calendarEventForm.controls.date.value,
