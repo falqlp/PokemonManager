@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import type { TrainerModel } from '../models/TrainersModels/trainer.model';
 import type { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
-import { TrainerQueriesService } from './queries/trainer-queries.service';
 import { PcStorageQueriesService } from './queries/pc-storage-queries.service';
+import { PartyQueriesService } from './queries/party-queries.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,21 +20,21 @@ export class PlayerService {
 
   public player$ = this.playerSubject.asObservable();
   public constructor(
-    protected trainerService: TrainerQueriesService,
+    protected partyQueriesService: PartyQueriesService,
     protected pcStorgaeService: PcStorageQueriesService
   ) {
-    this.updatePlayer('649e0e86e45d3dab76652543');
+    this.updatePlayer('64fd9cf21308150436317aed');
   }
 
-  public updatePlayer(id: string): void {
-    this.getPlayer(id).subscribe((trainer) => {
-      this.getMaxStat(trainer);
-      this.playerSubject.next(trainer);
+  public updatePlayer(partyId: string): void {
+    this.getPlayer(partyId).subscribe((player) => {
+      this.getMaxStat(player);
+      this.playerSubject.next(player);
     });
   }
 
-  public getPlayer(id: string): Observable<TrainerModel> {
-    return this.trainerService.get(id);
+  public getPlayer(partyId: string): Observable<TrainerModel> {
+    return this.partyQueriesService.getPlayer(partyId);
   }
 
   public getMaxStat(player: TrainerModel): void {

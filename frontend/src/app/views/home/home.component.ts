@@ -16,6 +16,7 @@ import { MoveLearningService } from '../../services/queries/move-learning.servic
 import { AddCalendarEventComponent } from '../../modals/add-calendar-event/add-calendar-event.component';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { TimeService } from '../../services/time.service';
+import { PartyQueriesService } from '../../services/queries/party-queries.service';
 
 @Component({
   selector: 'app-home',
@@ -37,6 +38,7 @@ export class HomeComponent implements OnInit {
     protected pokemonService: PokemonQueriesService,
     protected battleQueries: BattleInstanceQueriesService,
     protected trainerService: TrainerQueriesService,
+    protected partyQueriesService: PartyQueriesService,
     protected calendarEventQueriesService: CalendarEventQueriesService,
     protected timeService: TimeService,
     protected http: HttpClient,
@@ -103,9 +105,16 @@ export class HomeComponent implements OnInit {
   }
 
   protected testRoute(): void {
-    this.calendarEventQueriesService
-      .getWeekCalendar('649e0e86e45d3dab76652543', this.actualDate)
-      .subscribe();
+    // this.partyQueriesService
+    //   .create({
+    //     player: this.player,
+    //     name: 'test',
+    //     actualDate: this.actualDate,
+    //   })
+    //   .subscribe();
+    // this.calendarEventQueriesService
+    //   .getWeekCalendar('649e0e86e45d3dab76652543', this.actualDate)
+    //   .subscribe();
     // this.battleQueries.get('64e7cf82e9cf81a76d72a23d').subscribe();
     // this.battleQueries.delete('64e7cf82e9cf81a76d72a23d').subscribe();
     // this.pokemonService.get('64e7cf7de9cf81a76d72a237').subscribe();

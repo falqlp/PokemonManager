@@ -1,28 +1,29 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { PartyQueriesService } from './queries/party-queries.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TimeService {
-  protected actualDate: Date;
-  protected actualDaySubjectToString: BehaviorSubject<string>;
-  protected actualDaySubject: BehaviorSubject<Date>;
+  protected actualDate: Date = null;
+  protected actualDaySubjectToString: BehaviorSubject<string> =
+    new BehaviorSubject(this.dateToLocalDate(this.actualDate));
 
-  public constructor() {
-    const actualDate = new Date(Date.now());
-    actualDate.setHours(0, 0, 0, 0);
-    this.actualDate = actualDate;
-    this.actualDaySubjectToString = new BehaviorSubject(
-      this.dateToLocalDate(this.actualDate)
-    );
-    this.actualDaySubject = new BehaviorSubject(this.actualDate);
+  protected actualDaySubject = new BehaviorSubject(this.actualDate);
+
+  public constructor(protected partyQueriesService: PartyQueriesService) {
+    this.partyQueriesService
+      .getTime('64fd9cf21308150436317aed')
+      .subscribe((actualDate) => {
+        this.actualDate = new Date(actualDate);
+        this.updateDate(this.actualDate);
+      });
   }
 
   public simulateDay(): void {
     this.actualDate.setDate(this.actualDate.getDate() + 1);
-    this.actualDaySubjectToString.next(this.dateToLocalDate(this.actualDate));
-    this.actualDaySubject.next(this.actualDate);
+    this.updateDate(this.actualDate);
   }
 
   public getActualDateToString(): Observable<string> {
@@ -34,6 +35,9 @@ export class TimeService {
   }
 
   public dateToLocalDate(date: Date): string {
+    if (!date) {
+      return '';
+    }
     return date.toLocaleString('fr-FR', {
       year: 'numeric',
       month: 'long',
@@ -49,5 +53,10 @@ export class TimeService {
       day: 'numeric',
       weekday: 'long',
     });
+  }
+
+  public updateDate(newDate: Date): void {
+    this.actualDaySubjectToString.next(this.dateToLocalDate(newDate));
+    this.actualDaySubject.next(newDate);
   }
 }

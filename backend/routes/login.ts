@@ -6,7 +6,7 @@ router.post("/", (req, res, next) => {
   User.findOne({ username: req.body.username })
     .then((user) => {
       if (user?.password === req.body.password) {
-        res.status(200).json(user.trainerId);
+        res.status(200).json(user);
       } else {
         res
           .status(400)
