@@ -18,7 +18,7 @@ router.post("/weekCalendar", (req, res, next) => {
 });
 router.post("/simulateDay", (req, res, next) => {
   service
-    .simulateDay(req.body.trainerId, req.body.date)
+    .simulateDay(req.body.trainerId, req.body.date, req.body.party)
     .then((result) => res.status(200).json(result))
     .catch((error: any) => console.log(error));
 });

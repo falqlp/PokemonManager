@@ -39,6 +39,7 @@ import { PokemonStatsComponent } from './components/pokemon-stats/pokemon-stats.
 import { NumberCooldownComponent } from './components/number-cooldown/number-cooldown.component';
 import { TopBarWeekCalendarComponent } from './components/top-bar-week-calendar/top-bar-week-calendar.component';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -95,9 +96,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     PokemonStatsComponent,
     NumberCooldownComponent,
     TopBarWeekCalendarComponent,
+    MatProgressSpinnerModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'fr-FR' }],
   bootstrap: [AppComponent],
   exports: [],
 })

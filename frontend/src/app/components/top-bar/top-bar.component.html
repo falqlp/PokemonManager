@@ -25,8 +25,15 @@
         {{ date }} <mat-icon>calendar_today</mat-icon>
       </button>
       <button mat-flat-button color="accent" (click)="simulate(player._id)">
-        {{ "CONTINUE" | translate }}
-        <mat-icon>arrow_forward</mat-icon>
+        <span
+          class="top-bar__right-content__continue"
+          *ngIf="!simulating; else spinner"
+        >
+          {{ "CONTINUE" | translate }} <mat-icon>arrow_forward</mat-icon></span
+        >
+        <ng-template #spinner>
+          <mat-spinner color="warn" diameter="20"></mat-spinner
+        ></ng-template>
       </button>
     </div>
   </div>

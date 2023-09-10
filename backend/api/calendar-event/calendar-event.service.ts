@@ -4,17 +4,22 @@ import CalendarEventMapper from "./calendar-event.mapper";
 import BattleInstanceService from "../battle-instance/battle-instance.service";
 import { ITrainer } from "../trainer/trainer";
 import Battle, { IBattleInstance } from "../battle-instance/battle";
+import PartyService from "../party/party.service";
 
 class CalendarEventService extends CompleteService<ICalendarEvent> {
   private static instance: CalendarEventService;
 
-  constructor(protected battleInstanceService: BattleInstanceService) {
+  constructor(
+    protected battleInstanceService: BattleInstanceService,
+    protected partyService: PartyService
+  ) {
     super(CalendarEvent, CalendarEventMapper.getInstance());
   }
   public static getInstance(): CalendarEventService {
     if (!CalendarEventService.instance) {
       CalendarEventService.instance = new CalendarEventService(
-        BattleInstanceService.getInstance()
+        BattleInstanceService.getInstance(),
+        PartyService.getInstance()
       );
     }
     return CalendarEventService.instance;
@@ -58,7 +63,8 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
 
   public async simulateDay(
     trainerId: string,
-    date: Date
+    date: Date,
+    party: string
   ): Promise<{ date: Date; battle: IBattleInstance }> {
     date = new Date(date);
     const events = await this.list({
@@ -69,6 +75,9 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
     )?.event;
     if (!battle) {
       date.setDate(date.getDate() + 1);
+      const newParty = await this.partyService.get(party);
+      newParty.actualDate = date;
+      await this.partyService.update(party, newParty);
     }
     return { date, battle };
   }

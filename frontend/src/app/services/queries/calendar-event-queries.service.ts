@@ -44,7 +44,8 @@ export class CalendarEventQueriesService extends CompleteQuery<CalendarEventMode
 
   public simulateDay(
     trainerId: string,
-    date: Date
+    date: Date,
+    partyId: string
   ): Observable<{ date: Date; battle: BattleModel }> {
     return this.http
       .post<{ date: Date; battle: BattleModel }>(
@@ -52,6 +53,7 @@ export class CalendarEventQueriesService extends CompleteQuery<CalendarEventMode
         {
           trainerId,
           date,
+          party: partyId,
         }
       )
       .pipe(

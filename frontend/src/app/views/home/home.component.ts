@@ -112,9 +112,9 @@ export class HomeComponent implements OnInit {
     //     actualDate: this.actualDate,
     //   })
     //   .subscribe();
-    this.calendarEventQueriesService
-      .simulateDay('649e0e86e45d3dab76652543', this.actualDate)
-      .subscribe(console.log);
+    // this.calendarEventQueriesService
+    //   .simulateDay('649e0e86e45d3dab76652543', this.actualDate)
+    //   .subscribe(console.log);
     // this.battleQueries.get('64e7cf82e9cf81a76d72a23d').subscribe();
     // this.battleQueries.delete('64e7cf82e9cf81a76d72a23d').subscribe();
     // this.pokemonService.get('64e7cf7de9cf81a76d72a237').subscribe();
