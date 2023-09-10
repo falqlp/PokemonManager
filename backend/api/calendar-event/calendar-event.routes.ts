@@ -16,5 +16,11 @@ router.post("/weekCalendar", (req, res, next) => {
     .then((result) => res.status(200).json(result))
     .catch((error: any) => console.log(error));
 });
+router.post("/simulateDay", (req, res, next) => {
+  service
+    .simulateDay(req.body.trainerId, req.body.date)
+    .then((result) => res.status(200).json(result))
+    .catch((error: any) => console.log(error));
+});
 
 export default router;

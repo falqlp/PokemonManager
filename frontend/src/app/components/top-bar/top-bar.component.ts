@@ -9,6 +9,7 @@ import { PlayerService } from 'src/app/services/player.service';
 import { Router } from '@angular/router';
 import { RouterService } from '../../services/router.service';
 import { TimeService } from '../../services/time.service';
+import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -21,11 +22,13 @@ export class TopBarComponent implements OnInit {
   protected title$: Observable<string>;
   protected date$: Observable<string>;
   protected showWeekCalendar = false;
+  protected actualDate: Date;
 
   public constructor(
     protected playerService: PlayerService,
     protected dialog: MatDialog,
     protected router: Router,
+    protected calendarEventQueriesService: CalendarEventQueriesService,
     protected routerService: RouterService,
     protected timeService: TimeService
   ) {}
@@ -35,6 +38,9 @@ export class TopBarComponent implements OnInit {
     this.goHomeDisabled$ = this.routerService.goHomeDisabled();
     this.title$ = this.routerService.getTitle();
     this.date$ = this.timeService.getActualDateToString();
+    this.timeService.getActualDate().subscribe((date) => {
+      this.actualDate = date;
+    });
   }
 
   protected openInfo(pokemon: PokemonModel): void {
@@ -45,8 +51,10 @@ export class TopBarComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
-  protected simulate(): void {
-    this.timeService.simulateDay();
+  protected simulate(playerId: string): void {
+    this.calendarEventQueriesService
+      .simulateDay(playerId, this.actualDate)
+      .subscribe();
   }
 
   protected showCalendar(): void {

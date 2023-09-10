@@ -20,11 +20,11 @@
       </div>
     </div>
     {{ title$ | async | translate }}
-    <div class="top-bar__right-content">
+    <div class="top-bar__right-content" *ngIf="date$ | async as date">
       <button mat-flat-button (click)="showCalendar()">
-        {{ date$ | async }} <mat-icon>calendar_today</mat-icon>
+        {{ date }} <mat-icon>calendar_today</mat-icon>
       </button>
-      <button mat-flat-button color="accent" (click)="simulate()">
+      <button mat-flat-button color="accent" (click)="simulate(player._id)">
         {{ "CONTINUE" | translate }}
         <mat-icon>arrow_forward</mat-icon>
       </button>

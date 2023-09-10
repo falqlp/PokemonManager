@@ -55,6 +55,23 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
     });
     return week;
   }
+
+  public async simulateDay(
+    trainerId: string,
+    date: Date
+  ): Promise<{ date: Date; battle: IBattleInstance }> {
+    date = new Date(date);
+    const events = await this.list({
+      custom: { trainers: trainerId, date },
+    });
+    const battle = events.find(
+      (event) => event.type === "Battle" && !event.event.winner
+    )?.event;
+    if (!battle) {
+      date.setDate(date.getDate() + 1);
+    }
+    return { date, battle };
+  }
 }
 
 export default CalendarEventService;

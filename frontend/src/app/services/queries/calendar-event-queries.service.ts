@@ -2,15 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CompleteQuery } from '../../core/complete-query';
 import { CalendarEventModel } from '../../models/calendar-event.model';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
+import { BattleModel } from '../../models/Battle.model';
+import { TimeService } from '../time.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CalendarEventQueriesService extends CompleteQuery<CalendarEventModel> {
   public static readonly url = 'api/calendar-event';
-  public constructor(protected override http: HttpClient) {
+  public constructor(
+    protected override http: HttpClient,
+    protected timeService: TimeService
+  ) {
     super(CalendarEventQueriesService.url, http);
   }
 
@@ -35,5 +40,27 @@ export class CalendarEventQueriesService extends CompleteQuery<CalendarEventMode
         date,
       }
     );
+  }
+
+  public simulateDay(
+    trainerId: string,
+    date: Date
+  ): Observable<{ date: Date; battle: BattleModel }> {
+    return this.http
+      .post<{ date: Date; battle: BattleModel }>(
+        CalendarEventQueriesService.url + '/simulateDay',
+        {
+          trainerId,
+          date,
+        }
+      )
+      .pipe(
+        tap((res) => {
+          if (!res.battle) {
+            res.date = new Date(res.date);
+            this.timeService.updateDate(res.date);
+          }
+        })
+      );
   }
 }
