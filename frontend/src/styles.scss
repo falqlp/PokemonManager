@@ -15,7 +15,7 @@ $pokemon-manager-primary: mat.define-palette($primary-palette);
 $pokemon-manager-accent: mat.define-palette(mat.$gray-palette);
 
 // The warn palette is optional (defaults to red).
-$pokemon-manager-warn: mat.define-palette(mat.$red-palette);
+$pokemon-manager-warn: mat.define-palette(mat.$deep-purple-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".

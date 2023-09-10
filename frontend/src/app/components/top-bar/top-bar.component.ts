@@ -1,6 +1,6 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import type { Observable } from 'rxjs';
 import { PokemonInfoComponent } from 'src/app/modals/pokemon-info/pokemon-info.component';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { RouterService } from '../../services/router.service';
 import { TimeService } from '../../services/time.service';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
+import { GenericDialogComponent } from '../../modals/generic-dialog/generic-dialog.component';
+import { DialogButtonsModel } from '../../modals/generic-dialog/generic-dialog.models';
 
 @Component({
   selector: 'app-top-bar',
@@ -54,7 +56,41 @@ export class TopBarComponent implements OnInit {
   protected simulate(playerId: string): void {
     this.calendarEventQueriesService
       .simulateDay(playerId, this.actualDate)
-      .subscribe();
+      .subscribe((res) => {
+        if (res.battle) {
+          const buttons: DialogButtonsModel[] = [
+            {
+              label: 'CANCEL',
+              color: undefined,
+              click: (): void => {
+                this.dialog.closeAll();
+              },
+            },
+            {
+              label: 'GO_TO_PC',
+              color: 'accent',
+              click: (): void => {
+                this.dialog.closeAll();
+                this.router.navigate(['pcStorage']);
+              },
+            },
+            {
+              label: 'GO_TO_BATTLE',
+              color: 'warn',
+              click: (): void => {
+                this.dialog.closeAll();
+                this.router.navigate(['battle/' + res.battle._id]);
+              },
+            },
+          ];
+          this.dialog.open(GenericDialogComponent, {
+            data: {
+              buttons,
+              message: 'SURE_GO_TO_BATTLE',
+            },
+          });
+        }
+      });
   }
 
   protected showCalendar(): void {

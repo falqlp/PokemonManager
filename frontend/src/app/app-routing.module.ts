@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, data: { title: 'HOME' } },
   { path: 'login', component: LoginComponent, data: { title: 'LOGIN' } },
   {
-    path: 'battle',
+    path: 'battle/:id',
     component: BattleComponent,
     data: { goHomeDisabled: true, title: 'BATTLE' },
   },
@@ -34,7 +34,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
