@@ -1,9 +1,7 @@
 import Pokemon, { IPokemon } from "./pokemon";
-import pokemonMapper from "./pokemon.mapper";
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import Trainer from "../trainer/trainer";
 import CompleteService from "../CompleteService";
-import TrainerMapper from "../trainer/trainer.mapper";
 import PokemonMapper from "./pokemon.mapper";
 
 class PokemonService extends CompleteService<IPokemon> {
@@ -115,9 +113,9 @@ class PokemonService extends CompleteService<IPokemon> {
     );
   }
 
-  public create(pokemon: IPokemon): Promise<any> {
+  public async create(pokemon: IPokemon): Promise<any> {
     const newPokemon = new Pokemon({
-      ...this.mapper.update(this.createPokemon(pokemon)),
+      ...(await this.mapper.update(this.createPokemon(pokemon))),
     });
     if (newPokemon.trainerId) {
       Trainer.findOneAndUpdate(

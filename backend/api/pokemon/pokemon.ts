@@ -15,8 +15,8 @@ export interface IPokemon extends Document {
   expMax: number;
   moves: IMove[];
   stats: IPokemonStats;
-  ev: IPokemonStats;
-  iv: IPokemonStats;
+  ev?: IPokemonStats;
+  iv?: IPokemonStats;
 }
 
 const pokemonSchema = new Schema<IPokemon>({

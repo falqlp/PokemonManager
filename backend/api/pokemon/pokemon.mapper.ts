@@ -10,6 +10,12 @@ class PokemonMapper implements IMapper<IPokemon> {
     protected pokemonBaseService: PokemonBaseService
   ) {}
   public async map(pokemon: IPokemon): Promise<IPokemon> {
+    pokemon = await this.mapComplete(pokemon);
+    pokemon.ev = undefined;
+    pokemon.iv = undefined;
+    return pokemon;
+  }
+  public async mapComplete(pokemon: IPokemon): Promise<IPokemon> {
     pokemon.moves = await this.moveService.list({
       ids: pokemon.moves as unknown as string[],
     });
@@ -19,9 +25,7 @@ class PokemonMapper implements IMapper<IPokemon> {
     return pokemon;
   }
 
-  public update(pokemon: IPokemon): IPokemon {
-    pokemon.moves = pokemon.moves?.map((move) => move._id);
-    pokemon.basePokemon = pokemon.basePokemon._id;
+  public async update(pokemon: IPokemon): Promise<IPokemon> {
     return pokemon;
   }
 

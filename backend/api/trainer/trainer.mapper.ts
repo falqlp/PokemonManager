@@ -13,9 +13,13 @@ class TrainerMapper implements IMapper<ITrainer> {
     });
     return trainer;
   }
+  public mapPartial(trainer: ITrainer): ITrainer {
+    trainer.pokemons = undefined;
+    trainer.pcStorage = undefined;
+    return trainer;
+  }
 
   public update(trainer: ITrainer): ITrainer {
-    trainer.pokemons = trainer.pokemons.map((pokemon: IPokemon) => pokemon._id);
     return trainer;
   }
 

@@ -11,7 +11,6 @@ class PartyMapper implements IMapper<IParty> {
   }
 
   public update(dto: IParty): IParty {
-    dto.player = dto.player._id;
     return dto;
   }
 

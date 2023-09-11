@@ -18,9 +18,6 @@ class PcStorageMapper implements IMapper<IPcStorage> {
   }
 
   public update(pcStorage: IPcStorage): IPcStorage {
-    pcStorage.storage = pcStorage.storage.map((el: IPcStorageStorage) => {
-      return { ...el, pokemon: el.pokemon._id };
-    });
     return pcStorage;
   }
   public static getInstance(): PcStorageMapper {

@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
     protected trainerService: TrainerQueriesService,
     protected partyQueriesService: PartyQueriesService,
     protected calendarEventQueriesService: CalendarEventQueriesService,
+    protected pokemonQueriesService: PokemonQueriesService,
     protected timeService: TimeService,
     protected http: HttpClient,
     protected translateService: TranslateService
@@ -118,6 +119,19 @@ export class HomeComponent implements OnInit {
     // this.battleQueries.get('64e7cf82e9cf81a76d72a23d').subscribe();
     // this.battleQueries.delete('64e7cf82e9cf81a76d72a23d').subscribe();
     // this.pokemonService.get('64e7cf7de9cf81a76d72a237').subscribe();
+    // this.trainerService.get('649e0e86e45d3dab76652543').subscribe((trainer) => {
+    //   trainer.name = 'Popole2';
+    //   this.trainerService.update(trainer, trainer._id).subscribe();
+    // });
+    this.pokemonQueriesService
+      .get('64cff59537682ecceed4ca13')
+      .subscribe((pokemon) => {
+        pokemon.level = 31;
+        pokemon.nickname = 'modified';
+        this.pokemonQueriesService
+          .update(pokemon, '64cff59537682ecceed4ca13')
+          .subscribe();
+      });
   }
 
   protected goToTrainers(): void {

@@ -13,15 +13,13 @@ class CalendarEventMapper implements IMapper<ICalendarEvent> {
     dto.event = await this.battleInstanceService.get(
       dto.event as unknown as string
     );
-    dto.trainers = await this.trainerService.list({
+    dto.trainers = await this.trainerService.listPartial({
       ids: dto.trainers as unknown as string[],
     });
     return dto;
   }
 
   public update(dto: ICalendarEvent): ICalendarEvent {
-    dto.event = dto.event._id;
-    dto.trainers = dto.trainers?.map((trainer) => trainer._id);
     return dto;
   }
 
