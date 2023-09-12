@@ -9,10 +9,7 @@ export interface ListBody {
 }
 
 class ReadOnlyService<T extends Document> {
-  constructor(protected schema: Model<T>, protected mapper: IMapper<T>) {
-    this.get = this.get.bind(this);
-    this.list = this.list.bind(this);
-  }
+  constructor(protected schema: Model<T>, protected mapper: IMapper<T>) {}
 
   async get(_id: string): Promise<T> {
     try {

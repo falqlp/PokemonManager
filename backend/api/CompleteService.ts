@@ -5,9 +5,6 @@ import { IMapper } from "./IMapper";
 class CompleteService<T extends Document> extends ReadOnlyService<T> {
   constructor(protected schema: Model<T>, protected mapper: IMapper<T>) {
     super(schema, mapper);
-    this.update = this.update.bind(this);
-    this.create = this.create.bind(this);
-    this.delete = this.delete.bind(this);
   }
 
   async update(_id: string, dto: T) {
