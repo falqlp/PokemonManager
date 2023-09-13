@@ -1,5 +1,5 @@
 const axios = require("axios");
-const Move = require("./api/move/move");
+import Move from "./api/move/move";
 const PokemonBase = require("./api/pokemonBase/pokemonBase");
 const MoveLearning = require("./api/moveLearning/moveLearning");
 const Evolution = require("./api/evolution/evolution");
@@ -32,18 +32,14 @@ const MigrationService = {
     }
   },
   moveAnimation: function () {
-    Move.updateMany(
-      { power: { $ne: null } },
-      {
-        $set: {
-          "animation.opponent": "$type", // Ici "$type" est une variable représentant le type de l'attaque. Remplacez-la par la manière dont vous stockez ce type dans vos documents.
-        },
-      },
-      function (err, res) {
-        if (err) throw err;
-        console.log(res.result.nModified + " document(s) updated");
-      }
-    );
+    console.log(Move);
+    Move.find({ power: { $ne: null } }).then((res) => {
+      res.forEach((move) => {
+        move.animation.opponent = move.type;
+        const newMove = new Move(move);
+        Move.findByIdAndUpdate(move._id, newMove).then(console.log);
+      });
+    });
   },
 };
-module.exports = MigrationService;
+export default MigrationService;

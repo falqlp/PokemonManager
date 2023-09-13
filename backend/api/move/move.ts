@@ -8,6 +8,12 @@ export interface IMove extends Document {
   accuracy: number;
   power?: number;
   effect?: string;
+  animation: IAnimation;
+}
+
+export interface IAnimation {
+  opponent: string;
+  player: string;
 }
 
 const moveSchema = new Schema<IMove>({
@@ -39,6 +45,7 @@ const moveSchema = new Schema<IMove>({
   effect: {
     type: String,
   },
+  animation: { opponent: { type: String }, player: { type: String } },
 });
 
 const Move = mongoose.model<IMove>("Move", moveSchema);
