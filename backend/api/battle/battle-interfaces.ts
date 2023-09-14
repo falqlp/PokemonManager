@@ -1,5 +1,5 @@
 import { IPokemon } from "../pokemon/pokemon";
-import { IMove } from "../move/move";
+import { IAnimation, IMove } from "../move/move";
 
 export type Effectiveness =
   | "IMMUNE"
@@ -12,6 +12,7 @@ export interface IDamage {
   critical: boolean;
   effectivness: Effectiveness;
   missed: boolean;
+  animation: IAnimation;
 }
 
 export interface IDecision {

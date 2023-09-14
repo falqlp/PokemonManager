@@ -1,3 +1,5 @@
+import { AnimationModel } from './move.model';
+
 export type Effectiveness =
   | 'IMMUNE'
   | 'NOT_VERY_EFFECTIVE'
@@ -9,4 +11,5 @@ export interface DamageModel {
   critical: boolean;
   effectivness: Effectiveness;
   missed: boolean;
+  animation: AnimationModel;
 }

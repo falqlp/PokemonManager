@@ -24,11 +24,6 @@
   </div>
   <div class="opponent__pokemon__image">
     <div class="opponent__pokemon__image__damage">
-      <img
-        *ngIf="opponentDamage"
-        src="assets/move_animation/GHOST.gif"
-        alt="fire"
-      />
       <div
         *ngIf="opponentDamage?.critical"
         class="opponent__pokemon__image__damage--critical"
@@ -42,6 +37,12 @@
         {{ "MISS!" | translate }}
       </div>
     </div>
+    <img
+      *ngIf="opponentDamage?.animation.opponent"
+      class="opponent__pokemon__image--animation"
+      src="assets/move_animation/{{ opponentDamage.animation.opponent }}.gif"
+      [alt]="opponentDamage.animation.opponent"
+    />
     <app-display-pokemon-image
       class="opponent__pokemon__image--thumbnails"
       [pokemon]="opponentActivePokemon"

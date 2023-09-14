@@ -141,12 +141,13 @@ const BattleCalcService = {
     return { damage, damagedPokemon };
   },
 
-  calcDamage(attPokemon: IPokemon, defPokemon: IPokemon, move: IMove) {
+  calcDamage(attPokemon: IPokemon, defPokemon: IPokemon, move: IMove): IDamage {
     if (attPokemon.currentHp === 0 || move === undefined) {
       return;
     }
     const missed = this.moveOnTarget(move);
     const effectivness = this.calcEffectivness(move, defPokemon);
+    const animation = missed || effectivness === 0 ? undefined : move.animation;
     const criticalHit =
       effectivness === 0 || missed ? 1 : this.criticalHit(attPokemon);
     return {
@@ -160,6 +161,7 @@ const BattleCalcService = {
       effectivness: this.getEffectiveness(effectivness),
       critical: criticalHit !== 1 && !missed,
       missed,
+      animation,
     };
   },
 

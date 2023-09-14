@@ -1,3 +1,7 @@
+export interface AnimationModel {
+  opponent: string;
+  player: string;
+}
 export interface MoveModel {
   name: string;
   type: string;
@@ -6,4 +10,5 @@ export interface MoveModel {
   power?: number;
   effect?: string;
   _id?: string;
+  animation: AnimationModel;
 }

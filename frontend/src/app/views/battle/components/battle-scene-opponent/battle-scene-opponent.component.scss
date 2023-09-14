@@ -30,6 +30,7 @@
       position: relative;
       &__damage {
         position: absolute;
+        z-index: 1;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -49,6 +50,13 @@
           opacity: 0.8;
           animation: disapear 0.5s ease;
         }
+      }
+      &--animation {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 80%;
       }
       &--thumbnails {
         height: 240px;

@@ -34,7 +34,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-
+        z-index: 1;
         &--critical {
           border: black 2px solid;
           border-radius: 4px;
@@ -52,6 +52,13 @@
           opacity: 0.8;
           animation: disapear 0.5s ease;
         }
+      }
+      &--animation {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 80%;
       }
 
       &--back {

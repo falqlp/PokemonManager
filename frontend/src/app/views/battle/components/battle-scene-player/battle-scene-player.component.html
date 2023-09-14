@@ -1,4 +1,10 @@
 <div class="player__pokemon__image">
+  <img
+    *ngIf="playerDamage?.animation.opponent"
+    class="player__pokemon__image--animation"
+    src="assets/move_animation/{{ playerDamage.animation.opponent }}.gif"
+    [alt]="playerDamage.animation.opponent"
+  />
   <div class="player__pokemon__image__damage">
     <div
       *ngIf="playerDamage?.critical"
