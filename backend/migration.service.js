@@ -1,8 +1,9 @@
+import PokemonBase from "./api/pokemonBase/pokemonBase";
+
 const axios = require("axios");
 import Move from "./api/move/move";
-const PokemonBase = require("./api/pokemonBase/pokemonBase");
+import Evolution from "./api/evolution/evolution";
 const MoveLearning = require("./api/moveLearning/moveLearning");
-const Evolution = require("./api/evolution/evolution");
 const { response } = require("express");
 const fs = require("fs");
 const path = require("path");
@@ -18,12 +19,38 @@ const MigrationService = {
           .then((response) => {
             const specie = response.data;
             progress++;
-            console.log(
-              response.data.id,
-              response.data.is_legendary,
-              response.data.is_mythical,
-              (progress * 100) / 1011
-            );
+            const legendary = specie.is_legendary
+              ? specie.is_legendary
+              : undefined;
+            const mythical = specie.is_mythical
+              ? specie.is_mythical
+              : undefined;
+            const baby = specie.is_baby ? specie.is_baby : undefined;
+            const genderRate =
+              specie.gender_rate !== -1 ? specie.gender_rate * 8 : undefined;
+            // console.log(
+            //   specie.name,
+            //   specie.is_legendary,
+            //   specie.is_mythical,
+            //   specie.is_baby,
+            //   specie.gender_rate,
+            //   specie.capture_rate,
+            //   (progress * 100) / 1010
+            // );
+            PokemonBase.updateOne(
+              { id: specie.id },
+              {
+                $set: {
+                  legendary,
+                  mythical,
+                  baby,
+                  genderRate,
+                  captureRate: specie.capture_rate,
+                  baseHappiness: specie.base_happiness,
+                  base: specie.evolves_from_species === null,
+                },
+              }
+            ).then(console.log);
           })
           .catch((error) => {
             console.error("Erreur lors de la requête API:", error);
@@ -40,6 +67,123 @@ const MigrationService = {
         Move.findByIdAndUpdate(move._id, newMove).then(console.log);
       });
     });
+  },
+  getEvolution: function () {
+    for (let i = 1; i < 538; i++) {
+      axios
+        .get(`https://pokeapi.co/api/v2/evolution-chain/${i}`)
+        .then((response) => {
+          const newChain = response.data.chain;
+          (async () => {
+            for (const evolution of newChain.evolves_to) {
+              if (
+                this.checkNullorFalse(evolution.evolution_details[0]) &&
+                evolution.evolution_details[0].trigger.name === "level-up"
+              ) {
+                try {
+                  const pokemon = await PokemonBase.findOne({
+                    name: newChain.species.name.toUpperCase(),
+                  });
+
+                  const pokemon2 = await PokemonBase.findOne({
+                    name: evolution.species.name.toUpperCase(),
+                  });
+
+                  // console.log(
+                  //   pokemon.id,
+                  //   pokemon2.id,
+                  //   evolution.evolution_details[0].min_level,
+                  //   evolution.evolution_details[0].trigger.name.toUpperCase()
+                  // );
+                  const evolutionData = {
+                    evolutionMethod:
+                      evolution.evolution_details[0].trigger.name.toUpperCase(),
+                    minLevel: evolution.evolution_details[0].min_level,
+                    pokemonId: pokemon.id,
+                    evolveTo: pokemon2.id,
+                    minHappiness: evolution.evolution_details[0].min_happiness,
+                  };
+                  Evolution.findOneAndUpdate(
+                    { ...evolutionData },
+                    evolutionData,
+                    {
+                      upsert: true,
+                      new: true,
+                      rawResult: true,
+                    }
+                  )
+                    .then((result) => {
+                      if (result.lastErrorObject.upserted) {
+                        console.log("The doc was new and upserted!");
+                      }
+                    })
+                    .catch((error) => console.log(error));
+
+                  for (const evolution2 of evolution.evolves_to) {
+                    if (
+                      this.checkNullorFalse(evolution2.evolution_details[0]) &&
+                      evolution2.evolution_details[0].trigger.name ===
+                        "level-up"
+                    ) {
+                      const pokemon3 = await PokemonBase.findOne({
+                        name: evolution2.species.name.toUpperCase(),
+                      });
+
+                      // console.log(
+                      //   pokemon2.id,
+                      //   pokemon3.id,
+                      //   evolution2.evolution_details[0].min_level,
+                      //   evolution2.evolution_details[0].trigger.name.toUpperCase()
+                      // );
+                      const evolutionData = {
+                        evolutionMethod:
+                          evolution2.evolution_details[0].trigger.name.toUpperCase(),
+                        minLevel: evolution2.evolution_details[0].min_level,
+                        pokemonId: pokemon2.id,
+                        evolveTo: pokemon3.id,
+                        minHappiness:
+                          evolution2.evolution_details[0].min_happiness,
+                      };
+                      Evolution.findOneAndUpdate(
+                        { ...evolutionData },
+                        evolutionData,
+                        {
+                          upsert: true,
+                          new: true,
+                          rawResult: true,
+                        }
+                      )
+                        .then((result) => {
+                          if (result.lastErrorObject.upserted) {
+                            console.log("The doc was new and upserted!");
+                          }
+                        })
+                        .catch((error) => console.log(error));
+                    }
+                  }
+                } catch (error) {
+                  console.log(error);
+                }
+              }
+            }
+          })();
+        })
+        .catch((error) => console.log("pb"));
+    }
+  },
+  checkNullorFalse: function (obj) {
+    if (obj) {
+      return !Object.values(obj).some(
+        (value) =>
+          value !== null &&
+          value !== false &&
+          value !== "" &&
+          value !== obj.min_happiness &&
+          value !== obj.min_level &&
+          value !== obj.trigger
+      );
+    }
+    return false;
   },
 };
 export default MigrationService;

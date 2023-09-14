@@ -13,6 +13,9 @@ class PokemonMapper implements IMapper<IPokemon> {
     pokemon = await this.mapComplete(pokemon);
     pokemon.ev = undefined;
     pokemon.iv = undefined;
+    pokemon.happiness = undefined;
+    pokemon.potential = undefined;
+    pokemon.trainingPourcentage = undefined;
     return pokemon;
   }
   public async mapComplete(pokemon: IPokemon): Promise<IPokemon> {

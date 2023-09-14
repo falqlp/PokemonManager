@@ -5,6 +5,7 @@ export interface IEvolution extends Document {
   minLevel?: number;
   pokemonId: number;
   evolveTo: number;
+  minHappiness?: number;
 }
 
 const evolutionSchema = new Schema<IEvolution>({
@@ -22,6 +23,9 @@ const evolutionSchema = new Schema<IEvolution>({
   evolveTo: {
     type: Number,
     required: true,
+  },
+  minHappiness: {
+    type: Number,
   },
 });
 

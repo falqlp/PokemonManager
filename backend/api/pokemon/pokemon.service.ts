@@ -16,11 +16,11 @@ class PokemonService extends CompleteService<IPokemon> {
     return PokemonService.instance;
   }
   public createPokemon(pokemon: IPokemon): IPokemon {
+    if (!pokemon.happiness) {
+      pokemon.happiness = pokemon.basePokemon.baseHappiness;
+    }
     if (pokemon.exp === undefined) {
       pokemon.exp = 0;
-    }
-    if (pokemon.expMax === undefined) {
-      pokemon.expMax = 100;
     }
     if (pokemon.iv === undefined) {
       pokemon.iv = this.generateIvs();
