@@ -12,6 +12,9 @@ import { TimeService } from '../../services/time.service';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { GenericDialogComponent } from '../../modals/generic-dialog/generic-dialog.component';
 import { DialogButtonsModel } from '../../modals/generic-dialog/generic-dialog.models';
+import { BattleModel } from '../../models/Battle.model';
+import { ExpGainComponent } from '../../modals/exp-gain/exp-gain.component';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-top-bar',
@@ -27,6 +30,7 @@ export class TopBarComponent implements OnInit {
   protected actualDate: Date;
   protected partyId = '64fd9cf21308150436317aed';
   protected simulating = false;
+  protected player: TrainerModel;
 
   public constructor(
     protected playerService: PlayerService,
@@ -38,7 +42,11 @@ export class TopBarComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.player$ = this.playerService.player$;
+    this.player$ = this.playerService.player$.pipe(
+      tap((trainer) => {
+        this.player = trainer;
+      })
+    );
     this.goHomeDisabled$ = this.routerService.goHomeDisabled();
     this.title$ = this.routerService.getTitle();
     this.date$ = this.timeService.getActualDateToString();
@@ -60,38 +68,13 @@ export class TopBarComponent implements OnInit {
     this.calendarEventQueriesService
       .simulateDay(playerId, this.actualDate, this.partyId)
       .subscribe((res) => {
-        if (res.battle) {
-          const buttons: DialogButtonsModel[] = [
-            {
-              label: 'CANCEL',
-              color: undefined,
-              click: (): void => {
-                this.dialog.closeAll();
-              },
-            },
-            {
-              label: 'GO_TO_PC',
-              color: 'accent',
-              click: (): void => {
-                this.dialog.closeAll();
-                this.router.navigate(['pcStorage']);
-              },
-            },
-            {
-              label: 'GO_TO_BATTLE',
-              color: 'warn',
-              click: (): void => {
-                this.dialog.closeAll();
-                this.router.navigate(['battle/' + res.battle._id]);
-              },
-            },
-          ];
-          this.dialog.open(GenericDialogComponent, {
-            data: {
-              buttons,
-              message: 'SURE_GO_TO_BATTLE',
-            },
+        if (this.actualDate.getDay() === 1) {
+          this.dialog.open(ExpGainComponent, {
+            data: { trainer: this.player },
           });
+        }
+        if (res.battle) {
+          this.goToBattle(res.battle);
         }
         this.simulating = false;
       });
@@ -99,5 +82,39 @@ export class TopBarComponent implements OnInit {
 
   protected showCalendar(): void {
     this.showWeekCalendar = !this.showWeekCalendar;
+  }
+
+  protected goToBattle(battle: BattleModel): void {
+    const buttons: DialogButtonsModel[] = [
+      {
+        label: 'CANCEL',
+        color: undefined,
+        click: (): void => {
+          this.dialog.closeAll();
+        },
+      },
+      {
+        label: 'GO_TO_PC',
+        color: 'accent',
+        click: (): void => {
+          this.dialog.closeAll();
+          this.router.navigate(['pcStorage']);
+        },
+      },
+      {
+        label: 'GO_TO_BATTLE',
+        color: 'warn',
+        click: (): void => {
+          this.dialog.closeAll();
+          this.router.navigate(['battle/' + battle._id]);
+        },
+      },
+    ];
+    this.dialog.open(GenericDialogComponent, {
+      data: {
+        buttons,
+        message: 'SURE_GO_TO_BATTLE',
+      },
+    });
   }
 }

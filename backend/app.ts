@@ -17,6 +17,7 @@ import pcStorageRoutes from "./api/pcStorage/pcStorage.route";
 import calendarEventRoutes from "./api/calendar-event/calendar-event.routes";
 import partyRoutes from "./api/party/party.routes";
 import experienceRoutes from "./api/experience/experience.routes";
+import Party from "./api/party/party";
 
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 

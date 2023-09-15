@@ -3,6 +3,7 @@ import { IMapper } from "../IMapper";
 import MoveService from "../move/move.service";
 import PokemonBaseService from "../pokemonBase/pokemonBase.service";
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
+import Party from "../party/party";
 
 class PokemonMapper implements IMapper<IPokemon> {
   private static instance: PokemonMapper;
@@ -31,10 +32,10 @@ class PokemonMapper implements IMapper<IPokemon> {
   };
 
   public async update(pokemon: IPokemon): Promise<IPokemon> {
-    console.log("pokemonMapper", pokemon.exp);
     if (pokemon.iv && pokemon.ev) {
       pokemon.stats = this.updateStats(pokemon);
     }
+    pokemon.age = await this.calculateAge(pokemon.birthday);
     return pokemon;
   }
 
@@ -95,6 +96,21 @@ class PokemonMapper implements IMapper<IPokemon> {
       niv +
       10
     );
+  }
+
+  public async calculateAge(birthdate: Date): Promise<number> {
+    birthdate = new Date(birthdate);
+    const today = (await Party.find())[0].actualDate;
+    let age = today.getFullYear() - birthdate.getFullYear();
+    const monthDifference = today.getMonth() - birthdate.getMonth();
+
+    if (
+      monthDifference < 0 ||
+      (monthDifference === 0 && today.getDate() < birthdate.getDate())
+    ) {
+      age--;
+    }
+    return age;
   }
 
   public static getInstance(): PokemonMapper {
