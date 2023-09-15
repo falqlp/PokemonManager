@@ -17,13 +17,16 @@ class PcStorageMapper implements IMapper<IPcStorage> {
     return pcStorage;
   }
 
-  public update(pcStorage: IPcStorage): IPcStorage {
-    pcStorage.storage?.map(async (pcStorage) => {
-      pcStorage.pokemon = await this.pokemonService.update(
-        pcStorage.pokemon._id,
-        pcStorage.pokemon
-      );
-    });
+  public async update(pcStorage: IPcStorage): Promise<IPcStorage> {
+    pcStorage.storage = await Promise.all(
+      pcStorage.storage?.map(async (pcStorage) => {
+        pcStorage.pokemon = await this.pokemonService.update(
+          pcStorage.pokemon._id,
+          pcStorage.pokemon
+        );
+        return pcStorage;
+      })
+    );
     return pcStorage;
   }
   public static getInstance(): PcStorageMapper {

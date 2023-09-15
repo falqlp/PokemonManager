@@ -2,6 +2,7 @@ import TrainerService from "../trainer/trainer.service";
 import { IPokemon } from "../pokemon/pokemon";
 import { ITrainer } from "../trainer/trainer";
 import normalRandomUtils from "../../utils/normalRandomUtils";
+import evolutionService from "../evolution/evolution.service";
 
 const XP_PER_LEVEL = 100000;
 
@@ -23,27 +24,42 @@ class ExperienceService {
   }> {
     let trainer = await this.trainerService.getComplete(trainerId);
     const xpAndLevelGain: { xp: number; level: number }[] = [];
-    trainer.pokemons.forEach((pokemon) => {
-      const xpGain = this.getXp(pokemon, trainer.trainingCamp.level);
-      pokemon.exp += xpGain;
-      const result = this.getLevel(pokemon.level, pokemon.exp);
-      pokemon.level = result.level;
-      pokemon.exp = result.exp;
-      pokemon.trainingPourcentage = 0;
-      xpAndLevelGain.push({ level: result.variation, xp: xpGain });
+    const pokemonPromise = trainer.pokemons.map(async (pokemon) => {
+      const res = await this.mapPokemonXp(pokemon, trainer.trainingCamp.level);
+      xpAndLevelGain.push(res);
+      return pokemon;
     });
-    trainer.pcStorage.storage.forEach((storage) => {
-      storage.pokemon.exp = this.getXp(
-        storage.pokemon,
-        trainer.trainingCamp.level
-      );
-      const result = this.getLevel(storage.pokemon.level, storage.pokemon.exp);
-      storage.pokemon.level = result.level;
-      storage.pokemon.exp = result.exp;
-      storage.pokemon.trainingPourcentage = 0;
+    const storagePromise = trainer.pcStorage.storage.map(async (storage) => {
+      await this.mapPokemonXp(storage.pokemon, trainer.trainingCamp.level);
+      return storage;
     });
+    await Promise.all(pokemonPromise);
+    await Promise.all(storagePromise);
     trainer = await this.trainerService.update(trainer._id, trainer);
     return { trainer, xpAndLevelGain };
+  }
+
+  public async mapPokemonXp(
+    pokemon: IPokemon,
+    trainingCampLevel: number
+  ): Promise<{ xp: number; level: number }> {
+    const xpGain = this.getXp(pokemon, trainingCampLevel);
+    pokemon.exp += xpGain;
+    const result = this.getLevel(pokemon.level, pokemon.exp);
+    pokemon.level = result.level;
+    pokemon.exp = result.exp;
+    pokemon.trainingPourcentage = 0;
+    if (result.variation > 0) {
+      const evolution = await evolutionService.evolve(
+        pokemon.basePokemon.id,
+        pokemon.level,
+        "LEVEL-UP"
+      );
+      if (evolution) {
+        pokemon.basePokemon = evolution;
+      }
+    }
+    return { level: result.variation, xp: xpGain };
   }
 
   public getXp(pokemon: IPokemon, lvlTrainingCamp: number): number {

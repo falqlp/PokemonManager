@@ -37,10 +37,12 @@ class TrainerMapper implements IMapper<ITrainer> {
   };
 
   public async update(trainer: ITrainer): Promise<ITrainer> {
-    trainer.pokemons.map(async (pokemon) => {
-      pokemon = await this.pokemonService.update(pokemon._id, pokemon);
-      return pokemon;
-    });
+    trainer.pokemons = await Promise.all(
+      trainer.pokemons.map(async (pokemon) => {
+        pokemon = await this.pokemonService.update(pokemon._id, pokemon);
+        return pokemon;
+      })
+    );
     if (typeof trainer.pcStorage !== "string") {
       await this.pcStorageService.update(
         trainer.pcStorage._id,
