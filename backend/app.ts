@@ -16,6 +16,7 @@ import moveLearningRoutes from "./api/moveLearning/moveLearning.routes";
 import pcStorageRoutes from "./api/pcStorage/pcStorage.route";
 import calendarEventRoutes from "./api/calendar-event/calendar-event.routes";
 import partyRoutes from "./api/party/party.routes";
+import experienceRoutes from "./api/experience/experience.routes";
 
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
@@ -56,5 +57,6 @@ app.use("/api/moveLearning", moveLearningRoutes);
 app.use("/api/pcStorage", pcStorageRoutes);
 app.use("/api/calendar-event", calendarEventRoutes);
 app.use("/api/party", partyRoutes);
+app.use("/api/xp", experienceRoutes);
 
 export default app;

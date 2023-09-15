@@ -2,6 +2,7 @@ import Pokemon, { IPokemon } from "./pokemon";
 import { IMapper } from "../IMapper";
 import MoveService from "../move/move.service";
 import PokemonBaseService from "../pokemonBase/pokemonBase.service";
+import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 
 class PokemonMapper implements IMapper<IPokemon> {
   private static instance: PokemonMapper;
@@ -18,7 +19,8 @@ class PokemonMapper implements IMapper<IPokemon> {
     pokemon.trainingPourcentage = undefined;
     return pokemon;
   }
-  public async mapComplete(pokemon: IPokemon): Promise<IPokemon> {
+
+  public mapComplete = async (pokemon: IPokemon): Promise<IPokemon> => {
     pokemon.moves = await this.moveService.list({
       ids: pokemon.moves as unknown as string[],
     });
@@ -26,10 +28,73 @@ class PokemonMapper implements IMapper<IPokemon> {
       pokemon.basePokemon as unknown as string
     );
     return pokemon;
-  }
+  };
 
   public async update(pokemon: IPokemon): Promise<IPokemon> {
+    console.log("pokemonMapper", pokemon.exp);
+    if (pokemon.iv && pokemon.ev) {
+      pokemon.stats = this.updateStats(pokemon);
+    }
     return pokemon;
+  }
+
+  public updateStats(pokemon: IPokemon): IPokemonStats {
+    return {
+      hp: this.calcHp(
+        pokemon.basePokemon.baseStats.hp,
+        pokemon.level,
+        pokemon.iv.hp,
+        pokemon.ev.hp
+      ),
+      atk: this.calcStat(
+        pokemon.basePokemon.baseStats.atk,
+        pokemon.level,
+        pokemon.iv.atk,
+        pokemon.ev.atk
+      ),
+      def: this.calcStat(
+        pokemon.basePokemon.baseStats.def,
+        pokemon.level,
+        pokemon.iv.def,
+        pokemon.ev.def
+      ),
+      spAtk: this.calcStat(
+        pokemon.basePokemon.baseStats.spAtk,
+        pokemon.level,
+        pokemon.iv.spAtk,
+        pokemon.ev.spAtk
+      ),
+      spDef: this.calcStat(
+        pokemon.basePokemon.baseStats.spDef,
+        pokemon.level,
+        pokemon.iv.spDef,
+        pokemon.ev.spDef
+      ),
+      spe: this.calcStat(
+        pokemon.basePokemon.baseStats.spe,
+        pokemon.level,
+        pokemon.iv.spe,
+        pokemon.ev.spe
+      ),
+    } as IPokemonStats;
+  }
+
+  public calcStat(bs: number, niv: number, iv: number, ev: number): number {
+    return (
+      Math.floor(
+        ((2 * bs + (ev === 0 ? 0 : Math.floor(ev / 4)) + iv) * niv) / 100
+      ) + 5
+    );
+  }
+
+  public calcHp(bs: number, niv: number, iv: number, ev: number): number {
+    return (
+      Math.floor(
+        ((2 * bs + (ev === 0 ? 0 : Math.floor(ev / 4)) + iv) * niv) / 100
+      ) +
+      niv +
+      10
+    );
   }
 
   public static getInstance(): PokemonMapper {

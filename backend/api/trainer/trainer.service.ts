@@ -16,42 +16,19 @@ class TrainerService extends CompleteService<ITrainer> {
   }
 
   public async getPartial(_id: string): Promise<ITrainer> {
-    try {
-      const entity = (await this.schema.findOne({ _id })) as ITrainer;
-      return this.mapper.mapPartial(entity);
-    } catch (error) {
-      return Promise.reject(error);
-    }
+    return this.get(_id, this.mapper.mapPartial);
   }
 
   public async listPartial(body: ListBody): Promise<ITrainer[]> {
-    try {
-      const query = { ...body.custom };
-      if (body.ids) {
-        query._id = { $in: body.ids };
-      }
-      const dtos = await this.schema
-        .find(query)
-        .limit(body.limit || 0)
-        .sort(body.sort);
+    return this.list(body, this.mapper.mapPartial);
+  }
 
-      if (body.ids?.length) {
-        dtos.sort((a: any, b: any) => {
-          return (
-            body.ids!.indexOf(a._id.toString()) -
-            body.ids!.indexOf(b._id.toString())
-          );
-        });
-      }
+  public async getComplete(_id: string): Promise<ITrainer> {
+    return this.get(_id, this.mapper.mapComplete);
+  }
 
-      return await Promise.all(
-        dtos.map(async (dto) => {
-          return this.mapper.mapPartial(dto);
-        })
-      );
-    } catch (error) {
-      return Promise.reject(error);
-    }
+  public async listComplete(body: ListBody): Promise<ITrainer[]> {
+    return this.list(body, this.mapper.mapComplete);
   }
 }
 

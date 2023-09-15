@@ -1,7 +1,9 @@
 import TrainerService from "../trainer/trainer.service";
 import { IPokemon } from "../pokemon/pokemon";
+import { ITrainer } from "../trainer/trainer";
+import normalRandomUtils from "../../utils/normalRandomUtils";
 
-const xpPerLevel = 100000;
+const XP_PER_LEVEL = 100000;
 
 class ExperienceService {
   private static instance: ExperienceService;
@@ -15,18 +17,32 @@ class ExperienceService {
   }
 
   constructor(protected trainerService: TrainerService) {}
-  public async weeklyXpGain(trainerId: string): Promise<void> {
-    const trainer = await this.trainerService.get(trainerId);
-    const allPokemon = trainer.pokemons.concat(
-      trainer.pcStorage.storage.map((storage) => storage.pokemon)
-    );
-    allPokemon.map((pokemon) => {
-      pokemon.exp = this.getXp(pokemon, trainer.trainingCamp.level);
-      const result = this.getLevel(pokemon.exp, pokemon.level);
+  public async weeklyXpGain(trainerId: string): Promise<{
+    trainer: ITrainer;
+    xpAndLevelGain: { xp: number; level: number }[];
+  }> {
+    let trainer = await this.trainerService.getComplete(trainerId);
+    const xpAndLevelGain: { xp: number; level: number }[] = [];
+    trainer.pokemons.forEach((pokemon) => {
+      const xpGain = this.getXp(pokemon, trainer.trainingCamp.level);
+      pokemon.exp += xpGain;
+      const result = this.getLevel(pokemon.level, pokemon.exp);
       pokemon.level = result.level;
       pokemon.exp = result.exp;
-      return pokemon;
+      pokemon.trainingPourcentage = 0;
     });
+    trainer.pcStorage.storage.forEach((storage) => {
+      storage.pokemon.exp = this.getXp(
+        storage.pokemon,
+        trainer.trainingCamp.level
+      );
+      const result = this.getLevel(storage.pokemon.level, storage.pokemon.exp);
+      storage.pokemon.level = result.level;
+      storage.pokemon.exp = result.exp;
+      storage.pokemon.trainingPourcentage = 0;
+    });
+    trainer = await this.trainerService.update(trainer._id, trainer);
+    return { trainer, xpAndLevelGain };
   }
 
   public getXp(pokemon: IPokemon, lvlTrainingCamp: number): number {
@@ -35,34 +51,29 @@ class ExperienceService {
         lvlTrainingCamp *
         50 *
         (pokemon.potential - pokemon.level) -
-      Math.pow((pokemon.level * pokemon.age) / 5000, 2) / 7;
-    return pokemon.exp + this.normalRandom(gainXp);
+      Math.pow((pokemon.level * pokemon.age * 7) / 5000, 2);
+    return Math.floor(
+      normalRandomUtils.normalRandom(7 * gainXp, lvlTrainingCamp * 50)
+    );
   }
 
-  public getLevel(level: number, exp: number): { level: number; exp: number } {
-    while (exp > xpPerLevel) {
-      exp = -xpPerLevel;
+  public getLevel(
+    level: number,
+    exp: number
+  ): { level: number; exp: number; variation: number } {
+    let variation = 0;
+    while (exp > XP_PER_LEVEL) {
+      exp -= XP_PER_LEVEL;
       level++;
+      variation++;
     }
     while (exp < 0) {
       level--;
-      exp += xpPerLevel;
+      exp += XP_PER_LEVEL;
+      variation++;
     }
-    return { exp, level };
-  }
-
-  protected boxMullerRandom(): [number, number] {
-    let u = 0,
-      v = 0;
-    while (u === 0) u = Math.random();
-    while (v === 0) v = Math.random();
-    let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-    let num2 = Math.sqrt(-2.0 * Math.log(u)) * Math.sin(2.0 * Math.PI * v);
-    return [num, num2];
-  }
-
-  public normalRandom(mean: number = 0, stdDev: number = 1): number {
-    const [z] = this.boxMullerRandom();
-    return z * stdDev + mean;
+    return { level, exp, variation };
   }
 }
+
+export default ExperienceService;

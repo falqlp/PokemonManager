@@ -11,16 +11,19 @@ export interface ListBody {
 class ReadOnlyService<T extends Document> {
   constructor(protected schema: Model<T>, protected mapper: IMapper<T>) {}
 
-  async get(_id: string): Promise<T> {
+  async get(_id: string, map?: (entity: T) => Promise<T> | T): Promise<T> {
     try {
       const entity = (await this.schema.findOne({ _id })) as T;
-      return this.mapper.map(entity);
+      return map ? map(entity) : this.mapper.map(entity);
     } catch (error) {
       return Promise.reject(error);
     }
   }
 
-  async list(body: ListBody): Promise<T[]> {
+  async list(
+    body: ListBody,
+    map?: (entity: T) => Promise<T> | T
+  ): Promise<T[]> {
     try {
       const query = { ...body.custom };
       if (body.ids) {
@@ -42,7 +45,7 @@ class ReadOnlyService<T extends Document> {
 
       return await Promise.all(
         dtos.map(async (dto) => {
-          return this.mapper.map(dto);
+          return map ? map(dto) : this.mapper.map(dto);
         })
       );
     } catch (error) {

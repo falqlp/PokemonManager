@@ -9,9 +9,14 @@ class CompleteService<T extends Document> extends ReadOnlyService<T> {
 
   async update(_id: string, dto: T) {
     try {
-      return await this.schema.findByIdAndUpdate(_id, {
-        $set: await this.mapper.update(dto),
-      } as unknown as UpdateQuery<T>);
+      const updatedDoc = await this.schema.findByIdAndUpdate(
+        _id,
+        {
+          $set: { ...(await this.mapper.update(dto)) },
+        } as unknown as UpdateQuery<T>,
+        { new: true }
+      );
+      return this.mapper.map(updatedDoc);
     } catch (error) {
       return Promise.reject(error);
     }
@@ -20,7 +25,7 @@ class CompleteService<T extends Document> extends ReadOnlyService<T> {
   async create(dto: T) {
     try {
       const newDto = new this.schema({ ...(await this.mapper.update(dto)) });
-      return await newDto.save();
+      return this.mapper.map(await newDto.save());
     } catch (error) {
       return Promise.reject(error);
     }

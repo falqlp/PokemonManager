@@ -106,32 +106,9 @@ export class HomeComponent implements OnInit {
   }
 
   protected testRoute(): void {
-    // this.partyQueriesService
-    //   .create({
-    //     player: this.player,
-    //     name: 'test',
-    //     actualDate: this.actualDate,
-    //   })
-    //   .subscribe();
-    // this.calendarEventQueriesService
-    //   .simulateDay('649e0e86e45d3dab76652543', this.actualDate)
-    //   .subscribe(console.log);
-    // this.battleQueries.get('64e7cf82e9cf81a76d72a23d').subscribe();
-    // this.battleQueries.delete('64e7cf82e9cf81a76d72a23d').subscribe();
-    // this.pokemonService.get('64e7cf7de9cf81a76d72a237').subscribe();
-    // this.trainerService.get('649e0e86e45d3dab76652543').subscribe((trainer) => {
-    //   trainer.name = 'Popole2';
-    //   this.trainerService.update(trainer, trainer._id).subscribe();
-    // });
-    this.pokemonQueriesService
-      .get('64cff59537682ecceed4ca13')
-      .subscribe((pokemon) => {
-        pokemon.level = 31;
-        pokemon.nickname = 'modified';
-        this.pokemonQueriesService
-          .update(pokemon, '64cff59537682ecceed4ca13')
-          .subscribe();
-      });
+    this.http
+      .get('/api/xp/weeklyXpGain/' + this.player._id)
+      .subscribe(console.log);
   }
 
   protected goToTrainers(): void {

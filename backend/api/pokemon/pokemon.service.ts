@@ -3,6 +3,7 @@ import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import Trainer from "../trainer/trainer";
 import CompleteService from "../CompleteService";
 import PokemonMapper from "./pokemon.mapper";
+import { ListBody } from "../ReadOnlyService";
 
 class PokemonService extends CompleteService<IPokemon> {
   private static instance: PokemonService;
@@ -28,7 +29,15 @@ class PokemonService extends CompleteService<IPokemon> {
     if (pokemon.ev === undefined) {
       pokemon.ev = this.initEvs();
     }
-    pokemon.stats = this.updateStats(pokemon);
+    if (!pokemon.potential) {
+      pokemon.potential = 100;
+    }
+    if (pokemon.age === undefined) {
+      pokemon.age = 0;
+    }
+    if (pokemon.trainingPourcentage === undefined) {
+      pokemon.trainingPourcentage = 0;
+    }
     return pokemon;
   }
 
@@ -54,65 +63,6 @@ class PokemonService extends CompleteService<IPokemon> {
     } as IPokemonStats;
   }
 
-  public updateStats(pokemon: IPokemon): IPokemonStats {
-    return {
-      hp: this.calcHp(
-        pokemon.basePokemon.baseStats.hp,
-        pokemon.level,
-        pokemon.iv.hp,
-        pokemon.ev.hp
-      ),
-      atk: this.calcStat(
-        pokemon.basePokemon.baseStats.atk,
-        pokemon.level,
-        pokemon.iv.atk,
-        pokemon.ev.atk
-      ),
-      def: this.calcStat(
-        pokemon.basePokemon.baseStats.def,
-        pokemon.level,
-        pokemon.iv.def,
-        pokemon.ev.def
-      ),
-      spAtk: this.calcStat(
-        pokemon.basePokemon.baseStats.spAtk,
-        pokemon.level,
-        pokemon.iv.spAtk,
-        pokemon.ev.spAtk
-      ),
-      spDef: this.calcStat(
-        pokemon.basePokemon.baseStats.spDef,
-        pokemon.level,
-        pokemon.iv.spDef,
-        pokemon.ev.spDef
-      ),
-      spe: this.calcStat(
-        pokemon.basePokemon.baseStats.spe,
-        pokemon.level,
-        pokemon.iv.spe,
-        pokemon.ev.spe
-      ),
-    } as IPokemonStats;
-  }
-
-  public calcStat(bs: number, niv: number, iv: number, ev: number): number {
-    return (
-      Math.floor(
-        ((2 * bs + (ev === 0 ? 0 : Math.floor(ev / 4)) + iv) * niv) / 100
-      ) + 5
-    );
-  }
-
-  public calcHp(bs: number, niv: number, iv: number, ev: number): number {
-    return (
-      Math.floor(
-        ((2 * bs + (ev === 0 ? 0 : Math.floor(ev / 4)) + iv) * niv) / 100
-      ) +
-      niv +
-      10
-    );
-  }
-
   public async create(pokemon: IPokemon): Promise<any> {
     const newPokemon = new Pokemon({
       ...(await this.mapper.update(this.createPokemon(pokemon))),
@@ -126,6 +76,12 @@ class PokemonService extends CompleteService<IPokemon> {
         .catch((error: Error) => console.log(error));
     }
     return newPokemon.save();
+  }
+  public async getComplete(_id: string): Promise<IPokemon> {
+    return await this.get(_id, this.mapper.mapComplete);
+  }
+  public async listComplete(body: ListBody): Promise<IPokemon[]> {
+    return await this.list(body, this.mapper.mapComplete);
   }
 }
 
