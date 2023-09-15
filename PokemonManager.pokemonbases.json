@@ -18,7 +18,11 @@
   "name": "SPEWPA",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -40,7 +44,11 @@
   "name": "MELTAN",
   "types": [
     "STEEL"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -62,7 +70,11 @@
   "name": "BLIPBUG",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -84,7 +96,11 @@
   "name": "WOOLOO",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -107,7 +123,12 @@
   "types": [
     "ELECTRIC",
     "POISON"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -129,7 +150,11 @@
   "name": "TYNAMO",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -151,7 +176,11 @@
   "name": "SCATTERBUG",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -173,7 +202,11 @@
   "name": "ELDEGOSS",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -195,7 +228,11 @@
   "name": "NICKIT",
   "types": [
     "DARK"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -217,7 +254,11 @@
   "name": "DUBWOOL",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 127,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -239,7 +280,11 @@
   "name": "FIDOUGH",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -261,7 +306,11 @@
   "name": "TADBULB",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -283,7 +332,11 @@
   "name": "NACLSTACK",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -306,7 +359,11 @@
   "types": [
     "GRASS",
     "NORMAL"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -329,7 +386,11 @@
   "types": [
     "GRASS",
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -351,7 +412,11 @@
   "name": "CHARCADET",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -373,7 +438,11 @@
   "name": "RELLOR",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -396,7 +465,11 @@
   "types": [
     "DRAGON",
     "WATER"
-  ]
+  ],
+  "captureRate": 100,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -418,7 +491,10 @@
   "name": "GIMMIGHOUL",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -440,7 +516,11 @@
   "name": "METAPOD",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -462,7 +542,11 @@
   "name": "CATERPIE",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -485,7 +569,11 @@
   "types": [
     "BUG",
     "POISON"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -507,7 +595,10 @@
   "name": "DITTO",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 35,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -529,7 +620,11 @@
   "name": "COSMOEM",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": false
 },
 {
   "_id": {
@@ -551,7 +646,11 @@
   "name": "COSMOG",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -573,7 +672,11 @@
   "name": "WURMPLE",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -595,7 +698,11 @@
   "name": "KRICKETOT",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -618,7 +725,11 @@
   "types": [
     "BUG",
     "FLYING"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -640,7 +751,11 @@
   "name": "BURMY",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -663,7 +778,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -686,7 +805,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -708,7 +831,11 @@
   "name": "GROOKEY",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -730,7 +857,10 @@
   "name": "POIPOLE",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -752,7 +882,11 @@
   "name": "SILICOBRA",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -774,7 +908,11 @@
   "name": "MELMETAL",
   "types": [
     "STEEL"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 0,
+  "base": false
 },
 {
   "_id": {
@@ -796,7 +934,11 @@
   "name": "SCORBUNNY",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -818,7 +960,11 @@
   "name": "SOBBLE",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -840,7 +986,11 @@
   "name": "ROOKIDEE",
   "types": [
     "FLYING"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -862,7 +1012,11 @@
   "name": "CORVISQUIRE",
   "types": [
     "FLYING"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -884,7 +1038,11 @@
   "name": "THWACKEY",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -907,7 +1065,11 @@
   "types": [
     "BUG",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -929,7 +1091,11 @@
   "name": "DRIZZILE",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -951,7 +1117,11 @@
   "name": "SKWOVET",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -973,7 +1143,11 @@
   "name": "GREEDENT",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -996,7 +1170,11 @@
   "types": [
     "GRASS",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1019,7 +1197,11 @@
   "types": [
     "BUG",
     "POISON"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -1042,7 +1224,10 @@
   "types": [
     "STEEL",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 3,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -1065,7 +1250,11 @@
   "types": [
     "BUG",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1087,7 +1276,11 @@
   "name": "THIEVUL",
   "types": [
     "DARK"
-  ]
+  ],
+  "captureRate": 127,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1110,7 +1303,11 @@
   "types": [
     "FLYING",
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1133,7 +1330,11 @@
   "types": [
     "FIRE",
     "BUG"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1155,7 +1356,11 @@
   "name": "ARROKUDA",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1177,7 +1382,11 @@
   "name": "GRAPPLOCT",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1199,7 +1408,11 @@
   "name": "SANDACONDA",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1221,7 +1434,11 @@
   "name": "BOLTUND",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1243,7 +1460,11 @@
   "name": "CLOBBOPUS",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 180,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1265,7 +1486,11 @@
   "name": "EISCUE-ICE",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1288,7 +1513,11 @@
   "types": [
     "ROCK",
     "FIRE"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1310,7 +1539,11 @@
   "name": "BARRASKEWDA",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1332,7 +1565,10 @@
   "name": "SINISTEA",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 120,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1354,7 +1590,11 @@
   "name": "HATENNA",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 235,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1377,7 +1617,11 @@
   "types": [
     "STEEL",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1400,7 +1644,11 @@
   "types": [
     "FIRE",
     "BUG"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1423,7 +1671,10 @@
   "types": [
     "ELECTRIC",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1445,7 +1696,11 @@
   "name": "HATTREM",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1468,7 +1723,10 @@
   "types": [
     "ELECTRIC",
     "ICE"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1490,7 +1748,11 @@
   "name": "REGIELEKI",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -1512,7 +1774,10 @@
   "name": "POLTEAGEIST",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 60,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1535,7 +1800,11 @@
   "types": [
     "GROUND",
     "NORMAL"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": null,
+  "base": false
 },
 {
   "_id": {
@@ -1558,7 +1827,11 @@
   "types": [
     "GRASS",
     "FIRE"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1581,7 +1854,11 @@
   "types": [
     "BUG",
     "ROCK"
-  ]
+  ],
+  "captureRate": 115,
+  "genderRate": 32,
+  "baseHappiness": null,
+  "base": false
 },
 {
   "_id": {
@@ -1604,7 +1881,11 @@
   "types": [
     "ELECTRIC",
     "DARK"
-  ]
+  ],
+  "captureRate": 180,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1627,7 +1908,10 @@
   "types": [
     "WATER",
     "ICE"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1650,7 +1934,10 @@
   "types": [
     "WATER",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1672,7 +1959,11 @@
   "name": "SPRIGATITO",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1694,7 +1985,10 @@
   "name": "MAUSHOLD",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 75,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1716,7 +2010,11 @@
   "name": "CHEWTLE",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1738,7 +2036,11 @@
   "name": "GOSSIFLEUR",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1760,7 +2062,12 @@
   "name": "KUBFU",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 3,
+  "genderRate": 8,
+  "legendary": true,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1783,7 +2090,11 @@
   "types": [
     "DARK",
     "POISON"
-  ]
+  ],
+  "captureRate": 135,
+  "genderRate": 32,
+  "baseHappiness": null,
+  "base": false
 },
 {
   "_id": {
@@ -1806,7 +2117,11 @@
   "types": [
     "GRASS",
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1828,7 +2143,11 @@
   "name": "NACLI",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1851,7 +2170,11 @@
   "types": [
     "ELECTRIC",
     "FLYING"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1873,7 +2196,11 @@
   "name": "MABOSSTIFF",
   "types": [
     "DARK"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1895,7 +2222,11 @@
   "name": "MASCHIFF",
   "types": [
     "DARK"
-  ]
+  ],
+  "captureRate": 150,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1917,7 +2248,11 @@
   "name": "HOUNDSTONE",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -1940,7 +2275,11 @@
   "types": [
     "GRASS",
     "GHOST"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1962,7 +2301,11 @@
   "name": "CAPSAKID",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -1985,7 +2328,11 @@
   "types": [
     "GRASS",
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -2007,7 +2354,11 @@
   "name": "CETODDLE",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 150,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2030,7 +2381,11 @@
   "types": [
     "WATER",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 100,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2052,7 +2407,11 @@
   "name": "CETITAN",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 50,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -2075,7 +2434,10 @@
   "types": [
     "ICE",
     "WATER"
-  ]
+  ],
+  "captureRate": 50,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -2098,7 +2460,11 @@
   "types": [
     "DRAGON",
     "ICE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2121,7 +2487,10 @@
   "types": [
     "STEEL",
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -2144,7 +2513,11 @@
   "types": [
     "DRAGON",
     "ICE"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -2166,7 +2539,11 @@
   "name": "MILCERY",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2189,7 +2566,11 @@
   "types": [
     "GRASS",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2211,7 +2592,11 @@
   "name": "NYMBLE",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 20,
+  "base": true
 },
 {
   "_id": {
@@ -2234,7 +2619,11 @@
   "types": [
     "ICE",
     "BUG"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2256,7 +2645,11 @@
   "name": "WOBBUFFET",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -2278,7 +2671,12 @@
   "name": "WYNAUT",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 125,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2300,7 +2698,11 @@
   "name": "FOMANTIS",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2322,7 +2724,11 @@
   "name": "LITTEN",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2345,7 +2751,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -2368,7 +2778,11 @@
   "types": [
     "POISON",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 255,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -2390,7 +2804,11 @@
   "name": "GLASTRIER",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -2412,7 +2830,11 @@
   "name": "POPPLIO",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2434,7 +2856,11 @@
   "name": "YUNGOOS",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -2457,7 +2883,11 @@
   "types": [
     "FIRE",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 48,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -2479,7 +2909,11 @@
   "name": "JANGMO-O",
   "types": [
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2502,7 +2936,11 @@
   "types": [
     "WATER",
     "BUG"
-  ]
+  ],
+  "captureRate": 100,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -2524,7 +2962,11 @@
   "name": "WISHIWASHI-SOLO",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2546,7 +2988,11 @@
   "name": "GUMSHOOS",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 127,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -2569,7 +3015,11 @@
   "types": [
     "BUG",
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -2592,7 +3042,11 @@
   "types": [
     "GRASS",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2615,7 +3069,11 @@
   "types": [
     "GRASS",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -2638,7 +3096,11 @@
   "types": [
     "BUG",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2661,7 +3123,11 @@
   "types": [
     "WATER",
     "BUG"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -2684,7 +3150,10 @@
   "types": [
     "STEEL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -2707,7 +3176,10 @@
   "types": [
     "BUG",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -2730,7 +3202,10 @@
   "types": [
     "FIRE",
     "GHOST"
-  ]
+  ],
+  "captureRate": 30,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -2752,7 +3227,11 @@
   "name": "ZERAORA",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -2774,7 +3253,10 @@
   "name": "XURKITREE",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -2796,7 +3278,11 @@
   "name": "INTELEON",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -2819,7 +3305,10 @@
   "types": [
     "POISON",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 0,
+  "base": false
 },
 {
   "_id": {
@@ -2841,7 +3330,11 @@
   "name": "RILLABOOM",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -2864,7 +3357,10 @@
   "types": [
     "GRASS",
     "STEEL"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -2886,7 +3382,11 @@
   "name": "CINDERACE",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -2909,7 +3409,10 @@
   "types": [
     "ROCK",
     "STEEL"
-  ]
+  ],
+  "captureRate": 30,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -2932,7 +3435,11 @@
   "types": [
     "ROCK",
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -2954,7 +3461,11 @@
   "name": "TORRACAT",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -2977,7 +3488,11 @@
   "types": [
     "BUG",
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -2999,7 +3514,11 @@
   "name": "BRIONNE",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3022,7 +3541,11 @@
   "types": [
     "PSYCHIC",
     "NORMAL"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 32,
+  "baseHappiness": 140,
+  "base": true
 },
 {
   "_id": {
@@ -3044,7 +3567,11 @@
   "name": "COPPERAJAH",
   "types": [
     "STEEL"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3067,7 +3594,12 @@
   "types": [
     "FIGHTING",
     "DARK"
-  ]
+  ],
+  "captureRate": 3,
+  "genderRate": 8,
+  "legendary": true,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3089,7 +3621,11 @@
   "name": "CUFANT",
   "types": [
     "STEEL"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -3112,7 +3648,11 @@
   "types": [
     "PSYCHIC",
     "GRASS"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 100,
+  "base": true
 },
 {
   "_id": {
@@ -3135,7 +3675,11 @@
   "types": [
     "DARK",
     "GRASS"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -3157,7 +3701,11 @@
   "name": "REGIDRAGO",
   "types": [
     "DRAGON"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -3179,7 +3727,11 @@
   "name": "SPECTRIER",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -3202,7 +3754,11 @@
   "types": [
     "NORMAL",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 135,
+  "genderRate": 32,
+  "baseHappiness": null,
+  "base": false
 },
 {
   "_id": {
@@ -3224,7 +3780,11 @@
   "name": "DACHSBUN",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3246,7 +3806,11 @@
   "name": "ALCREMIE",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 100,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3268,7 +3832,11 @@
   "name": "RABOOT",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3291,7 +3859,11 @@
   "types": [
     "WATER",
     "GHOST"
-  ]
+  ],
+  "captureRate": 135,
+  "genderRate": 32,
+  "baseHappiness": null,
+  "base": false
 },
 {
   "_id": {
@@ -3314,7 +3886,11 @@
   "types": [
     "ELECTRIC",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3337,7 +3913,11 @@
   "types": [
     "POISON",
     "NORMAL"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -3360,7 +3940,11 @@
   "types": [
     "ELECTRIC",
     "FLYING"
-  ]
+  ],
+  "captureRate": 180,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -3383,7 +3967,11 @@
   "types": [
     "FIRE",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 32,
+  "baseHappiness": 20,
+  "base": false
 },
 {
   "_id": {
@@ -3406,7 +3994,11 @@
   "types": [
     "POISON",
     "NORMAL"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3429,7 +4021,11 @@
   "types": [
     "FIGHTING",
     "POISON"
-  ]
+  ],
+  "captureRate": 135,
+  "genderRate": 32,
+  "baseHappiness": null,
+  "base": false
 },
 {
   "_id": {
@@ -3452,7 +4048,11 @@
   "types": [
     "GROUND",
     "GRASS"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -3475,7 +4075,11 @@
   "types": [
     "GROUND",
     "GRASS"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3498,7 +4102,11 @@
   "types": [
     "ROCK",
     "POISON"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3521,7 +4129,11 @@
   "types": [
     "FIRE",
     "GHOST"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 32,
+  "baseHappiness": 20,
+  "base": false
 },
 {
   "_id": {
@@ -3543,7 +4155,11 @@
   "name": "GREAVARD",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -3565,7 +4181,11 @@
   "name": "KLAWF",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -3588,7 +4208,11 @@
   "types": [
     "FLYING",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 100,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -3611,7 +4235,11 @@
   "types": [
     "GRASS",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3634,7 +4262,11 @@
   "types": [
     "FIGHTING",
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3657,7 +4289,11 @@
   "types": [
     "ELECTRIC",
     "POISON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3680,7 +4316,11 @@
   "types": [
     "NORMAL",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3703,7 +4343,10 @@
   "types": [
     "FAIRY",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 50,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -3726,7 +4369,10 @@
   "types": [
     "GHOST",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 30,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -3749,7 +4395,11 @@
   "types": [
     "DARK",
     "STEEL"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3772,7 +4422,10 @@
   "types": [
     "FIGHTING",
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 50,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -3795,7 +4448,10 @@
   "types": [
     "GROUND",
     "STEEL"
-  ]
+  ],
+  "captureRate": 30,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -3818,7 +4474,10 @@
   "types": [
     "ELECTRIC",
     "GROUND"
-  ]
+  ],
+  "captureRate": 30,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -3841,7 +4500,10 @@
   "types": [
     "GRASS",
     "DARK"
-  ]
+  ],
+  "captureRate": 50,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -3864,7 +4526,11 @@
   "types": [
     "DRAGON",
     "ICE"
-  ]
+  ],
+  "captureRate": 10,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3887,7 +4553,10 @@
   "types": [
     "BUG",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 30,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -3910,7 +4579,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -3933,7 +4606,10 @@
   "types": [
     "FIRE",
     "POISON"
-  ]
+  ],
+  "captureRate": 30,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -3956,7 +4632,11 @@
   "types": [
     "POISON",
     "GROUND"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -3979,7 +4659,11 @@
   "types": [
     "DARK",
     "ICE"
-  ]
+  ],
+  "captureRate": 6,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -4002,7 +4686,10 @@
   "types": [
     "ROCK",
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 30,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -4025,7 +4712,11 @@
   "types": [
     "DARK",
     "GRASS"
-  ]
+  ],
+  "captureRate": 6,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -4048,7 +4739,12 @@
   "types": [
     "FAIRY",
     "FLYING"
-  ]
+  ],
+  "captureRate": 3,
+  "genderRate": 64,
+  "legendary": true,
+  "baseHappiness": null,
+  "base": true
 },
 {
   "_id": {
@@ -4070,7 +4766,10 @@
   "name": "UNOWN",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 225,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -4092,7 +4791,10 @@
   "name": "TANDEMAUS",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 150,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4114,7 +4816,11 @@
   "name": "CASCOON",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -4136,7 +4842,11 @@
   "name": "SILCOON",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -4159,7 +4869,10 @@
   "types": [
     "DARK",
     "FLYING"
-  ]
+  ],
+  "captureRate": 30,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -4181,7 +4894,11 @@
   "name": "YAMPER",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4203,7 +4920,11 @@
   "name": "LECHONK",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4226,7 +4947,11 @@
   "types": [
     "ROCK",
     "POISON"
-  ]
+  ],
+  "captureRate": 70,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4249,7 +4974,11 @@
   "types": [
     "DRAGON",
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4271,7 +5000,11 @@
   "name": "OINKOLOGNE",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 100,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -4293,7 +5026,11 @@
   "name": "QUAXLY",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4316,7 +5053,11 @@
   "types": [
     "FAIRY",
     "STEEL"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -4338,7 +5079,11 @@
   "name": "WIGLETT",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4360,7 +5105,11 @@
   "name": "DONDOZO",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4383,7 +5132,11 @@
   "types": [
     "BUG",
     "DARK"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 32,
+  "baseHappiness": 0,
+  "base": false
 },
 {
   "_id": {
@@ -4406,7 +5159,10 @@
   "types": [
     "GROUND",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 30,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -4428,7 +5184,11 @@
   "name": "WUGTRIO",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 50,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -4450,7 +5210,11 @@
   "name": "FLITTLE",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4473,7 +5237,11 @@
   "types": [
     "STEEL",
     "POISON"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -4495,7 +5263,11 @@
   "name": "QUAXWELL",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -4518,7 +5290,11 @@
   "types": [
     "STEEL",
     "POISON"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4540,7 +5316,11 @@
   "name": "FUECOCO",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4562,7 +5342,11 @@
   "name": "ORTHWORM",
   "types": [
     "STEEL"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4584,7 +5368,11 @@
   "name": "FINIZEN",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4607,7 +5395,11 @@
   "types": [
     "BUG",
     "GRASS"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -4629,7 +5421,11 @@
   "name": "LYCANROC-MIDDAY",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -4651,7 +5447,11 @@
   "name": "SLIGGOO",
   "types": [
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -4673,7 +5473,11 @@
   "name": "GOOMY",
   "types": [
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -4696,7 +5500,11 @@
   "types": [
     "GRASS",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -4719,7 +5527,11 @@
   "types": [
     "WATER",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -4742,7 +5554,11 @@
   "types": [
     "FIRE",
     "DARK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -4765,7 +5581,11 @@
   "types": [
     "WATER",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 80,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -4788,7 +5608,11 @@
   "types": [
     "GRASS",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4811,7 +5635,11 @@
   "types": [
     "POISON",
     "WATER"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4834,7 +5662,11 @@
   "types": [
     "PSYCHIC",
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": false
 },
 {
   "_id": {
@@ -4856,7 +5688,11 @@
   "name": "LURANTIS",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -4879,7 +5715,11 @@
   "types": [
     "NORMAL",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 70,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4902,7 +5742,11 @@
   "types": [
     "POISON",
     "WATER"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -4924,7 +5768,11 @@
   "name": "MUDBRAY",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4947,7 +5795,10 @@
   "types": [
     "GHOST",
     "GRASS"
-  ]
+  ],
+  "captureRate": 25,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4969,7 +5820,11 @@
   "name": "ROCKRUFF",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -4992,7 +5847,11 @@
   "types": [
     "BUG",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5015,7 +5874,11 @@
   "types": [
     "DRAGON",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5038,7 +5901,11 @@
   "types": [
     "GRASS",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -5061,7 +5928,11 @@
   "types": [
     "PSYCHIC",
     "STEEL"
-  ]
+  ],
+  "captureRate": 45,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": false
 },
 {
   "_id": {
@@ -5084,7 +5955,11 @@
   "types": [
     "PSYCHIC",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -5107,7 +5982,11 @@
   "types": [
     "ELECTRIC",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -5130,7 +6009,10 @@
   "types": [
     "DARK",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -5152,7 +6034,11 @@
   "name": "MUDSDALE",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5174,7 +6060,11 @@
   "name": "BELLIBOLT",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 50,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5197,7 +6087,10 @@
   "types": [
     "BUG",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -5220,7 +6113,10 @@
   "types": [
     "ROCK",
     "POISON"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -5242,7 +6138,11 @@
   "name": "CROCALOR",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5264,7 +6164,11 @@
   "name": "NECROZMA",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 255,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -5287,7 +6191,11 @@
   "types": [
     "POISON",
     "FIRE"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -5310,7 +6218,11 @@
   "types": [
     "FLYING",
     "STEEL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5333,7 +6245,11 @@
   "types": [
     "WATER",
     "ROCK"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5355,7 +6271,11 @@
   "name": "CURSOLA",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 48,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5378,7 +6298,11 @@
   "types": [
     "BUG",
     "WATER"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -5400,7 +6324,11 @@
   "name": "SIRFETCHD",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5422,7 +6350,11 @@
   "name": "ROLYCOLY",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -5445,7 +6377,11 @@
   "types": [
     "BUG",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5468,7 +6404,11 @@
   "types": [
     "GROUND",
     "GHOST"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5490,7 +6430,10 @@
   "name": "FALINKS",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -5512,7 +6455,11 @@
   "name": "PINCURCHIN",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -5534,7 +6481,11 @@
   "name": "STONJOURNER",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -5557,7 +6508,11 @@
   "types": [
     "ELECTRIC",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 80,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5580,7 +6535,11 @@
   "types": [
     "DARK",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5603,7 +6562,11 @@
   "types": [
     "ELECTRIC",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -5626,7 +6589,11 @@
   "types": [
     "DARK",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -5649,7 +6616,10 @@
   "types": [
     "FAIRY",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 10,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -5672,7 +6642,11 @@
   "types": [
     "FAIRY",
     "STEEL"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -5695,7 +6669,11 @@
   "types": [
     "WATER",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5718,7 +6696,11 @@
   "types": [
     "FIRE",
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5740,7 +6722,11 @@
   "name": "SPIDOPS",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5762,7 +6748,11 @@
   "name": "PAWMI",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -5784,7 +6774,11 @@
   "name": "GARGANACL",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5807,7 +6801,11 @@
   "types": [
     "FLYING",
     "DARK"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -5829,7 +6827,11 @@
   "name": "DUDUNSPARCE",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5852,7 +6854,11 @@
   "types": [
     "FAIRY",
     "STEEL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5875,7 +6881,10 @@
   "types": [
     "WATER",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 5,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -5897,7 +6906,11 @@
   "name": "ESPATHRA",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5920,7 +6933,10 @@
   "types": [
     "GRASS",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 5,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -5943,7 +6959,11 @@
   "types": [
     "DARK",
     "GROUND"
-  ]
+  ],
+  "captureRate": 6,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -5965,7 +6985,11 @@
   "name": "FLORAGATO",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -5987,7 +7011,11 @@
   "name": "TAROUNTULA",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6010,7 +7038,11 @@
   "types": [
     "DARK",
     "FIRE"
-  ]
+  ],
+  "captureRate": 6,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -6032,7 +7064,11 @@
   "name": "PATRAT",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -6054,7 +7090,11 @@
   "name": "SIMISAGE",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -6077,7 +7117,11 @@
   "types": [
     "WATER",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6100,7 +7144,11 @@
   "types": [
     "WATER",
     "GROUND"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -6123,7 +7171,11 @@
   "types": [
     "BUG",
     "GRASS"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -6146,7 +7198,11 @@
   "types": [
     "BUG",
     "POISON"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -6169,7 +7225,11 @@
   "types": [
     "FIGHTING",
     "GHOST"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -6191,7 +7251,11 @@
   "name": "EELEKTRIK",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -6213,7 +7277,11 @@
   "name": "BRAIXEN",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -6235,7 +7303,10 @@
   "name": "KLANG",
   "types": [
     "STEEL"
-  ]
+  ],
+  "captureRate": 60,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -6257,7 +7328,11 @@
   "name": "SHELMET",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6279,7 +7354,11 @@
   "name": "FROAKIE",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -6301,7 +7380,11 @@
   "name": "BUNNELBY",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6324,7 +7407,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6347,7 +7434,11 @@
   "types": [
     "BUG",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -6369,7 +7460,11 @@
   "name": "FROGADIER",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -6392,7 +7487,11 @@
   "types": [
     "FIRE",
     "FLYING"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -6415,7 +7514,11 @@
   "types": [
     "FIRE",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -6437,7 +7540,11 @@
   "name": "AROMATISSE",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 140,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -6460,7 +7567,11 @@
   "types": [
     "FIRE",
     "NORMAL"
-  ]
+  ],
+  "captureRate": 220,
+  "genderRate": 56,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -6482,7 +7593,11 @@
   "name": "SWIRLIX",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6505,7 +7620,11 @@
   "types": [
     "DARK",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6528,7 +7647,11 @@
   "types": [
     "DARK",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 80,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -6550,7 +7673,11 @@
   "name": "SLURPUFF",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 140,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -6573,7 +7700,11 @@
   "types": [
     "ROCK",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -6595,7 +7726,11 @@
   "name": "CLAUNCHER",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 225,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6618,7 +7753,11 @@
   "types": [
     "ELECTRIC",
     "NORMAL"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6641,7 +7780,11 @@
   "types": [
     "POISON",
     "WATER"
-  ]
+  ],
+  "captureRate": 225,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6664,7 +7807,11 @@
   "types": [
     "ELECTRIC",
     "NORMAL"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -6687,7 +7834,11 @@
   "types": [
     "STEEL",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6710,7 +7861,11 @@
   "types": [
     "POISON",
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -6732,7 +7887,11 @@
   "name": "BERGMITE",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6755,7 +7914,11 @@
   "types": [
     "DARK",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -6778,7 +7941,11 @@
   "types": [
     "GHOST",
     "GRASS"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6801,7 +7968,11 @@
   "types": [
     "DRAGON",
     "GROUND"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -6824,7 +7995,11 @@
   "types": [
     "GHOST",
     "GRASS"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6847,7 +8022,11 @@
   "types": [
     "GRASS",
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -6869,7 +8048,11 @@
   "name": "XERNEAS",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 45,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -6891,7 +8074,11 @@
   "name": "FENNEKIN",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -6914,7 +8101,11 @@
   "types": [
     "GHOST",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6937,7 +8128,11 @@
   "types": [
     "DRAGON",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -6960,7 +8155,11 @@
   "types": [
     "ROCK",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -6982,7 +8181,11 @@
   "name": "MAGIKARP",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -7004,7 +8207,11 @@
   "name": "SMEARGLE",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -7027,7 +8234,11 @@
   "types": [
     "DARK",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7049,7 +8260,11 @@
   "name": "CRABRAWLER",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 225,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -7072,7 +8287,11 @@
   "types": [
     "NORMAL",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 140,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -7094,7 +8313,11 @@
   "name": "SERVINE",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -7116,7 +8339,11 @@
   "name": "GRUBBIN",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -7139,7 +8366,10 @@
   "types": [
     "ROCK",
     "FLYING"
-  ]
+  ],
+  "captureRate": 30,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -7161,7 +8391,11 @@
   "name": "PYUKUMUKU",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -7184,7 +8418,11 @@
   "types": [
     "ICE",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7206,7 +8444,10 @@
   "name": "KLINK",
   "types": [
     "STEEL"
-  ]
+  ],
+  "captureRate": 130,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -7229,7 +8470,11 @@
   "types": [
     "ICE",
     "BUG"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7251,7 +8496,10 @@
   "name": "TYPE-NULL",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 3,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -7273,7 +8521,11 @@
   "name": "ZACIAN",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 10,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -7296,7 +8548,11 @@
   "types": [
     "DRAGON",
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7318,7 +8574,11 @@
   "name": "PERRSERKER",
   "types": [
     "STEEL"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7341,7 +8601,11 @@
   "types": [
     "FIGHTING",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -7364,7 +8628,11 @@
   "types": [
     "DARK",
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7387,7 +8655,11 @@
   "types": [
     "GRASS",
     "DARK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7409,7 +8681,11 @@
   "name": "PALAFIN",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7432,7 +8708,11 @@
   "types": [
     "DRAGON",
     "NORMAL"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -7454,7 +8734,11 @@
   "name": "MUSHARNA",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7476,7 +8760,11 @@
   "name": "SERPERIOR",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -7498,7 +8786,11 @@
   "name": "TEPIG",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -7520,7 +8812,11 @@
   "name": "SNIVY",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -7542,7 +8838,11 @@
   "name": "HERDIER",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7565,7 +8865,11 @@
   "types": [
     "FIRE",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -7587,7 +8891,11 @@
   "name": "LILLIPUP",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -7609,7 +8917,11 @@
   "name": "STOUTLAND",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7631,7 +8943,11 @@
   "name": "CINCCINO",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 48,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7653,7 +8969,11 @@
   "name": "TYMPOLE",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -7676,7 +8996,11 @@
   "types": [
     "BUG",
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -7699,7 +9023,11 @@
   "types": [
     "BUG",
     "POISON"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -7721,7 +9049,11 @@
   "name": "KARRABLAST",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -7743,7 +9075,10 @@
   "name": "KLINKLANG",
   "types": [
     "STEEL"
-  ]
+  ],
+  "captureRate": 30,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7766,7 +9101,11 @@
   "types": [
     "ROCK",
     "WATER"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -7789,7 +9128,11 @@
   "types": [
     "GRASS",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7812,7 +9155,11 @@
   "types": [
     "POISON",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 55,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7834,7 +9181,11 @@
   "name": "CLAWITZER",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 55,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7857,7 +9208,11 @@
   "types": [
     "ROCK",
     "ICE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7880,7 +9235,11 @@
   "types": [
     "ROCK",
     "ICE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -7902,7 +9261,11 @@
   "name": "SYLVEON",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7925,7 +9288,11 @@
   "types": [
     "FLYING",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -7948,7 +9315,11 @@
   "types": [
     "GHOST",
     "GRASS"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -7971,7 +9342,10 @@
   "types": [
     "ROCK",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 60,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -7994,7 +9368,11 @@
   "types": [
     "STEEL",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -8016,7 +9394,11 @@
   "name": "FLOETTE",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 64,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -8039,7 +9421,11 @@
   "types": [
     "BUG",
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -8061,7 +9447,11 @@
   "name": "FLABEBE",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 225,
+  "genderRate": 64,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -8084,7 +9474,11 @@
   "types": [
     "GHOST",
     "GROUND"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -8106,7 +9500,11 @@
   "name": "FLORGES",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 64,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -8129,7 +9527,11 @@
   "types": [
     "STEEL",
     "GHOST"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -8152,7 +9554,11 @@
   "types": [
     "STEEL",
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -8174,7 +9580,11 @@
   "name": "BOUNSWEET",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 235,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -8197,7 +9607,11 @@
   "types": [
     "STEEL",
     "GHOST"
-  ]
+  ],
+  "captureRate": 180,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -8220,7 +9634,11 @@
   "types": [
     "NORMAL",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 70,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -8243,7 +9661,11 @@
   "types": [
     "FIGHTING",
     "ICE"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -8265,7 +9687,11 @@
   "name": "STEENEE",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -8288,7 +9714,11 @@
   "types": [
     "ELECTRIC",
     "STEEL"
-  ]
+  ],
+  "captureRate": 180,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -8310,7 +9740,11 @@
   "name": "KOMALA",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -8332,7 +9766,11 @@
   "name": "TSAREENA",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -8354,7 +9792,11 @@
   "name": "COMFEY",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 48,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -8377,7 +9819,11 @@
   "types": [
     "FIRE",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 70,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -8399,7 +9845,11 @@
   "name": "ZAMAZENTA",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 10,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -8422,7 +9872,11 @@
   "types": [
     "DRAGON",
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -8445,7 +9899,11 @@
   "types": [
     "PSYCHIC",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -8468,7 +9926,10 @@
   "types": [
     "DRAGON",
     "DARK"
-  ]
+  ],
+  "captureRate": 10,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -8490,7 +9951,11 @@
   "name": "SHAYMIN-LAND",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "mythical": true,
+  "baseHappiness": 100,
+  "base": true
 },
 {
   "_id": {
@@ -8512,7 +9977,11 @@
   "name": "DEWOTT",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -8535,7 +10004,11 @@
   "types": [
     "BUG",
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -8557,7 +10030,11 @@
   "name": "WATCHOG",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -8580,7 +10057,11 @@
   "types": [
     "GRASS",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -8602,7 +10083,11 @@
   "name": "PETILIL",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -8625,7 +10110,11 @@
   "types": [
     "BUG",
     "ROCK"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -8648,7 +10137,11 @@
   "types": [
     "BUG",
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -8671,7 +10164,11 @@
   "types": [
     "GRASS",
     "STEEL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -8694,7 +10191,11 @@
   "types": [
     "GRASS",
     "POISON"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -8716,7 +10217,11 @@
   "name": "TRUBBISH",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -8739,7 +10244,11 @@
   "types": [
     "GHOST",
     "FIRE"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -8761,7 +10270,11 @@
   "name": "EELEKTROSS",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -8784,7 +10297,11 @@
   "types": [
     "BUG",
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -8806,7 +10323,11 @@
   "name": "CHESPIN",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -8829,7 +10350,11 @@
   "types": [
     "WATER",
     "DARK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -8852,7 +10377,11 @@
   "types": [
     "WATER",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -8874,7 +10403,11 @@
   "name": "QUILLADIN",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -8897,7 +10430,11 @@
   "types": [
     "FIRE",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -8920,7 +10457,11 @@
   "types": [
     "NORMAL",
     "GROUND"
-  ]
+  ],
+  "captureRate": 127,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -8942,7 +10483,11 @@
   "name": "GOODRA",
   "types": [
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -8965,7 +10510,11 @@
   "types": [
     "GHOST",
     "GRASS"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -8988,7 +10537,11 @@
   "types": [
     "ROCK",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9011,7 +10564,11 @@
   "types": [
     "PSYCHIC",
     "GHOST"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 100,
+  "base": true
 },
 {
   "_id": {
@@ -9034,7 +10591,11 @@
   "types": [
     "FIRE",
     "WATER"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 100,
+  "base": true
 },
 {
   "_id": {
@@ -9056,7 +10617,11 @@
   "name": "ACCELGOR",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -9078,7 +10643,11 @@
   "name": "AVALUGG",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 55,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -9101,7 +10670,11 @@
   "types": [
     "FIRE",
     "NORMAL"
-  ]
+  ],
+  "captureRate": 65,
+  "genderRate": 56,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -9123,7 +10696,11 @@
   "name": "SIMISEAR",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -9146,7 +10723,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -9168,7 +10749,11 @@
   "name": "SIMIPOUR",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -9191,7 +10776,11 @@
   "types": [
     "WATER",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -9213,7 +10802,11 @@
   "name": "GOGOAT",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -9235,7 +10828,11 @@
   "name": "SPRITZEE",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9257,7 +10854,11 @@
   "name": "SKIDDO",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -9279,7 +10880,11 @@
   "name": "ESPURR",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9302,7 +10907,11 @@
   "types": [
     "NORMAL",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9324,7 +10933,11 @@
   "name": "PASSIMIAN",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9346,7 +10959,11 @@
   "name": "FURFROU",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 160,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -9369,7 +10986,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -9392,7 +11013,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -9415,7 +11040,11 @@
   "types": [
     "GRASS",
     "POISON"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -9438,7 +11067,11 @@
   "types": [
     "BUG",
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 64,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -9460,7 +11093,11 @@
   "name": "CHERRIM",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -9483,7 +11120,11 @@
   "types": [
     "BUG",
     "POISON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -9506,7 +11147,11 @@
   "types": [
     "GHOST",
     "GROUND"
-  ]
+  ],
+  "captureRate": 140,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9528,7 +11173,11 @@
   "name": "DARUMAKA",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9550,7 +11199,11 @@
   "name": "OSHAWOTT",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -9572,7 +11225,11 @@
   "name": "PANSAGE",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -9594,7 +11251,11 @@
   "name": "SAMUROTT",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -9616,7 +11277,11 @@
   "name": "MUNNA",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9638,7 +11303,11 @@
   "name": "PANSEAR",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -9660,7 +11329,11 @@
   "name": "SAWK",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9682,7 +11355,11 @@
   "name": "PURRLOIN",
   "types": [
     "DARK"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9704,7 +11381,11 @@
   "name": "LIEPARD",
   "types": [
     "DARK"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -9726,7 +11407,11 @@
   "name": "THROH",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9749,7 +11434,11 @@
   "types": [
     "GHOST",
     "FIRE"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9772,7 +11461,11 @@
   "types": [
     "WATER",
     "GROUND"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -9795,7 +11488,11 @@
   "types": [
     "WATER",
     "ROCK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -9818,7 +11515,11 @@
   "types": [
     "ROCK",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9840,7 +11541,11 @@
   "name": "COFAGRIGUS",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -9863,7 +11568,11 @@
   "types": [
     "WATER",
     "GHOST"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -9886,7 +11595,11 @@
   "types": [
     "BUG",
     "ROCK"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9908,7 +11621,11 @@
   "name": "MARACTUS",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9931,7 +11648,11 @@
   "types": [
     "WATER",
     "ROCK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9953,7 +11674,11 @@
   "name": "YAMASK",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -9976,7 +11701,11 @@
   "types": [
     "DRAGON",
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -9998,7 +11727,11 @@
   "name": "MINCCINO",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 48,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -10021,7 +11754,11 @@
   "types": [
     "ROCK",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -10044,7 +11781,11 @@
   "types": [
     "GRASS",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -10067,7 +11808,11 @@
   "types": [
     "ELECTRIC",
     "FLYING"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -10090,7 +11835,11 @@
   "types": [
     "DRAGON",
     "FIRE"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -10112,7 +11861,11 @@
   "name": "GARBODOR",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -10134,7 +11887,11 @@
   "name": "SOLOSIS",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -10157,7 +11914,11 @@
   "types": [
     "GRASS",
     "STEEL"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -10180,7 +11941,11 @@
   "types": [
     "GROUND",
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -10202,7 +11967,11 @@
   "name": "CUBCHOO",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -10224,7 +11993,11 @@
   "name": "FRAXURE",
   "types": [
     "DRAGON"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -10247,7 +12020,11 @@
   "types": [
     "STEEL",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -10269,7 +12046,10 @@
   "name": "CRYOGONAL",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 25,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -10292,7 +12072,11 @@
   "types": [
     "ROCK",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -10315,7 +12099,11 @@
   "types": [
     "DRAGON",
     "ICE"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -10338,7 +12126,11 @@
   "types": [
     "BUG",
     "STEEL"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -10361,7 +12153,11 @@
   "types": [
     "GRASS",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -10384,7 +12180,11 @@
   "types": [
     "ROCK",
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -10407,7 +12207,11 @@
   "types": [
     "FLYING",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -10429,7 +12233,11 @@
   "name": "PHIONE",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 30,
+  "mythical": true,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -10452,7 +12260,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -10475,7 +12287,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -10497,7 +12313,11 @@
   "name": "LILLIGANT",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -10520,7 +12340,11 @@
   "types": [
     "GHOST",
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -10542,7 +12366,11 @@
   "name": "VANILLISH",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -10564,7 +12392,11 @@
   "name": "BLITZLE",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -10587,7 +12419,11 @@
   "types": [
     "WATER",
     "FLYING"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -10609,7 +12445,11 @@
   "name": "SILVALLY",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": false
 },
 {
   "_id": {
@@ -10631,7 +12471,11 @@
   "name": "LUXIO",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 100,
+  "base": false
 },
 {
   "_id": {
@@ -10653,7 +12497,11 @@
   "name": "KRICKETUNE",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -10675,7 +12523,11 @@
   "name": "CLAMPERL",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -10698,7 +12550,12 @@
   "types": [
     "GRASS",
     "POISON"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -10721,7 +12578,11 @@
   "types": [
     "ROCK",
     "STEEL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -10744,7 +12605,11 @@
   "types": [
     "BUG",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 0,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -10766,7 +12631,11 @@
   "name": "CHERUBI",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -10789,7 +12658,11 @@
   "types": [
     "FIRE",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -10811,7 +12684,11 @@
   "name": "PURUGLY",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 48,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -10833,7 +12710,11 @@
   "name": "SHELLOS",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -10856,7 +12737,11 @@
   "types": [
     "DARK",
     "FLYING"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -10878,7 +12763,11 @@
   "name": "CARNIVINE",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -10900,7 +12789,12 @@
   "name": "CHINGLING",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -10923,7 +12817,11 @@
   "types": [
     "PSYCHIC",
     "FIRE"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 100,
+  "base": true
 },
 {
   "_id": {
@@ -10945,7 +12843,11 @@
   "name": "FEEBAS",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -10968,7 +12870,11 @@
   "types": [
     "DARK",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -10990,7 +12896,11 @@
   "name": "DARMANITAN-STANDARD",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -11013,7 +12923,11 @@
   "types": [
     "PSYCHIC",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -11035,7 +12949,11 @@
   "name": "ZORUA",
   "types": [
     "DARK"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -11058,7 +12976,11 @@
   "types": [
     "DARK",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 180,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -11081,7 +13003,11 @@
   "types": [
     "GROUND",
     "DARK"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -11103,7 +13029,11 @@
   "name": "BEHEEYEM",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -11125,7 +13055,11 @@
   "name": "HAXORUS",
   "types": [
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -11147,7 +13081,11 @@
   "name": "ELGYEM",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -11169,7 +13107,12 @@
   "name": "TORNADUS-INCARNATE",
   "types": [
     "FLYING"
-  ]
+  ],
+  "captureRate": 3,
+  "genderRate": 0,
+  "legendary": true,
+  "baseHappiness": 90,
+  "base": true
 },
 {
   "_id": {
@@ -11192,7 +13135,11 @@
   "types": [
     "BUG",
     "FIRE"
-  ]
+  ],
+  "captureRate": 15,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -11215,7 +13162,12 @@
   "types": [
     "GROUND",
     "FLYING"
-  ]
+  ],
+  "captureRate": 3,
+  "genderRate": 0,
+  "legendary": true,
+  "baseHappiness": 90,
+  "base": true
 },
 {
   "_id": {
@@ -11238,7 +13190,12 @@
   "types": [
     "ELECTRIC",
     "FLYING"
-  ]
+  ],
+  "captureRate": 3,
+  "genderRate": 0,
+  "legendary": true,
+  "baseHappiness": 90,
+  "base": true
 },
 {
   "_id": {
@@ -11260,7 +13217,11 @@
   "name": "AXEW",
   "types": [
     "DRAGON"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -11283,7 +13244,11 @@
   "types": [
     "FIGHTING",
     "FLYING"
-  ]
+  ],
+  "captureRate": 100,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -11305,7 +13270,11 @@
   "name": "GROTLE",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -11328,7 +13297,11 @@
   "types": [
     "BUG",
     "STEEL"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -11351,7 +13324,11 @@
   "types": [
     "GROUND",
     "STEEL"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -11373,7 +13350,11 @@
   "name": "MEOWSTIC-MALE",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -11396,7 +13377,11 @@
   "types": [
     "NORMAL",
     "GRASS"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -11419,7 +13404,11 @@
   "types": [
     "NORMAL",
     "GRASS"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -11441,7 +13430,11 @@
   "name": "VANILLITE",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -11463,7 +13456,11 @@
   "name": "DRILBUR",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -11485,7 +13482,11 @@
   "name": "GIGALITH",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -11508,7 +13509,11 @@
   "types": [
     "BUG",
     "STEEL"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -11531,7 +13536,11 @@
   "types": [
     "GRASS",
     "POISON"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -11554,7 +13563,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -11576,7 +13589,11 @@
   "name": "PANCHAM",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 220,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -11599,7 +13616,11 @@
   "types": [
     "ELECTRIC",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 180,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -11621,7 +13642,11 @@
   "name": "GURDURR",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -11643,7 +13668,11 @@
   "name": "VANILLUXE",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -11666,7 +13695,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -11689,7 +13722,11 @@
   "types": [
     "BUG",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -11711,7 +13748,11 @@
   "name": "HUNTAIL",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -11733,7 +13774,11 @@
   "name": "GOREBYSS",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -11756,7 +13801,11 @@
   "types": [
     "WATER",
     "STEEL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -11778,7 +13827,11 @@
   "name": "LUXRAY",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -11800,7 +13853,11 @@
   "name": "BIDOOF",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -11823,7 +13880,11 @@
   "types": [
     "NORMAL",
     "WATER"
-  ]
+  ],
+  "captureRate": 127,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -11845,7 +13906,11 @@
   "name": "CRANIDOS",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -11867,7 +13932,11 @@
   "name": "LEAFEON",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -11890,7 +13959,11 @@
   "types": [
     "ROCK",
     "STEEL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -11912,7 +13985,11 @@
   "name": "BUIZEL",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -11934,7 +14011,11 @@
   "name": "FLOATZEL",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -11956,7 +14037,11 @@
   "name": "ZEBSTRIKA",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -11978,7 +14063,12 @@
   "name": "BONSLY",
   "types": [
     "ROCK"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -12000,7 +14090,11 @@
   "name": "PACHIRISU",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 100,
+  "base": true
 },
 {
   "_id": {
@@ -12023,7 +14117,11 @@
   "types": [
     "DRAGON",
     "GROUND"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12046,7 +14144,11 @@
   "types": [
     "FAIRY",
     "FLYING"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12068,7 +14170,11 @@
   "name": "GLACEON",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -12090,7 +14196,10 @@
   "name": "PORYGON-Z",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 30,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12113,7 +14222,11 @@
   "types": [
     "ICE",
     "GROUND"
-  ]
+  ],
+  "captureRate": 50,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12135,7 +14248,11 @@
   "name": "SHINX",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 235,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -12158,7 +14275,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -12180,7 +14301,11 @@
   "name": "ZOROARK",
   "types": [
     "DARK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12202,7 +14327,11 @@
   "name": "GOTHITELLE",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 50,
+  "genderRate": 48,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12224,7 +14353,11 @@
   "name": "GOTHITA",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 48,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -12246,7 +14379,11 @@
   "name": "BEARTIC",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12269,7 +14406,11 @@
   "types": [
     "NORMAL",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 100,
+  "base": true
 },
 {
   "_id": {
@@ -12291,7 +14432,11 @@
   "name": "PANPOUR",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -12313,7 +14458,11 @@
   "name": "MIENFOO",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 180,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -12335,7 +14484,11 @@
   "name": "CONKELDURR",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12358,7 +14511,11 @@
   "types": [
     "FIGHTING",
     "DARK"
-  ]
+  ],
+  "captureRate": 65,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12381,7 +14538,11 @@
   "types": [
     "DARK",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -12403,7 +14564,11 @@
   "name": "BOUFFALANT",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -12426,7 +14591,11 @@
   "types": [
     "DARK",
     "FLYING"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 64,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -12449,7 +14618,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12472,7 +14645,11 @@
   "types": [
     "DARK",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -12494,7 +14671,11 @@
   "name": "MIENSHAO",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12517,7 +14698,11 @@
   "types": [
     "DARK",
     "FLYING"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 64,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -12540,7 +14725,10 @@
   "types": [
     "GROUND",
     "GHOST"
-  ]
+  ],
+  "captureRate": 190,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -12562,7 +14750,11 @@
   "name": "HEATMOR",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -12584,7 +14776,11 @@
   "name": "BASCULIN-RED-STRIPED",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -12606,7 +14802,11 @@
   "name": "ALOMOMOLA",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -12628,7 +14828,11 @@
   "name": "ROGGENROLA",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -12651,7 +14855,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -12674,7 +14882,11 @@
   "types": [
     "GRASS",
     "POISON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12696,7 +14908,11 @@
   "name": "BELLOSSOM",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12719,7 +14935,11 @@
   "types": [
     "GRASS",
     "POISON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -12741,7 +14961,11 @@
   "name": "LUVDISC",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 225,
+  "genderRate": 48,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -12764,7 +14988,12 @@
   "types": [
     "NORMAL",
     "FAIRY"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 150,
+  "genderRate": 48,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -12787,7 +15016,11 @@
   "types": [
     "GHOST",
     "FLYING"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12809,7 +15042,11 @@
   "name": "AMBIPOM",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 100,
+  "base": false
 },
 {
   "_id": {
@@ -12831,7 +15068,11 @@
   "name": "RAMPARDOS",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -12854,7 +15095,10 @@
   "types": [
     "STEEL",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 255,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -12877,7 +15121,11 @@
   "types": [
     "POISON",
     "DARK"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12899,7 +15147,11 @@
   "name": "DELCATTY",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 48,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -12922,7 +15174,11 @@
   "types": [
     "POISON",
     "DARK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12945,7 +15201,11 @@
   "types": [
     "GRASS",
     "ICE"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -12968,7 +15228,11 @@
   "types": [
     "GROUND",
     "FLYING"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -12990,7 +15254,11 @@
   "name": "DARKRAI",
   "types": [
     "DARK"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -13012,7 +15280,11 @@
   "name": "ELECTIVIRE",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -13035,7 +15307,11 @@
   "types": [
     "POISON",
     "DARK"
-  ]
+  ],
+  "captureRate": 225,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -13058,7 +15334,11 @@
   "types": [
     "BUG",
     "GROUND"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -13081,7 +15361,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -13103,7 +15387,11 @@
   "name": "TURTWIG",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -13125,7 +15413,11 @@
   "name": "PIPLUP",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -13147,7 +15439,11 @@
   "name": "PRINPLUP",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -13170,7 +15466,10 @@
   "types": [
     "ELECTRIC",
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -13192,7 +15491,11 @@
   "name": "HIPPOPOTAS",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 140,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -13214,7 +15517,11 @@
   "name": "LUMINEON",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -13237,7 +15544,11 @@
   "types": [
     "BUG",
     "FLYING"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -13260,7 +15571,12 @@
   "types": [
     "WATER",
     "FLYING"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 25,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -13283,7 +15599,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -13305,7 +15625,11 @@
   "name": "MANAPHY",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -13328,7 +15652,11 @@
   "types": [
     "GROUND",
     "DARK"
-  ]
+  ],
+  "captureRate": 180,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -13351,7 +15679,11 @@
   "types": [
     "DARK",
     "STEEL"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -13374,7 +15706,10 @@
   "types": [
     "GROUND",
     "GHOST"
-  ]
+  ],
+  "captureRate": 90,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -13397,7 +15732,11 @@
   "types": [
     "BUG",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -13419,7 +15758,11 @@
   "name": "TIMBURR",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 180,
+  "genderRate": 16,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -13442,7 +15785,11 @@
   "types": [
     "WATER",
     "GHOST"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -13464,7 +15811,11 @@
   "name": "BOLDORE",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -13486,7 +15837,11 @@
   "name": "SUNFLORA",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -13508,7 +15863,11 @@
   "name": "BAYLEEF",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -13531,7 +15890,11 @@
   "types": [
     "WATER",
     "GRASS"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -13553,7 +15916,11 @@
   "name": "SNORUNT",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -13575,7 +15942,12 @@
   "name": "RIOLU",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 75,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -13597,7 +15969,11 @@
   "name": "BUNEARY",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -13620,7 +15996,11 @@
   "types": [
     "GROUND",
     "DARK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -13643,7 +16023,10 @@
   "types": [
     "BUG",
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -13665,7 +16048,11 @@
   "name": "SEEDOT",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -13688,7 +16075,11 @@
   "types": [
     "BUG",
     "WATER"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -13711,7 +16102,11 @@
   "types": [
     "ICE",
     "WATER"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -13734,7 +16129,11 @@
   "types": [
     "BUG",
     "POISON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -13756,7 +16155,11 @@
   "name": "SHROOMISH",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -13778,7 +16181,11 @@
   "name": "MISMAGIUS",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -13801,7 +16208,11 @@
   "types": [
     "GRASS",
     "GROUND"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -13824,7 +16235,11 @@
   "types": [
     "FIRE",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -13846,7 +16261,11 @@
   "name": "HIPPOWDON",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -13869,7 +16288,11 @@
   "types": [
     "WATER",
     "GROUND"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -13891,7 +16314,11 @@
   "name": "GLAMEOW",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 48,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -13914,7 +16341,11 @@
   "types": [
     "GRASS",
     "ICE"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -13936,7 +16367,11 @@
   "name": "REGIGIGAS",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -13958,7 +16393,11 @@
   "name": "FINNEON",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -13980,7 +16419,11 @@
   "name": "DRUDDIGON",
   "types": [
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -14003,7 +16446,11 @@
   "types": [
     "DARK",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -14026,7 +16473,11 @@
   "types": [
     "DARK",
     "STEEL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -14048,7 +16499,12 @@
   "name": "HAPPINY",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 130,
+  "genderRate": 64,
+  "baseHappiness": 140,
+  "base": true
 },
 {
   "_id": {
@@ -14070,7 +16526,12 @@
   "name": "CRESSELIA",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 3,
+  "genderRate": 64,
+  "legendary": true,
+  "baseHappiness": 100,
+  "base": true
 },
 {
   "_id": {
@@ -14092,7 +16553,11 @@
   "name": "GOTHORITA",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 100,
+  "genderRate": 48,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14115,7 +16580,11 @@
   "types": [
     "PSYCHIC",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14138,7 +16607,11 @@
   "types": [
     "PSYCHIC",
     "FLYING"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -14160,7 +16633,11 @@
   "name": "REUNICLUS",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 50,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14183,7 +16660,11 @@
   "types": [
     "GRASS",
     "POISON"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14206,7 +16687,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -14229,7 +16714,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -14252,7 +16741,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -14274,7 +16767,11 @@
   "name": "ARCANINE",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14297,7 +16794,11 @@
   "types": [
     "BUG",
     "FLYING"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -14319,7 +16820,11 @@
   "name": "QUILAVA",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -14341,7 +16846,11 @@
   "name": "POLITOED",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14363,7 +16872,11 @@
   "name": "SUNKERN",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 235,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -14385,7 +16898,11 @@
   "name": "MAREEP",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 235,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -14407,7 +16924,11 @@
   "name": "WAILORD",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14429,7 +16950,11 @@
   "name": "WHISMUR",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -14452,7 +16977,11 @@
   "types": [
     "BUG",
     "FLYING"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14475,7 +17004,11 @@
   "types": [
     "BUG",
     "FLYING"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -14497,7 +17030,11 @@
   "name": "MILOTIC",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14519,7 +17056,11 @@
   "name": "SHELGON",
   "types": [
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -14541,7 +17082,11 @@
   "name": "NOSEPASS",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -14564,7 +17109,11 @@
   "types": [
     "ICE",
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14586,7 +17135,11 @@
   "name": "SLUGMA",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -14608,7 +17161,11 @@
   "name": "MIGHTYENA",
   "types": [
     "DARK"
-  ]
+  ],
+  "captureRate": 127,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -14631,7 +17188,11 @@
   "types": [
     "WATER",
     "GRASS"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14654,7 +17215,11 @@
   "types": [
     "WATER",
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14676,7 +17241,11 @@
   "name": "PLUSLE",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -14699,7 +17268,11 @@
   "types": [
     "WATER",
     "DARK"
-  ]
+  ],
+  "captureRate": 225,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -14721,7 +17294,11 @@
   "name": "MANECTRIC",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14743,7 +17320,11 @@
   "name": "MINUN",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -14765,7 +17346,11 @@
   "name": "ELECTRIKE",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -14787,7 +17372,11 @@
   "name": "TRAPINCH",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -14809,7 +17398,11 @@
   "name": "CHIMCHAR",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -14832,7 +17425,11 @@
   "types": [
     "FIRE",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -14855,7 +17452,12 @@
   "types": [
     "FIRE",
     "STEEL"
-  ]
+  ],
+  "captureRate": 3,
+  "genderRate": 32,
+  "legendary": true,
+  "baseHappiness": 100,
+  "base": true
 },
 {
   "_id": {
@@ -14877,7 +17479,11 @@
   "name": "LOPUNNY",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 140,
+  "base": false
 },
 {
   "_id": {
@@ -14900,7 +17506,11 @@
   "types": [
     "DRAGON",
     "GROUND"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -14922,7 +17532,11 @@
   "name": "DUOSION",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 100,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14945,7 +17559,11 @@
   "types": [
     "ICE",
     "GHOST"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14968,7 +17586,10 @@
   "types": [
     "ELECTRIC",
     "STEEL"
-  ]
+  ],
+  "captureRate": 30,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -14991,7 +17612,11 @@
   "types": [
     "POISON",
     "BUG"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -15013,7 +17638,11 @@
   "name": "TANGROWTH",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -15035,7 +17664,11 @@
   "name": "MAGMORTAR",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -15058,7 +17691,11 @@
   "types": [
     "ROCK",
     "STEEL"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -15080,7 +17717,11 @@
   "name": "AUDINO",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -15103,7 +17744,11 @@
   "types": [
     "GRASS",
     "POISON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -15126,7 +17771,11 @@
   "types": [
     "BUG",
     "POISON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -15148,7 +17797,11 @@
   "name": "SEADRA",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -15170,7 +17823,12 @@
   "name": "TYROGUE",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 75,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -15192,7 +17850,11 @@
   "name": "CHIKORITA",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -15215,7 +17877,11 @@
   "types": [
     "GRASS",
     "POISON"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -15237,7 +17903,11 @@
   "name": "CROCONAW",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -15259,7 +17929,11 @@
   "name": "CYNDAQUIL",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -15282,7 +17956,11 @@
   "types": [
     "GRASS",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -15304,7 +17982,11 @@
   "name": "HORSEA",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 225,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -15326,7 +18008,11 @@
   "name": "EEVEE",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -15349,7 +18035,11 @@
   "types": [
     "FIRE",
     "GROUND"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -15371,7 +18061,11 @@
   "name": "WAILMER",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 125,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -15394,7 +18088,11 @@
   "types": [
     "WATER",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -15417,7 +18115,11 @@
   "types": [
     "ROCK",
     "BUG"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -15439,7 +18141,11 @@
   "name": "CHIMECHO",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -15462,7 +18168,11 @@
   "types": [
     "GRASS",
     "POISON"
-  ]
+  ],
+  "captureRate": 150,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -15484,7 +18194,11 @@
   "name": "VOLBEAT",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 150,
+  "genderRate": 0,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -15507,7 +18221,11 @@
   "types": [
     "ICE",
     "WATER"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -15530,7 +18248,11 @@
   "types": [
     "STEEL",
     "ROCK"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -15552,7 +18274,11 @@
   "name": "PINECO",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -15574,7 +18300,11 @@
   "name": "GLALIE",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -15596,7 +18326,11 @@
   "name": "BAGON",
   "types": [
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -15619,7 +18353,11 @@
   "types": [
     "STEEL",
     "ROCK"
-  ]
+  ],
+  "captureRate": 180,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -15641,7 +18379,11 @@
   "name": "SWALOT",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -15664,7 +18406,10 @@
   "types": [
     "STEEL",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 3,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -15686,7 +18431,11 @@
   "name": "DUSKULL",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -15709,7 +18458,11 @@
   "types": [
     "FIRE",
     "GROUND"
-  ]
+  ],
+  "captureRate": 150,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -15732,7 +18485,10 @@
   "types": [
     "STEEL",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 90,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -15755,7 +18511,11 @@
   "types": [
     "FIGHTING",
     "STEEL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -15778,7 +18538,11 @@
   "types": [
     "GROUND",
     "ROCK"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -15801,7 +18565,11 @@
   "types": [
     "DARK",
     "ICE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -15823,7 +18591,11 @@
   "name": "GULPIN",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 225,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -15845,7 +18617,11 @@
   "name": "POOCHYENA",
   "types": [
     "DARK"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -15868,7 +18644,11 @@
   "types": [
     "WATER",
     "FLYING"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -15890,7 +18670,11 @@
   "name": "FLAAFFY",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -15912,7 +18696,11 @@
   "name": "NINETALES",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 48,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -15935,7 +18723,11 @@
   "types": [
     "ICE",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -15957,7 +18749,11 @@
   "name": "CASTFORM",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -15980,7 +18776,11 @@
   "types": [
     "ROCK",
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16002,7 +18802,11 @@
   "name": "UXIE",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 140,
+  "base": true
 },
 {
   "_id": {
@@ -16025,7 +18829,11 @@
   "types": [
     "STEEL",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -16047,7 +18855,11 @@
   "name": "MESPRIT",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 140,
+  "base": true
 },
 {
   "_id": {
@@ -16070,7 +18882,11 @@
   "types": [
     "GHOST",
     "FLYING"
-  ]
+  ],
+  "captureRate": 125,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -16092,7 +18908,11 @@
   "name": "LICKILICKY",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16114,7 +18934,11 @@
   "name": "DUSKNOIR",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -16136,7 +18960,11 @@
   "name": "RAICHU",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16158,7 +18986,11 @@
   "name": "MAGMAR",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16181,7 +19013,11 @@
   "types": [
     "BUG",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16203,7 +19039,11 @@
   "name": "DUGTRIO",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 50,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16225,7 +19065,11 @@
   "name": "POLIWAG",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -16248,7 +19092,11 @@
   "types": [
     "BUG",
     "GRASS"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -16271,7 +19119,11 @@
   "types": [
     "POISON",
     "FLYING"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16293,7 +19145,11 @@
   "name": "GOLDEEN",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 225,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -16316,7 +19172,10 @@
   "types": [
     "WATER",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 60,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16339,7 +19198,11 @@
   "types": [
     "FIRE",
     "FLYING"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -16362,7 +19225,11 @@
   "types": [
     "ELECTRIC",
     "FLYING"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -16384,7 +19251,11 @@
   "name": "FLAREON",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16406,7 +19277,11 @@
   "name": "SHUPPET",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 225,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -16429,7 +19304,11 @@
   "types": [
     "ICE",
     "FLYING"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -16451,7 +19330,11 @@
   "name": "BANETTE",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -16473,7 +19356,11 @@
   "name": "TORKOAL",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -16495,7 +19382,11 @@
   "name": "SPOINK",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -16517,7 +19408,11 @@
   "name": "SKITTY",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 48,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -16540,7 +19435,11 @@
   "types": [
     "GHOST",
     "DARK"
-  ]
+  ],
+  "captureRate": 100,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -16563,7 +19462,11 @@
   "types": [
     "WATER",
     "ROCK"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -16586,7 +19489,10 @@
   "types": [
     "STEEL",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 3,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -16609,7 +19515,11 @@
   "types": [
     "WATER",
     "DARK"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -16631,7 +19541,11 @@
   "name": "GROVYLE",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16653,7 +19567,11 @@
   "name": "MEGANIUM",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -16675,7 +19593,11 @@
   "name": "PHANPY",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -16697,7 +19619,11 @@
   "name": "DONPHAN",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -16720,7 +19646,11 @@
   "types": [
     "BUG",
     "ROCK"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -16742,7 +19672,12 @@
   "name": "MAGBY",
   "types": [
     "FIRE"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 45,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -16764,7 +19699,11 @@
   "name": "TORCHIC",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -16787,7 +19726,11 @@
   "types": [
     "GRASS",
     "FLYING"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -16809,7 +19752,11 @@
   "name": "SEAKING",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16832,7 +19779,11 @@
   "types": [
     "GRASS",
     "DARK"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16854,7 +19805,11 @@
   "name": "LOUDRED",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16877,7 +19832,11 @@
   "types": [
     "GRASS",
     "DARK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16899,7 +19858,11 @@
   "name": "MUDKIP",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -16922,7 +19885,11 @@
   "types": [
     "WATER",
     "GROUND"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -16944,7 +19911,11 @@
   "name": "ILLUMISE",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 150,
+  "genderRate": 64,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -16967,7 +19938,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -16990,7 +19965,11 @@
   "types": [
     "BUG",
     "POISON"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -17013,7 +19992,11 @@
   "types": [
     "BUG",
     "POISON"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -17036,7 +20019,11 @@
   "types": [
     "GRASS",
     "FLYING"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -17059,7 +20046,11 @@
   "types": [
     "WATER",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -17082,7 +20073,11 @@
   "types": [
     "WATER",
     "GROUND"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -17104,7 +20099,12 @@
   "name": "MUNCHLAX",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 50,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -17126,7 +20126,11 @@
   "name": "KYOGRE",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -17148,7 +20152,11 @@
   "name": "REGICE",
   "types": [
     "ICE"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -17171,7 +20179,11 @@
   "types": [
     "ROCK",
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -17193,7 +20205,11 @@
   "name": "AZELF",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 140,
+  "base": true
 },
 {
   "_id": {
@@ -17216,7 +20232,11 @@
   "types": [
     "DRAGON",
     "GROUND"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -17239,7 +20259,11 @@
   "types": [
     "GRASS",
     "POISON"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -17262,7 +20286,11 @@
   "types": [
     "ROCK",
     "BUG"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -17285,7 +20313,11 @@
   "types": [
     "GHOST",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -17308,7 +20340,11 @@
   "types": [
     "WATER",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -17331,7 +20367,11 @@
   "types": [
     "GRASS",
     "POISON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -17353,7 +20393,11 @@
   "name": "CHARMELEON",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -17375,7 +20419,11 @@
   "name": "WARTORTLE",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -17398,7 +20446,11 @@
   "types": [
     "GRASS",
     "POISON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -17421,7 +20473,11 @@
   "types": [
     "BUG",
     "GRASS"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -17443,7 +20499,11 @@
   "name": "VAPOREON",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -17465,7 +20525,11 @@
   "name": "ABRA",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -17488,7 +20552,11 @@
   "types": [
     "PSYCHIC",
     "FLYING"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -17510,7 +20578,11 @@
   "name": "MACHOKE",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -17533,7 +20605,11 @@
   "types": [
     "ROCK",
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -17555,7 +20631,11 @@
   "name": "JOLTEON",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -17577,7 +20657,11 @@
   "name": "TANGELA",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -17600,7 +20684,11 @@
   "types": [
     "WATER",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -17623,7 +20711,11 @@
   "types": [
     "GRASS",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -17645,7 +20737,11 @@
   "name": "FURRET",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -17667,7 +20763,10 @@
   "name": "STARYU",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 225,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -17690,7 +20789,11 @@
   "types": [
     "ROCK",
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -17712,7 +20815,11 @@
   "name": "TYPHLOSION",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -17734,7 +20841,11 @@
   "name": "SENTRET",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -17757,7 +20868,11 @@
   "types": [
     "FIGHTING",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -17779,7 +20894,11 @@
   "name": "DIGLETT",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -17801,7 +20920,11 @@
   "name": "DRAGONAIR",
   "types": [
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -17823,7 +20946,10 @@
   "name": "PORYGON",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -17846,7 +20972,11 @@
   "types": [
     "ROCK",
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -17868,7 +20998,11 @@
   "name": "SLAKING",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -17890,7 +21024,11 @@
   "name": "DUSCLOPS",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -17912,7 +21050,11 @@
   "name": "GRUMPIG",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -17935,7 +21077,11 @@
   "types": [
     "DRAGON",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -17958,7 +21104,11 @@
   "types": [
     "PSYCHIC",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -17980,7 +21130,11 @@
   "name": "UMBREON",
   "types": [
     "DARK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -18002,7 +21156,11 @@
   "name": "TREECKO",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -18025,7 +21183,11 @@
   "types": [
     "ROCK",
     "GROUND"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -18048,7 +21210,11 @@
   "types": [
     "WATER",
     "GROUND"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -18070,7 +21236,11 @@
   "name": "REMORAID",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -18092,7 +21262,11 @@
   "name": "AMPHAROS",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -18115,7 +21289,11 @@
   "types": [
     "ICE",
     "GROUND"
-  ]
+  ],
+  "captureRate": 225,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -18138,7 +21316,11 @@
   "types": [
     "GRASS",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -18160,7 +21342,11 @@
   "name": "SLAKOTH",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -18182,7 +21368,11 @@
   "name": "LINOONE",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -18204,7 +21394,11 @@
   "name": "VIGOROTH",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -18226,7 +21420,11 @@
   "name": "ZIGZAGOON",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -18249,7 +21447,11 @@
   "types": [
     "GRASS",
     "FLYING"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -18271,7 +21473,11 @@
   "name": "MAKUHITA",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 180,
+  "genderRate": 16,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -18294,7 +21500,11 @@
   "types": [
     "WATER",
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -18316,7 +21526,11 @@
   "name": "NIDORINA",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -18339,7 +21553,11 @@
   "types": [
     "WATER",
     "ICE"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -18362,7 +21580,10 @@
   "types": [
     "ELECTRIC",
     "STEEL"
-  ]
+  ],
+  "captureRate": 190,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -18385,7 +21606,11 @@
   "types": [
     "GRASS",
     "POISON"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -18408,7 +21633,11 @@
   "types": [
     "WATER",
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -18431,7 +21660,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -18454,7 +21687,11 @@
   "types": [
     "BUG",
     "FLYING"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -18477,7 +21714,11 @@
   "types": [
     "BUG",
     "FLYING"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -18500,7 +21741,11 @@
   "types": [
     "ICE",
     "GROUND"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -18522,7 +21767,12 @@
   "name": "PICHU",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -18545,7 +21795,11 @@
   "types": [
     "FIRE",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -18568,7 +21822,11 @@
   "types": [
     "FIRE",
     "ROCK"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -18590,7 +21848,11 @@
   "name": "RAIKOU",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -18613,7 +21875,11 @@
   "types": [
     "POISON",
     "FLYING"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -18635,7 +21901,11 @@
   "name": "HITMONTOP",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -18658,7 +21928,11 @@
   "types": [
     "WATER",
     "ICE"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -18681,7 +21955,11 @@
   "types": [
     "WATER",
     "GROUND"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -18703,7 +21981,11 @@
   "name": "REGIROCK",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -18725,7 +22007,11 @@
   "name": "REGISTEEL",
   "types": [
     "STEEL"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -18748,7 +22034,10 @@
   "types": [
     "GROUND",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 255,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -18770,7 +22059,11 @@
   "name": "DEOXYS-NORMAL",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -18793,7 +22086,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -18816,7 +22113,12 @@
   "types": [
     "PSYCHIC",
     "FAIRY"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 145,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -18839,7 +22141,11 @@
   "types": [
     "POISON",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -18862,7 +22168,11 @@
   "types": [
     "GRASS",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -18885,7 +22195,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -18907,7 +22221,10 @@
   "name": "VOLTORB",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 190,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -18930,7 +22247,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -18953,7 +22274,11 @@
   "types": [
     "GROUND",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -18975,7 +22300,11 @@
   "name": "SQUIRTLE",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -18997,7 +22326,11 @@
   "name": "SANDSLASH",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -19020,7 +22353,11 @@
   "types": [
     "ROCK",
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -19043,7 +22380,11 @@
   "types": [
     "WATER",
     "GROUND"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -19065,7 +22406,11 @@
   "name": "GROWLITHE",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -19088,7 +22433,11 @@
   "types": [
     "BUG",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -19111,7 +22460,11 @@
   "types": [
     "WATER",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -19133,7 +22486,11 @@
   "name": "AIPOM",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -19155,7 +22512,11 @@
   "name": "TEDDIURSA",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -19178,7 +22539,11 @@
   "types": [
     "STEEL",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -19200,7 +22565,11 @@
   "name": "KECLEON",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -19223,7 +22592,11 @@
   "types": [
     "FIGHTING",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 180,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -19245,7 +22618,11 @@
   "name": "RATICATE",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 127,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -19267,7 +22644,11 @@
   "name": "ARCEUS",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -19289,7 +22670,11 @@
   "name": "FERALIGATR",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -19311,7 +22696,11 @@
   "name": "TOTODILE",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -19333,7 +22722,11 @@
   "name": "SCEPTILE",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -19356,7 +22749,11 @@
   "types": [
     "BUG",
     "STEEL"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -19379,7 +22776,11 @@
   "types": [
     "PSYCHIC",
     "GRASS"
-  ]
+  ],
+  "captureRate": 45,
+  "mythical": true,
+  "baseHappiness": 100,
+  "base": true
 },
 {
   "_id": {
@@ -19402,7 +22803,11 @@
   "types": [
     "WATER",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -19425,7 +22830,11 @@
   "types": [
     "PSYCHIC",
     "FLYING"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -19447,7 +22856,11 @@
   "name": "ARBOK",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -19469,7 +22882,11 @@
   "name": "SEEL",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -19491,7 +22908,11 @@
   "name": "EKANS",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -19514,7 +22935,11 @@
   "types": [
     "ROCK",
     "GROUND"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -19537,7 +22962,11 @@
   "types": [
     "BUG",
     "POISON"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -19559,7 +22988,12 @@
   "name": "ELEKID",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 45,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -19581,7 +23015,11 @@
   "name": "WEEZING",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -19603,7 +23041,11 @@
   "name": "SHELLDER",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -19626,7 +23068,11 @@
   "types": [
     "BUG",
     "STEEL"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -19649,7 +23095,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -19671,7 +23121,11 @@
   "name": "ESPEON",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -19693,7 +23147,11 @@
   "name": "OCTILLERY",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -19715,7 +23173,11 @@
   "name": "SUICUNE",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -19737,7 +23199,10 @@
   "name": "PORYGON2",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -19760,7 +23225,11 @@
   "types": [
     "STEEL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -19782,7 +23251,11 @@
   "name": "HARIYAMA",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 200,
+  "genderRate": 16,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -19804,7 +23277,11 @@
   "name": "CACNEA",
   "types": [
     "GRASS"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -19827,7 +23304,11 @@
   "types": [
     "GROUND",
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -19850,7 +23331,10 @@
   "types": [
     "ROCK",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -19873,7 +23357,11 @@
   "types": [
     "GRASS",
     "DARK"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -19896,7 +23384,11 @@
   "types": [
     "POISON",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 140,
+  "genderRate": 32,
+  "baseHappiness": 100,
+  "base": true
 },
 {
   "_id": {
@@ -19918,7 +23410,11 @@
   "name": "SEVIPER",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -19940,7 +23436,11 @@
   "name": "CORPHISH",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 205,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -19962,7 +23462,11 @@
   "name": "POLIWHIRL",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -19984,7 +23488,10 @@
   "name": "ELECTRODE",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 60,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -20006,7 +23513,11 @@
   "name": "PONYTA",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -20028,7 +23539,11 @@
   "name": "NIDORINO",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20051,7 +23566,11 @@
   "types": [
     "ROCK",
     "GROUND"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -20073,7 +23592,11 @@
   "name": "SUDOWOODO",
   "types": [
     "ROCK"
-  ]
+  ],
+  "captureRate": 65,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20096,7 +23619,11 @@
   "types": [
     "NORMAL",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -20119,7 +23646,11 @@
   "types": [
     "ROCK",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -20141,7 +23672,11 @@
   "name": "STANTLER",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -20164,7 +23699,11 @@
   "types": [
     "FIRE",
     "FLYING"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -20187,7 +23726,11 @@
   "types": [
     "WATER",
     "POISON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -20209,7 +23752,11 @@
   "name": "MISDREAVUS",
   "types": [
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -20232,7 +23779,11 @@
   "types": [
     "FIRE",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20255,7 +23806,11 @@
   "types": [
     "PSYCHIC",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 235,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -20277,7 +23832,11 @@
   "name": "RATTATA",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -20299,7 +23858,11 @@
   "name": "GRANBULL",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 48,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -20321,7 +23884,11 @@
   "name": "ENTEI",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -20344,7 +23911,11 @@
   "types": [
     "DARK",
     "FIRE"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -20366,7 +23937,11 @@
   "name": "PINSIR",
   "types": [
     "BUG"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -20389,7 +23964,12 @@
   "types": [
     "NORMAL",
     "FAIRY"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 170,
+  "genderRate": 48,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -20412,7 +23992,11 @@
   "types": [
     "DARK",
     "FLYING"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -20435,7 +24019,10 @@
   "types": [
     "ROCK",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -20458,7 +24045,11 @@
   "types": [
     "WATER",
     "FLYING"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20480,7 +24071,11 @@
   "name": "NIDORAN-M",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 235,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -20503,7 +24098,11 @@
   "types": [
     "WATER",
     "POISON"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20525,7 +24124,11 @@
   "name": "ELECTABUZZ",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20548,7 +24151,11 @@
   "types": [
     "GROUND",
     "FLYING"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -20571,7 +24178,11 @@
   "types": [
     "ROCK",
     "GROUND"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -20593,7 +24204,12 @@
   "name": "CLEFFA",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 150,
+  "genderRate": 48,
+  "baseHappiness": 140,
+  "base": true
 },
 {
   "_id": {
@@ -20616,7 +24232,11 @@
   "types": [
     "STEEL",
     "GROUND"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20638,7 +24258,11 @@
   "name": "SPINDA",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -20661,7 +24285,11 @@
   "types": [
     "DARK",
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -20684,7 +24312,12 @@
   "types": [
     "ICE",
     "PSYCHIC"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 45,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -20707,7 +24340,10 @@
   "types": [
     "GROUND",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 90,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20730,7 +24366,11 @@
   "types": [
     "DRAGON",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20752,7 +24392,11 @@
   "name": "EXPLOUD",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20775,7 +24419,11 @@
   "types": [
     "STEEL",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 3,
+  "mythical": true,
+  "baseHappiness": 100,
+  "base": true
 },
 {
   "_id": {
@@ -20798,7 +24446,11 @@
   "types": [
     "POISON",
     "FLYING"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -20821,7 +24473,11 @@
   "types": [
     "ROCK",
     "GROUND"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -20843,7 +24499,11 @@
   "name": "KRABBY",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 225,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -20865,7 +24525,11 @@
   "name": "RAPIDASH",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20888,7 +24552,11 @@
   "types": [
     "WATER",
     "DARK"
-  ]
+  ],
+  "captureRate": 155,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20910,7 +24578,11 @@
   "name": "BLASTOISE",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20932,7 +24604,11 @@
   "name": "CHARMANDER",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -20955,7 +24631,11 @@
   "types": [
     "NORMAL",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 50,
+  "genderRate": 48,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20977,7 +24657,11 @@
   "name": "MAROWAK",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -20999,7 +24683,11 @@
   "name": "KADABRA",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 100,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -21021,7 +24709,11 @@
   "name": "DRATINI",
   "types": [
     "DRAGON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -21043,7 +24735,11 @@
   "name": "MACHOP",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 180,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -21066,7 +24762,11 @@
   "types": [
     "STEEL",
     "ROCK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -21089,7 +24789,11 @@
   "types": [
     "PSYCHIC",
     "FLYING"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -21111,7 +24815,11 @@
   "name": "MILTANK",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -21133,7 +24841,11 @@
   "name": "MUK",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -21155,7 +24867,11 @@
   "name": "GRIMER",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -21177,7 +24893,11 @@
   "name": "VULPIX",
   "types": [
     "FIRE"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 48,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -21200,7 +24920,11 @@
   "types": [
     "GHOST",
     "POISON"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -21222,7 +24946,12 @@
   "name": "TOGEPI",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "baby": true,
+  "captureRate": 190,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -21245,7 +24974,11 @@
   "types": [
     "WATER",
     "GROUND"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -21268,7 +25001,11 @@
   "types": [
     "FAIRY",
     "FLYING"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -21290,7 +25027,11 @@
   "name": "GROUDON",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -21313,7 +25054,11 @@
   "types": [
     "WATER",
     "ROCK"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 48,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -21335,7 +25080,11 @@
   "name": "URSARING",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -21358,7 +25107,11 @@
   "types": [
     "PSYCHIC",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -21381,7 +25134,12 @@
   "types": [
     "DRAGON",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 3,
+  "genderRate": 64,
+  "legendary": true,
+  "baseHappiness": 90,
+  "base": true
 },
 {
   "_id": {
@@ -21404,7 +25162,12 @@
   "types": [
     "DRAGON",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 3,
+  "genderRate": 0,
+  "legendary": true,
+  "baseHappiness": 90,
+  "base": true
 },
 {
   "_id": {
@@ -21427,7 +25190,11 @@
   "types": [
     "PSYCHIC",
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 0,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -21449,7 +25216,11 @@
   "name": "MACHAMP",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -21471,7 +25242,11 @@
   "name": "KINGLER",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -21493,7 +25268,11 @@
   "name": "HITMONLEE",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -21516,7 +25295,10 @@
   "types": [
     "ELECTRIC",
     "STEEL"
-  ]
+  ],
+  "captureRate": 60,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -21538,7 +25320,11 @@
   "name": "HITMONCHAN",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -21560,7 +25346,11 @@
   "name": "KOFFING",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -21583,7 +25373,11 @@
   "types": [
     "ROCK",
     "GROUND"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -21605,7 +25399,11 @@
   "name": "MEOWTH",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -21628,7 +25426,11 @@
   "types": [
     "GROUND",
     "ROCK"
-  ]
+  ],
+  "captureRate": 120,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -21650,7 +25452,11 @@
   "name": "PSYDUCK",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -21672,7 +25478,11 @@
   "name": "PRIMEAPE",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -21695,7 +25505,11 @@
   "types": [
     "ICE",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -21717,7 +25531,11 @@
   "name": "MANKEY",
   "types": [
     "FIGHTING"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -21739,7 +25557,11 @@
   "name": "ALAKAZAM",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 50,
+  "genderRate": 16,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -21761,7 +25583,11 @@
   "name": "GOLDUCK",
   "types": [
     "WATER"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -21784,7 +25610,11 @@
   "types": [
     "DARK",
     "GHOST"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -21807,7 +25637,11 @@
   "types": [
     "WATER",
     "ICE"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -21830,7 +25664,11 @@
   "types": [
     "NORMAL",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -21853,7 +25691,11 @@
   "types": [
     "WATER",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -21875,7 +25717,11 @@
   "name": "PIKACHU",
   "types": [
     "ELECTRIC"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -21898,7 +25744,11 @@
   "types": [
     "BUG",
     "POISON"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -21921,7 +25771,11 @@
   "types": [
     "GHOST",
     "POISON"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -21944,7 +25798,11 @@
   "types": [
     "BUG",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -21966,7 +25824,11 @@
   "name": "SNUBBULL",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 48,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -21988,7 +25850,11 @@
   "name": "ZANGOOSE",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -22011,7 +25877,11 @@
   "types": [
     "DRAGON",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -22033,7 +25903,11 @@
   "name": "TAUROS",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -22056,7 +25930,11 @@
   "types": [
     "WATER",
     "POISON"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -22079,7 +25957,11 @@
   "types": [
     "FIRE",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -22102,7 +25984,11 @@
   "types": [
     "POISON",
     "GROUND"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 0,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -22124,7 +26010,11 @@
   "name": "PERSIAN",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 90,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -22146,7 +26036,11 @@
   "name": "CUBONE",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -22169,7 +26063,11 @@
   "types": [
     "NORMAL",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 170,
+  "genderRate": 48,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -22191,7 +26089,11 @@
   "name": "NIDORAN-F",
   "types": [
     "POISON"
-  ]
+  ],
+  "captureRate": 235,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -22214,7 +26116,11 @@
   "types": [
     "DARK",
     "ICE"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -22237,7 +26143,11 @@
   "types": [
     "POISON",
     "GROUND"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -22259,7 +26169,11 @@
   "name": "DROWZEE",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": true
 },
 {
   "_id": {
@@ -22281,7 +26195,11 @@
   "name": "DUNSPARCE",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -22303,7 +26221,11 @@
   "name": "ABSOL",
   "types": [
     "DARK"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": true
 },
 {
   "_id": {
@@ -22325,7 +26247,11 @@
   "name": "CLEFABLE",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 48,
+  "baseHappiness": 140,
+  "base": false
 },
 {
   "_id": {
@@ -22348,7 +26274,11 @@
   "types": [
     "PSYCHIC",
     "FAIRY"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -22371,7 +26301,11 @@
   "types": [
     "ROCK",
     "DARK"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -22394,7 +26328,11 @@
   "types": [
     "WATER",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 70,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -22417,7 +26355,11 @@
   "types": [
     "GHOST",
     "POISON"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -22439,7 +26381,11 @@
   "name": "CLEFAIRY",
   "types": [
     "FAIRY"
-  ]
+  ],
+  "captureRate": 150,
+  "genderRate": 48,
+  "baseHappiness": 140,
+  "base": false
 },
 {
   "_id": {
@@ -22461,7 +26407,11 @@
   "name": "HYPNO",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 70,
+  "base": false
 },
 {
   "_id": {
@@ -22483,7 +26433,11 @@
   "name": "BLISSEY",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 64,
+  "baseHappiness": 140,
+  "base": false
 },
 {
   "_id": {
@@ -22505,7 +26459,11 @@
   "name": "KANGASKHAN",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 64,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -22528,7 +26486,11 @@
   "types": [
     "WATER",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 190,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -22551,7 +26513,11 @@
   "types": [
     "DRAGON",
     "FLYING"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 35,
+  "base": false
 },
 {
   "_id": {
@@ -22574,7 +26540,11 @@
   "types": [
     "WATER",
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 75,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -22597,7 +26567,11 @@
   "types": [
     "GROUND",
     "ROCK"
-  ]
+  ],
+  "captureRate": 60,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": false
 },
 {
   "_id": {
@@ -22619,7 +26593,11 @@
   "name": "LICKITUNG",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 45,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -22641,7 +26619,11 @@
   "name": "MEWTWO",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 3,
+  "legendary": true,
+  "baseHappiness": 0,
+  "base": true
 },
 {
   "_id": {
@@ -22663,7 +26645,11 @@
   "name": "CHANSEY",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 30,
+  "genderRate": 64,
+  "baseHappiness": 140,
+  "base": false
 },
 {
   "_id": {
@@ -22685,7 +26671,11 @@
   "name": "MEW",
   "types": [
     "PSYCHIC"
-  ]
+  ],
+  "captureRate": 45,
+  "mythical": true,
+  "baseHappiness": 100,
+  "base": true
 },
 {
   "_id": {
@@ -22707,7 +26697,11 @@
   "name": "SANDSHREW",
   "types": [
     "GROUND"
-  ]
+  ],
+  "captureRate": 255,
+  "genderRate": 32,
+  "baseHappiness": 50,
+  "base": true
 },
 {
   "_id": {
@@ -22729,5 +26723,9 @@
   "name": "SNORLAX",
   "types": [
     "NORMAL"
-  ]
+  ],
+  "captureRate": 25,
+  "genderRate": 8,
+  "baseHappiness": 50,
+  "base": false
 }]

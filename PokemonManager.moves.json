@@ -44,7 +44,10 @@
   "category": "physical",
   "id": 760,
   "power": 10,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -56,7 +59,10 @@
   "category": "physical",
   "id": 767,
   "power": 10,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -68,7 +74,10 @@
   "category": "physical",
   "id": 764,
   "power": 10,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -80,7 +89,10 @@
   "category": "physical",
   "id": 762,
   "power": 10,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -92,7 +104,10 @@
   "category": "physical",
   "id": 759,
   "power": 10,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -104,7 +119,10 @@
   "category": "physical",
   "id": 763,
   "power": 10,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -128,7 +146,10 @@
   "category": "physical",
   "id": 778,
   "power": 80,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -140,7 +161,10 @@
   "category": "physical",
   "id": 779,
   "power": 35,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -152,7 +176,10 @@
   "category": "physical",
   "id": 781,
   "power": 100,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -164,7 +191,10 @@
   "category": "physical",
   "id": 765,
   "power": 10,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -176,7 +206,10 @@
   "category": "physical",
   "id": 774,
   "power": 10,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -188,7 +221,10 @@
   "category": "physical",
   "id": 770,
   "power": 10,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -200,7 +236,10 @@
   "category": "physical",
   "id": 782,
   "power": 100,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -212,7 +251,10 @@
   "category": "physical",
   "id": 771,
   "power": 10,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -236,7 +278,10 @@
   "category": "physical",
   "id": 751,
   "power": 50,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -248,7 +293,10 @@
   "category": "physical",
   "id": 768,
   "power": 10,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -272,7 +320,10 @@
   "category": "physical",
   "id": 780,
   "power": 120,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -284,7 +335,10 @@
   "category": "physical",
   "id": 769,
   "power": 10,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -296,7 +350,10 @@
   "category": "special",
   "id": 786,
   "power": 80,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -308,7 +365,10 @@
   "category": "physical",
   "id": 817,
   "power": 80,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -320,7 +380,10 @@
   "category": "special",
   "id": 825,
   "power": 120,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -332,7 +395,10 @@
   "category": "physical",
   "id": 830,
   "power": 65,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -344,7 +410,10 @@
   "category": "physical",
   "id": 828,
   "power": 70,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -356,7 +425,10 @@
   "category": "physical",
   "id": 853,
   "power": 120,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -368,7 +440,10 @@
   "category": "status",
   "id": 829,
   "power": 0,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -380,7 +455,10 @@
   "category": "physical",
   "id": 864,
   "power": 40,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -392,7 +470,10 @@
   "category": "physical",
   "id": 827,
   "power": 80,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -404,7 +485,10 @@
   "category": "physical",
   "id": 857,
   "power": 60,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -416,7 +500,10 @@
   "category": "physical",
   "id": 865,
   "power": 30,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -428,7 +515,10 @@
   "category": "status",
   "id": 852,
   "power": 0,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -440,7 +530,10 @@
   "category": "physical",
   "id": 854,
   "power": 50,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -452,7 +545,10 @@
   "category": "special",
   "id": 826,
   "power": 80,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -464,7 +560,10 @@
   "category": "physical",
   "id": 833,
   "power": 120,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -476,7 +575,10 @@
   "category": "physical",
   "id": 861,
   "power": 80,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -488,7 +590,10 @@
   "category": "status",
   "id": 867,
   "power": 0,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -500,7 +605,10 @@
   "category": "special",
   "id": 871,
   "power": 80,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -512,7 +620,10 @@
   "category": "physical",
   "id": 834,
   "power": 120,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -524,7 +635,10 @@
   "category": "physical",
   "id": 870,
   "power": 70,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -536,7 +650,10 @@
   "category": "special",
   "id": 855,
   "power": 80,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -548,7 +665,10 @@
   "category": "status",
   "id": 858,
   "power": 0,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -560,7 +680,10 @@
   "category": "physical",
   "id": 860,
   "power": 20,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -572,7 +695,10 @@
   "category": "status",
   "id": 863,
   "power": 0,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -584,7 +710,10 @@
   "category": "physical",
   "id": 856,
   "power": 80,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -596,7 +725,10 @@
   "category": "physical",
   "id": 766,
   "power": 10,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -608,7 +740,10 @@
   "category": "physical",
   "id": 773,
   "power": 10,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -620,7 +755,10 @@
   "category": "physical",
   "id": 878,
   "power": 100,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -632,7 +770,10 @@
   "category": "physical",
   "id": 859,
   "power": 100,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -644,7 +785,10 @@
   "category": "special",
   "id": 877,
   "power": 1,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -656,7 +800,10 @@
   "category": "physical",
   "id": 900,
   "power": 100,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -668,7 +815,10 @@
   "category": "status",
   "id": 880,
   "power": 0,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -680,7 +830,10 @@
   "category": "special",
   "id": 879,
   "power": 100,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -692,7 +845,10 @@
   "category": "physical",
   "id": 873,
   "power": 90,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -704,7 +860,10 @@
   "category": "status",
   "id": 883,
   "power": 0,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -716,7 +875,10 @@
   "category": "special",
   "id": 874,
   "power": 120,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -728,7 +890,10 @@
   "category": "physical",
   "id": 875,
   "power": 80,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -740,7 +905,10 @@
   "category": "status",
   "id": 881,
   "power": 0,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -752,7 +920,10 @@
   "category": "status",
   "id": 882,
   "power": 0,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -776,7 +947,10 @@
   "category": "special",
   "id": 790,
   "power": 90,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -788,7 +962,10 @@
   "category": "special",
   "id": 618,
   "power": 110,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -860,7 +1037,10 @@
   "category": "physical",
   "id": 619,
   "power": 120,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -908,7 +1088,10 @@
   "category": "physical",
   "id": 862,
   "power": 120,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -920,7 +1103,10 @@
   "category": "special",
   "id": 876,
   "power": 80,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -1136,7 +1322,10 @@
   "category": "physical",
   "id": 679,
   "power": 80,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -1148,7 +1337,10 @@
   "category": "physical",
   "id": 660,
   "power": 90,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -1172,7 +1364,10 @@
   "category": "physical",
   "id": 658,
   "power": 210,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -1196,7 +1391,10 @@
   "category": "physical",
   "id": 681,
   "power": 20,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -1220,7 +1418,10 @@
   "category": "special",
   "id": 682,
   "power": 130,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -1232,7 +1433,10 @@
   "category": "physical",
   "id": 688,
   "power": 70,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -1268,7 +1472,10 @@
   "category": "special",
   "id": 686,
   "power": 90,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -1280,7 +1487,10 @@
   "category": "special",
   "id": 687,
   "power": 100,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -1292,7 +1502,10 @@
   "category": "special",
   "id": 691,
   "power": 110,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -1304,7 +1517,10 @@
   "category": "physical",
   "id": 696,
   "power": 180,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -1316,7 +1532,10 @@
   "category": "physical",
   "id": 692,
   "power": 90,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -1328,7 +1547,10 @@
   "category": "physical",
   "id": 695,
   "power": 180,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -1340,7 +1562,10 @@
   "category": "special",
   "id": 697,
   "power": 195,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -1364,7 +1589,10 @@
   "category": "special",
   "id": 700,
   "power": 175,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -1376,7 +1604,10 @@
   "category": "special",
   "id": 705,
   "power": 130,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -1388,7 +1619,10 @@
   "category": "special",
   "id": 703,
   "power": 185,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -1412,7 +1646,10 @@
   "category": "physical",
   "id": 726,
   "power": 190,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -1424,7 +1661,10 @@
   "category": "physical",
   "id": 701,
   "power": 210,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -1436,7 +1676,10 @@
   "category": "special",
   "id": 730,
   "power": 90,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -1460,7 +1703,10 @@
   "category": "physical",
   "id": 727,
   "power": 190,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -1472,7 +1718,10 @@
   "category": "physical",
   "id": 731,
   "power": 90,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -1484,7 +1733,10 @@
   "category": "physical",
   "id": 729,
   "power": 80,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -1496,7 +1748,10 @@
   "category": "special",
   "id": 733,
   "power": 60,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -1508,7 +1763,10 @@
   "category": "special",
   "id": 728,
   "power": 185,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -1520,7 +1778,10 @@
   "category": "special",
   "id": 744,
   "power": 100,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -1532,7 +1793,10 @@
   "category": "special",
   "id": 737,
   "power": 80,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -1580,7 +1844,10 @@
   "category": "physical",
   "id": 690,
   "power": 100,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -1592,7 +1859,10 @@
   "category": "physical",
   "id": 746,
   "power": 80,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -1604,7 +1874,10 @@
   "category": "special",
   "id": 739,
   "power": 100,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -1616,7 +1889,10 @@
   "category": "physical",
   "id": 735,
   "power": 60,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -1628,7 +1904,10 @@
   "category": "physical",
   "id": 742,
   "power": 60,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -1640,7 +1919,10 @@
   "category": "physical",
   "id": 738,
   "power": 100,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -1652,7 +1934,10 @@
   "category": "special",
   "id": 745,
   "power": 80,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -1700,7 +1985,10 @@
   "category": "physical",
   "id": 799,
   "power": 25,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -1736,7 +2024,10 @@
   "category": "physical",
   "id": 793,
   "power": 80,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -1748,7 +2039,10 @@
   "category": "special",
   "id": 797,
   "power": 80,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -1760,7 +2054,10 @@
   "category": "physical",
   "id": 794,
   "power": 150,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -1772,7 +2069,10 @@
   "category": "special",
   "id": 804,
   "power": 70,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -1784,7 +2084,10 @@
   "category": "physical",
   "id": 798,
   "power": 130,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -1796,7 +2099,10 @@
   "category": "physical",
   "id": 812,
   "power": 60,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -1808,7 +2114,10 @@
   "category": "special",
   "id": 802,
   "power": 100,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -1820,7 +2129,10 @@
   "category": "special",
   "id": 805,
   "power": 50,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -1832,7 +2144,10 @@
   "category": "physical",
   "id": 784,
   "power": 60,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -1844,7 +2159,10 @@
   "category": "special",
   "id": 796,
   "power": 140,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -1856,7 +2174,10 @@
   "category": "physical",
   "id": 789,
   "power": 75,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -1880,7 +2201,10 @@
   "category": "special",
   "id": 800,
   "power": 120,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -1892,7 +2216,10 @@
   "category": "physical",
   "id": 680,
   "power": 80,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -1904,7 +2231,10 @@
   "category": "physical",
   "id": 803,
   "power": 70,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -1916,7 +2246,10 @@
   "category": "special",
   "id": 801,
   "power": 90,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -1928,7 +2261,10 @@
   "category": "physical",
   "id": 806,
   "power": 70,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -1940,7 +2276,10 @@
   "category": "special",
   "id": 795,
   "power": 160,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -1952,7 +2291,10 @@
   "category": "special",
   "id": 736,
   "power": 80,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -1976,7 +2318,10 @@
   "category": "special",
   "id": 740,
   "power": 120,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -1988,7 +2333,10 @@
   "category": "special",
   "id": 807,
   "power": 70,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -2024,7 +2372,10 @@
   "category": "special",
   "id": 815,
   "power": 70,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -2036,7 +2387,10 @@
   "category": "special",
   "id": 704,
   "power": 150,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -2048,7 +2402,10 @@
   "category": "physical",
   "id": 699,
   "power": 195,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -2060,7 +2417,10 @@
   "category": "physical",
   "id": 809,
   "power": 110,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -2072,7 +2432,10 @@
   "category": "physical",
   "id": 813,
   "power": 20,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -2084,7 +2447,10 @@
   "category": "special",
   "id": 734,
   "power": 60,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -2096,7 +2462,10 @@
   "category": "special",
   "id": 831,
   "power": 100,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -2108,7 +2477,10 @@
   "category": "physical",
   "id": 823,
   "power": 90,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -2120,7 +2492,10 @@
   "category": "physical",
   "id": 872,
   "power": 80,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -2132,7 +2507,10 @@
   "category": "physical",
   "id": 11,
   "power": 55,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -2144,7 +2522,10 @@
   "category": "physical",
   "id": 23,
   "power": 65,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -2156,7 +2537,10 @@
   "category": "physical",
   "id": 22,
   "power": 45,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -2168,7 +2552,10 @@
   "category": "physical",
   "id": 17,
   "power": 60,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -2180,7 +2567,10 @@
   "category": "physical",
   "id": 6,
   "power": 40,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -2192,7 +2582,10 @@
   "category": "special",
   "id": 16,
   "power": 40,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -2204,7 +2597,10 @@
   "category": "physical",
   "id": 1,
   "power": 40,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -2216,7 +2612,10 @@
   "category": "physical",
   "id": 40,
   "power": 15,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -2228,7 +2627,10 @@
   "category": "physical",
   "id": 24,
   "power": 30,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -2252,7 +2654,10 @@
   "category": "physical",
   "id": 31,
   "power": 15,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -2264,7 +2669,10 @@
   "category": "physical",
   "id": 35,
   "power": 15,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -2300,7 +2708,10 @@
   "category": "physical",
   "id": 42,
   "power": 25,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -2312,7 +2723,10 @@
   "category": "physical",
   "id": 30,
   "power": 65,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -2324,7 +2738,10 @@
   "category": "physical",
   "id": 65,
   "power": 80,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -2336,7 +2753,10 @@
   "category": "special",
   "id": 51,
   "power": 40,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -2348,7 +2768,10 @@
   "category": "physical",
   "id": 88,
   "power": 50,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -2360,7 +2783,10 @@
   "category": "physical",
   "id": 808,
   "power": 75,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -2372,7 +2798,10 @@
   "category": "physical",
   "id": 814,
   "power": 40,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -2444,7 +2873,10 @@
   "category": "special",
   "id": 80,
   "power": 120,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -2456,7 +2888,10 @@
   "category": "special",
   "id": 62,
   "power": 65,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -2480,7 +2915,10 @@
   "category": "physical",
   "id": 66,
   "power": 80,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -2492,7 +2930,10 @@
   "category": "physical",
   "id": 122,
   "power": 30,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -2504,7 +2945,10 @@
   "category": "physical",
   "id": 64,
   "power": 35,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -2516,7 +2960,10 @@
   "category": "special",
   "id": 124,
   "power": 65,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -2552,7 +2999,10 @@
   "category": "physical",
   "id": 125,
   "power": 65,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -2648,7 +3098,10 @@
   "category": "physical",
   "id": 292,
   "power": 15,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -2660,7 +3113,10 @@
   "category": "physical",
   "id": 140,
   "power": 15,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -2672,7 +3128,10 @@
   "category": "physical",
   "id": 136,
   "power": 130,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -2708,7 +3167,10 @@
   "category": "physical",
   "id": 309,
   "power": 90,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -2732,7 +3194,10 @@
   "category": "special",
   "id": 284,
   "power": 150,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -2744,7 +3209,10 @@
   "category": "physical",
   "id": 158,
   "power": 80,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -2816,7 +3284,10 @@
   "category": "physical",
   "id": 152,
   "power": 100,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -2828,7 +3299,10 @@
   "category": "special",
   "id": 326,
   "power": 80,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -2840,7 +3314,10 @@
   "category": "special",
   "id": 353,
   "power": 140,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -2888,7 +3365,10 @@
   "category": "physical",
   "id": 306,
   "power": 75,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -2960,7 +3440,10 @@
   "category": "special",
   "id": 308,
   "power": 150,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -2972,7 +3455,10 @@
   "category": "special",
   "id": 323,
   "power": 150,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -2984,7 +3470,10 @@
   "category": "physical",
   "id": 327,
   "power": 85,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -2996,7 +3485,10 @@
   "category": "physical",
   "id": 305,
   "power": 50,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -3044,7 +3536,10 @@
   "category": "physical",
   "id": 359,
   "power": 100,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -3056,7 +3551,10 @@
   "category": "physical",
   "id": 348,
   "power": 90,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -3176,7 +3674,10 @@
   "category": "physical",
   "id": 395,
   "power": 60,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -3188,7 +3689,10 @@
   "category": "special",
   "id": 396,
   "power": 80,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -3200,7 +3704,10 @@
   "category": "special",
   "id": 408,
   "power": 80,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -3212,7 +3719,10 @@
   "category": "special",
   "id": 410,
   "power": 40,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -3224,7 +3734,10 @@
   "category": "physical",
   "id": 407,
   "power": 100,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -3248,7 +3761,10 @@
   "category": "physical",
   "id": 413,
   "power": 120,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -3260,7 +3776,10 @@
   "category": "physical",
   "id": 420,
   "power": 40,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -3272,7 +3791,10 @@
   "category": "physical",
   "id": 418,
   "power": 40,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -3284,7 +3806,10 @@
   "category": "physical",
   "id": 425,
   "power": 40,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -3296,7 +3821,10 @@
   "category": "physical",
   "id": 427,
   "power": 70,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -3320,7 +3848,10 @@
   "category": "physical",
   "id": 443,
   "power": 60,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -3332,7 +3863,10 @@
   "category": "special",
   "id": 449,
   "power": 100,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -3356,7 +3890,10 @@
   "category": "physical",
   "id": 325,
   "power": 60,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -3380,7 +3917,10 @@
   "category": "physical",
   "id": 454,
   "power": 90,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -3392,7 +3932,10 @@
   "category": "physical",
   "id": 452,
   "power": 120,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -3416,7 +3959,10 @@
   "category": "physical",
   "id": 453,
   "power": 40,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -3428,7 +3974,10 @@
   "category": "special",
   "id": 459,
   "power": 150,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -3452,7 +4001,10 @@
   "category": "physical",
   "id": 458,
   "power": 35,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -3464,7 +4016,10 @@
   "category": "special",
   "id": 460,
   "power": 100,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -3476,7 +4031,10 @@
   "category": "special",
   "id": 465,
   "power": 120,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -3512,7 +4070,10 @@
   "category": "special",
   "id": 463,
   "power": 100,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -3536,7 +4097,10 @@
   "category": "physical",
   "id": 467,
   "power": 120,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -3596,7 +4160,10 @@
   "category": "physical",
   "id": 480,
   "power": 60,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -3620,7 +4187,10 @@
   "category": "special",
   "id": 491,
   "power": 40,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -3632,7 +4202,10 @@
   "category": "physical",
   "id": 509,
   "power": 60,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -3704,7 +4277,10 @@
   "category": "special",
   "id": 499,
   "power": 50,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -3752,7 +4328,10 @@
   "category": "special",
   "id": 519,
   "power": 80,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -3764,7 +4343,10 @@
   "category": "special",
   "id": 517,
   "power": 100,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -3776,7 +4358,10 @@
   "category": "special",
   "id": 518,
   "power": 80,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -3788,7 +4373,10 @@
   "category": "special",
   "id": 520,
   "power": 80,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -3800,7 +4388,10 @@
   "category": "physical",
   "id": 537,
   "power": 65,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -3812,7 +4403,10 @@
   "category": "physical",
   "id": 541,
   "power": 25,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -3824,7 +4418,10 @@
   "category": "special",
   "id": 539,
   "power": 85,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -3836,7 +4433,10 @@
   "category": "special",
   "id": 540,
   "power": 100,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -3848,7 +4448,10 @@
   "category": "physical",
   "id": 543,
   "power": 120,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -3872,7 +4475,10 @@
   "category": "special",
   "id": 545,
   "power": 100,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -3884,7 +4490,10 @@
   "category": "special",
   "id": 552,
   "power": 80,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -3896,7 +4505,10 @@
   "category": "special",
   "id": 546,
   "power": 120,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -3908,7 +4520,10 @@
   "category": "special",
   "id": 448,
   "power": 65,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -3920,7 +4535,10 @@
   "category": "physical",
   "id": 457,
   "power": 150,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -3932,7 +4550,10 @@
   "category": "physical",
   "id": 553,
   "power": 140,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -3944,7 +4565,10 @@
   "category": "special",
   "id": 558,
   "power": 100,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -3956,7 +4580,10 @@
   "category": "special",
   "id": 551,
   "power": 130,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -3968,7 +4595,10 @@
   "category": "physical",
   "id": 556,
   "power": 85,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -3980,7 +4610,10 @@
   "category": "special",
   "id": 548,
   "power": 85,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -3992,7 +4625,10 @@
   "category": "physical",
   "id": 557,
   "power": 180,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -4028,7 +4664,10 @@
   "category": "physical",
   "id": 566,
   "power": 90,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -4040,7 +4679,10 @@
   "category": "physical",
   "id": 559,
   "power": 100,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -4052,7 +4694,10 @@
   "category": "physical",
   "id": 560,
   "power": 100,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -4064,7 +4709,10 @@
   "category": "physical",
   "id": 565,
   "power": 50,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -4088,7 +4736,10 @@
   "category": "special",
   "id": 562,
   "power": 120,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -4100,7 +4751,10 @@
   "category": "special",
   "id": 585,
   "power": 95,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -4112,7 +4766,10 @@
   "category": "special",
   "id": 586,
   "power": 140,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -4136,7 +4793,10 @@
   "category": "physical",
   "id": 591,
   "power": 100,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -4148,7 +4808,10 @@
   "category": "special",
   "id": 593,
   "power": 80,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -4172,7 +4835,10 @@
   "category": "special",
   "id": 584,
   "power": 40,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -4208,7 +4874,10 @@
   "category": "special",
   "id": 594,
   "power": 15,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -4232,7 +4901,10 @@
   "category": "special",
   "id": 592,
   "power": 110,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -4256,7 +4928,10 @@
   "category": "special",
   "id": 595,
   "power": 75,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -4304,7 +4979,10 @@
   "category": "physical",
   "id": 610,
   "power": 40,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -4352,7 +5030,10 @@
   "category": "physical",
   "id": 614,
   "power": 90,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -4376,7 +5057,10 @@
   "category": "physical",
   "id": 609,
   "power": 20,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -4388,7 +5072,10 @@
   "category": "physical",
   "id": 621,
   "power": 100,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -4400,7 +5087,10 @@
   "category": "special",
   "id": 613,
   "power": 80,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -4412,7 +5102,10 @@
   "category": "physical",
   "id": 615,
   "power": 90,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -4424,7 +5117,10 @@
   "category": "special",
   "id": 617,
   "power": 140,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -4436,7 +5132,10 @@
   "category": "physical",
   "id": 616,
   "power": 90,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -4448,7 +5147,10 @@
   "category": "special",
   "id": 536,
   "power": 65,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -4460,7 +5162,10 @@
   "category": "physical",
   "id": 620,
   "power": 120,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -4472,7 +5177,10 @@
   "category": "physical",
   "id": 550,
   "power": 130,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -4484,7 +5192,10 @@
   "category": "physical",
   "id": 544,
   "power": 50,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -4496,7 +5207,10 @@
   "category": "special",
   "id": 554,
   "power": 140,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -4508,7 +5222,10 @@
   "category": "special",
   "id": 547,
   "power": 75,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -4532,7 +5249,10 @@
   "category": "special",
   "id": 549,
   "power": 65,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -4544,7 +5264,10 @@
   "category": "physical",
   "id": 776,
   "power": 80,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -4556,7 +5279,10 @@
   "category": "physical",
   "id": 670,
   "power": 40,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -4580,7 +5306,10 @@
   "category": "physical",
   "id": 757,
   "power": 100,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -4616,7 +5345,10 @@
   "category": "physical",
   "id": 758,
   "power": 10,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -4628,7 +5360,10 @@
   "category": "physical",
   "id": 761,
   "power": 10,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -4640,7 +5375,10 @@
   "category": "physical",
   "id": 788,
   "power": 80,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -4652,7 +5390,10 @@
   "category": "physical",
   "id": 772,
   "power": 10,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -4664,7 +5405,10 @@
   "category": "physical",
   "id": 755,
   "power": 85,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -4676,7 +5420,10 @@
   "category": "special",
   "id": 787,
   "power": 80,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -4700,7 +5447,10 @@
   "category": "physical",
   "id": 785,
   "power": 40,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -4712,7 +5462,10 @@
   "category": "special",
   "id": 832,
   "power": 70,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -4724,7 +5477,10 @@
   "category": "special",
   "id": 822,
   "power": 90,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -4736,7 +5492,10 @@
   "category": "special",
   "id": 819,
   "power": 80,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -4748,7 +5507,10 @@
   "category": "special",
   "id": 821,
   "power": 90,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -4760,7 +5522,10 @@
   "category": "status",
   "id": 849,
   "power": 0,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -4772,7 +5537,10 @@
   "category": "status",
   "id": 850,
   "power": 0,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -4784,7 +5552,10 @@
   "category": "special",
   "id": 840,
   "power": 80,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -4796,7 +5567,10 @@
   "category": "physical",
   "id": 869,
   "power": 85,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -4808,7 +5582,10 @@
   "category": "physical",
   "id": 824,
   "power": 130,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -4820,7 +5597,10 @@
   "category": "status",
   "id": 842,
   "power": 0,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -4832,7 +5612,10 @@
   "category": "physical",
   "id": 839,
   "power": 60,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -4844,7 +5627,10 @@
   "category": "physical",
   "id": 838,
   "power": 120,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -4856,7 +5642,10 @@
   "category": "special",
   "id": 844,
   "power": 60,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -4868,7 +5657,10 @@
   "category": "physical",
   "id": 843,
   "power": 90,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -4880,7 +5672,10 @@
   "category": "special",
   "id": 841,
   "power": 75,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -4892,7 +5687,10 @@
   "category": "status",
   "id": 837,
   "power": 0,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -4904,7 +5702,10 @@
   "category": "physical",
   "id": 836,
   "power": 100,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -4916,7 +5717,10 @@
   "category": "physical",
   "id": 894,
   "power": 1,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -4928,7 +5732,10 @@
   "category": "special",
   "id": 848,
   "power": 100,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -4940,7 +5747,10 @@
   "category": "physical",
   "id": 866,
   "power": 30,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -4952,7 +5762,10 @@
   "category": "special",
   "id": 835,
   "power": 150,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -4964,7 +5777,10 @@
   "category": "special",
   "id": 847,
   "power": 100,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -4976,7 +5792,10 @@
   "category": "status",
   "id": 868,
   "power": 0,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -4988,7 +5807,10 @@
   "category": "special",
   "id": 846,
   "power": 100,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -5000,7 +5822,10 @@
   "category": "physical",
   "id": 845,
   "power": 65,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -5012,7 +5837,10 @@
   "category": "physical",
   "id": 896,
   "power": 80,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -5024,7 +5852,10 @@
   "category": "physical",
   "id": 899,
   "power": 100,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -5036,7 +5867,10 @@
   "category": "physical",
   "id": 889,
   "power": 50,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -5048,7 +5882,10 @@
   "category": "physical",
   "id": 897,
   "power": 80,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -5060,7 +5897,10 @@
   "category": "physical",
   "id": 887,
   "power": 100,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5072,7 +5912,10 @@
   "category": "physical",
   "id": 891,
   "power": 90,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -5084,7 +5927,10 @@
   "category": "physical",
   "id": 898,
   "power": 100,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -5096,7 +5942,10 @@
   "category": "physical",
   "id": 892,
   "power": 120,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -5108,7 +5957,10 @@
   "category": "special",
   "id": 890,
   "power": 120,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -5120,7 +5972,10 @@
   "category": "physical",
   "id": 884,
   "power": 50,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -5132,7 +5987,10 @@
   "category": "physical",
   "id": 893,
   "power": 160,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -5144,7 +6002,10 @@
   "category": "physical",
   "id": 895,
   "power": 70,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -5156,7 +6017,10 @@
   "category": "special",
   "id": 888,
   "power": 40,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -5168,7 +6032,10 @@
   "category": "physical",
   "id": 4,
   "power": 18,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5180,7 +6047,10 @@
   "category": "physical",
   "id": 684,
   "power": 70,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -5192,7 +6062,10 @@
   "category": "physical",
   "id": 10,
   "power": 40,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5204,7 +6077,10 @@
   "category": "physical",
   "id": 706,
   "power": 85,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -5216,7 +6092,10 @@
   "category": "physical",
   "id": 21,
   "power": 80,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5228,7 +6107,10 @@
   "category": "special",
   "id": 13,
   "power": 80,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5240,7 +6122,10 @@
   "category": "physical",
   "id": 41,
   "power": 25,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -5252,7 +6137,10 @@
   "category": "physical",
   "id": 20,
   "power": 15,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5264,7 +6152,10 @@
   "category": "physical",
   "id": 37,
   "power": 120,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5288,7 +6179,10 @@
   "category": "physical",
   "id": 26,
   "power": 100,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -5312,7 +6206,10 @@
   "category": "special",
   "id": 83,
   "power": 35,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -5324,7 +6221,10 @@
   "category": "special",
   "id": 55,
   "power": 40,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -5348,7 +6248,10 @@
   "category": "physical",
   "id": 27,
   "power": 60,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -5360,7 +6263,10 @@
   "category": "special",
   "id": 61,
   "power": 65,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -5372,7 +6278,10 @@
   "category": "special",
   "id": 52,
   "power": 40,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -5456,7 +6365,10 @@
   "category": "physical",
   "id": 132,
   "power": 10,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5480,7 +6392,10 @@
   "category": "physical",
   "id": 131,
   "power": 20,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5504,7 +6419,10 @@
   "category": "special",
   "id": 93,
   "power": 50,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -5528,7 +6446,10 @@
   "category": "special",
   "id": 60,
   "power": 65,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -5564,7 +6485,10 @@
   "category": "physical",
   "id": 153,
   "power": 250,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5576,7 +6500,10 @@
   "category": "physical",
   "id": 120,
   "power": 200,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5588,7 +6515,10 @@
   "category": "physical",
   "id": 141,
   "power": 80,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -5624,7 +6554,10 @@
   "category": "special",
   "id": 311,
   "power": 50,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5636,7 +6569,10 @@
   "category": "physical",
   "id": 350,
   "power": 25,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -5648,7 +6584,10 @@
   "category": "physical",
   "id": 265,
   "power": 70,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5660,7 +6599,10 @@
   "category": "special",
   "id": 84,
   "power": 40,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -5684,7 +6626,10 @@
   "category": "special",
   "id": 145,
   "power": 40,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -5696,7 +6641,10 @@
   "category": "physical",
   "id": 252,
   "power": 40,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5708,7 +6656,10 @@
   "category": "physical",
   "id": 310,
   "power": 30,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -5732,7 +6683,10 @@
   "category": "special",
   "id": 314,
   "power": 60,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -5756,7 +6710,10 @@
   "category": "physical",
   "id": 128,
   "power": 35,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -5768,7 +6725,10 @@
   "category": "physical",
   "id": 146,
   "power": 70,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5780,7 +6740,10 @@
   "category": "physical",
   "id": 130,
   "power": 130,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5792,7 +6755,10 @@
   "category": "special",
   "id": 192,
   "power": 120,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -5864,7 +6830,10 @@
   "category": "physical",
   "id": 143,
   "power": 140,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -5876,7 +6845,10 @@
   "category": "physical",
   "id": 2,
   "power": 50,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -5888,7 +6860,10 @@
   "category": "physical",
   "id": 279,
   "power": 60,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -5900,7 +6875,10 @@
   "category": "physical",
   "id": 3,
   "power": 15,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -5912,7 +6890,10 @@
   "category": "physical",
   "id": 328,
   "power": 35,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -5948,7 +6929,10 @@
   "category": "special",
   "id": 318,
   "power": 60,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -5972,7 +6956,10 @@
   "category": "special",
   "id": 354,
   "power": 140,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -5996,7 +6983,10 @@
   "category": "physical",
   "id": 358,
   "power": 70,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -6032,7 +7022,10 @@
   "category": "physical",
   "id": 365,
   "power": 60,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -6044,7 +7037,10 @@
   "category": "physical",
   "id": 364,
   "power": 30,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -6068,7 +7064,10 @@
   "category": "physical",
   "id": 370,
   "power": 120,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -6092,7 +7091,10 @@
   "category": "physical",
   "id": 154,
   "power": 18,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -6152,7 +7154,10 @@
   "category": "physical",
   "id": 401,
   "power": 90,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -6164,7 +7169,10 @@
   "category": "physical",
   "id": 394,
   "power": 120,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -6176,7 +7184,10 @@
   "category": "special",
   "id": 403,
   "power": 75,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -6188,7 +7199,10 @@
   "category": "physical",
   "id": 400,
   "power": 70,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -6200,7 +7214,10 @@
   "category": "physical",
   "id": 185,
   "power": 60,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -6224,7 +7241,10 @@
   "category": "physical",
   "id": 163,
   "power": 70,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -6236,7 +7256,10 @@
   "category": "physical",
   "id": 409,
   "power": 75,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -6248,7 +7271,10 @@
   "category": "special",
   "id": 405,
   "power": 90,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -6260,7 +7286,10 @@
   "category": "physical",
   "id": 422,
   "power": 65,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -6272,7 +7301,10 @@
   "category": "special",
   "id": 406,
   "power": 85,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -6284,7 +7316,10 @@
   "category": "physical",
   "id": 419,
   "power": 60,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -6296,7 +7331,10 @@
   "category": "special",
   "id": 429,
   "power": 65,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -6308,7 +7346,10 @@
   "category": "physical",
   "id": 423,
   "power": 65,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -6320,7 +7361,10 @@
   "category": "special",
   "id": 426,
   "power": 65,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -6332,7 +7376,10 @@
   "category": "physical",
   "id": 424,
   "power": 65,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -6344,7 +7391,10 @@
   "category": "physical",
   "id": 431,
   "power": 90,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -6356,7 +7406,10 @@
   "category": "physical",
   "id": 450,
   "power": 60,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -6368,7 +7421,10 @@
   "category": "special",
   "id": 466,
   "power": 60,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -6392,7 +7448,10 @@
   "category": "special",
   "id": 473,
   "power": 80,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -6404,7 +7463,10 @@
   "category": "special",
   "id": 482,
   "power": 95,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -6416,7 +7478,10 @@
   "category": "special",
   "id": 481,
   "power": 70,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -6440,7 +7505,10 @@
   "category": "special",
   "id": 485,
   "power": 120,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -6452,7 +7520,10 @@
   "category": "physical",
   "id": 488,
   "power": 50,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -6488,7 +7559,10 @@
   "category": "physical",
   "id": 490,
   "power": 65,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -6500,7 +7574,10 @@
   "category": "special",
   "id": 503,
   "power": 80,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -6512,7 +7589,10 @@
   "category": "physical",
   "id": 507,
   "power": 60,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -6524,7 +7604,10 @@
   "category": "physical",
   "id": 404,
   "power": 80,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -6536,7 +7619,10 @@
   "category": "special",
   "id": 506,
   "power": 65,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -6548,7 +7634,10 @@
   "category": "special",
   "id": 542,
   "power": 110,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -6560,7 +7649,10 @@
   "category": "special",
   "id": 555,
   "power": 55,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -6596,7 +7688,10 @@
   "category": "special",
   "id": 605,
   "power": 80,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -6608,7 +7703,10 @@
   "category": "special",
   "id": 611,
   "power": 20,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -6620,7 +7718,10 @@
   "category": "special",
   "id": 161,
   "power": 80,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -6656,7 +7757,10 @@
   "category": "physical",
   "id": 693,
   "power": 60,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -6680,7 +7784,10 @@
   "category": "physical",
   "id": 165,
   "power": 50,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -6692,7 +7799,10 @@
   "category": "physical",
   "id": 198,
   "power": 25,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -6704,7 +7814,10 @@
   "category": "physical",
   "id": 172,
   "power": 60,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -6740,7 +7853,10 @@
   "category": "physical",
   "id": 238,
   "power": 100,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -6752,7 +7868,10 @@
   "category": "physical",
   "id": 155,
   "power": 50,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -6764,7 +7883,10 @@
   "category": "physical",
   "id": 224,
   "power": 120,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -6776,7 +7898,10 @@
   "category": "physical",
   "id": 245,
   "power": 80,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -6800,7 +7925,10 @@
   "category": "special",
   "id": 181,
   "power": 40,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -6848,7 +7976,10 @@
   "category": "special",
   "id": 307,
   "power": 150,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -6860,7 +7991,10 @@
   "category": "physical",
   "id": 221,
   "power": 100,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -6884,7 +8018,10 @@
   "category": "special",
   "id": 190,
   "power": 65,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -6932,7 +8069,10 @@
   "category": "physical",
   "id": 662,
   "power": 80,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -6956,7 +8096,10 @@
   "category": "special",
   "id": 664,
   "power": 90,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -6968,7 +8111,10 @@
   "category": "physical",
   "id": 665,
   "power": 100,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -7040,7 +8186,10 @@
   "category": "physical",
   "id": 677,
   "power": 80,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -7064,7 +8213,10 @@
   "category": "special",
   "id": 711,
   "power": 160,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -7076,7 +8228,10 @@
   "category": "physical",
   "id": 709,
   "power": 40,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -7088,7 +8243,10 @@
   "category": "physical",
   "id": 663,
   "power": 85,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -7112,7 +8270,10 @@
   "category": "physical",
   "id": 718,
   "power": 120,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -7124,7 +8285,10 @@
   "category": "physical",
   "id": 713,
   "power": 100,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -7136,7 +8300,10 @@
   "category": "physical",
   "id": 724,
   "power": 200,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -7148,7 +8315,10 @@
   "category": "physical",
   "id": 716,
   "power": 80,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -7160,7 +8330,10 @@
   "category": "physical",
   "id": 708,
   "power": 85,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -7172,7 +8345,10 @@
   "category": "special",
   "id": 722,
   "power": 100,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -7184,7 +8360,10 @@
   "category": "special",
   "id": 714,
   "power": 100,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -7208,7 +8387,10 @@
   "category": "physical",
   "id": 721,
   "power": 100,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -7220,7 +8402,10 @@
   "category": "special",
   "id": 723,
   "power": 200,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -7232,7 +8417,10 @@
   "category": "special",
   "id": 719,
   "power": 195,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -7244,7 +8432,10 @@
   "category": "special",
   "id": 725,
   "power": 200,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -7256,7 +8447,10 @@
   "category": "physical",
   "id": 712,
   "power": 90,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -7268,7 +8462,10 @@
   "category": "special",
   "id": 720,
   "power": 150,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -7280,7 +8477,10 @@
   "category": "physical",
   "id": 754,
   "power": 85,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -7292,7 +8492,10 @@
   "category": "physical",
   "id": 783,
   "power": 110,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -7304,7 +8507,10 @@
   "category": "physical",
   "id": 818,
   "power": 25,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -7316,7 +8522,10 @@
   "category": "special",
   "id": 820,
   "power": 150,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -7328,7 +8537,10 @@
   "category": "physical",
   "id": 885,
   "power": 50,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -7340,7 +8552,10 @@
   "category": "special",
   "id": 886,
   "power": 50,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -7352,7 +8567,10 @@
   "category": "physical",
   "id": 7,
   "power": 75,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -7364,7 +8582,10 @@
   "category": "physical",
   "id": 5,
   "power": 80,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -7376,7 +8597,10 @@
   "category": "physical",
   "id": 19,
   "power": 90,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -7388,7 +8612,10 @@
   "category": "physical",
   "id": 25,
   "power": 120,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -7400,7 +8627,10 @@
   "category": "physical",
   "id": 8,
   "power": 75,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -7412,7 +8642,10 @@
   "category": "special",
   "id": 362,
   "power": 65,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -7436,7 +8669,10 @@
   "category": "physical",
   "id": 583,
   "power": 90,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -7448,7 +8684,10 @@
   "category": "physical",
   "id": 98,
   "power": 40,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -7460,7 +8699,10 @@
   "category": "physical",
   "id": 127,
   "power": 80,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -7496,7 +8738,10 @@
   "category": "special",
   "id": 315,
   "power": 130,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -7544,7 +8789,10 @@
   "category": "physical",
   "id": 372,
   "power": 60,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -7556,7 +8804,10 @@
   "category": "physical",
   "id": 398,
   "power": 80,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -7568,7 +8819,10 @@
   "category": "physical",
   "id": 402,
   "power": 80,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -7580,7 +8834,10 @@
   "category": "special",
   "id": 414,
   "power": 90,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -7592,7 +8849,10 @@
   "category": "special",
   "id": 430,
   "power": 80,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -7640,7 +8900,10 @@
   "category": "special",
   "id": 510,
   "power": 60,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -7652,7 +8915,10 @@
   "category": "physical",
   "id": 512,
   "power": 55,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -7676,7 +8942,10 @@
   "category": "special",
   "id": 248,
   "power": 120,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -7688,7 +8957,10 @@
   "category": "special",
   "id": 225,
   "power": 60,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -7700,7 +8972,10 @@
   "category": "physical",
   "id": 232,
   "power": 50,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -7712,7 +8987,10 @@
   "category": "physical",
   "id": 206,
   "power": 40,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -7784,7 +9062,10 @@
   "category": "physical",
   "id": 211,
   "power": 70,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -7796,7 +9077,10 @@
   "category": "physical",
   "id": 223,
   "power": 100,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -7880,7 +9164,10 @@
   "category": "special",
   "id": 123,
   "power": 30,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -7892,7 +9179,10 @@
   "category": "physical",
   "id": 121,
   "power": 100,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -7904,7 +9194,10 @@
   "category": "physical",
   "id": 75,
   "power": 55,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -7916,7 +9209,10 @@
   "category": "physical",
   "id": 209,
   "power": 65,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -7964,7 +9260,10 @@
   "category": "physical",
   "id": 233,
   "power": 70,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -7988,7 +9287,10 @@
   "category": "special",
   "id": 295,
   "power": 70,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -8012,7 +9314,10 @@
   "category": "special",
   "id": 296,
   "power": 70,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -8024,7 +9329,10 @@
   "category": "physical",
   "id": 302,
   "power": 60,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -8036,7 +9344,10 @@
   "category": "physical",
   "id": 342,
   "power": 50,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -8048,7 +9359,10 @@
   "category": "special",
   "id": 338,
   "power": 150,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -8072,7 +9386,10 @@
   "category": "physical",
   "id": 344,
   "power": 120,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -8084,7 +9401,10 @@
   "category": "physical",
   "id": 333,
   "power": 25,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -8132,7 +9452,10 @@
   "category": "physical",
   "id": 438,
   "power": 120,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -8156,7 +9479,10 @@
   "category": "special",
   "id": 436,
   "power": 80,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -8168,7 +9494,10 @@
   "category": "physical",
   "id": 439,
   "power": 150,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -8180,7 +9509,10 @@
   "category": "physical",
   "id": 440,
   "power": 70,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -8228,7 +9560,10 @@
   "category": "physical",
   "id": 299,
   "power": 85,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -8240,7 +9575,10 @@
   "category": "physical",
   "id": 529,
   "power": 80,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -8252,7 +9590,10 @@
   "category": "special",
   "id": 56,
   "power": 110,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -8300,7 +9641,10 @@
   "category": "physical",
   "id": 534,
   "power": 75,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -8312,7 +9656,10 @@
   "category": "special",
   "id": 522,
   "power": 50,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -8324,7 +9671,10 @@
   "category": "special",
   "id": 524,
   "power": 60,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -8336,7 +9686,10 @@
   "category": "physical",
   "id": 532,
   "power": 75,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -8348,7 +9701,10 @@
   "category": "physical",
   "id": 533,
   "power": 90,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -8360,7 +9716,10 @@
   "category": "special",
   "id": 527,
   "power": 55,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -8384,7 +9743,10 @@
   "category": "physical",
   "id": 572,
   "power": 90,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -8396,7 +9758,10 @@
   "category": "special",
   "id": 573,
   "power": 70,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -8408,7 +9773,10 @@
   "category": "special",
   "id": 570,
   "power": 65,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -8432,7 +9800,10 @@
   "category": "special",
   "id": 574,
   "power": 40,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -8504,7 +9875,10 @@
   "category": "physical",
   "id": 669,
   "power": 125,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -8516,7 +9890,10 @@
   "category": "physical",
   "id": 667,
   "power": 95,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -8540,7 +9917,10 @@
   "category": "special",
   "id": 676,
   "power": 90,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -8552,7 +9932,10 @@
   "category": "physical",
   "id": 183,
   "power": 40,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -8576,7 +9959,10 @@
   "category": "special",
   "id": 177,
   "power": 100,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -8588,7 +9974,10 @@
   "category": "physical",
   "id": 9,
   "power": 75,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -8600,7 +9989,10 @@
   "category": "physical",
   "id": 15,
   "power": 50,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -8624,7 +10016,10 @@
   "category": "physical",
   "id": 44,
   "power": 60,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -8648,7 +10043,10 @@
   "category": "special",
   "id": 53,
   "power": 90,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -8672,7 +10070,10 @@
   "category": "special",
   "id": 85,
   "power": 90,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -8684,7 +10085,10 @@
   "category": "special",
   "id": 58,
   "power": 90,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -8696,7 +10100,10 @@
   "category": "special",
   "id": 87,
   "power": 110,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -8708,7 +10115,10 @@
   "category": "special",
   "id": 59,
   "power": 110,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -8720,7 +10130,10 @@
   "category": "physical",
   "id": 99,
   "power": 20,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -8756,7 +10169,10 @@
   "category": "special",
   "id": 57,
   "power": 90,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -8768,7 +10184,10 @@
   "category": "special",
   "id": 126,
   "power": 110,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -8780,7 +10199,10 @@
   "category": "special",
   "id": 94,
   "power": 90,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -8792,7 +10214,10 @@
   "category": "special",
   "id": 138,
   "power": 100,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -8864,7 +10289,10 @@
   "category": "special",
   "id": 253,
   "power": 90,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -8876,7 +10304,10 @@
   "category": "special",
   "id": 352,
   "power": 60,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -8888,7 +10319,10 @@
   "category": "physical",
   "id": 282,
   "power": 65,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -8924,7 +10358,10 @@
   "category": "special",
   "id": 351,
   "power": 60,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -8936,7 +10373,10 @@
   "category": "physical",
   "id": 371,
   "power": 50,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -8948,7 +10388,10 @@
   "category": "physical",
   "id": 369,
   "power": 70,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -8960,7 +10403,10 @@
   "category": "special",
   "id": 399,
   "power": 80,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -8972,7 +10418,10 @@
   "category": "special",
   "id": 411,
   "power": 120,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -8984,7 +10433,10 @@
   "category": "physical",
   "id": 421,
   "power": 70,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -8996,7 +10448,10 @@
   "category": "special",
   "id": 412,
   "power": 90,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -9008,7 +10463,10 @@
   "category": "special",
   "id": 324,
   "power": 75,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -9020,7 +10478,10 @@
   "category": "physical",
   "id": 442,
   "power": 80,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -9032,7 +10493,10 @@
   "category": "physical",
   "id": 444,
   "power": 100,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -9044,7 +10508,10 @@
   "category": "special",
   "id": 451,
   "power": 50,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -9080,7 +10547,10 @@
   "category": "physical",
   "id": 514,
   "power": 70,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -9092,7 +10562,10 @@
   "category": "physical",
   "id": 612,
   "power": 40,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -9104,7 +10577,10 @@
   "category": "physical",
   "id": 276,
   "power": 120,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -9140,7 +10616,10 @@
   "category": "special",
   "id": 250,
   "power": 35,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -9152,7 +10631,10 @@
   "category": "physical",
   "id": 530,
   "power": 40,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -9176,7 +10658,10 @@
   "category": "special",
   "id": 188,
   "power": 90,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -9224,7 +10709,10 @@
   "category": "special",
   "id": 72,
   "power": 40,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -9248,7 +10736,10 @@
   "category": "special",
   "id": 71,
   "power": 20,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -9272,7 +10763,10 @@
   "category": "physical",
   "id": 229,
   "power": 50,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -9284,7 +10778,10 @@
   "category": "special",
   "id": 239,
   "power": 40,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -9296,7 +10793,10 @@
   "category": "physical",
   "id": 301,
   "power": 30,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -9308,7 +10808,10 @@
   "category": "physical",
   "id": 228,
   "power": 40,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -9332,7 +10835,10 @@
   "category": "physical",
   "id": 331,
   "power": 25,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -9344,7 +10850,10 @@
   "category": "special",
   "id": 330,
   "power": 90,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -9356,7 +10865,10 @@
   "category": "special",
   "id": 345,
   "power": 60,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -9368,7 +10880,10 @@
   "category": "physical",
   "id": 340,
   "power": 85,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -9380,7 +10895,10 @@
   "category": "physical",
   "id": 337,
   "power": 80,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -9440,7 +10958,10 @@
   "category": "special",
   "id": 434,
   "power": 130,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -9452,7 +10973,10 @@
   "category": "physical",
   "id": 387,
   "power": 140,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -9464,7 +10988,10 @@
   "category": "physical",
   "id": 389,
   "power": 70,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -9476,7 +11003,10 @@
   "category": "special",
   "id": 435,
   "power": 80,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -9488,7 +11018,10 @@
   "category": "special",
   "id": 437,
   "power": 130,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -9500,7 +11033,10 @@
   "category": "physical",
   "id": 441,
   "power": 120,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -9524,7 +11060,10 @@
   "category": "physical",
   "id": 498,
   "power": 70,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -9536,7 +11075,10 @@
   "category": "special",
   "id": 474,
   "power": 65,
-  "type": "POISON"
+  "type": "POISON",
+  "animation": {
+    "opponent": "POISON"
+  }
 },
 {
   "_id": {
@@ -9548,7 +11090,10 @@
   "category": "special",
   "id": 521,
   "power": 70,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -9560,7 +11105,10 @@
   "category": "special",
   "id": 500,
   "power": 20,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -9584,7 +11132,10 @@
   "category": "physical",
   "id": 531,
   "power": 60,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -9608,7 +11159,10 @@
   "category": "special",
   "id": 577,
   "power": 50,
-  "type": "FAIRY"
+  "type": "FAIRY",
+  "animation": {
+    "opponent": "FAIRY"
+  }
 },
 {
   "_id": {
@@ -9620,7 +11174,10 @@
   "category": "physical",
   "id": 525,
   "power": 60,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -9644,7 +11201,10 @@
   "category": "physical",
   "id": 479,
   "power": 50,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -9680,7 +11240,10 @@
   "category": "physical",
   "id": 675,
   "power": 80,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -9692,7 +11255,10 @@
   "category": "physical",
   "id": 710,
   "power": 85,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -9716,7 +11282,10 @@
   "category": "physical",
   "id": 167,
   "power": 10,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -9728,7 +11297,10 @@
   "category": "physical",
   "id": 33,
   "power": 40,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -9776,7 +11348,10 @@
   "category": "physical",
   "id": 89,
   "power": 100,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -9788,7 +11363,10 @@
   "category": "physical",
   "id": 428,
   "power": 80,
-  "type": "PSYCHIC"
+  "type": "PSYCHIC",
+  "animation": {
+    "opponent": "PSYCHIC"
+  }
 },
 {
   "_id": {
@@ -9800,7 +11378,10 @@
   "category": "special",
   "id": 202,
   "power": 75,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -9836,7 +11417,10 @@
   "category": "physical",
   "id": 205,
   "power": 30,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -9848,7 +11432,10 @@
   "category": "special",
   "id": 196,
   "power": 55,
-  "type": "ICE"
+  "type": "ICE",
+  "animation": {
+    "opponent": "ICE"
+  }
 },
 {
   "_id": {
@@ -9884,7 +11471,10 @@
   "category": "physical",
   "id": 242,
   "power": 80,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -9908,7 +11498,10 @@
   "category": "physical",
   "id": 264,
   "power": 150,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -9920,7 +11513,10 @@
   "category": "physical",
   "id": 200,
   "power": 120,
-  "type": "DRAGON"
+  "type": "DRAGON",
+  "animation": {
+    "opponent": "DRAGON"
+  }
 },
 {
   "_id": {
@@ -9944,7 +11540,10 @@
   "category": "special",
   "id": 257,
   "power": 95,
-  "type": "FIRE"
+  "type": "FIRE",
+  "animation": {
+    "opponent": "FIRE"
+  }
 },
 {
   "_id": {
@@ -9980,7 +11579,10 @@
   "category": "physical",
   "id": 291,
   "power": 80,
-  "type": "WATER"
+  "type": "WATER",
+  "animation": {
+    "opponent": "WATER"
+  }
 },
 {
   "_id": {
@@ -10004,7 +11606,10 @@
   "category": "physical",
   "id": 492,
   "power": 95,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -10016,7 +11621,10 @@
   "category": "physical",
   "id": 528,
   "power": 90,
-  "type": "ELECTRIC"
+  "type": "ELECTRIC",
+  "animation": {
+    "opponent": "ELECTRIC"
+  }
 },
 {
   "_id": {
@@ -10052,7 +11660,10 @@
   "category": "physical",
   "id": 210,
   "power": 40,
-  "type": "BUG"
+  "type": "BUG",
+  "animation": {
+    "opponent": "BUG"
+  }
 },
 {
   "_id": {
@@ -10064,7 +11675,10 @@
   "category": "physical",
   "id": 38,
   "power": 120,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10076,7 +11690,10 @@
   "category": "special",
   "id": 246,
   "power": 60,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -10100,7 +11717,10 @@
   "category": "physical",
   "id": 157,
   "power": 75,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -10112,7 +11732,10 @@
   "category": "special",
   "id": 189,
   "power": 20,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -10136,7 +11759,10 @@
   "category": "physical",
   "id": 317,
   "power": 60,
-  "type": "ROCK"
+  "type": "ROCK",
+  "animation": {
+    "opponent": "ROCK"
+  }
 },
 {
   "_id": {
@@ -10244,7 +11870,10 @@
   "category": "physical",
   "id": 343,
   "power": 60,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10256,7 +11885,10 @@
   "category": "special",
   "id": 341,
   "power": 55,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -10268,7 +11900,10 @@
   "category": "special",
   "id": 304,
   "power": 90,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10280,7 +11915,10 @@
   "category": "special",
   "id": 497,
   "power": 40,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10316,7 +11954,10 @@
   "category": "physical",
   "id": 707,
   "power": 75,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -10328,7 +11969,10 @@
   "category": "special",
   "id": 851,
   "power": 80,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10340,7 +11984,10 @@
   "category": "physical",
   "id": 34,
   "power": 85,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10364,7 +12011,10 @@
   "category": "physical",
   "id": 91,
   "power": 80,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -10376,7 +12026,10 @@
   "category": "special",
   "id": 129,
   "power": 60,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10388,7 +12041,10 @@
   "category": "physical",
   "id": 168,
   "power": 60,
-  "type": "DARK"
+  "type": "DARK",
+  "animation": {
+    "opponent": "DARK"
+  }
 },
 {
   "_id": {
@@ -10424,7 +12080,10 @@
   "category": "physical",
   "id": 249,
   "power": 40,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -10436,7 +12095,10 @@
   "category": "physical",
   "id": 280,
   "power": 75,
-  "type": "FIGHTING"
+  "type": "FIGHTING",
+  "animation": {
+    "opponent": "FIGHTING"
+  }
 },
 {
   "_id": {
@@ -10448,7 +12110,10 @@
   "category": "special",
   "id": 247,
   "power": 80,
-  "type": "GHOST"
+  "type": "GHOST",
+  "animation": {
+    "opponent": "GHOST"
+  }
 },
 {
   "_id": {
@@ -10460,7 +12125,10 @@
   "category": "physical",
   "id": 70,
   "power": 80,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10472,7 +12140,10 @@
   "category": "special",
   "id": 76,
   "power": 120,
-  "type": "GRASS"
+  "type": "GRASS",
+  "animation": {
+    "opponent": "GRASS"
+  }
 },
 {
   "_id": {
@@ -10484,7 +12155,10 @@
   "category": "physical",
   "id": 332,
   "power": 60,
-  "type": "FLYING"
+  "type": "FLYING",
+  "animation": {
+    "opponent": "FLYING"
+  }
 },
 {
   "_id": {
@@ -10496,7 +12170,10 @@
   "category": "physical",
   "id": 523,
   "power": 60,
-  "type": "GROUND"
+  "type": "GROUND",
+  "animation": {
+    "opponent": "GROUND"
+  }
 },
 {
   "_id": {
@@ -10508,7 +12185,10 @@
   "category": "physical",
   "id": 231,
   "power": 100,
-  "type": "STEEL"
+  "type": "STEEL",
+  "animation": {
+    "opponent": "STEEL"
+  }
 },
 {
   "_id": {
@@ -10520,7 +12200,10 @@
   "category": "physical",
   "id": 36,
   "power": 90,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10532,7 +12215,10 @@
   "category": "special",
   "id": 63,
   "power": 150,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10544,7 +12230,10 @@
   "category": "physical",
   "id": 416,
   "power": 150,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10556,7 +12245,10 @@
   "category": "physical",
   "id": 290,
   "power": 70,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10652,7 +12344,10 @@
   "category": "special",
   "id": 237,
   "power": 60,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10700,7 +12395,10 @@
   "category": "special",
   "id": 496,
   "power": 60,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10760,7 +12458,10 @@
   "category": "physical",
   "id": 263,
   "power": 70,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10772,7 +12473,10 @@
   "category": "special",
   "id": 173,
   "power": 50,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 },
 {
   "_id": {
@@ -10796,5 +12500,8 @@
   "category": "physical",
   "id": 29,
   "power": 70,
-  "type": "NORMAL"
+  "type": "NORMAL",
+  "animation": {
+    "opponent": "NORMAL"
+  }
 }]

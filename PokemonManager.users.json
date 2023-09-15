@@ -3,7 +3,9 @@
     "$oid": "649a1ce39df19e41304da139"
   },
   "username": "Popole",
-  "trainerId": "649e0e86e45d3dab76652543",
   "__v": 0,
-  "password": "test"
+  "password": "test",
+  "parties": [
+    "64fd9cf21308150436317aed"
+  ]
 }]

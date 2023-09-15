@@ -4,12 +4,9 @@
   },
   "name": "Adversaire",
   "__v": 0,
-  "pokemons": [
-    {
-      "$oid": "64cffba437682ecceed4cb29"
-    }
-  ],
-  "pcStorage": "64d295c8487e7adbae453413"
+  "pokemons": [],
+  "pcStorage": "64d295c8487e7adbae453413",
+  "trainingCamp": "6503272815c7b467b2da6c70"
 },
 {
   "_id": {
@@ -18,7 +15,8 @@
   "name": "Disconnected",
   "pokemons": [],
   "__v": 0,
-  "pcStorage": "64d295d38af14fe63a1c1142"
+  "pcStorage": "64d295d38af14fe63a1c1142",
+  "trainingCamp": "6503273378b1a2f57a91b41c"
 },
 {
   "_id": {
@@ -26,25 +24,11 @@
   },
   "name": "Popole",
   "__v": 0,
-  "pokemons": [
-    {
-      "$oid": "64cff59537682ecceed4ca13"
-    },
-    {
-      "$oid": "64cffbdd37682ecceed4cb65"
-    },
-    {
-      "$oid": "64cffc0d37682ecceed4cb8f"
-    },
-    {
-      "$oid": "64cffc3837682ecceed4cbb7"
-    },
-    {
-      "$oid": "64cffc5237682ecceed4cbe6"
-    },
-    {
-      "$oid": "64cffc7237682ecceed4cc0c"
-    }
-  ],
-  "pcStorage": "64d295d602f276756870fd45"
+  "pokemons": [],
+  "pcStorage": {
+    "$oid": "64d295d602f276756870fd45"
+  },
+  "trainingCamp": {
+    "$oid": "6503273e2bb2654a36a46b6d"
+  }
 }]
