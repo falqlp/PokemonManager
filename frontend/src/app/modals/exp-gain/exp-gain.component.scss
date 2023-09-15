@@ -1,0 +1,45 @@
+@import "src/styles/colors";
+
+.exp-gain {
+  min-width: 500px;
+  &__pokemon {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    &__infos {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 20px;
+      align-items: baseline;
+      &__level {
+        animation: disapear 3s ease;
+        opacity: 0;
+        font-weight: bold;
+        &--increse {
+          color: $green-good-color;
+        }
+        &--decrese {
+          color: $red-bad-color;
+        }
+      }
+    }
+  }
+}
+.thumbnails_05 {
+  ::ng-deep img {
+    height: 80px;
+  }
+}
+@keyframes disapear {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

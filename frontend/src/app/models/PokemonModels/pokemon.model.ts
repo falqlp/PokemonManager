@@ -9,7 +9,6 @@ export interface PokemonModel {
   basePokemon: PokemonBaseModel;
   level: number;
   exp: number;
-  expMax: number;
   moves?: MoveModel[];
   stats: PokemonStatsModel;
   ev?: PokemonStatsModel;

@@ -16,6 +16,8 @@ export class PlayerService {
     pcStorage: '64d295d602f276756870fd45',
   });
 
+  protected partyId = '64fd9cf21308150436317aed';
+
   public maxStat = 0;
 
   public player$ = this.playerSubject.asObservable();
@@ -23,11 +25,11 @@ export class PlayerService {
     protected partyQueriesService: PartyQueriesService,
     protected pcStorgaeService: PcStorageQueriesService
   ) {
-    this.updatePlayer('64fd9cf21308150436317aed');
+    this.updatePlayer();
   }
 
-  public updatePlayer(partyId: string): void {
-    this.getPlayer(partyId).subscribe((player) => {
+  public updatePlayer(): void {
+    this.getPlayer(this.partyId).subscribe((player) => {
       this.getMaxStat(player);
       this.playerSubject.next(player);
     });

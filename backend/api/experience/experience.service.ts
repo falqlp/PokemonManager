@@ -30,6 +30,7 @@ class ExperienceService {
       pokemon.level = result.level;
       pokemon.exp = result.exp;
       pokemon.trainingPourcentage = 0;
+      xpAndLevelGain.push({ level: result.variation, xp: xpGain });
     });
     trainer.pcStorage.storage.forEach((storage) => {
       storage.pokemon.exp = this.getXp(
@@ -53,7 +54,7 @@ class ExperienceService {
         (pokemon.potential - pokemon.level) -
       Math.pow((pokemon.level * pokemon.age * 7) / 5000, 2);
     return Math.floor(
-      normalRandomUtils.normalRandom(7 * gainXp, lvlTrainingCamp * 50)
+      normalRandomUtils.normalRandom(7 * gainXp, lvlTrainingCamp * 500)
     );
   }
 
@@ -65,12 +66,22 @@ class ExperienceService {
     while (exp > XP_PER_LEVEL) {
       exp -= XP_PER_LEVEL;
       level++;
-      variation++;
+      if (level > 100) {
+        level = 100;
+        exp = XP_PER_LEVEL;
+      } else {
+        variation++;
+      }
     }
     while (exp < 0) {
       level--;
       exp += XP_PER_LEVEL;
-      variation++;
+      if (level < 0) {
+        level = 0;
+        exp = 0;
+      } else {
+        variation++;
+      }
     }
     return { level, exp, variation };
   }

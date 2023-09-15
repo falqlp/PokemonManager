@@ -29,7 +29,7 @@ import { CustomValidatorService } from '../../services/custom-validator.service'
 export class PokemonFormComponent implements OnInit {
   protected pokemonForm = new FormGroup({
     basePokemon: new FormControl<PokemonBaseModel>(null, Validators.required),
-    nickname: new FormControl<string>(''),
+    nickname: new FormControl<string>(null),
     level: new FormControl<number>(1, [
       Validators.required,
       Validators.min(1),

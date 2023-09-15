@@ -17,6 +17,7 @@ import { AddCalendarEventComponent } from '../../modals/add-calendar-event/add-c
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { TimeService } from '../../services/time.service';
 import { PartyQueriesService } from '../../services/queries/party-queries.service';
+import { ExpGainComponent } from '../../modals/exp-gain/exp-gain.component';
 
 @Component({
   selector: 'app-home',
@@ -68,18 +69,9 @@ export class HomeComponent implements OnInit {
   }
 
   protected clickP(): void {
-    this.moveLearningService
-      .learnableMove(
-        this.player.pokemons[1].basePokemon.id,
-        this.player.pokemons[1].level
-      )
-      .subscribe((moves) => {
-        console.log(
-          moves
-            .sort((a, b) => a.power - b.power)
-            .map((move) => this.translateService.instant(move.name))
-        );
-      });
+    this.dialog.open(ExpGainComponent, {
+      data: { trainer: this.player },
+    });
   }
 
   protected createPokemon(pokemon: PokemonModel): void {

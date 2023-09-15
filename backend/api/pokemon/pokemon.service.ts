@@ -17,6 +17,9 @@ class PokemonService extends CompleteService<IPokemon> {
     return PokemonService.instance;
   }
   public createPokemon(pokemon: IPokemon): IPokemon {
+    if (pokemon.nickname === "") {
+      pokemon.nickname = null;
+    }
     if (!pokemon.happiness) {
       pokemon.happiness = pokemon.basePokemon.baseHappiness;
     }

@@ -33,7 +33,7 @@ export class LoginComponent {
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((response) => {
           if (response) {
-            this.playerService.updatePlayer(response);
+            // this.playerService.updatePlayer(response);
             this.rooter.navigateByUrl('home');
           }
         });
