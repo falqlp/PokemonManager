@@ -35,9 +35,9 @@ class PokemonMapper implements IMapper<IPokemon> {
     if (pokemon.iv && pokemon.ev) {
       pokemon.stats = this.updateStats(pokemon);
     } else {
-      pokemon = await Pokemon.findOne({ _id: pokemon._id }).populate(
-        "basePokemon"
-      );
+      const savedPokemon = await Pokemon.findOne({ _id: pokemon._id });
+      pokemon.ev = savedPokemon.ev;
+      pokemon.iv = savedPokemon.iv;
       pokemon.stats = this.updateStats(pokemon);
     }
     pokemon.age = await this.calculateAge(pokemon.birthday);
