@@ -1,6 +1,6 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import type { Observable } from 'rxjs';
 import { PokemonInfoComponent } from 'src/app/modals/pokemon-info/pokemon-info.component';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
@@ -71,6 +71,7 @@ export class TopBarComponent implements OnInit {
         if (this.actualDate.getDay() === 1) {
           this.dialog.open(ExpGainComponent, {
             data: { trainer: this.player },
+            disableClose: true,
           });
         }
         if (res.battle) {
@@ -89,23 +90,21 @@ export class TopBarComponent implements OnInit {
       {
         label: 'CANCEL',
         color: undefined,
-        click: (): void => {
-          this.dialog.closeAll();
-        },
+        close: true,
       },
       {
         label: 'GO_TO_PC',
         color: 'accent',
+        close: true,
         click: (): void => {
-          this.dialog.closeAll();
           this.router.navigate(['pcStorage']);
         },
       },
       {
         label: 'GO_TO_BATTLE',
         color: 'warn',
+        close: true,
         click: (): void => {
-          this.dialog.closeAll();
           this.router.navigate(['battle/' + battle._id]);
         },
       },

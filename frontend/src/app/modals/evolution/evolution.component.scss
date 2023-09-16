@@ -1,0 +1,53 @@
+.evolution {
+  position: relative;
+  height: 320px;
+  width: 320px;
+  &__evolving {
+    height: 320px;
+    width: 320px;
+    position: absolute;
+    animation: evolving 5s linear;
+    opacity: 0;
+  }
+  &__evolved {
+    height: 320px;
+    width: 320px;
+    animation: evolved 5s linear;
+    position: absolute;
+  }
+  &__message {
+    width: 320px;
+  }
+}
+@keyframes evolving {
+  0% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  25% {
+    opacity: 1;
+    filter: brightness(50);
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes evolved {
+  0% {
+    opacity: 0;
+    filter: brightness(50);
+  }
+  25% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  100% {
+    opacity: 1;
+  }
+}

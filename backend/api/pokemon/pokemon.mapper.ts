@@ -34,6 +34,11 @@ class PokemonMapper implements IMapper<IPokemon> {
   public async update(pokemon: IPokemon): Promise<IPokemon> {
     if (pokemon.iv && pokemon.ev) {
       pokemon.stats = this.updateStats(pokemon);
+    } else {
+      pokemon = await Pokemon.findOne({ _id: pokemon._id }).populate(
+        "basePokemon"
+      );
+      pokemon.stats = this.updateStats(pokemon);
     }
     pokemon.age = await this.calculateAge(pokemon.birthday);
     return pokemon;

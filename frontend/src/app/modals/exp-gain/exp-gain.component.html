@@ -39,5 +39,7 @@
   </div>
 </div>
 <div mat-dialog-actions>
-  <button mat-flat-button mat-dialog-close>{{ "CLOSE" | translate }}</button>
+  <button mat-flat-button [disabled]="!data.xpAndLevelGain" (click)="close()">
+    {{ "CLOSE" | translate }}
+  </button>
 </div>

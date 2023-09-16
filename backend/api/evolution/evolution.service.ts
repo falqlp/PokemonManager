@@ -16,7 +16,7 @@ const evolutionService = {
     const evolution = await Evolution.findOne({
       evolutionMethod: method,
       pokemonId: id,
-      minLevel: level,
+      minLevel: { $lte: level },
     });
     return evolution ? PokemonBase.findOne({ id: evolution.evolveTo }) : null;
   },

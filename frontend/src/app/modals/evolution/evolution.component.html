@@ -1,0 +1,22 @@
+<div mat-dialog-content *ngIf="pokemon">
+  <div class="evolution">
+    <img
+      class="evolution__evolving"
+      src="assets/images/thumbnails/{{
+        pokemon.basePokemon.id.toString().padStart(3, '0')
+      }}.png"
+      [alt]="pokemon.basePokemon.name"
+    />
+    <img
+      class="evolution__evolved"
+      src="assets/images/thumbnails/{{
+        data.evolution.evolution.id.toString().padStart(3, '0')
+      }}.png"
+      [alt]="data.evolution.evolution.name"
+    />
+  </div>
+  <div class="evolution__message">{{ message }}</div>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button mat-dialog-close>{{ "CLOSE" | translate }}</button>
+</div>
