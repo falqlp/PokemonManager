@@ -5,7 +5,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
-import { Observable, tap } from 'rxjs';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { PlayerService } from '../../services/player.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -52,12 +51,7 @@ export class EvolutionComponent implements OnInit {
       this.pokemon.basePokemon = this.data.evolution.evolution;
       this.pokemonQueriesService
         .update(this.pokemon, this.pokemon._id)
-        .pipe(
-          takeUntilDestroyed(this.destroyRef),
-          tap(() => {
-            this.playerService.updatePlayer();
-          })
-        )
+        .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe();
     }, 5000);
   }

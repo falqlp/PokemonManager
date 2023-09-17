@@ -4,6 +4,7 @@ import MoveService from "../move/move.service";
 import PokemonBaseService from "../pokemonBase/pokemonBase.service";
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import Party from "../party/party";
+import { updatePlayer } from "../../websocketServer";
 
 class PokemonMapper implements IMapper<IPokemon> {
   private static instance: PokemonMapper;
@@ -41,6 +42,7 @@ class PokemonMapper implements IMapper<IPokemon> {
       pokemon.stats = this.updateStats(pokemon);
     }
     pokemon.age = await this.calculateAge(pokemon.birthday);
+    await updatePlayer(pokemon.trainerId);
     return pokemon;
   }
 

@@ -1,6 +1,7 @@
 import http from "http";
 import app from "./app";
 import { AddressInfo } from "net";
+import { initializeWebSocketServer } from "./websocketServer";
 
 const normalizePort = (val: string | number): number | string | boolean => {
   const port = parseInt(String(val), 10);
@@ -39,6 +40,8 @@ const errorHandler = (error: NodeJS.ErrnoException): void => {
 };
 
 const server = http.createServer(app);
+
+initializeWebSocketServer(server);
 
 server.on("error", errorHandler);
 server.on("listening", () => {

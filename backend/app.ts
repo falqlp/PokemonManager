@@ -2,8 +2,6 @@ import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import loginRoutes from "./routes/login";
-
-const app = express();
 import pokemonBaseRoutes from "./api/pokemonBase/pokemonBase.route";
 import pokemonRoutes from "./api/pokemon/pokemon.route";
 import trainerRoutes from "./api/trainer/trainer.route";
@@ -17,8 +15,9 @@ import pcStorageRoutes from "./api/pcStorage/pcStorage.route";
 import calendarEventRoutes from "./api/calendar-event/calendar-event.routes";
 import partyRoutes from "./api/party/party.routes";
 import experienceRoutes from "./api/experience/experience.routes";
-import Party from "./api/party/party";
+import { sendMessageToClients } from "./websocketServer";
 
+const app = express();
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
 mongoose

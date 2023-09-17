@@ -3,6 +3,7 @@ import { IMapper } from "../IMapper";
 import PokemonService from "../pokemon/pokemon.service";
 import TrainingCampService from "../trainingCamp/trainingCamp.service";
 import PcStorageService from "../pcStorage/pcStorage.service";
+import { updatePlayer } from "../../websocketServer";
 
 class TrainerMapper implements IMapper<ITrainer> {
   private static instance: TrainerMapper;
@@ -49,6 +50,7 @@ class TrainerMapper implements IMapper<ITrainer> {
         trainer.pcStorage
       );
     }
+    await updatePlayer(trainer._id);
     return trainer;
   }
 

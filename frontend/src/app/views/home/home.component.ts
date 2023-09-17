@@ -17,7 +17,7 @@ import { AddCalendarEventComponent } from '../../modals/add-calendar-event/add-c
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { TimeService } from '../../services/time.service';
 import { PartyQueriesService } from '../../services/queries/party-queries.service';
-import { ExpGainComponent } from '../../modals/exp-gain/exp-gain.component';
+import { WebSocketService } from '../../services/web-socket.service';
 
 @Component({
   selector: 'app-home',
@@ -44,7 +44,8 @@ export class HomeComponent implements OnInit {
     protected pokemonQueriesService: PokemonQueriesService,
     protected timeService: TimeService,
     protected http: HttpClient,
-    protected translateService: TranslateService
+    protected translateService: TranslateService,
+    protected webSocketService: WebSocketService
   ) {}
 
   public ngOnInit(): void {
@@ -69,9 +70,7 @@ export class HomeComponent implements OnInit {
   }
 
   protected clickP(): void {
-    this.dialog.open(ExpGainComponent, {
-      data: { trainer: this.player },
-    });
+    // this.webSocketService.sendMessage('test');
   }
 
   protected createPokemon(pokemon: PokemonModel): void {

@@ -24,20 +24,14 @@ export class ExperienceQueriesService {
       name: string;
     }[];
   }> {
-    return this.http
-      .get<{
-        trainer: TrainerModel;
-        xpAndLevelGain: { xp: number; level: number }[];
-        evolutions: {
-          pokemonId: string;
-          evolution: PokemonBaseModel;
-          name: string;
-        }[];
-      }>('api/xp/weeklyXpGain/' + trainerId)
-      .pipe(
-        tap(() => {
-          this.playerService.updatePlayer();
-        })
-      );
+    return this.http.get<{
+      trainer: TrainerModel;
+      xpAndLevelGain: { xp: number; level: number }[];
+      evolutions: {
+        pokemonId: string;
+        evolution: PokemonBaseModel;
+        name: string;
+      }[];
+    }>('api/xp/weeklyXpGain/' + trainerId);
   }
 }
