@@ -71,6 +71,7 @@ class PokemonService extends CompleteService<IPokemon> {
   }
 
   public async create(pokemon: IPokemon, partyId: string): Promise<any> {
+    pokemon.partyId = partyId;
     const newPokemon = new Pokemon({
       ...(await this.mapper.update(await this.createPokemon(pokemon))),
       partyId,

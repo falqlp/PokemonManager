@@ -42,7 +42,7 @@ class PokemonMapper implements IMapper<IPokemon> {
       pokemon.stats = this.updateStats(pokemon);
     }
     pokemon.age = await this.calculateAge(pokemon.birthday);
-    await updatePlayer(pokemon.trainerId);
+    await updatePlayer(pokemon.trainerId, pokemon.partyId);
     return pokemon;
   }
 

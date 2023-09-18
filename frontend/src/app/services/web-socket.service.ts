@@ -18,12 +18,20 @@ export class WebSocketService {
   public webSocketObservable = this.webSocket.asObservable();
 
   public constructor(protected playerService: PlayerService) {
+    this.registerToParty('64fd9cf21308150436317aed');
     this.webSocketObservable.subscribe((websocket) => {
       switch (websocket.type) {
         case 'updatePlayer':
           this.playerService.updatePlayer();
           break;
       }
+    });
+  }
+
+  public registerToParty(partyId: string): void {
+    this.webSocket.next({
+      type: 'register',
+      payload: { partyId: partyId },
     });
   }
 
