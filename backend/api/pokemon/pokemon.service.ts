@@ -70,9 +70,10 @@ class PokemonService extends CompleteService<IPokemon> {
     } as IPokemonStats;
   }
 
-  public async create(pokemon: IPokemon): Promise<any> {
+  public async create(pokemon: IPokemon, partyId: string): Promise<any> {
     const newPokemon = new Pokemon({
       ...(await this.mapper.update(await this.createPokemon(pokemon))),
+      partyId,
     });
     if (newPokemon.trainerId) {
       Trainer.findOneAndUpdate(
@@ -85,10 +86,10 @@ class PokemonService extends CompleteService<IPokemon> {
     return newPokemon.save();
   }
   public async getComplete(_id: string): Promise<IPokemon> {
-    return await this.get(_id, this.mapper.mapComplete);
+    return await this.get(_id, { map: this.mapper.mapComplete });
   }
   public async listComplete(body: ListBody): Promise<IPokemon[]> {
-    return await this.list(body, this.mapper.mapComplete);
+    return await this.list(body, { map: this.mapper.mapComplete });
   }
 }
 

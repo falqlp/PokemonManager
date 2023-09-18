@@ -8,7 +8,8 @@ const completeRouter = new CompleteRouter(service);
 
 router.use("/", completeRouter.router);
 router.post("/battle", (req, res, next) => {
-  return service.createBattleEvent(req.body.date, req.body.trainers);
+  const partyId = req.headers["party-id"] as string;
+  return service.createBattleEvent(req.body.date, req.body.trainers, partyId);
 });
 router.post("/weekCalendar", (req, res, next) => {
   service

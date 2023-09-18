@@ -16,19 +16,22 @@ class TrainerService extends CompleteService<ITrainer> {
   }
 
   public async getPartial(_id: string): Promise<ITrainer> {
-    return this.get(_id, this.mapper.mapPartial);
+    return this.get(_id, { map: this.mapper.mapPartial });
   }
 
-  public async listPartial(body: ListBody): Promise<ITrainer[]> {
-    return this.list(body, this.mapper.mapPartial);
+  public async listPartial(
+    body: ListBody,
+    partyId: string
+  ): Promise<ITrainer[]> {
+    return this.list(body, { map: this.mapper.mapPartial, partyId });
   }
 
   public async getComplete(_id: string): Promise<ITrainer> {
-    return this.get(_id, this.mapper.mapComplete);
+    return this.get(_id, { map: this.mapper.mapComplete });
   }
 
   public async listComplete(body: ListBody): Promise<ITrainer[]> {
-    return this.list(body, this.mapper.mapComplete);
+    return this.list(body, { map: this.mapper.mapComplete });
   }
 }
 

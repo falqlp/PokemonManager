@@ -179,7 +179,9 @@ const BattleCalcService = {
       pokemonDef = defPokemon.stats["spDef"];
     }
     return (
-      (attPokemon.level * 0.4 * pokemonAtt * move.power) / pokemonDef / 50 + 2
+      ((attPokemon.level * 0.4 * pokemonAtt * move.power) / pokemonDef / 50 +
+        2) /
+      10
     );
   },
 
@@ -235,8 +237,7 @@ const BattleCalcService = {
   damageOnPokemon(pokemon: IPokemon, damage: IDamage) {
     pokemon.currentHp = Math.max(
       0,
-      Math.round((pokemon.currentHp - (damage ? damage.damage : 0) / 10) * 10) /
-        10
+      Math.round((pokemon.currentHp - (damage ? damage.damage : 0)) * 10) / 10
     );
     return pokemon;
   },

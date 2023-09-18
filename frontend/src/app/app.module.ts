@@ -1,6 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppRoutingModule } from './app-routing.module';
@@ -40,6 +44,7 @@ import { NumberCooldownComponent } from './components/number-cooldown/number-coo
 import { TopBarWeekCalendarComponent } from './components/top-bar-week-calendar/top-bar-week-calendar.component';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { PartyIdInterceptor } from './core/party-id-interceptor.service';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -99,7 +104,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MatProgressSpinnerModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'fr-FR' }],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
+    { provide: HTTP_INTERCEPTORS, useClass: PartyIdInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
   exports: [],
 })

@@ -9,13 +9,20 @@ class CalendarEventMapper implements IMapper<ICalendarEvent> {
     protected battleInstanceService: BattleInstanceService,
     protected trainerService: TrainerService
   ) {}
-  public async map(dto: ICalendarEvent): Promise<ICalendarEvent> {
+  public async map(
+    dto: ICalendarEvent,
+    partyId: string
+  ): Promise<ICalendarEvent> {
     dto.event = await this.battleInstanceService.get(
-      dto.event as unknown as string
+      dto.event as unknown as string,
+      { partyId }
     );
-    dto.trainers = await this.trainerService.listPartial({
-      ids: dto.trainers as unknown as string[],
-    });
+    dto.trainers = await this.trainerService.listPartial(
+      {
+        ids: dto.trainers as unknown as string[],
+      },
+      partyId
+    );
     return dto;
   }
 

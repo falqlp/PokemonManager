@@ -10,8 +10,9 @@ class CompleteRouter<T extends Document> extends ReadOnlyRouter<T> {
 
   public initCompleteRouter() {
     this.router.post("/", (req, res, next) => {
+      const partyId = req.headers["party-id"] as string;
       this.service
-        .create(req.body)
+        .create(req.body, partyId)
         .then((obj) => res.status(200).json(obj))
         .catch((error) => console.log(error));
     });

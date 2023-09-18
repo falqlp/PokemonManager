@@ -1,11 +1,12 @@
 import express, { Router, Request, Response, NextFunction } from "express";
 import PokemonBase from "./pokemonBase";
-import pokemonBaseService from "./pokemonBase.service";
-import ReadOnlyRouter from "../ReadOnlyRouter";
 import PokemonBaseService from "./pokemonBase.service";
+import ReadOnlyGlobalRouter from "../ReadOnlyGlobalRouter";
 
 const router: Router = express.Router();
-const readOnlyRouter = new ReadOnlyRouter(PokemonBaseService.getInstance());
+const readOnlyRouter = new ReadOnlyGlobalRouter(
+  PokemonBaseService.getInstance()
+);
 
 router.use("/", readOnlyRouter.router);
 

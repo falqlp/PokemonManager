@@ -27,18 +27,25 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
 
   public async createBattleEvent(
     date: Date,
-    trainers: ITrainer[]
+    trainers: ITrainer[],
+    partyId: string
   ): Promise<ICalendarEvent> {
-    const battleDTO = await this.battleInstanceService.create({
-      player: trainers[0],
-      opponent: trainers[1],
-    } as IBattleInstance);
-    return await this.create({
-      event: battleDTO,
-      date,
-      trainers,
-      type: "Battle",
-    } as ICalendarEvent);
+    const battleDTO = await this.battleInstanceService.create(
+      {
+        player: trainers[0],
+        opponent: trainers[1],
+      } as IBattleInstance,
+      partyId
+    );
+    return await this.create(
+      {
+        event: battleDTO,
+        date,
+        trainers,
+        type: "Battle",
+      } as ICalendarEvent,
+      partyId
+    );
   }
 
   public async getWeekCalendar(
@@ -61,6 +68,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
     return week;
   }
 
+  // a refactor avec partyId dans le header
   public async simulateDay(
     trainerId: string,
     date: Date,

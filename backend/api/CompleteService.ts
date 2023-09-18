@@ -22,9 +22,12 @@ class CompleteService<T extends Document> extends ReadOnlyService<T> {
     }
   }
 
-  async create(dto: T) {
+  async create(dto: T, partyId: string) {
     try {
-      const newDto = new this.schema({ ...(await this.mapper.update(dto)) });
+      const newDto = new this.schema({
+        ...(await this.mapper.update(dto)),
+        partyId,
+      });
       return this.mapper.map(await newDto.save());
     } catch (error) {
       return Promise.reject(error);

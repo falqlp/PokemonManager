@@ -1,7 +1,8 @@
 import { Router } from "express";
 import ReadOnlyService from "./ReadOnlyService";
 import { Document } from "mongoose";
-class ReadOnlyRouter<T extends Document> {
+import ReadOnlyRouter from "./ReadOnlyRouter";
+class ReadOnlyGlobalRouter<T extends Document> {
   public router = Router();
   constructor(protected service: ReadOnlyService<T>) {
     this.initReadOnlyRouter();
@@ -9,21 +10,19 @@ class ReadOnlyRouter<T extends Document> {
 
   initReadOnlyRouter() {
     this.router.get("/:id", (req, res, next) => {
-      const partyId = req.headers["party-id"] as string;
       this.service
-        .get(req.params.id, { partyId })
+        .get(req.params.id)
         .then((obj: any) => res.status(200).json(obj))
         .catch((error: any) => console.log(error));
     });
 
     this.router.put("/", (req, res, next) => {
-      const partyId = req.headers["party-id"] as string;
       this.service
-        .list(req.body, { partyId })
+        .list(req.body)
         .then((obj: any) => res.status(200).json(obj))
         .catch((error: any) => console.log(error));
     });
   }
 }
 
-export default ReadOnlyRouter;
+export default ReadOnlyGlobalRouter;

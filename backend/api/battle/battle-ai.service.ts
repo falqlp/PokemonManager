@@ -73,9 +73,7 @@ const BattleAiService = {
     if (pokemon._id === pokemons[0]._id) {
       return 0;
     }
-    return (
-      Math.ceil(battleService.getCooldownMs(pokemon) / ROUND_TIME_MS) * edp
-    );
+    return battleService.getCooldownTurn(pokemon) * edp;
   },
 };
 export default BattleAiService;

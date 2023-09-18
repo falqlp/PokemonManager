@@ -21,6 +21,7 @@ export interface IPokemon extends Document {
   potential: number;
   trainingPourcentage: number;
   birthday: Date;
+  partyId: string;
 }
 
 const pokemonSchema = new Schema<IPokemon>({
@@ -38,6 +39,7 @@ const pokemonSchema = new Schema<IPokemon>({
   potential: { type: Number, required: true },
   trainingPourcentage: { type: Number, required: true },
   birthday: { type: Date, required: true },
+  partyId: { type: String, required: true },
 });
 
 const Pokemon = mongoose.model<IPokemon>("Pokemon", pokemonSchema);

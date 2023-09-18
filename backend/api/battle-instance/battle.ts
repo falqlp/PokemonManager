@@ -5,6 +5,7 @@ export interface IBattleInstance extends Document {
   player: ITrainer;
   opponent: ITrainer;
   winner?: string;
+  partyId: string;
 }
 
 const battleSchema = new Schema<IBattleInstance>({
@@ -21,6 +22,7 @@ const battleSchema = new Schema<IBattleInstance>({
   winner: {
     type: String,
   },
+  partyId: { type: String, required: true },
 });
 
 const Battle = mongoose.model<IBattleInstance>("Battle", battleSchema);
