@@ -42,9 +42,18 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 import { PokemonStatsComponent } from './components/pokemon-stats/pokemon-stats.component';
 import { NumberCooldownComponent } from './components/number-cooldown/number-cooldown.component';
 import { TopBarWeekCalendarComponent } from './components/top-bar-week-calendar/top-bar-week-calendar.component';
-import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import {
+  DateAdapter,
+  MAT_DATE_LOCALE,
+  MatNativeDateModule,
+} from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PartyIdInterceptor } from './core/party-id-interceptor.service';
+import {
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+  MatMomentDateModule,
+  MomentDateAdapter,
+} from '@angular/material-moment-adapter';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -102,10 +111,17 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     NumberCooldownComponent,
     TopBarWeekCalendarComponent,
     MatProgressSpinnerModule,
+    MatMomentDateModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    },
     { provide: HTTP_INTERCEPTORS, useClass: PartyIdInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

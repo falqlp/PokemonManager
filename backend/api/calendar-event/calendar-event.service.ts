@@ -56,8 +56,8 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
     const minDate = new Date(date);
     const maxDate = new Date(date);
 
-    minDate.setDate(actualDate.getDate() - 1);
-    maxDate.setDate(actualDate.getDate() + 5);
+    minDate.setUTCDate(actualDate.getUTCDate() - 1);
+    maxDate.setUTCDate(actualDate.getUTCDate() + 5);
     const events = await this.list({
       custom: { trainers: trainerId, date: { $gte: minDate, $lte: maxDate } },
     });
@@ -82,7 +82,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
       (event) => event.type === "Battle" && !event.event.winner
     )?.event;
     if (!battle) {
-      date.setDate(date.getDate() + 1);
+      date.setUTCDate(date.getUTCDate() + 1);
       const newParty = await this.partyService.get(party);
       newParty.actualDate = date;
       await this.partyService.update(party, newParty);

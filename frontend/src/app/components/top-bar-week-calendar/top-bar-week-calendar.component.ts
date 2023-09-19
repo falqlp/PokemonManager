@@ -47,12 +47,12 @@ export class TopBarWeekCalendarComponent implements OnInit {
         this.version += 1;
         const week: string[] = [];
         const newDate = new Date(actualDate);
-        newDate.setDate(newDate.getDate() - 1);
+        newDate.setUTCDate(newDate.getUTCDate() - 1);
         for (let i = 0; i < 7; i++) {
           week[i] = `${this.timeService.dateToSimplifyLocalDate(newDate)}-${
             this.version
           }`;
-          newDate.setDate(newDate.getDate() + 1);
+          newDate.setUTCDate(newDate.getUTCDate() + 1);
         }
         return week;
       })
