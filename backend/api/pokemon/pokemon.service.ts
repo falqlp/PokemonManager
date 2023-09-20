@@ -45,6 +45,7 @@ class PokemonService extends CompleteService<IPokemon> {
     if (pokemon.trainingPourcentage === undefined) {
       pokemon.trainingPourcentage = 0;
     }
+    pokemon.maxLevel = pokemon.level;
     return pokemon;
   }
 

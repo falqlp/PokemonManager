@@ -1,6 +1,7 @@
 import WebSocket from "ws";
 import PartyService from "./api/party/party.service";
 import { ObjectId } from "mongodb";
+import pokemon, { IPokemon } from "./api/pokemon/pokemon";
 
 let wss: WebSocket.Server;
 const clients: { [partyId: string]: WebSocket[] } = {};
@@ -42,4 +43,20 @@ export const updatePlayer = async (trainerId: string, partyId: string) => {
       }
     });
   }
+};
+
+export const notifyNewMoveLearned = (pokemon: IPokemon): void => {
+  clients[pokemon.partyId].forEach((client: WebSocket) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(
+        JSON.stringify({
+          type: "notifyNewMoveLearned",
+          payload: {
+            key: "NOTIFY_NEW_MOVE_LEARNED",
+            pokemonName: pokemon.nickname ?? pokemon.basePokemon.name,
+          },
+        })
+      );
+    }
+  });
 };

@@ -49,6 +49,7 @@ import {
 } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PartyIdInterceptor } from './core/party-id-interceptor.service';
+import { NotifierModule } from 'angular-notifier';
 import {
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
   MatMomentDateModule,
@@ -112,6 +113,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     TopBarWeekCalendarComponent,
     MatProgressSpinnerModule,
     MatMomentDateModule,
+    NotifierModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

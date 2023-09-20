@@ -8,6 +8,7 @@
 @import "./styles/modal";
 @import "./styles/material-theme";
 @import "./styles/palette-theme";
+@import "node_modules/angular-notifier/styles";
 
 @include mat.core();
 

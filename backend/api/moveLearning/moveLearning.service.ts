@@ -1,10 +1,24 @@
 import MoveLearning, { IMoveLearning } from "./moveLearning";
 import MoveService from "../move/move.service";
 import evolutionService from "../evolution/evolution.service";
+import { IPokemon } from "../pokemon/pokemon";
+import { notifyNewMoveLearned } from "../../websocketServer";
 
 class MoveLearningService {
   private static instance: MoveLearningService;
   constructor(protected moveService: MoveService) {}
+
+  async newMoveLearned(pokemon: IPokemon): Promise<void> {
+    MoveLearning.find({
+      pokemonId: pokemon.basePokemon.id,
+      levelLearnAt: pokemon.maxLevel,
+      learnMethod: "LEVEL-UP",
+    }).then((movesLearn) => {
+      if (movesLearn) {
+        notifyNewMoveLearned(pokemon);
+      }
+    });
+  }
   async learnableMoves(id: number, level: number) {
     const allMoves = await this.getMovesOfAllEvolutions(id, level);
     const allMovesString = allMoves.map((move) => {

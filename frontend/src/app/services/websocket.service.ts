@@ -4,9 +4,11 @@ import {
   WebSocketSubject,
   WebSocketSubjectConfig,
 } from 'rxjs/webSocket';
-import { catchError, retryWhen, delay, tap, retry } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { PlayerService } from './player.service';
+import { NotifierService } from 'angular-notifier';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface WebSocketModel {
   type: string;
@@ -20,7 +22,11 @@ export class WebsocketService {
   private websocket: WebSocketSubject<WebSocketModel>;
   protected readonly url = 'ws://localhost:3000';
 
-  constructor(private playerService: PlayerService) {
+  constructor(
+    protected playerService: PlayerService,
+    protected notifierService: NotifierService,
+    protected translateService: TranslateService
+  ) {
     this.connect();
   }
 
@@ -60,6 +66,15 @@ export class WebsocketService {
         this.playerService.updatePlayer();
         break;
       case 'connexion':
+        console.log(message.payload);
+        break;
+      case 'notifyNewMoveLearned':
+        this.notifierService.notify(
+          'success',
+          this.translateService.instant(message.payload.key, {
+            pokemon: this.translateService.instant(message.payload.pokemonName),
+          })
+        );
         console.log(message.payload);
         break;
       default:

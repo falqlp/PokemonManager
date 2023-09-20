@@ -18,6 +18,7 @@ import { CalendarEventQueriesService } from '../../services/queries/calendar-eve
 import { TimeService } from '../../services/time.service';
 import { PartyQueriesService } from '../../services/queries/party-queries.service';
 import { WebsocketService } from '../../services/websocket.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-home',
@@ -45,7 +46,8 @@ export class HomeComponent implements OnInit {
     protected timeService: TimeService,
     protected http: HttpClient,
     protected translateService: TranslateService,
-    protected webSocketService: WebsocketService
+    protected webSocketService: WebsocketService,
+    protected notifierService: NotifierService
   ) {}
 
   public ngOnInit(): void {
