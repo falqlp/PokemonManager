@@ -12,7 +12,7 @@ import { BattleInstanceQueriesService } from '../../services/queries/battle-inst
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
-import { MoveLearningService } from '../../services/queries/move-learning.service';
+import { MoveLearningQueriesService } from '../../services/queries/move-learning-queries.service';
 import { AddCalendarEventComponent } from '../../modals/add-calendar-event/add-calendar-event.component';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { TimeService } from '../../services/time.service';
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   protected actualDate: Date;
 
   constructor(
-    protected moveLearningService: MoveLearningService,
+    protected moveLearningService: MoveLearningQueriesService,
     protected router: Router,
     protected dialog: MatDialog,
     protected playerService: PlayerService,

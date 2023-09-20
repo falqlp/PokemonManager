@@ -11,7 +11,7 @@ import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { TranslateService } from '@ngx-translate/core';
 import { PokemonBaseQueriesService } from '../../services/queries/pokemon-base-queries.service';
 import { MoveModel } from '../../models/move.model';
-import { MoveLearningService } from '../../services/queries/move-learning.service';
+import { MoveLearningQueriesService } from '../../services/queries/move-learning-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CustomValidatorService } from '../../services/custom-validator.service';
 
@@ -47,7 +47,7 @@ export class PokemonFormComponent implements OnInit {
     protected pokemonBaseService: PokemonBaseQueriesService,
     protected trainerService: TrainerQueriesService,
     protected translateService: TranslateService,
-    protected moveLearningService: MoveLearningService,
+    protected moveLearningService: MoveLearningQueriesService,
     protected destroyRef: DestroyRef
   ) {}
 

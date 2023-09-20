@@ -1,0 +1,56 @@
+<form class="test" *ngIf="moveForm" [formGroup]="moveForm" (submit)="submit()">
+  <div class="pokemon-resume-modify-moves">
+    <div
+      *ngFor="let moveControl of moveForm.controls.moves.controls"
+      class="pokemon-resume-modify-moves__move"
+      (click)="
+        changeValue(
+          !(selectedMoves.length > 1 && !moveControl.controls.checked.value) &&
+            moveControl.controls.checked
+        )
+      "
+    >
+      <div
+        *ngIf="selectedMoves.length > 1 && !moveControl.controls.checked.value"
+        class="pokemon-resume-modify-moves__move--disabled"
+      ></div>
+      <div class="pokemon-resume-modify-moves__move__top">
+        <mat-slide-toggle [checked]="moveControl.controls.checked.value" />
+        <img
+          class="icon-type"
+          src="assets/types/simple/{{
+            moveControl.controls.move.value.type
+          }}.png"
+          [alt]="moveControl.controls.move.value.type"
+        />
+        <span>{{ moveControl.controls.move.value.name | translate }}</span>
+      </div>
+      <div class="pokemon-resume-modify-moves__move__bottom">
+        <img
+          class="img-category"
+          src="assets/move/{{ moveControl.controls.move.value.category }}.png"
+          [alt]="moveControl.controls.move.value.type"
+        />
+        <div class="pokemon-resume-modify-moves__move__bottom--info">
+          <span
+            >{{ "POWER" | translate }}:
+            {{ moveControl.controls.move.value.power }}</span
+          >
+          <span
+            >{{ "ACCURACY" | translate }}:
+            {{ moveControl.controls.move.value.accuracy }}%</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    mat-flat-button
+    [disabled]="moveForm.invalid"
+    color="warn"
+    type="submit"
+    class="pokemon-resume-modify-moves__button"
+  >
+    {{ "SAVE" | translate }}
+  </button>
+</form>

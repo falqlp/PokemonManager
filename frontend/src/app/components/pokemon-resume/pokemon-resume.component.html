@@ -27,29 +27,7 @@
         <app-pokemon-stats [pokemon]="pokemon"></app-pokemon-stats>
       </swiper-slide>
       <swiper-slide>
-        <div class="swiper__slide2">
-          <div *ngFor="let move of pokemon.moves" class="swiper__slide2__move">
-            <div class="swiper__slide2__move__top">
-              <img
-                class="icon-type"
-                src="assets/types/simple/{{ move.type }}.png"
-                [alt]="move.type"
-              />
-              <span>{{ move.name | translate }}</span>
-            </div>
-            <div class="swiper__slide2__move__bottom">
-              <img
-                class="img-category"
-                src="assets/move/{{ move.category }}.png"
-                [alt]="move.type"
-              />
-              <div class="swiper__slide2__move__bottom--info">
-                <span>{{ "POWER" | translate }}: {{ move.power }}</span>
-                <span>{{ "ACCURACY" | translate }}: {{ move.accuracy }}%</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <pm-pokemon-resume-moves [pokemon]="pokemon" />
       </swiper-slide>
     </swiper-container>
   </div>

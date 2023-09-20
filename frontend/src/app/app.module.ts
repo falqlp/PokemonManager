@@ -55,6 +55,7 @@ import {
   MatMomentDateModule,
   MomentDateAdapter,
 } from '@angular/material-moment-adapter';
+import { PokemonResumeMovesComponent } from './components/pokemon-resume/pokemon-resume-moves/pokemon-resume-moves.component';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -114,6 +115,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MatProgressSpinnerModule,
     MatMomentDateModule,
     NotifierModule,
+    PokemonResumeMovesComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

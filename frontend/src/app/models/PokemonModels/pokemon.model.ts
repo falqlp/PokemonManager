@@ -14,4 +14,5 @@ export interface PokemonModel {
   ev?: PokemonStatsModel;
   iv?: PokemonStatsModel;
   currentHp?: number;
+  maxLevel: number;
 }
