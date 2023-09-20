@@ -19,7 +19,9 @@ export const initializeWebSocketServer = (server: any) => {
         clients[partyId].push(ws);
       }
     });
-    ws.send(JSON.stringify("Connected with websocket"));
+    ws.send(
+      JSON.stringify({ type: "connexion", payload: "Connected with websocket" })
+    );
   });
 };
 

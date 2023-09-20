@@ -72,19 +72,19 @@ class PokemonService extends CompleteService<IPokemon> {
 
   public async create(pokemon: IPokemon, partyId: string): Promise<any> {
     pokemon.partyId = partyId;
-    const newPokemon = new Pokemon({
-      ...(await this.mapper.update(await this.createPokemon(pokemon))),
-      partyId,
+    const newPokemon = await this.mapper.update(
+      await this.createPokemon(pokemon)
+    );
+    return super.create(newPokemon, partyId).then((createdPokemon) => {
+      if (createdPokemon.trainerId) {
+        Trainer.findOneAndUpdate(
+          { _id: createdPokemon.trainerId },
+          { $push: { pokemons: createdPokemon._id } }
+        )
+          .then()
+          .catch((error: Error) => console.log(error));
+      }
     });
-    if (newPokemon.trainerId) {
-      Trainer.findOneAndUpdate(
-        { _id: newPokemon.trainerId },
-        { $push: { pokemons: newPokemon._id } }
-      )
-        .then()
-        .catch((error: Error) => console.log(error));
-    }
-    return newPokemon.save();
   }
   public async getComplete(_id: string): Promise<IPokemon> {
     return await this.get(_id, { map: this.mapper.mapComplete });

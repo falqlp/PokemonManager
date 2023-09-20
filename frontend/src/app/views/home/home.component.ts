@@ -17,7 +17,7 @@ import { AddCalendarEventComponent } from '../../modals/add-calendar-event/add-c
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { TimeService } from '../../services/time.service';
 import { PartyQueriesService } from '../../services/queries/party-queries.service';
-import { WebSocketService } from '../../services/web-socket.service';
+import { WebsocketService } from '../../services/websocket.service';
 
 @Component({
   selector: 'app-home',
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
     protected timeService: TimeService,
     protected http: HttpClient,
     protected translateService: TranslateService,
-    protected webSocketService: WebSocketService
+    protected webSocketService: WebsocketService
   ) {}
 
   public ngOnInit(): void {

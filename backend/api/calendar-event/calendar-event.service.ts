@@ -50,7 +50,8 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
 
   public async getWeekCalendar(
     trainerId: string,
-    date: Date
+    date: Date,
+    partyId: string
   ): Promise<ICalendarEvent[][]> {
     const actualDate = new Date(date);
     const minDate = new Date(date);
@@ -59,7 +60,11 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
     minDate.setUTCDate(actualDate.getUTCDate() - 1);
     maxDate.setUTCDate(actualDate.getUTCDate() + 5);
     const events = await this.list({
-      custom: { trainers: trainerId, date: { $gte: minDate, $lte: maxDate } },
+      custom: {
+        trainers: trainerId,
+        date: { $gte: minDate, $lte: maxDate },
+        partyId,
+      },
     });
     const week: ICalendarEvent[][] = Array.from({ length: 7 }, () => []);
     events.forEach((event) => {
@@ -68,7 +73,6 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
     return week;
   }
 
-  // a refactor avec partyId dans le header
   public async simulateDay(
     trainerId: string,
     date: Date,

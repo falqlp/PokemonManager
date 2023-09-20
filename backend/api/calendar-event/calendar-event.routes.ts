@@ -12,14 +12,16 @@ router.post("/battle", (req, res, next) => {
   return service.createBattleEvent(req.body.date, req.body.trainers, partyId);
 });
 router.post("/weekCalendar", (req, res, next) => {
+  const partyId = req.headers["party-id"] as string;
   service
-    .getWeekCalendar(req.body.trainerId, req.body.date)
+    .getWeekCalendar(req.body.trainerId, req.body.date, partyId)
     .then((result) => res.status(200).json(result))
     .catch((error: any) => console.log(error));
 });
 router.post("/simulateDay", (req, res, next) => {
+  const partyId = req.headers["party-id"] as string;
   service
-    .simulateDay(req.body.trainerId, req.body.date, req.body.party)
+    .simulateDay(req.body.trainerId, req.body.date, partyId)
     .then((result) => res.status(200).json(result))
     .catch((error: any) => console.log(error));
 });

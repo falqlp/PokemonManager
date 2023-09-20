@@ -1,6 +1,6 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import type { Observable } from 'rxjs';
 import { PokemonInfoComponent } from 'src/app/modals/pokemon-info/pokemon-info.component';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
@@ -28,7 +28,6 @@ export class TopBarComponent implements OnInit {
   protected date$: Observable<string>;
   protected showWeekCalendar = false;
   protected actualDate: Date;
-  protected partyId = '64fd9cf21308150436317aed';
   protected simulating = false;
   protected player: TrainerModel;
 
@@ -66,7 +65,7 @@ export class TopBarComponent implements OnInit {
   protected simulate(playerId: string): void {
     this.simulating = true;
     this.calendarEventQueriesService
-      .simulateDay(playerId, this.actualDate, this.partyId)
+      .simulateDay(playerId, this.actualDate)
       .subscribe((res) => {
         if (this.actualDate.getDay() === 1) {
           this.dialog.open(ExpGainComponent, {
