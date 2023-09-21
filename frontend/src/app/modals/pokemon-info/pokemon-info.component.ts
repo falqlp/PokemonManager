@@ -25,17 +25,5 @@ import { MatButtonModule } from '@angular/material/button';
   ],
 })
 export class PokemonInfoComponent {
-  protected img: string;
   constructor(@Inject(MAT_DIALOG_DATA) public data: PokemonModel) {}
-
-  public ngOnInit(): void {
-    this.setImgNumber();
-  }
-
-  protected setImgNumber(): void {
-    this.img =
-      'assets/images/max-size/' +
-      this.data.basePokemon.id.toString().padStart(3, '0') +
-      '.png';
-  }
 }

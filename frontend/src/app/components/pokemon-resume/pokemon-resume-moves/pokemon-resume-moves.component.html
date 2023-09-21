@@ -20,7 +20,12 @@
       </div>
     </div>
   </div>
-  <button mat-flat-button (click)="modify = !modify" color="warn">
+  <button
+    mat-flat-button
+    [disabled]="!pokemon.basePokemon"
+    (click)="modify = !modify"
+    color="warn"
+  >
     {{ "MODIFY" | translate }}
   </button>
 </div>

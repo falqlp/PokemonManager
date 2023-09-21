@@ -19,6 +19,9 @@ class PokemonMapper implements IMapper<IPokemon> {
     pokemon.happiness = undefined;
     pokemon.potential = undefined;
     pokemon.trainingPourcentage = undefined;
+    if (pokemon.level === 0) {
+      pokemon.basePokemon = undefined;
+    }
     return pokemon;
   }
 
@@ -36,9 +39,12 @@ class PokemonMapper implements IMapper<IPokemon> {
     if (pokemon.iv && pokemon.ev) {
       pokemon.stats = this.updateStats(pokemon);
     } else {
-      const savedPokemon = await Pokemon.findOne({ _id: pokemon._id });
+      const savedPokemon = await Pokemon.findOne({ _id: pokemon._id }).populate(
+        "basePokemon"
+      );
       pokemon.ev = savedPokemon.ev;
       pokemon.iv = savedPokemon.iv;
+      pokemon.basePokemon = savedPokemon.basePokemon;
       pokemon.stats = this.updateStats(pokemon);
     }
     pokemon.age = await this.calculateAge(pokemon.birthday);
@@ -47,6 +53,16 @@ class PokemonMapper implements IMapper<IPokemon> {
   }
 
   public updateStats(pokemon: IPokemon): IPokemonStats {
+    if (pokemon.level === 0) {
+      return {
+        hp: 0,
+        atk: 0,
+        def: 0,
+        spe: 0,
+        spAtk: 0,
+        spDef: 0,
+      } as IPokemonStats;
+    }
     return {
       hp: this.calcHp(
         pokemon.basePokemon.baseStats.hp,

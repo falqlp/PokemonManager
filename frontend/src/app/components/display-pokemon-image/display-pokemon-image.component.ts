@@ -33,7 +33,10 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
   }
 
   protected updateImageUrl(): void {
-    const idString = this.pokemon.basePokemon.id.toString().padStart(3, '0');
+    const idString =
+      this.pokemon.level === 0
+        ? '000'
+        : this.pokemon.basePokemon.id.toString().padStart(3, '0');
     switch (this.type) {
       case 'icon':
         this.imageUrl = `assets/images/sprites/${idString}MS.png`;

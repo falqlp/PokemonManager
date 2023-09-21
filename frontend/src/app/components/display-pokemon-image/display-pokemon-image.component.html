@@ -2,5 +2,5 @@
   class="display-pokemon-image"
   draggable="false"
   [src]="imageUrl"
-  alt="{{ pokemon.basePokemon.name | translate }} {{ type }}"
+  alt="{{ pokemon.basePokemon?.name ?? 'EGG' | translate }} {{ type }}"
 />

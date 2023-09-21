@@ -1,10 +1,10 @@
 <div class="pokemon-info">
   <h2
     class="pokemon-info__header"
-    [ngClass]="data.basePokemon.types[0]"
+    [ngClass]="data.basePokemon?.types[0]"
     mat-dialog-title
   >
-    {{ data.nickname ?? (data.basePokemon.name | translate) }}
+    {{ data.nickname ?? (data.basePokemon?.name ?? "EGG" | translate) }}
   </h2>
   <mat-dialog-content class="pokemon-info__content">
     <app-display-pokemon-image
@@ -14,7 +14,7 @@
     />
     <div class="pokemon-info__content--type">
       <img
-        *ngFor="let type of data.basePokemon.types"
+        *ngFor="let type of data.basePokemon?.types"
         class="type-displayText"
         src="assets/types/displayText/{{ type }}.png"
         [alt]="type"
@@ -29,6 +29,6 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-flat-button mat-dialog-close>Fermer</button>
+    <button mat-flat-button mat-dialog-close>{{ "CLOSE" | translate }}</button>
   </mat-dialog-actions>
 </div>
