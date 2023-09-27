@@ -41,7 +41,7 @@ class ExperienceService {
       xpAndLevelGain[
         trainer.pokemons.findIndex((pokemon2) => pokemon2._id === pokemon._id)
       ] = res;
-      if (res.evolutions) {
+      if (res?.evolutions) {
         evolutions.push(res.evolutions);
       }
       return pokemon;
@@ -51,7 +51,7 @@ class ExperienceService {
         storage.pokemon,
         trainer.trainingCamp.level
       );
-      if (res.evolutions) {
+      if (res?.evolutions) {
         evolutions.push(res.evolutions);
       }
       return storage;
@@ -70,6 +70,9 @@ class ExperienceService {
     level: number;
     evolutions: { pokemonId: string; evolution: IPokemonBase; name: string };
   }> {
+    if (pokemon.level === 0) {
+      return;
+    }
     let evolutions: {
       pokemonId: string;
       evolution: IPokemonBase;
