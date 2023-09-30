@@ -14,14 +14,14 @@ class ReadOnlyService<T extends Document> {
   async get(
     _id: string,
     options?: {
-      partyId?: string;
+      gameId?: string;
       map?: (entity: T) => Promise<T> | T;
     }
   ): Promise<T> {
     try {
-      const query: { _id: string; partyId?: string } = { _id };
-      if (options?.partyId) {
-        query["partyId"] = options.partyId;
+      const query: { _id: string; gameId?: string } = { _id };
+      if (options?.gameId) {
+        query["gameId"] = options.gameId;
       }
       const entity = (await this.schema.findOne(query)) as T;
       return options?.map ? options.map(entity) : this.mapper.map(entity);
@@ -33,14 +33,14 @@ class ReadOnlyService<T extends Document> {
   async list(
     body: ListBody,
     options?: {
-      partyId?: string;
+      gameId?: string;
       map?: (entity: T) => Promise<T> | T;
     }
   ): Promise<T[]> {
     try {
       const query = { ...body.custom };
-      if (options?.partyId) {
-        query["partyId"] = options.partyId;
+      if (options?.gameId) {
+        query["gameId"] = options.gameId;
       }
       if (body.ids) {
         query._id = { $in: body.ids };

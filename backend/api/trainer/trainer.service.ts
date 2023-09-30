@@ -21,9 +21,9 @@ class TrainerService extends CompleteService<ITrainer> {
 
   public async listPartial(
     body: ListBody,
-    partyId: string
+    gameId: string
   ): Promise<ITrainer[]> {
-    return this.list(body, { map: this.mapper.mapPartial, partyId });
+    return this.list(body, { map: this.mapper.mapPartial, gameId });
   }
 
   public async getComplete(_id: string): Promise<ITrainer> {

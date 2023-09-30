@@ -7,7 +7,11 @@ import type { LoginFormModel } from './login-form.model';
 export class AuthService {
   constructor(protected http: HttpClient) {}
 
-  public login(loginForm: LoginFormModel): Observable<string> {
-    return this.http.post<string>('api/login', loginForm);
+  public login(loginForm: LoginFormModel): Observable<any> {
+    return this.http.post<any>('api/login', loginForm);
+  }
+
+  public getUser(_id: string): Observable<any> {
+    return this.http.get<any>('api/login' + _id);
   }
 }

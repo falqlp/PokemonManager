@@ -11,17 +11,17 @@ class CalendarEventMapper implements IMapper<ICalendarEvent> {
   ) {}
   public async map(
     dto: ICalendarEvent,
-    partyId: string
+    gameId: string
   ): Promise<ICalendarEvent> {
     dto.event = await this.battleInstanceService.get(
       dto.event as unknown as string,
-      { partyId }
+      { gameId }
     );
     dto.trainers = await this.trainerService.listPartial(
       {
         ids: dto.trainers as unknown as string[],
       },
-      partyId
+      gameId
     );
     return dto;
   }

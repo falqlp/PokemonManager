@@ -2,7 +2,7 @@ import { Component, DestroyRef, OnInit } from '@angular/core';
 import { PcStorageQueriesService } from '../../services/queries/pc-storage-queries.service';
 import { PlayerService } from '../../services/player.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
-import { switchMap } from 'rxjs';
+import { filter, switchMap } from 'rxjs';
 import {
   PcStorageModel,
   StorageArrayModel,
@@ -34,6 +34,7 @@ export class PcStorageComponent implements OnInit {
   public ngOnInit(): void {
     this.playerService.player$
       .pipe(
+        filter((player) => !!player),
         takeUntilDestroyed(this.destroyRef),
         switchMap((player) => {
           this.player = player;

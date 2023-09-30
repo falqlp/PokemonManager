@@ -41,7 +41,7 @@ export class WebsocketService {
       openObserver: {
         next: (): void => {
           console.log('Connection opened');
-          this.registerToParty('64fd9cf21308150436317aed');
+          this.registerToGame('64fd9cf21308150436317aed');
         },
       },
     };
@@ -63,7 +63,7 @@ export class WebsocketService {
   private handleMessage(message: WebSocketModel): void {
     switch (message.type) {
       case 'updatePlayer':
-        this.playerService.updatePlayer();
+        this.playerService.updatePlayer().subscribe();
         break;
       case 'connexion':
         console.log(message.payload);
@@ -82,10 +82,10 @@ export class WebsocketService {
     }
   }
 
-  public registerToParty(partyId: string): void {
+  public registerToGame(gameId: string): void {
     this.websocket.next({
       type: 'register',
-      payload: { partyId },
+      payload: { gameId },
     });
   }
 

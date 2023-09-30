@@ -1,13 +1,13 @@
 import mongoose, { Document, Schema } from "mongoose";
 import { ITrainer } from "../trainer/trainer";
 
-export interface IParty extends Document {
+export interface IGame extends Document {
   player: ITrainer;
   actualDate: Date;
   name: string;
 }
 
-const PartySchema = new Schema<IParty>({
+const GameSchema = new Schema<IGame>({
   name: {
     type: String,
     required: true,
@@ -16,5 +16,5 @@ const PartySchema = new Schema<IParty>({
   player: { type: mongoose.Schema.Types.ObjectId, ref: "Trainer" },
 });
 
-const Party = mongoose.model<IParty>("Party", PartySchema);
-export default Party;
+const Game = mongoose.model<IGame>("Game", GameSchema);
+export default Game;

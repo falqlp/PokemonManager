@@ -1,7 +1,7 @@
 import express from "express";
 import CompleteRouter from "../CompleteRouter";
-import PartyService from "./party.service";
-const service = PartyService.getInstance();
+import GameService from "./game.service";
+const service = GameService.getInstance();
 
 const router = express.Router();
 const completeRouter = new CompleteRouter(service);

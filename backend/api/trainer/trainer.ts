@@ -8,7 +8,7 @@ export interface ITrainer extends Document {
   pokemons: IPokemon[];
   pcStorage: IPcStorage;
   trainingCamp: ITrainingCamp;
-  partyId: string;
+  gameId: string;
 }
 
 const trainerSchema = new Schema<ITrainer>({
@@ -24,7 +24,7 @@ const trainerSchema = new Schema<ITrainer>({
     ref: "TrainingCamp",
     required: true,
   },
-  partyId: { type: String, required: true },
+  gameId: { type: String, required: true },
 });
 
 const Trainer = mongoose.model<ITrainer>("Trainer", trainerSchema);

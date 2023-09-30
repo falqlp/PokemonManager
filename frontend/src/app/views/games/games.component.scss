@@ -1,0 +1,8 @@
+@import "src/styles/flexbox";
+:host {
+  display: block;
+  padding: 15px;
+  .games {
+    @include flexbox(flex-start, 2);
+  }
+}

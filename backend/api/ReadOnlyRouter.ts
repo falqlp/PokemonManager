@@ -9,17 +9,17 @@ class ReadOnlyRouter<T extends Document> {
 
   initReadOnlyRouter() {
     this.router.get("/:id", (req, res, next) => {
-      const partyId = req.headers["party-id"] as string;
+      const gameId = req.headers["game-id"] as string;
       this.service
-        .get(req.params.id, { partyId })
+        .get(req.params.id, { gameId })
         .then((obj: any) => res.status(200).json(obj))
         .catch((error: any) => console.log(error));
     });
 
     this.router.put("/", (req, res, next) => {
-      const partyId = req.headers["party-id"] as string;
+      const gameId = req.headers["game-id"] as string;
       this.service
-        .list(req.body, { partyId })
+        .list(req.body, { gameId })
         .then((obj: any) => res.status(200).json(obj))
         .catch((error: any) => console.log(error));
     });

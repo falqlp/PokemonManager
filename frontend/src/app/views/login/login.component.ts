@@ -1,7 +1,6 @@
 import { Component, DestroyRef } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from './auth.service';
-import { PlayerService } from 'src/app/services/player.service';
 import { Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -18,7 +17,6 @@ export class LoginComponent {
 
   constructor(
     protected authService: AuthService,
-    protected playerService: PlayerService,
     protected rooter: Router,
     protected destroyRef: DestroyRef
   ) {}
@@ -33,8 +31,8 @@ export class LoginComponent {
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((response) => {
           if (response) {
-            // this.playerService.updatePlayer(response);
-            this.rooter.navigateByUrl('home');
+            localStorage.setItem('userId', response._id);
+            this.rooter.navigateByUrl('game');
           }
         });
     }

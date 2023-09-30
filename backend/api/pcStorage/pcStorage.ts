@@ -9,7 +9,7 @@ export interface IPcStorageStorage {
 export interface IPcStorage extends Document {
   maxSize: number;
   storage: IPcStorageStorage[];
-  partyId: string;
+  gameId: string;
 }
 
 const PcStorageStorageSchema = new Schema<IPcStorageStorage>({
@@ -30,7 +30,7 @@ const pcStorageSchema = new Schema<IPcStorage>({
     required: true,
   },
   storage: [PcStorageStorageSchema],
-  partyId: { type: String, required: true },
+  gameId: { type: String, required: true },
 });
 
 const PcStorage = mongoose.model<IPcStorage>("PcStorage", pcStorageSchema);

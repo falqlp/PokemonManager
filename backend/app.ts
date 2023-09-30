@@ -13,8 +13,9 @@ import battleRoutes from "./api/battle/battle.route";
 import moveLearningRoutes from "./api/moveLearning/moveLearning.routes";
 import pcStorageRoutes from "./api/pcStorage/pcStorage.route";
 import calendarEventRoutes from "./api/calendar-event/calendar-event.routes";
-import partyRoutes from "./api/party/party.routes";
+import gameRoutes from "./api/game/game.routes";
 import experienceRoutes from "./api/experience/experience.routes";
+import userRoutes from "./api/user/user.routes";
 
 const app = express();
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
@@ -34,7 +35,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization, Party-Id"
+    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization, Game-Id"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
@@ -55,7 +56,8 @@ app.use("/api/battle", battleRoutes);
 app.use("/api/moveLearning", moveLearningRoutes);
 app.use("/api/pcStorage", pcStorageRoutes);
 app.use("/api/calendar-event", calendarEventRoutes);
-app.use("/api/party", partyRoutes);
+app.use("/api/game", gameRoutes);
 app.use("/api/xp", experienceRoutes);
+app.use("/api/user", userRoutes);
 
 export default app;

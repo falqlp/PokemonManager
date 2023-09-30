@@ -24,7 +24,7 @@ const errorHandler = (error: NodeJS.ErrnoException): void => {
   }
   const address = server.address() as AddressInfo;
   const bind =
-    typeof address === "string" ? "pipe " + address : "port: " + port;
+    typeof address === "string" ? "pipes " + address : "port: " + port;
   switch (error.code) {
     case "EACCES":
       console.error(`${bind} requires elevated privileges.`);

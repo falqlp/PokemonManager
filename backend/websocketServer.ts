@@ -1,10 +1,10 @@
 import WebSocket from "ws";
-import PartyService from "./api/party/party.service";
+import GameService from "./api/game/game.service";
 import { ObjectId } from "mongodb";
 import pokemon, { IPokemon } from "./api/pokemon/pokemon";
 
 let wss: WebSocket.Server;
-const clients: { [partyId: string]: WebSocket[] } = {};
+const clients: { [gameId: string]: WebSocket[] } = {};
 
 export const initializeWebSocketServer = (server: any) => {
   wss = new WebSocket.Server({ server });
@@ -13,11 +13,11 @@ export const initializeWebSocketServer = (server: any) => {
     ws.on("message", (message: string) => {
       const parsedMessage = JSON.parse(message);
       if (parsedMessage.type === "register") {
-        const partyId = parsedMessage.payload.partyId;
-        if (!clients[partyId]) {
-          clients[partyId] = [];
+        const gameId = parsedMessage.payload.gameId;
+        if (!clients[gameId]) {
+          clients[gameId] = [];
         }
-        clients[partyId].push(ws);
+        clients[gameId].push(ws);
       }
     });
     ws.send(
@@ -34,10 +34,10 @@ export const sendMessageToClients = (message: any) => {
   });
 };
 
-export const updatePlayer = async (trainerId: string, partyId: string) => {
-  const player = (await PartyService.getInstance().get(partyId)).player;
-  if (new ObjectId(trainerId).equals(player._id) && clients[partyId]) {
-    clients[partyId].forEach((client: WebSocket) => {
+export const updatePlayer = async (trainerId: string, gameId: string) => {
+  const player = (await GameService.getInstance().get(gameId)).player;
+  if (new ObjectId(trainerId).equals(player._id) && clients[gameId]) {
+    clients[gameId].forEach((client: WebSocket) => {
       if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify({ type: "updatePlayer" }));
       }
@@ -46,7 +46,7 @@ export const updatePlayer = async (trainerId: string, partyId: string) => {
 };
 
 export const notifyNewMoveLearned = (pokemon: IPokemon): void => {
-  clients[pokemon.partyId].forEach((client: WebSocket) => {
+  clients[pokemon.gameId].forEach((client: WebSocket) => {
     if (client.readyState === WebSocket.OPEN) {
       client.send(
         JSON.stringify({

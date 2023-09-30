@@ -8,15 +8,15 @@ import {
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class PartyIdInterceptor implements HttpInterceptor {
+export class GameIdInterceptor implements HttpInterceptor {
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const partyId = '64fd9cf21308150436317aed';
+    const gameId = '64fd9cf21308150436317aed';
     request = request.clone({
       setHeaders: {
-        'Party-Id': partyId,
+        'Game-Id': gameId,
       },
     });
     return next.handle(request);

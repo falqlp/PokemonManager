@@ -3,7 +3,7 @@ import { IMapper } from "../IMapper";
 import MoveService from "../move/move.service";
 import PokemonBaseService from "../pokemonBase/pokemonBase.service";
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
-import Party from "../party/party";
+import Game from "../game/game";
 import { updatePlayer } from "../../websocketServer";
 
 class PokemonMapper implements IMapper<IPokemon> {
@@ -48,7 +48,7 @@ class PokemonMapper implements IMapper<IPokemon> {
       pokemon.stats = this.updateStats(pokemon);
     }
     pokemon.age = await this.calculateAge(pokemon.birthday);
-    await updatePlayer(pokemon.trainerId, pokemon.partyId);
+    await updatePlayer(pokemon.trainerId, pokemon.gameId);
     return pokemon;
   }
 
@@ -123,7 +123,7 @@ class PokemonMapper implements IMapper<IPokemon> {
 
   public async calculateAge(birthdate: Date): Promise<number> {
     birthdate = new Date(birthdate);
-    const today = (await Party.find())[0].actualDate;
+    const today = (await Game.find())[0].actualDate;
     let age = today.getFullYear() - birthdate.getFullYear();
     const monthDifference = today.getMonth() - birthdate.getMonth();
 

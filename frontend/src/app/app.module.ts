@@ -48,7 +48,6 @@ import {
   MatNativeDateModule,
 } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { PartyIdInterceptor } from './core/party-id-interceptor.service';
 import { NotifierModule } from 'angular-notifier';
 import {
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
@@ -56,6 +55,7 @@ import {
   MomentDateAdapter,
 } from '@angular/material-moment-adapter';
 import { PokemonResumeMovesComponent } from './components/pokemon-resume/pokemon-resume-moves/pokemon-resume-moves.component';
+import { GameIdInterceptor } from './core/party-id-interceptor.service';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -126,7 +126,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
-    { provide: HTTP_INTERCEPTORS, useClass: PartyIdInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: GameIdInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   exports: [],

@@ -4,14 +4,14 @@ import CalendarEventMapper from "./calendar-event.mapper";
 import BattleInstanceService from "../battle-instance/battle-instance.service";
 import { ITrainer } from "../trainer/trainer";
 import Battle, { IBattleInstance } from "../battle-instance/battle";
-import PartyService from "../party/party.service";
+import GameService from "../game/game.service";
 
 class CalendarEventService extends CompleteService<ICalendarEvent> {
   private static instance: CalendarEventService;
 
   constructor(
     protected battleInstanceService: BattleInstanceService,
-    protected partyService: PartyService
+    protected gameService: GameService
   ) {
     super(CalendarEvent, CalendarEventMapper.getInstance());
   }
@@ -19,7 +19,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
     if (!CalendarEventService.instance) {
       CalendarEventService.instance = new CalendarEventService(
         BattleInstanceService.getInstance(),
-        PartyService.getInstance()
+        GameService.getInstance()
       );
     }
     return CalendarEventService.instance;
@@ -28,14 +28,14 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
   public async createBattleEvent(
     date: Date,
     trainers: ITrainer[],
-    partyId: string
+    gameId: string
   ): Promise<ICalendarEvent> {
     const battleDTO = await this.battleInstanceService.create(
       {
         player: trainers[0],
         opponent: trainers[1],
       } as IBattleInstance,
-      partyId
+      gameId
     );
     return await this.create(
       {
@@ -44,14 +44,14 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
         trainers,
         type: "Battle",
       } as ICalendarEvent,
-      partyId
+      gameId
     );
   }
 
   public async getWeekCalendar(
     trainerId: string,
     date: Date,
-    partyId: string
+    gameId: string
   ): Promise<ICalendarEvent[][]> {
     const actualDate = new Date(date);
     const minDate = new Date(date);
@@ -63,7 +63,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
       custom: {
         trainers: trainerId,
         date: { $gte: minDate, $lte: maxDate },
-        partyId,
+        gameId,
       },
     });
     const week: ICalendarEvent[][] = Array.from({ length: 7 }, () => []);
@@ -76,7 +76,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
   public async simulateDay(
     trainerId: string,
     date: Date,
-    party: string
+    game: string
   ): Promise<{ date: Date; battle: IBattleInstance }> {
     date = new Date(date);
     const events = await this.list({
@@ -87,9 +87,9 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
     )?.event;
     if (!battle) {
       date.setUTCDate(date.getUTCDate() + 1);
-      const newParty = await this.partyService.get(party);
-      newParty.actualDate = date;
-      await this.partyService.update(party, newParty);
+      const newGame = await this.gameService.get(game);
+      newGame.actualDate = date;
+      await this.gameService.update(game, newGame);
     }
     return { date, battle };
   }

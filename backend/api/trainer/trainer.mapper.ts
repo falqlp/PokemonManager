@@ -50,7 +50,7 @@ class TrainerMapper implements IMapper<ITrainer> {
         trainer.pcStorage
       );
     }
-    await updatePlayer(trainer._id, trainer.partyId);
+    await updatePlayer(trainer._id, trainer.gameId);
     return trainer;
   }
 

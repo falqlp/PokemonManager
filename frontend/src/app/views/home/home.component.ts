@@ -16,7 +16,7 @@ import { MoveLearningQueriesService } from '../../services/queries/move-learning
 import { AddCalendarEventComponent } from '../../modals/add-calendar-event/add-calendar-event.component';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { TimeService } from '../../services/time.service';
-import { PartyQueriesService } from '../../services/queries/party-queries.service';
+import { GameQueriesService } from '../../services/queries/game-queries.service';
 import { WebsocketService } from '../../services/websocket.service';
 import { NotifierService } from 'angular-notifier';
 
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     protected pokemonService: PokemonQueriesService,
     protected battleQueries: BattleInstanceQueriesService,
     protected trainerService: TrainerQueriesService,
-    protected partyQueriesService: PartyQueriesService,
+    protected gameQueriesService: GameQueriesService,
     protected calendarEventQueriesService: CalendarEventQueriesService,
     protected pokemonQueriesService: PokemonQueriesService,
     protected timeService: TimeService,

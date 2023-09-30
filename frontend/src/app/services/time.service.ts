@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { PartyQueriesService } from './queries/party-queries.service';
+import { GameQueriesService } from './queries/game-queries.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +12,8 @@ export class TimeService {
 
   protected actualDaySubject = new BehaviorSubject(this.actualDate);
 
-  public constructor(protected partyQueriesService: PartyQueriesService) {
-    this.partyQueriesService
+  public constructor(protected gameQueriesService: GameQueriesService) {
+    this.gameQueriesService
       .getTime('64fd9cf21308150436317aed')
       .subscribe((actualDate) => {
         this.actualDate = new Date(actualDate);

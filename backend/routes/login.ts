@@ -1,6 +1,6 @@
 import express from "express";
+import User from "../api/user/user";
 const router = express.Router();
-import User from "../models/user";
 
 router.post("/", (req, res, next) => {
   User.findOne({ username: req.body.username })

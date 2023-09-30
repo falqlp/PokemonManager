@@ -4,7 +4,7 @@ import Trainer from "../trainer/trainer";
 import CompleteService from "../CompleteService";
 import PokemonMapper from "./pokemon.mapper";
 import { ListBody } from "../ReadOnlyService";
-import Party from "../party/party";
+import Game from "../game/game";
 
 class PokemonService extends CompleteService<IPokemon> {
   private static instance: PokemonService;
@@ -19,7 +19,7 @@ class PokemonService extends CompleteService<IPokemon> {
   }
   public async createPokemon(pokemon: IPokemon): Promise<IPokemon> {
     if (!pokemon.birthday) {
-      pokemon.birthday = (await Party.find())[0].actualDate;
+      pokemon.birthday = (await Game.find())[0].actualDate;
     }
     if (pokemon.nickname === "") {
       pokemon.nickname = null;
@@ -71,12 +71,12 @@ class PokemonService extends CompleteService<IPokemon> {
     } as IPokemonStats;
   }
 
-  public async create(pokemon: IPokemon, partyId: string): Promise<any> {
-    pokemon.partyId = partyId;
+  public async create(pokemon: IPokemon, gameId: string): Promise<any> {
+    pokemon.gameId = gameId;
     const newPokemon = await this.mapper.update(
       await this.createPokemon(pokemon)
     );
-    return super.create(newPokemon, partyId).then((createdPokemon) => {
+    return super.create(newPokemon, gameId).then((createdPokemon) => {
       if (createdPokemon.trainerId) {
         Trainer.findOneAndUpdate(
           { _id: createdPokemon.trainerId },
