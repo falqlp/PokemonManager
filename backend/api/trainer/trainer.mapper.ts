@@ -4,6 +4,7 @@ import PokemonService from "../pokemon/pokemon.service";
 import TrainingCampService from "../trainingCamp/trainingCamp.service";
 import PcStorageService from "../pcStorage/pcStorage.service";
 import { updatePlayer } from "../../websocketServer";
+import { ITrainingCamp } from "../trainingCamp/trainingCamp";
 
 class TrainerMapper implements IMapper<ITrainer> {
   private static instance: TrainerMapper;
@@ -13,9 +14,11 @@ class TrainerMapper implements IMapper<ITrainer> {
     protected pcStorageService: PcStorageService
   ) {}
   public async map(trainer: ITrainer): Promise<ITrainer> {
-    trainer.pokemons = await this.pokemonService.list({
-      ids: trainer.pokemons as unknown as string[],
-    });
+    if (trainer) {
+      trainer.pokemons = await this.pokemonService.list({
+        ids: trainer.pokemons as unknown as string[],
+      });
+    }
     return trainer;
   }
   public mapPartial = (trainer: ITrainer): ITrainer => {
@@ -38,19 +41,37 @@ class TrainerMapper implements IMapper<ITrainer> {
   };
 
   public async update(trainer: ITrainer): Promise<ITrainer> {
+    if (!trainer.pokemons) {
+      trainer.pokemons = [];
+    }
     trainer.pokemons = await Promise.all(
       trainer.pokemons.map(async (pokemon) => {
         pokemon = await this.pokemonService.update(pokemon._id, pokemon);
         return pokemon;
       })
     );
+    if (!trainer.pcStorage) {
+      trainer.pcStorage = await this.pcStorageService.create(
+        undefined,
+        trainer.gameId
+      );
+    }
+    if (!trainer.trainingCamp) {
+      trainer.trainingCamp = await this.trainingCampService.create(
+        { level: 1 } as unknown as ITrainingCamp,
+        trainer.gameId
+      );
+    }
+
     if (typeof trainer.pcStorage !== "string") {
       await this.pcStorageService.update(
         trainer.pcStorage._id,
         trainer.pcStorage
       );
     }
-    await updatePlayer(trainer._id, trainer.gameId);
+    if (trainer._id) {
+      await updatePlayer(trainer._id, trainer.gameId);
+    }
     return trainer;
   }
 

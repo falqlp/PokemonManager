@@ -1,8 +1,8 @@
 import { TrainerModel } from './TrainersModels/trainer.model';
 
 export interface GameModel {
-  actualDate: Date;
+  actualDate?: Date;
   player: TrainerModel;
   name: string;
-  _id: string;
+  _id?: string;
 }

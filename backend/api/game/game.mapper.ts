@@ -10,7 +10,7 @@ class GameMapper implements IMapper<IGame> {
     return dto;
   }
 
-  public update(dto: IGame): IGame {
+  public async update(dto: IGame): Promise<IGame> {
     return dto;
   }
 

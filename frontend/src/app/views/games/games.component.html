@@ -1,4 +1,7 @@
 <p *ngIf="user">{{ user.username }}</p>
+<button mat-flat-button color="accent" (click)="addGame()">
+  {{ "ADD" | translate }}
+</button>
 <div class="games">
   <table mat-table [dataSource]="$game">
     <ng-container matColumnDef="name">
@@ -14,6 +17,18 @@
     <ng-container matColumnDef="player">
       <th mat-header-cell *matHeaderCellDef>{{ "PLAYER" | translate }}</th>
       <td mat-cell *matCellDef="let element">{{ element.player.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="pokemons">
+      <th mat-header-cell *matHeaderCellDef>{{ "POKEMONS" | translate }}</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="games__table__pokemons">
+          <app-display-pokemon-image
+            *ngFor="let pokemon of element.player.pokemons"
+            [pokemon]="pokemon"
+            type="icon"
+          />
+        </div>
+      </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr

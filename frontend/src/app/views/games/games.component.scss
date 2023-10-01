@@ -4,5 +4,9 @@
   padding: 15px;
   .games {
     @include flexbox(flex-start, 2);
+    &__table__pokemons {
+      display: flex;
+      flex-direction: row;
+    }
   }
 }

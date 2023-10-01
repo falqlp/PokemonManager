@@ -24,10 +24,8 @@ class CompleteService<T extends Document> extends ReadOnlyService<T> {
 
   async create(dto: T, gameId: string) {
     try {
-      const newDto = new this.schema({
-        ...(await this.mapper.update(dto)),
-        gameId,
-      });
+      const updatedDto = await this.mapper.update({ ...dto, gameId });
+      const newDto = new this.schema(updatedDto);
       return this.mapper.map(await newDto.save());
     } catch (error) {
       return Promise.reject(error);

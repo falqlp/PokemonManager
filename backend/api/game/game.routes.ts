@@ -22,4 +22,11 @@ router.get("/time/:id", (req, res, next) => {
     .catch(console.log);
 });
 
+router.post("/:userId", (req, res, next) => {
+  service
+    .createWithUser(req.body, undefined, req.params.userId)
+    .then((game) => res.status(200).json(game))
+    .catch(console.log);
+});
+
 export default router;

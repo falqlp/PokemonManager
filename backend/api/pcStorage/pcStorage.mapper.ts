@@ -18,6 +18,12 @@ class PcStorageMapper implements IMapper<IPcStorage> {
   }
 
   public async update(pcStorage: IPcStorage): Promise<IPcStorage> {
+    if (!pcStorage.storage) {
+      pcStorage.storage = [];
+    }
+    if (!pcStorage.maxSize) {
+      pcStorage.maxSize = 0;
+    }
     pcStorage.storage = await Promise.all(
       pcStorage.storage?.map(async (pcStorage) => {
         pcStorage.pokemon = await this.pokemonService.update(
