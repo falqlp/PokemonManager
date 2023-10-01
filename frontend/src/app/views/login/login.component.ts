@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CacheService } from '../../services/cache.service';
 
 @Component({
   selector: 'app-login',
@@ -17,22 +18,25 @@ export class LoginComponent {
 
   constructor(
     protected authService: AuthService,
-    protected rooter: Router,
-    protected destroyRef: DestroyRef
-  ) {}
+    protected router: Router,
+    protected destroyRef: DestroyRef,
+    protected cacheService: CacheService
+  ) {
+    localStorage.clear();
+  }
 
   public login(): void {
     if (this.loginForm.valid) {
       this.authService
         .login({
-          username: this.loginForm.controls.username.value as string,
-          password: this.loginForm.controls.password.value as string,
+          username: this.loginForm.controls.username.value,
+          password: this.loginForm.controls.password.value,
         })
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((response) => {
           if (response) {
-            localStorage.setItem('userId', response._id);
-            this.rooter.navigateByUrl('game');
+            this.cacheService.setUserId(response._id);
+            this.router.navigateByUrl('games');
           }
         });
     }

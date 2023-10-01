@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { CompleteQuery } from '../../core/complete-query';
 import { Observable } from 'rxjs';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
-import { GameModel } from '../../models/party.model';
+import { GameModel } from '../../models/game.model';
 
 @Injectable({
   providedIn: 'root',

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import type { TrainerModel } from '../models/TrainersModels/trainer.model';
 import type { Observable } from 'rxjs';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, of, tap } from 'rxjs';
 import { PcStorageQueriesService } from './queries/pc-storage-queries.service';
 import { GameQueriesService } from './queries/game-queries.service';
+import { CacheService } from './cache.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,28 +12,39 @@ import { GameQueriesService } from './queries/game-queries.service';
 export class PlayerService {
   protected playerSubject = new BehaviorSubject<TrainerModel>(undefined);
 
-  protected gameId = '64fd9cf21308150436317aed';
+  protected gameId: string;
 
   public maxStat = 0;
 
   public player$ = this.playerSubject.asObservable();
   public constructor(
     protected gameQueriesService: GameQueriesService,
-    protected pcStorageService: PcStorageQueriesService
+    protected pcStorageService: PcStorageQueriesService,
+    protected cacheService: CacheService
   ) {
-    this.updatePlayer().subscribe();
+    this.cacheService.$gameId.subscribe((gameId) => {
+      this.gameId = gameId;
+      this.updatePlayer();
+    });
   }
 
-  public updatePlayer(): Observable<TrainerModel> {
-    return this.getPlayer(this.gameId).pipe(
-      tap((player) => {
-        this.getMaxStat(player);
-        this.playerSubject?.next(player);
-      })
-    );
+  public updatePlayer(): void {
+    this.getPlayer(this.gameId)
+      .pipe(
+        tap((player) => {
+          if (player) {
+            this.getMaxStat(player);
+          }
+          this.playerSubject?.next(player);
+        })
+      )
+      .subscribe();
   }
 
   public getPlayer(gameId: string): Observable<TrainerModel> {
+    if (!gameId) {
+      return of(null);
+    }
     return this.gameQueriesService.getPlayer(gameId);
   }
 

@@ -55,7 +55,7 @@ import {
   MomentDateAdapter,
 } from '@angular/material-moment-adapter';
 import { PokemonResumeMovesComponent } from './components/pokemon-resume/pokemon-resume-moves/pokemon-resume-moves.component';
-import { GameIdInterceptor } from './core/party-id-interceptor.service';
+import { GameIdInterceptor } from './core/game-id-interceptor.service';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {

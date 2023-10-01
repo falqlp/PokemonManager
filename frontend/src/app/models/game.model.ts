@@ -4,4 +4,5 @@ export interface GameModel {
   actualDate: Date;
   player: TrainerModel;
   name: string;
+  _id: string;
 }

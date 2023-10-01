@@ -9,6 +9,7 @@ import { EMPTY } from 'rxjs';
 import { PlayerService } from './player.service';
 import { NotifierService } from 'angular-notifier';
 import { TranslateService } from '@ngx-translate/core';
+import { CacheService } from './cache.service';
 
 export interface WebSocketModel {
   type: string;
@@ -25,7 +26,8 @@ export class WebsocketService {
   constructor(
     protected playerService: PlayerService,
     protected notifierService: NotifierService,
-    protected translateService: TranslateService
+    protected translateService: TranslateService,
+    protected cacheService: CacheService
   ) {
     this.connect();
   }
@@ -41,7 +43,7 @@ export class WebsocketService {
       openObserver: {
         next: (): void => {
           console.log('Connection opened');
-          this.registerToGame('64fd9cf21308150436317aed');
+          this.registerToGame(this.cacheService.getGameId());
         },
       },
     };
@@ -63,7 +65,7 @@ export class WebsocketService {
   private handleMessage(message: WebSocketModel): void {
     switch (message.type) {
       case 'updatePlayer':
-        this.playerService.updatePlayer().subscribe();
+        this.playerService.updatePlayer();
         break;
       case 'connexion':
         console.log(message.payload);

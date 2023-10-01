@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 import { GameQueriesService } from './queries/game-queries.service';
+import { CacheService } from './cache.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +13,19 @@ export class TimeService {
 
   protected actualDaySubject = new BehaviorSubject(this.actualDate);
 
-  public constructor(protected gameQueriesService: GameQueriesService) {
-    this.gameQueriesService
-      .getTime('64fd9cf21308150436317aed')
+  public constructor(
+    protected gameQueriesService: GameQueriesService,
+    protected cacheService: CacheService
+  ) {
+    this.cacheService.$gameId
+      .pipe(
+        switchMap((gameId) => {
+          if (gameId) {
+            return this.gameQueriesService.getTime(gameId);
+          }
+          return of(null);
+        })
+      )
       .subscribe((actualDate) => {
         this.actualDate = new Date(actualDate);
         this.updateDate(this.actualDate);

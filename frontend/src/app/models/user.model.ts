@@ -1,4 +1,4 @@
-import { GameModel } from './party.model';
+import { GameModel } from './game.model';
 
 export interface UserModel {
   username: string;

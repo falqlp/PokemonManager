@@ -111,4 +111,8 @@ export class HomeComponent implements OnInit {
   protected goToCreateCalendarEvent(): void {
     this.dialog.open(AddCalendarEventComponent);
   }
+
+  protected goToGames(): void {
+    this.router.navigateByUrl('games');
+  }
 }
