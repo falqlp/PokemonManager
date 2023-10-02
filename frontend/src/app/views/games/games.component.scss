@@ -4,6 +4,7 @@
   padding: 15px;
   .games {
     @include flexbox(flex-start, 2);
+    margin: 10px 0;
     &__table {
       &__pokemons {
         display: flex;
