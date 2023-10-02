@@ -27,7 +27,7 @@ class CompleteRouter<T extends Document> extends ReadOnlyRouter<T> {
     this.router.delete("/:id", (req, res, next) => {
       this.service
         .delete(req.params.id)
-        .then()
+        .then(() => res.status(200).json())
         .catch((error) => console.log(error));
     });
   }

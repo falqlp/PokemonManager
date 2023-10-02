@@ -4,6 +4,12 @@ import GameMapper from "./game.mapper";
 import { Model } from "mongoose";
 import TrainerService from "../trainer/trainer.service";
 import User from "../user/user";
+import Trainer from "../trainer/trainer";
+import Pokemon from "../pokemon/pokemon";
+import TrainingCamp from "../trainingCamp/trainingCamp";
+import Battle from "../battle-instance/battle";
+import CalendarEvent from "../calendar-event/calendar-event";
+import PcStorage from "../pcStorage/pcStorage";
 
 class GameService extends CompleteService<IGame> {
   private static instance: GameService;
@@ -44,6 +50,20 @@ class GameService extends CompleteService<IGame> {
       { $push: { games: newGame._id } }
     ).then();
     return newGame;
+  }
+
+  public async delete(_id: string) {
+    try {
+      await Trainer.deleteMany({ gameId: _id });
+      await Pokemon.deleteMany({ gameId: _id });
+      await TrainingCamp.deleteMany({ gameId: _id });
+      await Battle.deleteMany({ gameId: _id });
+      await CalendarEvent.deleteMany({ gameId: _id });
+      await PcStorage.deleteMany({ gameId: _id });
+    } catch (error) {
+      return Promise.reject(error);
+    }
+    return super.delete(_id);
   }
 }
 

@@ -14,6 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AddGameComponent } from './add-game/add-game.component';
+import { MatIconModule } from '@angular/material/icon';
+import { GameQueriesService } from '../../services/queries/game-queries.service';
 
 @Component({
   selector: 'pm-games',
@@ -27,6 +29,7 @@ import { AddGameComponent } from './add-game/add-game.component';
     MatButtonModule,
     DisplayPokemonImageComponent,
     NgForOf,
+    MatIconModule,
   ],
   templateUrl: './games.component.html',
   styleUrls: ['./games.component.scss'],
@@ -35,22 +38,26 @@ export class GamesComponent implements OnInit {
   protected user: UserModel;
   protected gameSubject = new BehaviorSubject<GameModel[]>(undefined);
   protected $game = this.gameSubject.asObservable();
-  protected displayedColumns = ['name', 'actualDate', 'player', 'pokemons'];
+  protected displayedColumns = [
+    'name',
+    'actualDate',
+    'player',
+    'pokemons',
+    'play',
+    'delete',
+  ];
+
   constructor(
     protected userQueriesService: UserQueriesService,
     protected cacheService: CacheService,
+    protected gameQueriesService: GameQueriesService,
     protected router: Router,
     protected dialog: MatDialog
   ) {}
 
   public ngOnInit(): void {
     this.cacheService.removeGameId();
-    this.userQueriesService
-      .get(this.cacheService.getUserId())
-      .subscribe((user) => {
-        this.user = user;
-        this.gameSubject.next(user.games);
-      });
+    this.update();
   }
 
   protected click(game: GameModel): void {
@@ -60,5 +67,20 @@ export class GamesComponent implements OnInit {
 
   protected addGame(): void {
     this.dialog.open(AddGameComponent);
+  }
+
+  protected delete(game: GameModel): void {
+    this.gameQueriesService.delete(game._id).subscribe(() => {
+      this.update();
+    });
+  }
+
+  protected update(): void {
+    this.userQueriesService
+      .get(this.cacheService.getUserId())
+      .subscribe((user) => {
+        this.user = user;
+        this.gameSubject.next(user.games);
+      });
   }
 }
