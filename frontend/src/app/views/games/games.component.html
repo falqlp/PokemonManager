@@ -1,7 +1,4 @@
 <h3 *ngIf="user">{{ user.username }}</h3>
-<button mat-flat-button color="accent" (click)="addGame()">
-  {{ "ADD" | translate }}
-</button>
 <div class="games">
   <table mat-table [dataSource]="$game">
     <ng-container matColumnDef="name">
@@ -50,3 +47,6 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </div>
+<button mat-fab color="warn" (click)="addGame()">
+  <mat-icon>add</mat-icon>
+</button>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit } from '@angular/core';
 import { UserQueriesService } from '../../services/queries/user-queries.service';
 import { UserModel } from '../../models/user.model';
 import { NgForOf, NgIf } from '@angular/common';
@@ -16,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddGameComponent } from './add-game/add-game.component';
 import { MatIconModule } from '@angular/material/icon';
 import { GameQueriesService } from '../../services/queries/game-queries.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'pm-games',
@@ -52,7 +53,8 @@ export class GamesComponent implements OnInit {
     protected cacheService: CacheService,
     protected gameQueriesService: GameQueriesService,
     protected router: Router,
-    protected dialog: MatDialog
+    protected dialog: MatDialog,
+    protected destroyRef: DestroyRef
   ) {}
 
   public ngOnInit(): void {
@@ -70,14 +72,18 @@ export class GamesComponent implements OnInit {
   }
 
   protected delete(game: GameModel): void {
-    this.gameQueriesService.delete(game._id).subscribe(() => {
-      this.update();
-    });
+    this.gameQueriesService
+      .delete(game._id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.update();
+      });
   }
 
   protected update(): void {
     this.userQueriesService
       .get(this.cacheService.getUserId())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((user) => {
         this.user = user;
         this.gameSubject.next(user.games);

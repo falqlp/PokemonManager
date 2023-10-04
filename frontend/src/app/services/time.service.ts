@@ -21,6 +21,7 @@ export class TimeService {
       .pipe(
         switchMap((gameId) => {
           if (gameId) {
+            // console.log(gameId);
             return this.gameQueriesService.getTime(gameId);
           }
           return of(null);

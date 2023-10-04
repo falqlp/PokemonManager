@@ -2,6 +2,7 @@
 :host {
   display: block;
   padding: 15px;
+  text-align: center;
   .games {
     @include flexbox(flex-start, 2);
     margin: 10px 0;
