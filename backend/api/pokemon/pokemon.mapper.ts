@@ -62,7 +62,6 @@ class PokemonMapper implements IMapper<IPokemon> {
     if (pokemon.birthday) {
       pokemon.age = await this.calculateAge(pokemon.birthday);
     }
-    console.log(pokemon);
     await updatePlayer(pokemon.trainerId, pokemon.gameId);
     return pokemon;
   }
