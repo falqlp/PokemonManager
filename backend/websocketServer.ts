@@ -60,3 +60,19 @@ export const notifyNewMoveLearned = (pokemon: IPokemon): void => {
     }
   });
 };
+
+export const eggHatched = (pokemon: IPokemon): void => {
+  clients[pokemon.gameId].forEach((client: WebSocket) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(
+        JSON.stringify({
+          type: "eggHatched",
+          payload: {
+            pokemonBase: pokemon.basePokemon,
+            _id: pokemon._id,
+          },
+        })
+      );
+    }
+  });
+};

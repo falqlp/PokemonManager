@@ -17,12 +17,13 @@ export interface IPokemon extends Document {
   ev?: IPokemonStats;
   iv?: IPokemonStats;
   happiness: number;
-  age: number;
+  age?: number;
   potential: number;
   trainingPourcentage: number;
-  birthday: Date;
+  birthday?: Date;
   gameId: string;
   maxLevel: number;
+  hatchingDate?: Date;
 }
 
 const pokemonSchema = new Schema<IPokemon>({
@@ -36,12 +37,13 @@ const pokemonSchema = new Schema<IPokemon>({
   ev: { type: PokemonStats.schema, required: true },
   iv: { type: PokemonStats.schema, required: true },
   happiness: { type: Number, required: true },
-  age: { type: Number, required: true },
+  age: { type: Number },
   potential: { type: Number, required: true },
   trainingPourcentage: { type: Number, required: true },
-  birthday: { type: Date, required: true },
+  birthday: { type: Date },
   gameId: { type: String, required: true },
   maxLevel: { type: Number, required: true },
+  hatchingDate: { type: Date },
 });
 
 const Pokemon = mongoose.model<IPokemon>("Pokemon", pokemonSchema);

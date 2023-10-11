@@ -1,4 +1,4 @@
-import { OnInit } from '@angular/core';
+import { DestroyRef, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import type { Observable } from 'rxjs';
@@ -14,7 +14,8 @@ import { GenericDialogComponent } from '../../modals/generic-dialog/generic-dial
 import { DialogButtonsModel } from '../../modals/generic-dialog/generic-dialog.models';
 import { BattleModel } from '../../models/Battle.model';
 import { ExpGainComponent } from '../../modals/exp-gain/exp-gain.component';
-import { tap } from 'rxjs';
+import { first, tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-top-bar',
@@ -37,7 +38,8 @@ export class TopBarComponent implements OnInit {
     protected router: Router,
     protected calendarEventQueriesService: CalendarEventQueriesService,
     protected routerService: RouterService,
-    protected timeService: TimeService
+    protected timeService: TimeService,
+    protected destroyRef: DestroyRef
   ) {}
 
   public ngOnInit(): void {
@@ -68,10 +70,14 @@ export class TopBarComponent implements OnInit {
       .simulateDay(playerId, this.actualDate)
       .subscribe((res) => {
         if (this.actualDate.getDay() === 1) {
-          this.dialog.open(ExpGainComponent, {
-            data: { trainer: this.player },
-            disableClose: true,
-          });
+          this.dialog.afterAllClosed
+            .pipe(first(), takeUntilDestroyed(this.destroyRef))
+            .subscribe(() => {
+              this.dialog.open(ExpGainComponent, {
+                data: { trainer: this.player },
+                disableClose: true,
+              });
+            });
         }
         if (res.battle) {
           this.goToBattle(res.battle);
@@ -108,11 +114,15 @@ export class TopBarComponent implements OnInit {
         },
       },
     ];
-    this.dialog.open(GenericDialogComponent, {
-      data: {
-        buttons,
-        message: 'SURE_GO_TO_BATTLE',
-      },
-    });
+    this.dialog.afterAllClosed
+      .pipe(first(), takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.dialog.open(GenericDialogComponent, {
+          data: {
+            buttons,
+            message: 'SURE_GO_TO_BATTLE',
+          },
+        });
+      });
   }
 }

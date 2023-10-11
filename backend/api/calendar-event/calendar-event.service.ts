@@ -5,13 +5,15 @@ import BattleInstanceService from "../battle-instance/battle-instance.service";
 import { ITrainer } from "../trainer/trainer";
 import Battle, { IBattleInstance } from "../battle-instance/battle";
 import GameService from "../game/game.service";
+import PokemonService from "../pokemon/pokemon.service";
 
 class CalendarEventService extends CompleteService<ICalendarEvent> {
   private static instance: CalendarEventService;
 
   constructor(
     protected battleInstanceService: BattleInstanceService,
-    protected gameService: GameService
+    protected gameService: GameService,
+    protected pokemonService: PokemonService
   ) {
     super(CalendarEvent, CalendarEventMapper.getInstance());
   }
@@ -19,7 +21,8 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
     if (!CalendarEventService.instance) {
       CalendarEventService.instance = new CalendarEventService(
         BattleInstanceService.getInstance(),
-        GameService.getInstance()
+        GameService.getInstance(),
+        PokemonService.getInstance()
       );
     }
     return CalendarEventService.instance;
@@ -91,6 +94,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
       newGame.actualDate = date;
       await this.gameService.update(game, newGame);
     }
+    await this.pokemonService.isHatched(date, game);
     return { date, battle };
   }
 }

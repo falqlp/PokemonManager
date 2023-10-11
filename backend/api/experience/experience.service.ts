@@ -36,26 +36,33 @@ class ExperienceService {
     }[] = [];
     let trainer = await this.trainerService.getComplete(trainerId);
     const xpAndLevelGain: { xp: number; level: number }[] = [];
-    const pokemonPromise = trainer.pokemons.map(async (pokemon) => {
-      const res = await this.mapPokemonXp(pokemon, trainer.trainingCamp.level);
-      xpAndLevelGain[
-        trainer.pokemons.findIndex((pokemon2) => pokemon2._id === pokemon._id)
-      ] = res;
-      if (res?.evolutions) {
-        evolutions.push(res.evolutions);
-      }
-      return pokemon;
-    });
-    const storagePromise = trainer.pcStorage.storage.map(async (storage) => {
-      const res = await this.mapPokemonXp(
-        storage.pokemon,
-        trainer.trainingCamp.level
-      );
-      if (res?.evolutions) {
-        evolutions.push(res.evolutions);
-      }
-      return storage;
-    });
+    const pokemonPromise = trainer.pokemons
+      .filter((pokemon) => pokemon.level !== 0)
+      .map(async (pokemon) => {
+        const res = await this.mapPokemonXp(
+          pokemon,
+          trainer.trainingCamp.level
+        );
+        xpAndLevelGain[
+          trainer.pokemons.findIndex((pokemon2) => pokemon2._id === pokemon._id)
+        ] = res;
+        if (res?.evolutions) {
+          evolutions.push(res.evolutions);
+        }
+        return pokemon;
+      });
+    const storagePromise = trainer.pcStorage.storage
+      .filter((storage) => storage.pokemon.level !== 0)
+      .map(async (storage) => {
+        const res = await this.mapPokemonXp(
+          storage.pokemon,
+          trainer.trainingCamp.level
+        );
+        if (res?.evolutions) {
+          evolutions.push(res.evolutions);
+        }
+        return storage;
+      });
     await Promise.all(pokemonPromise);
     await Promise.all(storagePromise);
     trainer = await this.trainerService.update(trainer._id, trainer);

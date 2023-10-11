@@ -1,0 +1,40 @@
+<div mat-dialog-content *ngIf="data">
+  <div class="egg-hatched">
+    <div *ngIf="cracksNumber < 6; else pokemon">
+      <img
+        class="egg-hatched__img"
+        src="assets/images/thumbnails/000.png"
+        [alt]="'EGG' | translate"
+      />
+      <img
+        class="egg-hatched__img"
+        src="assets/animations/egg/eggCracks_{{ cracksNumber }}.png"
+        [alt]="'EGG' | translate"
+        (click)="addCracked()"
+      />
+    </div>
+    <ng-template #pokemon>
+      <img
+        class="egg-hatched__img__pokemon"
+        src="assets/images/thumbnails/{{
+          data.pokemonBase.id.toString().padStart(3, '0')
+        }}.png"
+        [alt]="data.pokemonBase.name"
+      />
+    </ng-template>
+  </div>
+  <div class="egg-hatched__message" *ngIf="cracksNumber > 5">
+    {{
+      "CONGRAT_EGG_HATCHED"
+        | translate : { pokemonName: data.pokemonBase.name | translate }
+    }}
+  </div>
+</div>
+<div *ngIf="cracksNumber > 5" mat-dialog-actions>
+  <button mat-flat-button color="warn" (click)="changeNickname()">
+    {{ "CHANGE_NICKNAME" | translate }}
+  </button>
+  <button mat-flat-button (click)="close()">
+    {{ "CLOSE" | translate }}
+  </button>
+</div>

@@ -26,7 +26,7 @@ export class PokemonFormComponent implements OnInit {
     nickname: new FormControl<string>(null),
     level: new FormControl<number>(1, [
       Validators.required,
-      Validators.min(1),
+      Validators.min(0),
       Validators.max(100),
     ]),
     trainerId: new FormControl<string>('', Validators.required),

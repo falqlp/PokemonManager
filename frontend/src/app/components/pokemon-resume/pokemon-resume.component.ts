@@ -8,6 +8,8 @@ import {
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
+import { MatDialog } from '@angular/material/dialog';
+import { ChangeNicknameComponent } from '../../modals/change-nickname/change-nickname.component';
 
 @Component({
   selector: 'app-pokemon-resume',
@@ -28,6 +30,8 @@ export class PokemonResumeComponent implements AfterViewInit {
 
   protected _pokemon: PokemonModel;
 
+  constructor(protected dialog: MatDialog) {}
+
   public ngAfterViewInit(): void {
     const swiperOption: SwiperOptions = {
       pagination: {
@@ -38,5 +42,9 @@ export class PokemonResumeComponent implements AfterViewInit {
     Object.assign(swiperContainerEl, swiperOption);
     swiperContainerEl.initialize();
     this.swiper = swiperContainerEl.swiper;
+  }
+
+  protected editNickname(): void {
+    this.dialog.open(ChangeNicknameComponent, { data: this.pokemon });
   }
 }

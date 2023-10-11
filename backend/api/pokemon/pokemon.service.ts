@@ -5,6 +5,7 @@ import CompleteService from "../CompleteService";
 import PokemonMapper from "./pokemon.mapper";
 import { ListBody } from "../ReadOnlyService";
 import Game from "../game/game";
+import { eggHatched } from "../../websocketServer";
 
 class PokemonService extends CompleteService<IPokemon> {
   private static instance: PokemonService;
@@ -17,9 +18,13 @@ class PokemonService extends CompleteService<IPokemon> {
     }
     return PokemonService.instance;
   }
-  public async createPokemon(pokemon: IPokemon): Promise<IPokemon> {
+  public async createPokemon(
+    pokemon: IPokemon,
+    gameId: string
+  ): Promise<IPokemon> {
+    pokemon.gameId = gameId;
     if (!pokemon.birthday) {
-      pokemon.birthday = (await Game.find())[0].actualDate;
+      pokemon.birthday = (await Game.findById(gameId)).actualDate;
     }
     if (pokemon.nickname === "") {
       pokemon.nickname = null;
@@ -46,6 +51,7 @@ class PokemonService extends CompleteService<IPokemon> {
       pokemon.trainingPourcentage = 0;
     }
     pokemon.maxLevel = pokemon.level;
+    pokemon = await this.mapper.update(pokemon);
     return pokemon;
   }
 
@@ -72,10 +78,16 @@ class PokemonService extends CompleteService<IPokemon> {
   }
 
   public async create(pokemon: IPokemon, gameId: string): Promise<any> {
-    pokemon.gameId = gameId;
-    const newPokemon = await this.mapper.update(
-      await this.createPokemon(pokemon)
-    );
+    let newPokemon: IPokemon;
+    if (pokemon.level === 0) {
+      newPokemon = await this.createEgg(pokemon, gameId);
+    } else {
+      newPokemon = await this.createPokemon(pokemon, gameId);
+    }
+    return this.savePokemon(newPokemon, gameId);
+  }
+
+  public savePokemon(newPokemon: IPokemon, gameId: string): Promise<void> {
     return super.create(newPokemon, gameId).then((createdPokemon) => {
       if (createdPokemon.trainerId) {
         Trainer.findOneAndUpdate(
@@ -87,11 +99,30 @@ class PokemonService extends CompleteService<IPokemon> {
       }
     });
   }
+
+  public async createEgg(pokemon: IPokemon, gameId: string) {
+    pokemon = await this.createPokemon(pokemon, gameId);
+    pokemon.hatchingDate = pokemon.birthday;
+    pokemon.hatchingDate.setMonth(pokemon.birthday.getUTCMonth() + 3);
+    pokemon.birthday = undefined;
+    return pokemon;
+  }
+
+  public async isHatched(actualDate: Date, gameId: string) {
+    const hatched = await this.listComplete(
+      { custom: { hatchingDate: { $lte: actualDate } } },
+      gameId
+    );
+    hatched.forEach(eggHatched);
+  }
   public async getComplete(_id: string): Promise<IPokemon> {
     return await this.get(_id, { map: this.mapper.mapComplete });
   }
-  public async listComplete(body: ListBody): Promise<IPokemon[]> {
-    return await this.list(body, { map: this.mapper.mapComplete });
+  public async listComplete(
+    body: ListBody,
+    gameId?: string
+  ): Promise<IPokemon[]> {
+    return await this.list(body, { map: this.mapper.mapComplete, gameId });
   }
 }
 

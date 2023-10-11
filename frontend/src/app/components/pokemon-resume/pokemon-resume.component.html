@@ -1,7 +1,9 @@
 <div class="pokemon-resume">
   <span class="pokemon-resume__title" [ngClass]="pokemon.basePokemon?.types[0]">
     {{ pokemon.nickname ?? (pokemon.basePokemon?.name ?? "EGG" | translate) }}
+    <mat-icon (click)="editNickname()">edit</mat-icon>
   </span>
+
   <div class="pokemon-resume__content">
     <div class="pokemon-resume__content__main-infos">
       <app-display-pokemon-image

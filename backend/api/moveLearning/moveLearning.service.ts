@@ -14,7 +14,7 @@ class MoveLearningService {
       levelLearnAt: pokemon.maxLevel,
       learnMethod: "LEVEL-UP",
     }).then((movesLearn) => {
-      if (movesLearn) {
+      if (movesLearn.length > 0) {
         notifyNewMoveLearned(pokemon);
       }
     });

@@ -17,21 +17,19 @@ import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { GenericDialogComponent } from '../generic-dialog/generic-dialog.component';
 import { DialogButtonsModel } from '../generic-dialog/generic-dialog.models';
 import { EvolutionComponent } from '../evolution/evolution.component';
-import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
-import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
 
 @Component({
   selector: 'pm-exp-gain',
   standalone: true,
   imports: [
-    MatDialogModule,
-    MatButtonModule,
-    TranslateModule,
-    NgForOf,
     DisplayPokemonImageComponent,
-    ProgressBarComponent,
-    NgIf,
+    MatButtonModule,
+    MatDialogModule,
     NgClass,
+    NgForOf,
+    NgIf,
+    ProgressBarComponent,
+    TranslateModule,
   ],
   templateUrl: './exp-gain.component.html',
   styleUrls: ['./exp-gain.component.scss'],

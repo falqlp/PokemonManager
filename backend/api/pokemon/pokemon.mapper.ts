@@ -42,12 +42,27 @@ class PokemonMapper implements IMapper<IPokemon> {
       const savedPokemon = await Pokemon.findOne({ _id: pokemon._id }).populate(
         "basePokemon"
       );
+      pokemon.trainerId = savedPokemon.trainerId;
+      pokemon.gameId = savedPokemon.gameId;
       pokemon.ev = savedPokemon.ev;
       pokemon.iv = savedPokemon.iv;
-      pokemon.basePokemon = savedPokemon.basePokemon;
+      if (pokemon.level <= 1) {
+        pokemon.basePokemon = savedPokemon.basePokemon;
+      }
       pokemon.stats = this.updateStats(pokemon);
     }
-    pokemon.age = await this.calculateAge(pokemon.birthday);
+    if (pokemon.level !== 0 && pokemon.hatchingDate) {
+      pokemon.birthday = pokemon.hatchingDate;
+      await Pokemon.updateOne(
+        { _id: pokemon._id },
+        { $unset: { hatchingDate: undefined } }
+      );
+      pokemon.hatchingDate = undefined;
+    }
+    if (pokemon.birthday) {
+      pokemon.age = await this.calculateAge(pokemon.birthday);
+    }
+    console.log(pokemon);
     await updatePlayer(pokemon.trainerId, pokemon.gameId);
     return pokemon;
   }

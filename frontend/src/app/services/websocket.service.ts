@@ -10,6 +10,8 @@ import { PlayerService } from './player.service';
 import { NotifierService } from 'angular-notifier';
 import { TranslateService } from '@ngx-translate/core';
 import { CacheService } from './cache.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EggHatchedComponent } from '../modals/egg-hatched/egg-hatched.component';
 
 export interface WebSocketModel {
   type: string;
@@ -27,7 +29,8 @@ export class WebsocketService {
     protected playerService: PlayerService,
     protected notifierService: NotifierService,
     protected translateService: TranslateService,
-    protected cacheService: CacheService
+    protected cacheService: CacheService,
+    protected dialog: MatDialog
   ) {
     this.connect();
   }
@@ -77,7 +80,14 @@ export class WebsocketService {
             pokemon: this.translateService.instant(message.payload.pokemonName),
           })
         );
-        console.log(message.payload);
+        break;
+      case 'eggHatched':
+        setTimeout(() => {
+          this.dialog.open(EggHatchedComponent, {
+            data: message.payload,
+            disableClose: true,
+          });
+        });
         break;
       default:
         console.warn('Unknown message type:', message.type);

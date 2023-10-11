@@ -6,7 +6,6 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
-import { PlayerService } from '../../services/player.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -30,7 +29,6 @@ export class EvolutionComponent implements OnInit {
     },
     protected pokemonQueriesService: PokemonQueriesService,
     protected translateService: TranslateService,
-    protected playerService: PlayerService,
     protected destroyRef: DestroyRef
   ) {}
 

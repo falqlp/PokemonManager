@@ -5,8 +5,10 @@
   @include flexbox(flex-start, 2, column);
   padding: 0;
   &__title {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
     width: 100%;
-    text-align: center;
     padding: 10px 0;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
