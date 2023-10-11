@@ -3,6 +3,7 @@ import MoveService from "../move/move.service";
 import evolutionService from "../evolution/evolution.service";
 import { IPokemon } from "../pokemon/pokemon";
 import { notifyNewMoveLearned } from "../../websocketServer";
+import { ListBody } from "../ReadOnlyService";
 
 class MoveLearningService {
   private static instance: MoveLearningService;
@@ -19,18 +20,18 @@ class MoveLearningService {
       }
     });
   }
-  async learnableMoves(id: number, level: number) {
+  async learnableMoves(id: number, level: number, query?: ListBody) {
     const allMoves = await this.getMovesOfAllEvolutions(id, level);
     const allMovesString = allMoves.map((move) => {
       return move.moveId;
     });
-    return this.moveService.list({ ids: allMovesString });
+    return this.moveService.list({ ...query, ids: allMovesString });
   }
 
   async getMovesOfAllEvolutions(id: number, level: number) {
     let moveLearn: IMoveLearning[] = await MoveLearning.find({
       pokemonId: id,
-      levelLearnAt: { $lt: level + 1 },
+      levelLearnAt: { $lte: level },
       learnMethod: "LEVEL-UP",
     });
 

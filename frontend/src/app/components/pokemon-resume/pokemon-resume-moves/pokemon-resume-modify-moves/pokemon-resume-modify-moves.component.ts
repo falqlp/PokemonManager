@@ -49,9 +49,14 @@ export class PokemonResumeModifyMovesComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    this.init();
+  }
+
+  protected init(): void {
+    const query = { sort: { power: -1 } };
     this.selectedMoves = this.pokemon.moves;
     this.moveLearningQueriesService
-      .learnableMove(this.pokemon.basePokemon.id, this.pokemon.maxLevel)
+      .learnableMove(this.pokemon.basePokemon.id, this.pokemon.maxLevel, query)
       .subscribe((moves) => {
         this.moveForm = new FormGroup({
           moves: new FormArray(

@@ -19,6 +19,16 @@ import { NgForOf, NgIf } from '@angular/common';
   styleUrls: ['./pokemon-resume-moves.component.scss'],
 })
 export class PokemonResumeMovesComponent {
-  @Input() public pokemon: PokemonModel;
+  @Input()
+  set pokemon(value: PokemonModel) {
+    this._pokemon = value;
+    this.modify = false;
+  }
+
+  get pokemon(): PokemonModel {
+    return this._pokemon;
+  }
+
+  private _pokemon: PokemonModel;
   protected modify = false;
 }

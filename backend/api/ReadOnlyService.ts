@@ -50,7 +50,7 @@ class ReadOnlyService<T extends Document> {
         .limit(body.limit || 0)
         .sort(body.sort);
 
-      if (body.ids?.length) {
+      if (body.ids?.length && !body.sort) {
         dtos.sort((a: any, b: any) => {
           return (
             body.ids!.indexOf(a._id.toString()) -

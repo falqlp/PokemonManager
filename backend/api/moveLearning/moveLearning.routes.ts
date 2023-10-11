@@ -9,7 +9,8 @@ router.put(
     try {
       const moves = await moveLearningService.learnableMoves(
         req.body.id,
-        req.body.level
+        req.body.level,
+        req.body.query
       );
       res.status(200).json(moves.filter((move) => move.power ?? 0 > 0));
     } catch (error) {

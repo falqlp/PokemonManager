@@ -12,6 +12,11 @@
     padding: 10px 0;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    &__nickname {
+      max-width: 500px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
   &__content {
     overflow: auto;
@@ -22,7 +27,7 @@
     &__main-infos {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 5px;
       height: 250px;
       &__image {
         justify-content: flex-start;
