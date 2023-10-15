@@ -2,12 +2,14 @@ import mongoose, { Document, Schema } from "mongoose";
 import { IPokemon } from "../pokemon/pokemon";
 import { IPcStorage } from "../pcStorage/pcStorage";
 import { ITrainingCamp } from "../trainingCamp/trainingCamp";
+import { INursery } from "../nursery/nursery";
 
 export interface ITrainer extends Document {
   name: string;
   pokemons: IPokemon[];
   pcStorage: IPcStorage;
   trainingCamp: ITrainingCamp;
+  nursery: INursery;
   gameId: string;
 }
 
@@ -24,6 +26,7 @@ const trainerSchema = new Schema<ITrainer>({
     ref: "TrainingCamp",
     required: true,
   },
+  nursery: { type: Schema.Types.ObjectId, ref: "Nursery", required: true },
   gameId: { type: String, required: true },
 });
 

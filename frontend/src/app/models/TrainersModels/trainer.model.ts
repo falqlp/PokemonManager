@@ -5,4 +5,5 @@ export class TrainerModel {
   name: string;
   pokemons?: PokemonModel[];
   pcStorage?: string;
+  nursery: string;
 }

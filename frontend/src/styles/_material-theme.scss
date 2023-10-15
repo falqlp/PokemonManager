@@ -1,18 +1,33 @@
-.mat-mdc-dialog-container {
-  .mdc-dialog__content {
+@mixin mat-theme() {
+  .mat-mdc-dialog-container {
+    .mdc-dialog__content {
+      color: inherit !important;
+    }
+  }
+
+  .mdc-floating-label {
     color: inherit !important;
   }
-}
 
-.mdc-floating-label {
-  color: inherit !important;
-}
+  .mat-mdc-table .mat-mdc-row:hover,
+  .mat-mdc-table .mat-mdc-footer-row:hover {
+    background-color: #1c1c1c;
+  }
 
-.mat-mdc-table .mat-mdc-row:hover,
-.mat-mdc-table .mat-mdc-footer-row:hover {
-  background-color: #1c1c1c !important;
-}
+  .mat-mdc-table .mdc-data-table__row {
+    height: 40px;
+  }
 
-.mat-mdc-table .mdc-data-table__row {
-  height: 40px !important;
+  .mat-mdc-slider.mat-accent {
+    --mdc-slider-handle-color: #ffffff;
+    --mdc-slider-focus-handle-color: #ffffff;
+    --mdc-slider-hover-handle-color: #ffffff;
+    --mdc-slider-active-track-color: $light-primary-text;
+    --mdc-slider-inactive-track-color: #ffffff;
+    --mdc-slider-with-tick-marks-active-container-color: #000;
+    --mdc-slider-with-tick-marks-inactive-container-color: #ffffff;
+    --mat-mdc-slider-ripple-color: #ffffff;
+    --mat-mdc-slider-hover-ripple-color: rgb(255 255 255 / 5%);
+    --mat-mdc-slider-focus-ripple-color: rgb(255 253 255 / 20%);
+  }
 }

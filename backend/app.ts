@@ -16,6 +16,7 @@ import calendarEventRoutes from "./api/calendar-event/calendar-event.routes";
 import gameRoutes from "./api/game/game.routes";
 import experienceRoutes from "./api/experience/experience.routes";
 import userRoutes from "./api/user/user.routes";
+import nurseryRoutes from "./api/nursery/nursery.routes";
 
 const app = express();
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
@@ -59,5 +60,6 @@ app.use("/api/calendar-event", calendarEventRoutes);
 app.use("/api/game", gameRoutes);
 app.use("/api/xp", experienceRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/nursery", nurseryRoutes);
 
 export default app;

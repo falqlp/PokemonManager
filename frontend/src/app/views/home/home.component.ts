@@ -19,6 +19,7 @@ import { TimeService } from '../../services/time.service';
 import { GameQueriesService } from '../../services/queries/game-queries.service';
 import { WebsocketService } from '../../services/websocket.service';
 import { NotifierService } from 'angular-notifier';
+import { NurseryWishlistFormComponent } from '../../modals/nursery-wishlist-form/nursery-wishlist-form.component';
 
 @Component({
   selector: 'app-home',
@@ -72,7 +73,7 @@ export class HomeComponent implements OnInit {
   }
 
   protected clickP(): void {
-    // this.webSocketService.sendMessage('test');
+    this.dialog.open(NurseryWishlistFormComponent);
   }
 
   protected createPokemon(pokemon: PokemonModel): void {

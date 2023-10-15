@@ -1,5 +1,6 @@
 @use "@angular/material" as mat;
 @use "sass:map";
+@use "styles/material-theme";
 
 @import "./styles/buttons/btn-primary.scss";
 @import "./styles/buttons/btn-default.scss";
@@ -63,7 +64,7 @@ $pokemon-manager-theme: modify-background(
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($pokemon-manager-theme);
-
+@include material-theme.mat-theme();
 body {
   background-color: #1f1c3d;
   color: $light-primary-text;
@@ -160,7 +161,7 @@ progress-bar {
 .POISON {
   background-color: #9141cb;
 }
-.PSYCHIC {
+.PSY {
   background-color: #ef4179;
 }
 .DARK {
@@ -180,4 +181,26 @@ progress-bar {
 }
 .FLYING {
   background-color: #81b9ef;
+}
+
+/* Pour les navigateurs WebKit (Safari, Chrome, etc.) */
+::-webkit-scrollbar {
+  width: 8px; /* Largeur de la scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #888; /* Couleur du handle */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #f1f1f1; /* Couleur du track */
+  border-radius: 10px;
+}
+
+/* Handle au survol */
+::-webkit-scrollbar-thumb:hover {
+  background: #d0d0d0; /* Couleur du handle au survol */
 }

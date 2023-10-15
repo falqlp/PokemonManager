@@ -5,13 +5,15 @@ import TrainingCampService from "../trainingCamp/trainingCamp.service";
 import PcStorageService from "../pcStorage/pcStorage.service";
 import { updatePlayer } from "../../websocketServer";
 import { ITrainingCamp } from "../trainingCamp/trainingCamp";
+import NurseryService from "../nursery/nursery.service";
 
 class TrainerMapper implements IMapper<ITrainer> {
   private static instance: TrainerMapper;
   constructor(
     protected pokemonService: PokemonService,
     protected trainingCampService: TrainingCampService,
-    protected pcStorageService: PcStorageService
+    protected pcStorageService: PcStorageService,
+    protected nurseryService: NurseryService
   ) {}
   public async map(trainer: ITrainer): Promise<ITrainer> {
     if (trainer) {
@@ -56,6 +58,12 @@ class TrainerMapper implements IMapper<ITrainer> {
         trainer.gameId
       );
     }
+    if (!trainer.nursery) {
+      trainer.nursery = await this.nurseryService.create(
+        undefined,
+        trainer.gameId
+      );
+    }
     if (!trainer.trainingCamp) {
       trainer.trainingCamp = await this.trainingCampService.create(
         { level: 1 } as unknown as ITrainingCamp,
@@ -80,7 +88,8 @@ class TrainerMapper implements IMapper<ITrainer> {
       TrainerMapper.instance = new TrainerMapper(
         PokemonService.getInstance(),
         TrainingCampService.getInstance(),
-        PcStorageService.getInstance()
+        PcStorageService.getInstance(),
+        NurseryService.getInstance()
       );
     }
     return TrainerMapper.instance;

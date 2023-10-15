@@ -1,0 +1,44 @@
+<form *ngIf="form" [formGroup]="form" (submit)="submit()">
+  <div class="nursery-wishlist" mat-dialog-content>
+    <div
+      class="nursery-wishlist__form"
+      [ngClass]="type.toUpperCase()"
+      *ngFor="let type of typeNames"
+    >
+      <img
+        class="icon-type"
+        [src]="'assets/types/simple/' + type.toUpperCase() + '.png'"
+      />
+      <mat-slider color="accent" max="100" min="0" discrete step="10">
+        <input matSliderThumb [formControl]="getFormControl(type)" />
+      </mat-slider>
+    </div>
+    <div class="nursery-wishlist__recap">
+      <mat-form-field>
+        <mat-label>{{ "NUMBER_OF_WISHED_POKEMON" | translate }}</mat-label>
+        <input
+          matInput
+          type="number"
+          min="0"
+          [max]="nursery.level"
+          [formControl]="form.controls.quantity"
+        />
+      </mat-form-field>
+      <pm-pie [data]="pieData" [colors]="pieColors"></pm-pie>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button color="accent" mat-flat-button mat-dialog-close>
+      {{ "CANCEL" | translate }}
+    </button>
+    <button
+      [disabled]="form.invalid"
+      color="warn"
+      type="submit"
+      mat-flat-button
+      mat-dialog-close
+    >
+      {{ "SUBMIT" | translate }}
+    </button>
+  </div>
+</form>
