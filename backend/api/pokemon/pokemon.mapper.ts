@@ -21,6 +21,7 @@ class PokemonMapper implements IMapper<IPokemon> {
     pokemon.trainingPourcentage = undefined;
     if (pokemon.level === 0) {
       pokemon.basePokemon = undefined;
+      pokemon.hatchingDate = undefined;
     }
     return pokemon;
   }
@@ -38,6 +39,11 @@ class PokemonMapper implements IMapper<IPokemon> {
   public async update(pokemon: IPokemon): Promise<IPokemon> {
     if (pokemon.iv && pokemon.ev) {
       pokemon.stats = this.updateStats(pokemon);
+      if (!pokemon.hiddenPotential) {
+        pokemon.hiddenPotential = this.generateHiddenPotentail(
+          pokemon.potential
+        );
+      }
     } else {
       const savedPokemon = await Pokemon.findOne({ _id: pokemon._id }).populate(
         "basePokemon"
@@ -46,18 +52,23 @@ class PokemonMapper implements IMapper<IPokemon> {
       pokemon.gameId = savedPokemon.gameId;
       pokemon.ev = savedPokemon.ev;
       pokemon.iv = savedPokemon.iv;
+      if (!pokemon.hiddenPotential) {
+        pokemon.hiddenPotential = this.generateHiddenPotentail(
+          savedPokemon.potential ?? pokemon.potential
+        );
+      }
       if (pokemon.level <= 1) {
         pokemon.basePokemon = savedPokemon.basePokemon;
       }
       pokemon.stats = this.updateStats(pokemon);
-    }
-    if (pokemon.level !== 0 && pokemon.hatchingDate) {
-      pokemon.birthday = pokemon.hatchingDate;
-      await Pokemon.updateOne(
-        { _id: pokemon._id },
-        { $unset: { hatchingDate: undefined } }
-      );
-      pokemon.hatchingDate = undefined;
+      if (pokemon.level !== 0 && savedPokemon.hatchingDate) {
+        pokemon.birthday = pokemon.hatchingDate;
+        await Pokemon.updateOne(
+          { _id: pokemon._id },
+          { $unset: { hatchingDate: "" } }
+        );
+        pokemon.hatchingDate = undefined;
+      }
     }
     if (pokemon.birthday) {
       pokemon.age = await this.calculateAge(pokemon.birthday);
@@ -148,6 +159,12 @@ class PokemonMapper implements IMapper<IPokemon> {
       age--;
     }
     return age;
+  }
+
+  public generateHiddenPotentail(potential: number): string {
+    const pMin = potential - Math.floor(Math.random() * 11);
+    const pMax = potential + Math.floor(Math.random() * 11);
+    return `${pMin < 0 ? 0 : pMin} - ${pMax > 100 ? 100 : pMax}`;
   }
 
   public static getInstance(): PokemonMapper {

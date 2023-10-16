@@ -20,6 +20,9 @@ import { GameQueriesService } from '../../services/queries/game-queries.service'
 import { WebsocketService } from '../../services/websocket.service';
 import { NotifierService } from 'angular-notifier';
 import { NurseryWishlistFormComponent } from '../../modals/nursery-wishlist-form/nursery-wishlist-form.component';
+import { PokemonBaseQueriesService } from '../../services/queries/pokemon-base-queries.service';
+import { NurseryQueriesService } from '../../services/queries/nursery-queries.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -48,7 +51,9 @@ export class HomeComponent implements OnInit {
     protected http: HttpClient,
     protected translateService: TranslateService,
     protected webSocketService: WebsocketService,
-    protected notifierService: NotifierService
+    protected notifierService: NotifierService,
+    protected pokemonBaseQueriesService: PokemonBaseQueriesService,
+    protected nurseryQueriesService: NurseryQueriesService
   ) {}
 
   public ngOnInit(): void {
@@ -83,16 +88,14 @@ export class HomeComponent implements OnInit {
   }
 
   protected startBattle(): void {
-    this.battleQueries
-      .create({
-        player: this.player,
-        opponent: this.opponent,
-      })
-      .subscribe((battle) => {
-        this.router.navigate(['battle'], {
-          queryParams: { battle: battle._id },
-        });
-      });
+    this.nurseryQueriesService
+      .get(this.player.nursery)
+      .pipe(
+        switchMap((nursery) => {
+          return this.nurseryQueriesService.generateNurseryEggs(nursery);
+        })
+      )
+      .subscribe(console.log);
   }
 
   protected goToPc(): void {

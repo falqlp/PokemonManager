@@ -6,18 +6,52 @@ import PokemonMapper from "./pokemon.mapper";
 import { ListBody } from "../ReadOnlyService";
 import Game from "../game/game";
 import { eggHatched } from "../../websocketServer";
+import { Model } from "mongoose";
+import { IMapper } from "../IMapper";
+import PokemonBaseService from "../pokemonBase/pokemonBase.service";
+import { INursery, IWishList } from "../nursery/nursery";
+import normalRandomUtils from "../../utils/normalRandomUtils";
 
 class PokemonService extends CompleteService<IPokemon> {
   private static instance: PokemonService;
+
+  constructor(
+    schema: Model<IPokemon>,
+    mapper: IMapper<IPokemon>,
+    protected pokemonBaseService: PokemonBaseService
+  ) {
+    super(schema, mapper);
+  }
   public static getInstance(): PokemonService {
     if (!PokemonService.instance) {
       PokemonService.instance = new PokemonService(
         Pokemon,
-        PokemonMapper.getInstance()
+        PokemonMapper.getInstance(),
+        PokemonBaseService.getInstance()
       );
     }
     return PokemonService.instance;
   }
+  public async getComplete(_id: string): Promise<IPokemon> {
+    return await this.get(_id, { map: this.mapper.mapComplete });
+  }
+  public async listComplete(
+    body: ListBody,
+    gameId?: string
+  ): Promise<IPokemon[]> {
+    return await this.list(body, { map: this.mapper.mapComplete, gameId });
+  }
+
+  public async create(pokemon: IPokemon, gameId: string): Promise<IPokemon> {
+    let newPokemon: IPokemon;
+    if (pokemon.level === 0) {
+      newPokemon = await this.createEgg(pokemon, gameId);
+    } else {
+      newPokemon = await this.createPokemon(pokemon, gameId);
+    }
+    return this.savePokemon(newPokemon, gameId);
+  }
+
   public async createPokemon(
     pokemon: IPokemon,
     gameId: string
@@ -77,27 +111,20 @@ class PokemonService extends CompleteService<IPokemon> {
     } as IPokemonStats;
   }
 
-  public async create(pokemon: IPokemon, gameId: string): Promise<any> {
-    let newPokemon: IPokemon;
-    if (pokemon.level === 0) {
-      newPokemon = await this.createEgg(pokemon, gameId);
-    } else {
-      newPokemon = await this.createPokemon(pokemon, gameId);
+  public async savePokemon(
+    newPokemon: IPokemon,
+    gameId: string
+  ): Promise<IPokemon> {
+    const createdPokemon = await super.create(newPokemon, gameId);
+    if (createdPokemon.trainerId) {
+      Trainer.findOneAndUpdate(
+        { _id: createdPokemon.trainerId },
+        { $push: { pokemons: createdPokemon._id } }
+      )
+        .then()
+        .catch((error: Error) => console.log(error));
     }
-    return this.savePokemon(newPokemon, gameId);
-  }
-
-  public savePokemon(newPokemon: IPokemon, gameId: string): Promise<void> {
-    return super.create(newPokemon, gameId).then((createdPokemon) => {
-      if (createdPokemon.trainerId) {
-        Trainer.findOneAndUpdate(
-          { _id: createdPokemon.trainerId },
-          { $push: { pokemons: createdPokemon._id } }
-        )
-          .then()
-          .catch((error: Error) => console.log(error));
-      }
-    });
+    return createdPokemon;
   }
 
   public async createEgg(pokemon: IPokemon, gameId: string) {
@@ -107,7 +134,6 @@ class PokemonService extends CompleteService<IPokemon> {
     pokemon.birthday = undefined;
     return pokemon;
   }
-
   public async isHatched(actualDate: Date, gameId: string) {
     const hatched = await this.listComplete(
       { custom: { hatchingDate: { $lte: actualDate } } },
@@ -115,14 +141,21 @@ class PokemonService extends CompleteService<IPokemon> {
     );
     hatched.forEach(eggHatched);
   }
-  public async getComplete(_id: string): Promise<IPokemon> {
-    return await this.get(_id, { map: this.mapper.mapComplete });
-  }
-  public async listComplete(
-    body: ListBody,
-    gameId?: string
-  ): Promise<IPokemon[]> {
-    return await this.list(body, { map: this.mapper.mapComplete, gameId });
+
+  public async generateEgg(
+    nursery: INursery,
+    gameId: string
+  ): Promise<IPokemon> {
+    const potential =
+      10 + Math.floor(normalRandomUtils.normalRandom(nursery.level * 10, 5));
+    const egg = {
+      basePokemon: await this.pokemonBaseService.generateEggBase(
+        nursery.wishList
+      ),
+      level: 0,
+      potential,
+    };
+    return this.create(egg as IPokemon, gameId);
   }
 }
 

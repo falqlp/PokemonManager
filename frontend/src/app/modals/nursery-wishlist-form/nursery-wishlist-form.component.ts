@@ -119,13 +119,13 @@ export class NurseryWishlistFormComponent implements OnInit {
     );
   }
 
-  protected updatePieData(value: unknown): void {
+  protected updatePieData = (value: unknown): void => {
     const values = value as Record<string, number>;
     this.pieData = this.typeNames.map((type) => ({
       name: type.toUpperCase(),
       value: values[type] > 0 ? values[type] : null,
     }));
-  }
+  };
 
   protected substractNext(type: string, value: number): void {
     let index = this.typeNames.findIndex((typeName) => typeName === type);
