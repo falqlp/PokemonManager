@@ -41,11 +41,11 @@
         text-align: center;
         background-color: #9100ff;
         padding: 5px;
-        &--passed {
-          background-color: #777373;
-        }
         &--green {
           background-color: #44c74a;
+        }
+        &--passed {
+          background-color: #777373 !important;
         }
       }
     }

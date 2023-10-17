@@ -81,6 +81,12 @@ export class WebsocketService {
           })
         );
         break;
+      case 'notify':
+        this.notifierService.notify(
+          message.payload.type,
+          this.translateService.instant(message.payload.key)
+        );
+        break;
       case 'eggHatched':
         setTimeout(() => {
           this.dialog.open(EggHatchedComponent, {

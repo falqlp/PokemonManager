@@ -19,7 +19,7 @@
         'top-bar-week-calendar__day__event--green': [
           'GenerateNurseryEggs',
           'NurseryFirstSelectionDeadline',
-          'NurserySecondSelectionDeadline'
+          'NurseryLastSelectionDeadline'
         ].includes(event.type)
       }"
       [ngSwitch]="event.type"
@@ -35,13 +35,13 @@
         >
       </div>
       <div *ngSwitchCase="'GenerateNurseryEggs'">
-        <span>{{ "GENERATE_NURSERY_EGGS" | translate }}</span>
+        <span>{{ "NURSERY_EGGS_ARRIVAL_DATE" | translate }}</span>
       </div>
       <div *ngSwitchCase="'NurseryFirstSelectionDeadline'">
         <span>{{ "NURSERY_FIRST_SELECTION" | translate }}</span>
       </div>
-      <div *ngSwitchCase="'NurserySecondSelectionDeadline'">
-        <span>{{ "NURSERY_SECOND_SELECTION" | translate }}</span>
+      <div *ngSwitchCase="'NurseryLastSelectionDeadline'">
+        <span>{{ "NURSERY_LAST_SELECTION" | translate }}</span>
       </div>
     </div>
   </div>

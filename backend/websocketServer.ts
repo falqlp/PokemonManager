@@ -61,6 +61,22 @@ export const notifyNewMoveLearned = (pokemon: IPokemon): void => {
   });
 };
 
+export const notify = (key: string, type: string, gameId: string): void => {
+  clients[gameId].forEach((client: WebSocket) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(
+        JSON.stringify({
+          type: "notify",
+          payload: {
+            key,
+            type,
+          },
+        })
+      );
+    }
+  });
+};
+
 export const eggHatched = (pokemon: IPokemon): void => {
   clients[pokemon.gameId].forEach((client: WebSocket) => {
     if (client.readyState === WebSocket.OPEN) {

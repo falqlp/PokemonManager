@@ -1,4 +1,7 @@
 {
+  "NURSERY_FIRST_SELECTION": "Première sélection à la pension",
+  "NURSERY_LAST_SELECTION": "Sélection finale à la pension",
+  "NURSERY_EGGS_ARRIVAL_DATE": "Date d'arrivée des œufs à la pension",
   "10-000-000-VOLT-THUNDERBOLT": "Giga-Tonnerre",
   "ABOMASNOW": "Blizzaroi",
   "ABRA": "Abra",
@@ -1476,6 +1479,7 @@
   "SEEL": "Otaria",
   "SEISMIC-TOSS": "Frappe Atlas",
   "SEISMITOAD": "Crapustule",
+  "SELECT_VALID_NUMBER_OF_EGGS": "Veuillez sélectionner un nombre valide d'œuf",
   "SELF-DESTRUCT": "Destruction",
   "SENTRET": "Fouinette",
   "SERPERIOR": "Majaspic",

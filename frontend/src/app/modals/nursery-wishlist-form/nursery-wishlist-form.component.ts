@@ -291,7 +291,7 @@ export class NurseryWishlistFormComponent implements OnInit {
                     trainers: [player],
                   },
                   {
-                    type: 'NurserySecondSelectionDeadline',
+                    type: 'NurseryLastSelectionDeadline',
                     date: thirdEventDate,
                     trainers: [player],
                   },

@@ -8,7 +8,7 @@ import { of, switchMap } from 'rxjs';
 import { NurseryModel } from '../../models/nursery.model';
 import { MatDialog } from '@angular/material/dialog';
 import { NurseryWishlistFormComponent } from '../../modals/nursery-wishlist-form/nursery-wishlist-form.component';
-import { NgForOf, NgIf } from '@angular/common';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
@@ -22,6 +22,7 @@ import { PokemonQueriesService } from '../../services/queries/pokemon-queries.se
     NgIf,
     DisplayPokemonImageComponent,
     NurseryWishlistFormComponent,
+    NgClass,
   ],
   templateUrl: './nursery.component.html',
   styleUrls: ['./nursery.component.scss'],

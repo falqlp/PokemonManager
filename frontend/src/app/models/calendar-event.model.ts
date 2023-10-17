@@ -5,7 +5,7 @@ export type CalendarEventEvent =
   | 'Battle'
   | 'GenerateNurseryEggs'
   | 'NurseryFirstSelectionDeadline'
-  | 'NurserySecondSelectionDeadline';
+  | 'NurseryLastSelectionDeadline';
 
 export interface CalendarEventModel {
   date: Date;

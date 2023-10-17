@@ -87,16 +87,7 @@ export class HomeComponent implements OnInit {
       .subscribe((newpokemon) => console.log(newpokemon));
   }
 
-  protected startBattle(): void {
-    this.nurseryQueriesService
-      .get(this.player.nursery)
-      .pipe(
-        switchMap((nursery) => {
-          return this.nurseryQueriesService.generateNurseryEggs(nursery);
-        })
-      )
-      .subscribe(console.log);
-  }
+  protected startBattle(): void {}
 
   protected goToPc(): void {
     this.router.navigate(['pcStorage']);

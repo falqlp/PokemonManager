@@ -82,6 +82,9 @@ export class TopBarComponent implements OnInit {
         if (res.battle) {
           this.goToBattle(res.battle);
         }
+        if (res.redirectTo) {
+          this.router.navigateByUrl(res.redirectTo);
+        }
         this.simulating = false;
       });
   }

@@ -6,7 +6,7 @@ export type CalendarEventEvent =
   | "Battle"
   | "GenerateNurseryEggs"
   | "NurseryFirstSelectionDeadline"
-  | "NurserySecondSelectionDeadline";
+  | "NurseryLastSelectionDeadline";
 
 export interface ICalendarEvent extends Document {
   date: Date;

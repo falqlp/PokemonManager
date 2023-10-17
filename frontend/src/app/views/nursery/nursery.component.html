@@ -8,11 +8,21 @@
 <div class="nursery__pokemon-list" *ngIf="nursery?.step !== 'WISHLIST'">
   <div class="nursery__pokemon-list__header">
     <span
-      >{{ "MAX_POKEMONS_TO_KEEP" | translate }} : {{ nursery?.eggs?.length }}/{{
-        nursery?.wishList?.quantity * 2
-      }}</span
+      >{{ "MAX_POKEMONS_TO_KEEP" | translate }} :
+      <span
+        class="nursery__pokemon-list__header__ratio"
+        [ngClass]="{
+          'nursery__pokemon-list__header__ratio--bad':
+            nursery?.eggs?.length >
+            nursery?.wishList?.quantity *
+              (nursery?.step === 'FIRST_SELECTION' ? 2 : 1)
+        }"
+        >{{ nursery?.eggs?.length }}/{{
+          nursery?.wishList?.quantity *
+            (nursery?.step === "FIRST_SELECTION" ? 2 : 1)
+        }}</span
+      ></span
     >
-    <button mat-flat-button color="warn">{{ "SUBMIT" | translate }}</button>
   </div>
   <div *ngIf="nursery?.eggs" class="nursery__pokemon-list__eggs">
     <div

@@ -1,4 +1,7 @@
 {
+  "NURSERY_FIRST_SELECTION": "First selection at the nursery",
+  "NURSERY_LAST_SELECTION": "Final selection at the nursery",
+  "NURSERY_EGGS_ARRIVAL_DATE": "Date of arrival of eggs at the nursery",
   "10-000-000-VOLT-THUNDERBOLT": "10,000,000 Volt Thunderbolt",
   "ABOMASNOW": "Abomasnow",
   "ABRA": "Abra",
@@ -1486,6 +1489,7 @@
   "SEEL": "Seel",
   "SEISMIC-TOSS": "Seismic Toss",
   "SEISMITOAD": "Seismitoad",
+  "SELECT_VALID_NUMBER_OF_EGGS": "Please select a valid number of eggs",
   "SELF-DESTRUCT": "Self-Destruct",
   "SENTRET": "Sentret",
   "SERPERIOR": "Serperior",

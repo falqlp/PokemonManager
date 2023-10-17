@@ -32,10 +32,17 @@ class PokemonBaseService extends ReadOnlyService<IPokemonBase> {
   }
 
   public chooseTypeBasedOnWishlist(wishlist: IWishList): string {
-    const randomNumber = Math.random() * 100;
+    const filteredTypes = Object.entries(
+      (
+        wishlist.typeRepartition as unknown as { toObject: () => any }
+      ).toObject()
+    ).filter(
+      ([type, percentage]) => percentage !== null && (percentage as number) > 0
+    );
     let cumulative = 0;
-    for (const [type, percentage] of Object.entries(wishlist.typeRepartition)) {
-      cumulative += percentage;
+    const randomNumber = Math.random() * 100;
+    for (const [type, percentage] of filteredTypes) {
+      cumulative += percentage as number;
       if (randomNumber < cumulative) {
         return type;
       }
