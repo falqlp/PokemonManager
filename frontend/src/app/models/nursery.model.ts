@@ -26,10 +26,13 @@ export interface WishListModel {
   quantity: number;
 }
 
+export type NurserySteps = 'WISHLIST' | 'FIRST_SELECTION' | 'LAST_SELECTION';
+
 export interface NurseryModel {
   _id: string;
   gameId: string;
   level: number;
   wishList?: WishListModel;
   eggs?: PokemonModel[];
+  step: NurserySteps;
 }

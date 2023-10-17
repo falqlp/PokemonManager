@@ -1,0 +1,38 @@
+@import "src/styles/flexbox";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  .nursery {
+    &__top-content {
+      display: flex;
+      gap: 15px;
+      &__infos {
+        @include flexbox(left, 1, column);
+        flex: 1;
+      }
+    }
+    &__pokemon-list {
+      @include flexbox(left, 1, column);
+      gap: 10px;
+
+      &__header {
+        @include flexbox(left, 2);
+        width: 99%;
+        justify-content: space-between;
+      }
+
+      &__eggs {
+        @include flexbox(left, 1);
+        gap: 10px;
+        padding: 0;
+
+        &__egg {
+          @include flexbox(left, 2, column);
+          gap: 5px;
+        }
+      }
+    }
+  }
+}

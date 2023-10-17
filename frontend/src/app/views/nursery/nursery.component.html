@@ -1,0 +1,32 @@
+<div class="nursery__top-content" *ngIf="nursery">
+  <pm-nursery-wishlist-form [nursery]="nursery"></pm-nursery-wishlist-form>
+  <div class="nursery__top-content__infos">
+    <span>{{ nursery?.level }}</span>
+    <span>{{ nursery?.step | translate }}</span>
+  </div>
+</div>
+<div class="nursery__pokemon-list" *ngIf="nursery?.step !== 'WISHLIST'">
+  <div class="nursery__pokemon-list__header">
+    <span
+      >{{ "MAX_POKEMONS_TO_KEEP" | translate }} : {{ nursery?.eggs?.length }}/{{
+        nursery?.wishList?.quantity * 2
+      }}</span
+    >
+    <button mat-flat-button color="warn">{{ "SUBMIT" | translate }}</button>
+  </div>
+  <div *ngIf="nursery?.eggs" class="nursery__pokemon-list__eggs">
+    <div
+      *ngFor="let egg of nursery.eggs"
+      class="nursery__pokemon-list__eggs__egg"
+    >
+      <app-display-pokemon-image
+        [pokemon]="egg"
+        type="thumbnails"
+      ></app-display-pokemon-image>
+      {{ "POTENTIAL" | translate }} : {{ egg.hiddenPotential }}
+      <button mat-flat-button (click)="release(egg)" color="warn">
+        {{ "RELEASE" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

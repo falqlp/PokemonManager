@@ -162,8 +162,10 @@ class PokemonMapper implements IMapper<IPokemon> {
   }
 
   public generateHiddenPotentail(potential: number): string {
-    const pMin = potential - Math.floor(Math.random() * 11);
-    const pMax = potential + Math.floor(Math.random() * 11);
+    const pMin =
+      potential - Math.floor(Math.random() * 3 * Math.sqrt(potential));
+    const pMax =
+      potential + Math.floor(Math.random() * 3 * Math.sqrt(potential));
     return `${pMin < 0 ? 0 : pMin} - ${pMax > 100 ? 100 : pMax}`;
   }
 

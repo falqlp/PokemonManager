@@ -1,17 +1,35 @@
+@import "src/styles/flexbox";
+
 .nursery-wishlist {
-  width: 1008px;
-  display: flex;
-  flex-wrap: wrap;
+  @include flexbox(flex-start, 1);
   gap: 10px;
-  flex-direction: column;
-  padding-top: 30px;
-  align-content: flex-start;
-  &__form {
-    width: 150px;
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    padding-right: 20px;
+  align-items: flex-start;
+  &__right-part {
+    @include flexbox(flex-start, 2, column);
+    gap: 10px;
+    &__forms {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-right: 20px;
+      height: 338px;
+      &__form {
+        width: 150px;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        padding-right: 20px;
+      }
+    }
+    &__buttons {
+      display: flex;
+      gap: 10px;
+      &__button {
+        flex: 1;
+      }
+    }
+    &__buttons,
     &__input {
       width: 100%;
       ::ng-deep {
@@ -23,12 +41,8 @@
         }
       }
     }
-    &__suffix {
-      padding: 5px;
-    }
   }
   &__recap {
-    display: flex;
-    flex-direction: column;
+    @include flexbox(flex-start, 2, column);
   }
 }

@@ -42,7 +42,10 @@
         background-color: #9100ff;
         padding: 5px;
         &--passed {
-          background-color: #553d67;
+          background-color: #777373;
+        }
+        &--green {
+          background-color: #44c74a;
         }
       }
     }

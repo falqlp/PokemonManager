@@ -50,6 +50,8 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
       case 'max-size':
         this.imageUrl = `assets/images/max-size/${idString}.png`;
         break;
+      default:
+        this.imageUrl = `assets/images/max-size/${idString}.png`;
     }
   }
 }

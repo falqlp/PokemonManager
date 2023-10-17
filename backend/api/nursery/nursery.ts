@@ -46,11 +46,14 @@ const TypeRepartitionSchema = new Schema({
   water: Number,
 });
 
+export type NurserySteps = "WISHLIST" | "FIRST_SELECTION" | "LAST_SELECTION";
+
 export interface INursery extends Document {
   gameId: string;
   level: number;
   wishList?: IWishList;
   eggs?: IPokemon[];
+  step: NurserySteps;
 }
 
 const WishListSchema = new Schema({
@@ -75,6 +78,7 @@ const NurserySchema = new Schema<INursery>({
   },
   wishList: WishListSchema,
   eggs: [{ type: Schema.Types.ObjectId, ref: "Pokemon" }],
+  step: String,
 });
 
 const Nursery = mongoose.model<INursery>("Nursery", NurserySchema);

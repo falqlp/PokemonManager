@@ -2,10 +2,16 @@ import mongoose, { Document, Schema } from "mongoose";
 import { IBattleInstance } from "../battle-instance/battle";
 import { ITrainer } from "../trainer/trainer";
 
+export type CalendarEventEvent =
+  | "Battle"
+  | "GenerateNurseryEggs"
+  | "NurseryFirstSelectionDeadline"
+  | "NurserySecondSelectionDeadline";
+
 export interface ICalendarEvent extends Document {
   date: Date;
-  type: string;
-  event: IBattleInstance;
+  type: CalendarEventEvent;
+  event?: IBattleInstance;
   trainers: ITrainer[];
   gameId: string;
 }

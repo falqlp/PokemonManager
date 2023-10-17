@@ -15,4 +15,5 @@ export interface PokemonModel {
   iv?: PokemonStatsModel;
   currentHp?: number;
   maxLevel: number;
+  hiddenPotential: string;
 }

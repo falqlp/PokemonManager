@@ -1,0 +1,9 @@
+:host {
+  overflow: hidden;
+}
+
+.content {
+  margin: 15px;
+  overflow-y: auto;
+  height: calc(100vh - 77px);
+}

@@ -15,6 +15,9 @@ class NurseryMapper implements IMapper<INursery> {
   }
 
   public update(dto: INursery): INursery {
+    if (!dto.step) {
+      dto.step = "WISHLIST";
+    }
     if (!dto.level) {
       dto.level = 1;
     }

@@ -2,7 +2,14 @@ import { Component, DestroyRef, Input, OnInit } from '@angular/core';
 import { TimeService } from '../../services/time.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map, Observable, switchMap } from 'rxjs';
-import { AsyncPipe, NgClass, NgForOf } from '@angular/common';
+import {
+  AsyncPipe,
+  NgClass,
+  NgForOf,
+  NgIf,
+  NgSwitch,
+  NgSwitchCase,
+} from '@angular/common';
 import { CalendarEventModel } from '../../models/calendar-event.model';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
@@ -14,7 +21,15 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-top-bar-week-calendar',
   templateUrl: './top-bar-week-calendar.component.html',
   styleUrls: ['./top-bar-week-calendar.component.scss'],
-  imports: [NgForOf, AsyncPipe, NgClass, TranslateModule],
+  imports: [
+    NgForOf,
+    AsyncPipe,
+    NgClass,
+    TranslateModule,
+    NgIf,
+    NgSwitch,
+    NgSwitchCase,
+  ],
 })
 export class TopBarWeekCalendarComponent implements OnInit {
   @Input() public player: TrainerModel;

@@ -13,10 +13,12 @@ class CalendarEventMapper implements IMapper<ICalendarEvent> {
     dto: ICalendarEvent,
     gameId: string
   ): Promise<ICalendarEvent> {
-    dto.event = await this.battleInstanceService.get(
-      dto.event as unknown as string,
-      { gameId }
-    );
+    if (dto.type === "Battle") {
+      dto.event = await this.battleInstanceService.get(
+        dto.event as unknown as string,
+        { gameId }
+      );
+    }
     dto.trainers = await this.trainerService.listPartial(
       {
         ids: dto.trainers as unknown as string[],

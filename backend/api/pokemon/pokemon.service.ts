@@ -9,7 +9,7 @@ import { eggHatched } from "../../websocketServer";
 import { Model } from "mongoose";
 import { IMapper } from "../IMapper";
 import PokemonBaseService from "../pokemonBase/pokemonBase.service";
-import { INursery, IWishList } from "../nursery/nursery";
+import Nursery, { INursery, IWishList } from "../nursery/nursery";
 import normalRandomUtils from "../../utils/normalRandomUtils";
 
 class PokemonService extends CompleteService<IPokemon> {
@@ -146,8 +146,14 @@ class PokemonService extends CompleteService<IPokemon> {
     nursery: INursery,
     gameId: string
   ): Promise<IPokemon> {
-    const potential =
-      10 + Math.floor(normalRandomUtils.normalRandom(nursery.level * 10, 5));
+    let potential =
+      10 + Math.floor(normalRandomUtils.normalRandom(nursery.level * 10, 6));
+    if (potential > 100) {
+      potential = 100;
+    }
+    if (potential < 0) {
+      potential = 0;
+    }
     const egg = {
       basePokemon: await this.pokemonBaseService.generateEggBase(
         nursery.wishList
@@ -156,6 +162,18 @@ class PokemonService extends CompleteService<IPokemon> {
       potential,
     };
     return this.create(egg as IPokemon, gameId);
+  }
+
+  public override async delete(_id: string) {
+    await Trainer.updateMany(
+      { pokemons: { $in: [_id] } },
+      { $pull: { pokemons: _id } }
+    );
+    await Nursery.updateMany(
+      { eggs: { $in: [_id] } },
+      { $pull: { eggs: _id } }
+    );
+    return super.delete(_id);
   }
 }
 

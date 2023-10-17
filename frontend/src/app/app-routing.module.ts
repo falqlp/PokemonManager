@@ -8,6 +8,7 @@ import { BattleResumeComponent } from './views/battle-resume/battle-resume.compo
 import { PcStorageComponent } from './views/pc-storage/pc-storage.component';
 import { TrainersComponent } from './views/trainers/trainers.component';
 import { GamesComponent } from './views/games/games.component';
+import { NurseryComponent } from './views/nursery/nursery.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: { title: 'HOME' } },
@@ -36,6 +37,11 @@ const routes: Routes = [
     path: 'games',
     component: GamesComponent,
     data: { title: 'PARTIES' },
+  },
+  {
+    path: 'nursery',
+    component: NurseryComponent,
+    data: { title: 'NURSERY' },
   },
 ];
 

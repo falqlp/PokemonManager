@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import { Component, DestroyRef, Input, OnInit } from '@angular/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatInputModule } from '@angular/material/input';
 import {
@@ -14,12 +14,18 @@ import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { PieComponent } from '../../components/pie/pie.component';
 import { PieDataModel } from '../../components/pie/pie.model';
 import { ColorService } from '../../services/color.service';
-import { PlayerService } from '../../services/player.service';
 import { NurseryModel, WishListModel } from '../../models/nursery.model';
 import { NurseryQueriesService } from '../../services/queries/nursery-queries.service';
-import { switchMap } from 'rxjs';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { GenericDialogComponent } from '../generic-dialog/generic-dialog.component';
+import { DialogButtonsModel } from '../generic-dialog/generic-dialog.models';
+import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
+import { forkJoin, map, switchMap } from 'rxjs';
+import { PlayerService } from '../../services/player.service';
+import { TimeService } from '../../services/time.service';
+import { CalendarEventModel } from '../../models/calendar-event.model';
 
 @Component({
   selector: 'pm-nursery-wishlist-form',
@@ -40,6 +46,8 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./nursery-wishlist-form.component.scss'],
 })
 export class NurseryWishlistFormComponent implements OnInit {
+  @Input() public nursery: NurseryModel;
+
   protected readonly typeNames: string[] = [
     'bug',
     'dark',
@@ -68,25 +76,21 @@ export class NurseryWishlistFormComponent implements OnInit {
 
   protected pieData: PieDataModel[] = [];
   protected pieColors: string[] = [];
-  protected nursery: NurseryModel;
 
   constructor(
     protected colorService: ColorService,
+    protected nurseryQueriesService: NurseryQueriesService,
+    protected destroyRef: DestroyRef,
+    protected matDialog: MatDialog,
+    protected calendarEventQueriesService: CalendarEventQueriesService,
     protected playerService: PlayerService,
-    protected nurseryQueriesService: NurseryQueriesService
+    protected timeService: TimeService
   ) {}
 
   public ngOnInit(): void {
-    this.playerService.player$
-      .pipe(
-        switchMap((player) => this.nurseryQueriesService.get(player.nursery))
-      )
-      .subscribe((nursery) => {
-        this.nursery = nursery;
-        this.initForm();
-        this.initializeTypeSubscriptions();
-        this.initializeFormValueChanges();
-      });
+    this.initForm();
+    this.initializeTypeSubscriptions();
+    this.initializeFormValueChanges();
   }
 
   protected calculateTotal(values: Record<string, number>): number {
@@ -97,26 +101,28 @@ export class NurseryWishlistFormComponent implements OnInit {
     for (const type of this.typeNames) {
       this.pieColors.push(this.colorService.getColorByType(type.toUpperCase()));
 
-      this.getFormControl(type).valueChanges.subscribe(() => {
-        const values =
-          this.form.controls.typeRepartition.getRawValue() as Record<
-            string,
-            number
-          >;
-        const total = this.calculateTotal(values);
+      this.getFormControl(type)
+        .valueChanges.pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(() => {
+          const values =
+            this.form.controls.typeRepartition.getRawValue() as Record<
+              string,
+              number
+            >;
+          const total = this.calculateTotal(values);
 
-        if (total > 100) {
-          this.substractNext(type, total - 100);
-        }
-      });
+          if (total > 100) {
+            this.substractNext(type, total - 100);
+          }
+        });
     }
   }
 
   protected initializeFormValueChanges(): void {
     this.updatePieData(this.form.controls.typeRepartition.getRawValue());
-    this.form.controls.typeRepartition.valueChanges.subscribe(
-      this.updatePieData
-    );
+    this.form.controls.typeRepartition.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(this.updatePieData);
   }
 
   protected updatePieData = (value: unknown): void => {
@@ -245,10 +251,84 @@ export class NurseryWishlistFormComponent implements OnInit {
     };
   }
 
-  protected submit(): void {
+  protected save(): void {
     this.nursery.wishList = this.form.getRawValue() as WishListModel;
     this.nurseryQueriesService
       .update(this.nursery, this.nursery._id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
+  }
+
+  protected submit(): void {
+    const click = (): void => {
+      this.nursery.step = 'FIRST_SELECTION';
+      this.nursery.wishList = this.form.getRawValue() as WishListModel;
+      this.nurseryQueriesService
+        .update(this.nursery, this.nursery._id)
+        .pipe(
+          takeUntilDestroyed(this.destroyRef),
+          switchMap(() => {
+            return this.playerService.player$;
+          }),
+          switchMap((player) => {
+            return this.timeService.getActualDate().pipe(
+              map((actualDate) => {
+                actualDate.setUTCMonth(actualDate.getUTCMonth() + 1);
+                const firstEventDate = new Date(actualDate);
+                const secondEventDate = new Date(actualDate);
+                const thirdEventDate = new Date(actualDate);
+                secondEventDate.setUTCDate(secondEventDate.getUTCDate() + 7);
+                thirdEventDate.setUTCDate(thirdEventDate.getUTCDate() + 14);
+                const calendarEvents: CalendarEventModel[] = [
+                  {
+                    type: 'GenerateNurseryEggs',
+                    date: firstEventDate,
+                    trainers: [player],
+                  },
+                  {
+                    type: 'NurseryFirstSelectionDeadline',
+                    date: secondEventDate,
+                    trainers: [player],
+                  },
+                  {
+                    type: 'NurserySecondSelectionDeadline',
+                    date: thirdEventDate,
+                    trainers: [player],
+                  },
+                ];
+
+                return calendarEvents;
+              })
+            );
+          }),
+          switchMap((calendarEvents) => {
+            return forkJoin(
+              calendarEvents.map((event) =>
+                this.calendarEventQueriesService.create(event)
+              )
+            );
+          })
+        )
+        .subscribe();
+    };
+    const buttons: DialogButtonsModel[] = [
+      {
+        color: 'accent',
+        close: true,
+        label: 'CANCEL',
+      },
+      {
+        color: 'warn',
+        close: true,
+        label: 'SUBMIT',
+        click,
+      },
+    ];
+    this.matDialog.open(GenericDialogComponent, {
+      data: {
+        message: 'SURE_SEND_WISHLIST',
+        buttons,
+      },
+    });
   }
 }

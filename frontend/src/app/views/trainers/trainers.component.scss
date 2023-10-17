@@ -2,7 +2,6 @@
 
 :host {
   display: block;
-  padding: 15px;
   .trainers {
     @include flexbox(flex-start, 2);
     &__table__pokemons {
