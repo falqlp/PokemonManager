@@ -1,7 +1,4 @@
 {
-  "NURSERY_FIRST_SELECTION": "Première sélection à la pension",
-  "NURSERY_LAST_SELECTION": "Sélection finale à la pension",
-  "NURSERY_EGGS_ARRIVAL_DATE": "Date d'arrivée des œufs à la pension",
   "10-000-000-VOLT-THUNDERBOLT": "Giga-Tonnerre",
   "ABOMASNOW": "Blizzaroi",
   "ABRA": "Abra",
@@ -1171,6 +1168,9 @@
   "NUMBER_OF_WISHED_POKEMON": "Nombre de pokémons souhaités",
   "NUMEL": "Chamallot",
   "NURSERY": "Pension",
+  "NURSERY_EGGS_ARRIVAL_DATE": "Date d'arrivée des œufs à la pension",
+  "NURSERY_FIRST_SELECTION": "Première sélection à la pension",
+  "NURSERY_LAST_SELECTION": "Sélection finale à la pension",
   "NUZLEAF": "Pifeuil",
   "NUZZLE": "Frotte-Frimousse",
   "NYMBLE": "Lilliterelle",
