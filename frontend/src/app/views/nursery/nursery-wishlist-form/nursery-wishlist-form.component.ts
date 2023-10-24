@@ -11,21 +11,21 @@ import {
   Validators,
 } from '@angular/forms';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
-import { PieComponent } from '../../components/pie/pie.component';
-import { PieDataModel } from '../../components/pie/pie.model';
-import { ColorService } from '../../services/color.service';
-import { NurseryModel, WishListModel } from '../../models/nursery.model';
-import { NurseryQueriesService } from '../../services/queries/nursery-queries.service';
+import { PieComponent } from '../../../components/pie/pie.component';
+import { PieDataModel } from '../../../components/pie/pie.model';
+import { ColorService } from '../../../services/color.service';
+import { NurseryModel, WishListModel } from '../../../models/nursery.model';
+import { NurseryQueriesService } from '../../../services/queries/nursery-queries.service';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { GenericDialogComponent } from '../generic-dialog/generic-dialog.component';
-import { DialogButtonsModel } from '../generic-dialog/generic-dialog.models';
-import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
+import { GenericDialogComponent } from '../../../modals/generic-dialog/generic-dialog.component';
+import { DialogButtonsModel } from '../../../modals/generic-dialog/generic-dialog.models';
+import { CalendarEventQueriesService } from '../../../services/queries/calendar-event-queries.service';
 import { forkJoin, map, switchMap } from 'rxjs';
-import { PlayerService } from '../../services/player.service';
-import { TimeService } from '../../services/time.service';
-import { CalendarEventModel } from '../../models/calendar-event.model';
+import { PlayerService } from '../../../services/player.service';
+import { TimeService } from '../../../services/time.service';
+import { CalendarEventModel } from '../../../models/calendar-event.model';
 
 @Component({
   selector: 'pm-nursery-wishlist-form',

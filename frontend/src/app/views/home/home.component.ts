@@ -19,7 +19,7 @@ import { TimeService } from '../../services/time.service';
 import { GameQueriesService } from '../../services/queries/game-queries.service';
 import { WebsocketService } from '../../services/websocket.service';
 import { NotifierService } from 'angular-notifier';
-import { NurseryWishlistFormComponent } from '../../modals/nursery-wishlist-form/nursery-wishlist-form.component';
+import { NurseryWishlistFormComponent } from '../nursery/nursery-wishlist-form/nursery-wishlist-form.component';
 import { PokemonBaseQueriesService } from '../../services/queries/pokemon-base-queries.service';
 import { NurseryQueriesService } from '../../services/queries/nursery-queries.service';
 import { switchMap } from 'rxjs';

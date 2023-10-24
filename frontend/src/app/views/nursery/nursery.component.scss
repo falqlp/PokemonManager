@@ -12,6 +12,16 @@
       &__infos {
         @include flexbox(left, 1, column);
         flex: 1;
+        &__image {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          img {
+            height: 300px;
+            border: $btn-accent-color 10px solid;
+            border-radius: 50px;
+          }
+        }
       }
     }
     &__pokemon-list {

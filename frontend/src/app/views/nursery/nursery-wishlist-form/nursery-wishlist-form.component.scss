@@ -7,6 +7,7 @@
   &__right-part {
     @include flexbox(flex-start, 2, column);
     gap: 10px;
+    min-width: 530px;
     &__forms {
       display: flex;
       flex-direction: column;

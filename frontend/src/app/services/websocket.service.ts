@@ -31,9 +31,7 @@ export class WebsocketService {
     protected translateService: TranslateService,
     protected cacheService: CacheService,
     protected dialog: MatDialog
-  ) {
-    this.connect();
-  }
+  ) {}
 
   private getWebSocketConfig(): WebSocketSubjectConfig<WebSocketModel> {
     return {
@@ -52,7 +50,7 @@ export class WebsocketService {
     };
   }
 
-  private connect(): void {
+  public connect(): void {
     this.websocket = webSocket(this.getWebSocketConfig());
     this.websocket
       .pipe(
