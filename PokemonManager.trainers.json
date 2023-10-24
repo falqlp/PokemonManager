@@ -4,9 +4,17 @@
   },
   "name": "Adversaire",
   "__v": 0,
-  "pokemons": [],
+  "pokemons": [
+    {
+      "$oid": "650c529aa9ea229bbde2756d"
+    },
+    {
+      "$oid": "6523ab8f017a703859eeaaa7"
+    }
+  ],
   "pcStorage": "64d295c8487e7adbae453413",
-  "trainingCamp": "6503272815c7b467b2da6c70"
+  "trainingCamp": "6503272815c7b467b2da6c70",
+  "gameId": "64fd9cf21308150436317aed"
 },
 {
   "_id": {
@@ -16,7 +24,8 @@
   "pokemons": [],
   "__v": 0,
   "pcStorage": "64d295d38af14fe63a1c1142",
-  "trainingCamp": "6503273378b1a2f57a91b41c"
+  "trainingCamp": "6503273378b1a2f57a91b41c",
+  "gameId": "64fd9cf21308150436317aed"
 },
 {
   "_id": {
@@ -24,11 +33,46 @@
   },
   "name": "Popole",
   "__v": 0,
-  "pokemons": [],
+  "pokemons": [
+    {
+      "$oid": "6523aba6017a703859eeaadf"
+    },
+    {
+      "$oid": "6523ac0a017a703859eeaba6"
+    },
+    {
+      "$oid": "6523f446348a60a2715a6e6f"
+    },
+    {
+      "$oid": "65253ff76122daba55b2f7d4"
+    },
+    {
+      "$oid": "650add5b8a62410b9489ccc1"
+    }
+  ],
   "pcStorage": {
     "$oid": "64d295d602f276756870fd45"
   },
   "trainingCamp": {
     "$oid": "6503273e2bb2654a36a46b6d"
+  },
+  "gameId": "64fd9cf21308150436317aed",
+  "nursery": {
+    "$oid": "65293f4512d5308945ca1123"
   }
+},
+{
+  "_id": {
+    "$oid": "65195a9a2df1bc2afd40607a"
+  },
+  "name": "fghfghfg",
+  "pokemons": [],
+  "pcStorage": {
+    "$oid": "65195a9a2df1bc2afd406075"
+  },
+  "trainingCamp": {
+    "$oid": "65195a9a2df1bc2afd406077"
+  },
+  "gameId": "65195a9a2df1bc2afd406072",
+  "__v": 0
 }]

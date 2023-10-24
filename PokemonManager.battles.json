@@ -1,76 +1,98 @@
 [{
   "_id": {
-    "$oid": "64ce7de19f62f93f535463cc"
+    "$oid": "650976b16664cc928d835514"
   },
   "player": {
-    "$oid": "649e0e86e45d3dab76652543"
-  },
-  "opponent": {
     "$oid": "6496f985f15bc10f660c1958"
   },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "64ce8a510611a7c86d737792"
-  },
-  "player": {
-    "$oid": "649e0e86e45d3dab76652543"
-  },
   "opponent": {
-    "$oid": "6496f985f15bc10f660c1958"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "64cffbab37682ecceed4cb2f"
-  },
-  "player": {
     "$oid": "649e0e86e45d3dab76652543"
-  },
-  "opponent": {
-    "$oid": "6496f985f15bc10f660c1958"
   },
   "__v": 0,
-  "winner": "player"
+  "winner": "opponent",
+  "gameId": "64fd9cf21308150436317aed"
 },
 {
   "_id": {
-    "$oid": "64cffc7737682ecceed4cc24"
+    "$oid": "650977186664cc928d8355d2"
   },
   "player": {
-    "$oid": "649e0e86e45d3dab76652543"
-  },
-  "opponent": {
     "$oid": "6496f985f15bc10f660c1958"
   },
+  "opponent": {
+    "$oid": "649e0e86e45d3dab76652543"
+  },
   "__v": 0,
-  "winner": "player"
+  "winner": "opponent",
+  "gameId": "64fd9cf21308150436317aed"
 },
 {
   "_id": {
-    "$oid": "64d14a4d37682ecceed4d758"
+    "$oid": "650c52a1a9ea229bbde2757f"
   },
   "player": {
-    "$oid": "649e0e86e45d3dab76652543"
-  },
-  "opponent": {
     "$oid": "6496f985f15bc10f660c1958"
   },
+  "opponent": {
+    "$oid": "649e0e86e45d3dab76652543"
+  },
   "__v": 0,
-  "winner": "player"
+  "winner": "opponent",
+  "gameId": "64fd9cf21308150436317aed"
 },
 {
   "_id": {
-    "$oid": "64d14ab737682ecceed4d7a9"
+    "$oid": "6523abb1017a703859eeab09"
   },
   "player": {
-    "$oid": "649e0e86e45d3dab76652543"
-  },
-  "opponent": {
     "$oid": "6496f985f15bc10f660c1958"
   },
+  "opponent": {
+    "$oid": "649e0e86e45d3dab76652543"
+  },
+  "gameId": "64fd9cf21308150436317aed",
   "__v": 0,
-  "winner": "player"
+  "winner": "opponent"
+},
+{
+  "_id": {
+    "$oid": "65257de6b394aa9f0ca10d9b"
+  },
+  "player": {
+    "$oid": "6496f985f15bc10f660c1958"
+  },
+  "opponent": {
+    "$oid": "649e0e86e45d3dab76652543"
+  },
+  "gameId": "64fd9cf21308150436317aed",
+  "__v": 0,
+  "winner": "opponent"
+},
+{
+  "_id": {
+    "$oid": "65269d74b4255c3af61444fa"
+  },
+  "player": {
+    "$oid": "6496f985f15bc10f660c1958"
+  },
+  "opponent": {
+    "$oid": "649e0e86e45d3dab76652543"
+  },
+  "gameId": "64fd9cf21308150436317aed",
+  "__v": 0,
+  "winner": "opponent"
+},
+{
+  "_id": {
+    "$oid": "652d9fd8e8b9242bdb566481"
+  },
+  "player": {
+    "$oid": "6496f985f15bc10f660c1958"
+  },
+  "opponent": {
+    "$oid": "649e0e86e45d3dab76652543"
+  },
+  "gameId": "64fd9cf21308150436317aed",
+  "__v": 0,
+  "winner": "opponent"
 }]

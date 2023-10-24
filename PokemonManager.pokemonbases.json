@@ -619,7 +619,7 @@
   },
   "name": "COSMOEM",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "legendary": true,
@@ -645,7 +645,7 @@
   },
   "name": "COSMOG",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "legendary": true,
@@ -1064,7 +1064,7 @@
   "name": "ORBEETLE",
   "types": [
     "BUG",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "genderRate": 32,
@@ -1223,7 +1223,7 @@
   "name": "BELDUM",
   "types": [
     "STEEL",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 3,
   "baseHappiness": 35,
@@ -1249,7 +1249,7 @@
   "name": "DOTTLER",
   "types": [
     "BUG",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 120,
   "genderRate": 32,
@@ -1589,7 +1589,7 @@
   },
   "name": "HATENNA",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 235,
   "genderRate": 64,
@@ -1695,7 +1695,7 @@
   },
   "name": "HATTREM",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 120,
   "genderRate": 64,
@@ -2380,7 +2380,7 @@
   "name": "VELUZA",
   "types": [
     "WATER",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 100,
   "genderRate": 32,
@@ -2644,7 +2644,7 @@
   },
   "name": "WOBBUFFET",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "genderRate": 32,
@@ -2670,7 +2670,7 @@
   },
   "name": "WYNAUT",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "baby": true,
   "captureRate": 125,
@@ -3539,7 +3539,7 @@
   },
   "name": "INDEEDEE-MALE",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "NORMAL"
   ],
   "captureRate": 30,
@@ -3646,7 +3646,7 @@
   },
   "name": "CALYREX",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "GRASS"
   ],
   "captureRate": 3,
@@ -3753,7 +3753,7 @@
   "name": "WYRDEER",
   "types": [
     "NORMAL",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 135,
   "genderRate": 32,
@@ -3966,7 +3966,7 @@
   "name": "ARMAROUGE",
   "types": [
     "FIRE",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 25,
   "genderRate": 32,
@@ -4315,7 +4315,7 @@
   "name": "FARIGIRAF",
   "types": [
     "NORMAL",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "genderRate": 32,
@@ -4342,7 +4342,7 @@
   "name": "SCREAM-TAIL",
   "types": [
     "FAIRY",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 50,
   "baseHappiness": 0,
@@ -4765,7 +4765,7 @@
   },
   "name": "UNOWN",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 225,
   "baseHappiness": 70,
@@ -5209,7 +5209,7 @@
   },
   "name": "FLITTLE",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 120,
   "genderRate": 32,
@@ -5580,7 +5580,7 @@
   "name": "BRUXISH",
   "types": [
     "WATER",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 80,
   "genderRate": 32,
@@ -5660,7 +5660,7 @@
   },
   "name": "LUNALA",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "GHOST"
   ],
   "captureRate": 45,
@@ -5926,7 +5926,7 @@
   },
   "name": "SOLGALEO",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "STEEL"
   ],
   "captureRate": 45,
@@ -5953,7 +5953,7 @@
   },
   "name": "TAPU-LELE",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FAIRY"
   ],
   "captureRate": 3,
@@ -6163,7 +6163,7 @@
   },
   "name": "NECROZMA",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 255,
   "legendary": true,
@@ -6376,7 +6376,7 @@
   "name": "RABSCA",
   "types": [
     "BUG",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "genderRate": 32,
@@ -6905,7 +6905,7 @@
   },
   "name": "ESPATHRA",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 60,
   "genderRate": 32,
@@ -6932,7 +6932,7 @@
   "name": "IRON-LEAVES",
   "types": [
     "GRASS",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 5,
   "baseHappiness": 0,
@@ -7619,7 +7619,7 @@
   "name": "INKAY",
   "types": [
     "DARK",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 190,
   "genderRate": 32,
@@ -7646,7 +7646,7 @@
   "name": "MALAMAR",
   "types": [
     "DARK",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 80,
   "genderRate": 32,
@@ -8417,7 +8417,7 @@
   "name": "MR-RIME",
   "types": [
     "ICE",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "genderRate": 32,
@@ -8733,7 +8733,7 @@
   },
   "name": "MUSHARNA",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 75,
   "genderRate": 32,
@@ -9897,7 +9897,7 @@
   },
   "name": "HATTERENE",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FAIRY"
   ],
   "captureRate": 45,
@@ -10429,7 +10429,7 @@
   "name": "DELPHOX",
   "types": [
     "FIRE",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "genderRate": 8,
@@ -10562,7 +10562,7 @@
   },
   "name": "HOOPA",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "GHOST"
   ],
   "captureRate": 3,
@@ -10879,7 +10879,7 @@
   },
   "name": "ESPURR",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 190,
   "genderRate": 32,
@@ -10906,7 +10906,7 @@
   "name": "ORANGURU",
   "types": [
     "NORMAL",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "genderRate": 32,
@@ -11276,7 +11276,7 @@
   },
   "name": "MUNNA",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 190,
   "genderRate": 32,
@@ -11886,7 +11886,7 @@
   },
   "name": "SOLOSIS",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 200,
   "genderRate": 32,
@@ -12788,7 +12788,7 @@
   },
   "name": "CHINGLING",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "baby": true,
   "captureRate": 120,
@@ -12815,7 +12815,7 @@
   },
   "name": "VICTINI",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FIRE"
   ],
   "captureRate": 3,
@@ -12921,7 +12921,7 @@
   },
   "name": "SIGILYPH",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FLYING"
   ],
   "captureRate": 45,
@@ -13028,7 +13028,7 @@
   },
   "name": "BEHEEYEM",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 90,
   "genderRate": 32,
@@ -13080,7 +13080,7 @@
   },
   "name": "ELGYEM",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 255,
   "genderRate": 32,
@@ -13349,7 +13349,7 @@
   },
   "name": "MEOWSTIC-MALE",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 75,
   "genderRate": 32,
@@ -14326,7 +14326,7 @@
   },
   "name": "GOTHITELLE",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 50,
   "genderRate": 48,
@@ -14352,7 +14352,7 @@
   },
   "name": "GOTHITA",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 200,
   "genderRate": 48,
@@ -14405,7 +14405,7 @@
   "name": "MELOETTA-ARIA",
   "types": [
     "NORMAL",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 3,
   "mythical": true,
@@ -15094,7 +15094,7 @@
   "name": "BRONZOR",
   "types": [
     "STEEL",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 255,
   "baseHappiness": 50,
@@ -16525,7 +16525,7 @@
   },
   "name": "CRESSELIA",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 3,
   "genderRate": 64,
@@ -16552,7 +16552,7 @@
   },
   "name": "GOTHORITA",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 100,
   "genderRate": 48,
@@ -16578,7 +16578,7 @@
   },
   "name": "SWOOBAT",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FLYING"
   ],
   "captureRate": 45,
@@ -16605,7 +16605,7 @@
   },
   "name": "WOOBAT",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FLYING"
   ],
   "captureRate": 190,
@@ -16632,7 +16632,7 @@
   },
   "name": "REUNICLUS",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 50,
   "genderRate": 32,
@@ -17531,7 +17531,7 @@
   },
   "name": "DUOSION",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 100,
   "genderRate": 32,
@@ -18140,7 +18140,7 @@
   },
   "name": "CHIMECHO",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "genderRate": 32,
@@ -18405,7 +18405,7 @@
   "name": "METANG",
   "types": [
     "STEEL",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 3,
   "baseHappiness": 35,
@@ -18484,7 +18484,7 @@
   "name": "BRONZONG",
   "types": [
     "STEEL",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 90,
   "baseHappiness": 50,
@@ -18801,7 +18801,7 @@
   },
   "name": "UXIE",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 3,
   "legendary": true,
@@ -18854,7 +18854,7 @@
   },
   "name": "MESPRIT",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 3,
   "legendary": true,
@@ -19171,7 +19171,7 @@
   "name": "STARMIE",
   "types": [
     "WATER",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 60,
   "baseHappiness": 50,
@@ -19381,7 +19381,7 @@
   },
   "name": "SPOINK",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 255,
   "genderRate": 32,
@@ -19488,7 +19488,7 @@
   "name": "METAGROSS",
   "types": [
     "STEEL",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 3,
   "baseHappiness": 35,
@@ -20204,7 +20204,7 @@
   },
   "name": "AZELF",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 3,
   "legendary": true,
@@ -20524,7 +20524,7 @@
   },
   "name": "ABRA",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 200,
   "genderRate": 16,
@@ -20550,7 +20550,7 @@
   },
   "name": "XATU",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FLYING"
   ],
   "captureRate": 75,
@@ -20710,7 +20710,7 @@
   "name": "EXEGGCUTE",
   "types": [
     "GRASS",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 90,
   "genderRate": 32,
@@ -20867,7 +20867,7 @@
   "name": "MEDICHAM",
   "types": [
     "FIGHTING",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 90,
   "genderRate": 32,
@@ -21049,7 +21049,7 @@
   },
   "name": "GRUMPIG",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 60,
   "genderRate": 32,
@@ -21102,7 +21102,7 @@
   },
   "name": "KIRLIA",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FAIRY"
   ],
   "captureRate": 120,
@@ -22033,7 +22033,7 @@
   "name": "BALTOY",
   "types": [
     "GROUND",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 255,
   "baseHappiness": 50,
@@ -22058,7 +22058,7 @@
   },
   "name": "DEOXYS-NORMAL",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 3,
   "mythical": true,
@@ -22111,7 +22111,7 @@
   },
   "name": "MIME-JR",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FAIRY"
   ],
   "baby": true,
@@ -22167,7 +22167,7 @@
   "name": "EXEGGUTOR",
   "types": [
     "GRASS",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "genderRate": 32,
@@ -22591,7 +22591,7 @@
   "name": "MEDITITE",
   "types": [
     "FIGHTING",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 180,
   "genderRate": 32,
@@ -22774,7 +22774,7 @@
   },
   "name": "CELEBI",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "GRASS"
   ],
   "captureRate": 45,
@@ -22828,7 +22828,7 @@
   },
   "name": "NATU",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FLYING"
   ],
   "captureRate": 190,
@@ -23120,7 +23120,7 @@
   },
   "name": "ESPEON",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "genderRate": 8,
@@ -23330,7 +23330,7 @@
   "name": "LUNATONE",
   "types": [
     "ROCK",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "baseHappiness": 50,
@@ -23804,7 +23804,7 @@
   },
   "name": "RALTS",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FAIRY"
   ],
   "captureRate": 235,
@@ -24018,7 +24018,7 @@
   "name": "SOLROCK",
   "types": [
     "ROCK",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "baseHappiness": 50,
@@ -24311,7 +24311,7 @@
   "name": "SMOOCHUM",
   "types": [
     "ICE",
-    "PSYCHIC"
+    "PSY"
   ],
   "baby": true,
   "captureRate": 45,
@@ -24339,7 +24339,7 @@
   "name": "CLAYDOL",
   "types": [
     "GROUND",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 90,
   "baseHappiness": 50,
@@ -24418,7 +24418,7 @@
   "name": "JIRACHI",
   "types": [
     "STEEL",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 3,
   "mythical": true,
@@ -24682,7 +24682,7 @@
   },
   "name": "KADABRA",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 100,
   "genderRate": 16,
@@ -24787,7 +24787,7 @@
   },
   "name": "LUGIA",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FLYING"
   ],
   "captureRate": 3,
@@ -25105,7 +25105,7 @@
   },
   "name": "GARDEVOIR",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FAIRY"
   ],
   "captureRate": 45,
@@ -25133,7 +25133,7 @@
   "name": "LATIAS",
   "types": [
     "DRAGON",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 3,
   "genderRate": 64,
@@ -25161,7 +25161,7 @@
   "name": "LATIOS",
   "types": [
     "DRAGON",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 3,
   "genderRate": 0,
@@ -25188,7 +25188,7 @@
   },
   "name": "GALLADE",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FIGHTING"
   ],
   "captureRate": 45,
@@ -25504,7 +25504,7 @@
   "name": "JYNX",
   "types": [
     "ICE",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "genderRate": 64,
@@ -25556,7 +25556,7 @@
   },
   "name": "ALAKAZAM",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 50,
   "genderRate": 16,
@@ -25663,7 +25663,7 @@
   "name": "GIRAFARIG",
   "types": [
     "NORMAL",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 60,
   "genderRate": 32,
@@ -26168,7 +26168,7 @@
   },
   "name": "DROWZEE",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 190,
   "genderRate": 32,
@@ -26272,7 +26272,7 @@
   },
   "name": "MR-MIME",
   "types": [
-    "PSYCHIC",
+    "PSY",
     "FAIRY"
   ],
   "captureRate": 45,
@@ -26327,7 +26327,7 @@
   "name": "SLOWKING",
   "types": [
     "WATER",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 70,
   "genderRate": 32,
@@ -26406,7 +26406,7 @@
   },
   "name": "HYPNO",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 75,
   "genderRate": 32,
@@ -26485,7 +26485,7 @@
   "name": "SLOWPOKE",
   "types": [
     "WATER",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 190,
   "genderRate": 32,
@@ -26539,7 +26539,7 @@
   "name": "SLOWBRO",
   "types": [
     "WATER",
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 75,
   "genderRate": 32,
@@ -26618,7 +26618,7 @@
   },
   "name": "MEWTWO",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 3,
   "legendary": true,
@@ -26670,7 +26670,7 @@
   },
   "name": "MEW",
   "types": [
-    "PSYCHIC"
+    "PSY"
   ],
   "captureRate": 45,
   "mythical": true,

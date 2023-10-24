@@ -1,0 +1,250 @@
+[{
+  "_id": {
+    "$oid": "650976b16664cc928d835518"
+  },
+  "event": {
+    "$oid": "650976b16664cc928d835514"
+  },
+  "type": "Battle",
+  "date": {
+    "$date": "2023-10-26T00:00:00.000Z"
+  },
+  "trainers": [
+    {
+      "$oid": "6496f985f15bc10f660c1958"
+    },
+    {
+      "$oid": "649e0e86e45d3dab76652543"
+    }
+  ],
+  "__v": 0,
+  "gameId": "64fd9cf21308150436317aed"
+},
+{
+  "_id": {
+    "$oid": "650977186664cc928d8355d6"
+  },
+  "event": {
+    "$oid": "650977186664cc928d8355d2"
+  },
+  "type": "Battle",
+  "date": {
+    "$date": "2023-10-27T00:00:00.000Z"
+  },
+  "trainers": [
+    {
+      "$oid": "6496f985f15bc10f660c1958"
+    },
+    {
+      "$oid": "649e0e86e45d3dab76652543"
+    }
+  ],
+  "__v": 0,
+  "gameId": "64fd9cf21308150436317aed"
+},
+{
+  "_id": {
+    "$oid": "650c52a1a9ea229bbde27583"
+  },
+  "event": {
+    "$oid": "650c52a1a9ea229bbde2757f"
+  },
+  "type": "Battle",
+  "date": {
+    "$date": "2024-01-30T00:00:00.000Z"
+  },
+  "trainers": [
+    {
+      "$oid": "6496f985f15bc10f660c1958"
+    },
+    {
+      "$oid": "649e0e86e45d3dab76652543"
+    }
+  ],
+  "__v": 0,
+  "gameId": "64fd9cf21308150436317aed"
+},
+{
+  "_id": {
+    "$oid": "6523abb1017a703859eeab0d"
+  },
+  "event": {
+    "$oid": "6523abb1017a703859eeab09"
+  },
+  "type": "Battle",
+  "date": {
+    "$date": "2024-01-31T00:00:00.000Z"
+  },
+  "trainers": [
+    {
+      "$oid": "6496f985f15bc10f660c1958"
+    },
+    {
+      "$oid": "649e0e86e45d3dab76652543"
+    }
+  ],
+  "gameId": "64fd9cf21308150436317aed",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65257de6b394aa9f0ca10d9f"
+  },
+  "event": {
+    "$oid": "65257de6b394aa9f0ca10d9b"
+  },
+  "type": "Battle",
+  "date": {
+    "$date": "2024-07-16T00:00:00.000Z"
+  },
+  "trainers": [
+    {
+      "$oid": "6496f985f15bc10f660c1958"
+    },
+    {
+      "$oid": "649e0e86e45d3dab76652543"
+    }
+  ],
+  "gameId": "64fd9cf21308150436317aed",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65269d74b4255c3af61444fe"
+  },
+  "event": {
+    "$oid": "65269d74b4255c3af61444fa"
+  },
+  "type": "Battle",
+  "date": {
+    "$date": "2024-07-17T00:00:00.000Z"
+  },
+  "trainers": [
+    {
+      "$oid": "6496f985f15bc10f660c1958"
+    },
+    {
+      "$oid": "649e0e86e45d3dab76652543"
+    }
+  ],
+  "gameId": "64fd9cf21308150436317aed",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "652d9dcae8b9242bdb56638d"
+  },
+  "type": "GenerateNurseryEggs",
+  "date": {
+    "$date": "2024-08-29T00:00:00.000Z"
+  },
+  "trainers": [
+    {
+      "$oid": "649e0e86e45d3dab76652543"
+    }
+  ],
+  "gameId": "64fd9cf21308150436317aed",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "652d9dcae8b9242bdb56638f"
+  },
+  "type": "NurseryFirstSelectionDeadline",
+  "date": {
+    "$date": "2024-09-05T00:00:00.000Z"
+  },
+  "trainers": [
+    {
+      "$oid": "649e0e86e45d3dab76652543"
+    }
+  ],
+  "gameId": "64fd9cf21308150436317aed",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "652d9dcae8b9242bdb566392"
+  },
+  "type": "NurseryLastSelectionDeadline",
+  "date": {
+    "$date": "2024-09-12T00:00:00.000Z"
+  },
+  "trainers": [
+    {
+      "$oid": "649e0e86e45d3dab76652543"
+    }
+  ],
+  "gameId": "64fd9cf21308150436317aed",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "652d9fd8e8b9242bdb566485"
+  },
+  "event": {
+    "$oid": "652d9fd8e8b9242bdb566481"
+  },
+  "type": "Battle",
+  "date": {
+    "$date": "2024-08-29T00:00:00.000Z"
+  },
+  "trainers": [
+    {
+      "$oid": "6496f985f15bc10f660c1958"
+    },
+    {
+      "$oid": "649e0e86e45d3dab76652543"
+    }
+  ],
+  "gameId": "64fd9cf21308150436317aed",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "652ee9f9cc364d636eed76f5"
+  },
+  "type": "GenerateNurseryEggs",
+  "date": {
+    "$date": "2024-10-13T00:00:00.000Z"
+  },
+  "trainers": [
+    {
+      "$oid": "649e0e86e45d3dab76652543"
+    }
+  ],
+  "gameId": "64fd9cf21308150436317aed",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "652ee9f9cc364d636eed76f7"
+  },
+  "type": "NurseryFirstSelectionDeadline",
+  "date": {
+    "$date": "2024-10-20T00:00:00.000Z"
+  },
+  "trainers": [
+    {
+      "$oid": "649e0e86e45d3dab76652543"
+    }
+  ],
+  "gameId": "64fd9cf21308150436317aed",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "652ee9f9cc364d636eed76f9"
+  },
+  "type": "NurseryLastSelectionDeadline",
+  "date": {
+    "$date": "2024-10-27T00:00:00.000Z"
+  },
+  "trainers": [
+    {
+      "$oid": "649e0e86e45d3dab76652543"
+    }
+  ],
+  "gameId": "64fd9cf21308150436317aed",
+  "__v": 0
+}]

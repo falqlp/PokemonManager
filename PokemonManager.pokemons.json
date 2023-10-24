@@ -1,1 +1,591 @@
-[]
+[{
+  "_id": {
+    "$oid": "650add5b8a62410b9489ccc1"
+  },
+  "trainerId": "649e0e86e45d3dab76652543",
+  "nickname": null,
+  "basePokemon": {
+    "$oid": "64cd65aa3ca816e93375111b"
+  },
+  "level": 60,
+  "exp": 32530,
+  "moves": [
+    {
+      "$oid": "64b0026d3ca816e9336d8fa3"
+    },
+    {
+      "$oid": "64b0026d3ca816e9336d9478"
+    }
+  ],
+  "stats": {
+    "hp": 182,
+    "atk": 119,
+    "def": 107,
+    "spAtk": 128,
+    "spDef": 134,
+    "spe": 101,
+    "_id": {
+      "$oid": "652eea8241ef7770b2d4e9e6"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "650add5b8a62410b9489ccc3"
+    }
+  },
+  "iv": {
+    "hp": 28,
+    "atk": 27,
+    "def": 5,
+    "spAtk": 5,
+    "spDef": 15,
+    "spe": 0,
+    "_id": {
+      "$oid": "650add5b8a62410b9489ccc4"
+    }
+  },
+  "happiness": 50,
+  "age": 0,
+  "potential": 100,
+  "trainingPourcentage": 0,
+  "birthday": {
+    "$date": "2023-10-27T00:00:00.000Z"
+  },
+  "maxLevel": 60,
+  "__v": 0,
+  "gameId": "64fd9cf21308150436317aed",
+  "hiddenPotential": "98 - 100"
+},
+{
+  "_id": {
+    "$oid": "650c529aa9ea229bbde2756d"
+  },
+  "trainerId": "6496f985f15bc10f660c1958",
+  "nickname": null,
+  "basePokemon": {
+    "$oid": "64cd65aa3ca816e933751114"
+  },
+  "level": 1,
+  "exp": 0,
+  "moves": [
+    {
+      "$oid": "64b0026d3ca816e9336d9478"
+    }
+  ],
+  "stats": {
+    "hp": 12,
+    "atk": 6,
+    "def": 6,
+    "spAtk": 6,
+    "spDef": 6,
+    "spe": 6,
+    "_id": {
+      "$oid": "650c529aa9ea229bbde2756e"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "650c529aa9ea229bbde2756f"
+    }
+  },
+  "iv": {
+    "hp": 22,
+    "atk": 2,
+    "def": 8,
+    "spAtk": 23,
+    "spDef": 7,
+    "spe": 13,
+    "_id": {
+      "$oid": "650c529aa9ea229bbde27570"
+    }
+  },
+  "happiness": 50,
+  "age": 0,
+  "potential": 100,
+  "trainingPourcentage": 0,
+  "birthday": {
+    "$date": "2024-01-29T00:00:00.000Z"
+  },
+  "maxLevel": 1,
+  "__v": 0,
+  "gameId": "64fd9cf21308150436317aed"
+},
+{
+  "_id": {
+    "$oid": "6523ab8f017a703859eeaaa7"
+  },
+  "trainerId": "6496f985f15bc10f660c1958",
+  "nickname": null,
+  "basePokemon": {
+    "$oid": "64cd65aa3ca816e9337512c0"
+  },
+  "level": 50,
+  "exp": 0,
+  "moves": [
+    {
+      "$oid": "64b0026d3ca816e9336d93c0"
+    },
+    {
+      "$oid": "64b0026d3ca816e9336d943c"
+    }
+  ],
+  "stats": {
+    "hp": 147,
+    "atk": 99,
+    "def": 92,
+    "spAtk": 125,
+    "spDef": 90,
+    "spe": 113,
+    "_id": {
+      "$oid": "6523ab8f017a703859eeaaa8"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "6523ab8f017a703859eeaaa9"
+    }
+  },
+  "iv": {
+    "hp": 18,
+    "atk": 21,
+    "def": 19,
+    "spAtk": 23,
+    "spDef": 0,
+    "spe": 16,
+    "_id": {
+      "$oid": "6523ab8f017a703859eeaaaa"
+    }
+  },
+  "happiness": 50,
+  "age": 0,
+  "potential": 100,
+  "trainingPourcentage": 0,
+  "birthday": {
+    "$date": "2024-01-30T00:00:00.000Z"
+  },
+  "gameId": "64fd9cf21308150436317aed",
+  "maxLevel": 50,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6523aba6017a703859eeaadf"
+  },
+  "trainerId": "649e0e86e45d3dab76652543",
+  "nickname": null,
+  "basePokemon": {
+    "$oid": "64cd65a93ca816e933751033"
+  },
+  "level": 58,
+  "exp": 77352,
+  "moves": [
+    {
+      "$oid": "64b0026d3ca816e9336d920b"
+    },
+    {
+      "$oid": "64b0026d3ca816e9336d9278"
+    }
+  ],
+  "stats": {
+    "hp": 159,
+    "atk": 132,
+    "def": 96,
+    "spAtk": 128,
+    "spDef": 89,
+    "spe": 143,
+    "_id": {
+      "$oid": "652eea8241ef7770b2d4e9e2"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "6523aba6017a703859eeaae1"
+    }
+  },
+  "iv": {
+    "hp": 5,
+    "atk": 12,
+    "def": 15,
+    "spAtk": 5,
+    "spDef": 3,
+    "spe": 22,
+    "_id": {
+      "$oid": "6523aba6017a703859eeaae2"
+    }
+  },
+  "happiness": 70,
+  "age": 0,
+  "potential": 100,
+  "trainingPourcentage": 0,
+  "birthday": {
+    "$date": "2024-01-30T00:00:00.000Z"
+  },
+  "gameId": "64fd9cf21308150436317aed",
+  "maxLevel": 58,
+  "__v": 0,
+  "hiddenPotential": "74 - 100"
+},
+{
+  "_id": {
+    "$oid": "6523ac0a017a703859eeaba6"
+  },
+  "trainerId": "649e0e86e45d3dab76652543",
+  "nickname": null,
+  "basePokemon": {
+    "$oid": "64cd65a93ca816e93375104e"
+  },
+  "level": 31,
+  "exp": 17370,
+  "moves": [
+    {
+      "$oid": "64b0026d3ca816e9336d8f7d"
+    }
+  ],
+  "stats": {
+    "hp": 87,
+    "atk": 69,
+    "def": 34,
+    "spAtk": 41,
+    "spDef": 58,
+    "spe": 53,
+    "_id": {
+      "$oid": "652eea8241ef7770b2d4e9e3"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "6523ac0a017a703859eeaba8"
+    }
+  },
+  "iv": {
+    "hp": 20,
+    "atk": 27,
+    "def": 15,
+    "spAtk": 29,
+    "spDef": 12,
+    "spe": 8,
+    "_id": {
+      "$oid": "6523ac0a017a703859eeaba9"
+    }
+  },
+  "happiness": 70,
+  "age": 0,
+  "potential": 100,
+  "trainingPourcentage": 0,
+  "birthday": {
+    "$date": "2024-01-31T00:00:00.000Z"
+  },
+  "gameId": "64fd9cf21308150436317aed",
+  "maxLevel": 31,
+  "__v": 0,
+  "hiddenPotential": "83 - 100"
+},
+{
+  "_id": {
+    "$oid": "6523f446348a60a2715a6e6f"
+  },
+  "trainerId": "649e0e86e45d3dab76652543",
+  "nickname": null,
+  "basePokemon": {
+    "$oid": "64cd65a93ca816e933750e10"
+  },
+  "level": 6,
+  "exp": 18826,
+  "moves": [],
+  "stats": {
+    "hp": 23,
+    "atk": 15,
+    "def": 12,
+    "spAtk": 11,
+    "spDef": 11,
+    "spe": 12,
+    "_id": {
+      "$oid": "652eea8241ef7770b2d4e9e4"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "6523f446348a60a2715a6e71"
+    }
+  },
+  "iv": {
+    "hp": 19,
+    "atk": 1,
+    "def": 16,
+    "spAtk": 6,
+    "spDef": 5,
+    "spe": 10,
+    "_id": {
+      "$oid": "6523f446348a60a2715a6e72"
+    }
+  },
+  "happiness": 50,
+  "age": 0,
+  "potential": 100,
+  "trainingPourcentage": 0,
+  "gameId": "64fd9cf21308150436317aed",
+  "maxLevel": 6,
+  "__v": 0,
+  "birthday": {
+    "$date": "2024-05-18T00:00:00.000Z"
+  },
+  "hiddenPotential": "100 - 100"
+},
+{
+  "_id": {
+    "$oid": "65253ff76122daba55b2f7d4"
+  },
+  "trainerId": "649e0e86e45d3dab76652543",
+  "nickname": "qsd",
+  "basePokemon": {
+    "$oid": "64cd65aa3ca816e933751114"
+  },
+  "level": 6,
+  "exp": 3536,
+  "moves": [],
+  "stats": {
+    "hp": 22,
+    "atk": 11,
+    "def": 11,
+    "spAtk": 13,
+    "spDef": 13,
+    "spe": 11,
+    "_id": {
+      "$oid": "652eea8241ef7770b2d4e9e5"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "65253ff76122daba55b2f7d6"
+    }
+  },
+  "iv": {
+    "hp": 24,
+    "atk": 8,
+    "def": 13,
+    "spAtk": 19,
+    "spDef": 13,
+    "spe": 14,
+    "_id": {
+      "$oid": "65253ff76122daba55b2f7d7"
+    }
+  },
+  "happiness": 50,
+  "age": 0,
+  "potential": 100,
+  "trainingPourcentage": 0,
+  "gameId": "64fd9cf21308150436317aed",
+  "maxLevel": 6,
+  "__v": 0,
+  "birthday": {
+    "$date": "2024-05-20T00:00:00.000Z"
+  },
+  "hiddenPotential": "89 - 100"
+},
+{
+  "_id": {
+    "$oid": "652eea8141ef7770b2d4e94a"
+  },
+  "basePokemon": {
+    "$oid": "64cd65a83ca816e933750c75"
+  },
+  "level": 0,
+  "exp": 0,
+  "moves": [],
+  "stats": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "652eea8141ef7770b2d4e94b"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "652eea8141ef7770b2d4e94c"
+    }
+  },
+  "iv": {
+    "hp": 10,
+    "atk": 5,
+    "def": 21,
+    "spAtk": 24,
+    "spDef": 1,
+    "spe": 8,
+    "_id": {
+      "$oid": "652eea8141ef7770b2d4e94d"
+    }
+  },
+  "happiness": 50,
+  "age": 0,
+  "potential": 35,
+  "trainingPourcentage": 0,
+  "gameId": "64fd9cf21308150436317aed",
+  "maxLevel": 0,
+  "hatchingDate": {
+    "$date": "2025-01-14T01:00:00.000Z"
+  },
+  "hiddenPotential": "29 - 37",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "652eea8141ef7770b2d4e970"
+  },
+  "basePokemon": {
+    "$oid": "64cd65a93ca816e933750f9d"
+  },
+  "level": 0,
+  "exp": 0,
+  "moves": [],
+  "stats": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "652eea8141ef7770b2d4e971"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "652eea8141ef7770b2d4e972"
+    }
+  },
+  "iv": {
+    "hp": 16,
+    "atk": 14,
+    "def": 17,
+    "spAtk": 21,
+    "spDef": 31,
+    "spe": 27,
+    "_id": {
+      "$oid": "652eea8141ef7770b2d4e973"
+    }
+  },
+  "happiness": 50,
+  "age": 0,
+  "potential": 17,
+  "trainingPourcentage": 0,
+  "gameId": "64fd9cf21308150436317aed",
+  "maxLevel": 0,
+  "hatchingDate": {
+    "$date": "2025-01-14T01:00:00.000Z"
+  },
+  "hiddenPotential": "15 - 23",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "652eea8141ef7770b2d4e9bc"
+  },
+  "basePokemon": {
+    "$oid": "64cd65a93ca816e933750f55"
+  },
+  "level": 0,
+  "exp": 0,
+  "moves": [],
+  "stats": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "652eea8141ef7770b2d4e9bd"
+    }
+  },
+  "ev": {
+    "hp": 0,
+    "atk": 0,
+    "def": 0,
+    "spAtk": 0,
+    "spDef": 0,
+    "spe": 0,
+    "_id": {
+      "$oid": "652eea8141ef7770b2d4e9be"
+    }
+  },
+  "iv": {
+    "hp": 19,
+    "atk": 16,
+    "def": 22,
+    "spAtk": 20,
+    "spDef": 13,
+    "spe": 4,
+    "_id": {
+      "$oid": "652eea8141ef7770b2d4e9bf"
+    }
+  },
+  "happiness": 35,
+  "age": 0,
+  "potential": 19,
+  "trainingPourcentage": 0,
+  "gameId": "64fd9cf21308150436317aed",
+  "maxLevel": 0,
+  "hatchingDate": {
+    "$date": "2025-01-14T01:00:00.000Z"
+  },
+  "hiddenPotential": "10 - 25",
+  "__v": 0
+}]

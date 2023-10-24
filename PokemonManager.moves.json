@@ -266,7 +266,7 @@
   "category": "status",
   "id": 750,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -335,7 +335,7 @@
   "category": "physical",
   "id": 769,
   "power": 10,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -410,7 +410,7 @@
   "category": "physical",
   "id": 828,
   "power": 70,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -545,7 +545,7 @@
   "category": "special",
   "id": 826,
   "power": 80,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -650,7 +650,7 @@
   "category": "special",
   "id": 855,
   "power": 80,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -890,7 +890,7 @@
   "category": "physical",
   "id": 875,
   "power": 80,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -1130,7 +1130,7 @@
   "category": "physical",
   "id": 648,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -1214,7 +1214,7 @@
   "category": "special",
   "id": 649,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -1352,7 +1352,7 @@
   "category": "status",
   "id": 683,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -1406,7 +1406,7 @@
   "category": "status",
   "id": 689,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -1619,7 +1619,7 @@
   "category": "special",
   "id": 703,
   "power": 185,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -2039,7 +2039,7 @@
   "category": "special",
   "id": 797,
   "power": 80,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -2291,7 +2291,7 @@
   "category": "special",
   "id": 736,
   "power": 80,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -2825,7 +2825,7 @@
   "category": "status",
   "id": 95,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -3182,7 +3182,7 @@
   "category": "status",
   "id": 134,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -3299,7 +3299,7 @@
   "category": "special",
   "id": 326,
   "power": 80,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -3578,7 +3578,7 @@
   "category": "status",
   "id": 375,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -3590,7 +3590,7 @@
   "category": "status",
   "id": 361,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -3614,7 +3614,7 @@
   "category": "status",
   "id": 379,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -3626,7 +3626,7 @@
   "category": "status",
   "id": 391,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -3821,7 +3821,7 @@
   "category": "physical",
   "id": 427,
   "power": 70,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -3836,7 +3836,7 @@
   "category": "status",
   "id": 322,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -3989,7 +3989,7 @@
   "category": "status",
   "id": 461,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -4124,7 +4124,7 @@
   "category": "status",
   "id": 471,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -4229,7 +4229,7 @@
   "category": "status",
   "id": 505,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -4433,7 +4433,7 @@
   "category": "special",
   "id": 540,
   "power": 100,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -4808,7 +4808,7 @@
   "category": "special",
   "id": 593,
   "power": 80,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -5462,7 +5462,7 @@
   "category": "special",
   "id": 832,
   "power": 70,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -5507,7 +5507,7 @@
   "category": "special",
   "id": 821,
   "power": 90,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -5522,7 +5522,7 @@
   "category": "status",
   "id": 849,
   "power": 0,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -5537,7 +5537,7 @@
   "category": "status",
   "id": 850,
   "power": 0,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -5552,7 +5552,7 @@
   "category": "special",
   "id": 840,
   "power": 80,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -6017,7 +6017,7 @@
   "category": "special",
   "id": 888,
   "power": 40,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -6077,7 +6077,7 @@
   "category": "physical",
   "id": 706,
   "power": 85,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -6317,7 +6317,7 @@
   "category": "status",
   "id": 100,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -6341,7 +6341,7 @@
   "category": "status",
   "id": 96,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -6419,7 +6419,7 @@
   "category": "special",
   "id": 93,
   "power": 50,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -6434,7 +6434,7 @@
   "category": "status",
   "id": 112,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -6446,7 +6446,7 @@
   "category": "special",
   "id": 60,
   "power": 65,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -6542,7 +6542,7 @@
   "category": "special",
   "id": 149,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -6614,7 +6614,7 @@
   "category": "status",
   "id": 133,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -6782,7 +6782,7 @@
   "category": "status",
   "id": 272,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -6806,7 +6806,7 @@
   "category": "status",
   "id": 286,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -6956,7 +6956,7 @@
   "category": "special",
   "id": 354,
   "power": 140,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -7010,7 +7010,7 @@
   "category": "status",
   "id": 357,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -7130,7 +7130,7 @@
   "category": "status",
   "id": 377,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -7436,7 +7436,7 @@
   "category": "status",
   "id": 472,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -7448,7 +7448,7 @@
   "category": "special",
   "id": 473,
   "power": 80,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -7493,7 +7493,7 @@
   "category": "status",
   "id": 478,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -7505,7 +7505,7 @@
   "category": "special",
   "id": 485,
   "power": 120,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -7733,7 +7733,7 @@
   "category": "status",
   "id": 678,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -7829,7 +7829,7 @@
   "category": "special",
   "id": 243,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -8213,7 +8213,7 @@
   "category": "special",
   "id": 711,
   "power": 160,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -8345,7 +8345,7 @@
   "category": "special",
   "id": 722,
   "power": 100,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -8402,7 +8402,7 @@
   "category": "special",
   "id": 723,
   "power": 200,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -8714,7 +8714,7 @@
   "category": "status",
   "id": 285,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -8765,7 +8765,7 @@
   "category": "status",
   "id": 356,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -8876,7 +8876,7 @@
   "category": "status",
   "id": 433,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -8942,7 +8942,7 @@
   "category": "special",
   "id": 248,
   "power": 120,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -9287,7 +9287,7 @@
   "category": "special",
   "id": 295,
   "power": 70,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -9314,7 +9314,7 @@
   "category": "special",
   "id": 296,
   "power": 70,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -9428,7 +9428,7 @@
   "category": "status",
   "id": 385,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -9467,7 +9467,7 @@
   "category": "status",
   "id": 384,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -9851,7 +9851,7 @@
   "category": "status",
   "id": 470,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -10157,7 +10157,7 @@
   "category": "status",
   "id": 97,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -10199,7 +10199,7 @@
   "category": "special",
   "id": 94,
   "power": 90,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -10214,7 +10214,7 @@
   "category": "special",
   "id": 138,
   "power": 100,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -10334,7 +10334,7 @@
   "category": "status",
   "id": 347,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -10535,7 +10535,7 @@
   "category": "status",
   "id": 477,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -10646,7 +10646,7 @@
   "category": "status",
   "id": 277,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -11105,7 +11105,7 @@
   "category": "special",
   "id": 500,
   "power": 20,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -11132,7 +11132,7 @@
   "category": "physical",
   "id": 531,
   "power": 60,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -11363,7 +11363,7 @@
   "category": "physical",
   "id": 428,
   "power": 80,
-  "type": "PSYCHIC",
+  "type": "PSY",
   "animation": {
     "opponent": "PSYCHIC"
   }
@@ -11447,7 +11447,7 @@
   "category": "status",
   "id": 271,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -11594,7 +11594,7 @@
   "category": "status",
   "id": 502,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -11705,7 +11705,7 @@
   "category": "status",
   "id": 115,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -12068,7 +12068,7 @@
   "category": "status",
   "id": 113,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {
@@ -12446,7 +12446,7 @@
   "category": "status",
   "id": 156,
   "power": null,
-  "type": "PSYCHIC"
+  "type": "PSY"
 },
 {
   "_id": {

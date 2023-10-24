@@ -5,7 +5,28 @@
   "username": "Popole",
   "__v": 0,
   "password": "test",
-  "game": [
-    "64fd9cf21308150436317aed"
+  "games": [
+    "64fd9cf21308150436317aed",
+    {
+      "$oid": "65195a9a2df1bc2afd406072"
+    },
+    {
+      "$oid": "65195bb7b1b51673f5cdebf4"
+    },
+    {
+      "$oid": "65195c3c8272d2fd68af538c"
+    },
+    {
+      "$oid": "651af0bf5a24fef217508f3f"
+    },
+    {
+      "$oid": "651af1be390edb4fb1795e33"
+    },
+    {
+      "$oid": "651b18455e25dfe4a4209b63"
+    },
+    {
+      "$oid": "651b1ab185e4702afea07a5c"
+    }
   ]
 }]

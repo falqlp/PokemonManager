@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "65293f4512d5308945ca1123"
+  },
+  "gameId": "64fd9cf21308150436317aed",
+  "level": 1,
+  "eggs": [
+    {
+      "$oid": "652eea8141ef7770b2d4e94a"
+    },
+    {
+      "$oid": "652eea8141ef7770b2d4e970"
+    },
+    {
+      "$oid": "652eea8141ef7770b2d4e9bc"
+    }
+  ],
+  "__v": 0,
+  "wishList": {
+    "typeRepartition": {
+      "bug": 0,
+      "dark": null,
+      "dragon": 90,
+      "electric": null,
+      "fairy": null,
+      "fighting": null,
+      "fire": null,
+      "flying": null,
+      "ghost": null,
+      "grass": null,
+      "ground": null,
+      "ice": 10,
+      "normal": 0,
+      "poison": 0,
+      "psy": 0,
+      "rock": 0,
+      "steel": 0,
+      "water": 0,
+      "_id": {
+        "$oid": "652ee9f9cc364d636eed76f2"
+      }
+    },
+    "quantity": 1,
+    "_id": {
+      "$oid": "652ee9f9cc364d636eed76f1"
+    }
+  },
+  "step": "FIRST_SELECTION"
+}]

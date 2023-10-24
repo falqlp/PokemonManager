@@ -4,7 +4,8 @@
   },
   "maxSize": 36,
   "storage": [],
-  "__v": 0
+  "__v": 0,
+  "gameId": "64fd9cf21308150436317aed"
 },
 {
   "_id": {
@@ -12,7 +13,8 @@
   },
   "maxSize": 36,
   "storage": [],
-  "__v": 0
+  "__v": 0,
+  "gameId": "64fd9cf21308150436317aed"
 },
 {
   "_id": {
@@ -20,5 +22,15 @@
   },
   "maxSize": 6,
   "storage": [],
+  "__v": 0,
+  "gameId": "64fd9cf21308150436317aed"
+},
+{
+  "_id": {
+    "$oid": "65195a9a2df1bc2afd406075"
+  },
+  "maxSize": 0,
+  "storage": [],
+  "gameId": "65195a9a2df1bc2afd406072",
   "__v": 0
 }]
