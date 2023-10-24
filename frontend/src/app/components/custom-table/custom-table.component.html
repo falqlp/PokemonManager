@@ -1,0 +1,25 @@
+<table mat-table [dataSource]="$data">
+  <ng-container
+    *ngFor="let column of conf.columns"
+    [matColumnDef]="column.name"
+  >
+    <th *matHeaderCellDef>
+      <ng-container
+        pmDynamicCell
+        [componentType]="column.header.component"
+        [data]="column.header.data"
+      />
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <ng-container
+        pmDynamicCell
+        [componentType]="column.content.component"
+        [data]="
+          column.content.data !== 'all' ? element[column.content.data] : element
+        "
+      />
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="mapColumnName()"></tr>
+  <tr mat-row *matRowDef="let row; columns: mapColumnName()"></tr>
+</table>

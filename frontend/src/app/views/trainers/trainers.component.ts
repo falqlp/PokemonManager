@@ -6,6 +6,10 @@ import { MatTableModule } from '@angular/material/table';
 import { NgForOf } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { MatSortModule, Sort } from '@angular/material/sort';
+import {
+  ConfModel,
+  CustomTableComponent,
+} from '../../components/custom-table/custom-table.component';
 
 @Component({
   standalone: true,
@@ -17,6 +21,7 @@ import { MatSortModule, Sort } from '@angular/material/sort';
     NgForOf,
     DisplayPokemonImageComponent,
     MatSortModule,
+    CustomTableComponent,
   ],
 })
 export class TrainersComponent implements OnInit {
@@ -24,6 +29,33 @@ export class TrainersComponent implements OnInit {
   protected displayedColumns = ['name', 'pokemons'];
   protected sortQuerySubject: BehaviorSubject<Record<string, number>> =
     new BehaviorSubject({});
+
+  protected conf: ConfModel = {
+    columns: [
+      {
+        name: 'name',
+        header: {
+          component: 'displayText',
+          data: 'Trainer',
+        },
+        content: {
+          component: 'displayText',
+          data: 'name',
+        },
+      },
+      {
+        name: 'pokemons',
+        header: {
+          component: 'displayText',
+          data: 'Pokemons',
+        },
+        content: {
+          component: 'displayTrainerPokemons',
+          data: 'all',
+        },
+      },
+    ],
+  };
 
   public constructor(protected trainerService: TrainerQueriesService) {}
 
