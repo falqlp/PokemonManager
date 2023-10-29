@@ -10,6 +10,7 @@ import {
   ConfModel,
   CustomTableComponent,
 } from '../../components/custom-table/custom-table.component';
+import { QueryModel } from '../../core/query.model';
 
 @Component({
   standalone: true,
@@ -26,13 +27,13 @@ import {
 })
 export class TrainersComponent implements OnInit {
   protected trainers$: Observable<TrainerModel[]>;
-  protected displayedColumns = ['name', 'pokemons'];
   protected sortQuerySubject: BehaviorSubject<Record<string, number>> =
     new BehaviorSubject({});
 
   protected conf: ConfModel = {
     columns: [
       {
+        sort: true,
         name: 'name',
         header: {
           component: 'displayText',
@@ -66,6 +67,10 @@ export class TrainersComponent implements OnInit {
       })
     );
   }
+
+  protected query = (query?: QueryModel): Observable<TrainerModel[]> => {
+    return this.trainerService.list(query);
+  };
 
   protected click(row: TrainerModel): void {
     console.log(row);
