@@ -12,7 +12,7 @@ export interface CellModel {
   component: string;
   data: string | 'all';
 }
-export interface ConfModel {
+export interface TableConfModel {
   columns: {
     name: string;
     sort?: boolean;
@@ -39,7 +39,7 @@ export interface ConfModel {
 export class CustomTableComponent<T> implements OnInit {
   @Input() public $data: Observable<T[]>;
   @Input() public query: (query?: QueryModel) => Observable<T[]>;
-  @Input() public conf: ConfModel;
+  @Input() public conf: TableConfModel;
   protected sortQuerySubject: BehaviorSubject<Record<string, number>> =
     new BehaviorSubject({});
 
