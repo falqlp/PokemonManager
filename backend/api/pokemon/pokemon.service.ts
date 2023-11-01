@@ -41,6 +41,12 @@ class PokemonService extends CompleteService<IPokemon> {
   ): Promise<IPokemon[]> {
     return await this.list(body, { map: this.mapper.mapComplete, gameId });
   }
+  public async listNurseryLastSelection(
+    body: ListBody,
+    gameId?: string
+  ): Promise<IPokemon[]> {
+    return await this.list(body, { map: this.mapper.mapPartial, gameId });
+  }
 
   public async create(pokemon: IPokemon, gameId: string): Promise<IPokemon> {
     let newPokemon: IPokemon;

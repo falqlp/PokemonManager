@@ -8,6 +8,8 @@ import GameService from "../game/game.service";
 import PokemonService from "../pokemon/pokemon.service";
 import NurseryService from "../nursery/nursery.service";
 import { notify } from "../../websocketServer";
+import TrainerService from "../trainer/trainer.service";
+import Nursery from "../nursery/nursery";
 
 class CalendarEventService extends CompleteService<ICalendarEvent> {
   private static instance: CalendarEventService;
@@ -16,7 +18,8 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
     protected battleInstanceService: BattleInstanceService,
     protected gameService: GameService,
     protected pokemonService: PokemonService,
-    protected nurseryService: NurseryService
+    protected nurseryService: NurseryService,
+    protected trainerService: TrainerService
   ) {
     super(CalendarEvent, CalendarEventMapper.getInstance());
   }
@@ -26,7 +29,8 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
         BattleInstanceService.getInstance(),
         GameService.getInstance(),
         PokemonService.getInstance(),
-        NurseryService.getInstance()
+        NurseryService.getInstance(),
+        TrainerService.getInstance()
       );
     }
     return CalendarEventService.instance;
@@ -98,14 +102,14 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
       (event) => event.type === "Battle" && !event.event.winner
     )?.event;
 
+    const trainer = await this.trainerService.getComplete(trainerId);
     if (!battle) {
       date.setUTCDate(date.getUTCDate() + 1);
       const newGame = await this.gameService.get(game);
       newGame.actualDate = date;
       await this.gameService.update(game, newGame);
       if (events.find((event) => event.type === "GenerateNurseryEggs")) {
-        const nursery = (await Trainer.findById(trainerId).populate("nursery"))
-          .nursery;
+        const nursery = trainer.nursery;
         if (nursery.eggs?.length === 0) {
           await this.nurseryService.generateNurseryEgg(nursery, game);
         }
@@ -117,8 +121,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
             event.type === "NurseryLastSelectionDeadline"
         )
       ) {
-        const nursery = (await Trainer.findById(trainerId).populate("nursery"))
-          .nursery;
+        const nursery = trainer.nursery;
         if (
           nursery.eggs?.length >
           nursery.wishList.quantity *
@@ -128,8 +131,18 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
           redirectTo = "nursery";
           notify("SELECT_VALID_NUMBER_OF_EGGS", "error", game);
         } else {
-          nursery.step =
-            nursery.step === "FIRST_SELECTION" ? "LAST_SELECTION" : "WISHLIST";
+          if (nursery.step === "FIRST_SELECTION") {
+            nursery.step = "LAST_SELECTION";
+          } else {
+            nursery.eggs.forEach((egg) => {
+              const hatchingDate = new Date(date);
+              hatchingDate.setUTCMonth(hatchingDate.getUTCMonth() + 1);
+              egg.hatchingDate = hatchingDate;
+              this.trainerService.addPokemonForTrainer(egg, trainerId);
+            });
+            nursery.eggs = [];
+            nursery.step = "WISHLIST";
+          }
           await this.nurseryService.update(nursery._id, nursery);
         }
       }

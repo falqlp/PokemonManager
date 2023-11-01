@@ -22,7 +22,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { GenericDialogComponent } from '../../../modals/generic-dialog/generic-dialog.component';
 import { DialogButtonsModel } from '../../../modals/generic-dialog/generic-dialog.models';
 import { CalendarEventQueriesService } from '../../../services/queries/calendar-event-queries.service';
-import { forkJoin, map, switchMap } from 'rxjs';
+import { first, forkJoin, map, switchMap } from 'rxjs';
 import { PlayerService } from '../../../services/player.service';
 import { TimeService } from '../../../services/time.service';
 import { CalendarEventModel } from '../../../models/calendar-event.model';
@@ -266,17 +266,20 @@ export class NurseryWishlistFormComponent implements OnInit {
       this.nurseryQueriesService
         .update(this.nursery, this.nursery._id)
         .pipe(
+          first(),
           takeUntilDestroyed(this.destroyRef),
           switchMap(() => {
-            return this.playerService.player$;
+            return this.playerService.player$.pipe(first());
           }),
           switchMap((player) => {
             return this.timeService.getActualDate().pipe(
+              first(),
               map((actualDate) => {
-                actualDate.setUTCMonth(actualDate.getUTCMonth() + 1);
-                const firstEventDate = new Date(actualDate);
-                const secondEventDate = new Date(actualDate);
-                const thirdEventDate = new Date(actualDate);
+                const newdate = new Date(actualDate);
+                newdate.setUTCMonth(newdate.getUTCMonth() + 1);
+                const firstEventDate = new Date(newdate);
+                const secondEventDate = new Date(newdate);
+                const thirdEventDate = new Date(newdate);
                 secondEventDate.setUTCDate(secondEventDate.getUTCDate() + 7);
                 thirdEventDate.setUTCDate(thirdEventDate.getUTCDate() + 14);
                 const calendarEvents: CalendarEventModel[] = [

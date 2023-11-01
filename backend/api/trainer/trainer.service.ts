@@ -2,14 +2,29 @@ import Trainer, { ITrainer } from "./trainer";
 import CompleteService from "../CompleteService";
 import TrainerMapper from "./trainer.mapper";
 import { ListBody } from "../ReadOnlyService";
+import { IPokemon } from "../pokemon/pokemon";
+import { Model } from "mongoose";
+import PokemonService from "../pokemon/pokemon.service";
+import PcStorageService from "../pcStorage/pcStorage.service";
 
 class TrainerService extends CompleteService<ITrainer> {
   private static instance: TrainerService;
+
+  constructor(
+    trainer: Model<ITrainer>,
+    protected mapper: TrainerMapper,
+    protected pokemonService: PokemonService,
+    protected pcStorageService: PcStorageService
+  ) {
+    super(trainer, mapper);
+  }
   public static getInstance(): TrainerService {
     if (!TrainerService.instance) {
       TrainerService.instance = new TrainerService(
         Trainer,
-        TrainerMapper.getInstance()
+        TrainerMapper.getInstance(),
+        PokemonService.getInstance(),
+        PcStorageService.getInstance()
       );
     }
     return TrainerService.instance;
@@ -32,6 +47,34 @@ class TrainerService extends CompleteService<ITrainer> {
 
   public async listComplete(body: ListBody): Promise<ITrainer[]> {
     return this.list(body, { map: this.mapper.mapComplete });
+  }
+
+  public async addPokemonForTrainer(pokemon: IPokemon, trainerId: string) {
+    pokemon.trainerId = trainerId;
+    await this.pokemonService.update(pokemon._id, pokemon);
+    const trainer = await this.get(trainerId, { map: this.mapper.mapComplete });
+    if (trainer.pokemons.length < 6) {
+      trainer.pokemons.push(pokemon._id);
+    } else {
+      trainer.pcStorage.maxSize;
+      let freeIndex;
+      for (let i = 0; i < trainer.pcStorage.maxSize; i++) {
+        if (!trainer.pcStorage.storage.find((st) => st.position === i)) {
+          trainer.pcStorage.storage.push({ pokemon, position: i });
+          freeIndex = true;
+          break;
+        }
+      }
+      if (!freeIndex) {
+        await this.pokemonService.delete(pokemon._id);
+      } else {
+        await this.pcStorageService.update(
+          trainer.pcStorage._id,
+          trainer.pcStorage
+        );
+      }
+    }
+    await this.update(trainerId, trainer);
   }
 }
 

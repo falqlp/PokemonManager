@@ -11,6 +11,9 @@ export class TimeService {
   protected actualDaySubjectToString: BehaviorSubject<string> =
     new BehaviorSubject(this.dateToLocalDate(this.actualDate));
 
+  protected newDaySubject: BehaviorSubject<void> = new BehaviorSubject(null);
+  protected $newDay = this.newDaySubject.asObservable();
+
   protected actualDaySubject = new BehaviorSubject(this.actualDate);
 
   public constructor(
@@ -21,7 +24,6 @@ export class TimeService {
       .pipe(
         switchMap((gameId) => {
           if (gameId) {
-            // console.log(gameId);
             return this.gameQueriesService.getTime(gameId);
           }
           return of(null);
@@ -31,11 +33,6 @@ export class TimeService {
         this.actualDate = new Date(actualDate);
         this.updateDate(this.actualDate);
       });
-  }
-
-  public simulateDay(): void {
-    this.actualDate.setDate(this.actualDate.getDate() + 1);
-    this.updateDate(this.actualDate);
   }
 
   public getActualDateToString(): Observable<string> {
@@ -70,5 +67,10 @@ export class TimeService {
   public updateDate(newDate: Date): void {
     this.actualDaySubjectToString.next(this.dateToLocalDate(newDate));
     this.actualDaySubject.next(newDate);
+    this.newDaySubject.next();
+  }
+
+  public newDateEvent(): Observable<void> {
+    return this.$newDay;
   }
 }

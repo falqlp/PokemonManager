@@ -5,6 +5,7 @@ import PokemonBaseService from "../pokemonBase/pokemonBase.service";
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import Game from "../game/game";
 import { updatePlayer } from "../../websocketServer";
+import { IPokemonBase } from "../pokemonBase/pokemonBase";
 
 class PokemonMapper implements IMapper<IPokemon> {
   private static instance: PokemonMapper;
@@ -27,12 +28,28 @@ class PokemonMapper implements IMapper<IPokemon> {
   }
 
   public mapComplete = async (pokemon: IPokemon): Promise<IPokemon> => {
-    pokemon.moves = await this.moveService.list({
-      ids: pokemon.moves as unknown as string[],
-    });
+    if (pokemon.moves) {
+      pokemon.moves = await this.moveService.list({
+        ids: pokemon.moves as unknown as string[],
+      });
+    }
     pokemon.basePokemon = await this.pokemonBaseService.get(
       pokemon.basePokemon as unknown as string
     );
+    return pokemon;
+  };
+
+  public mapPartial = async (pokemon: IPokemon): Promise<IPokemon> => {
+    pokemon = await this.mapComplete(pokemon);
+    pokemon.ev = undefined;
+    pokemon.iv = undefined;
+    pokemon.happiness = undefined;
+    pokemon.potential = undefined;
+    pokemon.trainingPourcentage = undefined;
+    pokemon.hatchingDate = undefined;
+    pokemon.basePokemon = {
+      types: pokemon.basePokemon.types,
+    } as unknown as IPokemonBase;
     return pokemon;
   };
 
@@ -48,7 +65,9 @@ class PokemonMapper implements IMapper<IPokemon> {
       const savedPokemon = await Pokemon.findOne({ _id: pokemon._id }).populate(
         "basePokemon"
       );
-      pokemon.trainerId = savedPokemon.trainerId;
+      if (!pokemon.trainerId) {
+        pokemon.trainerId = savedPokemon.trainerId;
+      }
       pokemon.gameId = savedPokemon.gameId;
       pokemon.ev = savedPokemon.ev;
       pokemon.iv = savedPokemon.iv;
@@ -57,17 +76,13 @@ class PokemonMapper implements IMapper<IPokemon> {
           savedPokemon.potential ?? pokemon.potential
         );
       }
-      if (pokemon.level <= 1) {
+      if (pokemon.level <= 1 || !pokemon.basePokemon?.id) {
         pokemon.basePokemon = savedPokemon.basePokemon;
       }
       pokemon.stats = this.updateStats(pokemon);
-      if (pokemon.level !== 0 && savedPokemon.hatchingDate) {
-        pokemon.birthday = pokemon.hatchingDate;
-        await Pokemon.updateOne(
-          { _id: pokemon._id },
-          { $unset: { hatchingDate: "" } }
-        );
-        pokemon.hatchingDate = undefined;
+      if (pokemon.level && pokemon.level !== 0 && savedPokemon.hatchingDate) {
+        pokemon.birthday = savedPokemon.hatchingDate;
+        pokemon.hatchingDate = null;
       }
     }
     if (pokemon.birthday) {

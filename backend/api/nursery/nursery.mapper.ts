@@ -7,9 +7,15 @@ class NurseryMapper implements IMapper<INursery> {
   constructor(protected pokemonService: PokemonService) {}
   public async map(dto: INursery): Promise<INursery> {
     if (dto.eggs) {
-      dto.eggs = await this.pokemonService.list({
-        ids: dto.eggs as unknown as string[],
-      });
+      if (dto.step !== "LAST_SELECTION") {
+        dto.eggs = await this.pokemonService.list({
+          ids: dto.eggs as unknown as string[],
+        });
+      } else {
+        dto.eggs = await this.pokemonService.listNurseryLastSelection({
+          ids: dto.eggs as unknown as string[],
+        });
+      }
     }
     return dto;
   }

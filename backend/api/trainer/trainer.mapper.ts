@@ -39,6 +39,9 @@ class TrainerMapper implements IMapper<ITrainer> {
     trainer.pcStorage = await this.pcStorageService.get(
       trainer.pcStorage as unknown as string
     );
+    trainer.nursery = await this.nurseryService.get(
+      trainer.nursery as unknown as string
+    );
     return trainer;
   };
 

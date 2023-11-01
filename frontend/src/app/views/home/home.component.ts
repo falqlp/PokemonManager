@@ -22,7 +22,6 @@ import { NotifierService } from 'angular-notifier';
 import { NurseryWishlistFormComponent } from '../nursery/nursery-wishlist-form/nursery-wishlist-form.component';
 import { PokemonBaseQueriesService } from '../../services/queries/pokemon-base-queries.service';
 import { NurseryQueriesService } from '../../services/queries/nursery-queries.service';
-import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -87,7 +86,9 @@ export class HomeComponent implements OnInit {
       .subscribe((newpokemon) => console.log(newpokemon));
   }
 
-  protected startBattle(): void {}
+  protected startBattle(): void {
+    this.router.navigateByUrl('nursery');
+  }
 
   protected goToPc(): void {
     this.router.navigate(['pcStorage']);
