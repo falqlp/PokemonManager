@@ -8,13 +8,14 @@ import {
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { DisplayType } from './display-pokemon-image.model';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgClass } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-display-pokemon-image',
   templateUrl: './display-pokemon-image.component.html',
   styleUrls: ['./display-pokemon-image.component.scss'],
-  imports: [TranslateModule],
+  imports: [TranslateModule, NgClass],
 })
 export class DisplayPokemonImageComponent implements OnInit, OnChanges {
   @Input() public pokemon: PokemonModel;
@@ -39,7 +40,7 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
         : this.pokemon.basePokemon.id.toString().padStart(3, '0');
     switch (this.type) {
       case 'icon':
-        this.imageUrl = `assets/images/sprites/${idString}MS.png`;
+        this.imageUrl = `assets/images/test-icon/${this.pokemon.basePokemon.name}.png`;
         break;
       case 'back':
         this.imageUrl = `assets/images/back/${idString}.png`;

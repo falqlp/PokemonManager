@@ -1,5 +1,6 @@
 <img
   class="display-pokemon-image"
+  [ngClass]="{ icon: type === 'icon' }"
   draggable="false"
   [src]="imageUrl"
   alt="{{ pokemon.basePokemon?.name ?? 'EGG' | translate }} {{ type }}"
