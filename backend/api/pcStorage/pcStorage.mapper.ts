@@ -1,19 +1,28 @@
-import PcStorage, { IPcStorage, IPcStorageStorage } from "./pcStorage";
+import { IPcStorage } from "./pcStorage";
 import { IMapper } from "../IMapper";
 import PokemonService from "../pokemon/pokemon.service";
+import { PopulateOptions } from "mongoose";
+import PokemonMapper from "../pokemon/pokemon.mapper";
+import Pokemon from "../pokemon/pokemon";
 
 class PcStorageMapper implements IMapper<IPcStorage> {
   private static instance: PcStorageMapper;
-  public constructor(protected pokemonService: PokemonService) {}
-  public async map(pcStorage: IPcStorage): Promise<IPcStorage> {
-    pcStorage.storage = await Promise.all(
-      pcStorage.storage?.map(async (el: IPcStorageStorage) => {
-        el.pokemon = await this.pokemonService.get(
-          el.pokemon as unknown as string
-        );
-        return el;
-      })
-    );
+  public constructor(
+    protected pokemonService: PokemonService,
+    protected pokemonMapper: PokemonMapper
+  ) {}
+
+  public populate(): PopulateOptions {
+    return {
+      path: "storage",
+      populate: {
+        path: "pokemon",
+        model: Pokemon,
+        populate: this.pokemonMapper.populate(),
+      },
+    };
+  }
+  public map(pcStorage: IPcStorage): IPcStorage {
     return pcStorage;
   }
 
@@ -38,7 +47,8 @@ class PcStorageMapper implements IMapper<IPcStorage> {
   public static getInstance(): PcStorageMapper {
     if (!PcStorageMapper.instance) {
       PcStorageMapper.instance = new PcStorageMapper(
-        PokemonService.getInstance()
+        PokemonService.getInstance(),
+        PokemonMapper.getInstance()
       );
     }
     return PcStorageMapper.instance;

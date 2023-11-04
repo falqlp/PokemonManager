@@ -32,20 +32,11 @@ class PokemonService extends CompleteService<IPokemon> {
     }
     return PokemonService.instance;
   }
-  public async getComplete(_id: string): Promise<IPokemon> {
-    return await this.get(_id, { map: this.mapper.mapComplete });
-  }
   public async listComplete(
     body: ListBody,
     gameId?: string
   ): Promise<IPokemon[]> {
     return await this.list(body, { map: this.mapper.mapComplete, gameId });
-  }
-  public async listNurseryLastSelection(
-    body: ListBody,
-    gameId?: string
-  ): Promise<IPokemon[]> {
-    return await this.list(body, { map: this.mapper.mapPartial, gameId });
   }
 
   public async create(pokemon: IPokemon, gameId: string): Promise<IPokemon> {

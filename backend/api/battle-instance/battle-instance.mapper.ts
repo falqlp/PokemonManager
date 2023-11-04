@@ -1,27 +1,45 @@
-import Battle, { IBattleInstance } from "./battle";
+import { IBattleInstance } from "./battle";
 import { IMapper } from "../IMapper";
 import TrainerService from "../trainer/trainer.service";
+import { PopulateOptions } from "mongoose";
+import TrainerMapper from "../trainer/trainer.mapper";
+import Trainer from "../trainer/trainer";
 
 class BattleInstanceMapper implements IMapper<IBattleInstance> {
   private static instance: BattleInstanceMapper;
-  constructor(protected trainerService: TrainerService) {}
-  async map(entity: IBattleInstance): Promise<IBattleInstance> {
-    entity.player = await this.trainerService.getPartial(
-      entity.player as unknown as string
-    );
-    entity.opponent = await this.trainerService.getPartial(
-      entity.opponent as unknown as string
-    );
+  constructor(
+    protected trainerService: TrainerService,
+    protected trainerMapper: TrainerMapper
+  ) {}
+
+  public populate(): PopulateOptions[] {
+    return [
+      {
+        path: "player",
+        model: Trainer,
+        populate: this.trainerMapper.populate(),
+      },
+      {
+        path: "opponent",
+        model: Trainer,
+        populate: this.trainerMapper.populate(),
+      },
+    ];
+  }
+  public map(entity: IBattleInstance): IBattleInstance {
+    entity.player = this.trainerMapper.mapPartial(entity.player);
+    entity.opponent = this.trainerMapper.mapPartial(entity.player);
     return entity;
   }
 
-  update(entity: IBattleInstance): IBattleInstance {
+  public update(entity: IBattleInstance): IBattleInstance {
     return entity;
   }
   public static getInstance(): BattleInstanceMapper {
     if (!BattleInstanceMapper.instance) {
       BattleInstanceMapper.instance = new BattleInstanceMapper(
-        TrainerService.getInstance()
+        TrainerService.getInstance(),
+        TrainerMapper.getInstance()
       );
     }
     return BattleInstanceMapper.instance;

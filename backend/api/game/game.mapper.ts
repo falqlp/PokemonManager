@@ -1,12 +1,22 @@
 import { IMapper } from "../IMapper";
 import { IGame } from "./game";
-import TrainerService from "../trainer/trainer.service";
+import { PopulateOptions } from "mongoose";
+import Trainer from "../trainer/trainer";
+import TrainerMapper from "../trainer/trainer.mapper";
 
 class GameMapper implements IMapper<IGame> {
   private static instance: GameMapper;
-  constructor(protected trainerService: TrainerService) {}
+  constructor(protected trainerMapper: TrainerMapper) {}
+
+  public populate(): PopulateOptions {
+    return {
+      path: "player",
+      model: Trainer,
+      populate: this.trainerMapper.populate(),
+    };
+  }
   public async map(dto: IGame): Promise<IGame> {
-    dto.player = await this.trainerService.get(dto.player as unknown as string);
+    dto.player = this.trainerMapper.map(dto.player);
     return dto;
   }
 
@@ -16,7 +26,7 @@ class GameMapper implements IMapper<IGame> {
 
   public static getInstance(): GameMapper {
     if (!GameMapper.instance) {
-      GameMapper.instance = new GameMapper(TrainerService.getInstance());
+      GameMapper.instance = new GameMapper(TrainerMapper.getInstance());
     }
     return GameMapper.instance;
   }

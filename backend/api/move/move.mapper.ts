@@ -1,7 +1,11 @@
 import { IMove } from "./move";
 import { IMapper } from "../IMapper";
+import { PopulateOptions } from "mongoose";
 
 const MoveMapper: IMapper<IMove> = {
+  populate(): PopulateOptions | PopulateOptions[] {
+    return null;
+  },
   map: function (move: IMove): IMove {
     return move;
   },

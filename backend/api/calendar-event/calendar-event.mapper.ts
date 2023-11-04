@@ -1,30 +1,37 @@
 import { IMapper } from "../IMapper";
 import { ICalendarEvent } from "./calendar-event";
-import BattleInstanceService from "../battle-instance/battle-instance.service";
-import TrainerService from "../trainer/trainer.service";
+import { PopulateOptions } from "mongoose";
+import Battle from "../battle-instance/battle";
+import Trainer from "../trainer/trainer";
+import TrainerMapper from "../trainer/trainer.mapper";
+import BattleInstanceMapper from "../battle-instance/battle-instance.mapper";
 
 class CalendarEventMapper implements IMapper<ICalendarEvent> {
   private static instance: CalendarEventMapper;
   constructor(
-    protected battleInstanceService: BattleInstanceService,
-    protected trainerService: TrainerService
+    protected trainerMapper: TrainerMapper,
+    protected battleInstanceMapper: BattleInstanceMapper
   ) {}
-  public async map(
-    dto: ICalendarEvent,
-    gameId: string
-  ): Promise<ICalendarEvent> {
-    if (dto.type === "Battle") {
-      dto.event = await this.battleInstanceService.get(
-        dto.event as unknown as string,
-        { gameId }
-      );
-    }
-    dto.trainers = await this.trainerService.listPartial(
+
+  public populate(): PopulateOptions[] {
+    return [
       {
-        ids: dto.trainers as unknown as string[],
+        path: "event",
+        model: Battle,
+        populate: this.battleInstanceMapper.populate(),
       },
-      gameId
-    );
+      {
+        path: "trainers",
+        model: Trainer,
+        populate: this.trainerMapper.populate(),
+      },
+    ];
+  }
+  public map(dto: ICalendarEvent): ICalendarEvent {
+    if (dto.type === "Battle") {
+      dto.event = this.battleInstanceMapper.map(dto.event);
+    }
+    dto.trainers.map((trainer) => this.trainerMapper.mapPartial(trainer));
     return dto;
   }
 
@@ -35,8 +42,8 @@ class CalendarEventMapper implements IMapper<ICalendarEvent> {
   public static getInstance(): CalendarEventMapper {
     if (!CalendarEventMapper.instance) {
       CalendarEventMapper.instance = new CalendarEventMapper(
-        BattleInstanceService.getInstance(),
-        TrainerService.getInstance()
+        TrainerMapper.getInstance(),
+        BattleInstanceMapper.getInstance()
       );
     }
     return CalendarEventMapper.instance;
