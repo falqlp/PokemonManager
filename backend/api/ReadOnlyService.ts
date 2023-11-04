@@ -23,7 +23,9 @@ class ReadOnlyService<T extends Document> {
       if (options?.gameId) {
         query["gameId"] = options.gameId;
       }
-      const entity = (await this.schema.findOne(query)) as T;
+      const entity = (await this.schema
+        .findOne(query)
+        .populate(this.mapper.populate())) as T;
       return options?.map ? options.map(entity) : this.mapper.map(entity);
     } catch (error) {
       return Promise.reject(error);
@@ -47,6 +49,7 @@ class ReadOnlyService<T extends Document> {
       }
       const dtos = await this.schema
         .find(query)
+        .populate(this.mapper.populate())
         .limit(body.limit || 0)
         .sort(body.sort);
 

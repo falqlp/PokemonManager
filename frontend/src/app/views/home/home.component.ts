@@ -95,9 +95,7 @@ export class HomeComponent implements OnInit {
   }
 
   protected testRoute(): void {
-    this.http
-      .get('/api/xp/weeklyXpGain/' + this.player._id)
-      .subscribe(console.log);
+    this.http.get('/api/trainer/' + this.player._id).subscribe(console.log);
   }
 
   protected goToTrainers(): void {

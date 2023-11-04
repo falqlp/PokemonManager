@@ -1,10 +1,15 @@
 import { IMapper } from "../IMapper";
 import { ITrainingCamp } from "./trainingCamp";
+import { PopulateOptions } from "mongoose";
 
 class TrainingCampMapper implements IMapper<ITrainingCamp> {
   private static instance: TrainingCampMapper;
   constructor() {}
-  public async map(dto: ITrainingCamp): Promise<ITrainingCamp> {
+
+  public populate(): PopulateOptions {
+    return null;
+  }
+  public map(dto: ITrainingCamp): ITrainingCamp {
     return dto;
   }
 

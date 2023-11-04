@@ -4,44 +4,68 @@ import PokemonService from "../pokemon/pokemon.service";
 import TrainingCampService from "../trainingCamp/trainingCamp.service";
 import PcStorageService from "../pcStorage/pcStorage.service";
 import { updatePlayer } from "../../websocketServer";
-import { ITrainingCamp } from "../trainingCamp/trainingCamp";
+import TrainingCamp, { ITrainingCamp } from "../trainingCamp/trainingCamp";
 import NurseryService from "../nursery/nursery.service";
+import { PopulateOptions } from "mongoose";
+import Pokemon from "../pokemon/pokemon";
+import PokemonMapper from "../pokemon/pokemon.mapper";
+import PcStorage from "../pcStorage/pcStorage";
+import PcStorageMapper from "../pcStorage/pcStorage.mapper";
+import TrainingCampMapper from "../trainingCamp/trainingCamp.mapper";
+import Nursery from "../nursery/nursery";
+import NurseryMapper from "../nursery/nursery.mapper";
 
 class TrainerMapper implements IMapper<ITrainer> {
   private static instance: TrainerMapper;
+
   constructor(
     protected pokemonService: PokemonService,
     protected trainingCampService: TrainingCampService,
     protected pcStorageService: PcStorageService,
-    protected nurseryService: NurseryService
+    protected nurseryService: NurseryService,
+    protected pokemonMapper: PokemonMapper,
+    protected pcStorageMapper: PcStorageMapper,
+    protected trainingCampMapper: TrainingCampMapper,
+    protected nurseryMapper: NurseryMapper
   ) {}
-  public async map(trainer: ITrainer): Promise<ITrainer> {
-    if (trainer) {
-      trainer.pokemons = await this.pokemonService.list({
-        ids: trainer.pokemons as unknown as string[],
-      });
-    }
+
+  public populate(): PopulateOptions[] {
+    return [
+      {
+        path: "pokemons",
+        model: Pokemon,
+        populate: this.pokemonMapper.populate(),
+      },
+      {
+        path: "pcStorage",
+        model: PcStorage,
+        populate: this.pcStorageMapper.populate(),
+      },
+      {
+        path: "trainingCamp",
+        model: TrainingCamp,
+        populate: this.trainingCampMapper.populate(),
+      },
+      {
+        path: "nursery",
+        model: Nursery,
+        populate: this.nurseryMapper.populate(),
+      },
+    ];
+  }
+  public map(trainer: ITrainer): ITrainer {
+    trainer.pokemons.map((pokemon) => this.pokemonMapper.map(pokemon));
+    trainer.pcStorage = undefined;
+    trainer.trainingCamp = undefined;
+    trainer.nursery = undefined;
     return trainer;
   }
   public mapPartial = (trainer: ITrainer): ITrainer => {
+    this.map(trainer);
     trainer.pokemons = undefined;
-    trainer.pcStorage = undefined;
-    trainer.trainingCamp = undefined;
     return trainer;
   };
-  public mapComplete = async (trainer: ITrainer): Promise<ITrainer> => {
-    trainer.pokemons = await this.pokemonService.listComplete({
-      ids: trainer.pokemons as unknown as string[],
-    });
-    trainer.trainingCamp = await this.trainingCampService.get(
-      trainer.trainingCamp as unknown as string
-    );
-    trainer.pcStorage = await this.pcStorageService.get(
-      trainer.pcStorage as unknown as string
-    );
-    trainer.nursery = await this.nurseryService.get(
-      trainer.nursery as unknown as string
-    );
+  public mapComplete = (trainer: ITrainer): ITrainer => {
     return trainer;
   };
 
@@ -92,7 +116,11 @@ class TrainerMapper implements IMapper<ITrainer> {
         PokemonService.getInstance(),
         TrainingCampService.getInstance(),
         PcStorageService.getInstance(),
-        NurseryService.getInstance()
+        NurseryService.getInstance(),
+        PokemonMapper.getInstance(),
+        PcStorageMapper.getInstance(),
+        TrainingCampMapper.getInstance(),
+        NurseryMapper.getInstance()
       );
     }
     return TrainerMapper.instance;

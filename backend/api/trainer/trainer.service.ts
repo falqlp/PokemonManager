@@ -1,7 +1,6 @@
 import Trainer, { ITrainer } from "./trainer";
 import CompleteService from "../CompleteService";
 import TrainerMapper from "./trainer.mapper";
-import { ListBody } from "../ReadOnlyService";
 import { IPokemon } from "../pokemon/pokemon";
 import { Model } from "mongoose";
 import PokemonService from "../pokemon/pokemon.service";
@@ -30,29 +29,14 @@ class TrainerService extends CompleteService<ITrainer> {
     return TrainerService.instance;
   }
 
-  public async getPartial(_id: string): Promise<ITrainer> {
-    return this.get(_id, { map: this.mapper.mapPartial });
-  }
-
-  public async listPartial(
-    body: ListBody,
-    gameId: string
-  ): Promise<ITrainer[]> {
-    return this.list(body, { map: this.mapper.mapPartial, gameId });
-  }
-
   public async getComplete(_id: string): Promise<ITrainer> {
     return this.get(_id, { map: this.mapper.mapComplete });
-  }
-
-  public async listComplete(body: ListBody): Promise<ITrainer[]> {
-    return this.list(body, { map: this.mapper.mapComplete });
   }
 
   public async addPokemonForTrainer(pokemon: IPokemon, trainerId: string) {
     pokemon.trainerId = trainerId;
     await this.pokemonService.update(pokemon._id, pokemon);
-    const trainer = await this.get(trainerId, { map: this.mapper.mapComplete });
+    const trainer = await this.getComplete(trainerId);
     if (trainer.pokemons.length < 6) {
       trainer.pokemons.push(pokemon._id);
     } else {

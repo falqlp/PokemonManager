@@ -5,7 +5,9 @@ import PokemonBaseService from "../pokemonBase/pokemonBase.service";
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import Game from "../game/game";
 import { updatePlayer } from "../../websocketServer";
-import { IPokemonBase } from "../pokemonBase/pokemonBase";
+import PokemonBase, { IPokemonBase } from "../pokemonBase/pokemonBase";
+import { PopulateOptions } from "mongoose";
+import Move from "../move/move";
 
 class PokemonMapper implements IMapper<IPokemon> {
   private static instance: PokemonMapper;
@@ -13,8 +15,14 @@ class PokemonMapper implements IMapper<IPokemon> {
     protected moveService: MoveService,
     protected pokemonBaseService: PokemonBaseService
   ) {}
+
+  public populate(): PopulateOptions[] {
+    return [
+      { path: "moves", model: Move },
+      { path: "basePokemon", model: PokemonBase },
+    ];
+  }
   public async map(pokemon: IPokemon): Promise<IPokemon> {
-    pokemon = await this.mapComplete(pokemon);
     pokemon.ev = undefined;
     pokemon.iv = undefined;
     pokemon.happiness = undefined;
@@ -28,19 +36,10 @@ class PokemonMapper implements IMapper<IPokemon> {
   }
 
   public mapComplete = async (pokemon: IPokemon): Promise<IPokemon> => {
-    if (pokemon.moves) {
-      pokemon.moves = await this.moveService.list({
-        ids: pokemon.moves as unknown as string[],
-      });
-    }
-    pokemon.basePokemon = await this.pokemonBaseService.get(
-      pokemon.basePokemon as unknown as string
-    );
     return pokemon;
   };
 
   public mapPartial = async (pokemon: IPokemon): Promise<IPokemon> => {
-    pokemon = await this.mapComplete(pokemon);
     pokemon.ev = undefined;
     pokemon.iv = undefined;
     pokemon.happiness = undefined;
@@ -63,7 +62,7 @@ class PokemonMapper implements IMapper<IPokemon> {
       }
     } else {
       const savedPokemon = await Pokemon.findOne({ _id: pokemon._id }).populate(
-        "basePokemon"
+        this.populate()
       );
       if (!pokemon.trainerId) {
         pokemon.trainerId = savedPokemon.trainerId;
