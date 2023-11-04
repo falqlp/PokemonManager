@@ -9,7 +9,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LocalDatePipe } from '../../pipes/local-date.pipe';
 import { GameModel } from '../../models/game.model';
 import { CacheService } from '../../services/cache.service';
-import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,6 +16,7 @@ import { AddGameComponent } from './add-game/add-game.component';
 import { MatIconModule } from '@angular/material/icon';
 import { GameQueriesService } from '../../services/queries/game-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterService } from '../../services/router.service';
 
 @Component({
   selector: 'pm-games',
@@ -52,7 +52,7 @@ export class GamesComponent implements OnInit {
     protected userQueriesService: UserQueriesService,
     protected cacheService: CacheService,
     protected gameQueriesService: GameQueriesService,
-    protected router: Router,
+    protected router: RouterService,
     protected dialog: MatDialog,
     protected destroyRef: DestroyRef
   ) {}

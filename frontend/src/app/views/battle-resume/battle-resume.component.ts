@@ -1,10 +1,11 @@
 import { Component, DestroyRef, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { BattleModel } from '../../models/Battle.model';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
-import { map, switchMap, tap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
+import { RouterService } from '../../services/router.service';
 
 @Component({
   selector: 'app-battle-resume',
@@ -16,7 +17,7 @@ export class BattleResumeComponent implements OnInit {
 
   public constructor(
     protected route: ActivatedRoute,
-    protected router: Router,
+    protected router: RouterService,
     protected battleQueries: BattleInstanceQueriesService,
     protected trainerQueriesService: TrainerQueriesService,
     protected destroyRef: DestroyRef

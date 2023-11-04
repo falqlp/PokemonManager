@@ -9,12 +9,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
 import { GameModel } from '../../../models/game.model';
 import { TrainerModel } from '../../../models/TrainersModels/trainer.model';
 import { GameQueriesService } from '../../../services/queries/game-queries.service';
 import { CacheService } from '../../../services/cache.service';
 import { DialogRef } from '@angular/cdk/dialog';
+import { RouterService } from '../../../services/router.service';
 
 @Component({
   selector: 'pm-add-game',
@@ -36,7 +36,7 @@ export class AddGameComponent {
   });
 
   constructor(
-    protected router: Router,
+    protected router: RouterService,
     protected gameQueriesService: GameQueriesService,
     protected cacheService: CacheService,
     protected dialogRef: DialogRef<AddGameComponent>
