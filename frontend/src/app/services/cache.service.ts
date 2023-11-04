@@ -19,7 +19,6 @@ export class CacheService {
     const gameId = localStorage.getItem('gameId');
     this.setGameId(gameId);
     if (!gameId) {
-      console.log('gameId');
       this.router.navigateByUrl('games');
     }
     const userId = localStorage.getItem('userId');

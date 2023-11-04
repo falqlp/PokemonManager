@@ -1,9 +1,9 @@
 import { Component, DestroyRef } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CacheService } from '../../services/cache.service';
+import { RouterService } from '../../services/router.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent {
 
   constructor(
     protected authService: AuthService,
-    protected router: Router,
+    protected router: RouterService,
     protected destroyRef: DestroyRef,
     protected cacheService: CacheService
   ) {

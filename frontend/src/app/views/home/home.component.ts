@@ -7,7 +7,6 @@ import type { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.
 import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { PokemonQueriesService } from 'src/app/services/queries/pokemon-queries.service';
-import { Router } from '@angular/router';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { HttpClient } from '@angular/common/http';
@@ -22,6 +21,7 @@ import { NotifierService } from 'angular-notifier';
 import { NurseryWishlistFormComponent } from '../nursery/nursery-wishlist-form/nursery-wishlist-form.component';
 import { PokemonBaseQueriesService } from '../../services/queries/pokemon-base-queries.service';
 import { NurseryQueriesService } from '../../services/queries/nursery-queries.service';
+import { RouterService } from '../../services/router.service';
 
 @Component({
   selector: 'app-home',
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     protected moveLearningService: MoveLearningQueriesService,
-    protected router: Router,
+    protected router: RouterService,
     protected dialog: MatDialog,
     protected playerService: PlayerService,
     protected pokemonService: PokemonQueriesService,

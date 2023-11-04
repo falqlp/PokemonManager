@@ -35,7 +35,7 @@ export class TopBarComponent implements OnInit {
   public constructor(
     protected playerService: PlayerService,
     protected dialog: MatDialog,
-    protected router: Router,
+    protected router: RouterService,
     protected calendarEventQueriesService: CalendarEventQueriesService,
     protected routerService: RouterService,
     protected timeService: TimeService,

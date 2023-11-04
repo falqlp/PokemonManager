@@ -9,8 +9,10 @@ import { PcStorageComponent } from './views/pc-storage/pc-storage.component';
 import { TrainersComponent } from './views/trainers/trainers.component';
 import { GamesComponent } from './views/games/games.component';
 import { NurseryComponent } from './views/nursery/nursery.component';
+import { ErrorComponent } from './core/components/error/error.component';
 
 const routes: Routes = [
+  { path: '404Error', component: ErrorComponent },
   { path: 'home', component: HomeComponent, data: { title: 'HOME' } },
   { path: 'login', component: LoginComponent, data: { title: 'LOGIN' } },
   {
@@ -43,10 +45,15 @@ const routes: Routes = [
     component: NurseryComponent,
     data: { title: 'NURSERY' },
   },
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      bindToComponentInputs: true,
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CacheService } from './cache.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EggHatchedComponent } from '../modals/egg-hatched/egg-hatched.component';
+import { RouterService } from './router.service';
 
 export interface WebSocketModel {
   type: string;
@@ -23,6 +24,7 @@ export interface WebSocketModel {
 })
 export class WebsocketService {
   private websocket: WebSocketSubject<WebSocketModel>;
+  protected isConected = false;
   protected readonly url = 'ws://localhost:3000';
 
   constructor(
@@ -30,7 +32,8 @@ export class WebsocketService {
     protected notifierService: NotifierService,
     protected translateService: TranslateService,
     protected cacheService: CacheService,
-    protected dialog: MatDialog
+    protected dialog: MatDialog,
+    protected routerService: RouterService
   ) {}
 
   private getWebSocketConfig(): WebSocketSubjectConfig<WebSocketModel> {
@@ -38,13 +41,19 @@ export class WebsocketService {
       url: this.url,
       closeObserver: {
         next: (): void => {
+          this.isConected = false;
           console.log('Connection closed');
+          this.routerService.navigateByUrl('404Error');
         },
       },
       openObserver: {
         next: (): void => {
+          this.isConected = true;
           console.log('Connection opened');
           this.registerToGame(this.cacheService.getGameId());
+          if (this.routerService.getLastUrl()) {
+            this.routerService.navigateByUrl(this.routerService.getLastUrl());
+          }
         },
       },
     };
@@ -105,7 +114,7 @@ export class WebsocketService {
     });
   }
 
-  public sendMessage(msg: WebSocketModel): void {
-    this.websocket.next(msg);
+  public getConnected(): boolean {
+    return this.isConected;
   }
 }

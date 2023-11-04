@@ -4,7 +4,6 @@ import { TrainerQueriesService } from 'src/app/services/queries/trainer-queries.
 import { BattleService } from './battle.service';
 import { ROUND_TIME_MS } from './battel.const';
 import { combineLatest, switchMap } from 'rxjs';
-import { Router } from '@angular/router';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
 import { BattleModel } from '../../models/Battle.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -13,6 +12,7 @@ import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { BattleTrainerModel } from './battle.model';
 import { MoveModel } from '../../models/move.model';
 import { PlayerService } from '../../services/player.service';
+import { RouterService } from '../../services/router.service';
 
 @Component({
   selector: 'pm-battle',
@@ -32,7 +32,7 @@ export class BattleComponent implements OnInit {
     protected service: BattleService,
     protected battleInstanceQueriesService: BattleInstanceQueriesService,
     protected battleQueriesService: BattleQueriesService,
-    protected router: Router,
+    protected router: RouterService,
     protected destroyRef: DestroyRef,
     protected playerService: PlayerService
   ) {}
