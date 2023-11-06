@@ -55,9 +55,15 @@ class TrainerMapper implements IMapper<ITrainer> {
   }
   public map(trainer: ITrainer): ITrainer {
     trainer.pokemons.map((pokemon) => this.pokemonMapper.map(pokemon));
-    trainer.pcStorage = trainer.pcStorage._id;
-    trainer.trainingCamp = trainer.trainingCamp._id;
-    trainer.nursery = trainer.nursery._id;
+    if (trainer.pcStorage?._id) {
+      trainer.pcStorage = trainer.pcStorage._id;
+    }
+    if (trainer.trainingCamp?._id) {
+      trainer.trainingCamp = trainer.trainingCamp._id;
+    }
+    if (trainer.nursery?._id) {
+      trainer.nursery = trainer.nursery._id;
+    }
     return trainer;
   }
   public mapPartial = (trainer: ITrainer): ITrainer => {

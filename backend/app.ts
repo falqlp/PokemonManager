@@ -17,11 +17,6 @@ import gameRoutes from "./api/game/game.routes";
 import experienceRoutes from "./api/experience/experience.routes";
 import userRoutes from "./api/user/user.routes";
 import nurseryRoutes from "./api/nursery/nursery.routes";
-import Trainer from "./api/trainer/trainer";
-import Move from "./api/move/move";
-import Pokemon from "./api/pokemon/pokemon";
-import PokemonBase from "./api/pokemonBase/pokemonBase";
-import PcStorage from "./api/pcStorage/pcStorage";
 
 const app = express();
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
@@ -37,14 +32,6 @@ mongoose
 
 // migrationService.updatePokemonInfo();
 i18nService.checkAndSortLanguageFiles();
-PcStorage.findOne({ _id: "64d295d602f276756870fd45" })
-  .populate({
-    path: "storage",
-    populate: {
-      path: "pokemon",
-    },
-  })
-  .then((trainer) => console.log(trainer));
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(

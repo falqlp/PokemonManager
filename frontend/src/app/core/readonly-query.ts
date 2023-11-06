@@ -12,4 +12,12 @@ export class ReadonlyQuery<T> {
   public list(query?: QueryModel): Observable<T[]> {
     return this.http.put<T[]>(this.url, query);
   }
+
+  public count(query?: QueryModel): Observable<number> {
+    return this.http.put<number>(this.url + '/count', query);
+  }
+
+  public translateAggregation(query?: QueryModel): Observable<T[]> {
+    return this.http.put<T[]>(this.url + '/translateAggregation', query);
+  }
 }

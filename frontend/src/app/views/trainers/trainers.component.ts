@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
-import { Observable } from 'rxjs';
 import { MatTableModule } from '@angular/material/table';
 import { NgForOf } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
@@ -10,7 +8,6 @@ import {
   TableConfModel,
   CustomTableComponent,
 } from '../../components/custom-table/custom-table.component';
-import { QueryModel } from '../../core/query.model';
 
 @Component({
   standalone: true,
@@ -55,8 +52,4 @@ export class TrainersComponent {
   };
 
   public constructor(protected trainerService: TrainerQueriesService) {}
-
-  protected query = (query?: QueryModel): Observable<TrainerModel[]> => {
-    return this.trainerService.list(query);
-  };
 }

@@ -3,4 +3,5 @@ export interface QueryModel {
   limit?: number;
   sort?: Record<string, number>;
   custom?: Record<string, unknown>;
+  skip?: number;
 }

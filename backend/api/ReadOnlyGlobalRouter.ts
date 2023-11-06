@@ -22,6 +22,20 @@ class ReadOnlyGlobalRouter<T extends Document> {
         .then((obj: any) => res.status(200).json(obj))
         .catch((error: any) => console.log(error));
     });
+
+    this.router.put("/count", (req, res, next) => {
+      this.service
+        .count(req.body)
+        .then((obj: any) => res.status(200).json(obj))
+        .catch((error: any) => console.log(error));
+    });
+
+    this.router.put("/translateAggregation", (req, res, next) => {
+      this.service
+        .translateAggregation(req.body)
+        .then((obj: any) => res.status(200).json(obj))
+        .catch((error: any) => console.log(error));
+    });
   }
 }
 

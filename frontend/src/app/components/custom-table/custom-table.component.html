@@ -1,4 +1,9 @@
-<table matSort (matSortChange)="sort($event)" mat-table [dataSource]="$data">
+<table
+  matSort
+  (matSortChange)="sort($event)"
+  mat-table
+  [dataSource]="dataSource"
+>
   <ng-container
     *ngFor="let column of conf.columns"
     [matColumnDef]="column.name"
@@ -27,12 +32,15 @@
       <ng-container
         pmDynamicCell
         [componentType]="column.content.component"
-        [data]="
-          column.content.data !== 'all' ? element[column.content.data] : element
-        "
+        [data]="getData(element, column.content.data)"
       />
     </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="mapColumnName()"></tr>
   <tr mat-row *matRowDef="let row; columns: mapColumnName()"></tr>
 </table>
+<mat-paginator
+  pageSize="10"
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+></mat-paginator>

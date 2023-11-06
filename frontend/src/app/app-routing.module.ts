@@ -10,6 +10,7 @@ import { TrainersComponent } from './views/trainers/trainers.component';
 import { GamesComponent } from './views/games/games.component';
 import { NurseryComponent } from './views/nursery/nursery.component';
 import { ErrorComponent } from './core/components/error/error.component';
+import { PokedexComponent } from './views/pokedex/pokedex.component';
 
 const routes: Routes = [
   { path: '404Error', component: ErrorComponent },
@@ -45,6 +46,7 @@ const routes: Routes = [
     component: NurseryComponent,
     data: { title: 'NURSERY' },
   },
+  { path: 'pokedex', component: PokedexComponent, data: { title: 'POKEDEX' } },
   { path: '**', redirectTo: 'home' },
 ];
 
