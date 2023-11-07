@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
+import { MongoClient } from "mongodb";
 
 interface Translation {
   [key: string]: string;
@@ -35,6 +36,64 @@ const i18nService = {
     } catch (error: any) {
       console.error("An error occurred while checking language files: ", error);
     }
+  },
+  translationsToDatabase: () => {
+    return new Promise((resolve, reject) => {
+      const client = new MongoClient(
+        "mongodb://127.0.0.1:27017/PokemonManager"
+      );
+
+      const jsonFilePathEn =
+        "C:/Users/falql/Desktop/Pokemon Manager/pokemon-manager/frontend/src/assets/i18n/en.json";
+      const jsonFilePathFr =
+        "C:/Users/falql/Desktop/Pokemon Manager/pokemon-manager/frontend/src/assets/i18n/fr.json";
+
+      const readJsonFile = (path: string) => {
+        return new Promise((resolve, reject) => {
+          fs.readFile(path, "utf8", (err, data) => {
+            if (err) {
+              reject("Error reading JSON file:" + err);
+              return;
+            }
+            resolve(JSON.parse(data));
+          });
+        });
+      };
+
+      client
+        .connect()
+        .then(async (client) => {
+          const Db = client.db("PokemonManager");
+          const collection = Db.collection("translations");
+
+          try {
+            const [translationsEn, translationsFr]: Record<string, any>[] =
+              await Promise.all([
+                readJsonFile(jsonFilePathEn),
+                readJsonFile(jsonFilePathFr),
+              ]);
+
+            const updatePromises = Object.keys(translationsEn).map((key) => {
+              const updateDoc = {
+                $set: {
+                  en: translationsEn[key],
+                  fr: translationsFr[key],
+                },
+              };
+              return collection.updateOne({ key }, updateDoc, { upsert: true });
+            });
+
+            await Promise.all(updatePromises);
+            console.log("Translation documents successfully updated");
+            resolve("Translation documents successfully updated");
+          } catch (e) {
+            reject("Error updating translation documents:" + e);
+          } finally {
+            await client.close();
+          }
+        })
+        .catch(reject);
+    });
   },
 };
 

@@ -32,6 +32,9 @@ mongoose
 
 // migrationService.updatePokemonInfo();
 i18nService.checkAndSortLanguageFiles();
+i18nService
+  .translationsToDatabase()
+  .then(() => console.info("Backend started"));
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
