@@ -1,6 +1,18 @@
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
-import { BehaviorSubject, startWith, switchMap } from 'rxjs';
-import { MatSortModule, Sort } from '@angular/material/sort';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import {
+  BehaviorSubject,
+  debounce,
+  debounceTime,
+  startWith,
+  switchMap,
+} from 'rxjs';
+import { MatSortModule, Sort, SortDirection } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { TableDisplayTextComponent } from './components/table-display-text/table-display-text.component';
 import { NgForOf, NgIf } from '@angular/common';
@@ -10,16 +22,19 @@ import { QueryModel } from '../../core/query.model';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ReadonlyQuery } from '../../core/readonly-query';
 import { MatInputModule } from '@angular/material/input';
+import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 export interface CellModel {
   component: string;
   data: string | 'all';
 }
 export interface TableConfModel {
+  defaultSort?: { column: string; direction: SortDirection };
   columns: {
     name: string;
     sort?: boolean | string;
-    search?: string;
+    search?: { value: string; type: string; values?: string[] };
     header: CellModel;
     content: CellModel;
   }[];
@@ -38,24 +53,47 @@ export interface TableConfModel {
     NgIf,
     MatPaginatorModule,
     MatInputModule,
+    ReactiveFormsModule,
+    MatSelectModule,
   ],
   templateUrl: './custom-table.component.html',
   styleUrls: ['./custom-table.component.scss'],
 })
-export class CustomTableComponent<T> implements AfterViewInit {
+export class CustomTableComponent<T> implements AfterViewInit, OnInit {
   @Input() public queryService: ReadonlyQuery<T>;
   @Input() public conf: TableConfModel;
-  protected sortQuerySubject: BehaviorSubject<Record<string, number>> =
-    new BehaviorSubject({});
+  protected sortQuerySubject: BehaviorSubject<void> = new BehaviorSubject(null);
 
   protected dataSource = new MatTableDataSource<T>();
+  protected formInput: FormArray<FormControl> = new FormArray([]);
+  protected query: QueryModel = { sort: {}, custom: {} };
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  public ngOnInit(): void {
+    this.conf.columns.forEach((column) => {
+      if (column.search?.type === 'number') {
+        this.formInput.push(new FormControl<number>(null));
+      }
+      this.formInput.push(new FormControl());
+    });
+    if (this.conf.defaultSort) {
+      this.createSortQuery({
+        direction: this.conf.defaultSort.direction,
+        active: this.conf.defaultSort.column,
+      });
+    }
+  }
+
   public ngAfterViewInit(): void {
-    this.queryService
-      .count()
+    this.formInput.valueChanges
       .pipe(
+        debounceTime(200),
+        startWith([]),
+        switchMap((values) => {
+          this.getQueryFromInputs(values);
+          return this.queryService.count(this.query);
+        }),
         switchMap((count) => {
           this.paginator.length = count;
           return this.paginator.page.pipe(startWith({}));
@@ -63,13 +101,13 @@ export class CustomTableComponent<T> implements AfterViewInit {
         switchMap(() => {
           return this.sortQuerySubject;
         }),
-        switchMap((sortQuery) => {
-          const queryModel: QueryModel = {
+        switchMap(() => {
+          this.query = {
+            ...this.query,
             skip: this.paginator.pageIndex * this.paginator.pageSize,
             limit: this.paginator.pageSize,
-            sort: sortQuery,
           };
-          return this.queryService.translateAggregation(queryModel);
+          return this.queryService.translateAggregation(this.query);
         })
       )
       .subscribe((data) => {
@@ -81,11 +119,16 @@ export class CustomTableComponent<T> implements AfterViewInit {
     return this.conf.columns.map((col) => col.name);
   }
 
-  protected sort(event: Sort): void {
-    this.sortQuerySubject.next(this.createSortQuery(event));
+  protected mapColumnInput(): string[] {
+    return this.conf.columns.map((col) => col.name + 'Input');
   }
 
-  protected createSortQuery(sort: Sort): Record<string, number> {
+  protected sort(event: Sort): void {
+    this.createSortQuery(event);
+    this.sortQuerySubject.next();
+  }
+
+  protected createSortQuery(sort: Sort): void {
     const sortQuery: Record<string, number> = {};
     let direction;
     switch (sort.direction) {
@@ -107,7 +150,7 @@ export class CustomTableComponent<T> implements AfterViewInit {
     } else {
       sortQuery[sort.active] = direction;
     }
-    return sortQuery;
+    this.query.sort = sortQuery;
   }
 
   protected getData(element: T, data: string): any {
@@ -127,4 +170,28 @@ export class CustomTableComponent<T> implements AfterViewInit {
       }
     }, element);
   }
+
+  protected getQueryFromInputs(values: unknown[]): void {
+    this.query.custom = {};
+    for (let i = 0; i < values.length; i++) {
+      if (values[i]) {
+        if (this.conf.columns[i].search.type === 'number') {
+          this.query.custom[this.conf.columns[i].search.value] = Number(
+            values[i]
+          );
+        } else if (this.conf.columns[i].search.type === 'select') {
+          this.query.custom[this.conf.columns[i].search.value] = {
+            $all: values[i],
+          };
+        } else {
+          this.query.custom[this.conf.columns[i].search.value] = {
+            $regex: values[i],
+            $options: 'i',
+          };
+        }
+      }
+    }
+  }
+
+  protected readonly Input = Input;
 }

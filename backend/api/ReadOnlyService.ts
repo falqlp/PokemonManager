@@ -83,11 +83,19 @@ class ReadOnlyService<T extends Document> {
   ): Promise<T[]> {
     try {
       const query = { ...body.custom };
+      const translateQuery: Record<string, unknown> = {};
+      const nonTranslateQuery: Record<string, unknown> = {};
+
+      Object.keys(query).forEach((key) => {
+        const splitMatch = key.split(".");
+        if (splitMatch[0] === "translation") {
+          translateQuery[key] = query[key];
+        } else {
+          nonTranslateQuery[key] = query[key];
+        }
+      });
       if (options?.gameId) {
-        query["gameId"] = options.gameId;
-      }
-      if (body.ids) {
-        query._id = { $in: body.ids };
+        nonTranslateQuery["gameId"] = options.gameId;
       }
       let sortParts;
       if (Object.keys(body.sort).length > 0) {
@@ -103,7 +111,18 @@ class ReadOnlyService<T extends Document> {
         });
         aggregation.collation({ locale: sortParts[2], strength: 1 });
       }
-      aggregation.match(query);
+      aggregation.match(nonTranslateQuery);
+      Object.keys(translateQuery).forEach((key) => {
+        const splitMatch = key.split(".");
+        aggregation.lookup({
+          from: "translations",
+          localField: splitMatch[1],
+          foreignField: "key",
+          as: "translation." + splitMatch[1],
+        });
+        aggregation.collation({ locale: splitMatch[2], strength: 1 });
+      });
+      aggregation.match(translateQuery);
       if (Object.keys(body.sort).length > 0) {
         aggregation.sort(body.sort);
       }
@@ -115,16 +134,6 @@ class ReadOnlyService<T extends Document> {
       if (this.mapper.populate()) {
         await this.schema.populate(dtos, this.mapper.populate());
       }
-
-      if (body.ids?.length && !body.sort) {
-        dtos.sort((a: any, b: any) => {
-          return (
-            body.ids!.indexOf(a._id.toString()) -
-            body.ids!.indexOf(b._id.toString())
-          );
-        });
-      }
-
       return await Promise.all(
         dtos.map(async (dto) => {
           return options?.map ? options.map(dto) : this.mapper.map(dto);
@@ -144,13 +153,34 @@ class ReadOnlyService<T extends Document> {
   ): Promise<number> {
     try {
       const query = { ...body.custom };
+      const translateQuery: Record<string, unknown> = {};
+      const nonTranslateQuery: Record<string, unknown> = {};
+
+      Object.keys(query).forEach((key) => {
+        const splitMatch = key.split(".");
+        if (splitMatch[0] === "translation") {
+          translateQuery[key] = query[key];
+        } else {
+          nonTranslateQuery[key] = query[key];
+        }
+      });
       if (options?.gameId) {
-        query["gameId"] = options.gameId;
+        nonTranslateQuery["gameId"] = options.gameId;
       }
-      if (body.ids) {
-        query._id = { $in: body.ids };
-      }
-      return await this.schema.find(query).count();
+      const aggregation = this.schema.aggregate([]);
+      aggregation.match(nonTranslateQuery);
+      Object.keys(translateQuery).forEach((key) => {
+        const splitMatch = key.split(".");
+        aggregation.lookup({
+          from: "translations",
+          localField: splitMatch[1],
+          foreignField: "key",
+          as: "translation." + splitMatch[1],
+        });
+        aggregation.collation({ locale: splitMatch[2], strength: 1 });
+      });
+      aggregation.match(translateQuery);
+      return (await aggregation).length;
     } catch (error) {
       return Promise.reject(error);
     }

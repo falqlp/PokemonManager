@@ -33,4 +33,13 @@
   .mat-sort-header-content {
     flex: 1;
   }
+  .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(
+      .mdc-text-field--textarea
+    )
+    .mat-mdc-form-field-infix {
+    width: auto;
+  }
+  .mat-mdc-form-field-type-mat-select {
+    width: 100%;
+  }
 }

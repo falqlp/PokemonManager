@@ -14,10 +14,12 @@ import { PokemonBaseQueriesService } from '../../services/queries/pokemon-base-q
 })
 export class PokedexComponent {
   protected conf: TableConfModel = {
+    defaultSort: { column: 'id', direction: 'asc' },
     columns: [
       {
         name: 'id',
         sort: true,
+        search: { value: 'id', type: 'number' },
         header: {
           component: 'displayText',
           data: 'N°',
@@ -42,7 +44,7 @@ export class PokedexComponent {
       {
         name: 'name',
         sort: 'translation.name.fr',
-        search: 'translation.name.fr',
+        search: { value: 'translation.name.fr', type: 'text' },
         header: {
           component: 'displayText',
           data: 'NAME',
@@ -54,6 +56,29 @@ export class PokedexComponent {
       },
       {
         name: 'types',
+        search: {
+          value: 'types',
+          type: 'select',
+          values: [
+            'BUG',
+            'DARK',
+            'DRAGON',
+            'ELECTRIC',
+            'FAIRY',
+            'FIGHTING',
+            'FIRE',
+            'GHOST',
+            'GRASS',
+            'GROUND',
+            'ICE',
+            'NORMAL',
+            'POISON',
+            'PSY',
+            'ROCK',
+            'STEEL',
+            'WATER',
+          ],
+        },
         header: {
           component: 'displayText',
           data: 'TYPES',
@@ -80,7 +105,7 @@ export class PokedexComponent {
         sort: true,
         header: {
           component: 'displayText',
-          data: 'ATK',
+          data: 'ATTACK',
         },
         content: {
           component: 'displayText',
@@ -92,7 +117,7 @@ export class PokedexComponent {
         sort: true,
         header: {
           component: 'displayText',
-          data: 'DEF',
+          data: 'DEFENSE',
         },
         content: {
           component: 'displayText',
@@ -104,7 +129,7 @@ export class PokedexComponent {
         sort: true,
         header: {
           component: 'displayText',
-          data: 'SP_ATK',
+          data: 'SPECIAL_ATTACK',
         },
         content: {
           component: 'displayText',
@@ -116,7 +141,7 @@ export class PokedexComponent {
         sort: true,
         header: {
           component: 'displayText',
-          data: 'SP_DEF',
+          data: 'SPECIAL_DEFENSE',
         },
         content: {
           component: 'displayText',
@@ -128,7 +153,7 @@ export class PokedexComponent {
         sort: true,
         header: {
           component: 'displayText',
-          data: 'SPE',
+          data: 'SPEED',
         },
         content: {
           component: 'displayText',

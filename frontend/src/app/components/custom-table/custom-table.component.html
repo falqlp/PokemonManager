@@ -5,7 +5,7 @@
   [dataSource]="dataSource"
 >
   <ng-container
-    *ngFor="let column of conf.columns"
+    *ngFor="let column of conf.columns; let i = index"
     [matColumnDef]="column.name"
   >
     <th *matHeaderCellDef>
@@ -28,6 +28,28 @@
         </ng-container>
       </ng-template>
     </th>
+    <ng-container [matColumnDef]="column.name + 'Input'">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-form-field *ngIf="column.search">
+          <mat-select
+            panelWidth=""
+            multiple
+            *ngIf="column.search.type === 'select'"
+            [formControl]="formInput.controls[i]"
+            ><mat-option
+              *ngFor="let value of column.search.values"
+              [value]="value"
+              >{{ value | translate }}</mat-option
+            >
+          </mat-select>
+          <input
+            *ngIf="column.search.type !== 'select'"
+            matInput
+            [type]="column.search.type"
+            [formControl]="formInput.controls[i]"
+        /></mat-form-field>
+      </th>
+    </ng-container>
     <td mat-cell *matCellDef="let element">
       <ng-container
         pmDynamicCell
@@ -37,6 +59,7 @@
     </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="mapColumnName()"></tr>
+  <tr mat-header-row *matHeaderRowDef="mapColumnInput()"></tr>
   <tr mat-row *matRowDef="let row; columns: mapColumnName()"></tr>
 </table>
 <mat-paginator
