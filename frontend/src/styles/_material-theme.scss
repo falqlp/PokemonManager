@@ -42,4 +42,7 @@
   .mat-mdc-form-field-type-mat-select {
     width: 100%;
   }
+  .mat-drawer-backdrop.mat-drawer-shown {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+  }
 }

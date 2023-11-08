@@ -1,0 +1,10 @@
+<div class="sidenav">
+  <div
+    mat-ripple
+    *ngFor="let nav of navs"
+    class="sidenav__nav"
+    (click)="click(nav.link)"
+  >
+    <mat-icon>{{ nav.icon }}</mat-icon> {{ nav.label | translate }}
+  </div>
+</div>

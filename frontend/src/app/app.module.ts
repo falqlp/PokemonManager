@@ -56,6 +56,8 @@ import {
 } from '@angular/material-moment-adapter';
 import { PokemonResumeMovesComponent } from './components/pokemon-resume/pokemon-resume-moves/pokemon-resume-moves.component';
 import { GameIdInterceptor } from './core/game-id-interceptor.service';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -116,6 +118,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MatMomentDateModule,
     NotifierModule,
     PokemonResumeMovesComponent,
+    MatSidenavModule,
+    SidenavComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

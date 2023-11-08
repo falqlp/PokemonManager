@@ -6,7 +6,6 @@ import { PokemonInfoComponent } from 'src/app/modals/pokemon-info/pokemon-info.c
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
-import { Router } from '@angular/router';
 import { RouterService } from '../../services/router.service';
 import { TimeService } from '../../services/time.service';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
@@ -16,6 +15,7 @@ import { BattleModel } from '../../models/Battle.model';
 import { ExpGainComponent } from '../../modals/exp-gain/exp-gain.component';
 import { first, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { SidenavService } from '../sidenav/sidenav.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -39,7 +39,8 @@ export class TopBarComponent implements OnInit {
     protected calendarEventQueriesService: CalendarEventQueriesService,
     protected routerService: RouterService,
     protected timeService: TimeService,
-    protected destroyRef: DestroyRef
+    protected destroyRef: DestroyRef,
+    protected sidenavService: SidenavService
   ) {}
 
   public ngOnInit(): void {
@@ -60,8 +61,8 @@ export class TopBarComponent implements OnInit {
     this.dialog.open(PokemonInfoComponent, { data: pokemon });
   }
 
-  protected goHome(): void {
-    this.router.navigate(['home']);
+  protected menu(): void {
+    this.sidenavService.openSidenav();
   }
 
   protected simulate(playerId: string): void {
