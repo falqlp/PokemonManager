@@ -86,10 +86,6 @@ export class HomeComponent implements OnInit {
       .subscribe((newpokemon) => console.log(newpokemon));
   }
 
-  protected startBattle(): void {
-    this.router.navigateByUrl('nursery');
-  }
-
   protected goToPc(): void {
     this.router.navigate(['pcStorage']);
   }
@@ -98,19 +94,11 @@ export class HomeComponent implements OnInit {
     this.http.get('/api/trainer/' + this.player._id).subscribe(console.log);
   }
 
-  protected goToTrainers(): void {
-    this.router.navigate(['trainers']);
-  }
-
   protected goToCreateCalendarEvent(): void {
     this.dialog.open(AddCalendarEventComponent);
   }
 
   protected goToGames(): void {
     this.router.navigateByUrl('games');
-  }
-
-  protected goToPokedex(): void {
-    this.router.navigateByUrl('pokedex');
   }
 }
