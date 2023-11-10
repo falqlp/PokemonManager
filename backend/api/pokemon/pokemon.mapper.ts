@@ -53,6 +53,7 @@ class PokemonMapper implements IMapper<IPokemon> {
   };
 
   public async update(pokemon: IPokemon): Promise<IPokemon> {
+    const oldPokemon: IPokemon = { ...pokemon } as IPokemon;
     if (pokemon.iv && pokemon.ev) {
       pokemon.stats = this.updateStats(pokemon);
       if (!pokemon.hiddenPotential) {
@@ -68,8 +69,6 @@ class PokemonMapper implements IMapper<IPokemon> {
         pokemon.trainerId = savedPokemon.trainerId;
       }
       pokemon.gameId = savedPokemon.gameId;
-      pokemon.ev = savedPokemon.ev;
-      pokemon.iv = savedPokemon.iv;
       if (!pokemon.hiddenPotential) {
         pokemon.hiddenPotential = this.generateHiddenPotentail(
           savedPokemon.potential ?? pokemon.potential
@@ -78,6 +77,8 @@ class PokemonMapper implements IMapper<IPokemon> {
       if (pokemon.level <= 1 || !pokemon.basePokemon?.id) {
         pokemon.basePokemon = savedPokemon.basePokemon;
       }
+      pokemon.ev = savedPokemon.ev;
+      pokemon.iv = savedPokemon.iv;
       pokemon.stats = this.updateStats(pokemon);
       if (pokemon.level && pokemon.level !== 0 && savedPokemon.hatchingDate) {
         pokemon.birthday = savedPokemon.hatchingDate;
@@ -87,7 +88,15 @@ class PokemonMapper implements IMapper<IPokemon> {
     if (pokemon.birthday) {
       pokemon.age = await this.calculateAge(pokemon.birthday);
     }
-    await updatePlayer(pokemon.trainerId, pokemon.gameId);
+    const newPokemon = { ...pokemon };
+    delete newPokemon.iv;
+    delete newPokemon.ev;
+    delete oldPokemon.iv;
+    delete oldPokemon.ev;
+    delete oldPokemon.stats._id;
+    if (!(JSON.stringify(newPokemon) === JSON.stringify(oldPokemon))) {
+      await updatePlayer(pokemon.trainerId, pokemon.gameId);
+    }
     return pokemon;
   }
 

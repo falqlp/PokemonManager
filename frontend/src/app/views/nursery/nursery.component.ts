@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PlayerService } from '../../services/player.service';
 import { NurseryQueriesService } from '../../services/queries/nursery-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { of, switchMap } from 'rxjs';
+import { first, of, switchMap } from 'rxjs';
 import { NurseryModel } from '../../models/nursery.model';
 import { NurseryWishlistFormComponent } from './nursery-wishlist-form/nursery-wishlist-form.component';
 import { NgClass, NgForOf, NgIf } from '@angular/common';

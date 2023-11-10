@@ -26,17 +26,9 @@ export const initializeWebSocketServer = (server: any) => {
   });
 };
 
-export const sendMessageToClients = (message: any) => {
-  wss.clients.forEach((client: WebSocket) => {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(JSON.stringify(message));
-    }
-  });
-};
-
 export const updatePlayer = async (trainerId: string, gameId: string) => {
   const player = (await GameService.getInstance().get(gameId)).player;
-  if (new ObjectId(trainerId).equals(player._id) && clients[gameId]) {
+  if (player._id.toString() === trainerId && clients[gameId]) {
     clients[gameId].forEach((client: WebSocket) => {
       if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify({ type: "updatePlayer" }));
