@@ -2,6 +2,7 @@
 
 Requirement:
 MongoDb Database -> Database named: PokemonManager
+
 Import all file from dump in mongoDbCompass
 
 
