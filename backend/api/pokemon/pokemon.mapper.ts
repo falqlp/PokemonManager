@@ -8,13 +8,12 @@ import { updatePlayer } from "../../websocketServer";
 import PokemonBase, { IPokemonBase } from "../pokemonBase/pokemonBase";
 import { PopulateOptions } from "mongoose";
 import Move from "../move/move";
+import MoveMapper from "../move/move.mapper";
+import PokemonBaseMapper from "../pokemonBase/pokemonBase.mapper";
 
 class PokemonMapper implements IMapper<IPokemon> {
   private static instance: PokemonMapper;
-  constructor(
-    protected moveService: MoveService,
-    protected pokemonBaseService: PokemonBaseService
-  ) {}
+  constructor() {}
 
   public populate(): PopulateOptions[] {
     return [
@@ -23,6 +22,7 @@ class PokemonMapper implements IMapper<IPokemon> {
     ];
   }
   public async map(pokemon: IPokemon): Promise<IPokemon> {
+    pokemon = this.mapComplete(pokemon);
     pokemon.ev = undefined;
     pokemon.iv = undefined;
     pokemon.happiness = undefined;
@@ -35,7 +35,7 @@ class PokemonMapper implements IMapper<IPokemon> {
     return pokemon;
   }
 
-  public mapComplete = async (pokemon: IPokemon): Promise<IPokemon> => {
+  public mapComplete = (pokemon: IPokemon): IPokemon => {
     return pokemon;
   };
 
@@ -194,10 +194,7 @@ class PokemonMapper implements IMapper<IPokemon> {
 
   public static getInstance(): PokemonMapper {
     if (!PokemonMapper.instance) {
-      PokemonMapper.instance = new PokemonMapper(
-        MoveService.getInstance(),
-        PokemonBaseService.getInstance()
-      );
+      PokemonMapper.instance = new PokemonMapper();
     }
     return PokemonMapper.instance;
   }

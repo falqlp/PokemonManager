@@ -5,13 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import {
-  BehaviorSubject,
-  debounce,
-  debounceTime,
-  startWith,
-  switchMap,
-} from 'rxjs';
+import { BehaviorSubject, debounceTime, startWith, switchMap } from 'rxjs';
 import { MatSortModule, Sort, SortDirection } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { TableDisplayTextComponent } from './components/table-display-text/table-display-text.component';
@@ -174,7 +168,7 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
   protected getQueryFromInputs(values: unknown[]): void {
     this.query.custom = {};
     for (let i = 0; i < values.length; i++) {
-      if (values[i]) {
+      if (values[i] && (values[i] as unknown[]).length !== 0) {
         if (this.conf.columns[i].search.type === 'number') {
           this.query.custom[this.conf.columns[i].search.value] = Number(
             values[i]
@@ -192,6 +186,4 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
       }
     }
   }
-
-  protected readonly Input = Input;
 }
