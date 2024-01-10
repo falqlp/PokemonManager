@@ -93,7 +93,7 @@ class PokemonMapper implements IMapper<IPokemon> {
     delete newPokemon.ev;
     delete oldPokemon.iv;
     delete oldPokemon.ev;
-    delete oldPokemon.stats._id;
+    delete oldPokemon.stats;
     if (!(JSON.stringify(newPokemon) === JSON.stringify(oldPokemon))) {
       await updatePlayer(pokemon.trainerId, pokemon.gameId);
     }

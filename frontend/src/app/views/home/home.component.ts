@@ -52,7 +52,8 @@ export class HomeComponent implements OnInit {
     protected webSocketService: WebsocketService,
     protected notifierService: NotifierService,
     protected pokemonBaseQueriesService: PokemonBaseQueriesService,
-    protected nurseryQueriesService: NurseryQueriesService
+    protected nurseryQueriesService: NurseryQueriesService,
+    protected translate: TranslateService
   ) {}
 
   public ngOnInit(): void {
@@ -100,5 +101,9 @@ export class HomeComponent implements OnInit {
 
   protected goToGames(): void {
     this.router.navigateByUrl('games');
+  }
+
+  protected changeLanguage(lang: string): void {
+    this.translate.use(lang);
   }
 }
