@@ -65,7 +65,8 @@ class ExperienceService {
       });
     await Promise.all(pokemonPromise);
     await Promise.all(storagePromise);
-    await this.trainerService.update(trainer._id, trainer);
+    const updateTrainer = { ...(trainer as any)._doc } as ITrainer;
+    await this.trainerService.update(updateTrainer._id, updateTrainer);
     return { trainer, xpAndLevelGain, evolutions };
   }
 
