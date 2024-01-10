@@ -44,9 +44,9 @@ const i18nService = {
       );
 
       const jsonFilePathEn =
-        "C:/Users/falql/Desktop/Pokemon Manager/pokemon-manager/frontend/src/assets/i18n/en.json";
+        "C:/Users/falql/Desktop/Pokemon Manager/pokemon-manager/frontend/src/assets/i18n/en-EN.json";
       const jsonFilePathFr =
-        "C:/Users/falql/Desktop/Pokemon Manager/pokemon-manager/frontend/src/assets/i18n/fr.json";
+        "C:/Users/falql/Desktop/Pokemon Manager/pokemon-manager/frontend/src/assets/i18n/fr-FR.json";
 
       const readJsonFile = (path: string) => {
         return new Promise((resolve, reject) => {

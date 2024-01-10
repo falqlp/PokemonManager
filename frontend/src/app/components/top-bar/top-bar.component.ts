@@ -1,4 +1,4 @@
-import { DestroyRef, OnInit } from '@angular/core';
+import { AfterViewInit, DestroyRef, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import type { Observable } from 'rxjs';
@@ -16,6 +16,7 @@ import { ExpGainComponent } from '../../modals/exp-gain/exp-gain.component';
 import { first, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SidenavService } from '../sidenav/sidenav.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-top-bar',
@@ -31,6 +32,8 @@ export class TopBarComponent implements OnInit {
   protected actualDate: Date;
   protected simulating = false;
   protected player: TrainerModel;
+  protected lang =
+    this.translateService.currentLang ?? this.translateService.defaultLang;
 
   public constructor(
     protected playerService: PlayerService,
@@ -40,7 +43,8 @@ export class TopBarComponent implements OnInit {
     protected routerService: RouterService,
     protected timeService: TimeService,
     protected destroyRef: DestroyRef,
-    protected sidenavService: SidenavService
+    protected sidenavService: SidenavService,
+    protected translateService: TranslateService
   ) {}
 
   public ngOnInit(): void {
@@ -128,5 +132,25 @@ export class TopBarComponent implements OnInit {
           },
         });
       });
+  }
+
+  protected changeLanguage(lang: string): void {
+    this.translateService.use(lang);
+    this.lang = this.translateService.currentLang;
+    this.timeService
+      .getActualDate()
+      .pipe(first())
+      .subscribe((date) => this.timeService.updateDate(date));
+  }
+
+  protected getLangFlag(lang: string): string {
+    switch (lang) {
+      case 'fr-FR':
+        return 'FR';
+      case 'en-EN':
+        return 'US';
+      default:
+        return '';
+    }
   }
 }

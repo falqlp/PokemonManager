@@ -6,7 +6,6 @@ import pokemonBaseRoutes from "./api/pokemonBase/pokemonBase.route";
 import pokemonRoutes from "./api/pokemon/pokemon.route";
 import trainerRoutes from "./api/trainer/trainer.route";
 import moveRoute from "./api/move/move.route";
-import migrationService from "./migration.service";
 import i18nService from "./i18n.service";
 import battleInstanceRoutes from "./api/battle-instance/battle-instance.route";
 import battleRoutes from "./api/battle/battle.route";
@@ -39,7 +38,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization, Game-Id"
+    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization, Game-Id, lang"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",

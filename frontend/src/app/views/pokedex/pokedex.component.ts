@@ -43,8 +43,8 @@ export class PokedexComponent {
       },
       {
         name: 'name',
-        sort: 'translation.name.fr',
-        search: { value: 'translation.name.fr', type: 'text' },
+        sort: 'translation.name',
+        search: { value: 'translation.name', type: 'text' },
         header: {
           component: 'displayText',
           data: 'NAME',

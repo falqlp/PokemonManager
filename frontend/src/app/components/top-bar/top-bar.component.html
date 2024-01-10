@@ -21,6 +21,16 @@
     </div>
     {{ title$ | async | translate }}
     <div class="top-bar__right-content" *ngIf="date$ | async as date">
+      <button
+        mat-flat-button
+        *ngIf="lang"
+        (click)="changeLanguage(lang === 'fr-FR' ? 'en-EN' : 'fr-FR')"
+      >
+        <img
+          [alt]="lang"
+          [src]="'https://flagsapi.com/' + getLangFlag(lang) + '/flat/32.png'"
+        />
+      </button>
       <button mat-flat-button (click)="showCalendar()">
         {{ date }} <mat-icon>calendar_today</mat-icon>
       </button>

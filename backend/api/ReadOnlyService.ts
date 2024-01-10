@@ -37,6 +37,7 @@ class ReadOnlyService<T extends Document> {
     body: ListBody,
     options?: {
       gameId?: string;
+      lang?: string;
       map?: (entity: T) => Promise<T> | T;
     }
   ): Promise<T[]> {
@@ -78,6 +79,7 @@ class ReadOnlyService<T extends Document> {
     body: ListBody,
     options?: {
       gameId?: string;
+      lang?: string;
       map?: (entity: T) => Promise<T> | T;
     }
   ): Promise<T[]> {
@@ -85,6 +87,7 @@ class ReadOnlyService<T extends Document> {
       const query = { ...body.custom };
       const translateQuery: Record<string, unknown> = {};
       const nonTranslateQuery: Record<string, unknown> = {};
+      let sortQuery: Record<string, unknown> = {};
 
       Object.keys(query).forEach((key) => {
         const splitMatch = key.split(".");
@@ -100,19 +103,26 @@ class ReadOnlyService<T extends Document> {
       let sortParts;
       if (Object.keys(body.sort).length > 0) {
         sortParts = Object.keys(body.sort)[0].split(".");
+        sortQuery = body.sort;
       }
       const aggregation = this.schema.aggregate([]);
       if (sortParts && sortParts[0] === "translation") {
+        sortQuery = {};
+        sortQuery[Object.keys(body.sort)[0] + "." + options.lang] =
+          body.sort[Object.keys(body.sort)[0]];
         aggregation.lookup({
           from: "translations",
           localField: sortParts[1],
           foreignField: "key",
           as: "translation." + sortParts[1],
         });
-        aggregation.collation({ locale: sortParts[2], strength: 1 });
+        aggregation.collation({ locale: options.lang, strength: 1 });
       }
       aggregation.match(nonTranslateQuery);
+      let modifiedTranslateQuery: Record<string, unknown> = {};
       Object.keys(translateQuery).forEach((key) => {
+        const newKey = key + "." + options.lang;
+        modifiedTranslateQuery[newKey] = translateQuery[key];
         const splitMatch = key.split(".");
         aggregation.lookup({
           from: "translations",
@@ -120,11 +130,12 @@ class ReadOnlyService<T extends Document> {
           foreignField: "key",
           as: "translation." + splitMatch[1],
         });
-        aggregation.collation({ locale: splitMatch[2], strength: 1 });
+        aggregation.collation({ locale: options.lang, strength: 1 });
       });
-      aggregation.match(translateQuery);
-      if (Object.keys(body.sort).length > 0) {
-        aggregation.sort(body.sort);
+      aggregation.match(modifiedTranslateQuery);
+      if (Object.keys(sortQuery).length > 0) {
+        // @ts-ignore
+        aggregation.sort(sortQuery);
       }
       if (body.skip) {
         aggregation.skip(body.skip);
@@ -148,6 +159,7 @@ class ReadOnlyService<T extends Document> {
     body: ListBody,
     options?: {
       gameId?: string;
+      lang?: string;
       map?: (entity: T) => Promise<T> | T;
     }
   ): Promise<number> {
@@ -177,7 +189,7 @@ class ReadOnlyService<T extends Document> {
           foreignField: "key",
           as: "translation." + splitMatch[1],
         });
-        aggregation.collation({ locale: splitMatch[2], strength: 1 });
+        aggregation.collation({ locale: options.lang, strength: 1 });
       });
       aggregation.match(translateQuery);
       return (await aggregation).length;

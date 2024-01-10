@@ -55,7 +55,7 @@ import {
   MomentDateAdapter,
 } from '@angular/material-moment-adapter';
 import { PokemonResumeMovesComponent } from './components/pokemon-resume/pokemon-resume-moves/pokemon-resume-moves.component';
-import { GameIdInterceptor } from './core/game-id-interceptor.service';
+import { HeaderInterceptor } from './core/header-interceptor.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 
@@ -99,7 +99,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MatButtonModule,
     TranslateModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'fr',
+      defaultLanguage: 'fr-FR',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
@@ -130,7 +130,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
-    { provide: HTTP_INTERCEPTORS, useClass: GameIdInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   exports: [],

@@ -102,8 +102,4 @@ export class HomeComponent implements OnInit {
   protected goToGames(): void {
     this.router.navigateByUrl('games');
   }
-
-  protected changeLanguage(lang: string): void {
-    this.translate.use(lang);
-  }
 }

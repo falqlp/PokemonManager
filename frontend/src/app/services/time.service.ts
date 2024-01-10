@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 import { GameQueriesService } from './queries/game-queries.service';
 import { CacheService } from './cache.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,8 @@ export class TimeService {
 
   public constructor(
     protected gameQueriesService: GameQueriesService,
-    protected cacheService: CacheService
+    protected cacheService: CacheService,
+    protected translateService: TranslateService
   ) {
     this.cacheService.$gameId
       .pipe(
@@ -47,7 +49,7 @@ export class TimeService {
     if (!date) {
       return '';
     }
-    return date.toLocaleString('fr-FR', {
+    return date.toLocaleString(this.translateService.currentLang, {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -56,7 +58,7 @@ export class TimeService {
   }
 
   public dateToSimplifyLocalDate(date: Date): string {
-    return date.toLocaleString('fr-FR', {
+    return date.toLocaleString(this.translateService.currentLang, {
       year: 'numeric',
       month: 'numeric',
       day: 'numeric',

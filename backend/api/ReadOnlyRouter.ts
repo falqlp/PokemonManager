@@ -34,8 +34,9 @@ class ReadOnlyRouter<T extends Document> {
 
     this.router.put("/translateAggregation", (req, res, next) => {
       const gameId = req.headers["game-id"] as string;
+      const lang = req.headers["lang"] as string;
       this.service
-        .translateAggregation(req.body, { gameId })
+        .translateAggregation(req.body, { gameId, lang })
         .then((obj: any) => res.status(200).json(obj))
         .catch((error: any) => console.log(error));
     });
