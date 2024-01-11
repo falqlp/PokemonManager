@@ -55,9 +55,14 @@ export class SidenavComponent {
       icon: 'groups',
     },
     {
+      link: 'games',
+      label: 'BACK_TO_MENU',
+      icon: 'videogame_asset',
+    },
+    {
       link: 'login',
-      label: 'DISCONNECT',
-      icon: 'groups',
+      label: 'LOGOUT',
+      icon: 'logout',
       action: (): void => this.playerService.disconnectPlayer(),
     },
   ];
