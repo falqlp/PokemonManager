@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CacheService } from '../../services/cache.service';
 import { RouterService } from '../../services/router.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',

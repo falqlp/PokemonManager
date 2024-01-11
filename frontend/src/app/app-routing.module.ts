@@ -11,42 +11,59 @@ import { GamesComponent } from './views/games/games.component';
 import { NurseryComponent } from './views/nursery/nursery.component';
 import { ErrorComponent } from './core/components/error/error.component';
 import { PokedexComponent } from './views/pokedex/pokedex.component';
+import { AuthGuard, GameGuard } from './core/guards/permission-service';
 
 const routes: Routes = [
   { path: '404Error', component: ErrorComponent },
-  { path: 'home', component: HomeComponent, data: { title: 'HOME' } },
+  {
+    path: 'home',
+    component: HomeComponent,
+    data: { title: 'HOME' },
+    canActivate: [GameGuard],
+  },
   { path: 'login', component: LoginComponent, data: { title: 'LOGIN' } },
   {
     path: 'battle/:id',
     component: BattleComponent,
     data: { goHomeDisabled: true, title: 'BATTLE' },
+    canActivate: [GameGuard],
   },
   {
     path: 'battle-resume',
     component: BattleResumeComponent,
     data: { title: 'BATTLE-RESUME' },
+    canActivate: [GameGuard],
   },
   {
     path: 'pcStorage',
     component: PcStorageComponent,
     data: { title: 'PC-STORAGE' },
+    canActivate: [GameGuard],
   },
   {
     path: 'trainers',
     component: TrainersComponent,
     data: { title: 'TRAINERS' },
+    canActivate: [GameGuard],
   },
   {
     path: 'games',
     component: GamesComponent,
     data: { title: 'PARTIES' },
+    canActivate: [AuthGuard],
   },
   {
     path: 'nursery',
     component: NurseryComponent,
     data: { title: 'NURSERY' },
+    canActivate: [GameGuard],
   },
-  { path: 'pokedex', component: PokedexComponent, data: { title: 'POKEDEX' } },
+  {
+    path: 'pokedex',
+    component: PokedexComponent,
+    data: { title: 'POKEDEX' },
+    canActivate: [GameGuard],
+  },
   { path: '**', redirectTo: 'home' },
 ];
 
