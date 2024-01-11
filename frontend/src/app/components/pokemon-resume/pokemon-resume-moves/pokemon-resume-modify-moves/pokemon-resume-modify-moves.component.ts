@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { PokemonModel } from '../../../../models/PokemonModels/pokemon.model';
 import { MoveLearningQueriesService } from '../../../../services/queries/move-learning-queries.service';
 import { MoveModel } from '../../../../models/move.model';
@@ -16,6 +23,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { PokemonQueriesService } from '../../../../services/queries/pokemon-queries.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'pm-pokemon-resume-modify-moves',
@@ -45,7 +53,8 @@ export class PokemonResumeModifyMovesComponent implements OnInit {
 
   public constructor(
     protected moveLearningQueriesService: MoveLearningQueriesService,
-    protected pokemonQueriesService: PokemonQueriesService
+    protected pokemonQueriesService: PokemonQueriesService,
+    protected destroyRef: DestroyRef
   ) {}
 
   public ngOnInit(): void {
@@ -73,11 +82,13 @@ export class PokemonResumeModifyMovesComponent implements OnInit {
             this.cutomValidator()
           ),
         });
-        this.moveForm.controls.moves.valueChanges.subscribe((formMoves) => {
-          this.selectedMoves = formMoves
-            .filter((formMove) => formMove.checked)
-            .map((formMove) => formMove.move);
-        });
+        this.moveForm.controls.moves.valueChanges
+          .pipe(takeUntilDestroyed(this.destroyRef))
+          .subscribe((formMoves) => {
+            this.selectedMoves = formMoves
+              .filter((formMove) => formMove.checked)
+              .map((formMove) => formMove.move);
+          });
       });
   }
 

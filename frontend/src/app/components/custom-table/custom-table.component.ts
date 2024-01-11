@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  DestroyRef,
   Input,
   OnInit,
   ViewChild,
@@ -18,6 +19,7 @@ import { ReadonlyQuery } from '../../core/readonly-query';
 import { MatInputModule } from '@angular/material/input';
 import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 export interface CellModel {
   component: string;
@@ -63,6 +65,7 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
   protected query: QueryModel = { sort: {}, custom: {} };
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  constructor(protected destroyRef: DestroyRef) {}
 
   public ngOnInit(): void {
     this.conf.columns.forEach((column) => {
@@ -82,6 +85,7 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
   public ngAfterViewInit(): void {
     this.formInput.valueChanges
       .pipe(
+        takeUntilDestroyed(this.destroyRef),
         debounceTime(200),
         startWith([]),
         switchMap((values) => {

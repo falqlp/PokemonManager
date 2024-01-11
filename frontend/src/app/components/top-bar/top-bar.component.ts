@@ -56,9 +56,12 @@ export class TopBarComponent implements OnInit {
     this.goHomeDisabled$ = this.routerService.goHomeDisabled();
     this.title$ = this.routerService.getTitle();
     this.date$ = this.timeService.getActualDateToString();
-    this.timeService.getActualDate().subscribe((date) => {
-      this.actualDate = date;
-    });
+    this.timeService
+      .getActualDate()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((date) => {
+        this.actualDate = date;
+      });
   }
 
   protected openInfo(pokemon: PokemonModel): void {
@@ -73,6 +76,7 @@ export class TopBarComponent implements OnInit {
     this.simulating = true;
     this.calendarEventQueriesService
       .simulateDay(playerId, this.actualDate)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((res) => {
         if (this.actualDate.getDay() === 1) {
           this.dialog.afterAllClosed
@@ -139,7 +143,7 @@ export class TopBarComponent implements OnInit {
     this.lang = this.translateService.currentLang;
     this.timeService
       .getActualDate()
-      .pipe(first())
+      .pipe(first(), takeUntilDestroyed(this.destroyRef))
       .subscribe((date) => this.timeService.updateDate(date));
   }
 

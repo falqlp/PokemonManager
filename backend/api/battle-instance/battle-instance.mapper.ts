@@ -28,7 +28,7 @@ class BattleInstanceMapper implements IMapper<IBattleInstance> {
   }
   public map(entity: IBattleInstance): IBattleInstance {
     entity.player = this.trainerMapper.mapPartial(entity.player);
-    entity.opponent = this.trainerMapper.mapPartial(entity.player);
+    entity.opponent = this.trainerMapper.mapPartial(entity.opponent);
     return entity;
   }
 
