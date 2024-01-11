@@ -5,11 +5,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
 import { RouterService } from '../../services/router.service';
 import { SidenavService } from './sidenav.service';
+import { PlayerService } from '../../services/player.service';
 
 export interface NavsModel {
   link: string;
   label: string;
   icon: string;
+  action?: () => void;
 }
 
 @Component({
@@ -22,7 +24,8 @@ export interface NavsModel {
 export class SidenavComponent {
   constructor(
     protected routerService: RouterService,
-    protected sidenavService: SidenavService
+    protected sidenavService: SidenavService,
+    protected playerService: PlayerService
   ) {}
 
   protected navs: NavsModel[] = [
@@ -51,10 +54,19 @@ export class SidenavComponent {
       label: 'TRAINERS',
       icon: 'groups',
     },
+    {
+      link: 'login',
+      label: 'DISCONNECT',
+      icon: 'groups',
+      action: (): void => this.playerService.disconnectPlayer(),
+    },
   ];
 
-  protected click(route: string): void {
-    this.routerService.navigateByUrl(route);
+  protected click(nav: NavsModel): void {
+    if (nav.action) {
+      nav.action();
+    }
+    this.routerService.navigateByUrl(nav.link);
     this.sidenavService.closeSidenav();
   }
 }

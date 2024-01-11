@@ -18,6 +18,7 @@ class PermissionsService {
 
   gameGuard(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const gameId = this.cacheService.getGameId();
+    console.log('gameId', gameId); //Je ne comprends pas pourquoi en le laissant ça marche donc je laisse ^^
     if (gameId === 'null') {
       this.router.navigateByUrl('/games');
       return false;
@@ -27,6 +28,7 @@ class PermissionsService {
 
   authGuard(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const userId = this.cacheService.getUserId();
+    console.log('userId', userId); //Je ne comprends pas pourquoi en le laissant ça marche donc je laisse ^^
     if (userId === 'null') {
       this.router.navigateByUrl('/login');
       return false;

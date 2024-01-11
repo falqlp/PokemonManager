@@ -1,4 +1,4 @@
-import { Component, DestroyRef } from '@angular/core';
+import { Component, DestroyRef, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -10,7 +10,7 @@ import { RouterService } from '../../services/router.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
     username: new FormControl<string>('', Validators.required),
     password: new FormControl<string>('', Validators.required),
@@ -21,7 +21,9 @@ export class LoginComponent {
     protected router: RouterService,
     protected destroyRef: DestroyRef,
     protected cacheService: CacheService
-  ) {
+  ) {}
+
+  public ngOnInit(): void {
     localStorage.clear();
   }
 

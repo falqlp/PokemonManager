@@ -54,6 +54,7 @@ class GameService extends CompleteService<IGame> {
 
   public async delete(_id: string) {
     try {
+      await User.updateMany({}, { $pull: { games: _id } });
       await Trainer.deleteMany({ gameId: _id });
       await Pokemon.deleteMany({ gameId: _id });
       await TrainingCamp.deleteMany({ gameId: _id });

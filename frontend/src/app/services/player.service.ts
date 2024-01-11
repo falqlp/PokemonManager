@@ -28,6 +28,11 @@ export class PlayerService {
     });
   }
 
+  public disconnectPlayer(): void {
+    this.cacheService.setGameId(undefined);
+    this.cacheService.setUserId(undefined);
+  }
+
   public updatePlayer(): void {
     this.getPlayer(this.gameId)
       .pipe(

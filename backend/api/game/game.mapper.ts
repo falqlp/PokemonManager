@@ -16,7 +16,7 @@ class GameMapper implements IMapper<IGame> {
     };
   }
   public async map(dto: IGame): Promise<IGame> {
-    dto.player = this.trainerMapper.map(dto.player);
+    dto.player = dto.player ? this.trainerMapper.map(dto.player) : undefined;
     return dto;
   }
 
