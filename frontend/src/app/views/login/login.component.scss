@@ -1,0 +1,11 @@
+@import "src/styles/flexbox";
+
+:host {
+  display: flex;
+  justify-content: center;
+  .login__form {
+    @include flexbox(left, 2, column);
+    align-items: stretch;
+    flex: 0.25;
+  }
+}

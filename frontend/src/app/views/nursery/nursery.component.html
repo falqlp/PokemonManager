@@ -6,8 +6,8 @@
         [alt]="nursery.level"
       />
     </div>
-    <span>{{ nursery.level }}</span>
-    <span>{{ nursery.step | translate }}</span>
+    <span>{{ "LVL" | translate }}: {{ nursery.level }}</span>
+    <span>{{ "STEP" | translate }}: {{ nursery.step | translate }}</span>
   </div>
   <pm-nursery-wishlist-form [nursery]="nursery" />
 </div>

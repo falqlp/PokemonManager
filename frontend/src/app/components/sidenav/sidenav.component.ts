@@ -63,7 +63,7 @@ export class SidenavComponent {
       link: 'login',
       label: 'LOGOUT',
       icon: 'logout',
-      action: (): void => this.playerService.disconnectPlayer(),
+      action: (): void => this.playerService.logout(),
     },
   ];
 

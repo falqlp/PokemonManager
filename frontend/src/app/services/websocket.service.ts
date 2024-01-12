@@ -41,15 +41,19 @@ export class WebsocketService {
       url: this.url,
       closeObserver: {
         next: (): void => {
+          if (this.isConected) {
+            this.routerService.navigateByUrl('404Error');
+          }
           this.isConected = false;
           console.log('Connection closed');
-          this.routerService.navigateByUrl('404Error');
+          this.notifierService.notify('error', 'Connection closed');
         },
       },
       openObserver: {
         next: (): void => {
           this.isConected = true;
           console.log('Connection opened');
+          this.notifierService.notify('success', 'Connection opened');
           this.registerToGame(this.cacheService.getGameId());
           if (this.routerService.getLastUrl()) {
             this.routerService.navigateByUrl(this.routerService.getLastUrl());

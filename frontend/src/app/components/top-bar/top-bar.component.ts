@@ -17,6 +17,7 @@ import { first, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SidenavService } from '../sidenav/sidenav.service';
 import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -44,7 +45,8 @@ export class TopBarComponent implements OnInit {
     protected timeService: TimeService,
     protected destroyRef: DestroyRef,
     protected sidenavService: SidenavService,
-    protected translateService: TranslateService
+    protected translateService: TranslateService,
+    protected languageService: LanguageService
   ) {}
 
   public ngOnInit(): void {
@@ -141,6 +143,7 @@ export class TopBarComponent implements OnInit {
   protected changeLanguage(lang: string): void {
     this.translateService.use(lang);
     this.lang = this.translateService.currentLang;
+    this.languageService.setLanguage(this.lang);
     this.timeService
       .getActualDate()
       .pipe(first(), takeUntilDestroyed(this.destroyRef))

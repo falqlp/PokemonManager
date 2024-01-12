@@ -28,7 +28,7 @@ export class PlayerService {
     });
   }
 
-  public disconnectPlayer(): void {
+  public logout(): void {
     this.cacheService.setGameId(undefined);
     this.cacheService.setUserId(undefined);
   }
@@ -59,16 +59,13 @@ export class PlayerService {
       const allPokemons = player.pokemons.concat(pcPokemons);
       this.maxStat = 0;
       allPokemons.forEach((pokemon) => {
-        for (const key in pokemon.stats) {
+        Object.entries(pokemon.stats).forEach(([key, value]) => {
           if (key === 'hp') {
-            this.maxStat = Math.max(
-              this.maxStat,
-              pokemon.stats['hp'] - pokemon.level - 5
-            );
+            this.maxStat = Math.max(this.maxStat, value - pokemon.level - 5);
           } else if (key !== '_id') {
-            this.maxStat = Math.max(this.maxStat, pokemon.stats[key]);
+            this.maxStat = Math.max(this.maxStat, value);
           }
-        }
+        });
       });
     });
   }
