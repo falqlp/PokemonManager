@@ -155,7 +155,7 @@ export class TopBarComponent implements OnInit {
       case 'fr-FR':
         return 'FR';
       case 'en-EN':
-        return 'US';
+        return 'GB';
       default:
         return '';
     }

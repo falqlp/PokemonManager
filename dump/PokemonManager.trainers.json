@@ -31,7 +31,7 @@
   "_id": {
     "$oid": "649e0e86e45d3dab76652543"
   },
-  "name": "Popole",
+  "name": "TrainerTest",
   "__v": 0,
   "pokemons": [
     {

@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "649a1ce39df19e41304da139"
   },
-  "username": "Popole",
+  "username": "UserTest",
   "__v": 0,
   "password": "test",
   "games": [
