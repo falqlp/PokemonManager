@@ -1,4 +1,4 @@
-import { AfterViewInit, DestroyRef, OnInit } from '@angular/core';
+import { DestroyRef, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import type { Observable } from 'rxjs';
