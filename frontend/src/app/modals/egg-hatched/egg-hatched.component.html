@@ -3,7 +3,7 @@
     <div *ngIf="cracksNumber < 6; else pokemon">
       <img
         class="egg-hatched__img"
-        src="assets/images/thumbnails/000.png"
+        src="assets/pokemons/Front/000.png"
         [alt]="'EGG' | translate"
       />
       <img
@@ -16,9 +16,7 @@
     <ng-template #pokemon>
       <img
         class="egg-hatched__img__pokemon"
-        src="assets/images/thumbnails/{{
-          data.pokemonBase.id.toString().padStart(3, '0')
-        }}.png"
+        src="assets/images/thumbnails/{{ data.pokemonBase.name }}.png"
         [alt]="data.pokemonBase.name"
       />
     </ng-template>
