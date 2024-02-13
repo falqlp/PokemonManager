@@ -1,0 +1,63 @@
+<div class="pokemon-details-stats">
+  <div>{{ "HP" | translate }}: {{ baseStats["hp"] }}</div>
+  <progress-bar
+    [style]="'hp'"
+    [min]="0"
+    [max]="255"
+    [displayHp]="false"
+    [currentProgress]="baseStats['hp']"
+  />
+</div>
+<div class="pokemon-details-stats">
+  <div>{{ "ATTACK" | translate }}: {{ baseStats["atk"] }}</div>
+  <progress-bar
+    [style]="'hp'"
+    [min]="0"
+    [max]="255"
+    [displayHp]="false"
+    [currentProgress]="baseStats['atk']"
+  />
+</div>
+<div class="pokemon-details-stats">
+  <div>{{ "DEFENSE" | translate }}: {{ baseStats["def"] }}</div>
+  <progress-bar
+    [style]="'hp'"
+    [min]="0"
+    [max]="255"
+    [displayHp]="false"
+    [currentProgress]="baseStats['def']"
+  />
+</div>
+<div class="pokemon-details-stats">
+  <div>{{ "SPECIAL_ATTACK" | translate }}: {{ baseStats["spAtk"] }}</div>
+  <progress-bar
+    [style]="'hp'"
+    [min]="0"
+    [max]="255"
+    [displayHp]="false"
+    [currentProgress]="baseStats['spAtk']"
+  />
+</div>
+<div class="pokemon-details-stats">
+  <div>
+    {{ "SPECIAL_DEFENSE" | translate }}:
+    {{ baseStats["spDef"] }}
+  </div>
+  <progress-bar
+    [style]="'hp'"
+    [min]="0"
+    [max]="255"
+    [displayHp]="false"
+    [currentProgress]="baseStats['spDef']"
+  />
+</div>
+<div class="pokemon-details-stats">
+  <div>{{ "SPEED" | translate }}: {{ baseStats["spe"] }}</div>
+  <progress-bar
+    [style]="'hp'"
+    [min]="0"
+    [max]="255"
+    [displayHp]="false"
+    [currentProgress]="baseStats['spe']"
+  />
+</div>

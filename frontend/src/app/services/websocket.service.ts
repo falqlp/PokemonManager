@@ -55,8 +55,9 @@ export class WebsocketService {
           console.log('Connection opened');
           this.notifierService.notify('success', 'Connection opened');
           this.registerToGame(this.cacheService.getGameId());
-          if (this.routerService.getLastUrl()) {
-            this.routerService.navigateByUrl(this.routerService.getLastUrl());
+          const lastUrl = this.routerService.getLastUrl();
+          if (lastUrl && lastUrl !== '/') {
+            this.routerService.navigateByUrl(lastUrl);
           }
         },
       },

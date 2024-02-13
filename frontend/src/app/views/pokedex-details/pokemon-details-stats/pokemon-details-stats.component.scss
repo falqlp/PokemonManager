@@ -1,0 +1,14 @@
+.pokemon-details-stats {
+  align-items: baseline;
+  white-space: nowrap;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: baseline;
+  width: 100%;
+}

@@ -14,12 +14,7 @@
         type="max-size"
       />
       <div class="pokemon-resume__content__main-infos__types">
-        <img
-          *ngFor="let type of pokemon.basePokemon?.types"
-          class="type-displayText"
-          [src]="'assets/types/displayText/' + type + '.png'"
-          [alt]="type"
-        />
+        <pm-display-type [basePokemon]="pokemon.basePokemon" />
       </div>
       <div class="pokemon-resume__content__main-infos__level">
         <span>{{ "LVL" | translate }}: {{ pokemon.level }}</span>

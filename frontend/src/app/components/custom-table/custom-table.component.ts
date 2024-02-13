@@ -2,8 +2,10 @@ import {
   AfterViewInit,
   Component,
   DestroyRef,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { BehaviorSubject, debounceTime, startWith, switchMap } from 'rxjs';
@@ -58,6 +60,7 @@ export interface TableConfModel {
 export class CustomTableComponent<T> implements AfterViewInit, OnInit {
   @Input() public queryService: ReadonlyQuery<T>;
   @Input() public conf: TableConfModel;
+  @Output() public onRowClick = new EventEmitter<T>();
   protected sortQuerySubject: BehaviorSubject<void> = new BehaviorSubject(null);
 
   protected dataSource = new MatTableDataSource<T>();

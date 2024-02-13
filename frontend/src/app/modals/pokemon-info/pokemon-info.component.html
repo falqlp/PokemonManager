@@ -13,12 +13,7 @@
       [pokemon]="data"
     />
     <div class="pokemon-info__content--type">
-      <img
-        *ngFor="let type of data.basePokemon?.types"
-        class="type-displayText"
-        src="assets/types/displayText/{{ type }}.png"
-        [alt]="type"
-      />
+      <pm-display-type [basePokemon]="data.basePokemon" />
     </div>
     <div class="pokemon-info__content--level">
       <span>{{ "LVL" | translate }}: {{ data.level }}</span

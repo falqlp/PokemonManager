@@ -12,6 +12,7 @@ import { NurseryComponent } from './views/nursery/nursery.component';
 import { ErrorComponent } from './core/components/error/error.component';
 import { PokedexComponent } from './views/pokedex/pokedex.component';
 import { AuthGuard, GameGuard } from './core/guards/permission-service';
+import { PokedexDetailsComponent } from './views/pokedex-details/pokedex-details.component';
 
 const routes: Routes = [
   { path: '404Error', component: ErrorComponent },
@@ -26,6 +27,11 @@ const routes: Routes = [
     path: 'battle/:id',
     component: BattleComponent,
     data: { goHomeDisabled: true, title: 'BATTLE' },
+    canActivate: [GameGuard],
+  },
+  {
+    path: 'pokedex-details/:id',
+    component: PokedexDetailsComponent,
     canActivate: [GameGuard],
   },
   {

@@ -1,0 +1,31 @@
+<div *ngIf="pokemonBase" class="pokedex_details">
+  <div class="pokedex_details__left-part">
+    <app-display-pokemon-image [pokemon]="pokemonBase" type="max-size" />
+    <pm-display-type [basePokemon]="pokemonBase" />
+    <div>
+      Disponible dans un oeuf:
+      {{
+        !!pokemonBase.base && !pokemonBase.mythical && !pokemonBase.legendary
+      }}
+    </div>
+  </div>
+  <div class="pokedex_details__right-part">
+    <pm-pokemon-details-stats [baseStats]="pokemonBase.baseStats" />
+    <div class="pokedex_details__right-part__evolution-tree">
+      <app-display-pokemon-image
+        *ngFor="let evolution of evolutionOf"
+        [pokemon]="evolution.pokemon"
+        [type]="'thumbnails'"
+      />
+      <app-display-pokemon-image
+        [pokemon]="pokemonBase"
+        [type]="'thumbnails'"
+      />
+      <app-display-pokemon-image
+        *ngFor="let evolution of evolutions"
+        [pokemon]="evolution.pokemon"
+        [type]="'thumbnails'"
+      />
+    </div>
+  </div>
+</div>

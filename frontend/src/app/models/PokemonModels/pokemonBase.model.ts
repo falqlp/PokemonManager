@@ -5,5 +5,8 @@ export interface PokemonBaseModel {
   name: string;
   types: string[];
   baseStats: PokemonStatsModel;
+  base?: boolean;
+  mythical?: boolean;
+  legendary?: boolean;
   _id?: string;
 }

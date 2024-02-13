@@ -18,6 +18,7 @@ import userRoutes from "./api/user/user.routes";
 import nurseryRoutes from "./api/nursery/nursery.routes";
 import TrainerService from "./api/trainer/trainer.service";
 import { ITrainer } from "./api/trainer/trainer";
+import pokedexRouter from "./api/pokedex/pokedexRouter";
 
 const app = express();
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
@@ -64,5 +65,6 @@ app.use("/api/game", gameRoutes);
 app.use("/api/xp", experienceRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/nursery", nurseryRoutes);
+app.use("/api/pokedex", pokedexRouter);
 
 export default app;

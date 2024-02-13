@@ -1,0 +1,15 @@
+@import "src/styles/flexbox";
+
+.pokedex_details {
+  display: flex;
+  gap: 15px;
+  &__left-part {
+    @include flexbox(flex-start, 1, column);
+  }
+
+  &__right-part {
+    @include flexbox(flex-start, 1, column);
+    flex: 1;
+    gap: 10px;
+  }
+}

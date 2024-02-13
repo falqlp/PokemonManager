@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ProgressBarComponent } from '../../components/progress-bar/progress-bar.component';
 import { PokemonStatsComponent } from '../../components/pokemon-stats/pokemon-stats.component';
 import { MatButtonModule } from '@angular/material/button';
+import { DisplayTypeComponent } from '../../components/display-type/display-type.component';
 
 @Component({
   standalone: true,
@@ -22,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
     PokemonStatsComponent,
     MatButtonModule,
     NgForOf,
+    DisplayTypeComponent,
   ],
 })
 export class PokemonInfoComponent {

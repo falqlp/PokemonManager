@@ -1,1 +1,5 @@
-<pm-custom-table [queryService]="pokemonBaseQueriesService" [conf]="conf" />
+<pm-custom-table
+  [queryService]="pokemonBaseQueriesService"
+  [conf]="conf"
+  (onRowClick)="onRowClick($event)"
+/>

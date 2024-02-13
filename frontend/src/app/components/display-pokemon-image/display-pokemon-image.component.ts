@@ -9,6 +9,7 @@ import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { DisplayType } from './display-pokemon-image.model';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgClass } from '@angular/common';
+import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 
 @Component({
   standalone: true,
@@ -18,8 +19,10 @@ import { NgClass } from '@angular/common';
   imports: [TranslateModule, NgClass],
 })
 export class DisplayPokemonImageComponent implements OnInit, OnChanges {
-  @Input() public pokemon: PokemonModel;
+  @Input() public pokemon: PokemonModel | PokemonBaseModel;
   @Input() public type: DisplayType;
+
+  protected basePokemon: PokemonBaseModel;
 
   protected imageUrl: string;
 
@@ -34,10 +37,17 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
   }
 
   protected updateImageUrl(): void {
-    const idString =
-      this.pokemon.level === 0
-        ? '000'
-        : this.pokemon.basePokemon.name.replace('-', '');
+    let idString;
+    if ('level' in this.pokemon) {
+      this.basePokemon = this.pokemon.basePokemon;
+      idString =
+        this.pokemon.level === 0
+          ? '000'
+          : this.pokemon.basePokemon.name.replace('-', '');
+    } else {
+      this.basePokemon = this.pokemon;
+      idString = this.pokemon.name.replace('-', '');
+    }
     switch (this.type) {
       case 'icon':
         this.imageUrl = `assets/pokemons/Icons/${idString}.png`;
@@ -49,7 +59,7 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
         this.imageUrl = `assets/pokemons/Front/${idString}.png`;
         break;
       case 'max-size':
-        this.imageUrl = `assets/images/max-size/${this.pokemon.basePokemon.id
+        this.imageUrl = `assets/images/max-size/${this.basePokemon.id
           .toString()
           .padStart(3, '0')}.png`;
         break;

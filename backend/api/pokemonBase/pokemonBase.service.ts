@@ -62,6 +62,10 @@ class PokemonBaseService extends ReadOnlyService<IPokemonBase> {
     const randomIndex = Math.floor(Math.random() * pokemons.length);
     return pokemons[randomIndex];
   }
+
+  public getPokemonBaseById(id: number) {
+    return this.schema.findOne({ id });
+  }
 }
 
 export default PokemonBaseService;

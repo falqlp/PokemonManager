@@ -60,7 +60,11 @@
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="mapColumnName()"></tr>
   <tr mat-header-row *matHeaderRowDef="mapColumnInput()"></tr>
-  <tr mat-row *matRowDef="let row; columns: mapColumnName()"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: mapColumnName()"
+    (click)="onRowClick.emit(row)"
+  ></tr>
 </table>
 <mat-paginator
   pageSize="10"

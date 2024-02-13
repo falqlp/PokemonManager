@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { PokemonModel } from '../../../models/PokemonModels/pokemon.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PokemonQueriesService } from '../../../services/queries/pokemon-queries.service';
+import { DisplayTypeComponent } from '../../../components/display-type/display-type.component';
 
 @Component({
   selector: 'pm-nursery-pokemon-list',
@@ -18,6 +19,7 @@ import { PokemonQueriesService } from '../../../services/queries/pokemon-queries
     MatButtonModule,
     NgForOf,
     NgIf,
+    DisplayTypeComponent,
   ],
   templateUrl: './nursery-pokemon-list.component.html',
   styleUrls: ['./nursery-pokemon-list.component.scss'],

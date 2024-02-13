@@ -20,12 +20,7 @@
   <div *ngFor="let egg of nursery.eggs" class="nursery-pokemon-list__eggs__egg">
     <app-display-pokemon-image [pokemon]="egg" type="thumbnails" />
     <div>
-      <img
-        *ngFor="let type of egg.basePokemon?.types"
-        class="type-displayText"
-        [src]="'assets/types/displayText/' + type + '.png'"
-        [alt]="type"
-      />
+      <pm-display-type [basePokemon]="egg.basePokemon" />
     </div>
     {{ "POTENTIAL" | translate }} : {{ egg.hiddenPotential }}
     <button mat-flat-button (click)="release(egg)" color="warn">

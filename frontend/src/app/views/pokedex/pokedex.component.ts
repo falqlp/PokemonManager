@@ -4,6 +4,8 @@ import {
   TableConfModel,
 } from '../../components/custom-table/custom-table.component';
 import { PokemonBaseQueriesService } from '../../services/queries/pokemon-base-queries.service';
+import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
+import { RouterService } from '../../services/router.service';
 
 @Component({
   selector: 'pm-pokedex',
@@ -163,5 +165,12 @@ export class PokedexComponent {
     ],
   };
 
-  constructor(protected pokemonBaseQueriesService: PokemonBaseQueriesService) {}
+  constructor(
+    protected pokemonBaseQueriesService: PokemonBaseQueriesService,
+    protected routerService: RouterService
+  ) {}
+
+  public onRowClick(event: PokemonBaseModel) {
+    this.routerService.navigateByUrl('pokedex-details/' + event.id);
+  }
 }
