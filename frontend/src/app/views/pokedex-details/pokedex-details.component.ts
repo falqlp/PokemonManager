@@ -1,4 +1,11 @@
-import { Component, DestroyRef, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { NgForOf, NgIf } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
@@ -11,6 +18,7 @@ import { PokemonDetailsStatsComponent } from './pokemon-details-stats/pokemon-de
 import { PokedexQueriesService } from '../../services/queries/pokedex-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PokedexEvolutionModel } from './pokedex-details.model';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'pm-pokedex-details',
@@ -23,11 +31,12 @@ import { PokedexEvolutionModel } from './pokedex-details.model';
     TranslateModule,
     PokemonDetailsStatsComponent,
     NgForOf,
+    MatIconModule,
   ],
   templateUrl: './pokedex-details.component.html',
   styleUrls: ['./pokedex-details.component.scss'],
 })
-export class PokedexDetailsComponent implements OnInit {
+export class PokedexDetailsComponent implements OnInit, OnChanges {
   @Input('id') public pokemonId: number;
   protected destroyRef: DestroyRef;
   protected pokemonBase: PokemonBaseModel;
@@ -40,16 +49,26 @@ export class PokedexDetailsComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    console.log('pokemonId', this.pokemonId);
+    this.refresh();
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    this.refresh();
+  }
+
+  protected refresh(): void {
     this.pokedexQueriesService
       .get(String(this.pokemonId))
       // .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((pokedexDetails) => {
-        console.log(pokedexDetails);
         this.evolutions = pokedexDetails.evolutions;
         this.evolutionOf = pokedexDetails.evolutionOf;
         this.pokemonBase = pokedexDetails.pokemonBase;
         this.routerService.setTitle(this.pokemonBase.name);
       });
+  }
+
+  protected navigateToPokemon(id: number) {
+    this.routerService.navigateByUrl('pokedex-details/' + id);
   }
 }

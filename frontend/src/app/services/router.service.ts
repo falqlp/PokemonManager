@@ -59,7 +59,6 @@ export class RouterService extends Router {
   }
 
   protected init(): void {
-    this.activatedRoute.title.subscribe(console.log);
     this.router.events
       .pipe(filter((event) => event instanceof NavigationStart))
       .subscribe(() => {

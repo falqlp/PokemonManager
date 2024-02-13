@@ -53,7 +53,7 @@ export class PokedexService {
         isEvolution.pokemonId
       );
       if (isEvolution2) {
-        evolutionOf.push({
+        evolutionOf.unshift({
           pokemon: await this.pokemonBaseService.getPokemonBaseById(
             isEvolution2.pokemonId
           ),

@@ -43,10 +43,11 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
       idString =
         this.pokemon.level === 0
           ? '000'
-          : this.pokemon.basePokemon.name.replace('-', '');
+          : this.pokemon.basePokemon.name?.replace('-', '');
     } else {
       this.basePokemon = this.pokemon;
-      idString = this.pokemon.name.replace('-', '');
+      console.log(this.pokemon);
+      idString = this.pokemon.name?.replace('-', '');
     }
     switch (this.type) {
       case 'icon':
