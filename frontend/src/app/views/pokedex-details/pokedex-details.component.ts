@@ -9,7 +9,6 @@ import {
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { NgForOf, NgIf } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
-import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { RouterService } from '../../services/router.service';
 import { DisplayTypeComponent } from '../../components/display-type/display-type.component';
 import { ProgressBarComponent } from '../../components/progress-bar/progress-bar.component';
@@ -17,8 +16,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PokemonDetailsStatsComponent } from './pokemon-details-stats/pokemon-details-stats.component';
 import { PokedexQueriesService } from '../../services/queries/pokedex-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { PokedexEvolutionModel } from './pokedex-details.model';
+import {
+  PokedexEvolutionModel,
+  PokedexMoveLearnedModel,
+} from './pokedex-details.model';
 import { MatIconModule } from '@angular/material/icon';
+import { EvolutionTreeComponent } from './evolution-tree/evolution-tree.component';
+import { PokedexMovesLearnedComponent } from './pokedex-moves-learned/pokedex-moves-learned.component';
 
 @Component({
   selector: 'pm-pokedex-details',
@@ -32,6 +36,8 @@ import { MatIconModule } from '@angular/material/icon';
     PokemonDetailsStatsComponent,
     NgForOf,
     MatIconModule,
+    EvolutionTreeComponent,
+    PokedexMovesLearnedComponent,
   ],
   templateUrl: './pokedex-details.component.html',
   styleUrls: ['./pokedex-details.component.scss'],
@@ -42,6 +48,7 @@ export class PokedexDetailsComponent implements OnInit, OnChanges {
   protected pokemonBase: PokemonBaseModel;
   protected evolutions: PokedexEvolutionModel[];
   protected evolutionOf: PokedexEvolutionModel[];
+  protected movesLearned: PokedexMoveLearnedModel[];
 
   constructor(
     protected pokedexQueriesService: PokedexQueriesService,
@@ -65,10 +72,7 @@ export class PokedexDetailsComponent implements OnInit, OnChanges {
         this.evolutionOf = pokedexDetails.evolutionOf;
         this.pokemonBase = pokedexDetails.pokemonBase;
         this.routerService.setTitle(this.pokemonBase.name);
+        this.movesLearned = pokedexDetails.movesLearned;
       });
-  }
-
-  protected navigateToPokemon(id: number) {
-    this.routerService.navigateByUrl('pokedex-details/' + id);
   }
 }

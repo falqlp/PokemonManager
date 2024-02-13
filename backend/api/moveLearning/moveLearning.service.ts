@@ -28,7 +28,10 @@ class MoveLearningService {
     return this.moveService.list({ ...query, ids: allMovesString });
   }
 
-  async getMovesOfAllEvolutions(id: number, level: number) {
+  async getMovesOfAllEvolutions(
+    id: number,
+    level: number
+  ): Promise<IMoveLearning[]> {
     let moveLearn: IMoveLearning[] = await MoveLearning.find({
       pokemonId: id,
       levelLearnAt: { $lte: level },
@@ -38,7 +41,7 @@ class MoveLearningService {
     const evolution = await evolutionService.isEvolution(id);
 
     if (evolution !== null && evolution.minLevel) {
-      const moveLearn2 = await MoveLearning.find({
+      const moveLearn2: IMoveLearning[] = await MoveLearning.find({
         pokemonId: evolution.pokemonId,
         levelLearnAt: { $lt: evolution.minLevel + 1 },
         learnMethod: "LEVEL-UP",

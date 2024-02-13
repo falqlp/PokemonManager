@@ -10,44 +10,12 @@
     </div>
   </div>
   <div class="pokedex_details__right-part">
-    <div class="pokedex_details__right-part__evolution-tree">
-      <div
-        *ngFor="let evolution of evolutionOf"
-        class="pokedex_details__right-part__evolution-tree__evolution"
-      >
-        <app-display-pokemon-image
-          [pokemon]="evolution.pokemon"
-          [type]="'thumbnails'"
-          (click)="navigateToPokemon(evolution.pokemon.id)"
-        />
-        <div
-          class="pokedex_details__right-part__evolution-tree__evolution__method"
-        >
-          <mat-icon>arrow_forward</mat-icon>
-          <span>{{ "LVL" | translate }}: {{ evolution.minLevel }}</span>
-        </div>
-      </div>
-      <app-display-pokemon-image
-        [pokemon]="pokemonBase"
-        [type]="'thumbnails'"
-      />
-      <div
-        *ngFor="let evolution of evolutions"
-        class="pokedex_details__right-part__evolution-tree__evolution"
-      >
-        <div
-          class="pokedex_details__right-part__evolution-tree__evolution__method"
-        >
-          <mat-icon>arrow_forward</mat-icon>
-          <span>{{ "LVL" | translate }}: {{ evolution.minLevel }}</span>
-        </div>
-        <app-display-pokemon-image
-          [pokemon]="evolution.pokemon"
-          [type]="'thumbnails'"
-          (click)="navigateToPokemon(evolution.pokemon.id)"
-        />
-      </div>
-    </div>
+    <pm-evolution-tree
+      [evolutionOf]="evolutionOf"
+      [evolutions]="evolutions"
+      [pokemonBase]="pokemonBase"
+    />
     <pm-pokemon-details-stats [baseStats]="pokemonBase.baseStats" />
+    <pm-pokedex-moves-learned [movesLearned]="movesLearned" />
   </div>
 </div>
