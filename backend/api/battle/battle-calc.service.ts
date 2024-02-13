@@ -235,11 +235,10 @@ const BattleCalcService = {
   },
 
   damageOnPokemon(pokemon: IPokemon, damage: IDamage) {
-    pokemon.currentHp = Math.max(
+    return Math.max(
       0,
       Math.round((pokemon.currentHp - (damage ? damage.damage : 0)) * 10) / 10
     );
-    return pokemon;
   },
 
   moveOnTarget(move: IMove) {

@@ -16,6 +16,8 @@ import gameRoutes from "./api/game/game.routes";
 import experienceRoutes from "./api/experience/experience.routes";
 import userRoutes from "./api/user/user.routes";
 import nurseryRoutes from "./api/nursery/nursery.routes";
+import TrainerService from "./api/trainer/trainer.service";
+import { ITrainer } from "./api/trainer/trainer";
 
 const app = express();
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
@@ -28,7 +30,6 @@ mongoose
   .catch((error) => {
     console.error("Connection error to MongoDB", error);
   });
-
 // migrationService.updatePokemonInfo();
 i18nService.checkAndSortLanguageFiles();
 i18nService

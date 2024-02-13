@@ -8,12 +8,12 @@ const BattleService = {
     [trainer1, trainer2] = this.initializeTrainers(trainer1, trainer2);
     this.decreseCooldown(trainer1);
     this.decreseCooldown(trainer2);
-    this.processDamage(trainer1, trainer2);
-    this.checkPokemonKo(trainer1);
-    this.checkPokemonKo(trainer2);
     this.updateDecision(trainer1, trainer2);
     trainer1 = this.applyDecision(trainer1, trainer2);
     trainer2 = this.applyDecision(trainer2, trainer1);
+    this.processDamage(trainer1, trainer2);
+    this.checkPokemonKo(trainer1);
+    this.checkPokemonKo(trainer2);
     return { trainer1, trainer2 };
   },
   initializeTrainers(trainer1: IBattleTrainer, trainer2: IBattleTrainer) {
@@ -32,11 +32,11 @@ const BattleService = {
       trainer2.pokemons[0],
       trainer1.selectedMove
     );
-    trainer1.pokemons[0] = battleCalcService.damageOnPokemon(
+    trainer1.pokemons[0].currentHp = battleCalcService.damageOnPokemon(
       trainer1.pokemons[0],
       trainer1.damage
     );
-    trainer2.pokemons[0] = battleCalcService.damageOnPokemon(
+    trainer2.pokemons[0].currentHp = battleCalcService.damageOnPokemon(
       trainer2.pokemons[0],
       trainer2.damage
     );
@@ -60,7 +60,7 @@ const BattleService = {
     };
   },
   updateDecision(trainer1: IBattleTrainer, trainer2: IBattleTrainer) {
-    if (trainer1.autorizations.updateCooldown === 0) {
+    if (trainer1.autorizations.updateCooldown === 0 && !trainer1.isAI) {
       trainer1.decision = battleAiService.decisionMaking(
         trainer2.pokemons[0],
         trainer2.selectedMove,
@@ -68,11 +68,12 @@ const BattleService = {
       );
     }
     if (trainer2.autorizations.updateCooldown === 0) {
-      trainer2.decision = battleAiService.decisionMaking(
-        trainer1.pokemons[0],
-        trainer1.selectedMove,
-        trainer2.pokemons
-      );
+      trainer2.decision =
+        battleAiService.decisionMaking(
+          trainer1.pokemons[0],
+          trainer1.selectedMove,
+          trainer2.pokemons
+        ) ?? trainer2.decision;
     }
   },
   applyDecision(trainer: IBattleTrainer, opponent: IBattleTrainer) {
@@ -100,7 +101,7 @@ const BattleService = {
     if (
       !trainer.defeat &&
       trainer.autorizations.pokemonCooldown === 0 &&
-      trainer.decision.pokemon._id !== trainer.pokemons[0]._id
+      trainer.decision?.pokemon?._id !== trainer.pokemons[0]._id
     ) {
       trainer.pokemons = this.onChangePokemon(trainer);
       trainer.selectedMove = undefined;
@@ -116,16 +117,19 @@ const BattleService = {
   },
 
   onChangePokemon(trainer: IBattleTrainer) {
-    const newLeadingPokemon = trainer.pokemons.find(
+    const pokemons = trainer.pokemons;
+    const leadingPokemon = pokemons[0];
+    const newLeadingPokemon = pokemons.find(
       (playerPokemon) => playerPokemon?._id === trainer.decision.pokemon?._id
     );
-    trainer.pokemons[
-      trainer.pokemons.findIndex(
-        (playerPokemon) => playerPokemon?._id === trainer.decision.pokemon?._id
-      )
-    ] = trainer.pokemons[0];
-    trainer.pokemons[0] = newLeadingPokemon;
-    return trainer.pokemons;
+    const index = pokemons.findIndex(
+      (playerPokemon) => playerPokemon?._id === trainer.decision.pokemon?._id
+    );
+    pokemons[index] = leadingPokemon;
+    pokemons[index].currentHp = leadingPokemon.currentHp;
+    pokemons[0] = newLeadingPokemon;
+    pokemons[0].currentHp = newLeadingPokemon.currentHp;
+    return pokemons;
   },
 
   decreseCooldown(trainer: IBattleTrainer) {

@@ -37,4 +37,5 @@ export interface IBattleTrainer {
   autorizations: ITrainerAutorizations;
   defeat: boolean;
   onKo: boolean;
+  isAI: boolean;
 }
