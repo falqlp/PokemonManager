@@ -5,6 +5,16 @@
   gap: 15px;
   &__left-part {
     @include flexbox(flex-start, 2, column);
+    &__egg-available {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+    &__types {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
   }
 
   &__right-part {

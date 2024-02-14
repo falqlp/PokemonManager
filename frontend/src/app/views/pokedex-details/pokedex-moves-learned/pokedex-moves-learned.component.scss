@@ -5,29 +5,9 @@
   flex-wrap: wrap;
   gap: 10px;
   .pokedex-moves-learned {
-    @include flexbox(flex-start, 1);
+    display: flex;
     gap: 5px;
     align-items: center;
-    justify-content: space-between;
     flex: 1 1 33%;
-    &__move {
-      display: flex;
-      justify-content: space-between;
-      flex: 1;
-      &__left {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-      &__right {
-        display: flex;
-        gap: 10px;
-        &--info {
-          display: flex;
-          flex-direction: column;
-          font-size: 14px;
-        }
-      }
-    }
   }
 }

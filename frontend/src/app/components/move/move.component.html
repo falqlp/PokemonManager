@@ -1,0 +1,19 @@
+<div class="move__right">
+  <img
+    class="icon-type"
+    src="assets/types/simple/{{ move.type }}.png"
+    [alt]="move.type"
+  />
+  <span>{{ move.name | translate }}</span>
+</div>
+<div class="move__left">
+  <img
+    class="img-category"
+    src="assets/move/{{ move.category }}.png"
+    [alt]="move.type"
+  />
+  <div class="move__left--info">
+    <span>{{ "POWER" | translate }}: {{ move.power }}</span>
+    <span>{{ "ACCURACY" | translate }}: {{ move.accuracy }}%</span>
+  </div>
+</div>

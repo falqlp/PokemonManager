@@ -1,26 +1,4 @@
 <div *ngFor="let moveLearned of movesLearned" class="pokedex-moves-learned">
   <span>{{ "LVL" | translate }}: {{ moveLearned.levelLearnAt }}</span>
-  <div class="pokedex-moves-learned__move">
-    <div class="pokedex-moves-learned__move__left">
-      <img
-        class="icon-type"
-        src="assets/types/simple/{{ moveLearned.move.type }}.png"
-        [alt]="moveLearned.move.type"
-      />
-      <span>{{ moveLearned.move.name | translate }}</span>
-    </div>
-    <div class="pokedex-moves-learned__move__right">
-      <img
-        class="img-category"
-        src="assets/move/{{ moveLearned.move.category }}.png"
-        [alt]="moveLearned.move.type"
-      />
-      <div class="pokedex-moves-learned__move__right--info">
-        <span>{{ "POWER" | translate }}: {{ moveLearned.move.power }}</span>
-        <span
-          >{{ "ACCURACY" | translate }}: {{ moveLearned.move.accuracy }}%</span
-        >
-      </div>
-    </div>
-  </div>
+  <pm-move [move]="moveLearned.move" />
 </div>

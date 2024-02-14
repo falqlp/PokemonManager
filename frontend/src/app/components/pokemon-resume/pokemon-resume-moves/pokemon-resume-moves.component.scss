@@ -1,26 +1,7 @@
 @import "src/styles/flexbox";
-@import "src/styles/colors";
 
 .pokemon-resume-moves {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  &__move {
-    @include flexbox(space-between, 1, row);
-    flex: 1;
-    &__top {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    &__bottom {
-      display: flex;
-      gap: 10px;
-      &--info {
-        display: flex;
-        flex-direction: column;
-        font-size: 14px;
-      }
-    }
-  }
 }

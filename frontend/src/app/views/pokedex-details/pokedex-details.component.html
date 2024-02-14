@@ -1,12 +1,16 @@
 <div *ngIf="pokemonBase" class="pokedex_details">
   <div class="pokedex_details__left-part">
     <app-display-pokemon-image [pokemon]="pokemonBase" type="max-size" />
-    <pm-display-type [basePokemon]="pokemonBase" />
-    <div>
-      Disponible dans un oeuf:
-      {{
+    <div class="pokedex_details__left-part__types">
+      <pm-display-type [basePokemon]="pokemonBase" />
+    </div>
+    <div class="pokedex_details__left-part__egg-available">
+      <span> {{ "EGG_AVAILABLE" | translate }}</span>
+      <mat-icon>{{
         !!pokemonBase.base && !pokemonBase.mythical && !pokemonBase.legendary
-      }}
+          ? "done"
+          : "close"
+      }}</mat-icon>
     </div>
   </div>
   <div class="pokedex_details__right-part">

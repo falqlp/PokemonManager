@@ -4,6 +4,7 @@ import { PokemonModel } from '../../../models/PokemonModels/pokemon.model';
 import { MatButtonModule } from '@angular/material/button';
 import { PokemonResumeModifyMovesComponent } from './pokemon-resume-modify-moves/pokemon-resume-modify-moves.component';
 import { NgForOf, NgIf } from '@angular/common';
+import { MoveComponent } from '../../move/move.component';
 
 @Component({
   selector: 'pm-pokemon-resume-moves',
@@ -14,6 +15,7 @@ import { NgForOf, NgIf } from '@angular/common';
     PokemonResumeModifyMovesComponent,
     NgForOf,
     NgIf,
+    MoveComponent,
   ],
   templateUrl: './pokemon-resume-moves.component.html',
   styleUrls: ['./pokemon-resume-moves.component.scss'],
