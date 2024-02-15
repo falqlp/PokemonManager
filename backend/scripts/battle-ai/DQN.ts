@@ -7,8 +7,8 @@ export class DQN {
   private targetModel: LayersModel;
   public epsilon: number = 1;
   private epsilonMin: number = 0.001;
-  private epsilonDecay: number = 0.996;
-  private learningRate: number = 0.0005;
+  private epsilonDecay: number = 0.995;
+  private learningRate: number = 0.001;
 
   constructor(private readonly numActions: number) {
     this.model = this.createModel();

@@ -27,7 +27,7 @@ mongoose
   let sumHp = 0;
   let sumReward = 0;
   let sumWin = 0;
-  for (let episode = 0; episode < 2000; episode++) {
+  for (let episode = 0; episode < 1000; episode++) {
     const player = mapBattleTrainer(
       await TrainerService.getInstance().get("65c68ee02717e3796f502f44")
     );

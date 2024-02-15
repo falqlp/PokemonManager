@@ -41,6 +41,7 @@ export const GameGuard: CanActivateFn = (
   next: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ): boolean => {
+  console.log(next);
   return inject(PermissionsService).gameGuard(next, state);
 };
 
