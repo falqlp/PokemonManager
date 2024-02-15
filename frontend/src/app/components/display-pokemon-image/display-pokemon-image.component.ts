@@ -46,7 +46,6 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
           : this.pokemon.basePokemon.name?.replace('-', '');
     } else {
       this.basePokemon = this.pokemon;
-      console.log(this.pokemon);
       idString = this.pokemon.name?.replace('-', '');
     }
     switch (this.type) {
@@ -60,9 +59,7 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
         this.imageUrl = `assets/pokemons/Front/${idString}.png`;
         break;
       case 'max-size':
-        this.imageUrl = `assets/images/max-size/${this.basePokemon.id
-          .toString()
-          .padStart(3, '0')}.png`;
+        this.imageUrl = `assets/pokemons/max-size/${idString}.png`;
         break;
       default:
         this.imageUrl = `assets/pokemons/Front/${idString}.png`;

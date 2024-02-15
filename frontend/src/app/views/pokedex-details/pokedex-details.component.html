@@ -15,6 +15,7 @@
   </div>
   <div class="pokedex_details__right-part">
     <pm-evolution-tree
+      *ngIf="evolutionOf.length > 0 || evolutions.length > 0"
       [evolutionOf]="evolutionOf"
       [evolutions]="evolutions"
       [pokemonBase]="pokemonBase"
