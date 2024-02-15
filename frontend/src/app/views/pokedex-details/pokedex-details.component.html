@@ -4,13 +4,29 @@
     <div class="pokedex_details__left-part__types">
       <pm-display-type [basePokemon]="pokemonBase" />
     </div>
-    <div class="pokedex_details__left-part__egg-available">
-      <span> {{ "EGG_AVAILABLE" | translate }}</span>
-      <mat-icon>{{
-        !!pokemonBase.base && !pokemonBase.mythical && !pokemonBase.legendary
-          ? "done"
-          : "close"
-      }}</mat-icon>
+    <div class="pokedex_details__left-part__infos">
+      <span class="pokedex_details__left-part__infos__info">
+        <span> {{ "EGG_AVAILABLE" | translate }}</span>
+        <mat-icon
+          [ngClass]="
+            !!pokemonBase.base &&
+            !pokemonBase.mythical &&
+            !pokemonBase.legendary
+              ? 'font-green'
+              : 'font-red'
+          "
+          >{{
+            !!pokemonBase.base &&
+            !pokemonBase.mythical &&
+            !pokemonBase.legendary
+              ? "done"
+              : "close"
+          }}</mat-icon
+        >
+      </span>
+      <span class="pokedex_details__left-part__infos__info">{{
+        "MORE_TO_COME" | translate
+      }}</span>
     </div>
   </div>
   <div class="pokedex_details__right-part">

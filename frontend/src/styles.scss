@@ -2,14 +2,11 @@
 @use "sass:map";
 @use "styles/material-theme";
 
-@import "./styles/buttons/btn-primary.scss";
-@import "./styles/buttons/btn-default.scss";
-@import "./styles/buttons/btn-success.scss";
-@import "./styles/buttons/btn-danger.scss";
 @import "./styles/modal";
 @import "./styles/material-theme";
 @import "./styles/palette-theme";
 @import "node_modules/angular-notifier/styles";
+@import "src/styles/colors";
 
 @include mat.core();
 
@@ -203,4 +200,12 @@ progress-bar {
 /* Handle au survol */
 ::-webkit-scrollbar-thumb:hover {
   background: #d0d0d0; /* Couleur du handle au survol */
+}
+
+.font-red {
+  color: $red-bad-color;
+}
+
+.font-green {
+  color: $green-good-color;
 }

@@ -7,7 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
-import { NgForOf, NgIf } from '@angular/common';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { RouterService } from '../../services/router.service';
 import { DisplayTypeComponent } from '../../components/display-type/display-type.component';
@@ -40,6 +40,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     EvolutionTreeComponent,
     PokedexMovesLearnedComponent,
     MatCheckboxModule,
+    NgClass,
   ],
   templateUrl: './pokedex-details.component.html',
   styleUrls: ['./pokedex-details.component.scss'],
