@@ -67,10 +67,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "pokemon-manager:build:production"
+              "buildTarget": "pokemon-manager:build:production"
             },
             "development": {
-              "browserTarget": "pokemon-manager:build:development"
+              "buildTarget": "pokemon-manager:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pokemon-manager:build"
+            "buildTarget": "pokemon-manager:build"
           }
         },
         "test": {
