@@ -2,11 +2,12 @@ import mongoose, { Document, Schema } from "mongoose";
 import PokemonStats, {
   IPokemonStats,
 } from "../../models/PokemonModels/pokemonStats";
+import { PokemonType } from "../../models/Types/Types";
 
 export interface IPokemonBase extends Document {
   id: number;
   name: string;
-  types: string[];
+  types: PokemonType[];
   baseStats: IPokemonStats;
   legendary?: boolean;
   mythical?: boolean;

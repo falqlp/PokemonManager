@@ -1,9 +1,10 @@
 import mongoose, { Document, Schema } from "mongoose";
+import { PokemonType } from "../../models/Types/Types";
 
 export interface IMove extends Document {
   id: number;
   name: string;
-  type: string;
+  type: PokemonType;
   category: string;
   accuracy: number;
   power?: number;

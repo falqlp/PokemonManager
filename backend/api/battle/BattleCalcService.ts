@@ -2,27 +2,6 @@ import { IPokemon } from "../pokemon/Pokemon";
 import { IMove } from "../move/Move";
 import { Effectiveness, IDamage } from "./BattleInterfaces";
 
-export enum PokemonType {
-  NORMAL = "NORMAL",
-  FIRE = "FIRE",
-  WATER = "WATER",
-  ELECTRIC = "ELECTRIC",
-  GRASS = "GRASS",
-  ICE = "ICE",
-  FIGHTING = "FIGHTING",
-  POISON = "POISON",
-  GROUND = "GROUND",
-  FLYING = "FLYING",
-  PSY = "PSY",
-  BUG = "BUG",
-  ROCK = "ROCK",
-  GHOST = "GHOST",
-  DRAGON = "DRAGON",
-  DARK = "DARK",
-  STEEL = "STEEL",
-  FAIRY = "FAIRY",
-}
-
 export const TYPE_EFFECTIVENESS: { [key: string]: { [key: string]: number } } =
   {
     NORMAL: { ROCK: 0.5, GHOST: 0, STEEL: 0.5 },
