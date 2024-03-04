@@ -1,7 +1,7 @@
 import { IPokemon } from "../../../api/pokemon/Pokemon";
-import { PokemonBaseTestMother } from "../PokemonBase/PokemonBase.test";
-import { StatsTestMother } from "../Stats/Stats.test";
-import { MoveTestMother } from "../Move/Move.test";
+import { PokemonBaseTestMother } from "../PokemonBase/PokemonBaseTestMother";
+import { StatsTestMother } from "../Stats/StatsTestMother";
+import { MoveTestMother } from "../Move/MoveTestMother";
 
 export class PokemonTestMother {
   static generateBulbasaur(): IPokemon {

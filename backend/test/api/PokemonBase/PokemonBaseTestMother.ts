@@ -1,7 +1,7 @@
 import { IPokemonBase } from "../../../api/pokemonBase/PokemonBase";
 import { PokemonType } from "../../../models/Types/Types";
 import { IPokemonStats } from "../../../models/PokemonModels/pokemonStats";
-import { StatsTestMother } from "../Stats/Stats.test";
+import { StatsTestMother } from "../Stats/StatsTestMother";
 
 export class PokemonBaseTestMother {
   static generateBulbasaurBase(): IPokemonBase {
