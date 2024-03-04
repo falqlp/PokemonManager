@@ -9,7 +9,7 @@ export interface ListBody {
   skip?: number;
 }
 
-class ReadOnlyService<T extends Document> {
+abstract class ReadOnlyService<T extends Document> {
   constructor(protected schema: Model<T>, protected mapper: IMapper<T>) {}
 
   async get(

@@ -2,7 +2,7 @@ import ReadOnlyRouter from "./ReadOnlyRouter";
 import { Document } from "mongoose";
 import CompleteService from "./CompleteService";
 
-class CompleteRouter<T extends Document> extends ReadOnlyRouter<T> {
+abstract class CompleteRouter<T extends Document> extends ReadOnlyRouter<T> {
   constructor(protected service: CompleteService<T>) {
     super(service);
     this.initCompleteRouter();

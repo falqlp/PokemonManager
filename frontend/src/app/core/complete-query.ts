@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ReadonlyQuery } from './readonly-query';
 
-export class CompleteQuery<T> extends ReadonlyQuery<T> {
+export abstract class CompleteQuery<T> extends ReadonlyQuery<T> {
   public constructor(
     protected override url: string,
     protected override http: HttpClient

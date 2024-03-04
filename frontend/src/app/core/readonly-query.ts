@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { QueryModel } from './query.model';
 
-export class ReadonlyQuery<T> {
+export abstract class ReadonlyQuery<T> {
   public constructor(protected url: string, protected http: HttpClient) {}
 
   public get(_id: string): Observable<T> {
