@@ -53,6 +53,7 @@ class PokemonService extends CompleteService<IPokemon> {
     pokemon: IPokemon,
     gameId: string
   ): Promise<IPokemon> {
+    // test
     pokemon.gameId = gameId;
     if (!pokemon.birthday) {
       pokemon.birthday = (await Game.findById(gameId)).actualDate;
