@@ -2,7 +2,7 @@ import { Router } from "express";
 import ReadOnlyService from "./ReadOnlyService";
 import { Document } from "mongoose";
 import ReadOnlyRouter from "./ReadOnlyRouter";
-abstract class ReadOnlyGlobalRouter<T extends Document> {
+class ReadOnlyGlobalRouter<T extends Document> {
   public router = Router();
   constructor(protected service: ReadOnlyService<T>) {
     this.initReadOnlyRouter();

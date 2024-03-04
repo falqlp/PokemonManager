@@ -2,7 +2,7 @@ import ReadOnlyService from "./ReadOnlyService";
 import { Document, Model, UpdateQuery } from "mongoose";
 import { IMapper } from "./IMapper";
 
-abstract class CompleteService<T extends Document> extends ReadOnlyService<T> {
+class CompleteService<T extends Document> extends ReadOnlyService<T> {
   constructor(protected schema: Model<T>, protected mapper: IMapper<T>) {
     super(schema, mapper);
   }
@@ -26,7 +26,7 @@ abstract class CompleteService<T extends Document> extends ReadOnlyService<T> {
     try {
       const updatedDto = await this.mapper.update({ ...dto, gameId });
       const newDto = new this.schema(updatedDto);
-      return this.mapper.map(await newDto.save());
+      return this.mapper.map((await newDto.save()) as T);
     } catch (error) {
       return Promise.reject(error);
     }
