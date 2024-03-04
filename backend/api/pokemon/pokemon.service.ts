@@ -9,7 +9,7 @@ import { eggHatched } from "../../websocketServer";
 import { Model } from "mongoose";
 import { IMapper } from "../IMapper";
 import PokemonBaseService from "../pokemonBase/pokemonBase.service";
-import Nursery, { INursery, IWishList } from "../nursery/nursery";
+import Nursery, { INursery } from "../nursery/nursery";
 import normalRandomUtils from "../../utils/normalRandomUtils";
 
 class PokemonService extends CompleteService<IPokemon> {

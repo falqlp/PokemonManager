@@ -14,7 +14,7 @@
         type="max-size"
       />
       <div class="pokemon-resume__content__main-infos__types">
-        <pm-display-type [basePokemon]="pokemon.basePokemon" />
+        <pm-display-type [types]="pokemon.basePokemon.types" />
       </div>
       <div class="pokemon-resume__content__main-infos__level">
         <span>{{ "LVL" | translate }}: {{ pokemon.level }}</span>

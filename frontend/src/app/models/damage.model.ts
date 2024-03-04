@@ -9,7 +9,7 @@ export type Effectiveness =
 export interface DamageModel {
   damage: number;
   critical: boolean;
-  effectivness: Effectiveness;
+  effectiveness: Effectiveness;
   missed: boolean;
   animation: AnimationModel;
 }

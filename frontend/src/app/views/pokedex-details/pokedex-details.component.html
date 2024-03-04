@@ -2,7 +2,7 @@
   <div class="pokedex_details__left-part">
     <app-display-pokemon-image [pokemon]="pokemonBase" type="max-size" />
     <div class="pokedex_details__left-part__types">
-      <pm-display-type [basePokemon]="pokemonBase" />
+      <pm-display-type [types]="pokemonBase.types" />
     </div>
     <div class="pokedex_details__left-part__infos">
       <span class="pokedex_details__left-part__infos__info">
@@ -36,6 +36,7 @@
       [evolutions]="evolutions"
       [pokemonBase]="pokemonBase"
     />
+    <pm-pokemon-base-effictiveness [pokemonBase]="pokemonBase" />
     <pm-pokemon-details-stats [baseStats]="pokemonBase.baseStats" />
     <pm-pokedex-moves-learned [movesLearned]="movesLearned" />
   </div>

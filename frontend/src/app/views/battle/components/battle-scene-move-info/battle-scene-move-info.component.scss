@@ -1,5 +1,3 @@
-@import "src/styles/colors";
-
 .battle-scene__move {
   z-index: -1;
   position: relative;
@@ -37,24 +35,4 @@
   100% {
     transform: translateY(0%);
   }
-}
-
-.EFFECTIVE {
-  background-color: white;
-  color: black;
-}
-
-.NOT_VERY_EFFECTIVE {
-  background-color: $red-bad-color;
-  color: black;
-}
-
-.SUPER_EFFECTIVE {
-  background-color: $green-good-color;
-  color: black;
-}
-
-.IMMUNE {
-  background-color: #808080;
-  color: black;
 }

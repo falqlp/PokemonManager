@@ -13,7 +13,7 @@
       [pokemon]="data"
     />
     <div class="pokemon-info__content--type">
-      <pm-display-type [basePokemon]="data.basePokemon" />
+      <pm-display-type [types]="data.basePokemon.types" />
     </div>
     <div class="pokemon-info__content--level">
       <span>{{ "LVL" | translate }}: {{ data.level }}</span

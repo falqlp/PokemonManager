@@ -1,0 +1,26 @@
+.pokemon-base-effectiveness {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  &__type-effectiveness {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    &__type {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    &__effectiveness {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+    }
+  }
+}

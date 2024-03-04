@@ -5,7 +5,7 @@ export function aiReward(
   opponent: IBattleTrainer
 ): number {
   let reward = 0;
-  // switch (opponent.damage?.effectivness) {
+  // switch (opponent.damage?.effectiveness) {
   //   case "EFFECTIVE":
   //     break;
   //   case "IMMUNE":
@@ -23,7 +23,7 @@ export function aiReward(
   // if (!player.damage) {
   //   reward += 0.05;
   // } else {
-  //   switch (player.damage.effectivness) {
+  //   switch (player.damage.effectiveness) {
   //     case "EFFECTIVE":
   //       break;
   //     case "IMMUNE":

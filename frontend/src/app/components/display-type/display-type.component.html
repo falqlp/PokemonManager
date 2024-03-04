@@ -1,6 +1,13 @@
 <img
-  *ngFor="let type of basePokemon?.types"
+  *ngFor="let type of typesArray"
   class="type-displayText"
-  [src]="'assets/types/displayText/' + type + '.png'"
+  [ngClass]="displayText ? 'type-displayText' : 'icon-type'"
+  [src]="
+    'assets/types/' +
+    (displayText ? 'displayText' : 'simple') +
+    '/' +
+    type +
+    '.png'
+  "
   [alt]="type"
 />

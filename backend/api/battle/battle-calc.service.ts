@@ -2,6 +2,27 @@ import { IPokemon } from "../pokemon/pokemon";
 import { IMove } from "../move/move";
 import { Effectiveness, IDamage } from "./battle-interfaces";
 
+export enum PokemonType {
+  NORMAL = "NORMAL",
+  FIRE = "FIRE",
+  WATER = "WATER",
+  ELECTRIC = "ELECTRIC",
+  GRASS = "GRASS",
+  ICE = "ICE",
+  FIGHTING = "FIGHTING",
+  POISON = "POISON",
+  GROUND = "GROUND",
+  FLYING = "FLYING",
+  PSY = "PSY",
+  BUG = "BUG",
+  ROCK = "ROCK",
+  GHOST = "GHOST",
+  DRAGON = "DRAGON",
+  DARK = "DARK",
+  STEEL = "STEEL",
+  FAIRY = "FAIRY",
+}
+
 export const TYPE_EFFECTIVENESS: { [key: string]: { [key: string]: number } } =
   {
     NORMAL: { ROCK: 0.5, GHOST: 0, STEEL: 0.5 },
@@ -146,19 +167,20 @@ const BattleCalcService = {
       return;
     }
     const missed = this.moveOnTarget(move);
-    const effectivness = this.calcEffectivness(move, defPokemon);
-    const animation = missed || effectivness === 0 ? undefined : move.animation;
+    const effectiveness = this.calcEffectiveness(move, defPokemon);
+    const animation =
+      missed || effectiveness === 0 ? undefined : move.animation;
     const criticalHit =
-      effectivness === 0 || missed ? 1 : this.criticalHit(attPokemon);
+      effectiveness === 0 || missed ? 1 : this.criticalHit(attPokemon);
     return {
       damage:
         this.calcDamageBase(attPokemon, defPokemon, move) *
-        effectivness *
+        effectiveness *
         this.stab(move, attPokemon) *
         criticalHit *
         this.roll() *
         (missed ? 0 : 1),
-      effectivness: this.getEffectiveness(effectivness),
+      effectiveness: this.getEffectiveness(effectiveness),
       critical: criticalHit !== 1 && !missed,
       missed,
       animation,
@@ -185,7 +207,7 @@ const BattleCalcService = {
     );
   },
 
-  calcEffectivness(move: IMove, defPokemon: IPokemon) {
+  calcEffectiveness(move: IMove, defPokemon: IPokemon) {
     let modifier = 1;
     defPokemon.basePokemon.types.forEach((type) => {
       if (TYPE_EFFECTIVENESS[move.type][type] !== undefined) {
@@ -195,12 +217,12 @@ const BattleCalcService = {
     return modifier;
   },
 
-  getEffectiveness(effectivness: number): Effectiveness {
-    if (effectivness === 0) {
+  getEffectiveness(effectiveness: number): Effectiveness {
+    if (effectiveness === 0) {
       return "IMMUNE";
-    } else if (effectivness < 1) {
+    } else if (effectiveness < 1) {
       return "NOT_VERY_EFFECTIVE";
-    } else if (effectivness > 1) {
+    } else if (effectiveness > 1) {
       return "SUPER_EFFECTIVE";
     }
     return "EFFECTIVE";
@@ -251,7 +273,7 @@ const BattleCalcService = {
     }
     return (
       this.calcDamageBase(attPokemon, defPokemon, move) *
-      this.calcEffectivness(move, defPokemon) *
+      this.calcEffectiveness(move, defPokemon) *
       this.stab(move, attPokemon) *
       (move.accuracy / 100)
     );

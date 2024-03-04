@@ -180,6 +180,26 @@ progress-bar {
   background-color: #81b9ef;
 }
 
+.EFFECTIVE {
+  background-color: rgba(255, 255, 255, 0.75);
+  color: black;
+}
+
+.NOT_VERY_EFFECTIVE {
+  background-color: $red-bad-color;
+  color: black;
+}
+
+.SUPER_EFFECTIVE {
+  background-color: $green-good-color;
+  color: black;
+}
+
+.IMMUNE {
+  background-color: #808080;
+  color: black;
+}
+
 /* Pour les navigateurs WebKit (Safari, Chrome, etc.) */
 ::-webkit-scrollbar {
   width: 8px; /* Largeur de la scrollbar */

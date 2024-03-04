@@ -24,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { EvolutionTreeComponent } from './evolution-tree/evolution-tree.component';
 import { PokedexMovesLearnedComponent } from './pokedex-moves-learned/pokedex-moves-learned.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { PokemonBaseEffictivenessComponent } from './pokemon-base-effictiveness/pokemon-base-effictiveness.component';
 
 @Component({
   selector: 'pm-pokedex-details',
@@ -41,6 +42,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     PokedexMovesLearnedComponent,
     MatCheckboxModule,
     NgClass,
+    PokemonBaseEffictivenessComponent,
   ],
   templateUrl: './pokedex-details.component.html',
   styleUrls: ['./pokedex-details.component.scss'],

@@ -10,7 +10,7 @@ export type Effectiveness =
 export interface IDamage {
   damage: number;
   critical: boolean;
-  effectivness: Effectiveness;
+  effectiveness: Effectiveness;
   missed: boolean;
   animation: IAnimation;
 }
