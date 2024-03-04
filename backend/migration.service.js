@@ -1,9 +1,9 @@
-import PokemonBase from "./api/pokemonBase/pokemonBase";
+import PokemonBase from "./api/pokemonBase/PokemonBase";
 
 const axios = require("axios");
-import Move from "./api/move/move";
-import Evolution from "./api/evolution/evolution";
-const MoveLearning = require("./api/moveLearning/moveLearning");
+import Move from "./api/move/Move";
+import Evolution from "./api/evolution/Evolution";
+const MoveLearning = require("./api/moveLearning/MoveLearning");
 const { response } = require("express");
 const fs = require("fs");
 const path = require("path");

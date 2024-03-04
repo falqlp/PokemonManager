@@ -2,7 +2,7 @@ import ReadOnlyService from "./ReadOnlyService";
 import { Document, Model, UpdateQuery } from "mongoose";
 import { IMapper } from "./IMapper";
 
-class CompleteService<T extends Document> extends ReadOnlyService<T> {
+abstract class CompleteService<T extends Document> extends ReadOnlyService<T> {
   constructor(protected schema: Model<T>, protected mapper: IMapper<T>) {
     super(schema, mapper);
   }

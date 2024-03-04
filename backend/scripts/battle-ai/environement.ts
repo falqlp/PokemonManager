@@ -1,7 +1,7 @@
 import * as tf from "@tensorflow/tfjs-node-gpu";
-import { IBattleTrainer } from "../../api/battle/battle-interfaces";
+import { IBattleTrainer } from "../../api/battle/BattleInterfaces";
 import { aiReward } from "./ai-reward";
-import BattleService from "../../api/battle/battle.service";
+import BattleService from "../../api/battle/BattleService";
 import { prepareEnvironmentState } from "./prepare-state";
 export class Environement {
   constructor(public player: IBattleTrainer, public opponent: IBattleTrainer) {}

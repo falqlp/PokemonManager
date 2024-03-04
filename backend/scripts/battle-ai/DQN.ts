@@ -1,5 +1,5 @@
 import * as tf from "@tensorflow/tfjs-node-gpu";
-import { IBattleTrainer } from "../../api/battle/battle-interfaces";
+import { IBattleTrainer } from "../../api/battle/BattleInterfaces";
 import { LayersModel } from "@tensorflow/tfjs-node-gpu";
 
 export class DQN {

@@ -27,7 +27,3 @@ When launched:
 Login: UserTest
 Password: test
 ```
-
-**Other:**
-
-To generate API:  npx ts-node .\generate-api.ts name {readonly?}

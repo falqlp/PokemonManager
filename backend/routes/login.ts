@@ -1,5 +1,5 @@
 import express from "express";
-import User from "../api/user/user";
+import User from "../api/user/User";
 const router = express.Router();
 
 router.post("/", (req, res, next) => {

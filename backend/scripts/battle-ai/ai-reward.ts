@@ -1,4 +1,4 @@
-import { IBattleTrainer } from "../../api/battle/battle-interfaces";
+import { IBattleTrainer } from "../../api/battle/BattleInterfaces";
 
 export function aiReward(
   player: IBattleTrainer,

@@ -1,7 +1,7 @@
 import WebSocket from "ws";
-import GameService from "./api/game/game.service";
+import GameService from "./api/game/GameService";
 import { ObjectId } from "mongodb";
-import pokemon, { IPokemon } from "./api/pokemon/pokemon";
+import pokemon, { IPokemon } from "./api/pokemon/Pokemon";
 
 let wss: WebSocket.Server;
 const clients: { [gameId: string]: WebSocket[] } = {};

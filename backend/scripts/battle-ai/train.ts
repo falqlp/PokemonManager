@@ -1,9 +1,9 @@
 import * as tf from "@tensorflow/tfjs-node-gpu";
 import { DQN } from "./DQN";
 import { Environement } from "./environement";
-import TrainerService from "../../api/trainer/trainer.service";
-import { ITrainer } from "../../api/trainer/trainer";
-import { IBattleTrainer } from "../../api/battle/battle-interfaces";
+import TrainerService from "../../api/trainer/TrainerService";
+import { ITrainer } from "../../api/trainer/Trainer";
+import { IBattleTrainer } from "../../api/battle/BattleInterfaces";
 import { prepareEnvironmentState } from "./prepare-state";
 import mongoose from "mongoose";
 
