@@ -11,6 +11,7 @@ import { IMapper } from "../IMapper";
 import PokemonBaseService from "../pokemonBase/PokemonBaseService";
 import Nursery, { INursery } from "../nursery/Nursery";
 import normalRandomUtils from "../../utils/normalRandomUtils";
+import PokemonUtilsService from "./PokemonUtilsService";
 
 class PokemonService extends CompleteService<IPokemon> {
   private static instance: PokemonService;
@@ -18,7 +19,8 @@ class PokemonService extends CompleteService<IPokemon> {
   constructor(
     schema: Model<IPokemon>,
     mapper: IMapper<IPokemon>,
-    protected pokemonBaseService: PokemonBaseService
+    protected pokemonBaseService: PokemonBaseService,
+    protected pokemonUtilsService: PokemonUtilsService
   ) {
     super(schema, mapper);
   }
@@ -27,7 +29,8 @@ class PokemonService extends CompleteService<IPokemon> {
       PokemonService.instance = new PokemonService(
         Pokemon,
         PokemonMapper.getInstance(),
-        PokemonBaseService.getInstance()
+        PokemonBaseService.getInstance(),
+        PokemonUtilsService.getInstance()
       );
     }
     return PokemonService.instance;
@@ -67,10 +70,10 @@ class PokemonService extends CompleteService<IPokemon> {
       pokemon.exp = 0;
     }
     if (pokemon.iv === undefined) {
-      pokemon.iv = this.generateIvs();
+      pokemon.iv = this.pokemonUtilsService.generateIvs();
     }
     if (pokemon.ev === undefined) {
-      pokemon.ev = this.initEvs();
+      pokemon.ev = this.pokemonUtilsService.initEvs();
     }
     if (!pokemon.potential) {
       pokemon.potential = 100;
@@ -84,28 +87,6 @@ class PokemonService extends CompleteService<IPokemon> {
     pokemon.maxLevel = pokemon.level;
     pokemon = await this.mapper.update(pokemon);
     return pokemon;
-  }
-
-  public generateIvs(): IPokemonStats {
-    return {
-      hp: Math.floor(Math.random() * 32),
-      atk: Math.floor(Math.random() * 32),
-      def: Math.floor(Math.random() * 32),
-      spAtk: Math.floor(Math.random() * 32),
-      spDef: Math.floor(Math.random() * 32),
-      spe: Math.floor(Math.random() * 32),
-    } as IPokemonStats;
-  }
-
-  public initEvs(): IPokemonStats {
-    return {
-      hp: 0,
-      atk: 0,
-      def: 0,
-      spAtk: 0,
-      spDef: 0,
-      spe: 0,
-    } as IPokemonStats;
   }
 
   public async savePokemon(
@@ -143,14 +124,7 @@ class PokemonService extends CompleteService<IPokemon> {
     nursery: INursery,
     gameId: string
   ): Promise<IPokemon> {
-    let potential =
-      10 + Math.floor(normalRandomUtils.normalRandom(nursery.level * 10, 6));
-    if (potential > 100) {
-      potential = 100;
-    }
-    if (potential < 0) {
-      potential = 0;
-    }
+    const potential = this.pokemonUtilsService.generatePotential(nursery.level);
     const egg = {
       basePokemon: await this.pokemonBaseService.generateEggBase(
         nursery.wishList

@@ -10,10 +10,11 @@ import { PopulateOptions } from "mongoose";
 import Move from "../move/Move";
 import MoveMapper from "../move/MoveMapper";
 import PokemonBaseMapper from "../pokemonBase/PokemonBaseMapper";
+import PokemonUtilsService from "./PokemonUtilsService";
 
 class PokemonMapper implements IMapper<IPokemon> {
   private static instance: PokemonMapper;
-  constructor() {}
+  constructor(private pokemonUtilsService: PokemonUtilsService) {}
 
   public populate(): PopulateOptions[] {
     return [
@@ -21,16 +22,15 @@ class PokemonMapper implements IMapper<IPokemon> {
       { path: "basePokemon", model: PokemonBase },
     ];
   }
-  public async map(pokemon: IPokemon): Promise<IPokemon> {
-    pokemon = this.mapComplete(pokemon);
-    pokemon.ev = undefined;
-    pokemon.iv = undefined;
-    pokemon.happiness = undefined;
-    pokemon.potential = undefined;
-    pokemon.trainingPourcentage = undefined;
+  public map(pokemon: IPokemon): IPokemon {
+    delete pokemon.ev;
+    delete pokemon.iv;
+    delete pokemon.happiness;
+    delete pokemon.potential;
+    delete pokemon.trainingPourcentage;
     if (pokemon.level === 0) {
-      pokemon.basePokemon = undefined;
-      pokemon.hatchingDate = undefined;
+      delete pokemon.basePokemon;
+      delete pokemon.hatchingDate;
     }
     return pokemon;
   }
@@ -39,27 +39,27 @@ class PokemonMapper implements IMapper<IPokemon> {
     return pokemon;
   };
 
-  public mapPartial = async (pokemon: IPokemon): Promise<IPokemon> => {
-    pokemon.ev = undefined;
-    pokemon.iv = undefined;
-    pokemon.happiness = undefined;
-    pokemon.potential = undefined;
-    pokemon.trainingPourcentage = undefined;
-    pokemon.hatchingDate = undefined;
+  public mapPartial = (pokemon: IPokemon): IPokemon => {
+    delete pokemon.ev;
+    delete pokemon.iv;
+    delete pokemon.happiness;
+    delete pokemon.potential;
+    delete pokemon.trainingPourcentage;
+    delete pokemon.hatchingDate;
     pokemon.basePokemon = {
       types: pokemon.basePokemon.types,
     } as unknown as IPokemonBase;
     return pokemon;
   };
 
+  // Todo a refactor
   public async update(pokemon: IPokemon): Promise<IPokemon> {
     const oldPokemon: IPokemon = { ...pokemon } as IPokemon;
     if (pokemon.iv && pokemon.ev) {
-      pokemon.stats = this.updateStats(pokemon);
+      pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
       if (!pokemon.hiddenPotential) {
-        pokemon.hiddenPotential = this.generateHiddenPotentail(
-          pokemon.potential
-        );
+        pokemon.hiddenPotential =
+          this.pokemonUtilsService.generateHiddenPotential(pokemon.potential);
       }
     } else {
       const savedPokemon = await Pokemon.findOne({ _id: pokemon._id }).populate(
@@ -70,23 +70,27 @@ class PokemonMapper implements IMapper<IPokemon> {
       }
       pokemon.gameId = savedPokemon.gameId;
       if (!pokemon.hiddenPotential) {
-        pokemon.hiddenPotential = this.generateHiddenPotentail(
-          savedPokemon.potential ?? pokemon.potential
-        );
+        pokemon.hiddenPotential =
+          this.pokemonUtilsService.generateHiddenPotential(
+            savedPokemon.potential ?? pokemon.potential
+          );
       }
       if (pokemon.level <= 1 || !pokemon.basePokemon?.id) {
         pokemon.basePokemon = savedPokemon.basePokemon;
       }
       pokemon.ev = savedPokemon.ev;
       pokemon.iv = savedPokemon.iv;
-      pokemon.stats = this.updateStats(pokemon);
+      pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
       if (pokemon.level && pokemon.level !== 0 && savedPokemon.hatchingDate) {
         pokemon.birthday = savedPokemon.hatchingDate;
         pokemon.hatchingDate = null;
       }
     }
     if (pokemon.birthday) {
-      pokemon.age = await this.calculateAge(pokemon.birthday);
+      pokemon.age = this.pokemonUtilsService.calculateAge(
+        pokemon.birthday,
+        (await Game.findOne({ _id: pokemon.gameId })).actualDate
+      );
     }
     const newPokemon = { ...pokemon };
     delete newPokemon.iv;
@@ -100,101 +104,11 @@ class PokemonMapper implements IMapper<IPokemon> {
     return pokemon;
   }
 
-  public updateStats(pokemon: IPokemon): IPokemonStats {
-    if (pokemon.level === 0) {
-      return {
-        hp: 0,
-        atk: 0,
-        def: 0,
-        spe: 0,
-        spAtk: 0,
-        spDef: 0,
-      } as IPokemonStats;
-    }
-    return {
-      hp: this.calcHp(
-        pokemon.basePokemon.baseStats.hp,
-        pokemon.level,
-        pokemon.iv.hp,
-        pokemon.ev.hp
-      ),
-      atk: this.calcStat(
-        pokemon.basePokemon.baseStats.atk,
-        pokemon.level,
-        pokemon.iv.atk,
-        pokemon.ev.atk
-      ),
-      def: this.calcStat(
-        pokemon.basePokemon.baseStats.def,
-        pokemon.level,
-        pokemon.iv.def,
-        pokemon.ev.def
-      ),
-      spAtk: this.calcStat(
-        pokemon.basePokemon.baseStats.spAtk,
-        pokemon.level,
-        pokemon.iv.spAtk,
-        pokemon.ev.spAtk
-      ),
-      spDef: this.calcStat(
-        pokemon.basePokemon.baseStats.spDef,
-        pokemon.level,
-        pokemon.iv.spDef,
-        pokemon.ev.spDef
-      ),
-      spe: this.calcStat(
-        pokemon.basePokemon.baseStats.spe,
-        pokemon.level,
-        pokemon.iv.spe,
-        pokemon.ev.spe
-      ),
-    } as IPokemonStats;
-  }
-
-  public calcStat(bs: number, niv: number, iv: number, ev: number): number {
-    return (
-      Math.floor(
-        ((2 * bs + (ev === 0 ? 0 : Math.floor(ev / 4)) + iv) * niv) / 100
-      ) + 5
-    );
-  }
-
-  public calcHp(bs: number, niv: number, iv: number, ev: number): number {
-    return (
-      Math.floor(
-        ((2 * bs + (ev === 0 ? 0 : Math.floor(ev / 4)) + iv) * niv) / 100
-      ) +
-      niv +
-      10
-    );
-  }
-
-  public async calculateAge(birthdate: Date): Promise<number> {
-    birthdate = new Date(birthdate);
-    const today = (await Game.find())[0].actualDate;
-    let age = today.getFullYear() - birthdate.getFullYear();
-    const monthDifference = today.getMonth() - birthdate.getMonth();
-
-    if (
-      monthDifference < 0 ||
-      (monthDifference === 0 && today.getDate() < birthdate.getDate())
-    ) {
-      age--;
-    }
-    return age;
-  }
-
-  public generateHiddenPotentail(potential: number): string {
-    const pMin =
-      potential - Math.floor(Math.random() * 3 * Math.sqrt(potential));
-    const pMax =
-      potential + Math.floor(Math.random() * 3 * Math.sqrt(potential));
-    return `${pMin < 0 ? 0 : pMin} - ${pMax > 100 ? 100 : pMax}`;
-  }
-
   public static getInstance(): PokemonMapper {
     if (!PokemonMapper.instance) {
-      PokemonMapper.instance = new PokemonMapper();
+      PokemonMapper.instance = new PokemonMapper(
+        PokemonUtilsService.getInstance()
+      );
     }
     return PokemonMapper.instance;
   }

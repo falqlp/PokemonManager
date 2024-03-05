@@ -2,6 +2,9 @@ import { IPokemonStats } from "../../../models/PokemonModels/pokemonStats";
 
 export class StatsTestMother {
   static getEvs(): IPokemonStats {
+    return this.getAll0();
+  }
+  static getAll0(): IPokemonStats {
     return {
       hp: 0,
       atk: 0,
