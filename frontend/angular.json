@@ -12,7 +12,7 @@
           "standalone": true
         },
         "@schematics/angular:service": {
-          "skipTests":  true
+          "skipTests": true
         }
       },
       "root": "",

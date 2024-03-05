@@ -58,7 +58,7 @@ import { PokemonResumeMovesComponent } from './components/pokemon-resume/pokemon
 import { HeaderInterceptor } from './core/header-interceptor.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { DisplayTypeComponent } from "./components/display-type/display-type.component";
+import { DisplayTypeComponent } from './components/display-type/display-type.component';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {

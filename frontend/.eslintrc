@@ -3,7 +3,11 @@
     "browser": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2021,
@@ -17,7 +21,7 @@
   },
   "overrides": [
     {
-      "files": ["*.ts","*.scss","*.html"],
+      "files": ["*.ts", "*.scss", "*.html"],
       "rules": {
         "@typescript-eslint/explicit-function-return-type": "error",
         "@angular-eslint/prefer-on-push-component-change-detection": "off",
@@ -79,8 +83,7 @@
         "@typescript-eslint/no-unused-vars": "error",
         "@typescript-eslint/no-shadow": ["error"],
         "@angular-eslint/template/accessibility-elements-content": "off",
-        "@angular-eslint/template/accessibility-interactive-supports-focus":
-        "off",
+        "@angular-eslint/template/accessibility-interactive-supports-focus": "off",
         "@angular-eslint/template/click-events-have-key-events": "off",
         "@angular-eslint/template/i18n": "off",
         "prettier/prettier": "error",
@@ -89,5 +92,5 @@
         "import/no-extraneous-dependencies": "off"
       }
     }
-  ],
+  ]
 }
