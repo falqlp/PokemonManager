@@ -1,11 +1,4 @@
-import {
-  Component,
-  DestroyRef,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, DestroyRef, Input, OnChanges, OnInit } from '@angular/core';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
@@ -15,7 +8,6 @@ import { ProgressBarComponent } from '../../components/progress-bar/progress-bar
 import { TranslateModule } from '@ngx-translate/core';
 import { PokemonDetailsStatsComponent } from './pokemon-details-stats/pokemon-details-stats.component';
 import { PokedexQueriesService } from '../../services/queries/pokedex-queries.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   PokedexEvolutionModel,
   PokedexMoveLearnedModel,
@@ -64,7 +56,7 @@ export class PokedexDetailsComponent implements OnInit, OnChanges {
     this.refresh();
   }
 
-  public ngOnChanges(changes: SimpleChanges): void {
+  public ngOnChanges(): void {
     this.refresh();
   }
 

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import type { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { BattleTrainerModel } from './battle.model';
 

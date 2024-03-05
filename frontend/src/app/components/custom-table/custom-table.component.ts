@@ -154,7 +154,7 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
     this.query.sort = sortQuery;
   }
 
-  protected getData(element: T, data: string): any {
+  protected getData(element: T, data: string): unknown {
     if (data === 'all') {
       return element;
     }

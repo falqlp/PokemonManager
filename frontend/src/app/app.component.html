@@ -1,7 +1,11 @@
 <mat-drawer-container>
-  <mat-drawer #drawer><pm-sidenav /></mat-drawer>
+  <mat-drawer #drawer>
+    <pm-sidenav></pm-sidenav>
+    <!-- Balise fermée explicitement -->
+  </mat-drawer>
   <mat-drawer-content>
-    <app-top-bar />
+    <app-top-bar></app-top-bar>
+    <!-- Balise fermée explicitement -->
     <div class="content">
       <router-outlet></router-outlet>
     </div>

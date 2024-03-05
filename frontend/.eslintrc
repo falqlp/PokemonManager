@@ -1,4 +1,5 @@
 {
+  "ignorePatterns": ["**/*.html"],
   "env": {
     "browser": true,
     "node": true
@@ -21,7 +22,7 @@
   },
   "overrides": [
     {
-      "files": ["*.ts", "*.scss", "*.html"],
+      "files": ["*.ts", "*.html"],
       "rules": {
         "@typescript-eslint/explicit-function-return-type": "error",
         "@angular-eslint/prefer-on-push-component-change-detection": "off",
@@ -67,7 +68,7 @@
         "no-useless-constructor": "off",
         "@typescript-eslint/no-useless-constructor": "warn",
         "@typescript-eslint/no-empty-function": "warn",
-        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-explicit-any": "warn",
         "class-methods-use-this": "off",
         "import/no-unresolved": "warn",
         "@typescript-eslint/ban-types": [

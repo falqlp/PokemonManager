@@ -1,8 +1,4 @@
-import {
-  ActivatedRouteSnapshot,
-  CanActivateFn,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { CanActivateFn } from '@angular/router';
 import { RouterService } from '../../services/router.service';
 import { inject, Injectable } from '@angular/core';
 import { CacheService } from '../../services/cache.service';
@@ -16,16 +12,16 @@ class PermissionsService {
     protected cacheService: CacheService
   ) {}
 
-  gameGuard(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  gameGuard(): boolean {
     const gameId = this.cacheService.getGameId();
     if (gameId === 'null') {
       this.router.navigateByUrl('/games');
       return false;
     }
-    return this.authGuard(next, state);
+    return this.authGuard();
   }
 
-  authGuard(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  authGuard(): boolean {
     const userId = this.cacheService.getUserId();
     if (userId === 'null') {
       this.router.navigateByUrl('/login');
@@ -35,16 +31,10 @@ class PermissionsService {
   }
 }
 
-export const GameGuard: CanActivateFn = (
-  next: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-): boolean => {
-  return inject(PermissionsService).gameGuard(next, state);
+export const GameGuard: CanActivateFn = (): boolean => {
+  return inject(PermissionsService).gameGuard();
 };
 
-export const AuthGuard: CanActivateFn = (
-  next: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-): boolean => {
-  return inject(PermissionsService).authGuard(next, state);
+export const AuthGuard: CanActivateFn = (): boolean => {
+  return inject(PermissionsService).authGuard();
 };

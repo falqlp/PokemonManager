@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { PlayerService } from '../player.service';
-import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 
 @Injectable({
