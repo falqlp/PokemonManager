@@ -27,8 +27,8 @@ describe("PokemonUtilsService", () => {
     });
 
     it("should not exceed 100 when the generated potential is more than 100", () => {
-      mocked(normalRandomUtils.normalRandom).mockReturnValueOnce(100);
-      const result = service.generatePotential(10);
+      mocked(normalRandomUtils.normalRandom).mockReturnValueOnce(1000);
+      const result = service.generatePotential(8);
       expect(result).toBe(100);
     });
   });

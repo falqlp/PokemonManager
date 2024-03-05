@@ -28,7 +28,7 @@ const i18nService = {
           newObj[sortedArray[i][0]] = sortedArray[i][1];
         }
 
-        const newData: string = JSON.stringify(newObj, null, 2);
+        const newData: string = JSON.stringify(newObj, null, 2) + "\n";
         fs.writeFileSync(filePath, newData, "utf8");
       });
 

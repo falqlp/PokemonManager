@@ -86,13 +86,10 @@ class ExperienceService {
       evolution: IPokemonBase;
       name: string;
     };
-    const xpGain = this.getXp(pokemon, trainingCampLevel);
-    pokemon.exp += xpGain;
-    const result = this.getLevel(pokemon.level, pokemon.exp);
-    pokemon.level = result.level;
-    pokemon.exp = result.exp;
-    pokemon.trainingPourcentage = 0;
-    if (result.variation > 0) {
+    let result = this.updateLevelAndXp(pokemon, trainingCampLevel);
+    pokemon = result.pokemon;
+    const levelUp = result.variation > 0;
+    if (levelUp) {
       if (pokemon.level > pokemon.maxLevel) {
         pokemon.maxLevel = pokemon.level;
         await this.moveLearningService.newMoveLearned(pokemon);
@@ -110,7 +107,20 @@ class ExperienceService {
         };
       }
     }
-    return { level: result.variation, xp: xpGain, evolutions };
+    return { level: result.variation, xp: result.xpGain, evolutions };
+  }
+
+  public updateLevelAndXp(
+    pokemon: IPokemon,
+    trainingCampLevel: number
+  ): { pokemon: IPokemon; variation: number; xpGain: number } {
+    const xpGain = this.getXp(pokemon, trainingCampLevel);
+    pokemon.exp += xpGain;
+    const result = this.getLevel(pokemon.level, pokemon.exp);
+    pokemon.level = result.level;
+    pokemon.exp = result.exp;
+    pokemon.trainingPourcentage = 0;
+    return { pokemon, variation: result.variation, xpGain };
   }
 
   public getXp(pokemon: IPokemon, lvlTrainingCamp: number): number {

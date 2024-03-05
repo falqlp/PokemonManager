@@ -24,7 +24,7 @@ class PcStorageMapper implements IMapper<IPcStorage> {
   }
   public map(pcStorage: IPcStorage): IPcStorage {
     pcStorage.storage.map(async (s) => {
-      s.pokemon = await this.pokemonMapper.map(s.pokemon);
+      s.pokemon = this.pokemonMapper.map(s.pokemon);
       return s;
     });
     return pcStorage;
