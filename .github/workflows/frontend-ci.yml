@@ -28,7 +28,7 @@ jobs:
 
       - name: Install dependencies
         run:
-          cd frontend && npm ci
+          cd frontend && npm ci --legacy-peer-deps
 
       - name: Run linter
         run:
