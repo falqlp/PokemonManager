@@ -11,12 +11,12 @@ on:
       - 'frontend/**'
 
 jobs:
-  test-and-build:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [ 14.x, 16.x ]
 
     steps:
       - uses: actions/checkout@v2
@@ -28,20 +28,16 @@ jobs:
 
       - name: Install dependencies
         run:
-          cd frontend
-          npm ci
+          cd frontend && npm ci
 
       - name: Run linter
         run:
-          cd frontend
-          npm run lint:check
+          cd frontend && npm run lint:check
 
       - name: Run formatter
         run:
-          cd frontend
-          npm run format:check
+          cd frontend && npm run format:check
 
       - name: Build project
         run:
-          cd frontend
-          npm run build
+          cd frontend && npm run build
