@@ -7,8 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "eslint .",
-    "format": "prettier --write ."
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format:fix": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "private": true,
   "dependencies": {
