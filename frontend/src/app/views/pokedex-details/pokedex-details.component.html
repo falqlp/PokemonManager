@@ -30,14 +30,25 @@
     </div>
   </div>
   <div class="pokedex_details__right-part">
-    <pm-evolution-tree
-      *ngIf="evolutionOf.length > 0 || evolutions.length > 0"
-      [evolutionOf]="evolutionOf"
-      [evolutions]="evolutions"
-      [pokemonBase]="pokemonBase"
-    />
-    <pm-pokemon-base-effictiveness [pokemonBase]="pokemonBase" />
-    <pm-pokemon-details-stats [baseStats]="pokemonBase.baseStats" />
-    <pm-pokedex-moves-learned [movesLearned]="movesLearned" />
+    <div>
+      <h3>{{ "WEAKNESS_AND_RESISTANCE" | translate }}</h3>
+      <pm-pokemon-base-effictiveness [pokemonBase]="pokemonBase" />
+    </div>
+    <div *ngIf="evolutionOf.length > 0 || evolutions.length > 0">
+      <h3>{{ "EVOLUTION_TREE" | translate }}</h3>
+      <pm-evolution-tree
+        [evolutionOf]="evolutionOf"
+        [evolutions]="evolutions"
+        [pokemonBase]="pokemonBase"
+      />
+    </div>
+    <div>
+      <h3>{{ "POKEMON_STATS" | translate }}</h3>
+      <pm-pokemon-details-stats [baseStats]="pokemonBase.baseStats" />
+    </div>
+    <div>
+      <h3>{{ "MOVES_LEARNED" | translate }}</h3>
+      <pm-pokedex-moves-learned [movesLearned]="movesLearned" />
+    </div>
   </div>
 </div>

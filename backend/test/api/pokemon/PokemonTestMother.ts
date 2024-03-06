@@ -17,6 +17,7 @@ export class PokemonTestMother {
       stats: StatsTestMother.getBulbasaurStatsLvl100(),
       trainingPourcentage: 100,
       moves: [MoveTestMother.basicMove(), MoveTestMother.powerfulMove()],
+      shiny: false,
     } as IPokemon;
   }
   static withCustomOptions(options: Partial<IPokemon>): IPokemon {

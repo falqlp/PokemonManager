@@ -1,15 +1,10 @@
 import Pokemon, { IPokemon } from "./Pokemon";
 import { IMapper } from "../IMapper";
-import MoveService from "../move/MoveService";
-import PokemonBaseService from "../pokemonBase/PokemonBaseService";
-import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import Game from "../game/Game";
 import { updatePlayer } from "../../websocketServer";
 import PokemonBase, { IPokemonBase } from "../pokemonBase/PokemonBase";
 import { PopulateOptions } from "mongoose";
 import Move from "../move/Move";
-import MoveMapper from "../move/MoveMapper";
-import PokemonBaseMapper from "../pokemonBase/PokemonBaseMapper";
 import PokemonUtilsService from "./PokemonUtilsService";
 
 class PokemonMapper implements IMapper<IPokemon> {
@@ -31,6 +26,7 @@ class PokemonMapper implements IMapper<IPokemon> {
     if (pokemon.level === 0) {
       delete pokemon.basePokemon;
       delete pokemon.hatchingDate;
+      delete pokemon.shiny;
     }
     return pokemon;
   }

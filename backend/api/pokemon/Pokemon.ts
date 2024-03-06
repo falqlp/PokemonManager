@@ -25,6 +25,7 @@ export interface IPokemon extends Document {
   maxLevel: number;
   hatchingDate?: Date;
   hiddenPotential: string;
+  shiny: boolean;
 }
 
 const pokemonSchema = new Schema<IPokemon>({
@@ -46,6 +47,7 @@ const pokemonSchema = new Schema<IPokemon>({
   maxLevel: { type: Number, required: true },
   hatchingDate: { type: Date },
   hiddenPotential: { type: String, required: true },
+  shiny: { type: Boolean },
 });
 
 const Pokemon = mongoose.model<IPokemon>("Pokemon", pokemonSchema);

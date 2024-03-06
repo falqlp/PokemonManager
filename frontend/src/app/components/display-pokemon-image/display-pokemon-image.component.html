@@ -1,7 +1,17 @@
 <img
+  #img
   class="display-pokemon-image"
   [ngClass]="{ icon: type === 'icon' }"
   draggable="false"
   [src]="imageUrl"
+  (load)="loadImg()"
   alt="{{ basePokemon?.name ?? 'EGG' | translate }} {{ type }}"
 />
+<mat-icon
+  *ngIf="shiny"
+  class="shiny"
+  [style.font-size.px]="fontSize"
+  [style.padding.px]="fontSize / 5"
+  [inline]="true"
+  >star</mat-icon
+>

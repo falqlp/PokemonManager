@@ -6,6 +6,7 @@
   &__left-part {
     @include flexbox(flex-start, 2, column);
     gap: 5px;
+    position: fixed;
     &__infos {
       @include flexbox(flex-start, 1, column);
       gap: 10px;
@@ -26,6 +27,7 @@
   }
 
   &__right-part {
+    margin-left: 330px;
     @include flexbox(flex-start, 2, column);
     flex: 1;
     gap: 10px;

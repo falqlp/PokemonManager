@@ -49,6 +49,7 @@ class PokemonService extends CompleteService<IPokemon> {
     } else {
       newPokemon = await this.createPokemon(pokemon, gameId);
     }
+    newPokemon.shiny = this.pokemonUtilsService.generateShiny();
     return this.savePokemon(newPokemon, gameId);
   }
 

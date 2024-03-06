@@ -1,7 +1,18 @@
 :host {
   display: flex;
   justify-content: center;
+  position: relative;
   .icon {
     height: 40px;
+  }
+  .display-pokemon-image {
+  }
+  .shiny {
+    top: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+    position: absolute;
+    color: #cbcb4c;
   }
 }

@@ -136,6 +136,11 @@ class PokemonUtilsService {
     }
     return age;
   }
+
+  public generateShiny(): boolean {
+    const nombreAleatoire = Math.floor(Math.random() * 4096);
+    return nombreAleatoire === 0;
+  }
 }
 
 export default PokemonUtilsService;

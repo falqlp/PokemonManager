@@ -18,7 +18,7 @@ class EffectivenessService {
           effectiveness[pokemonTypeKey] = 1;
         }
         effectiveness[pokemonTypeKey] *=
-          TYPE_EFFECTIVENESS[pokemonTypeKey][type] || 1;
+          TYPE_EFFECTIVENESS[pokemonTypeKey][type] ?? 1;
       }
     });
     return effectiveness;

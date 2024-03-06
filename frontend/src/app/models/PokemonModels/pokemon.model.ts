@@ -13,6 +13,7 @@ export interface PokemonModel {
   stats: PokemonStatsModel;
   ev?: PokemonStatsModel;
   iv?: PokemonStatsModel;
+  shiny: boolean;
   currentHp?: number;
   maxLevel: number;
   hiddenPotential: string;
