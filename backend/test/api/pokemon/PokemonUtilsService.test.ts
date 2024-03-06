@@ -197,4 +197,20 @@ describe("PokemonUtilsService", () => {
       expect(result).toEqual(24);
     });
   });
+  describe("generateShiny method", () => {
+    it("should return a boolean value", () => {
+      const shiny = service.generateShiny();
+      expect(typeof shiny).toBe("boolean");
+    });
+
+    it("should return true approximately 1/4096 of the time", () => {
+      let shinyCounter = 0;
+      const trials = 10_000_000;
+      for (let i = 0; i < trials; i++) {
+        if (service.generateShiny()) shinyCounter++;
+      }
+      const shinyRate = shinyCounter / trials;
+      expect(shinyRate).toBeCloseTo(1 / 4096, 2); // "2" is the number of decimal places
+    });
+  });
 });
