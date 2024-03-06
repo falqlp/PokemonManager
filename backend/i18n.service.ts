@@ -43,10 +43,14 @@ const i18nService = {
         "mongodb://127.0.0.1:27017/PokemonManager"
       );
 
-      const jsonFilePathEn =
-        "C:/Users/falql/Desktop/Pokemon Manager/pokemon-manager/frontend/src/assets/i18n/en-EN.json";
-      const jsonFilePathFr =
-        "C:/Users/falql/Desktop/Pokemon Manager/pokemon-manager/frontend/src/assets/i18n/fr-FR.json";
+      const jsonFilePathEn = path.join(
+        __dirname,
+        "../../frontend/src/assets/i18n/en-EN.json"
+      );
+      const jsonFilePathFr = path.join(
+        __dirname,
+        "../../frontend/src/assets/i18n/fr-FR.json"
+      );
 
       const readJsonFile = (path: string) => {
         return new Promise((resolve, reject) => {
