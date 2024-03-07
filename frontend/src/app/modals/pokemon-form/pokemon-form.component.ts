@@ -34,6 +34,7 @@ export class PokemonFormComponent implements OnInit {
       [],
       this.customValidatorService.arrayMaxLength(2)
     ),
+    shiny: new FormControl<boolean>(false),
   });
 
   protected trainers: TrainerModel[];

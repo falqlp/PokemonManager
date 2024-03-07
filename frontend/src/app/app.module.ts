@@ -59,6 +59,8 @@ import { HeaderInterceptor } from './core/header-interceptor.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { DisplayTypeComponent } from './components/display-type/display-type.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { NumberFormatterPipe } from './pipes/number-formatter.pipe';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -122,6 +124,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MatSidenavModule,
     SidenavComponent,
     DisplayTypeComponent,
+    MatSlideToggleModule,
+    NumberFormatterPipe,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

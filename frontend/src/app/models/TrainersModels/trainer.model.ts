@@ -6,4 +6,6 @@ export class TrainerModel {
   pokemons?: PokemonModel[];
   pcStorage?: string;
   nursery: string;
+  berries: number;
+  money: number;
 }

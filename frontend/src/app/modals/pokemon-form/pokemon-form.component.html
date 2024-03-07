@@ -63,7 +63,10 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
+    <span>Shiny</span>
+    <mat-slide-toggle
+      [formControl]="pokemonForm.controls.shiny"
+    ></mat-slide-toggle>
     <div>
       <span *ngFor="let displayedMove of pokemonForm.controls.moves.value">{{
         displayedMove.name | translate
@@ -73,9 +76,10 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button class="btn-danger" mat-dialog-close>Annuler</button>
+  <button mat-flat-button mat-dialog-close>Annuler</button>
   <button
-    class="btn-success"
+    mat-flat-button
+    color="warn"
     [disabled]="!pokemonForm.valid"
     (click)="submit()"
   >

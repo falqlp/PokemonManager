@@ -14,6 +14,19 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    &__money,
+    &__berries-count {
+      font-size: 14px;
+      display: flex;
+      padding: 8px 5px;
+      gap: 5px;
+      align-items: center;
+      border: #252525 2px solid;
+      border-radius: 4px;
+    }
+    &__money {
+      padding: 12px 5px;
+    }
     &__pokemons {
       height: fit-content;
       display: flex;
