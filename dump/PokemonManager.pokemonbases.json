@@ -1483,7 +1483,7 @@
       "$oid": "64cd65a6b9257f7eca575bd0"
     }
   },
-  "name": "EISCUE-ICE",
+  "name": "EISCUE",
   "types": [
     "ICE"
   ],
@@ -1877,7 +1877,7 @@
       "$oid": "64cd65a6b9257f7eca575bee"
     }
   },
-  "name": "MORPEKO-FULL-BELLY",
+  "name": "MORPEKO",
   "types": [
     "ELECTRIC",
     "DARK"
@@ -2879,7 +2879,7 @@
       "$oid": "64cd65a7b9257f7eca575c3a"
     }
   },
-  "name": "ORICORIO-BAILE",
+  "name": "ORICORIO",
   "types": [
     "FIRE",
     "FLYING"
@@ -2959,7 +2959,7 @@
       "$oid": "64cd65a7b9257f7eca575c40"
     }
   },
-  "name": "WISHIWASHI-SOLO",
+  "name": "WISHIWASHI",
   "types": [
     "WATER"
   ],
@@ -3537,7 +3537,7 @@
       "$oid": "64cd65a7b9257f7eca575c6c"
     }
   },
-  "name": "INDEEDEE-MALE",
+  "name": "INDEEDEE",
   "types": [
     "PSY",
     "NORMAL"
@@ -3590,7 +3590,7 @@
       "$oid": "64cd65a7b9257f7eca575c70"
     }
   },
-  "name": "URSHIFU-SINGLE-STRIKE",
+  "name": "URSHIFU",
   "types": [
     "FIGHTING",
     "DARK"
@@ -3855,7 +3855,7 @@
       "$oid": "64cd65a7b9257f7eca575c84"
     }
   },
-  "name": "BASCULEGION-MALE",
+  "name": "BASCULEGION",
   "types": [
     "WATER",
     "GHOST"
@@ -4285,7 +4285,7 @@
       "$oid": "64cd65a7b9257f7eca575c6a"
     }
   },
-  "name": "TOXTRICITY-AMPED",
+  "name": "TOXTRICITY",
   "types": [
     "ELECTRIC",
     "POISON"
@@ -4735,7 +4735,7 @@
       "$oid": "64cd65a7b9257f7eca575cc6"
     }
   },
-  "name": "ENAMORUS-INCARNATE",
+  "name": "ENAMORUS",
   "types": [
     "FAIRY",
     "FLYING"
@@ -5418,7 +5418,7 @@
       "$oid": "64cd65a7b9257f7eca575cfa"
     }
   },
-  "name": "LYCANROC-MIDDAY",
+  "name": "LYCANROC",
   "types": [
     "ROCK"
   ],
@@ -7937,7 +7937,7 @@
       "$oid": "64cd65a7b9257f7eca575db8"
     }
   },
-  "name": "PUMPKABOO-AVERAGE",
+  "name": "PUMPKABOO",
   "types": [
     "GHOST",
     "GRASS"
@@ -7964,7 +7964,7 @@
       "$oid": "64cd65a7b9257f7eca575dba"
     }
   },
-  "name": "ZYGARDE-50",
+  "name": "ZYGARDE",
   "types": [
     "DRAGON",
     "GROUND"
@@ -8097,7 +8097,7 @@
       "$oid": "64cd65a7b9257f7eca575dc4"
     }
   },
-  "name": "MIMIKYU-DISGUISED",
+  "name": "MIMIKYU",
   "types": [
     "GHOST",
     "FAIRY"
@@ -8362,7 +8362,7 @@
       "$oid": "64cd65a7b9257f7eca575dd8"
     }
   },
-  "name": "MINIOR-RED-METEOR",
+  "name": "MINIOR",
   "types": [
     "ROCK",
     "FLYING"
@@ -9550,7 +9550,7 @@
       "$oid": "64cd65a7b9257f7eca575e32"
     }
   },
-  "name": "AEGISLASH-SHIELD",
+  "name": "AEGISLASH",
   "types": [
     "STEEL",
     "GHOST"
@@ -9948,7 +9948,7 @@
       "$oid": "64cd65a7b9257f7eca575e50"
     }
   },
-  "name": "SHAYMIN-LAND",
+  "name": "SHAYMIN",
   "types": [
     "GRASS"
   ],
@@ -10373,7 +10373,7 @@
       "$oid": "64cd65a7b9257f7eca575e70"
     }
   },
-  "name": "KELDEO-ORDINARY",
+  "name": "KELDEO",
   "types": [
     "WATER",
     "FIGHTING"
@@ -10506,7 +10506,7 @@
       "$oid": "64cd65a7b9257f7eca575e7a"
     }
   },
-  "name": "GOURGEIST-AVERAGE",
+  "name": "GOURGEIST",
   "types": [
     "GHOST",
     "GRASS"
@@ -11063,7 +11063,7 @@
       "$oid": "64cd65a7b9257f7eca575ea4"
     }
   },
-  "name": "WORMADAM-PLANT",
+  "name": "WORMADAM",
   "types": [
     "BUG",
     "GRASS"
@@ -12893,7 +12893,7 @@
       "$oid": "64cd65a8b9257f7eca575f2e"
     }
   },
-  "name": "DARMANITAN-STANDARD",
+  "name": "DARMANITAN",
   "types": [
     "FIRE"
   ],
@@ -13104,7 +13104,7 @@
       "$oid": "64cd65a8b9257f7eca575f3e"
     }
   },
-  "name": "TORNADUS-INCARNATE",
+  "name": "TORNADUS",
   "types": [
     "FLYING"
   ],
@@ -13158,7 +13158,7 @@
       "$oid": "64cd65a8b9257f7eca575f42"
     }
   },
-  "name": "LANDORUS-INCARNATE",
+  "name": "LANDORUS",
   "types": [
     "GROUND",
     "FLYING"
@@ -13186,7 +13186,7 @@
       "$oid": "64cd65a8b9257f7eca575f44"
     }
   },
-  "name": "THUNDURUS-INCARNATE",
+  "name": "THUNDURUS",
   "types": [
     "ELECTRIC",
     "FLYING"
@@ -13347,7 +13347,7 @@
       "$oid": "64cd65a8b9257f7eca575f50"
     }
   },
-  "name": "MEOWSTIC-MALE",
+  "name": "MEOWSTIC",
   "types": [
     "PSY"
   ],
@@ -14402,7 +14402,7 @@
       "$oid": "64cd65a8b9257f7eca575fa0"
     }
   },
-  "name": "MELOETTA-ARIA",
+  "name": "MELOETTA",
   "types": [
     "NORMAL",
     "PSY"
@@ -14773,7 +14773,7 @@
       "$oid": "64cd65a8b9257f7eca575fbc"
     }
   },
-  "name": "BASCULIN-RED-STRIPED",
+  "name": "BASCULIN",
   "types": [
     "WATER"
   ],
@@ -20309,7 +20309,7 @@
       "$oid": "64cd65a8b9257f7eca57615e"
     }
   },
-  "name": "GIRATINA-ALTERED",
+  "name": "GIRATINA",
   "types": [
     "GHOST",
     "DRAGON"
@@ -22056,7 +22056,7 @@
       "$oid": "64cd65a9b9257f7eca5761e2"
     }
   },
-  "name": "DEOXYS-NORMAL",
+  "name": "DEOXYS",
   "types": [
     "PSY"
   ],
