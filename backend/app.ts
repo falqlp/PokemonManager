@@ -33,10 +33,10 @@ mongoose
     console.error("Connection error to MongoDB", error);
   });
 // migrationService.updatePokemonInfo();
-i18nService.checkAndSortLanguageFiles();
-i18nService
-  .translationsToDatabase()
-  .then(() => console.info("Backend started"));
+// i18nService.checkAndSortLanguageFiles();
+// i18nService
+//   .translationsToDatabase()
+//   .then(() => console.info("Backend started"));
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
