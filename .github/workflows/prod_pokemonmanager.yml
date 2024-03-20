@@ -11,6 +11,7 @@ on:
 
 env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'backend' # set this to the path to your web app project, defaults to the repository root
+  AZURE_FUNCTIONAPP_PACKAGE_PATH_DIST: 'backend/dist' # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '20.x' # set this to the node version to use (supports 8.x, 10.x, 12.x)
 
 jobs:
@@ -40,5 +41,5 @@ jobs:
         with:
           app-name: 'PokemonManager'
           slot-name: 'Production'
-          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH_DIST }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C9060844F30C40DCB7F2D77F8229EFCF }}
