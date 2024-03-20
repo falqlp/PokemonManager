@@ -8,7 +8,7 @@
     "dev": "tsc-watch --onSuccess \"node dist/server.js\"",
     "train": "tsc && node dist/scripts/battle-ai/train.js",
     "test": "jest",
-    "build": "tsc"
+    "build": "webpack"
   },
   "author": "Popole",
   "license": "ISC",
@@ -18,8 +18,11 @@
     "@types/ws": "^8.5.5",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.2",
+    "ts-loader": "^9.5.1",
     "ts-node": "^10.9.1",
-    "tsc-watch": "^6.0.4"
+    "tsc-watch": "^6.0.4",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "@tensorflow/tfjs-node-gpu": "^4.17.0",

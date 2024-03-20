@@ -8,8 +8,10 @@ on:
     branches:
       - prod
   workflow_dispatch:
+
 env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'backend'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH_DIST: 'backend/dist'
   NODE_VERSION: '20.x'
 
 jobs:
@@ -39,5 +41,5 @@ jobs:
         with:
           app-name: 'PokemonManager'
           slot-name: 'Production'
-          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH_DIST }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C9060844F30C40DCB7F2D77F8229EFCF }}
