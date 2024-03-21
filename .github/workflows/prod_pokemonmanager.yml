@@ -11,7 +11,7 @@ on:
 #test
 env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'backend'
-  AZURE_FUNCTIONAPP_PACKAGE_PATH_DIST: 'backend/dist'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH_DIST: 'backend'
   NODE_VERSION: '20.x'
 
 jobs:

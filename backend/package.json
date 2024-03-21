@@ -4,7 +4,7 @@
   "description": "backend",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node dist/server.js",
+    "start": "webpack && node dist/server.js",
     "dev": "tsc-watch --onSuccess \"node dist/server.js\"",
     "train": "tsc && node dist/scripts/battle-ai/train.js",
     "test": "jest",
