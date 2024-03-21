@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "backend",
-  "main": "index.js",
+  "main": "dist/bundle.js",
   "scripts": {
     "start": "webpack && node dist/server.js",
     "dev": "tsc-watch --onSuccess \"node dist/server.js\"",
