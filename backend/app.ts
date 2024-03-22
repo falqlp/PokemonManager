@@ -52,6 +52,8 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/", (req, res, next) => res.status(200).json({ message: "ok" }));
+
 app.use("/api/pokemonBase", pokemonBaseRoutes);
 app.use("/api/pokemon", pokemonRoutes);
 app.use("/api/trainer", trainerRoutes);
