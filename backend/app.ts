@@ -32,6 +32,7 @@ mongoose
   .catch((error) => {
     console.error("Connection error to MongoDB", error);
   });
+//
 // migrationService.updatePokemonInfo();
 // i18nService.checkAndSortLanguageFiles();
 // i18nService
