@@ -21,8 +21,7 @@ import { ITrainer } from "./api/trainer/Trainer";
 import pokedexRouter from "./api/pokedex/PokedexRouter";
 
 const app = express();
-const mongoURI =
-  "mongodb+srv://readwrite:QPjSu5E9NDawEh3z@cluster0.1eldau8.mongodb.net/PokemonManager";
+const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
 mongoose
   .connect(mongoURI)
