@@ -19,9 +19,16 @@ import nurseryRoutes from "./api/nursery/NurseryRoutes";
 import TrainerService from "./api/trainer/TrainerService";
 import { ITrainer } from "./api/trainer/Trainer";
 import pokedexRouter from "./api/pokedex/PokedexRouter";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
-const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
+const mongoURI =
+  !("1" === process.env.MONGODB_LOCAL) &&
+  process.env.MONGODB_USERNAME &&
+  process.env.MONGODB_PASSWORD
+    ? `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.1eldau8.mongodb.net/PokemonManager`
+    : "mongodb://127.0.0.1:27017/PokemonManager";
 
 mongoose
   .connect(mongoURI)
@@ -31,6 +38,7 @@ mongoose
   .catch((error) => {
     console.error("Connection error to MongoDB", error);
   });
+
 // migrationService.updatePokemonInfo();
 i18nService.checkAndSortLanguageFiles();
 i18nService
