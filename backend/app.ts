@@ -20,6 +20,7 @@ import TrainerService from "./api/trainer/TrainerService";
 import { ITrainer } from "./api/trainer/Trainer";
 import pokedexRouter from "./api/pokedex/PokedexRouter";
 import dotenv from "dotenv";
+import "source-map-support/register";
 dotenv.config();
 
 const app = express();

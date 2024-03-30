@@ -1,6 +1,6 @@
-import { IPokemon } from "../../api/pokemon/Pokemon";
-import { IMove } from "../../api/move/Move";
-import { IBattleTrainer } from "../../api/battle/BattleInterfaces";
+import { IPokemon } from "../backend/api/pokemon/Pokemon";
+import { IMove } from "../backend/api/move/Move";
+import { IBattleTrainer } from "../backend/api/battle/BattleInterfaces";
 const allTypes = [
   "BUG",
   "DARK",
