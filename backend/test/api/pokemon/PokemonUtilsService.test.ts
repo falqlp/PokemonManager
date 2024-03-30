@@ -1,10 +1,10 @@
 import PokemonUtilsService from "../../../api/pokemon/PokemonUtilsService";
 import { mocked } from "jest-mock";
-import normalRandomUtils from "../../../utils/normalRandomUtils";
 import { IPokemonStats } from "../../../models/PokemonModels/pokemonStats";
 import { IPokemon } from "../../../api/pokemon/Pokemon";
 import { PokemonTestMother } from "./PokemonTestMother";
 import { StatsTestMother } from "../Stats/StatsTestMother";
+import { normalRandom } from "../../../utils/normalRandomUtils";
 
 jest.mock("../../../utils/normalRandomUtils");
 
@@ -21,13 +21,13 @@ describe("PokemonUtilsService", () => {
 
   describe("generatePotential method", () => {
     it("should generate a potential correctly for nursery level 0", () => {
-      mocked(normalRandomUtils.normalRandom).mockReturnValueOnce(0);
+      mocked(normalRandom).mockReturnValueOnce(0);
       const result = service.generatePotential(0);
       expect(result).toBe(10);
     });
 
     it("should not exceed 100 when the generated potential is more than 100", () => {
-      mocked(normalRandomUtils.normalRandom).mockReturnValueOnce(1000);
+      mocked(normalRandom).mockReturnValueOnce(1000);
       const result = service.generatePotential(8);
       expect(result).toBe(100);
     });
