@@ -11,6 +11,8 @@ export interface ITrainer extends Document {
   trainingCamp: ITrainingCamp;
   nursery: INursery;
   gameId: string;
+  berries: number;
+  monney: number;
 }
 
 const trainerSchema = new Schema<ITrainer>({
@@ -28,6 +30,8 @@ const trainerSchema = new Schema<ITrainer>({
   },
   nursery: { type: Schema.Types.ObjectId, ref: "Nursery", required: true },
   gameId: { type: String, required: true },
+  berries: { type: Number, required: true },
+  monney: { type: Number, required: true },
 });
 
 const Trainer = mongoose.model<ITrainer>("Trainer", trainerSchema);

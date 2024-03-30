@@ -110,6 +110,12 @@ class TrainerMapper implements IMapper<ITrainer> {
         trainer.pcStorage
       );
     }
+    if (!trainer.monney) {
+      trainer.monney = 0;
+    }
+    if (!trainer.berries) {
+      trainer.berries = 0;
+    }
     if (trainer._id) {
       await updatePlayer(trainer._id, trainer.gameId);
     }
