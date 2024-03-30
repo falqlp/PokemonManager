@@ -6,7 +6,6 @@
   "scripts": {
     "start": "tsc && node dist/server.js",
     "dev": "tsc-watch --onSuccess \"node dist/server.js\"",
-    "train": "tsc && node dist/scripts/battle-ai/train.js",
     "test": "jest",
     "build": "tsc"
   },
