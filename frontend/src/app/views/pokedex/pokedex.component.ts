@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {
   CustomTableComponent,
   TableConfModel,
+  TableSearchType,
 } from '../../components/custom-table/custom-table.component';
 import { PokemonBaseQueriesService } from '../../services/queries/pokemon-base-queries.service';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
@@ -21,7 +22,7 @@ export class PokedexComponent {
       {
         name: 'id',
         sort: true,
-        search: { value: 'id', type: 'number' },
+        search: { value: 'id', type: TableSearchType.NUMBER },
         header: {
           component: 'displayText',
           data: 'N°',
@@ -46,7 +47,7 @@ export class PokedexComponent {
       {
         name: 'name',
         sort: 'translation.name',
-        search: { value: 'translation.name', type: 'text' },
+        search: { value: 'translation.name', type: TableSearchType.TEXT },
         header: {
           component: 'displayText',
           data: 'NAME',
@@ -60,7 +61,7 @@ export class PokedexComponent {
         name: 'types',
         search: {
           value: 'types',
-          type: 'select',
+          type: TableSearchType.MULTI_SELECT,
           values: [
             'BUG',
             'DARK',

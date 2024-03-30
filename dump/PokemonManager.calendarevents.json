@@ -5,7 +5,7 @@
   "event": {
     "$oid": "650976b16664cc928d835514"
   },
-  "type": "Battle",
+  "type": "BATTLE",
   "date": {
     "$date": "2023-10-26T00:00:00.000Z"
   },
@@ -27,7 +27,7 @@
   "event": {
     "$oid": "650977186664cc928d8355d2"
   },
-  "type": "Battle",
+  "type": "BATTLE",
   "date": {
     "$date": "2023-10-27T00:00:00.000Z"
   },
@@ -49,7 +49,7 @@
   "event": {
     "$oid": "650c52a1a9ea229bbde2757f"
   },
-  "type": "Battle",
+  "type": "BATTLE",
   "date": {
     "$date": "2024-01-30T00:00:00.000Z"
   },
@@ -71,7 +71,7 @@
   "event": {
     "$oid": "6523abb1017a703859eeab09"
   },
-  "type": "Battle",
+  "type": "BATTLE",
   "date": {
     "$date": "2024-01-31T00:00:00.000Z"
   },
@@ -93,7 +93,7 @@
   "event": {
     "$oid": "65257de6b394aa9f0ca10d9b"
   },
-  "type": "Battle",
+  "type": "BATTLE",
   "date": {
     "$date": "2024-07-16T00:00:00.000Z"
   },
@@ -115,7 +115,7 @@
   "event": {
     "$oid": "65269d74b4255c3af61444fa"
   },
-  "type": "Battle",
+  "type": "BATTLE",
   "date": {
     "$date": "2024-07-17T00:00:00.000Z"
   },
@@ -134,7 +134,7 @@
   "_id": {
     "$oid": "652d9dcae8b9242bdb56638d"
   },
-  "type": "GenerateNurseryEggs",
+  "type": "GENERATE_NURSERY_EGGS",
   "date": {
     "$date": "2024-08-29T00:00:00.000Z"
   },
@@ -150,7 +150,7 @@
   "_id": {
     "$oid": "652d9dcae8b9242bdb56638f"
   },
-  "type": "NurseryFirstSelectionDeadline",
+  "type": "NURSERY_FIRST_SELECTION_DEADLINE",
   "date": {
     "$date": "2024-09-05T00:00:00.000Z"
   },
@@ -166,7 +166,7 @@
   "_id": {
     "$oid": "652d9dcae8b9242bdb566392"
   },
-  "type": "NurseryLastSelectionDeadline",
+  "type": "NURSERY_LAST_SELECTION_DEADLINE",
   "date": {
     "$date": "2024-09-12T00:00:00.000Z"
   },
@@ -185,7 +185,7 @@
   "event": {
     "$oid": "652d9fd8e8b9242bdb566481"
   },
-  "type": "Battle",
+  "type": "BATTLE",
   "date": {
     "$date": "2024-08-29T00:00:00.000Z"
   },
@@ -204,7 +204,7 @@
   "_id": {
     "$oid": "652ee9f9cc364d636eed76f5"
   },
-  "type": "GenerateNurseryEggs",
+  "type": "GENERATE_NURSERY_EGGS",
   "date": {
     "$date": "2024-10-13T00:00:00.000Z"
   },
@@ -220,7 +220,7 @@
   "_id": {
     "$oid": "652ee9f9cc364d636eed76f7"
   },
-  "type": "NurseryFirstSelectionDeadline",
+  "type": "NURSERY_FIRST_SELECTION_DEADLINE",
   "date": {
     "$date": "2024-10-20T00:00:00.000Z"
   },
@@ -236,7 +236,7 @@
   "_id": {
     "$oid": "652ee9f9cc364d636eed76f9"
   },
-  "type": "NurseryLastSelectionDeadline",
+  "type": "NURSERY_LAST_SELECTION_DEADLINE",
   "date": {
     "$date": "2024-10-27T00:00:00.000Z"
   },

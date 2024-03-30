@@ -13,6 +13,7 @@ import { ErrorComponent } from './core/components/error/error.component';
 import { PokedexComponent } from './views/pokedex/pokedex.component';
 import { AuthGuard, GameGuard } from './core/guards/permission-service';
 import { PokedexDetailsComponent } from './views/pokedex-details/pokedex-details.component';
+import { EventsComponent } from './views/events/events.component';
 
 const routes: Routes = [
   { path: '404Error', component: ErrorComponent },
@@ -68,6 +69,12 @@ const routes: Routes = [
     path: 'pokedex',
     component: PokedexComponent,
     data: { title: 'POKEDEX' },
+    canActivate: [GameGuard],
+  },
+  {
+    path: 'events',
+    component: EventsComponent,
+    data: { title: 'EVENTS' },
     canActivate: [GameGuard],
   },
   { path: '**', redirectTo: 'home' },

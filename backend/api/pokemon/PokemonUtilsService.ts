@@ -1,6 +1,6 @@
-import normalRandomUtils from "../../utils/normalRandomUtils";
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import { IPokemon } from "./Pokemon";
+import { normalRandom } from "../../utils/normalRandomUtils";
 
 class PokemonUtilsService {
   private static instance: PokemonUtilsService;
@@ -13,8 +13,7 @@ class PokemonUtilsService {
   }
 
   public generatePotential(nurseryLevel: number): number {
-    let potential =
-      10 + Math.floor(normalRandomUtils.normalRandom(nurseryLevel * 10, 6));
+    let potential = 10 + Math.floor(normalRandom(nurseryLevel * 10, 6));
     if (potential > 100) {
       potential = 100;
     }

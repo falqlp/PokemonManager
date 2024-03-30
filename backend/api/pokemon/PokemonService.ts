@@ -1,5 +1,4 @@
 import Pokemon, { IPokemon } from "./Pokemon";
-import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import Trainer from "../trainer/Trainer";
 import CompleteService from "../CompleteService";
 import PokemonMapper from "./PokemonMapper";
@@ -10,7 +9,6 @@ import { Model } from "mongoose";
 import { IMapper } from "../IMapper";
 import PokemonBaseService from "../pokemonBase/PokemonBaseService";
 import Nursery, { INursery } from "../nursery/Nursery";
-import normalRandomUtils from "../../utils/normalRandomUtils";
 import PokemonUtilsService from "./PokemonUtilsService";
 
 class PokemonService extends CompleteService<IPokemon> {

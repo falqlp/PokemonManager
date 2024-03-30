@@ -11,7 +11,6 @@ import {
 import { BehaviorSubject, debounceTime, startWith, switchMap } from 'rxjs';
 import { MatSortModule, Sort, SortDirection } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { TableDisplayTextComponent } from './components/table-display-text/table-display-text.component';
 import { NgForOf, NgIf } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { DynamicCellDirective } from './dynamic-cell.directive';
@@ -22,17 +21,29 @@ import { MatInputModule } from '@angular/material/input';
 import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {
+  MatDatepickerInputEvent,
+  MatDatepickerModule,
+} from '@angular/material/datepicker';
 
 export interface CellModel {
   component: string;
   data: string | 'all';
 }
+export enum TableSearchType {
+  NUMBER = 'number',
+  SELECT = 'select',
+  MULTI_SELECT = 'multi-select',
+  TEXT = 'text',
+  DATE_RANGE = 'dateRange',
+}
+
 export interface TableConfModel {
   defaultSort?: { column: string; direction: SortDirection };
   columns: {
     name: string;
     sort?: boolean | string;
-    search?: { value: string; type: string; values?: string[] };
+    search?: { value: string; type: TableSearchType; values?: string[] };
     header: CellModel;
     content: CellModel;
   }[];
@@ -46,13 +57,13 @@ export interface TableConfModel {
     MatTableModule,
     NgForOf,
     TranslateModule,
-    TableDisplayTextComponent,
     DynamicCellDirective,
     NgIf,
     MatPaginatorModule,
     MatInputModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatDatepickerModule,
   ],
   templateUrl: './custom-table.component.html',
   styleUrls: ['./custom-table.component.scss'],
@@ -72,7 +83,7 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
 
   public ngOnInit(): void {
     this.conf.columns.forEach((column) => {
-      if (column.search?.type === 'number') {
+      if (column.search?.type === TableSearchType.NUMBER) {
         this.formInput.push(new FormControl<number>(null));
       }
       this.formInput.push(new FormControl());
@@ -176,21 +187,50 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
     this.query.custom = {};
     for (let i = 0; i < values.length; i++) {
       if (values[i] && (values[i] as unknown[]).length !== 0) {
-        if (this.conf.columns[i].search.type === 'number') {
-          this.query.custom[this.conf.columns[i].search.value] = Number(
-            values[i]
-          );
-        } else if (this.conf.columns[i].search.type === 'select') {
-          this.query.custom[this.conf.columns[i].search.value] = {
-            $all: values[i],
-          };
-        } else {
-          this.query.custom[this.conf.columns[i].search.value] = {
-            $regex: values[i],
-            $options: 'i',
-          };
+        switch (this.conf.columns[i].search.type) {
+          case TableSearchType.NUMBER:
+            this.query.custom[this.conf.columns[i].search.value] = Number(
+              values[i]
+            );
+            break;
+          case TableSearchType.MULTI_SELECT:
+            this.query.custom[this.conf.columns[i].search.value] = {
+              $all: values[i],
+            };
+            break;
+          case TableSearchType.SELECT:
+            this.query.custom[this.conf.columns[i].search.value] = values[i];
+            break;
+          case TableSearchType.DATE_RANGE:
+            // eslint-disable-next-line no-case-declarations
+            const dateRange = values[i] as Date[];
+            if (dateRange[1]) {
+              this.query.custom[this.conf.columns[i].search.value] = {
+                $gte: dateRange[0],
+                $lte: dateRange[1],
+              };
+            }
+            break;
+          default:
+            this.query.custom[this.conf.columns[i].search.value] = {
+              $regex: values[i],
+              $options: 'i',
+            };
         }
       }
     }
+  }
+
+  protected onDateRangeChange(
+    control: FormControl,
+    index: number,
+    event: MatDatepickerInputEvent<any>
+  ): void {
+    const newValue = [
+      control.value ? control.value[0] : undefined,
+      control.value ? control.value[1] : undefined,
+    ];
+    newValue[index] = event.value;
+    control.setValue(newValue);
   }
 }

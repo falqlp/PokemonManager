@@ -45,4 +45,24 @@
   .mat-drawer-backdrop.mat-drawer-shown {
     background-color: rgba(0, 0, 0, 0.5) !important;
   }
+  .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(
+      .mdc-text-field--textarea
+    )
+    .mat-mdc-form-field-infix {
+    display: flex;
+    padding: 0;
+  }
+  .mdc-text-field--no-label:not(.mdc-text-field--textarea)
+    .mat-mdc-form-field-input-control.mdc-text-field__input,
+  .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
+    display: flex;
+    align-items: center;
+    min-width: 250px;
+  }
+  .mat-date-range-input-container {
+    width: -webkit-fill-available;
+  }
+  .mat-mdc-select {
+    display: flex !important;
+  }
 }

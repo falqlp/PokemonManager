@@ -11,6 +11,7 @@ import { DynamicCellBaseDirective } from './dynamic-cell-base.directive';
 import { TableDisplayTrainerPokemonsComponent } from './components/table-display-trainer-pokemons/table-display-trainer-pokemons.component';
 import { TableDisplayPokemonIconComponent } from './components/table-display-icon/table-display-pokemon-icon.component';
 import { TableDisplayTypesComponent } from './components/table-display-types/table-display-types.component';
+import { TableDisplayDateComponent } from './components/table-display-date/table-display-date.component';
 
 @Directive({
   selector: '[pmDynamicCell]',
@@ -22,6 +23,7 @@ export class DynamicCellDirective<T> implements OnInit {
 
   protected components: Record<string, Type<DynamicCellBaseDirective<any>>> = {
     displayText: TableDisplayTextComponent,
+    displayDate: TableDisplayDateComponent,
     displayTrainerPokemons: TableDisplayTrainerPokemonsComponent,
     displayPokemonIcon: TableDisplayPokemonIconComponent,
     displayPokemonTypes: TableDisplayTypesComponent,

@@ -1,5 +1,8 @@
 import CompleteService from "../CompleteService";
-import CalendarEvent, { ICalendarEvent } from "./CalendarEvent";
+import CalendarEvent, {
+  CalendarEventEvent,
+  ICalendarEvent,
+} from "./CalendarEvent";
 import CalendarEventMapper from "./CalendarEventMapper";
 import BattleInstanceService from "../battle-instance/BattleInstanceService";
 import { ITrainer } from "../trainer/Trainer";
@@ -52,7 +55,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
         event: battleDTO,
         date,
         trainers,
-        type: "Battle",
+        type: CalendarEventEvent.BATTLE,
       } as ICalendarEvent,
       gameId
     );
@@ -98,7 +101,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
       custom: { trainers: trainerId, date },
     });
     const battle = events.find(
-      (event) => event.type === "Battle" && !event.event.winner
+      (event) => event.type === CalendarEventEvent.BATTLE && !event.event.winner
     )?.event;
 
     const trainer = await this.trainerService.getComplete(trainerId);
@@ -128,7 +131,9 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
   ): Promise<string> {
     const nursery = trainer.nursery;
     if (
-      events.find((event) => event.type === "GenerateNurseryEggs") &&
+      events.find(
+        (event) => event.type === CalendarEventEvent.GENERATE_NURSERY_EGGS
+      ) &&
       nursery.eggs?.length === 0
     ) {
       await this.nurseryService.generateNurseryEgg(nursery, game);
@@ -136,8 +141,8 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
     if (
       events.find(
         (event) =>
-          event.type === "NurseryFirstSelectionDeadline" ||
-          event.type === "NurseryLastSelectionDeadline"
+          event.type === CalendarEventEvent.NURSERY_FIRST_SELECTION_DEADLINE ||
+          event.type === CalendarEventEvent.NURSERY_LAST_SELECTION_DEADLINE
       )
     ) {
       if (

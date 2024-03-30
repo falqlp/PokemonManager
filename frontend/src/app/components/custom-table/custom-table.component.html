@@ -32,8 +32,16 @@
       <th mat-header-cell *matHeaderCellDef>
         <mat-form-field *ngIf="column.search">
           <mat-select
-            panelWidth=""
             multiple
+            *ngIf="column.search.type === 'multi-select'"
+            [formControl]="formInput.controls[i]"
+            ><mat-option
+              *ngFor="let value of column.search.values"
+              [value]="value"
+              >{{ value | translate }}</mat-option
+            >
+          </mat-select>
+          <mat-select
             *ngIf="column.search.type === 'select'"
             [formControl]="formInput.controls[i]"
             ><mat-option
@@ -42,8 +50,34 @@
               >{{ value | translate }}</mat-option
             >
           </mat-select>
+          <ng-container *ngIf="column.search.type === 'dateRange'">
+            <mat-date-range-input [rangePicker]="picker">
+              <input
+                (dateChange)="
+                  onDateRangeChange(formInput.controls[i], 0, $event)
+                "
+                matStartDate
+              />
+              <input
+                (dateChange)="
+                  onDateRangeChange(formInput.controls[i], 1, $event)
+                "
+                matEndDate
+              />
+            </mat-date-range-input>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </ng-container>
+
           <input
-            *ngIf="column.search.type !== 'select'"
+            *ngIf="
+              column.search.type !== 'select' &&
+              column.search.type !== 'multi-select' &&
+              column.search.type !== 'dateRange'
+            "
             matInput
             [type]="column.search.type"
             [formControl]="formInput.controls[i]"

@@ -25,7 +25,10 @@ import { CalendarEventQueriesService } from '../../../services/queries/calendar-
 import { first, forkJoin, map, switchMap } from 'rxjs';
 import { PlayerService } from '../../../services/player.service';
 import { TimeService } from '../../../services/time.service';
-import { CalendarEventModel } from '../../../models/calendar-event.model';
+import {
+  CalendarEventEvent,
+  CalendarEventModel,
+} from '../../../models/calendar-event.model';
 
 @Component({
   selector: 'pm-nursery-wishlist-form',
@@ -284,17 +287,17 @@ export class NurseryWishlistFormComponent implements OnInit {
                 thirdEventDate.setUTCDate(thirdEventDate.getUTCDate() + 14);
                 const calendarEvents: CalendarEventModel[] = [
                   {
-                    type: 'GenerateNurseryEggs',
+                    type: CalendarEventEvent.GENERATE_NURSERY_EGGS,
                     date: firstEventDate,
                     trainers: [player],
                   },
                   {
-                    type: 'NurseryFirstSelectionDeadline',
+                    type: CalendarEventEvent.NURSERY_FIRST_SELECTION_DEADLINE,
                     date: secondEventDate,
                     trainers: [player],
                   },
                   {
-                    type: 'NurseryLastSelectionDeadline',
+                    type: CalendarEventEvent.NURSERY_LAST_SELECTION_DEADLINE,
                     date: thirdEventDate,
                     trainers: [player],
                   },

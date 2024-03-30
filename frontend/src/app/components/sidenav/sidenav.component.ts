@@ -55,6 +55,11 @@ export class SidenavComponent {
       icon: 'groups',
     },
     {
+      link: 'events',
+      label: 'EVENTS',
+      icon: 'event',
+    },
+    {
       link: 'games',
       label: 'BACK_TO_MENU',
       icon: 'videogame_asset',

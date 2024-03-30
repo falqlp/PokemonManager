@@ -5,6 +5,8 @@ import i18nService from "./i18n.service";
 import dotenv from "dotenv";
 import "source-map-support/register";
 import { RoutesMap } from "./RoutesMap";
+import { convertStringsToDateInObject } from "./utils/DateConverter";
+import CalendarEvent from "./api/calendar-event/CalendarEvent";
 dotenv.config();
 
 const app = express();
@@ -43,6 +45,10 @@ app.use((req, res, next) => {
 });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  convertStringsToDateInObject(req.body);
+  next();
+});
 
 for (const routesKey in RoutesMap) {
   app.use(`/api/${routesKey}`, RoutesMap[routesKey]);

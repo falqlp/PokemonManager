@@ -1,10 +1,10 @@
 import TrainerService from "../trainer/TrainerService";
 import { IPokemon } from "../pokemon/Pokemon";
 import { ITrainer } from "../trainer/Trainer";
-import normalRandomUtils from "../../utils/normalRandomUtils";
 import evolutionService from "../evolution/EvolutionService";
 import { IPokemonBase } from "../pokemonBase/PokemonBase";
 import MoveLearningService from "../moveLearning/MoveLearningService";
+import { normalRandom } from "../../utils/normalRandomUtils";
 
 const XP_PER_LEVEL = 100000;
 
@@ -130,9 +130,7 @@ class ExperienceService {
         50 *
         (pokemon.potential - pokemon.level) -
       Math.pow((pokemon.level * pokemon.age * 7) / 5000, 2);
-    return Math.floor(
-      normalRandomUtils.normalRandom(7 * gainXp, lvlTrainingCamp * 500)
-    );
+    return Math.floor(normalRandom(7 * gainXp, lvlTrainingCamp * 500));
   }
 
   public getLevel(

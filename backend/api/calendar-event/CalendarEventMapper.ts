@@ -1,5 +1,5 @@
 import { IMapper } from "../IMapper";
-import { ICalendarEvent } from "./CalendarEvent";
+import { CalendarEventEvent, ICalendarEvent } from "./CalendarEvent";
 import { PopulateOptions } from "mongoose";
 import Battle from "../battle-instance/Battle";
 import Trainer from "../trainer/Trainer";
@@ -28,7 +28,7 @@ class CalendarEventMapper implements IMapper<ICalendarEvent> {
     ];
   }
   public map(dto: ICalendarEvent): ICalendarEvent {
-    if (dto.type === "Battle") {
+    if (dto.type === CalendarEventEvent.BATTLE) {
       dto.event = this.battleInstanceMapper.map(dto.event);
     }
     dto.trainers.map((trainer) => this.trainerMapper.mapPartial(trainer));

@@ -17,14 +17,14 @@
       [ngClass]="{
         'top-bar-week-calendar__day__event--passed': i === 0,
         'top-bar-week-calendar__day__event--green': [
-          'GenerateNurseryEggs',
-          'NurseryFirstSelectionDeadline',
-          'NurseryLastSelectionDeadline'
+          'GENERATE_NURSERY_EGGS',
+          'NURSERY_FIRST_SELECTION_DEADLINE',
+          'NURSERY_LAST_SELECTION_DEADLINE'
         ].includes(event.type)
       }"
       [ngSwitch]="event.type"
     >
-      <div *ngSwitchCase="'Battle'">
+      <div *ngSwitchCase="'BATTLE'">
         <span>{{
           event?.event.opponent.name !== player.name
             ? event?.event.opponent.name
@@ -34,14 +34,14 @@
           {{ getBattleStatus(event.event) | translate }}</span
         >
       </div>
-      <div *ngSwitchCase="'GenerateNurseryEggs'">
-        <span>{{ "NURSERY_EGGS_ARRIVAL_DATE" | translate }}</span>
+      <div *ngSwitchCase="'GENERATE_NURSERY_EGGS'">
+        <span>{{ "GENERATE_NURSERY_EGGS" | translate }}</span>
       </div>
-      <div *ngSwitchCase="'NurseryFirstSelectionDeadline'">
-        <span>{{ "NURSERY_FIRST_SELECTION" | translate }}</span>
+      <div *ngSwitchCase="'NURSERY_FIRST_SELECTION_DEADLINE'">
+        <span>{{ "NURSERY_FIRST_SELECTION_DEADLINE" | translate }}</span>
       </div>
-      <div *ngSwitchCase="'NurseryLastSelectionDeadline'">
-        <span>{{ "NURSERY_LAST_SELECTION" | translate }}</span>
+      <div *ngSwitchCase="'NURSERY_LAST_SELECTION_DEADLINE'">
+        <span>{{ "NURSERY_LAST_SELECTION_DEADLINE" | translate }}</span>
       </div>
     </div>
   </div>
