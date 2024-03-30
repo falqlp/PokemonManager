@@ -15,10 +15,17 @@ class GameMapper implements IMapper<IGame> {
       populate: this.trainerMapper.populate(),
     };
   }
-  public async map(dto: IGame): Promise<IGame> {
+  public map(dto: IGame): IGame {
     dto.player = dto.player ? this.trainerMapper.map(dto.player) : undefined;
     return dto;
   }
+
+  public mapPlayer = (dto: IGame): IGame => {
+    dto.player = dto.player
+      ? this.trainerMapper.mapPlayer(dto.player)
+      : undefined;
+    return dto;
+  };
 
   public async update(dto: IGame): Promise<IGame> {
     return dto;

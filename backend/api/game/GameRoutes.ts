@@ -1,8 +1,9 @@
 import express from "express";
 import CompleteRouter from "../CompleteRouter";
 import GameService from "./GameService";
+import GameMapper from "./GameMapper";
 const service = GameService.getInstance();
-
+const gameMapper = GameMapper.getInstance();
 const router = express.Router();
 const completeRouter = new CompleteRouter(service);
 
@@ -10,7 +11,7 @@ router.use("/", completeRouter.router);
 
 router.get("/player/:id", (req, res, next) => {
   service
-    .get(req.params.id)
+    .get(req.params.id, { map: gameMapper.mapPlayer })
     .then((result) => res.status(200).json(result.player))
     .catch(console.log);
 });

@@ -1,4 +1,4 @@
-import { ITrainer } from "./Trainer";
+import trainer, { ITrainer } from "./Trainer";
 import { IMapper } from "../IMapper";
 import PokemonService from "../pokemon/PokemonService";
 import TrainingCampService from "../trainingCamp/TrainingCampService";
@@ -54,6 +54,13 @@ class TrainerMapper implements IMapper<ITrainer> {
     ];
   }
   public map(trainer: ITrainer): ITrainer {
+    trainer = this.mapPlayer(trainer);
+    trainer.berries = undefined;
+    trainer.monney = undefined;
+    return trainer;
+  }
+
+  public mapPlayer = (trainer: ITrainer): ITrainer => {
     trainer.pokemons?.map((pokemon) => this.pokemonMapper.map(pokemon));
     if (trainer.pcStorage?._id) {
       trainer.pcStorage = trainer.pcStorage._id;
@@ -65,7 +72,7 @@ class TrainerMapper implements IMapper<ITrainer> {
       trainer.nursery = trainer.nursery._id;
     }
     return trainer;
-  }
+  };
   public mapPartial = (trainer: ITrainer): ITrainer => {
     this.map(trainer);
     trainer.pokemons = undefined;
