@@ -57,12 +57,18 @@
   .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
     display: flex;
     align-items: center;
-    min-width: 250px;
+    width: 100%;
   }
   .mat-date-range-input-container {
     width: -webkit-fill-available;
   }
   .mat-mdc-select {
     display: flex !important;
+  }
+  .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+    padding: 0 16px !important;
+  }
+  .mat-mdc-form-field {
+    width: 100% !important;
   }
 }

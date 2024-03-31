@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
-import {
-  CustomTableComponent,
-  TableConfModel,
-  TableSearchType,
-} from '../../components/custom-table/custom-table.component';
+import { Component, OnInit } from '@angular/core';
+import { CustomTableComponent } from '../../components/custom-table/custom-table.component';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { CalendarEventEvent } from '../../models/calendar-event.model';
 import { PlayerService } from '../../services/player.service';
 import { map, Observable } from 'rxjs';
 import { AsyncPipe, NgIf } from '@angular/common';
+import {
+  TableConfModel,
+  TableSearchType,
+} from '../../components/custom-table/custom-table.model';
 
 @Component({
   selector: 'pm-events',
@@ -17,20 +17,13 @@ import { AsyncPipe, NgIf } from '@angular/common';
   templateUrl: './events.component.html',
   styleUrl: './events.component.scss',
 })
-export class EventsComponent {
+export class EventsComponent implements OnInit {
   public constructor(
     protected calendarEventQueriesService: CalendarEventQueriesService,
     protected playerService: PlayerService
   ) {}
 
-  protected specificQuery: Observable<Record<string, unknown>> =
-    this.playerService.player$.pipe(
-      map((value) => {
-        return {
-          'objectid.trainers': value._id,
-        };
-      })
-    );
+  protected specificQuery: Observable<Record<string, unknown>>;
 
   protected conf: TableConfModel = {
     columns: [
@@ -73,4 +66,14 @@ export class EventsComponent {
       direction: 'desc',
     },
   };
+
+  public ngOnInit(): void {
+    this.specificQuery = this.playerService.player$.pipe(
+      map((value) => {
+        return {
+          'objectid.trainers': value?._id,
+        };
+      })
+    );
+  }
 }

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import {
-  CustomTableComponent,
-  TableConfModel,
-  TableSearchType,
-} from '../../components/custom-table/custom-table.component';
+import { CustomTableComponent } from '../../components/custom-table/custom-table.component';
 import { PokemonBaseQueriesService } from '../../services/queries/pokemon-base-queries.service';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { RouterService } from '../../services/router.service';
+import {
+  TableConfModel,
+  TableSearchType,
+} from '../../components/custom-table/custom-table.model';
 
 @Component({
   selector: 'pm-pokedex',

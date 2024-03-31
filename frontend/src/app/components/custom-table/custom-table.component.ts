@@ -9,7 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { BehaviorSubject, debounceTime, startWith, switchMap } from 'rxjs';
-import { MatSortModule, Sort, SortDirection } from '@angular/material/sort';
+import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { NgForOf, NgIf } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -25,29 +25,7 @@ import {
   MatDatepickerInputEvent,
   MatDatepickerModule,
 } from '@angular/material/datepicker';
-
-export interface CellModel {
-  component: string;
-  data: string | 'all';
-}
-export enum TableSearchType {
-  NUMBER = 'number',
-  SELECT = 'select',
-  MULTI_SELECT = 'multi-select',
-  TEXT = 'text',
-  DATE_RANGE = 'dateRange',
-}
-
-export interface TableConfModel {
-  defaultSort?: { column: string; direction: SortDirection };
-  columns: {
-    name: string;
-    sort?: boolean | string;
-    search?: { value: string; type: TableSearchType; values?: string[] };
-    header: CellModel;
-    content: CellModel;
-  }[];
-}
+import { TableConfModel, TableSearchType } from './custom-table.model';
 
 @Component({
   selector: 'pm-custom-table',

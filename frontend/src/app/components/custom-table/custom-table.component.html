@@ -101,7 +101,7 @@
   ></tr>
 </table>
 <mat-paginator
-  pageSize="10"
-  [pageSizeOptions]="[5, 10, 20]"
+  [pageSize]="conf.defaultPageSize ?? 15"
+  [pageSizeOptions]="[5, 10, 15, 20]"
   showFirstLastButtons
 ></mat-paginator>

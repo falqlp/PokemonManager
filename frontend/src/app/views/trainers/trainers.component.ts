@@ -4,10 +4,8 @@ import { MatTableModule } from '@angular/material/table';
 import { NgForOf } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { MatSortModule } from '@angular/material/sort';
-import {
-  TableConfModel,
-  CustomTableComponent,
-} from '../../components/custom-table/custom-table.component';
+import { CustomTableComponent } from '../../components/custom-table/custom-table.component';
+import { TableConfModel } from '../../components/custom-table/custom-table.model';
 
 @Component({
   standalone: true,
