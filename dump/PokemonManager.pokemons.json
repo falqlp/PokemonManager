@@ -53,7 +53,7 @@
   "happiness": 50,
   "age": 0,
   "potential": 100,
-  "trainingPourcentage": 0,
+  "trainingPercentage": 0,
   "birthday": {
     "$date": "2023-10-27T00:00:00.000Z"
   },
@@ -114,7 +114,7 @@
   "happiness": 50,
   "age": 0,
   "potential": 100,
-  "trainingPourcentage": 0,
+  "trainingPercentage": 0,
   "birthday": {
     "$date": "2024-01-29T00:00:00.000Z"
   },
@@ -177,7 +177,7 @@
   "happiness": 50,
   "age": 0,
   "potential": 100,
-  "trainingPourcentage": 0,
+  "trainingPercentage": 0,
   "birthday": {
     "$date": "2024-01-30T00:00:00.000Z"
   },
@@ -240,7 +240,7 @@
   "happiness": 70,
   "age": 0,
   "potential": 100,
-  "trainingPourcentage": 0,
+  "trainingPercentage": 0,
   "birthday": {
     "$date": "2024-01-30T00:00:00.000Z"
   },
@@ -301,7 +301,7 @@
   "happiness": 70,
   "age": 0,
   "potential": 100,
-  "trainingPourcentage": 0,
+  "trainingPercentage": 0,
   "birthday": {
     "$date": "2024-01-31T00:00:00.000Z"
   },
@@ -358,7 +358,7 @@
   "happiness": 50,
   "age": 0,
   "potential": 100,
-  "trainingPourcentage": 0,
+  "trainingPercentage": 0,
   "gameId": "64fd9cf21308150436317aed",
   "maxLevel": 6,
   "__v": 0,
@@ -415,7 +415,7 @@
   "happiness": 50,
   "age": 0,
   "potential": 100,
-  "trainingPourcentage": 0,
+  "trainingPercentage": 0,
   "gameId": "64fd9cf21308150436317aed",
   "maxLevel": 6,
   "__v": 0,
@@ -470,7 +470,7 @@
   "happiness": 50,
   "age": 0,
   "potential": 35,
-  "trainingPourcentage": 0,
+  "trainingPercentage": 0,
   "gameId": "64fd9cf21308150436317aed",
   "maxLevel": 0,
   "hatchingDate": {
@@ -525,7 +525,7 @@
   "happiness": 50,
   "age": 0,
   "potential": 17,
-  "trainingPourcentage": 0,
+  "trainingPercentage": 0,
   "gameId": "64fd9cf21308150436317aed",
   "maxLevel": 0,
   "hatchingDate": {
@@ -580,7 +580,7 @@
   "happiness": 35,
   "age": 0,
   "potential": 19,
-  "trainingPourcentage": 0,
+  "trainingPercentage": 0,
   "gameId": "64fd9cf21308150436317aed",
   "maxLevel": 0,
   "hatchingDate": {

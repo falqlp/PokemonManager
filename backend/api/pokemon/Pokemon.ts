@@ -19,7 +19,7 @@ export interface IPokemon extends Document {
   happiness: number;
   age?: number;
   potential: number;
-  trainingPourcentage: number;
+  trainingPercentage: number;
   birthday?: Date;
   gameId: string;
   maxLevel: number;
@@ -41,7 +41,7 @@ const pokemonSchema = new Schema<IPokemon>({
   happiness: { type: Number, required: true },
   age: { type: Number },
   potential: { type: Number, required: true },
-  trainingPourcentage: { type: Number, required: true },
+  trainingPercentage: { type: Number, required: true },
   birthday: { type: Date },
   gameId: { type: String, required: true },
   maxLevel: { type: Number, required: true },
