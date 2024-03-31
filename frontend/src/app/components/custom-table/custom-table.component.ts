@@ -164,7 +164,7 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
   }
 
   protected getQueryFromInputs(values: unknown[]): void {
-    this.query.custom = this.specificQuery;
+    this.query.custom = this.specificQuery ?? {};
     for (let i = 0; i < values.length; i++) {
       if (values[i] && (values[i] as unknown[]).length !== 0) {
         switch (this.conf.columns[i].search.type) {
@@ -192,6 +192,7 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
             }
             break;
           default:
+            console.log(this.query.custom);
             this.query.custom[this.conf.columns[i].search.value] = {
               $regex: values[i],
               $options: 'i',

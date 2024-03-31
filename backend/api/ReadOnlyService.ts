@@ -90,19 +90,12 @@ abstract class ReadOnlyService<T extends Document> {
       const nonTranslateQuery: Record<string, unknown> = {};
       let sortQuery: Record<string, unknown> = {};
 
-      Object.keys(query).forEach((key) => {
-        const splitMatch = key.split(".");
-        if (splitMatch[0] === "translation") {
-          translateQuery[key] = query[key];
-        } else if (splitMatch[0] === "objectid") {
-          nonTranslateQuery[splitMatch[1]] = new ObjectId(query[key] as string);
-        } else {
-          nonTranslateQuery[key] = query[key];
-        }
-      });
-      if (options?.gameId) {
-        nonTranslateQuery["gameId"] = options.gameId;
-      }
+      this.getTranslateAndNonTranslateQuery(
+        query,
+        translateQuery,
+        nonTranslateQuery,
+        options
+      );
       let sortParts;
       if (Object.keys(body.sort).length > 0) {
         sortParts = Object.keys(body.sort)[0].split(".");
@@ -171,19 +164,12 @@ abstract class ReadOnlyService<T extends Document> {
       const translateQuery: Record<string, unknown> = {};
       const nonTranslateQuery: Record<string, unknown> = {};
 
-      Object.keys(query).forEach((key) => {
-        const splitMatch = key.split(".");
-        if (splitMatch[0] === "translation") {
-          translateQuery[key] = query[key];
-        } else if (splitMatch[0] === "objectid") {
-          nonTranslateQuery[splitMatch[1]] = new ObjectId(query[key] as string);
-        } else {
-          nonTranslateQuery[key] = query[key];
-        }
-      });
-      if (options?.gameId) {
-        nonTranslateQuery["gameId"] = options.gameId;
-      }
+      this.getTranslateAndNonTranslateQuery(
+        query,
+        translateQuery,
+        nonTranslateQuery,
+        options
+      );
       const aggregation = this.schema.aggregate([]);
       aggregation.match(nonTranslateQuery);
       Object.keys(translateQuery).forEach((key) => {
@@ -200,6 +186,31 @@ abstract class ReadOnlyService<T extends Document> {
       return (await aggregation).length;
     } catch (error) {
       return Promise.reject(error);
+    }
+  }
+
+  private getTranslateAndNonTranslateQuery(
+    query: any,
+    translateQuery: Record<string, unknown>,
+    nonTranslateQuery: Record<string, unknown>,
+    options: {
+      gameId?: string;
+      lang?: string;
+      map?: (entity: T) => Promise<T> | T;
+    }
+  ) {
+    Object.keys(query).forEach((key) => {
+      const splitMatch = key.split(".");
+      if (splitMatch[0] === "translation") {
+        translateQuery[key] = query[key];
+      } else if (splitMatch[0] === "objectid") {
+        nonTranslateQuery[splitMatch[1]] = new ObjectId(query[key] as string);
+      } else {
+        nonTranslateQuery[key] = query[key];
+      }
+    });
+    if (options?.gameId) {
+      nonTranslateQuery["gameId"] = options.gameId;
     }
   }
 }
