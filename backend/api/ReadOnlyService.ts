@@ -1,5 +1,6 @@
 import { IMapper } from "./IMapper";
-import { Document, Model } from "mongoose";
+import { Document, FilterQuery, Model } from "mongoose";
+import { ObjectId } from "mongodb";
 
 export interface ListBody {
   custom?: any;
@@ -25,7 +26,7 @@ abstract class ReadOnlyService<T extends Document> {
         query["gameId"] = options.gameId;
       }
       const entity = (await this.schema
-        .findOne(query)
+        .findOne(query as FilterQuery<T>)
         .populate(this.mapper.populate())) as T;
       return options?.map ? options.map(entity) : this.mapper.map(entity);
     } catch (error) {
@@ -93,6 +94,8 @@ abstract class ReadOnlyService<T extends Document> {
         const splitMatch = key.split(".");
         if (splitMatch[0] === "translation") {
           translateQuery[key] = query[key];
+        } else if (splitMatch[0] === "objectid") {
+          nonTranslateQuery[splitMatch[1]] = new ObjectId(query[key] as string);
         } else {
           nonTranslateQuery[key] = query[key];
         }
@@ -172,6 +175,8 @@ abstract class ReadOnlyService<T extends Document> {
         const splitMatch = key.split(".");
         if (splitMatch[0] === "translation") {
           translateQuery[key] = query[key];
+        } else if (splitMatch[0] === "objectid") {
+          nonTranslateQuery[splitMatch[1]] = new ObjectId(query[key] as string);
         } else {
           nonTranslateQuery[key] = query[key];
         }

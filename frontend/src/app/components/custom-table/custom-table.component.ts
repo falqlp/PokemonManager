@@ -69,8 +69,9 @@ export interface TableConfModel {
   styleUrls: ['./custom-table.component.scss'],
 })
 export class CustomTableComponent<T> implements AfterViewInit, OnInit {
-  @Input() public queryService: ReadonlyQuery<T>;
-  @Input() public conf: TableConfModel;
+  @Input({ required: true }) public queryService: ReadonlyQuery<T>;
+  @Input({ required: true }) public conf: TableConfModel;
+  @Input() public specificQuery: Record<string, unknown>;
   @Output() public onRowClick = new EventEmitter<T>();
   protected sortQuerySubject: BehaviorSubject<void> = new BehaviorSubject(null);
 
@@ -82,6 +83,7 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
   constructor(protected destroyRef: DestroyRef) {}
 
   public ngOnInit(): void {
+    this.query.custom = this.specificQuery ?? {};
     this.conf.columns.forEach((column) => {
       if (column.search?.type === TableSearchType.NUMBER) {
         this.formInput.push(new FormControl<number>(null));
@@ -184,7 +186,7 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
   }
 
   protected getQueryFromInputs(values: unknown[]): void {
-    this.query.custom = {};
+    this.query.custom = this.specificQuery;
     for (let i = 0; i < values.length; i++) {
       if (values[i] && (values[i] as unknown[]).length !== 0) {
         switch (this.conf.columns[i].search.type) {

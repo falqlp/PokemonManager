@@ -34,7 +34,7 @@ abstract class CompleteService<T extends Document> extends ReadOnlyService<T> {
 
   async delete(_id: string) {
     try {
-      return await this.schema.deleteOne({ _id });
+      return await this.schema.findByIdAndDelete({ _id });
     } catch (error) {
       return Promise.reject(error);
     }

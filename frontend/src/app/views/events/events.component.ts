@@ -6,18 +6,31 @@ import {
 } from '../../components/custom-table/custom-table.component';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { CalendarEventEvent } from '../../models/calendar-event.model';
+import { PlayerService } from '../../services/player.service';
+import { map, Observable } from 'rxjs';
+import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
   selector: 'pm-events',
   standalone: true,
-  imports: [CustomTableComponent],
+  imports: [CustomTableComponent, AsyncPipe, NgIf],
   templateUrl: './events.component.html',
   styleUrl: './events.component.scss',
 })
 export class EventsComponent {
   public constructor(
-    protected calendarEventQueriesService: CalendarEventQueriesService
+    protected calendarEventQueriesService: CalendarEventQueriesService,
+    protected playerService: PlayerService
   ) {}
+
+  protected specificQuery: Observable<Record<string, unknown>> =
+    this.playerService.player$.pipe(
+      map((value) => {
+        return {
+          'objectid.trainers': value._id,
+        };
+      })
+    );
 
   protected conf: TableConfModel = {
     columns: [

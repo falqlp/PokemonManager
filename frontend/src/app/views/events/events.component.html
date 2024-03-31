@@ -1,6 +1,7 @@
-<div class="events">
+<div *ngIf="specificQuery | async as query" class="events">
   <pm-custom-table
     [conf]="conf"
     [queryService]="calendarEventQueriesService"
+    [specificQuery]="query"
   ></pm-custom-table>
 </div>
