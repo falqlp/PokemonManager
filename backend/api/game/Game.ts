@@ -1,13 +1,15 @@
 import mongoose, { Document, Schema } from "mongoose";
 import { ITrainer } from "../trainer/Trainer";
+import { entitySchema, IEntity } from "../Entity";
 
-export interface IGame extends Document {
+export interface IGame extends Document, IEntity {
   player: ITrainer;
   actualDate: Date;
   name: string;
 }
 
 const GameSchema = new Schema<IGame>({
+  ...entitySchema,
   name: {
     type: String,
     required: true,

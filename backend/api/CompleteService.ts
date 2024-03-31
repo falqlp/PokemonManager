@@ -1,6 +1,7 @@
 import ReadOnlyService from "./ReadOnlyService";
 import { Document, Model, UpdateQuery } from "mongoose";
 import { IMapper } from "./IMapper";
+import { IEntity } from "./Entity";
 
 abstract class CompleteService<T extends Document> extends ReadOnlyService<T> {
   constructor(protected schema: Model<T>, protected mapper: IMapper<T>) {
@@ -9,6 +10,9 @@ abstract class CompleteService<T extends Document> extends ReadOnlyService<T> {
 
   async update(_id: string, dto: T) {
     try {
+      if ("updateAt" in dto) {
+        dto.updateAt = Date.now();
+      }
       const updatedDoc = await this.schema.findByIdAndUpdate(
         _id,
         {
@@ -26,6 +30,9 @@ abstract class CompleteService<T extends Document> extends ReadOnlyService<T> {
     try {
       const updatedDto = await this.mapper.update({ ...dto, gameId });
       const newDto = new this.schema(updatedDto);
+      if ("createdAt" in newDto) {
+        newDto.createdAt = Date.now();
+      }
       return this.mapper.map((await newDto.save()) as T);
     } catch (error) {
       return Promise.reject(error);

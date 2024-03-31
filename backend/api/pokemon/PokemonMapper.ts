@@ -22,7 +22,7 @@ class PokemonMapper implements IMapper<IPokemon> {
     delete pokemon.iv;
     delete pokemon.happiness;
     delete pokemon.potential;
-    delete pokemon.trainingPourcentage;
+    delete pokemon.trainingPercentage;
     if (pokemon.level === 0) {
       delete pokemon.basePokemon;
       delete pokemon.hatchingDate;
@@ -40,7 +40,7 @@ class PokemonMapper implements IMapper<IPokemon> {
     delete pokemon.iv;
     delete pokemon.happiness;
     delete pokemon.potential;
-    delete pokemon.trainingPourcentage;
+    delete pokemon.trainingPercentage;
     delete pokemon.hatchingDate;
     pokemon.basePokemon = {
       types: pokemon.basePokemon.types,

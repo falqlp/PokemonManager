@@ -15,7 +15,7 @@ export class PokemonTestMother {
       ev: StatsTestMother.getEvs(),
       iv: StatsTestMother.getIVs(),
       stats: StatsTestMother.getBulbasaurStatsLvl100(),
-      trainingPourcentage: 100,
+      trainingPercentage: 100,
       moves: [MoveTestMother.basicMove(), MoveTestMother.powerfulMove()],
       shiny: false,
     } as IPokemon;

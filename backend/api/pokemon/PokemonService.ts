@@ -80,8 +80,8 @@ class PokemonService extends CompleteService<IPokemon> {
     if (pokemon.age === undefined) {
       pokemon.age = 0;
     }
-    if (pokemon.trainingPourcentage === undefined) {
-      pokemon.trainingPourcentage = 0;
+    if (pokemon.trainingPercentage === undefined) {
+      pokemon.trainingPercentage = 0;
     }
     pokemon.maxLevel = pokemon.level;
     pokemon = await this.mapper.update(pokemon);

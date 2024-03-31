@@ -119,13 +119,13 @@ class ExperienceService {
     const result = this.getLevel(pokemon.level, pokemon.exp);
     pokemon.level = result.level;
     pokemon.exp = result.exp;
-    pokemon.trainingPourcentage = 0;
+    pokemon.trainingPercentage = 0;
     return { pokemon, variation: result.variation, xpGain };
   }
 
   public getXp(pokemon: IPokemon, lvlTrainingCamp: number): number {
     const gainXp =
-      (0.1 + 0.9 * pokemon.trainingPourcentage) *
+      (0.1 + 0.9 * pokemon.trainingPercentage) *
         lvlTrainingCamp *
         50 *
         (pokemon.potential - pokemon.level) -
