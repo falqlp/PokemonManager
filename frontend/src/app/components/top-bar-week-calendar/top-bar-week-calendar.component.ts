@@ -15,6 +15,7 @@ import { CalendarEventQueriesService } from '../../services/queries/calendar-eve
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { BattleModel } from '../../models/Battle.model';
 import { TranslateModule } from '@ngx-translate/core';
+import { BattleStatusComponent } from '../battle-status/battle-status.component';
 
 @Component({
   standalone: true,
@@ -29,6 +30,7 @@ import { TranslateModule } from '@ngx-translate/core';
     NgIf,
     NgSwitch,
     NgSwitchCase,
+    BattleStatusComponent,
   ],
 })
 export class TopBarWeekCalendarComponent implements OnInit {
@@ -72,18 +74,5 @@ export class TopBarWeekCalendarComponent implements OnInit {
         return week;
       })
     );
-  }
-
-  protected getBattleStatus(battle: BattleModel): string {
-    if (!battle.winner) {
-      return '';
-    }
-    if (
-      (battle.winner === 'player' && battle.player._id === this.player._id) ||
-      (battle.winner === 'opponent' && battle.opponent._id === this.player._id)
-    ) {
-      return 'W_WIN';
-    }
-    return 'L_LOOSE';
   }
 }

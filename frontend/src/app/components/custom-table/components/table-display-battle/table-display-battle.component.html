@@ -2,4 +2,5 @@
   <ng-container *ngFor="let trainer of data.trainers">
     <span *ngIf="trainer._id !== player._id">{{ trainer.name }}</span>
   </ng-container>
+  <pm-battle-status [battle]="data.event" [playerId]="player._id" />
 </span>

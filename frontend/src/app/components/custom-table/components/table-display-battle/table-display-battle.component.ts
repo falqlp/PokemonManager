@@ -5,11 +5,12 @@ import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { PlayerService } from '../../../../services/player.service';
 import { Observable } from 'rxjs';
 import { TrainerModel } from '../../../../models/TrainersModels/trainer.model';
+import { BattleStatusComponent } from '../../../battle-status/battle-status.component';
 
 @Component({
   selector: 'pm-table-display-battle',
   standalone: true,
-  imports: [NgForOf, NgIf, AsyncPipe],
+  imports: [NgForOf, NgIf, AsyncPipe, BattleStatusComponent],
   templateUrl: './table-display-battle.component.html',
   styleUrl: './table-display-battle.component.scss',
 })
