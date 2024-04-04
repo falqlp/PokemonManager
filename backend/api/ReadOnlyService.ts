@@ -1,5 +1,5 @@
 import { IMapper } from "./IMapper";
-import { Document, FilterQuery, Model } from "mongoose";
+import { Aggregate, Document, FilterQuery, Model } from "mongoose";
 import { ObjectId } from "mongodb";
 
 export interface ListBody {
@@ -89,11 +89,13 @@ abstract class ReadOnlyService<T extends Document> {
       const translateQuery: Record<string, unknown> = {};
       const nonTranslateQuery: Record<string, unknown> = {};
       let sortQuery: Record<string, unknown> = {};
+      const aggregation = this.schema.aggregate([]);
 
       this.getTranslateAndNonTranslateQuery(
         query,
         translateQuery,
         nonTranslateQuery,
+        aggregation,
         options
       );
       let sortParts;
@@ -101,7 +103,6 @@ abstract class ReadOnlyService<T extends Document> {
         sortParts = Object.keys(body.sort)[0].split(".");
         sortQuery = body.sort;
       }
-      const aggregation = this.schema.aggregate([]);
       if (sortParts && sortParts[0] === "translation") {
         sortQuery = {};
         sortQuery[Object.keys(body.sort)[0] + "." + options.lang] =
@@ -138,6 +139,13 @@ abstract class ReadOnlyService<T extends Document> {
       }
       aggregation.limit(body.limit || 0);
       const dtos = (await aggregation) as T[];
+      dtos.forEach((dto) => {
+        Object.keys(dto).forEach((key) => {
+          if (key.startsWith("query")) {
+            delete (dto as any)[key];
+          }
+        });
+      });
       if (this.mapper.populate()) {
         await this.schema.populate(dtos, this.mapper.populate());
       }
@@ -163,14 +171,15 @@ abstract class ReadOnlyService<T extends Document> {
       const query = { ...body.custom };
       const translateQuery: Record<string, unknown> = {};
       const nonTranslateQuery: Record<string, unknown> = {};
+      const aggregation = this.schema.aggregate([]);
 
       this.getTranslateAndNonTranslateQuery(
         query,
         translateQuery,
         nonTranslateQuery,
+        aggregation,
         options
       );
-      const aggregation = this.schema.aggregate([]);
       aggregation.match(nonTranslateQuery);
       Object.keys(translateQuery).forEach((key) => {
         const splitMatch = key.split(".");
@@ -193,6 +202,7 @@ abstract class ReadOnlyService<T extends Document> {
     query: any,
     translateQuery: Record<string, unknown>,
     nonTranslateQuery: Record<string, unknown>,
+    aggregation: Aggregate<any>,
     options: {
       gameId?: string;
       lang?: string;
@@ -201,10 +211,20 @@ abstract class ReadOnlyService<T extends Document> {
   ) {
     Object.keys(query).forEach((key) => {
       const splitMatch = key.split(".");
-      if (splitMatch[0] === "translation") {
-        translateQuery[key] = query[key];
-      } else if (splitMatch[0] === "objectid") {
-        nonTranslateQuery[splitMatch[1]] = new ObjectId(query[key] as string);
+      if (splitMatch.length > 1) {
+        if (splitMatch[0] === "translation") {
+          translateQuery[key] = query[key];
+        } else if (splitMatch[0] === "objectid") {
+          nonTranslateQuery[splitMatch[1]] = new ObjectId(query[key] as string);
+        } else {
+          this.customLookup(
+            splitMatch,
+            aggregation,
+            nonTranslateQuery,
+            query,
+            key
+          );
+        }
       } else {
         nonTranslateQuery[key] = query[key];
       }
@@ -212,6 +232,33 @@ abstract class ReadOnlyService<T extends Document> {
     if (options?.gameId) {
       nonTranslateQuery["gameId"] = options.gameId;
     }
+  }
+  private customLookup(
+    splitMatch: string[],
+    aggregation: Aggregate<any>,
+    nonTranslateQuery: Record<string, any>,
+    query: any,
+    key: string
+  ): void {
+    const schema = (this.schema.schema as any).tree[splitMatch[0]];
+    const isArray = Array.isArray(schema);
+    const ref = isArray
+      ? schema[0].ref.toLowerCase() + "s"
+      : schema.ref.toLowerCase() + "s";
+    aggregation.lookup({
+      from: ref,
+      localField: splitMatch[0],
+      foreignField: "_id",
+      as: "query" + splitMatch[0],
+    });
+    const key2 = splitMatch[1];
+    nonTranslateQuery["query" + splitMatch[0]] = isArray
+      ? {
+          $elemMatch: {
+            [key2]: query[key],
+          },
+        }
+      : { [key2]: query[key] };
   }
 }
 

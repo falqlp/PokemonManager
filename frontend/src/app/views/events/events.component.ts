@@ -60,6 +60,22 @@ export class EventsComponent implements OnInit {
           data: 'type',
         },
       },
+      {
+        name: 'opponent',
+        search: {
+          value: 'trainers.name',
+          type: TableSearchType.TEXT,
+        },
+        sort: true,
+        header: {
+          component: 'displayText',
+          data: 'OPPONENT',
+        },
+        content: {
+          component: 'displayBattle',
+          data: 'all',
+        },
+      },
     ],
     defaultSort: {
       column: 'date',

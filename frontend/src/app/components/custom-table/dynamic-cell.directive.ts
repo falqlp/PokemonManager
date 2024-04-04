@@ -12,6 +12,7 @@ import { TableDisplayTrainerPokemonsComponent } from './components/table-display
 import { TableDisplayPokemonIconComponent } from './components/table-display-icon/table-display-pokemon-icon.component';
 import { TableDisplayTypesComponent } from './components/table-display-types/table-display-types.component';
 import { TableDisplayDateComponent } from './components/table-display-date/table-display-date.component';
+import { TableDisplayBattleComponent } from './components/table-display-battle/table-display-battle.component';
 
 @Directive({
   selector: '[pmDynamicCell]',
@@ -27,6 +28,7 @@ export class DynamicCellDirective<T> implements OnInit {
     displayTrainerPokemons: TableDisplayTrainerPokemonsComponent,
     displayPokemonIcon: TableDisplayPokemonIconComponent,
     displayPokemonTypes: TableDisplayTypesComponent,
+    displayBattle: TableDisplayBattleComponent,
   };
 
   constructor(public viewContainerRef: ViewContainerRef) {}

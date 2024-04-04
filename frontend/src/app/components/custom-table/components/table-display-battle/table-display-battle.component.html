@@ -1,0 +1,5 @@
+<span *ngIf="data.type === 'BATTLE' && getPlayer() | async as player">
+  <ng-container *ngFor="let trainer of data.trainers">
+    <span *ngIf="trainer._id !== player._id">{{ trainer.name }}</span>
+  </ng-container>
+</span>
