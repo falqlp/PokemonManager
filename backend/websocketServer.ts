@@ -1,14 +1,12 @@
-import WebSocket from "ws";
+import WebSocket, { WebSocketServer } from "ws";
 import GameService from "./api/game/GameService";
-import { ObjectId } from "mongodb";
-import pokemon, { IPokemon } from "./api/pokemon/Pokemon";
+import { IPokemon } from "./api/pokemon/Pokemon";
 
-let wss: WebSocket.Server;
+let wss: WebSocketServer;
 const clients: { [gameId: string]: WebSocket[] } = {};
 
 export const initializeWebSocketServer = (server: any) => {
-  wss = new WebSocket.Server({ server });
-
+  wss = new WebSocketServer({ server });
   wss.on("connection", (ws: WebSocket) => {
     ws.on("message", (message: string) => {
       const parsedMessage = JSON.parse(message);

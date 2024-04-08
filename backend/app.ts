@@ -1,7 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
-import i18nService from "./i18n.service";
 import dotenv from "dotenv";
 import "source-map-support/register";
 import { RoutesMap } from "./RoutesMap";
@@ -26,11 +25,7 @@ mongoose
     console.error("Connection error to MongoDB", error);
   });
 
-// migrationService.updatePokemonInfo();
-i18nService.checkAndSortLanguageFiles();
-i18nService
-  .translationsToDatabase()
-  .then(() => console.info("Backend started"));
+console.log(process.env.MONGODB_USERNAME);
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -48,6 +43,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   convertStringsToDateInObject(req.body);
   next();
+});
+
+app.get("/", (req, res) => {
+  res.status(200).json("ok");
 });
 
 for (const routesKey in RoutesMap) {

@@ -1,4 +1,6 @@
 import http from "http";
+import https from "https";
+import fs from "fs";
 import app from "./app";
 import { AddressInfo } from "net";
 import { initializeWebSocketServer } from "./websocketServer";
@@ -23,8 +25,7 @@ const errorHandler = (error: NodeJS.ErrnoException): void => {
     throw error;
   }
   const address = server.address() as AddressInfo;
-  const bind =
-    typeof address === "string" ? "pipes " + address : "port: " + port;
+  const bind = typeof address === "string" ? "pipe " + address : "port " + port;
   switch (error.code) {
     case "EACCES":
       console.error(`${bind} requires elevated privileges.`);
@@ -39,7 +40,24 @@ const errorHandler = (error: NodeJS.ErrnoException): void => {
   }
 };
 
-const server = http.createServer(app);
+let server: any;
+
+const sslOptions = {
+  keyPath: "./privkey.pem",
+  certPath: "./cert.pem",
+};
+
+if (fs.existsSync(sslOptions.keyPath) && fs.existsSync(sslOptions.certPath)) {
+  const options = {
+    key: fs.readFileSync(sslOptions.keyPath),
+    cert: fs.readFileSync(sslOptions.certPath),
+  };
+  server = https.createServer(options, app);
+  console.log("Lancement du serveur en mode HTTPS.");
+} else {
+  server = http.createServer(app);
+  console.log("Lancement du serveur en mode HTTP.");
+}
 
 initializeWebSocketServer(server);
 
