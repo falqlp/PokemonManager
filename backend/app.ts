@@ -25,7 +25,6 @@ mongoose
     console.error("Connection error to MongoDB", error);
   });
 
-console.log(process.env.MONGODB_USERNAME);
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -43,10 +42,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   convertStringsToDateInObject(req.body);
   next();
-});
-
-app.get("/", (req, res) => {
-  res.status(200).json("ok");
 });
 
 for (const routesKey in RoutesMap) {
