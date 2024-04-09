@@ -1,9 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { QueryModel } from './query.model';
+import { environment } from '../../environments/environment';
 
 export abstract class ReadonlyQuery<T> {
-  public constructor(protected url: string, protected http: HttpClient) {}
+  protected url: string;
+  public constructor(url: string, protected http: HttpClient) {
+    this.url = environment.apiUrl + '/' + url;
+  }
 
   public get(_id: string): Observable<T> {
     return this.http.get<T>(`${this.url}/${_id}`);

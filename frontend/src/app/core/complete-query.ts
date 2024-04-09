@@ -3,10 +3,7 @@ import { Observable } from 'rxjs';
 import { ReadonlyQuery } from './readonly-query';
 
 export abstract class CompleteQuery<T> extends ReadonlyQuery<T> {
-  public constructor(
-    protected override url: string,
-    protected override http: HttpClient
-  ) {
+  public constructor(url: string, protected override http: HttpClient) {
     super(url, http);
   }
 

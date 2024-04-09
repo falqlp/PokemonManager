@@ -15,7 +15,7 @@ export class PokemonQueriesService extends CompleteQuery<PokemonModel> {
 
   public getEffectiveness(types: string[]): Observable<Record<string, number>> {
     return this.http.put<Record<string, number>>(
-      PokemonQueriesService.url + '/effectiveness',
+      this.url + '/effectiveness',
       types
     );
   }

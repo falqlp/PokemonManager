@@ -23,10 +23,10 @@ export class CalendarEventQueriesService extends CompleteQuery<CalendarEventMode
     date: Date,
     trainers: TrainerModel[]
   ): Observable<CalendarEventModel> {
-    return this.http.post<CalendarEventModel>(
-      CalendarEventQueriesService.url + '/battle',
-      { date, trainers }
-    );
+    return this.http.post<CalendarEventModel>(this.url + '/battle', {
+      date,
+      trainers,
+    });
   }
 
   public getWeekCalendar(

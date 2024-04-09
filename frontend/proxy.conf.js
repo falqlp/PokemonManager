@@ -1,7 +1,9 @@
+import { environment } from "./src/environments/environment";
+
 const proxy = [
   {
     context: "/api",
-    target: "http://localhost:3000",
+    target: environment.apiUrl,
     changeOrigin: true,
   },
 ];
