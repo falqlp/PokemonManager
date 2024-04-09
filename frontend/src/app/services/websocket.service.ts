@@ -13,6 +13,7 @@ import { CacheService } from './cache.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EggHatchedComponent } from '../modals/egg-hatched/egg-hatched.component';
 import { RouterService } from './router.service';
+import { environment } from '../../environments/environment';
 
 export interface WebSocketModel {
   type: string;
@@ -25,7 +26,7 @@ export interface WebSocketModel {
 export class WebsocketService {
   private websocket: WebSocketSubject<WebSocketModel>;
   protected isConected = false;
-  protected readonly url = 'ws://localhost:3000';
+  protected readonly url = environment.wsUrl;
 
   constructor(
     protected playerService: PlayerService,

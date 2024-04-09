@@ -15,22 +15,17 @@ export class GameQueriesService extends CompleteQuery<GameModel> {
   }
 
   public getPlayer(gameId: string): Observable<TrainerModel> {
-    return this.http.get<TrainerModel>(
-      GameQueriesService.url + '/player/' + gameId
-    );
+    return this.http.get<TrainerModel>(this.url + '/player/' + gameId);
   }
 
   public getTime(gameId: string): Observable<Date> {
-    return this.http.get<Date>(GameQueriesService.url + '/time/' + gameId);
+    return this.http.get<Date>(this.url + '/time/' + gameId);
   }
 
   public createWithUser(
     game: GameModel,
     userId: string
   ): Observable<GameModel> {
-    return this.http.post<GameModel>(
-      GameQueriesService.url + '/' + userId,
-      game
-    );
+    return this.http.post<GameModel>(this.url + '/' + userId, game);
   }
 }

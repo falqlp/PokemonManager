@@ -43,8 +43,10 @@ const errorHandler = (error: NodeJS.ErrnoException): void => {
 let server: any;
 
 const sslOptions = {
-  keyPath: "./privkey.pem",
-  certPath: "./cert.pem",
+  keyPath:
+    "/etc/letsencrypt/live/pokemon-manager.francecentral.cloudapp.azure.com/privkey.pem",
+  certPath:
+    "/etc/letsencrypt/live/pokemon-manager.francecentral.cloudapp.azure.com/fullchain.pem",
 };
 
 if (fs.existsSync(sslOptions.keyPath) && fs.existsSync(sslOptions.certPath)) {
