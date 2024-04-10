@@ -115,21 +115,12 @@ abstract class ReadOnlyService<T extends Document> {
         });
         aggregation.collation({ locale: options.lang, strength: 1 });
       }
-      aggregation.match(nonTranslateQuery);
-      let modifiedTranslateQuery: Record<string, unknown> = {};
-      Object.keys(translateQuery).forEach((key) => {
-        const newKey = key + "." + options.lang;
-        modifiedTranslateQuery[newKey] = translateQuery[key];
-        const splitMatch = key.split(".");
-        aggregation.lookup({
-          from: "translations",
-          localField: splitMatch[1],
-          foreignField: "key",
-          as: "translation." + splitMatch[1],
-        });
-        aggregation.collation({ locale: options.lang, strength: 1 });
-      });
-      aggregation.match(modifiedTranslateQuery);
+      this.getTranslatedData(
+        aggregation,
+        nonTranslateQuery,
+        translateQuery,
+        options
+      );
       if (Object.keys(sortQuery).length > 0) {
         // @ts-ignore
         aggregation.sort(sortQuery);
@@ -180,22 +171,43 @@ abstract class ReadOnlyService<T extends Document> {
         aggregation,
         options
       );
-      aggregation.match(nonTranslateQuery);
-      Object.keys(translateQuery).forEach((key) => {
-        const splitMatch = key.split(".");
-        aggregation.lookup({
-          from: "translations",
-          localField: splitMatch[1],
-          foreignField: "key",
-          as: "translation." + splitMatch[1],
-        });
-        aggregation.collation({ locale: options.lang, strength: 1 });
-      });
-      aggregation.match(translateQuery);
+      this.getTranslatedData(
+        aggregation,
+        nonTranslateQuery,
+        translateQuery,
+        options
+      );
       return (await aggregation).length;
     } catch (error) {
       return Promise.reject(error);
     }
+  }
+
+  private getTranslatedData(
+    aggregation: Aggregate<Array<any>>,
+    nonTranslateQuery: Record<string, unknown>,
+    translateQuery: Record<string, unknown>,
+    options: {
+      gameId?: string;
+      lang?: string;
+      map?: (entity: T) => Promise<T> | T;
+    }
+  ) {
+    aggregation.match(nonTranslateQuery);
+    let modifiedTranslateQuery: Record<string, unknown> = {};
+    Object.keys(translateQuery).forEach((key) => {
+      const newKey = key + "." + options.lang;
+      modifiedTranslateQuery[newKey] = translateQuery[key];
+      const splitMatch = key.split(".");
+      aggregation.lookup({
+        from: "translations",
+        localField: splitMatch[1],
+        foreignField: "key",
+        as: "translation." + splitMatch[1],
+      });
+      aggregation.collation({ locale: options.lang, strength: 1 });
+    });
+    aggregation.match(modifiedTranslateQuery);
   }
 
   private getTranslateAndNonTranslateQuery(
