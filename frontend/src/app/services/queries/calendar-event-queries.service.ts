@@ -33,13 +33,10 @@ export class CalendarEventQueriesService extends CompleteQuery<CalendarEventMode
     trainerId: string,
     date: Date
   ): Observable<CalendarEventModel[][]> {
-    return this.http.post<CalendarEventModel[][]>(
-      CalendarEventQueriesService.url + '/weekCalendar',
-      {
-        trainerId,
-        date,
-      }
-    );
+    return this.http.post<CalendarEventModel[][]>(this.url + '/weekCalendar', {
+      trainerId,
+      date,
+    });
   }
 
   public simulateDay(
@@ -48,7 +45,7 @@ export class CalendarEventQueriesService extends CompleteQuery<CalendarEventMode
   ): Observable<{ date: Date; battle: BattleModel; redirectTo: string }> {
     return this.http
       .post<{ date: Date; battle: BattleModel; redirectTo: string }>(
-        CalendarEventQueriesService.url + '/simulateDay',
+        this.url + '/simulateDay',
         {
           trainerId,
           date,
