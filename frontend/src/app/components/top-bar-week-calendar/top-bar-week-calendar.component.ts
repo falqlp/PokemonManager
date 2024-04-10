@@ -13,7 +13,6 @@ import {
 import { CalendarEventModel } from '../../models/calendar-event.model';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
-import { BattleModel } from '../../models/Battle.model';
 import { TranslateModule } from '@ngx-translate/core';
 import { BattleStatusComponent } from '../battle-status/battle-status.component';
 
