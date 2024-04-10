@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +16,17 @@ export class CustomValidatorService {
     return (control: AbstractControl): { [key: string]: unknown } | null => {
       const arrayLength = control.value ? control.value?.length : 0;
       return arrayLength !== value ? { length: { value: arrayLength } } : null;
+    };
+  }
+
+  public checkPasswordsValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const password = control.get('password')?.value;
+      const verifyPassword = control.get('verifyPassword')?.value;
+      if (password !== verifyPassword) {
+        return { passwordsNotMatching: true };
+      }
+      return null;
     };
   }
 }

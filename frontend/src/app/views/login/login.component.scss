@@ -3,9 +3,14 @@
 :host {
   display: flex;
   justify-content: center;
-  .login__form {
+  .login-form {
     @include flexbox(left, 2, column);
     align-items: stretch;
     flex: 0.25;
+    &__buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
   }
 }

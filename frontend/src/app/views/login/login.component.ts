@@ -4,6 +4,9 @@ import { AuthService } from './auth.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CacheService } from '../../services/cache.service';
 import { RouterService } from '../../services/router.service';
+import { LoginForm } from './login-form.model';
+import { MatDialog } from '@angular/material/dialog';
+import { AddUserComponent } from '../../modals/add-user/add-user.component';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +14,7 @@ import { RouterService } from '../../services/router.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginForm = new FormGroup({
+  loginForm = new FormGroup<LoginForm>({
     username: new FormControl<string>('', Validators.required),
     password: new FormControl<string>('', Validators.required),
   });
@@ -20,7 +23,8 @@ export class LoginComponent implements OnInit {
     protected authService: AuthService,
     protected router: RouterService,
     protected destroyRef: DestroyRef,
-    protected cacheService: CacheService
+    protected cacheService: CacheService,
+    protected dialog: MatDialog
   ) {}
 
   public ngOnInit(): void {
@@ -42,5 +46,9 @@ export class LoginComponent implements OnInit {
           }
         });
     }
+  }
+
+  protected createAccount(): void {
+    this.dialog.open(AddUserComponent);
   }
 }
