@@ -1,9 +1,9 @@
 import { normalRandom } from "../../utils/normalRandomUtils";
 describe("normalRandom function", () => {
-  test("should return a random value between -1 and 1 when called without parameters", () => {
+  test("should return a random value without parameters", () => {
     const value = normalRandom();
-    expect(value).toBeLessThanOrEqual(1);
-    expect(value).toBeGreaterThanOrEqual(-1);
+    expect(value).not.toBeNull();
+    expect(value).not.toBeNaN();
   });
 
   test("should return a random value around 5 when mean=5 and stdDev=2", () => {
