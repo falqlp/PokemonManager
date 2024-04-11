@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   mode: "production",
@@ -19,5 +20,10 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
+  plugins: [
+    new webpack.IgnorePlugin({
+      resourceRegExp: /\.html$/,
+    }),
+  ],
   target: "node",
 };
