@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MoveModel } from '../../models/move.model';
 import { QueryModel } from '../../core/query.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class MoveLearningQueriesService {
     query?: QueryModel
   ): Observable<MoveModel[]> {
     return this.http.put<MoveModel[]>(
-      MoveLearningQueriesService.url + '/learnableMoves',
+      environment.apiUrl + MoveLearningQueriesService.url + '/learnableMoves',
       { id, level, query }
     );
   }
