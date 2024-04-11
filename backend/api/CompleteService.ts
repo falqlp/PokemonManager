@@ -13,13 +13,15 @@ abstract class CompleteService<T extends Document> extends ReadOnlyService<T> {
       if ("updateAt" in dto) {
         dto.updateAt = Date.now();
       }
-      const updatedDoc = await this.schema.findByIdAndUpdate(
-        _id,
-        {
-          $set: { ...(await this.mapper.update(dto)) },
-        } as unknown as UpdateQuery<T>,
-        { new: true }
-      );
+      const updatedDoc = (await this.schema
+        .findByIdAndUpdate(
+          _id,
+          {
+            $set: { ...(await this.mapper.update(dto)) },
+          } as unknown as UpdateQuery<T>,
+          { new: true }
+        )
+        .populate(this.mapper.populate())) as T;
       return this.mapper.map(updatedDoc);
     } catch (error) {
       return Promise.reject(error);
