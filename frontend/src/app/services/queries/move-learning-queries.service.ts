@@ -18,7 +18,7 @@ export class MoveLearningQueriesService {
     query?: QueryModel
   ): Observable<MoveModel[]> {
     return this.http.put<MoveModel[]>(
-      environment.apiUrl + MoveLearningQueriesService.url + '/learnableMoves',
+      `${environment.apiUrl}/${MoveLearningQueriesService.url}/learnableMoves`,
       { id, level, query }
     );
   }
