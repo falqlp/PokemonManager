@@ -11,7 +11,7 @@ import {
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserQueriesService } from '../../services/queries/user-queries.service';
 import { AddUserForm } from './add-user-form.model';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CustomValidatorService } from '../../services/custom-validator.service';
 import { NgIf } from '@angular/common';
 import { NotifierService } from 'angular-notifier';
@@ -45,18 +45,20 @@ export class AddUserComponent {
     protected userQueriesService: UserQueriesService,
     protected customValidatorService: CustomValidatorService,
     protected notifierService: NotifierService,
-    protected translateService: TranslateService
+    protected translateService: TranslateService,
+    protected dialogRef: MatDialogRef<AddUserComponent>
   ) {}
 
   protected addUser(): void {
     const addUser = this.addUserForm.getRawValue();
     this.userQueriesService
       .create({ username: addUser.username, password: addUser.password })
-      .subscribe(() =>
+      .subscribe(() => {
         this.notifierService.notify(
           'success',
           this.translateService.instant('ACCOUNT_CREATED')
-        )
-      );
+        );
+        this.dialogRef.close();
+      });
   }
 }
