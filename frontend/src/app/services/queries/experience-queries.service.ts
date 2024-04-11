@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { PlayerService } from '../player.service';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,6 @@ export class ExperienceQueriesService {
         evolution: PokemonBaseModel;
         name: string;
       }[];
-    }>('api/xp/weeklyXpGain/' + trainerId);
+    }>(environment.apiUrl + '/api/xp/weeklyXpGain/' + trainerId);
   }
 }
