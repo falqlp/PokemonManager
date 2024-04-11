@@ -75,6 +75,7 @@ export const eggHatched = (pokemon: IPokemon): void => {
           type: "eggHatched",
           payload: {
             pokemonBase: pokemon.basePokemon,
+            shiny: pokemon.shiny,
             _id: pokemon._id,
           },
         })

@@ -11,6 +11,12 @@
       width: 320px;
       animation: hatched 0.5s ease;
     }
+    &__cracks {
+      position: relative;
+      height: 280px;
+      width: 280px;
+      padding: 20px;
+    }
   }
   &__message {
     width: 320px;

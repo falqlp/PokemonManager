@@ -28,6 +28,7 @@ export class EggHatchedComponent {
     @Inject(MAT_DIALOG_DATA)
     public data: {
       pokemonBase: PokemonBaseModel;
+      shiny: boolean;
       _id: string;
     },
     protected pokemonQueriesService: PokemonQueriesService,

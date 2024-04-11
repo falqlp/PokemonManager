@@ -7,7 +7,7 @@
         [alt]="'EGG' | translate"
       />
       <img
-        class="egg-hatched__img"
+        class="egg-hatched__img__cracks"
         src="assets/animations/egg/eggCracks_{{ cracksNumber }}.png"
         [alt]="'EGG' | translate"
         (click)="addCracked()"
@@ -16,7 +16,9 @@
     <ng-template #pokemon>
       <img
         class="egg-hatched__img__pokemon"
-        src="assets/images/thumbnails/{{ data.pokemonBase.name }}.png"
+        src="assets/pokemons/{{ data.shiny ? 'Front shiny' : 'Front' }}/{{
+          data.pokemonBase.name
+        }}.png"
         [alt]="data.pokemonBase.name"
       />
     </ng-template>
