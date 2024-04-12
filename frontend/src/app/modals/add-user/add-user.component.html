@@ -3,7 +3,6 @@
     <mat-label>{{ "USERNAME" | translate }}</mat-label>
     <input
       matInput
-      id="username"
       type="text"
       name="username"
       autocomplete="username"
@@ -14,7 +13,6 @@
     <mat-label>{{ "PASSWORD" | translate }}</mat-label>
     <input
       matInput
-      id="password"
       type="password"
       name="password"
       autocomplete="current-password"
@@ -25,7 +23,6 @@
     <mat-label>{{ "VERIFY_PASSWORD" | translate }}</mat-label>
     <input
       matInput
-      id="verifyPassword"
       type="password"
       [formControl]="addUserForm.controls.verifyPassword"
     />
