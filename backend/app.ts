@@ -25,8 +25,16 @@ mongoose
     console.error("Connection error to MongoDB", error);
   });
 
+const allowedOrigins = [
+  "https://red-coast-04b827a03.5.azurestaticapps.net",
+  "http://localhost:4201",
+];
+
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization, Game-Id, lang"
@@ -37,6 +45,7 @@ app.use((req, res, next) => {
   );
   next();
 });
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
