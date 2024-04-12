@@ -7,7 +7,7 @@ class TrainingCampMapper implements IMapper<ITrainingCamp> {
   constructor() {}
 
   public populate(): PopulateOptions {
-    return null;
+    return "" as unknown as PopulateOptions;
   }
   public map(dto: ITrainingCamp): ITrainingCamp {
     return dto;

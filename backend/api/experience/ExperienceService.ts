@@ -4,7 +4,7 @@ import { ITrainer } from "../trainer/Trainer";
 import evolutionService from "../evolution/EvolutionService";
 import { IPokemonBase } from "../pokemonBase/PokemonBase";
 import MoveLearningService from "../moveLearning/MoveLearningService";
-import { normalRandom } from "../../utils/normalRandomUtils";
+import { normalRandom } from "../../utils/RandomUtils";
 
 const XP_PER_LEVEL = 100000;
 

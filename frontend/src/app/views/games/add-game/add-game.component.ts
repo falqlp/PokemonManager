@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,6 +15,7 @@ import { GameQueriesService } from '../../../services/queries/game-queries.servi
 import { CacheService } from '../../../services/cache.service';
 import { DialogRef } from '@angular/cdk/dialog';
 import { RouterService } from '../../../services/router.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'pm-add-game',
@@ -39,7 +40,8 @@ export class AddGameComponent {
     protected router: RouterService,
     protected gameQueriesService: GameQueriesService,
     protected cacheService: CacheService,
-    protected dialogRef: DialogRef<AddGameComponent>
+    protected dialogRef: DialogRef<AddGameComponent>,
+    protected destroyRef: DestroyRef
   ) {}
 
   protected submit(): void {
@@ -49,9 +51,10 @@ export class AddGameComponent {
     } as GameModel;
     this.gameQueriesService
       .createWithUser(createdGame, this.cacheService.getUserId())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((game) => {
         this.cacheService.setGameId(game._id);
-        this.router.navigateByUrl('home');
+        this.router.navigateByUrl('starters');
         this.dialogRef.close();
       });
   }

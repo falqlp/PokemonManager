@@ -1,0 +1,15 @@
+@import "src/styles/flexbox";
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .starters {
+    display: flex;
+    gap: 20px;
+    &__starter {
+      @include flexbox(center, 2, column);
+      align-items: normal;
+    }
+  }
+}

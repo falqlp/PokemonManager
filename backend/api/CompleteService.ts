@@ -1,5 +1,5 @@
 import ReadOnlyService from "./ReadOnlyService";
-import { Document, Model, UpdateQuery } from "mongoose";
+import { Document, Model, PopulateOptions, UpdateQuery } from "mongoose";
 import { IMapper } from "./IMapper";
 import { IEntity } from "./Entity";
 
@@ -35,7 +35,12 @@ abstract class CompleteService<T extends Document> extends ReadOnlyService<T> {
       if ("createdAt" in newDto) {
         newDto.createdAt = Date.now();
       }
-      return this.mapper.map((await newDto.save()) as T);
+      return this.mapper.map(
+        (await this.schema.populate(
+          await newDto.save(),
+          this.mapper.populate()
+        )) as T
+      );
     } catch (error) {
       return Promise.reject(error);
     }

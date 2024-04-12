@@ -19,4 +19,10 @@ export class PokemonQueriesService extends CompleteQuery<PokemonModel> {
       types
     );
   }
+
+  public getStarters(actualDate: Date): Observable<PokemonModel[]> {
+    return this.http.get<PokemonModel[]>(
+      this.url + '/starters/' + actualDate.toISOString()
+    );
+  }
 }

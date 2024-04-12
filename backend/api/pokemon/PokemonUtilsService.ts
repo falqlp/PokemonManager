@@ -1,6 +1,6 @@
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import { IPokemon } from "./Pokemon";
-import { normalRandom } from "../../utils/normalRandomUtils";
+import { normalRandom } from "../../utils/RandomUtils";
 
 class PokemonUtilsService {
   private static instance: PokemonUtilsService;

@@ -145,6 +145,36 @@ class PokemonService extends CompleteService<IPokemon> {
     );
     return super.delete(_id);
   }
+
+  public async generateStarters(
+    gameId: string,
+    actualDate: Date
+  ): Promise<IPokemon[]> {
+    const pokemonBases = await this.pokemonBaseService.getStartersBase(gameId);
+    const starters: IPokemon[] = [];
+    for (const base of pokemonBases) {
+      const starter: IPokemon = {
+        basePokemon: base,
+        level: 5,
+        potential: 25,
+        exp: 0,
+        iv: this.pokemonUtilsService.generateIvs(),
+        ev: this.pokemonUtilsService.initEvs(),
+        happiness: base.baseHappiness,
+        gameId,
+        trainerId: null,
+        nickname: null,
+        shiny: this.pokemonUtilsService.generateShiny(),
+        birthday: actualDate,
+        hatchingDate: null,
+        age: 1,
+        trainingPercentage: 0,
+        maxLevel: 5,
+      } as IPokemon;
+      starters.push(starter);
+    }
+    return starters;
+  }
 }
 
 export default PokemonService;

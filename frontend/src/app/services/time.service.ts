@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
+import { BehaviorSubject, filter, Observable, of, switchMap } from 'rxjs';
 import { GameQueriesService } from './queries/game-queries.service';
 import { CacheService } from './cache.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -42,7 +42,7 @@ export class TimeService {
   }
 
   public getActualDate(): Observable<Date> {
-    return this.actualDaySubject.asObservable();
+    return this.actualDaySubject.asObservable().pipe(filter((date) => !!date));
   }
 
   public dateToLocalDate(date: Date): string {

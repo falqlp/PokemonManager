@@ -4,9 +4,9 @@ import { IPokemonStats } from "../../../models/PokemonModels/pokemonStats";
 import { IPokemon } from "../../../api/pokemon/Pokemon";
 import { PokemonTestMother } from "./PokemonTestMother";
 import { StatsTestMother } from "../Stats/StatsTestMother";
-import { normalRandom } from "../../../utils/normalRandomUtils";
+import { normalRandom } from "../../../utils/RandomUtils";
 
-jest.mock("../../../utils/normalRandomUtils");
+jest.mock("../../../utils/RandomUtils");
 
 describe("PokemonUtilsService", () => {
   let service: PokemonUtilsService;

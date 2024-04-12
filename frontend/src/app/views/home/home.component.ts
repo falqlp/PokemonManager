@@ -60,9 +60,6 @@ export class HomeComponent implements OnInit {
     this.playerService.player$.subscribe((player) => {
       this.player = player;
     });
-    this.trainerService.get('6496f985f15bc10f660c1958').subscribe((trainer) => {
-      this.opponent = trainer;
-    });
     this.timeService.getActualDate().subscribe((date) => {
       this.actualDate = date;
     });
