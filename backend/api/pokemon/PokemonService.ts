@@ -146,10 +146,9 @@ class PokemonService extends CompleteService<IPokemon> {
     return super.delete(_id);
   }
 
-  public async generateStarters(
-    gameId: string,
-    actualDate: Date
-  ): Promise<IPokemon[]> {
+  public async generateStarters(gameId: string): Promise<IPokemon[]> {
+    const actualDate: Date = (await Game.findById(gameId)).actualDate;
+
     const pokemonBases = await this.pokemonBaseService.getStartersBase(gameId);
     const starters: IPokemon[] = [];
     for (const base of pokemonBases) {

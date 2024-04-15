@@ -1,8 +1,7 @@
 import { Component, DestroyRef, OnInit } from '@angular/core';
 import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
-import { TimeService } from '../../services/time.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { first, switchMap } from 'rxjs';
+import { first } from 'rxjs';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { NgForOf, NgIf } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
@@ -34,7 +33,6 @@ export class StartersComponent implements OnInit {
   protected player: TrainerModel;
   constructor(
     protected pokemonService: PokemonQueriesService,
-    protected timeService: TimeService,
     protected destroyRef: DestroyRef,
     protected matDialog: MatDialog,
     protected playerService: PlayerService,
@@ -48,13 +46,9 @@ export class StartersComponent implements OnInit {
       .subscribe((player) => {
         this.player = player;
       });
-    this.timeService
-      .getActualDate()
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-        first(),
-        switchMap((date) => this.pokemonService.getStarters(date))
-      )
+    this.pokemonService
+      .getStarters()
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((starters: PokemonModel[]) => {
         this.starters = starters;
       });

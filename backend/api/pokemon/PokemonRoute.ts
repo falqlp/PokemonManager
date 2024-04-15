@@ -22,14 +22,10 @@ router.put(
     }
   }
 );
-router.get("/starters/:date", async (req: Request, res: Response) => {
+router.get("/starters", async (req: Request, res: Response) => {
   try {
     const gameId = req.headers["game-id"] as string;
-    res
-      .status(200)
-      .json(
-        await pokemonService.generateStarters(gameId, new Date(req.params.date))
-      );
+    res.status(200).json(await pokemonService.generateStarters(gameId));
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
