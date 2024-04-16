@@ -101,4 +101,5 @@ const i18nService = {
   },
 };
 
-export default i18nService;
+i18nService.checkAndSortLanguageFiles();
+i18nService.translationsToDatabase().then();
