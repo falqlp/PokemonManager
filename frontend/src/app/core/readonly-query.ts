@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { QueryModel } from './query.model';
 import { environment } from '../../environments/environment';
+import { TableResult } from '../components/custom-table/custom-table.model';
 
 export abstract class ReadonlyQuery<T> {
   protected url: string;
@@ -21,7 +22,10 @@ export abstract class ReadonlyQuery<T> {
     return this.http.put<number>(this.url + '/count', query);
   }
 
-  public translateAggregation(query?: QueryModel): Observable<T[]> {
-    return this.http.put<T[]>(this.url + '/translateAggregation', query);
+  public queryTable(query?: QueryModel): Observable<TableResult<T>> {
+    return this.http.put<TableResult<T>>(
+      this.url + '/query-table',
+      query
+    );
   }
 }

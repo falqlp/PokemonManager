@@ -84,10 +84,6 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
         startWith([]),
         switchMap((values) => {
           this.getQueryFromInputs(values);
-          return this.queryService.count(this.query);
-        }),
-        switchMap((count) => {
-          this.paginator.length = count;
           return this.paginator.page.pipe(startWith({}));
         }),
         switchMap(() => {
@@ -99,11 +95,12 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
             skip: this.paginator.pageIndex * this.paginator.pageSize,
             limit: this.paginator.pageSize,
           };
-          return this.queryService.translateAggregation(this.query);
+          return this.queryService.queryTable(this.query);
         })
       )
-      .subscribe((data) => {
-        this.dataSource.data = data;
+      .subscribe((result) => {
+        this.dataSource.data = result.data;
+        this.paginator.length = result.count;
       });
   }
 
@@ -195,10 +192,12 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
             }
             break;
           default:
-            this.query.custom[this.conf.columns[i].search.value] = {
-              $regex: values[i],
-              $options: 'i',
-            };
+            if (values[i] !== '') {
+              this.query.custom[this.conf.columns[i].search.value] = {
+                $regex: values[i],
+                $options: 'i',
+              };
+            }
         }
       }
     }

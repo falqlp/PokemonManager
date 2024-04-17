@@ -22,18 +22,10 @@ class ReadOnlyGlobalRouter<T extends Document> {
         .catch((error: any) => console.log(error));
     });
 
-    this.router.put("/count", (req, res, next) => {
+    this.router.put("/query-table", (req, res, next) => {
       const lang = req.headers["lang"] as string;
       this.service
-        .count(req.body, { lang })
-        .then((obj: any) => res.status(200).json(obj))
-        .catch((error: any) => console.log(error));
-    });
-
-    this.router.put("/translateAggregation", (req, res, next) => {
-      const lang = req.headers["lang"] as string;
-      this.service
-        .translateAggregation(req.body, { lang })
+        .queryTable(req.body, { lang })
         .then((obj: any) => res.status(200).json(obj))
         .catch((error: any) => console.log(error));
     });

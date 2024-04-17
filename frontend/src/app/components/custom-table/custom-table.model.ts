@@ -23,3 +23,8 @@ export interface TableConfModel {
   }[];
   defaultPageSize?: number;
 }
+
+export interface TableResult<T> {
+  data: T[];
+  count: number;
+}

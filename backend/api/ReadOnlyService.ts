@@ -10,6 +10,11 @@ export interface ListBody {
   skip?: number;
 }
 
+export interface TableResult<T> {
+  data: T[];
+  count: number;
+}
+
 abstract class ReadOnlyService<T extends Document> {
   constructor(protected schema: Model<T>, protected mapper: IMapper<T>) {}
 
@@ -76,14 +81,14 @@ abstract class ReadOnlyService<T extends Document> {
     }
   }
 
-  async translateAggregation(
+  async queryTable(
     body: ListBody,
     options?: {
       gameId?: string;
       lang?: string;
       map?: (entity: T) => Promise<T> | T;
     }
-  ): Promise<T[]> {
+  ): Promise<TableResult<T>> {
     try {
       const query = { ...body.custom };
       const translateQuery: Record<string, unknown> = {};
@@ -119,18 +124,26 @@ abstract class ReadOnlyService<T extends Document> {
         aggregation,
         nonTranslateQuery,
         translateQuery,
+        Object.keys(body.sort)[0],
         options
       );
       if (Object.keys(sortQuery).length > 0) {
         // @ts-ignore
         aggregation.sort(sortQuery);
       }
-      if (body.skip) {
-        aggregation.skip(body.skip);
-      }
-      aggregation.limit(body.limit || 0);
-      const dtos = (await aggregation) as T[];
-      dtos.forEach((dto) => {
+      aggregation.facet({
+        data: [
+          {$skip: body.skip ?? 0},
+          {$limit: body.limit ?? 0},
+        ],
+        totalCount: [ { $count: 'total' }]
+      })
+      aggregation.project({
+        data: 1,
+        count: { $ifNull: [ { $arrayElemAt: ["$totalCount.total", 0] }, 0 ] }
+      })
+      const result = (await aggregation)[0] as TableResult<T>;
+      result.data?.forEach((dto) => {
         Object.keys(dto).forEach((key) => {
           if (key.startsWith("query")) {
             delete (dto as any)[key];
@@ -138,46 +151,12 @@ abstract class ReadOnlyService<T extends Document> {
         });
       });
       if (this.mapper.populate()) {
-        await this.schema.populate(dtos, this.mapper.populate());
+        await this.schema.populate(result, this.mapper.populate());
       }
-      return await Promise.all(
-        dtos.map(async (dto) => {
-          return options?.map ? options.map(dto) : this.mapper.map(dto);
-        })
-      );
-    } catch (error) {
-      return Promise.reject(error);
-    }
-  }
-
-  async count(
-    body: ListBody,
-    options?: {
-      gameId?: string;
-      lang?: string;
-      map?: (entity: T) => Promise<T> | T;
-    }
-  ): Promise<number> {
-    try {
-      const query = { ...body.custom };
-      const translateQuery: Record<string, unknown> = {};
-      const nonTranslateQuery: Record<string, unknown> = {};
-      const aggregation = this.schema.aggregate([]);
-
-      this.getTranslateAndNonTranslateQuery(
-        query,
-        translateQuery,
-        nonTranslateQuery,
-        aggregation,
-        options
-      );
-      this.getTranslatedData(
-        aggregation,
-        nonTranslateQuery,
-        translateQuery,
-        options
-      );
-      return (await aggregation).length;
+      result.data?.map(async (dto) => {
+        return options?.map ? options.map(dto) : this.mapper.map(dto);
+      })
+      return result;
     } catch (error) {
       return Promise.reject(error);
     }
@@ -187,27 +166,34 @@ abstract class ReadOnlyService<T extends Document> {
     aggregation: Aggregate<Array<any>>,
     nonTranslateQuery: Record<string, unknown>,
     translateQuery: Record<string, unknown>,
+    sortKey:string,
     options: {
       gameId?: string;
       lang?: string;
       map?: (entity: T) => Promise<T> | T;
     }
   ) {
-    aggregation.match(nonTranslateQuery);
+    if (Object.keys(nonTranslateQuery).length > 0) {
+      aggregation.match(nonTranslateQuery);
+    }
     let modifiedTranslateQuery: Record<string, unknown> = {};
     Object.keys(translateQuery).forEach((key) => {
       const newKey = key + "." + options.lang;
       modifiedTranslateQuery[newKey] = translateQuery[key];
       const splitMatch = key.split(".");
-      aggregation.lookup({
-        from: "translations",
-        localField: splitMatch[1],
-        foreignField: "key",
-        as: "translation." + splitMatch[1],
-      });
-      aggregation.collation({ locale: options.lang, strength: 1 });
+      if (key !== sortKey) {
+        aggregation.lookup({
+          from: "translations",
+          localField: splitMatch[1],
+          foreignField: "key",
+          as: "translation." + splitMatch[1],
+        });
+        aggregation.collation({locale: options.lang, strength: 1});
+      }
     });
-    aggregation.match(modifiedTranslateQuery);
+    if (Object.keys(modifiedTranslateQuery).length > 0) {
+      aggregation.match(modifiedTranslateQuery);
+    }
   }
 
   private getTranslateAndNonTranslateQuery(

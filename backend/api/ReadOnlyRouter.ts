@@ -24,19 +24,11 @@ abstract class ReadOnlyRouter<T extends Document> {
         .catch((error: any) => console.log(error));
     });
 
-    this.router.put("/count", (req, res, next) => {
-      const gameId = req.headers["game-id"] as string;
-      this.service
-        .count(req.body, { gameId })
-        .then((obj: any) => res.status(200).json(obj))
-        .catch((error: any) => console.log(error));
-    });
-
-    this.router.put("/translateAggregation", (req, res, next) => {
+    this.router.put("/guery-table", (req, res, next) => {
       const gameId = req.headers["game-id"] as string;
       const lang = req.headers["lang"] as string;
       this.service
-        .translateAggregation(req.body, { gameId, lang })
+        .queryTable(req.body, { gameId, lang })
         .then((obj: any) => res.status(200).json(obj))
         .catch((error: any) => console.log(error));
     });
