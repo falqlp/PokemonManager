@@ -1,6 +1,6 @@
-import TrainerService from "../trainer/TrainerService";
+import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import { IPokemon } from "../pokemon/Pokemon";
-import { ITrainer } from "../trainer/Trainer";
+import { ITrainer } from "../../domain/trainer/Trainer";
 import evolutionService from "../../domain/evolution/EvolutionRepository";
 import { IPokemonBase } from "../pokemonBase/PokemonBase";
 import MoveLearningRepository from "../../domain/moveLearning/MoveLearningRepository";
@@ -15,7 +15,7 @@ class ExperienceService {
   public static getInstance(): ExperienceService {
     if (!ExperienceService.instance) {
       ExperienceService.instance = new ExperienceService(
-        TrainerService.getInstance(),
+        TrainerRepository.getInstance(),
           MoveLearningService.getInstance(),
         EvolutionRepository.getInstance()
       );
@@ -24,7 +24,7 @@ class ExperienceService {
   }
 
   constructor(
-    protected trainerService: TrainerService,
+    protected trainerService: TrainerRepository,
     protected moveLearningService: MoveLearningService,
     protected evolutionRepository:EvolutionRepository
   ) {}

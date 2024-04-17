@@ -2,9 +2,9 @@ import CompleteService from "../CompleteService";
 import Game, { IGame } from "./Game";
 import GameMapper from "./GameMapper";
 import { Model } from "mongoose";
-import TrainerService from "../trainer/TrainerService";
+import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import User from "../user/User";
-import Trainer from "../trainer/Trainer";
+import Trainer from "../../domain/trainer/Trainer";
 import Pokemon from "../pokemon/Pokemon";
 import TrainingCamp from "../trainingCamp/TrainingCamp";
 import Battle from "../battle-instance/Battle";
@@ -17,7 +17,7 @@ class GameService extends CompleteService<IGame> {
   constructor(
     schema: Model<IGame>,
     mapper: GameMapper,
-    protected trainerService: TrainerService
+    protected trainerService: TrainerRepository
   ) {
     super(schema, mapper);
   }
@@ -26,7 +26,7 @@ class GameService extends CompleteService<IGame> {
       GameService.instance = new GameService(
         Game,
         GameMapper.getInstance(),
-        TrainerService.getInstance()
+        TrainerRepository.getInstance()
       );
     }
     return GameService.instance;

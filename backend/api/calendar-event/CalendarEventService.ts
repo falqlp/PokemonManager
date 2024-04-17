@@ -5,13 +5,14 @@ import CalendarEvent, {
 } from "./CalendarEvent";
 import CalendarEventMapper from "./CalendarEventMapper";
 import BattleInstanceService from "../battle-instance/BattleInstanceService";
-import { ITrainer } from "../trainer/Trainer";
+import { ITrainer } from "../../domain/trainer/Trainer";
 import { IBattleInstance } from "../battle-instance/Battle";
 import GameService from "../game/GameService";
 import PokemonService from "../pokemon/PokemonService";
 import NurseryService from "../nursery/NurseryService";
 import { notify } from "../../websocketServer";
-import TrainerService from "../trainer/TrainerService";
+import TrainerRepository from "../../domain/trainer/TrainerRepository";
+import TrainerService from "../../application/trainer/TrainerService";
 
 class CalendarEventService extends CompleteService<ICalendarEvent> {
   private static instance: CalendarEventService;
@@ -21,6 +22,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
     protected gameService: GameService,
     protected pokemonService: PokemonService,
     protected nurseryService: NurseryService,
+    protected trainerRepository: TrainerRepository,
     protected trainerService: TrainerService
   ) {
     super(CalendarEvent, CalendarEventMapper.getInstance());
@@ -32,6 +34,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
         GameService.getInstance(),
         PokemonService.getInstance(),
         NurseryService.getInstance(),
+        TrainerRepository.getInstance(),
         TrainerService.getInstance()
       );
     }
@@ -104,7 +107,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
       (event) => event.type === CalendarEventEvent.BATTLE && !event.event.winner
     )?.event;
 
-    const trainer = await this.trainerService.getComplete(trainerId);
+    const trainer = await this.trainerRepository.getComplete(trainerId);
     if (!battle) {
       redirectTo = await this.nurseryEvents(
         events,

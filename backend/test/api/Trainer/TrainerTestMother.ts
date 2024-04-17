@@ -1,4 +1,4 @@
-import { ITrainer } from "../../../api/trainer/Trainer";
+import { ITrainer } from "../../../domain/trainer/Trainer";
 import { PokemonTestMother } from "../pokemon/PokemonTestMother";
 import { PcStorageTestMother } from "../PcStorage/PcStorageTestMother";
 import { TrainingCampTestMother } from "../TrainingCamp/TrainingCampTestMother";
