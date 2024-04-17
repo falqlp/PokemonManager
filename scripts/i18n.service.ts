@@ -68,7 +68,8 @@ const i18nService = {
         .connect()
         .then(async (client) => {
           const Db = client.db("PokemonManager");
-          const collection = Db.collection("translations");
+          const translation = Db.collection("translations");
+          const pokemonbases = Db.collection("pokemonbases");
 
           try {
             const [translationsEn, translationsFr]: Record<string, any>[] =
@@ -76,15 +77,15 @@ const i18nService = {
                 readJsonFile(jsonFilePathEn),
                 readJsonFile(jsonFilePathFr),
               ]);
-
-            const updatePromises = Object.keys(translationsEn).map((key) => {
+            const pokemons = await pokemonbases.find({}).toArray();
+            const updatePromises = pokemons.map((pokemon) => {
               const updateDoc = {
                 $set: {
-                  en: translationsEn[key],
-                  fr: translationsFr[key],
+                  en: translationsEn[pokemon.name],
+                  fr: translationsFr[pokemon.name],
                 },
               };
-              return collection.updateOne({ key }, updateDoc, { upsert: true });
+              return translation.updateOne({ key: pokemon.name }, updateDoc, { upsert: true });
             });
 
             await Promise.all(updatePromises);
