@@ -23,9 +23,6 @@ export abstract class ReadonlyQuery<T> {
   }
 
   public queryTable(query?: QueryModel): Observable<TableResult<T>> {
-    return this.http.put<TableResult<T>>(
-      this.url + '/query-table',
-      query
-    );
+    return this.http.put<TableResult<T>>(this.url + '/query-table', query);
   }
 }
