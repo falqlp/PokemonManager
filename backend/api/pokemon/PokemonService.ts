@@ -1,5 +1,5 @@
 import Pokemon, { IPokemon } from "./Pokemon";
-import Trainer from "../trainer/Trainer";
+import Trainer from "../../domain/trainer/Trainer";
 import CompleteService from "../CompleteService";
 import PokemonMapper from "./PokemonMapper";
 import { ListBody } from "../ReadOnlyService";

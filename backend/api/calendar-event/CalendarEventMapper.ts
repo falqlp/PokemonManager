@@ -2,8 +2,8 @@ import { IMapper } from "../IMapper";
 import { CalendarEventEvent, ICalendarEvent } from "./CalendarEvent";
 import { PopulateOptions } from "mongoose";
 import Battle from "../battle-instance/Battle";
-import Trainer from "../trainer/Trainer";
-import TrainerMapper from "../trainer/TrainerMapper";
+import Trainer from "../../domain/trainer/Trainer";
+import TrainerMapper from "../../domain/trainer/TrainerMapper";
 import BattleInstanceMapper from "../battle-instance/BattleInstanceMapper";
 
 class CalendarEventMapper implements IMapper<ICalendarEvent> {

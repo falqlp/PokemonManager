@@ -1,6 +1,6 @@
 import { TrainerTestMother } from "../Trainer/TrainerTestMother";
 import { IGame } from "../../../api/game/Game";
-import { ITrainer } from "../../../api/trainer/Trainer";
+import { ITrainer } from "../../../domain/trainer/Trainer";
 
 export class GameTestMother {
   static basicGame(): IGame {

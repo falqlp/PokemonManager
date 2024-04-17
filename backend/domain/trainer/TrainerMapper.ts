@@ -1,19 +1,21 @@
 import trainer, { ITrainer } from "./Trainer";
-import { IMapper } from "../IMapper";
-import PokemonService from "../pokemon/PokemonService";
-import TrainingCampService from "../trainingCamp/TrainingCampService";
-import PcStorageService from "../pcStorage/PcStorageService";
+import { IMapper } from "../../api/IMapper";
+import PokemonService from "../../api/pokemon/PokemonService";
+import TrainingCampService from "../../api/trainingCamp/TrainingCampService";
+import PcStorageService from "../../api/pcStorage/PcStorageService";
 import { updatePlayer } from "../../websocketServer";
-import TrainingCamp, { ITrainingCamp } from "../trainingCamp/TrainingCamp";
-import NurseryService from "../nursery/NurseryService";
+import TrainingCamp, {
+  ITrainingCamp,
+} from "../../api/trainingCamp/TrainingCamp";
+import NurseryService from "../../api/nursery/NurseryService";
 import { PopulateOptions } from "mongoose";
-import Pokemon from "../pokemon/Pokemon";
-import PokemonMapper from "../pokemon/PokemonMapper";
-import PcStorage from "../pcStorage/PcStorage";
-import PcStorageMapper from "../pcStorage/PcStorageMapper";
-import TrainingCampMapper from "../trainingCamp/TrainingCampMapper";
-import Nursery from "../nursery/Nursery";
-import NurseryMapper from "../nursery/NurseryMapper";
+import Pokemon from "../../api/pokemon/Pokemon";
+import PokemonMapper from "../../api/pokemon/PokemonMapper";
+import PcStorage from "../../api/pcStorage/PcStorage";
+import PcStorageMapper from "../../api/pcStorage/PcStorageMapper";
+import TrainingCampMapper from "../../api/trainingCamp/TrainingCampMapper";
+import Nursery from "../../api/nursery/Nursery";
+import NurseryMapper from "../../api/nursery/NurseryMapper";
 
 class TrainerMapper implements IMapper<ITrainer> {
   private static instance: TrainerMapper;

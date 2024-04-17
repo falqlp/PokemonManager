@@ -1,8 +1,8 @@
 import { IMapper } from "../IMapper";
 import { IGame } from "./Game";
 import { PopulateOptions } from "mongoose";
-import Trainer from "../trainer/Trainer";
-import TrainerMapper from "../trainer/TrainerMapper";
+import Trainer from "../../domain/trainer/Trainer";
+import TrainerMapper from "../../domain/trainer/TrainerMapper";
 
 class GameMapper implements IMapper<IGame> {
   private static instance: GameMapper;
