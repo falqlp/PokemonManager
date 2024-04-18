@@ -3,7 +3,7 @@ import { DQN } from "./DQN";
 import { Environement } from "./environement";
 import TrainerService from "../backend/api/trainer/TrainerService";
 import { ITrainer } from "../backend/api/trainer/Trainer";
-import { IBattleTrainer } from "../backend/api/battle/BattleInterfaces";
+import { IBattleTrainer } from "../backend/application/battle/BattleInterfaces";
 import { prepareEnvironmentState } from "./prepare-state";
 import mongoose from "mongoose";
 

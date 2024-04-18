@@ -1,5 +1,5 @@
-import { IPokemon } from "../pokemon/Pokemon";
-import { IMove } from "../move/Move";
+import { IPokemon } from "../../api/pokemon/Pokemon";
+import { IMove } from "../../api/move/Move";
 import { Effectiveness, IDamage } from "./BattleInterfaces";
 
 export const TYPE_EFFECTIVENESS: { [key: string]: { [key: string]: number } } =
@@ -134,7 +134,15 @@ const STAB_MODIFIER = 1.5;
 const MIN_ROLL = 0.85;
 const TURN_TIME_MS = 500;
 
-const BattleCalcService = {
+class BattleCalcService {
+  private static instance: BattleCalcService;
+
+  public static getInstance(): BattleCalcService {
+    if (!BattleCalcService.instance) {
+      BattleCalcService.instance = new BattleCalcService();
+    }
+    return BattleCalcService.instance;
+  }
   calcDamage(attPokemon: IPokemon, defPokemon: IPokemon, move: IMove): IDamage {
     if (attPokemon.currentHp === 0 || move === undefined) {
       return;
@@ -158,7 +166,7 @@ const BattleCalcService = {
       missed,
       animation,
     };
-  },
+  }
 
   calcDamageBase(attPokemon: IPokemon, defPokemon: IPokemon, move: IMove) {
     if (move.category === "status" || move.power === 0) {
@@ -178,7 +186,7 @@ const BattleCalcService = {
         2) /
       10
     );
-  },
+  }
 
   calcEffectiveness(move: IMove, defPokemon: IPokemon) {
     let modifier = 1;
@@ -188,7 +196,7 @@ const BattleCalcService = {
       }
     });
     return modifier;
-  },
+  }
 
   getEffectiveness(effectiveness: number): Effectiveness {
     if (effectiveness === 0) {
@@ -199,7 +207,7 @@ const BattleCalcService = {
       return "SUPER_EFFECTIVE";
     }
     return "EFFECTIVE";
-  },
+  }
 
   stab(move: IMove, attPokemon: IPokemon) {
     let modifier = 1;
@@ -209,36 +217,36 @@ const BattleCalcService = {
       }
     });
     return modifier;
-  },
+  }
 
   criticalHit(attPokemon: IPokemon) {
     return this.criticalHitProbability()
       ? this.criticalHitDamage(attPokemon)
       : 1;
-  },
+  }
 
   criticalHitDamage(attPokemon: IPokemon) {
     return (2 * attPokemon.level + 5) / (attPokemon.level + 5);
-  },
+  }
 
   criticalHitProbability() {
     return Math.floor(Math.random() * 24) === 0;
-  },
+  }
 
   roll() {
     return Math.random() * (1 - MIN_ROLL) + MIN_ROLL;
-  },
+  }
 
   damageOnPokemon(pokemon: IPokemon, damage: IDamage) {
     return Math.max(
       0,
       Math.round((pokemon.currentHp - (damage ? damage.damage : 0)) * 10) / 10
     );
-  },
+  }
 
   moveOnTarget(move: IMove) {
     return Math.random() > move.accuracy / 100;
-  },
+  }
 
   estimator(attPokemon: IPokemon, defPokemon: IPokemon, move: IMove) {
     if (!move) {
@@ -250,12 +258,12 @@ const BattleCalcService = {
       this.stab(move, attPokemon) *
       (move.accuracy / 100)
     );
-  },
+  }
   getCooldownMs(pokemon: IPokemon) {
     return 6 + 200 / Math.sqrt(pokemon.stats["spe"]);
-  },
+  }
   getCooldownTurn(pokemon: IPokemon) {
     return Math.ceil((this.getCooldownMs(pokemon) * 100) / TURN_TIME_MS);
-  },
-};
+  }
+}
 export default BattleCalcService;

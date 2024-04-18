@@ -1,9 +1,20 @@
 import { IBattleTrainer } from "./BattleInterfaces";
+import BattleCalcService from "./BattleCalcService";
+import BattleAiService from "./BattleAiService";
 
-import battleCalcService from "./BattleCalcService";
-import battleAiService from "./BattleAiService";
+class BattleService {
+  private static instance: BattleService;
 
-const BattleService = {
+  public static getInstance(): BattleService {
+    if (!BattleService.instance) {
+      BattleService.instance = new BattleService(BattleCalcService.getInstance(), BattleAiService.getInstance());
+    }
+    return BattleService.instance;
+  }
+
+  constructor(protected battleCalcService:BattleCalcService, protected battleAiService:BattleAiService) {
+  }
+
   simulateBattleRound(trainer1: IBattleTrainer, trainer2: IBattleTrainer) {
     [trainer1, trainer2] = this.initializeTrainers(trainer1, trainer2);
     this.decreseCooldown(trainer1);
@@ -15,32 +26,32 @@ const BattleService = {
     this.checkPokemonKo(trainer1);
     this.checkPokemonKo(trainer2);
     return { trainer1, trainer2 };
-  },
+  }
   initializeTrainers(trainer1: IBattleTrainer, trainer2: IBattleTrainer) {
     trainer1.onKo = trainer2.onKo = false;
     trainer1.damage = trainer2.damage = null;
     return [trainer1, trainer2];
-  },
+  }
   processDamage(trainer1: IBattleTrainer, trainer2: IBattleTrainer) {
-    trainer1.damage = battleCalcService.calcDamage(
+    trainer1.damage = this.battleCalcService.calcDamage(
       trainer2.pokemons[0],
       trainer1.pokemons[0],
       trainer2.selectedMove
     );
-    trainer2.damage = battleCalcService.calcDamage(
+    trainer2.damage = this.battleCalcService.calcDamage(
       trainer1.pokemons[0],
       trainer2.pokemons[0],
       trainer1.selectedMove
     );
-    trainer1.pokemons[0].currentHp = battleCalcService.damageOnPokemon(
+    trainer1.pokemons[0].currentHp = this.battleCalcService.damageOnPokemon(
       trainer1.pokemons[0],
       trainer1.damage
     );
-    trainer2.pokemons[0].currentHp = battleCalcService.damageOnPokemon(
+    trainer2.pokemons[0].currentHp = this.battleCalcService.damageOnPokemon(
       trainer2.pokemons[0],
       trainer2.damage
     );
-  },
+  }
   checkPokemonKo(trainer: IBattleTrainer) {
     if (trainer.pokemons[0].currentHp === 0) {
       trainer.onKo = true;
@@ -51,17 +62,17 @@ const BattleService = {
         trainer.autorizations = this.resetCooldowns();
       }
     }
-  },
+  }
   resetCooldowns() {
     return {
       pokemonCooldown: 0,
       moveCooldown: 0,
       updateCooldown: 0,
     };
-  },
+  }
   updateDecision(trainer1: IBattleTrainer, trainer2: IBattleTrainer) {
     if (trainer1.autorizations.updateCooldown === 0 && !trainer1.isAI) {
-      trainer1.decision = battleAiService.decisionMaking(
+      trainer1.decision = this.battleAiService.decisionMaking(
         trainer2.pokemons[0],
         trainer2.selectedMove,
         trainer1.pokemons
@@ -69,18 +80,18 @@ const BattleService = {
     }
     if (trainer2.autorizations.updateCooldown === 0) {
       trainer2.decision =
-        battleAiService.decisionMaking(
+          this.battleAiService.decisionMaking(
           trainer1.pokemons[0],
           trainer1.selectedMove,
           trainer2.pokemons
         ) ?? trainer2.decision;
     }
-  },
+  }
   applyDecision(trainer: IBattleTrainer, opponent: IBattleTrainer) {
     trainer = this.changePokemon(trainer, opponent);
     trainer = this.moveChange(trainer, opponent);
     return trainer;
-  },
+  }
 
   moveChange(trainer: IBattleTrainer, opp: IBattleTrainer) {
     if (
@@ -90,12 +101,12 @@ const BattleService = {
     ) {
       trainer.selectedMove = trainer.decision.move;
       opp.autorizations.updateCooldown = 3;
-      trainer.autorizations.moveCooldown = battleCalcService.getCooldownTurn(
+      trainer.autorizations.moveCooldown = this.battleCalcService.getCooldownTurn(
         trainer.pokemons[0]
       );
     }
     return trainer;
-  },
+  }
 
   changePokemon(trainer: IBattleTrainer, opp: IBattleTrainer) {
     if (
@@ -108,13 +119,13 @@ const BattleService = {
       opp.autorizations.updateCooldown = 3;
       trainer.autorizations.pokemonCooldown = trainer.onKo
         ? 0
-        : battleCalcService.getCooldownTurn(trainer.pokemons[0]);
+        : this.battleCalcService.getCooldownTurn(trainer.pokemons[0]);
       trainer.autorizations.moveCooldown = trainer.onKo
         ? 0
-        : battleCalcService.getCooldownTurn(trainer.pokemons[0]);
+        : this.battleCalcService.getCooldownTurn(trainer.pokemons[0]);
     }
     return trainer;
-  },
+  }
 
   onChangePokemon(trainer: IBattleTrainer) {
     const pokemons = trainer.pokemons;
@@ -130,7 +141,7 @@ const BattleService = {
     pokemons[0] = newLeadingPokemon;
     pokemons[0].currentHp = newLeadingPokemon.currentHp;
     return pokemons;
-  },
+  }
 
   decreseCooldown(trainer: IBattleTrainer) {
     if (trainer.autorizations.moveCooldown > 0) {
@@ -142,6 +153,6 @@ const BattleService = {
     if (trainer.autorizations.updateCooldown > 0) {
       trainer.autorizations.updateCooldown -= 1;
     }
-  },
-};
+  }
+}
 export default BattleService;

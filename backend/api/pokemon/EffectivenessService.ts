@@ -1,4 +1,4 @@
-import { TYPE_EFFECTIVENESS } from "../battle/BattleCalcService";
+import { TYPE_EFFECTIVENESS } from "../../application/battle/BattleCalcService";
 import { PokemonType } from "../../models/Types/Types";
 
 class EffectivenessService {

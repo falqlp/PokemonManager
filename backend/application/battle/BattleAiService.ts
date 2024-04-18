@@ -1,9 +1,17 @@
 import battleService from "./BattleCalcService";
-import { IPokemon } from "../pokemon/Pokemon";
-import { IMove } from "../move/Move";
-const ROUND_TIME_MS = 500;
+import { IPokemon } from "../../api/pokemon/Pokemon";
+import { IMove } from "../../api/move/Move";
 
-const BattleAiService = {
+class BattleAiService  {
+  private static instance: BattleAiService;
+
+  public static getInstance(): BattleAiService {
+    if (!BattleAiService.instance) {
+      BattleAiService.instance = new BattleAiService();
+    }
+    return BattleAiService.instance;
+  }
+
   decisionMaking(
     opponentPokemon: IPokemon,
     selectedMove: IMove,
@@ -44,7 +52,7 @@ const BattleAiService = {
       }
     });
     return decision;
-  },
+  };
 
   noSelectedMoveDecision(pokemon: IPokemon, oppPokemon: IPokemon) {
     let maxDamage = 0;
@@ -57,7 +65,7 @@ const BattleAiService = {
       }
     });
     return { pokemon, move: bestMove };
-  },
+  }
 
   getDamageBeforeKO(
     pokemon: IPokemon,
@@ -68,12 +76,12 @@ const BattleAiService = {
     return Math.abs(
       Math.ceil((pokemon.currentHp - changeDamage) / opponentDamage) * damage
     );
-  },
+  };
   getChangeDamage(pokemons: IPokemon[], pokemon: IPokemon, edp: number) {
     if (pokemon._id === pokemons[0]._id) {
       return 0;
     }
     return battleService.getCooldownTurn(pokemon) * edp;
-  },
-};
+  };
+}
 export default BattleAiService;

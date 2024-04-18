@@ -1,6 +1,7 @@
 import express from "express";
+import BattleService from "../../application/battle/BattleService";
 const router = express.Router();
-import battleService from "./BattleService";
+const battleService = BattleService.getInstance()
 
 router.post("/simulateBattleRound", (req, res, next) => {
   const round = battleService.simulateBattleRound(
