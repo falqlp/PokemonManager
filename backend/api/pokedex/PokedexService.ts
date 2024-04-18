@@ -1,12 +1,9 @@
-import evolutionService from "../evolution/EvolutionService";
 import PokemonBaseService from "../pokemonBase/PokemonBaseService";
 import { IPokemonBase } from "../pokemonBase/PokemonBase";
 import { IPokedex, IPokedexEvolution, IPokedexMoveLearned } from "./Pokedex";
 import MoveLearningService from "../moveLearning/MoveLearningService";
 import MoveService from "../move/MoveService";
-import moveLearning from "../moveLearning/MoveLearning";
-import move from "../move/Move";
-import moveService from "../move/MoveService";
+import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 
 export class PokedexService {
   public static getInstance(): PokedexService {
@@ -14,7 +11,8 @@ export class PokedexService {
       PokedexService.instance = new PokedexService(
         PokemonBaseService.getInstance(),
         MoveLearningService.getInstance(),
-        MoveService.getInstance()
+        MoveService.getInstance(),
+        EvolutionRepository.getInstance()
       );
     }
     return PokedexService.instance;
@@ -23,7 +21,8 @@ export class PokedexService {
   constructor(
     protected pokemonBaseService: PokemonBaseService,
     protected moveLearningService: MoveLearningService,
-    protected moveService: MoveService
+    protected moveService: MoveService,
+    protected evolutionRepository:EvolutionRepository
   ) {}
   public async getPokemonDetails(pokemonId: number): Promise<IPokedex> {
     const evolutions = await this.getEvolutions(pokemonId);
@@ -43,7 +42,7 @@ export class PokedexService {
     pokemonId: number
   ): Promise<IPokedexEvolution[]> {
     const evolutions: IPokedexEvolution[] = [];
-    const hasEvolutions = await evolutionService.hasEvolution(pokemonId);
+    const hasEvolutions = await this.evolutionRepository.hasEvolution(pokemonId);
     for (const evolution of hasEvolutions) {
       evolutions.push({
         pokemon: await this.pokemonBaseService.getPokemonBaseById(
@@ -52,7 +51,7 @@ export class PokedexService {
         evolutionMethod: evolution.evolutionMethod,
         minLevel: evolution.minLevel,
       });
-      const hasEvolutions2 = await evolutionService.hasEvolution(
+      const hasEvolutions2 = await this.evolutionRepository.hasEvolution(
         evolution.evolveTo
       );
       for (const evolution2 of hasEvolutions2) {
@@ -71,7 +70,7 @@ export class PokedexService {
     pokemonId: number
   ): Promise<IPokedexEvolution[]> {
     const evolutionOf: IPokedexEvolution[] = [];
-    const isEvolution = await evolutionService.isEvolution(pokemonId);
+    const isEvolution = await this.evolutionRepository.isEvolution(pokemonId);
     if (isEvolution) {
       evolutionOf.push({
         pokemon: await this.pokemonBaseService.getPokemonBaseById(
@@ -80,7 +79,7 @@ export class PokedexService {
         evolutionMethod: isEvolution.evolutionMethod,
         minLevel: isEvolution.minLevel,
       });
-      const isEvolution2 = await evolutionService.isEvolution(
+      const isEvolution2 = await this.evolutionRepository.isEvolution(
         isEvolution.pokemonId
       );
       if (isEvolution2) {

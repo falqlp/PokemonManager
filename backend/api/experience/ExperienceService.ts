@@ -1,10 +1,11 @@
 import TrainerService from "../trainer/TrainerService";
 import { IPokemon } from "../pokemon/Pokemon";
 import { ITrainer } from "../trainer/Trainer";
-import evolutionService from "../evolution/EvolutionService";
+import evolutionService from "../../domain/evolution/EvolutionRepository";
 import { IPokemonBase } from "../pokemonBase/PokemonBase";
 import MoveLearningService from "../moveLearning/MoveLearningService";
 import { normalRandom } from "../../utils/RandomUtils";
+import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 
 const XP_PER_LEVEL = 100000;
 
@@ -14,7 +15,8 @@ class ExperienceService {
     if (!ExperienceService.instance) {
       ExperienceService.instance = new ExperienceService(
         TrainerService.getInstance(),
-        MoveLearningService.getInstance()
+        MoveLearningService.getInstance(),
+        EvolutionRepository.getInstance()
       );
     }
     return ExperienceService.instance;
@@ -22,7 +24,8 @@ class ExperienceService {
 
   constructor(
     protected trainerService: TrainerService,
-    protected moveLearningService: MoveLearningService
+    protected moveLearningService: MoveLearningService,
+    protected evolutionRepository:EvolutionRepository
   ) {}
   public async weeklyXpGain(trainerId: string): Promise<{
     trainer: ITrainer;
@@ -94,7 +97,7 @@ class ExperienceService {
         pokemon.maxLevel = pokemon.level;
         await this.moveLearningService.newMoveLearned(pokemon);
       }
-      const evolution = await evolutionService.evolve(
+      const evolution = await this.evolutionRepository.evolve(
         pokemon.basePokemon.id,
         pokemon.level,
         "LEVEL-UP"

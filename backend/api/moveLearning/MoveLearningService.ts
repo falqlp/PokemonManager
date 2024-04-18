@@ -1,13 +1,13 @@
 import MoveLearning, { IMoveLearning } from "./MoveLearning";
 import MoveService from "../move/MoveService";
-import evolutionService from "../evolution/EvolutionService";
 import { IPokemon } from "../pokemon/Pokemon";
 import { notifyNewMoveLearned } from "../../websocketServer";
 import { ListBody } from "../ReadOnlyService";
+import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 
 class MoveLearningService {
   private static instance: MoveLearningService;
-  constructor(protected moveService: MoveService) {}
+  constructor(protected moveService: MoveService, protected evolutionRepository:EvolutionRepository) {}
 
   async newMoveLearned(pokemon: IPokemon): Promise<void> {
     MoveLearning.find({
@@ -38,7 +38,7 @@ class MoveLearningService {
       learnMethod: "LEVEL-UP",
     });
 
-    const evolution = await evolutionService.isEvolution(id);
+    const evolution = await this.evolutionRepository.isEvolution(id);
 
     if (evolution !== null && evolution.minLevel) {
       const moveLearn2: IMoveLearning[] = await MoveLearning.find({
@@ -75,7 +75,8 @@ class MoveLearningService {
   public static getInstance(): MoveLearningService {
     if (!MoveLearningService.instance) {
       MoveLearningService.instance = new MoveLearningService(
-        MoveService.getInstance()
+        MoveService.getInstance(),
+        EvolutionRepository.getInstance()
       );
     }
     return MoveLearningService.instance;

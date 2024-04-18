@@ -2,7 +2,7 @@ import PokemonBase from "./api/pokemonBase/PokemonBase";
 
 const axios = require("axios");
 import Move from "./api/move/Move";
-import Evolution from "./api/evolution/Evolution";
+import Evolution from "./domain/evolution/Evolution";
 const MoveLearning = require("./api/moveLearning/MoveLearning");
 const { response } = require("express");
 const fs = require("fs");
