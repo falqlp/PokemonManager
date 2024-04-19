@@ -1,9 +1,10 @@
 import PokemonBaseService from "../pokemonBase/PokemonBaseService";
 import { IPokemonBase } from "../pokemonBase/PokemonBase";
 import { IPokedex, IPokedexEvolution, IPokedexMoveLearned } from "./Pokedex";
-import MoveLearningService from "../moveLearning/MoveLearningService";
+import MoveLearningRepository from "../../domain/moveLearning/MoveLearningRepository";
 import MoveService from "../move/MoveService";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
+import MoveLearningService from "../../application/moveLearning/MoveLearningService";
 
 export class PokedexService {
   public static getInstance(): PokedexService {
@@ -22,7 +23,7 @@ export class PokedexService {
     protected pokemonBaseService: PokemonBaseService,
     protected moveLearningService: MoveLearningService,
     protected moveService: MoveService,
-    protected evolutionRepository:EvolutionRepository
+    protected evolutionRepository: EvolutionRepository
   ) {}
   public async getPokemonDetails(pokemonId: number): Promise<IPokedex> {
     const evolutions = await this.getEvolutions(pokemonId);
@@ -42,7 +43,9 @@ export class PokedexService {
     pokemonId: number
   ): Promise<IPokedexEvolution[]> {
     const evolutions: IPokedexEvolution[] = [];
-    const hasEvolutions = await this.evolutionRepository.hasEvolution(pokemonId);
+    const hasEvolutions = await this.evolutionRepository.hasEvolution(
+      pokemonId
+    );
     for (const evolution of hasEvolutions) {
       evolutions.push({
         pokemon: await this.pokemonBaseService.getPokemonBaseById(

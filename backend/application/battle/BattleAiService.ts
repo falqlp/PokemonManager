@@ -1,16 +1,19 @@
-import battleService from "./BattleCalcService";
 import { IPokemon } from "../../api/pokemon/Pokemon";
 import { IMove } from "../../api/move/Move";
+import BattleCalcService from "./BattleCalcService";
 
-class BattleAiService  {
+class BattleAiService {
   private static instance: BattleAiService;
 
   public static getInstance(): BattleAiService {
     if (!BattleAiService.instance) {
-      BattleAiService.instance = new BattleAiService();
+      BattleAiService.instance = new BattleAiService(
+        BattleCalcService.getInstance()
+      );
     }
     return BattleAiService.instance;
   }
+  constructor(protected battleService: BattleCalcService) {}
 
   decisionMaking(
     opponentPokemon: IPokemon,
@@ -26,14 +29,14 @@ class BattleAiService  {
       if (pokemon.currentHp !== 0) {
         let opponentDamage = 0;
         let changeDamage = 0;
-        opponentDamage = battleService.estimator(
+        opponentDamage = this.battleService.estimator(
           opponentPokemon,
           pokemon,
           selectedMove
         );
         changeDamage = this.getChangeDamage(pokemons, pokemon, opponentDamage);
         pokemon.moves.forEach((move) => {
-          const damage = battleService.estimator(
+          const damage = this.battleService.estimator(
             pokemon,
             opponentPokemon,
             move
@@ -52,13 +55,13 @@ class BattleAiService  {
       }
     });
     return decision;
-  };
+  }
 
   noSelectedMoveDecision(pokemon: IPokemon, oppPokemon: IPokemon) {
     let maxDamage = 0;
     let bestMove;
     pokemon.moves.forEach((move) => {
-      const estimator = battleService.estimator(pokemon, oppPokemon, move);
+      const estimator = this.battleService.estimator(pokemon, oppPokemon, move);
       if (estimator >= maxDamage) {
         bestMove = move;
         maxDamage = estimator;
@@ -76,12 +79,12 @@ class BattleAiService  {
     return Math.abs(
       Math.ceil((pokemon.currentHp - changeDamage) / opponentDamage) * damage
     );
-  };
+  }
   getChangeDamage(pokemons: IPokemon[], pokemon: IPokemon, edp: number) {
     if (pokemon._id === pokemons[0]._id) {
       return 0;
     }
-    return battleService.getCooldownTurn(pokemon) * edp;
-  };
+    return this.battleService.getCooldownTurn(pokemon) * edp;
+  }
 }
 export default BattleAiService;

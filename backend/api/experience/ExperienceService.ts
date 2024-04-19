@@ -3,9 +3,10 @@ import { IPokemon } from "../pokemon/Pokemon";
 import { ITrainer } from "../trainer/Trainer";
 import evolutionService from "../../domain/evolution/EvolutionRepository";
 import { IPokemonBase } from "../pokemonBase/PokemonBase";
-import MoveLearningService from "../moveLearning/MoveLearningService";
+import MoveLearningRepository from "../../domain/moveLearning/MoveLearningRepository";
 import { normalRandom } from "../../utils/RandomUtils";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
+import MoveLearningService from "../../application/moveLearning/MoveLearningService";
 
 const XP_PER_LEVEL = 100000;
 
@@ -15,7 +16,7 @@ class ExperienceService {
     if (!ExperienceService.instance) {
       ExperienceService.instance = new ExperienceService(
         TrainerService.getInstance(),
-        MoveLearningService.getInstance(),
+          MoveLearningService.getInstance(),
         EvolutionRepository.getInstance()
       );
     }
@@ -95,7 +96,7 @@ class ExperienceService {
     if (levelUp) {
       if (pokemon.level > pokemon.maxLevel) {
         pokemon.maxLevel = pokemon.level;
-        await this.moveLearningService.newMoveLearned(pokemon);
+        this.moveLearningService.newMoveLearned(pokemon);
       }
       const evolution = await this.evolutionRepository.evolve(
         pokemon.basePokemon.id,

@@ -1,5 +1,6 @@
 import { Request, Response, Router, NextFunction } from "express";
-import MoveLearningService from "./MoveLearningService";
+import MoveLearningRepository from "../../domain/moveLearning/MoveLearningRepository";
+import MoveLearningService from "../../application/moveLearning/MoveLearningService";
 const router: Router = Router();
 const moveLearningService = MoveLearningService.getInstance();
 
