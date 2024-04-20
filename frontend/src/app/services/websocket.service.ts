@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EggHatchedComponent } from '../modals/egg-hatched/egg-hatched.component';
 import { RouterService } from './router.service';
 import { environment } from '../../environments/environment';
+import { InitGameComponent } from '../modals/init-game/init-game.component';
 
 export interface WebSocketModel {
   type: string;
@@ -27,6 +28,7 @@ export class WebsocketService {
   private websocket: WebSocketSubject<WebSocketModel>;
   protected isConected = false;
   protected readonly url = environment.wsUrl;
+  private gameId: string;
 
   constructor(
     protected playerService: PlayerService,
@@ -55,7 +57,10 @@ export class WebsocketService {
           this.isConected = true;
           console.log('Connection opened');
           this.notifierService.notify('success', 'Connection opened');
-          this.registerToGame(this.cacheService.getGameId());
+          const gameId = this.cacheService.getGameId();
+          if (gameId && gameId !== 'null') {
+            this.registerToGame(gameId);
+          }
           const lastUrl = this.routerService.getLastUrl();
           if (lastUrl && lastUrl !== '/') {
             this.routerService.navigateByUrl(lastUrl);
@@ -76,6 +81,14 @@ export class WebsocketService {
         })
       )
       .subscribe((message) => this.handleMessage(message));
+    this.cacheService.$gameId.subscribe((id) => {
+      if (id) {
+        this.registerToGame(id);
+        this.gameId = id;
+      } else {
+        this.deleteRegistrationToGame(this.gameId);
+      }
+    });
   }
 
   private handleMessage(message: WebSocketModel): void {
@@ -108,6 +121,31 @@ export class WebsocketService {
           });
         });
         break;
+      case 'initGame':
+        setTimeout(() => {
+          let dialog = this.dialog.openDialogs.find(
+            (value) => value.componentInstance instanceof InitGameComponent
+          );
+          if (!dialog) {
+            dialog = this.dialog.open(InitGameComponent, {
+              disableClose: true,
+            });
+          }
+          dialog.componentInstance.key = this.translateService.instant(
+            message.payload.key,
+            { value: message.payload.value }
+          );
+        });
+        break;
+      case 'initGameEnd':
+        setTimeout(() => {
+          this.dialog.openDialogs
+            .find(
+              (value) => value.componentInstance instanceof InitGameComponent
+            )
+            ?.close();
+        }, 1000); //TODO a retier
+        break;
       default:
         console.warn('Unknown message type:', message.type);
     }
@@ -116,6 +154,13 @@ export class WebsocketService {
   public registerToGame(gameId: string): void {
     this.websocket.next({
       type: 'register',
+      payload: { gameId },
+    });
+  }
+
+  public deleteRegistrationToGame(gameId: string): void {
+    this.websocket.next({
+      type: 'deleteRegistration',
       payload: { gameId },
     });
   }

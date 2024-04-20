@@ -18,10 +18,10 @@ import { TimeService } from '../../services/time.service';
 import { GameQueriesService } from '../../services/queries/game-queries.service';
 import { WebsocketService } from '../../services/websocket.service';
 import { NotifierService } from 'angular-notifier';
-import { NurseryWishlistFormComponent } from '../nursery/nursery-wishlist-form/nursery-wishlist-form.component';
 import { PokemonBaseQueriesService } from '../../services/queries/pokemon-base-queries.service';
 import { NurseryQueriesService } from '../../services/queries/nursery-queries.service';
 import { RouterService } from '../../services/router.service';
+import { InitGameComponent } from '../../modals/init-game/init-game.component';
 
 @Component({
   selector: 'app-home',
@@ -75,7 +75,11 @@ export class HomeComponent implements OnInit {
   }
 
   protected clickP(): void {
-    this.dialog.open(NurseryWishlistFormComponent);
+    this.dialog.open(InitGameComponent);
+    const dialog = this.dialog.openDialogs.find(
+      (value) => value.componentInstance instanceof InitGameComponent
+    );
+    dialog.componentInstance.key = 'test';
   }
 
   protected createPokemon(pokemon: PokemonModel): void {
@@ -89,7 +93,7 @@ export class HomeComponent implements OnInit {
   }
 
   protected testRoute(): void {
-    this.http.get('/api/trainer/' + this.player._id).subscribe(console.log);
+    this.gameQueriesService.initGame();
   }
 
   protected goToCreateCalendarEvent(): void {
