@@ -2,7 +2,7 @@ import { IPokemon } from "../../api/pokemon/Pokemon";
 import PokemonService from "../../api/pokemon/PokemonService";
 import PcStorageService from "../../api/pcStorage/PcStorageService";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
-import TrainerClass from "../../domain/trainerClass/TrainerClass";
+import TrainerClassRepository from "../../domain/trainerClass/TrainerClassRepository";
 
 class TrainerService {
   private static instance: TrainerService;
@@ -12,7 +12,8 @@ class TrainerService {
       TrainerService.instance = new TrainerService(
         PokemonService.getInstance(),
         PcStorageService.getInstance(),
-        TrainerRepository.getInstance()
+        TrainerRepository.getInstance(),
+        TrainerClassRepository.getInstance()
       );
     }
     return TrainerService.instance;
@@ -20,7 +21,8 @@ class TrainerService {
   constructor(
     protected pokemonService: PokemonService,
     protected pcStorageService: PcStorageService,
-    protected trainerRepository: TrainerRepository
+    protected trainerRepository: TrainerRepository,
+    protected trainerClassRepository: TrainerClassRepository
   ) {}
 
   public async addPokemonForTrainer(pokemon: IPokemon, trainerId: string) {
@@ -51,29 +53,8 @@ class TrainerService {
     await this.trainerRepository.update(trainerId, trainer);
   }
 
-  public generateTrainerName(): void {
-    TrainerClass.aggregate()
-      .sample(1)
-      .lookup({
-        from: "trainernames",
-        localField: "gender",
-        foreignField: "gender",
-        as: "result",
-      })
-      .addFields({
-        randomResult: {
-          $arrayElemAt: [
-            "$result",
-            { $floor: { $multiply: [{ $size: "$result" }, Math.random()] } },
-          ],
-        },
-      })
-      .project({
-        _id: 0,
-        class: 1,
-        name: "$randomResult.name",
-      })
-      .then(console.log);
+  public async generateTrainerName(): Promise<void> {
+    console.log(await this.trainerClassRepository.generateTrainerName());
   }
 }
 

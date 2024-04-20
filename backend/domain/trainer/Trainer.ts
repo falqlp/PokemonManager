@@ -6,6 +6,7 @@ import { INursery } from "../../api/nursery/Nursery";
 
 export interface ITrainer extends Document {
   name: string;
+  class?: string;
   pokemons: IPokemon[];
   pcStorage: IPcStorage;
   trainingCamp: ITrainingCamp;
@@ -30,6 +31,7 @@ const trainerSchema = new Schema<ITrainer>({
   },
   nursery: { type: Schema.Types.ObjectId, ref: "Nursery", required: true },
   gameId: { type: String, required: true },
+  class: { type: String },
   berries: { type: Number, required: true },
   monney: { type: Number, required: true },
 });
