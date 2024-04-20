@@ -45,7 +45,6 @@ class GameService {
 
   public async initGame(gameId: string): Promise<void> {
     for (let i = 0; i < NB_GENERATED_TRAINER; i++) {
-      await this.trainerService.generateTrainer(gameId);
       sendMessageToClientInGame(gameId, {
         type: "initGame",
         payload: {
@@ -53,6 +52,13 @@ class GameService {
           value: `${i}/${NB_GENERATED_TRAINER}`,
         },
       });
+      const trainer = await this.trainerService.generateTrainer(gameId);
+      await this.trainerService.generateTrainerPokemons(
+        gameId,
+        trainer,
+        { max: 3, min: 1 },
+        { max: 8, min: 3 }
+      );
     }
     sendMessageToClientInGame(gameId, {
       type: "initGameEnd",

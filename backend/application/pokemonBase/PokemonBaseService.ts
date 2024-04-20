@@ -1,20 +1,21 @@
-import PokemonBase, { IPokemonBase } from "./PokemonBase";
-import ReadOnlyService from "../ReadOnlyService";
-import PokemonBaseMapper from "./PokemonBaseMapper";
-import { IWishList } from "../nursery/Nursery";
-import { sample } from "../../utils/RandomUtils";
+import { IWishList } from "../../api/nursery/Nursery";
+import { IPokemonBase } from "../../domain/pokemonBase/PokemonBase";
+import PokemonBaseRepository from "../../domain/pokemonBase/PokemonBaseRepository";
 
-class PokemonBaseService extends ReadOnlyService<IPokemonBase> {
+class PokemonBaseService {
   private static instance: PokemonBaseService;
+
   public static getInstance(): PokemonBaseService {
     if (!PokemonBaseService.instance) {
       PokemonBaseService.instance = new PokemonBaseService(
-        PokemonBase,
-        PokemonBaseMapper
+        PokemonBaseRepository.getInstance()
       );
     }
     return PokemonBaseService.instance;
   }
+
+  constructor(protected pokemonBaseRepository: PokemonBaseRepository) {}
+
   public async generateEggBase(wishlist: IWishList): Promise<IPokemonBase> {
     let query = this.getDefaultQuery();
     if (Math.random() >= 0.3) {
@@ -22,6 +23,13 @@ class PokemonBaseService extends ReadOnlyService<IPokemonBase> {
       query = this.getTypeBasedQuery(choosenType);
     }
     return this.getRandomPokemon(query);
+  }
+
+  public getTypeBasedQuery(choosenType: string) {
+    return {
+      ...this.getDefaultQuery(),
+      types: { $in: [choosenType.toUpperCase()] },
+    };
   }
 
   public getDefaultQuery() {
@@ -51,47 +59,16 @@ class PokemonBaseService extends ReadOnlyService<IPokemonBase> {
     return null;
   }
 
-  public getTypeBasedQuery(choosenType: string) {
-    return {
-      ...this.getDefaultQuery(),
-      types: { $in: [choosenType.toUpperCase()] },
-    };
-  }
-
   public async getRandomPokemon(query: any): Promise<IPokemonBase> {
-    const pokemons = await PokemonBase.find(query);
+    const pokemons = await this.pokemonBaseRepository.list({ custom: query });
     const randomIndex = Math.floor(Math.random() * pokemons.length);
     return pokemons[randomIndex];
   }
-
-  public getPokemonBaseById(id: number) {
-    return this.schema.findOne({ id });
-  }
-  public async getStartersBase(seed?: string): Promise<IPokemonBase[]> {
-    const aggregation = this.schema.aggregate();
-    aggregation.lookup({
-      from: "evolutions",
-      localField: "id",
-      foreignField: "pokemonId",
-      as: "evolution",
-    });
-    aggregation.unwind("evolution");
-    aggregation.lookup({
-      from: "evolutions",
-      localField: "evolution.evolveTo",
-      foreignField: "pokemonId",
-      as: "evolution.evolution",
-    });
-    aggregation.match({
-      base: true,
-      "evolution.evolution": { $ne: [] },
-    });
-    const dtos = sample<IPokemonBase>(await aggregation, 3, seed);
-    return dtos.map((pokemon: IPokemonBase) => {
-      delete (pokemon as any).evolution;
-      this.mapper.map(pokemon);
-      return pokemon;
-    });
+  public generateBasePokemon(quantity: number): Promise<IPokemonBase[]> {
+    return this.pokemonBaseRepository.generateBasePokemon(
+      quantity,
+      this.getDefaultQuery()
+    );
   }
 }
 

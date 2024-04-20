@@ -1,9 +1,7 @@
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import { IPokemon } from "../pokemon/Pokemon";
 import { ITrainer } from "../../domain/trainer/Trainer";
-import evolutionService from "../../domain/evolution/EvolutionRepository";
-import { IPokemonBase } from "../pokemonBase/PokemonBase";
-import MoveLearningRepository from "../../domain/moveLearning/MoveLearningRepository";
+import { IPokemonBase } from "../../domain/pokemonBase/PokemonBase";
 import { normalRandom } from "../../utils/RandomUtils";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import MoveLearningService from "../../application/moveLearning/MoveLearningService";
@@ -16,7 +14,7 @@ class ExperienceService {
     if (!ExperienceService.instance) {
       ExperienceService.instance = new ExperienceService(
         TrainerRepository.getInstance(),
-          MoveLearningService.getInstance(),
+        MoveLearningService.getInstance(),
         EvolutionRepository.getInstance()
       );
     }
@@ -26,7 +24,7 @@ class ExperienceService {
   constructor(
     protected trainerService: TrainerRepository,
     protected moveLearningService: MoveLearningService,
-    protected evolutionRepository:EvolutionRepository
+    protected evolutionRepository: EvolutionRepository
   ) {}
   public async weeklyXpGain(trainerId: string): Promise<{
     trainer: ITrainer;

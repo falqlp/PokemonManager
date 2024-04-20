@@ -7,9 +7,10 @@ import Game from "../../domain/game/Game";
 import { eggHatched } from "../../websocketServer";
 import { Model } from "mongoose";
 import { IMapper } from "../IMapper";
-import PokemonBaseService from "../pokemonBase/PokemonBaseService";
+import PokemonBaseRepository from "../../domain/pokemonBase/PokemonBaseRepository";
 import Nursery, { INursery } from "../nursery/Nursery";
 import PokemonUtilsService from "./PokemonUtilsService";
+import PokemonBaseService from "../../application/pokemonBase/PokemonBaseService";
 
 class PokemonService extends CompleteService<IPokemon> {
   private static instance: PokemonService;
@@ -17,6 +18,7 @@ class PokemonService extends CompleteService<IPokemon> {
   constructor(
     schema: Model<IPokemon>,
     mapper: IMapper<IPokemon>,
+    protected pokemonBaseRepository: PokemonBaseRepository,
     protected pokemonBaseService: PokemonBaseService,
     protected pokemonUtilsService: PokemonUtilsService
   ) {
@@ -27,6 +29,7 @@ class PokemonService extends CompleteService<IPokemon> {
       PokemonService.instance = new PokemonService(
         Pokemon,
         PokemonMapper.getInstance(),
+        PokemonBaseRepository.getInstance(),
         PokemonBaseService.getInstance(),
         PokemonUtilsService.getInstance()
       );
@@ -149,7 +152,9 @@ class PokemonService extends CompleteService<IPokemon> {
   public async generateStarters(gameId: string): Promise<IPokemon[]> {
     const actualDate: Date = (await Game.findById(gameId)).actualDate;
 
-    const pokemonBases = await this.pokemonBaseService.getStartersBase(gameId);
+    const pokemonBases = await this.pokemonBaseRepository.getStartersBase(
+      gameId
+    );
     const starters: IPokemon[] = [];
     for (const base of pokemonBases) {
       const starter: IPokemon = {

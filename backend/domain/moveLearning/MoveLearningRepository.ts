@@ -18,7 +18,7 @@ class MoveLearningRepository {
   ): Promise<IMoveLearning[]> {
     return MoveLearning.find({
       pokemonId: id,
-      levelLearnAt: level,
+      levelLearnAt: { $lte: level },
       learnMethod: "LEVEL-UP",
     });
   }
