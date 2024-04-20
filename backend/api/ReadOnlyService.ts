@@ -132,16 +132,13 @@ abstract class ReadOnlyService<T extends Document> {
         aggregation.sort(sortQuery);
       }
       aggregation.facet({
-        data: [
-          {$skip: body.skip ?? 0},
-          {$limit: body.limit ?? 0},
-        ],
-        totalCount: [ { $count: 'total' }]
-      })
+        data: [{ $skip: body.skip ?? 0 }, { $limit: body.limit ?? 0 }],
+        totalCount: [{ $count: "total" }],
+      });
       aggregation.project({
         data: 1,
-        count: { $ifNull: [ { $arrayElemAt: ["$totalCount.total", 0] }, 0 ] }
-      })
+        count: { $ifNull: [{ $arrayElemAt: ["$totalCount.total", 0] }, 0] },
+      });
       const result = (await aggregation)[0] as TableResult<T>;
       result.data?.forEach((dto) => {
         Object.keys(dto).forEach((key) => {
@@ -151,11 +148,14 @@ abstract class ReadOnlyService<T extends Document> {
         });
       });
       if (this.mapper.populate()) {
-        await this.schema.populate(result, this.mapper.populate());
+        result.data = await this.schema.populate(
+          result.data,
+          this.mapper.populate()
+        );
       }
       result.data?.map(async (dto) => {
         return options?.map ? options.map(dto) : this.mapper.map(dto);
-      })
+      });
       return result;
     } catch (error) {
       return Promise.reject(error);
@@ -166,7 +166,7 @@ abstract class ReadOnlyService<T extends Document> {
     aggregation: Aggregate<Array<any>>,
     nonTranslateQuery: Record<string, unknown>,
     translateQuery: Record<string, unknown>,
-    sortKey:string,
+    sortKey: string,
     options: {
       gameId?: string;
       lang?: string;
@@ -188,7 +188,7 @@ abstract class ReadOnlyService<T extends Document> {
           foreignField: "key",
           as: "translation." + splitMatch[1],
         });
-        aggregation.collation({locale: options.lang, strength: 1});
+        aggregation.collation({ locale: options.lang, strength: 1 });
       }
     });
     if (Object.keys(modifiedTranslateQuery).length > 0) {
