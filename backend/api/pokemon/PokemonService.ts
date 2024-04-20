@@ -3,7 +3,7 @@ import Trainer from "../../domain/trainer/Trainer";
 import CompleteService from "../CompleteService";
 import PokemonMapper from "./PokemonMapper";
 import { ListBody } from "../ReadOnlyService";
-import Game from "../game/Game";
+import Game from "../../domain/game/Game";
 import { eggHatched } from "../../websocketServer";
 import { Model } from "mongoose";
 import { IMapper } from "../IMapper";

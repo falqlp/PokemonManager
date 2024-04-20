@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
-import { IGame } from "../game/Game";
+import { IGame } from "../../domain/game/Game";
 import { entitySchema, IEntity } from "../Entity";
 
 export interface IUser extends Document, IEntity {

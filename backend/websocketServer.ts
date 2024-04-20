@@ -1,5 +1,5 @@
 import WebSocket, { WebSocketServer } from "ws";
-import GameService from "./api/game/GameService";
+import GameRepository from "./domain/game/GameRepository";
 import { IPokemon } from "./api/pokemon/Pokemon";
 
 let wss: WebSocketServer;
@@ -25,7 +25,7 @@ export const initializeWebSocketServer = (server: any) => {
 };
 
 export const updatePlayer = async (trainerId: string, gameId: string) => {
-  const player = (await GameService.getInstance().get(gameId)).player;
+  const player = (await GameRepository.getInstance().get(gameId)).player;
   if (player._id.toString() === trainerId && clients[gameId]) {
     clients[gameId].forEach((client: WebSocket) => {
       if (client.readyState === WebSocket.OPEN) {

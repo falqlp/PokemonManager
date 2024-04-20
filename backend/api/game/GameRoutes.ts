@@ -1,30 +1,32 @@
 import express from "express";
 import CompleteRouter from "../CompleteRouter";
-import GameService from "./GameService";
-import GameMapper from "./GameMapper";
-const service = GameService.getInstance();
+import GameRepository from "../../domain/game/GameRepository";
+import GameMapper from "../../domain/game/GameMapper";
+import GameService from "../../application/game/GameService";
+const gameRepository = GameRepository.getInstance();
+const gameService = GameService.getInstance();
 const gameMapper = GameMapper.getInstance();
 const router = express.Router();
-const completeRouter = new CompleteRouter(service);
+const completeRouter = new CompleteRouter(gameRepository);
 
 router.use("/", completeRouter.router);
 
 router.get("/player/:id", (req, res, next) => {
-  service
+  gameRepository
     .get(req.params.id, { map: gameMapper.mapPlayer })
     .then((result) => res.status(200).json(result.player))
     .catch(console.log);
 });
 
 router.get("/time/:id", (req, res, next) => {
-  service
+  gameRepository
     .get(req.params.id)
     .then((result) => res.status(200).json(result.actualDate))
     .catch(console.log);
 });
 
 router.post("/:userId", (req, res, next) => {
-  service
+  gameService
     .createWithUser(req.body, undefined, req.params.userId)
     .then((game) => res.status(200).json(game))
     .catch(console.log);

@@ -1,14 +1,14 @@
 import { IMapper } from "../IMapper";
 import { IUser } from "./User";
-import GameService from "../game/GameService";
+import GameRepository from "../../domain/game/GameRepository";
 import { PopulateOptions } from "mongoose";
-import Game from "../game/Game";
+import Game from "../../domain/game/Game";
 import HashService from "../../application/hash/HashService";
 
 class UserMapper implements IMapper<IUser> {
   private static instance: UserMapper;
   constructor(
-    protected gameService: GameService,
+    protected gameService: GameRepository,
     protected hashService: HashService
   ) {}
   public populate(): PopulateOptions {
@@ -35,7 +35,7 @@ class UserMapper implements IMapper<IUser> {
   public static getInstance(): UserMapper {
     if (!UserMapper.instance) {
       UserMapper.instance = new UserMapper(
-        GameService.getInstance(),
+        GameRepository.getInstance(),
         HashService.getInstance()
       );
     }
