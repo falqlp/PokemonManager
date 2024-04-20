@@ -1,6 +1,5 @@
-import { IPokemonBase } from "../../../api/pokemonBase/PokemonBase";
+import { IPokemonBase } from "../../../domain/pokemonBase/PokemonBase";
 import { PokemonType } from "../../../models/Types/Types";
-import { IPokemonStats } from "../../../models/PokemonModels/pokemonStats";
 import { StatsTestMother } from "../Stats/StatsTestMother";
 
 export class PokemonBaseTestMother {

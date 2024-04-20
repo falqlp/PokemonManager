@@ -93,7 +93,7 @@ export class HomeComponent implements OnInit {
   }
 
   protected testRoute(): void {
-    this.gameQueriesService.initGame();
+    this.gameQueriesService.initGame().subscribe();
   }
 
   protected goToCreateCalendarEvent(): void {

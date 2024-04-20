@@ -2,7 +2,9 @@ import Pokemon, { IPokemon } from "./Pokemon";
 import { IMapper } from "../IMapper";
 import Game from "../../domain/game/Game";
 import { updatePlayer } from "../../websocketServer";
-import PokemonBase, { IPokemonBase } from "../pokemonBase/PokemonBase";
+import PokemonBase, {
+  IPokemonBase,
+} from "../../domain/pokemonBase/PokemonBase";
 import { PopulateOptions } from "mongoose";
 import Move from "../move/Move";
 import PokemonUtilsService from "./PokemonUtilsService";

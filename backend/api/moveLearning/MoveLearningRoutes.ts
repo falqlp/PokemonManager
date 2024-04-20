@@ -1,5 +1,4 @@
 import { Request, Response, Router, NextFunction } from "express";
-import MoveLearningRepository from "../../domain/moveLearning/MoveLearningRepository";
 import MoveLearningService from "../../application/moveLearning/MoveLearningService";
 const router: Router = Router();
 const moveLearningService = MoveLearningService.getInstance();
@@ -13,7 +12,7 @@ router.put(
         req.body.level,
         req.body.query
       );
-      res.status(200).json(moves.filter((move) => move.power ?? 0 > 0));
+      res.status(200).json(moves);
     } catch (error) {
       console.log(error);
     }

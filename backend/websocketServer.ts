@@ -87,7 +87,7 @@ export const sendMessageToClientInGame = (
   gameId: string,
   message: WebsocketMessage
 ): void => {
-  clients[gameId].forEach((client: WebSocket) => {
+  clients[gameId]?.forEach((client: WebSocket) => {
     if (client.readyState === WebSocket.OPEN) {
       client.send(JSON.stringify(message));
     }

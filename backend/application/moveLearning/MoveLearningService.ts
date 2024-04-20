@@ -38,7 +38,9 @@ export default class MoveLearningService {
     const allMovesString = allMoves.map((move) => {
       return move.moveId;
     });
-    return this.moveService.list({ ...query, ids: allMovesString });
+    return (
+      await this.moveService.list({ ...query, ids: allMovesString })
+    ).filter((move) => move.power ?? 0 > 0);
   }
 
   public async getMovesOfAllEvolutions(
