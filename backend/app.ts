@@ -38,7 +38,7 @@ app.use((req, res, next) => {
   );
   next();
 });
-TrainerService.getInstance().generateTrainerName();
+TrainerService.getInstance().generateTrainerName().then();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
