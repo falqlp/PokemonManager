@@ -1,6 +1,6 @@
 import Pokemon, { IPokemon } from "./Pokemon";
 import { IMapper } from "../IMapper";
-import Game from "../game/Game";
+import Game from "../../domain/game/Game";
 import { updatePlayer } from "../../websocketServer";
 import PokemonBase, { IPokemonBase } from "../pokemonBase/PokemonBase";
 import { PopulateOptions } from "mongoose";

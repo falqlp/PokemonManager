@@ -7,7 +7,7 @@ import CalendarEventMapper from "./CalendarEventMapper";
 import BattleInstanceService from "../battle-instance/BattleInstanceService";
 import { ITrainer } from "../../domain/trainer/Trainer";
 import { IBattleInstance } from "../battle-instance/Battle";
-import GameService from "../game/GameService";
+import GameRepository from "../../domain/game/GameRepository";
 import PokemonService from "../pokemon/PokemonService";
 import NurseryService from "../nursery/NurseryService";
 import { notify } from "../../websocketServer";
@@ -19,7 +19,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
 
   constructor(
     protected battleInstanceService: BattleInstanceService,
-    protected gameService: GameService,
+    protected gameService: GameRepository,
     protected pokemonService: PokemonService,
     protected nurseryService: NurseryService,
     protected trainerRepository: TrainerRepository,
@@ -31,7 +31,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
     if (!CalendarEventService.instance) {
       CalendarEventService.instance = new CalendarEventService(
         BattleInstanceService.getInstance(),
-        GameService.getInstance(),
+        GameRepository.getInstance(),
         PokemonService.getInstance(),
         NurseryService.getInstance(),
         TrainerRepository.getInstance(),
