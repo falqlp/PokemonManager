@@ -1,7 +1,7 @@
 import { Component, DestroyRef, OnInit } from '@angular/core';
 import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { first } from 'rxjs';
+import { filter, first } from 'rxjs';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { NgForOf, NgIf } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
@@ -42,7 +42,11 @@ export class StartersComponent implements OnInit {
 
   public ngOnInit(): void {
     this.playerService.player$
-      .pipe(takeUntilDestroyed(this.destroyRef), first())
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        filter((value) => !!value),
+        first()
+      )
       .subscribe((player) => {
         this.player = player;
       });
