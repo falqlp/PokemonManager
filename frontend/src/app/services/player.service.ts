@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import type { TrainerModel } from '../models/TrainersModels/trainer.model';
-import { filter, Observable } from 'rxjs';
+import { filter, Observable, switchMap } from 'rxjs';
 import { BehaviorSubject, of, tap } from 'rxjs';
 import { PcStorageQueriesService } from './queries/pc-storage-queries.service';
 import { GameQueriesService } from './queries/game-queries.service';
@@ -16,19 +16,21 @@ export class PlayerService {
 
   public maxStat = 0;
 
-  public player$ = this.playerSubject
-    .asObservable()
-    .pipe(filter((value) => !!value));
+  public player$ = this.playerSubject.asObservable();
 
   public constructor(
     protected gameQueriesService: GameQueriesService,
     protected pcStorageService: PcStorageQueriesService,
     protected cacheService: CacheService
   ) {
-    this.cacheService.$gameId.subscribe((gameId) => {
-      this.gameId = gameId;
-      this.updatePlayer();
-    });
+    this.cacheService.$gameId
+      .pipe(
+        switchMap((gameId) => {
+          this.gameId = gameId;
+          return this.updatePlayer();
+        })
+      )
+      .subscribe();
   }
 
   public logout(): void {
@@ -36,17 +38,15 @@ export class PlayerService {
     this.cacheService.setUserId(undefined);
   }
 
-  public updatePlayer(): void {
-    this.getPlayer(this.gameId)
-      .pipe(
-        tap((player) => {
-          if (player) {
-            this.getMaxStat(player);
-          }
-          this.playerSubject?.next(player);
-        })
-      )
-      .subscribe();
+  public updatePlayer(): Observable<TrainerModel> {
+    return this.getPlayer(this.gameId).pipe(
+      tap((player) => {
+        if (player) {
+          this.getMaxStat(player);
+        }
+        this.playerSubject?.next(player);
+      })
+    );
   }
 
   public getPlayer(gameId: string): Observable<TrainerModel> {

@@ -53,6 +53,7 @@ export class TopBarComponent implements OnInit {
     this.player$ = this.playerService.player$.pipe(
       tap((trainer) => {
         this.player = trainer;
+        console.log(trainer);
       })
     );
     this.goHomeDisabled$ = this.routerService.goHomeDisabled();
