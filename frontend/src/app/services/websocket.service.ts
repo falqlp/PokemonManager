@@ -15,6 +15,7 @@ import { EggHatchedComponent } from '../modals/egg-hatched/egg-hatched.component
 import { RouterService } from './router.service';
 import { environment } from '../../environments/environment';
 import { InitGameComponent } from '../modals/init-game/init-game.component';
+import { AddGameComponent } from '../views/games/add-game/add-game.component';
 
 export interface WebSocketModel {
   type: string;
@@ -123,6 +124,11 @@ export class WebsocketService {
         break;
       case 'initGame':
         setTimeout(() => {
+          this.dialog.openDialogs
+            .find(
+              (value) => value.componentInstance instanceof AddGameComponent
+            )
+            ?.close();
           let dialog = this.dialog.openDialogs.find(
             (value) => value.componentInstance instanceof InitGameComponent
           );

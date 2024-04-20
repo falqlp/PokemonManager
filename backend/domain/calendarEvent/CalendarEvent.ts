@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema } from "mongoose";
-import { IBattleInstance } from "../battle-instance/Battle";
-import { ITrainer } from "../../domain/trainer/Trainer";
-import { entitySchema, IEntity } from "../Entity";
+import { IBattleInstance } from "../../api/battle-instance/Battle";
+import { ITrainer } from "../trainer/Trainer";
+import { entitySchema, IEntity } from "../../api/Entity";
 
 export enum CalendarEventEvent {
   BATTLE = "BATTLE",

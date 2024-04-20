@@ -16,6 +16,7 @@ import { CacheService } from '../../../services/cache.service';
 import { DialogRef } from '@angular/cdk/dialog';
 import { RouterService } from '../../../services/router.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'pm-add-game',
@@ -51,11 +52,14 @@ export class AddGameComponent {
     } as GameModel;
     this.gameQueriesService
       .createWithUser(createdGame, this.cacheService.getUserId())
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((game) => {
-        this.cacheService.setGameId(game._id);
-        this.router.navigateByUrl('starters');
-        this.dialogRef.close();
-      });
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        switchMap((game) => {
+          this.cacheService.setGameId(game._id);
+          this.router.navigateByUrl('starters');
+          return this.gameQueriesService.initGame();
+        })
+      )
+      .subscribe();
   }
 }

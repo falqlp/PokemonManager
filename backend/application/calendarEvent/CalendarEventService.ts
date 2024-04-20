@@ -1,45 +1,45 @@
-import CompleteService from "../CompleteService";
-import CalendarEvent, {
+import { ITrainer } from "../../domain/trainer/Trainer";
+import {
   CalendarEventEvent,
   ICalendarEvent,
-} from "./CalendarEvent";
-import CalendarEventMapper from "./CalendarEventMapper";
-import BattleInstanceService from "../battle-instance/BattleInstanceService";
-import { ITrainer } from "../../domain/trainer/Trainer";
-import { IBattleInstance } from "../battle-instance/Battle";
-import GameRepository from "../../domain/game/GameRepository";
-import PokemonService from "../pokemon/PokemonService";
-import NurseryService from "../nursery/NurseryService";
-import { notify } from "../../websocketServer";
+} from "../../domain/calendarEvent/CalendarEvent";
+import { IBattleInstance } from "../../api/battle-instance/Battle";
+import BattleInstanceService from "../../api/battle-instance/BattleInstanceService";
+import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
-import TrainerService from "../../application/trainer/TrainerService";
+import GameRepository from "../../domain/game/GameRepository";
+import PokemonService from "../../api/pokemon/PokemonService";
+import { notify } from "../../websocketServer";
+import NurseryService from "../../api/nursery/NurseryService";
+import TrainerService from "../trainer/TrainerService";
 
-class CalendarEventService extends CompleteService<ICalendarEvent> {
+class CalendarEventService {
   private static instance: CalendarEventService;
 
-  constructor(
-    protected battleInstanceService: BattleInstanceService,
-    protected gameService: GameRepository,
-    protected pokemonService: PokemonService,
-    protected nurseryService: NurseryService,
-    protected trainerRepository: TrainerRepository,
-    protected trainerService: TrainerService
-  ) {
-    super(CalendarEvent, CalendarEventMapper.getInstance());
-  }
   public static getInstance(): CalendarEventService {
     if (!CalendarEventService.instance) {
       CalendarEventService.instance = new CalendarEventService(
         BattleInstanceService.getInstance(),
+        CalendarEventRepository.getInstance(),
+        TrainerRepository.getInstance(),
         GameRepository.getInstance(),
         PokemonService.getInstance(),
         NurseryService.getInstance(),
-        TrainerRepository.getInstance(),
         TrainerService.getInstance()
       );
     }
     return CalendarEventService.instance;
   }
+
+  constructor(
+    protected battleInstanceService: BattleInstanceService,
+    protected calendarEventRepository: CalendarEventRepository,
+    protected trainerRepository: TrainerRepository,
+    protected gameRepository: GameRepository,
+    protected pokemonService: PokemonService,
+    protected nurseryService: NurseryService,
+    protected trainerService: TrainerService
+  ) {}
 
   public async createBattleEvent(
     date: Date,
@@ -53,7 +53,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
       } as IBattleInstance,
       gameId
     );
-    return await this.create(
+    return await this.calendarEventRepository.create(
       {
         event: battleDTO,
         date,
@@ -75,7 +75,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
 
     minDate.setUTCDate(actualDate.getUTCDate() - 1);
     maxDate.setUTCDate(actualDate.getUTCDate() + 5);
-    const events = await this.list({
+    const events = await this.calendarEventRepository.list({
       custom: {
         trainers: trainerId,
         date: { $gte: minDate, $lte: maxDate },
@@ -100,7 +100,7 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
   ): Promise<{ date: Date; battle: IBattleInstance; redirectTo: string }> {
     date = new Date(date);
     let redirectTo: string = null;
-    const events = await this.list({
+    const events = await this.calendarEventRepository.list({
       custom: { trainers: trainerId, date },
     });
     const battle = events.find(
@@ -117,9 +117,9 @@ class CalendarEventService extends CompleteService<ICalendarEvent> {
         redirectTo
       );
       date.setUTCDate(date.getUTCDate() + 1);
-      const newGame = await this.gameService.get(game);
+      const newGame = await this.gameRepository.get(game);
       newGame.actualDate = date;
-      await this.gameService.update(game, newGame);
+      await this.gameRepository.update(game, newGame);
     }
     await this.pokemonService.isHatched(date, game);
     return { date, battle, redirectTo };

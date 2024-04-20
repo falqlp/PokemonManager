@@ -5,8 +5,6 @@ import dotenv from "dotenv";
 import "source-map-support/register";
 import { RoutesMap } from "./RoutesMap";
 import { convertStringsToDateInObject } from "./utils/DateConverter";
-import CalendarEvent from "./api/calendar-event/CalendarEvent";
-import TrainerService from "./application/trainer/TrainerService";
 dotenv.config();
 
 const app = express();

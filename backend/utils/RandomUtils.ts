@@ -1,4 +1,5 @@
 import seedrandom from "seedrandom";
+import { PeriodModel } from "../application/PeriodModel";
 
 function boxMullerRandom(): [number, number] {
   let u = 0,
@@ -30,4 +31,18 @@ export function sample<T>(
   }
 
   return sampled;
+}
+
+export function shuffleArray(array: any[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+export function getRandomFromArray<T>(array: T[]): T {
+  if (array.length === 0) {
+    throw new Error("Array must not be empty");
+  }
+  return array[Math.floor(Math.random() * array.length)];
 }

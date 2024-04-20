@@ -29,7 +29,7 @@ router.post("/init-game", (req, res, next) => {
   const gameId = req.headers["game-id"] as string;
   gameService
     .initGame(gameId)
-    .then(() => res.status(200))
+    .then(() => res.status(200).json("OK"))
     .catch(console.log);
 });
 
