@@ -5,6 +5,7 @@ import { ITrainer } from "../backend/domain/trainer/Trainer";
 import { IBattleTrainer } from "../backend/application/battle/BattleInterfaces";
 import { prepareEnvironmentState } from "./prepare-state";
 import mongoose from "mongoose";
+import TrainerRepository from "../backend/domain/trainer/TrainerRepository";
 
 const mongoURI = "mongodb://127.0.0.1:27017/PokemonManager";
 
@@ -28,10 +29,10 @@ mongoose
   let sumWin = 0;
   for (let episode = 0; episode < 1000; episode++) {
     const player = mapBattleTrainer(
-      await TrainerService.getInstance().get("65c68ee02717e3796f502f44")
+      await TrainerRepository.getInstance().get("65c68ee02717e3796f502f44")
     );
     const opponent = mapBattleTrainer(
-      await TrainerService.getInstance().get("65c68f1c7a3d1f9b3b7e0514")
+      await TrainerRepository.getInstance().get("65c68f1c7a3d1f9b3b7e0514")
     );
     player.pokemons.map((p) => {
       p.currentHp = p.stats.hp;

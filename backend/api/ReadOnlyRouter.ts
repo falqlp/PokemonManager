@@ -24,7 +24,7 @@ class ReadOnlyRouter<T extends Document> {
         .catch((error: any) => console.log(error));
     });
 
-    this.router.put("/guery-table", (req, res, next) => {
+    this.router.put("/query-table", (req, res, next) => {
       const gameId = req.headers["game-id"] as string;
       const lang = req.headers["lang"] as string;
       this.service

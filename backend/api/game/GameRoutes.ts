@@ -25,6 +25,14 @@ router.get("/time/:id", (req, res, next) => {
     .catch(console.log);
 });
 
+router.post("/init-game", (req, res, next) => {
+  const gameId = req.headers["game-id"] as string;
+  gameService
+    .initGame(gameId)
+    .then(() => res.status(200))
+    .catch(console.log);
+});
+
 router.post("/:userId", (req, res, next) => {
   gameService
     .createWithUser(req.body, undefined, req.params.userId)

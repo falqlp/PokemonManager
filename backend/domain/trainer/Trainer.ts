@@ -17,7 +17,7 @@ export interface ITrainer extends Document {
 }
 
 const trainerSchema = new Schema<ITrainer>({
-  name: { type: String, required: true, unique: true },
+  name: { type: String, required: true },
   pokemons: [{ type: Schema.Types.ObjectId, ref: "Pokemon" }],
   pcStorage: {
     type: Schema.Types.ObjectId,

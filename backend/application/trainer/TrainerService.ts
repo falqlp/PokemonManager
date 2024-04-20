@@ -3,6 +3,7 @@ import PokemonService from "../../api/pokemon/PokemonService";
 import PcStorageService from "../../api/pcStorage/PcStorageService";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import TrainerClassRepository from "../../domain/trainerClass/TrainerClassRepository";
+import { ITrainer } from "../../domain/trainer/Trainer";
 
 class TrainerService {
   private static instance: TrainerService;
@@ -53,8 +54,16 @@ class TrainerService {
     await this.trainerRepository.update(trainerId, trainer);
   }
 
-  public async generateTrainerName(): Promise<void> {
-    console.log(await this.trainerClassRepository.generateTrainerName());
+  public async generateTrainer(gameId: string): Promise<ITrainer> {
+    const nameAndClass = (
+      await this.trainerClassRepository.generateTrainerName()
+    )[0];
+    const trainer: ITrainer = {
+      gameId,
+      name: nameAndClass.name,
+      class: nameAndClass.class,
+    } as ITrainer;
+    return this.trainerRepository.create(trainer, gameId);
   }
 }
 
