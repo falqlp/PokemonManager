@@ -5,7 +5,7 @@ import {
   WebSocketSubjectConfig,
 } from 'rxjs/webSocket';
 import { catchError, retry } from 'rxjs/operators';
-import { EMPTY } from 'rxjs';
+import { EMPTY, first } from 'rxjs';
 import { PlayerService } from './player.service';
 import { NotifierService } from 'angular-notifier';
 import { TranslateService } from '@ngx-translate/core';
@@ -94,7 +94,7 @@ export class WebsocketService {
   private handleMessage(message: WebSocketModel): void {
     switch (message.type) {
       case 'updatePlayer':
-        this.playerService.updatePlayer();
+        this.playerService.getPlayer().pipe(first()).subscribe();
         break;
       case 'connexion':
         console.log(message.payload);
