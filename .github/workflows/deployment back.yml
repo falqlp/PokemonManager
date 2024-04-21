@@ -36,7 +36,7 @@ jobs:
 
       - name: Connect to VM and Deploy
         run: scp -o StrictHostKeyChecking=no ./backend/dist/bundle.js ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.DEPLOY_PATH }}
-
-      - name: Execute bundle.js on VM
-        run: ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'screen -dm sudo node ${{ secrets.DEPLOY_PATH }}bundle.js'
+#
+#      - name: Execute bundle.js on VM
+#        run: ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'screen -dm sudo node ${{ secrets.DEPLOY_PATH }}bundle.js'
 
