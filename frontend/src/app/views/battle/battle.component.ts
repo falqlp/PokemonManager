@@ -2,7 +2,7 @@ import { DestroyRef, Input, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { TrainerQueriesService } from 'src/app/services/queries/trainer-queries.service';
 import { BattleService } from './battle.service';
-import { ROUND_TIME_MS } from './battel.const';
+import { ROUND_TIME_MS } from './battle.const';
 import { combineLatest, switchMap } from 'rxjs';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
 import { BattleModel } from '../../models/Battle.model';

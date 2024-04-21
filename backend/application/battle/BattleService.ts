@@ -7,13 +7,18 @@ class BattleService {
 
   public static getInstance(): BattleService {
     if (!BattleService.instance) {
-      BattleService.instance = new BattleService(BattleCalcService.getInstance(), BattleAiService.getInstance());
+      BattleService.instance = new BattleService(
+        BattleCalcService.getInstance(),
+        BattleAiService.getInstance()
+      );
     }
     return BattleService.instance;
   }
 
-  constructor(protected battleCalcService:BattleCalcService, protected battleAiService:BattleAiService) {
-  }
+  constructor(
+    protected battleCalcService: BattleCalcService,
+    protected battleAiService: BattleAiService
+  ) {}
 
   simulateBattleRound(trainer1: IBattleTrainer, trainer2: IBattleTrainer) {
     [trainer1, trainer2] = this.initializeTrainers(trainer1, trainer2);
@@ -71,7 +76,7 @@ class BattleService {
     };
   }
   updateDecision(trainer1: IBattleTrainer, trainer2: IBattleTrainer) {
-    if (trainer1.autorizations.updateCooldown === 0 && !trainer1.isAI) {
+    if (trainer1.autorizations.updateCooldown === 0) {
       trainer1.decision = this.battleAiService.decisionMaking(
         trainer2.pokemons[0],
         trainer2.selectedMove,
@@ -80,7 +85,7 @@ class BattleService {
     }
     if (trainer2.autorizations.updateCooldown === 0) {
       trainer2.decision =
-          this.battleAiService.decisionMaking(
+        this.battleAiService.decisionMaking(
           trainer1.pokemons[0],
           trainer1.selectedMove,
           trainer2.pokemons
@@ -101,9 +106,8 @@ class BattleService {
     ) {
       trainer.selectedMove = trainer.decision.move;
       opp.autorizations.updateCooldown = 3;
-      trainer.autorizations.moveCooldown = this.battleCalcService.getCooldownTurn(
-        trainer.pokemons[0]
-      );
+      trainer.autorizations.moveCooldown =
+        this.battleCalcService.getCooldownTurn(trainer.pokemons[0]);
     }
     return trainer;
   }

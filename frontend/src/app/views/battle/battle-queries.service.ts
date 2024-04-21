@@ -1,50 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
-import { MoveModel } from '../../models/move.model';
 import { Observable } from 'rxjs';
-import { DamageModel } from '../../models/damage.model';
-import {
-  BattleTrainerModel,
-  BattleRoundModel,
-  DecisionModel,
-} from './battle.model';
+import { BattleTrainerModel, BattleRoundModel } from './battle.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BattleQueriesService {
-  public readonly calcDamageUrl = 'api/battle/calcDamage';
-  public readonly decisionMakingUrl = 'api/battle/decisionMaking';
-  public readonly simulateTurnUrl = 'api/battle/simulateBattleRound';
+  public readonly simulateTurnUrl =
+    environment.apiUrl + '/api/battle/simulateBattleRound';
+
   public constructor(protected http: HttpClient) {}
-
-  public calcDamage(
-    attPokemon: PokemonModel,
-    defPokemon: PokemonModel,
-    move: MoveModel
-  ): Observable<{ damage: DamageModel; pokemon: PokemonModel }> {
-    return this.http.post<{ damage: DamageModel; pokemon: PokemonModel }>(
-      this.calcDamageUrl,
-      {
-        attPokemon,
-        defPokemon,
-        move,
-      }
-    );
-  }
-
-  public decisionMaking(
-    opponentPokemon: PokemonModel,
-    selectedMove: MoveModel,
-    pokemons: PokemonModel[]
-  ): Observable<DecisionModel> {
-    return this.http.post<DecisionModel>(this.decisionMakingUrl, {
-      opponentPokemon,
-      selectedMove,
-      pokemons,
-    });
-  }
 
   public simulateTurn(
     battleTrainer1: BattleTrainerModel,

@@ -1,4 +1,4 @@
-import trainer, { ITrainer } from "./Trainer";
+import { ITrainer } from "./Trainer";
 import { IMapper } from "../../api/IMapper";
 import PokemonService from "../../api/pokemon/PokemonService";
 import TrainingCampService from "../../api/trainingCamp/TrainingCampService";

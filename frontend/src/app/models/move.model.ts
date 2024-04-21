@@ -1,6 +1,6 @@
 export interface AnimationModel {
-  opponent: string;
-  player: string;
+  opponent?: string;
+  player?: string;
 }
 export interface MoveModel {
   name: string;

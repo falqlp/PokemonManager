@@ -44,7 +44,7 @@ class TrainerService {
     await this.pokemonService.update(pokemon._id, pokemon);
     const trainer = await this.trainerRepository.getComplete(trainerId);
     if (trainer.pokemons.length < 6) {
-      trainer.pokemons.push(pokemon._id);
+      trainer.pokemons.push(pokemon);
     } else {
       trainer.pcStorage.maxSize;
       let freeIndex;
