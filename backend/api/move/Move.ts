@@ -13,8 +13,8 @@ export interface IMove extends Document {
 }
 
 export interface IAnimation {
-  opponent: string;
-  player: string;
+  opponent?: string;
+  player?: string;
 }
 
 const moveSchema = new Schema<IMove>({

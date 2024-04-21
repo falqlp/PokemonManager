@@ -12,6 +12,8 @@ import PokemonService from "../../api/pokemon/PokemonService";
 import { notify } from "../../websocketServer";
 import NurseryService from "../../api/nursery/NurseryService";
 import TrainerService from "../trainer/TrainerService";
+import BattleService from "../battle/BattleService";
+import CalendarEventMapper from "../../domain/calendarEvent/CalendarEventMapper";
 
 class CalendarEventService {
   private static instance: CalendarEventService;
@@ -25,7 +27,9 @@ class CalendarEventService {
         GameRepository.getInstance(),
         PokemonService.getInstance(),
         NurseryService.getInstance(),
-        TrainerService.getInstance()
+        TrainerService.getInstance(),
+        BattleService.getInstance(),
+        CalendarEventMapper.getInstance()
       );
     }
     return CalendarEventService.instance;
@@ -38,7 +42,9 @@ class CalendarEventService {
     protected gameRepository: GameRepository,
     protected pokemonService: PokemonService,
     protected nurseryService: NurseryService,
-    protected trainerService: TrainerService
+    protected trainerService: TrainerService,
+    protected battleService: BattleService,
+    protected calendarEventMapper: CalendarEventMapper
   ) {}
 
   public async createBattleEvent(
@@ -106,7 +112,7 @@ class CalendarEventService {
     const battle = events.find(
       (event) => event.type === CalendarEventEvent.BATTLE && !event.event.winner
     )?.event;
-
+    await this.simulateBattleForDay(game, date, trainerId);
     const trainer = await this.trainerRepository.getComplete(trainerId);
     if (!battle) {
       redirectTo = await this.nurseryEvents(
@@ -172,6 +178,28 @@ class CalendarEventService {
       }
     }
     return redirectTo;
+  }
+
+  private async simulateBattleForDay(
+    gameId: string,
+    date: Date,
+    trainerId: string
+  ): Promise<void> {
+    const battles = await this.calendarEventRepository.list(
+      {
+        custom: {
+          gameId,
+          date,
+          "event.winner": { $exists: false },
+          trainers: { $nin: [trainerId] },
+        },
+      },
+      { map: this.calendarEventMapper.mapComplete }
+    );
+    for (let value of battles) {
+      value.event = this.battleService.simulateBattle(value.event);
+      await this.battleInstanceService.update(value.event._id, value.event);
+    }
   }
 }
 

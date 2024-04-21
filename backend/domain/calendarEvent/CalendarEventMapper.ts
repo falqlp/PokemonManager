@@ -35,6 +35,13 @@ class CalendarEventMapper implements IMapper<ICalendarEvent> {
     return dto;
   }
 
+  public mapComplete = (dto: ICalendarEvent) => {
+    if (dto.type === CalendarEventEvent.BATTLE) {
+      dto.event = this.battleInstanceMapper.mapComplete(dto.event);
+    }
+    return dto;
+  };
+
   public update(dto: ICalendarEvent): ICalendarEvent {
     return dto;
   }

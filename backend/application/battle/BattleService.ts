@@ -1,6 +1,10 @@
 import { IBattleTrainer } from "./BattleInterfaces";
 import BattleCalcService from "./BattleCalcService";
 import BattleAiService from "./BattleAiService";
+import { IBattleInstance } from "../../domain/battleInstance/Battle";
+import { ITrainer } from "../../domain/trainer/Trainer";
+import { PokemonType } from "../../models/Types/Types";
+import { IMove } from "../../api/move/Move";
 
 class BattleService {
   private static instance: BattleService;
@@ -19,6 +23,60 @@ class BattleService {
     protected battleCalcService: BattleCalcService,
     protected battleAiService: BattleAiService
   ) {}
+
+  public simulateBattle(battle: IBattleInstance): IBattleInstance {
+    let trainerA = this.mapBattleTrainer(battle.player);
+    let trainerB = this.mapBattleTrainer(battle.opponent);
+    for (let i = 0; i < 100000; i++) {
+      const { trainer1, trainer2 } = this.simulateBattleRound(
+        { ...trainerA },
+        { ...trainerB }
+      );
+      trainerA = trainer1;
+      trainerB = trainer2;
+      if (trainerA.defeat || trainerB.defeat) {
+        break;
+      }
+    }
+    battle.winner = trainerA.defeat ? "opponent" : "player";
+    return battle;
+  }
+
+  private mapBattleTrainer(trainer: ITrainer): IBattleTrainer {
+    return {
+      _id: trainer._id,
+      name: trainer.name,
+      pokemons: trainer.pokemons.map((pokemon) => {
+        pokemon.currentHp = pokemon.stats.hp;
+        if (pokemon.moves.length === 0) {
+          pokemon.moves = [
+            {
+              type: PokemonType.FIGHTING,
+              category: "physical",
+              name: "STRUGGLE",
+              accuracy: 100,
+              power: 10,
+              animation: {
+                opponent: "FIGHTING",
+              },
+            } as IMove,
+          ];
+        }
+        return pokemon;
+      }),
+      selectedMove: undefined,
+      damage: undefined,
+      decision: undefined,
+      updateDecision: true,
+      autorizations: {
+        pokemonCooldown: 0,
+        moveCooldown: 0,
+        updateCooldown: 0,
+      },
+      defeat: false,
+      onKo: false,
+    } as IBattleTrainer;
+  }
 
   simulateBattleRound(trainer1: IBattleTrainer, trainer2: IBattleTrainer) {
     [trainer1, trainer2] = this.initializeTrainers(trainer1, trainer2);
