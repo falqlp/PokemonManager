@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
-import { IBattleInstance } from "../../api/battle-instance/Battle";
+import { IBattleInstance } from "../battleInstance/Battle";
 import { ITrainer } from "../trainer/Trainer";
 import { entitySchema, IEntity } from "../../api/Entity";
 

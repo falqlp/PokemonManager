@@ -1,9 +1,11 @@
 import express from "express";
 import CompleteRouter from "../CompleteRouter";
-import BattleInstanceService from "./BattleInstanceService";
+import BattleInstanceRepository from "../../domain/battleInstance/BattleInstanceRepository";
 
 const router = express.Router();
-const completeRouter = new CompleteRouter(BattleInstanceService.getInstance());
+const completeRouter = new CompleteRouter(
+  BattleInstanceRepository.getInstance()
+);
 
 router.use("/", completeRouter.router);
 

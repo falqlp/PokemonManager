@@ -14,6 +14,12 @@ class CalendarEventRepository extends CompleteService<ICalendarEvent> {
     }
     return CalendarEventRepository.instance;
   }
+
+  public insertManyWithoutMapAndPopulate(
+    dtos: ICalendarEvent[]
+  ): Promise<ICalendarEvent[]> {
+    return this.schema.insertMany(dtos);
+  }
 }
 
 export default CalendarEventRepository;

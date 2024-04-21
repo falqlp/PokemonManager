@@ -5,7 +5,7 @@ import User from "../../api/user/User";
 import Trainer from "../trainer/Trainer";
 import Pokemon from "../../api/pokemon/Pokemon";
 import TrainingCamp from "../../api/trainingCamp/TrainingCamp";
-import Battle from "../../api/battle-instance/Battle";
+import Battle from "../battleInstance/Battle";
 import CalendarEvent from "../calendarEvent/CalendarEvent";
 import PcStorage from "../../api/pcStorage/PcStorage";
 import Nursery from "../../api/nursery/Nursery";

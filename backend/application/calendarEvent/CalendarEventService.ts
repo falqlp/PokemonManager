@@ -3,8 +3,8 @@ import {
   CalendarEventEvent,
   ICalendarEvent,
 } from "../../domain/calendarEvent/CalendarEvent";
-import { IBattleInstance } from "../../api/battle-instance/Battle";
-import BattleInstanceService from "../../api/battle-instance/BattleInstanceService";
+import { IBattleInstance } from "../../domain/battleInstance/Battle";
+import BattleInstanceRepository from "../../domain/battleInstance/BattleInstanceRepository";
 import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import GameRepository from "../../domain/game/GameRepository";
@@ -19,7 +19,7 @@ class CalendarEventService {
   public static getInstance(): CalendarEventService {
     if (!CalendarEventService.instance) {
       CalendarEventService.instance = new CalendarEventService(
-        BattleInstanceService.getInstance(),
+        BattleInstanceRepository.getInstance(),
         CalendarEventRepository.getInstance(),
         TrainerRepository.getInstance(),
         GameRepository.getInstance(),
@@ -32,7 +32,7 @@ class CalendarEventService {
   }
 
   constructor(
-    protected battleInstanceService: BattleInstanceService,
+    protected battleInstanceService: BattleInstanceRepository,
     protected calendarEventRepository: CalendarEventRepository,
     protected trainerRepository: TrainerRepository,
     protected gameRepository: GameRepository,

@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
-import { ITrainer } from "../../domain/trainer/Trainer";
+import { ITrainer } from "../trainer/Trainer";
 
 export interface IBattleInstance extends Document {
   player: ITrainer;

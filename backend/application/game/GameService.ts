@@ -78,28 +78,18 @@ class GameService {
       startDate,
       endDate,
     };
-    const battles = this.generateCalendarService.generateChampionship(
+    sendMessageToClientInGame(gameId, {
+      type: "initGame",
+      payload: {
+        key: "CALENDAR_GENERATION",
+      },
+    });
+    await this.generateCalendarService.generateChampionship(
       trainers,
       3,
       gameId,
       championshipPeriod
     );
-    let i = 0;
-    for (const match of battles) {
-      sendMessageToClientInGame(gameId, {
-        type: "initGame",
-        payload: {
-          key: "CALENDAR_GENERATION",
-          value: `${i}/${battles.length}`,
-        },
-      });
-      await this.calendarEventService.createBattleEvent(
-        match.date,
-        match.trainers,
-        match.gameId
-      );
-      i++;
-    }
     sendMessageToClientInGame(gameId, {
       type: "initGameEnd",
     });

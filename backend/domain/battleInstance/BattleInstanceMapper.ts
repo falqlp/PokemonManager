@@ -1,16 +1,12 @@
 import { IBattleInstance } from "./Battle";
-import { IMapper } from "../IMapper";
-import TrainerRepository from "../../domain/trainer/TrainerRepository";
+import { IMapper } from "../../api/IMapper";
 import { PopulateOptions } from "mongoose";
-import TrainerMapper from "../../domain/trainer/TrainerMapper";
-import Trainer from "../../domain/trainer/Trainer";
+import TrainerMapper from "../trainer/TrainerMapper";
+import Trainer from "../trainer/Trainer";
 
 class BattleInstanceMapper implements IMapper<IBattleInstance> {
   private static instance: BattleInstanceMapper;
-  constructor(
-    protected trainerService: TrainerRepository,
-    protected trainerMapper: TrainerMapper
-  ) {}
+  constructor(protected trainerMapper: TrainerMapper) {}
 
   public populate(): PopulateOptions[] {
     return [
@@ -38,7 +34,6 @@ class BattleInstanceMapper implements IMapper<IBattleInstance> {
   public static getInstance(): BattleInstanceMapper {
     if (!BattleInstanceMapper.instance) {
       BattleInstanceMapper.instance = new BattleInstanceMapper(
-        TrainerRepository.getInstance(),
         TrainerMapper.getInstance()
       );
     }

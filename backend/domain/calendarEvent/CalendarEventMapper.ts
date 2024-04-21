@@ -1,10 +1,10 @@
 import { IMapper } from "../../api/IMapper";
 import { CalendarEventEvent, ICalendarEvent } from "./CalendarEvent";
 import { PopulateOptions } from "mongoose";
-import Battle from "../../api/battle-instance/Battle";
+import Battle from "../battleInstance/Battle";
 import Trainer from "../trainer/Trainer";
 import TrainerMapper from "../trainer/TrainerMapper";
-import BattleInstanceMapper from "../../api/battle-instance/BattleInstanceMapper";
+import BattleInstanceMapper from "../battleInstance/BattleInstanceMapper";
 
 class CalendarEventMapper implements IMapper<ICalendarEvent> {
   private static instance: CalendarEventMapper;
