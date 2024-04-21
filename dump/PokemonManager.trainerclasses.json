@@ -1,0 +1,258 @@
+[{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd9391"
+  },
+  "class": "BEAUTY",
+  "gender": [
+    "FEMALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd9392"
+  },
+  "class": "CROUPIER",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd9393"
+  },
+  "class": "TAMER",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd9394"
+  },
+  "class": "JR_TRAINER_M",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd9395"
+  },
+  "class": "JR_TRAINER_F",
+  "gender": [
+    "FEMALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd9396"
+  },
+  "class": "EXORCIST",
+  "gender": [
+    "MALE",
+    "FEMALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd9397"
+  },
+  "class": "LITTLE_GIRL",
+  "gender": [
+    "FEMALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd9398"
+  },
+  "class": "BOY",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd9399"
+  },
+  "class": "GENTLEMAN",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd939a"
+  },
+  "class": "NERD",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd939b"
+  },
+  "class": "JUGGLER",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd939c"
+  },
+  "class": "KARATE_MASTER",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd939d"
+  },
+  "class": "PSYCHIC_TRAINER",
+  "gender": [
+    "MALE",
+    "FEMALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd939e"
+  },
+  "class": "HOOLIGAN",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd939f"
+  },
+  "class": "SAILOR",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd93a0"
+  },
+  "class": "ENGINEER",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd93a1"
+  },
+  "class": "HIKER",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd93a2"
+  },
+  "class": "BIKER",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd93a3"
+  },
+  "class": "SWIMMER",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd93a4"
+  },
+  "class": "BIRD_KEEPER",
+  "gender": [
+    "MALE",
+    "FEMALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd93a5"
+  },
+  "class": "FISHERMAN",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd93a6"
+  },
+  "class": "BANDIT",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd93a7"
+  },
+  "class": "POKEMANIAC",
+  "gender": [
+    "MALE",
+    "FEMALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd93a8"
+  },
+  "class": "ROCKER",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd93a9"
+  },
+  "class": "ROCKET",
+  "gender": [
+    "MALE",
+    "FEMALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd93aa"
+  },
+  "class": "SCIENTIST",
+  "gender": [
+    "MALE",
+    "FEMALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd93ab"
+  },
+  "class": "SCOUT",
+  "gender": [
+    "MALE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "661ee118f9266dc125bd93ac"
+  },
+  "class": "TOP_TRAINER",
+  "gender": [
+    "MALE"
+  ]
+}]
