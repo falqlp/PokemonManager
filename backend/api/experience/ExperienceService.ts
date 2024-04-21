@@ -127,7 +127,7 @@ class ExperienceService {
 
   public getXp(pokemon: IPokemon, lvlTrainingCamp: number): number {
     const gainXp =
-      (0.1 + 0.9 * pokemon.trainingPercentage) *
+      (0.9 + 0.1 * pokemon.trainingPercentage) * //TODO a changer lorsque l'entrainement arrivera
         lvlTrainingCamp *
         50 *
         (pokemon.potential - pokemon.level) -

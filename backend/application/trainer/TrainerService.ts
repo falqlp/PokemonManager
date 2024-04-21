@@ -113,7 +113,7 @@ class TrainerService {
         await this.moveLearningService.learnableMoves(basePokemon.id, level, {
           sort: { power: -1 },
         })
-      ).splice(2);
+      ).slice(0, 2);
       let pokemon: IPokemon = {
         basePokemon,
         level,

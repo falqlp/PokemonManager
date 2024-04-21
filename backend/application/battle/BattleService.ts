@@ -28,12 +28,12 @@ class BattleService {
     trainer1 = this.applyDecision(trainer1, trainer2);
     trainer2 = this.applyDecision(trainer2, trainer1);
     this.processDamage(trainer1, trainer2);
+    trainer1.onKo = trainer2.onKo = false;
     this.checkPokemonKo(trainer1);
     this.checkPokemonKo(trainer2);
     return { trainer1, trainer2 };
   }
   initializeTrainers(trainer1: IBattleTrainer, trainer2: IBattleTrainer) {
-    trainer1.onKo = trainer2.onKo = false;
     trainer1.damage = trainer2.damage = null;
     return [trainer1, trainer2];
   }

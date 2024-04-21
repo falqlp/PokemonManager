@@ -24,7 +24,7 @@ class BattleAiService {
       return this.noSelectedMoveDecision(pokemons[0], opponentPokemon);
     }
     let decision;
-    let damageBeforeKO = 0;
+    let damageBeforeKO = -1;
     pokemons.forEach((pokemon) => {
       if (pokemon.currentHp !== 0) {
         let opponentDamage = 0;
@@ -41,7 +41,7 @@ class BattleAiService {
             opponentPokemon,
             move
           );
-          const damageBeforeKOindicator = this.getDamageBeforeKO(
+          const damageBeforeKOindicator = this.getDamageBeforeKoAsFullLife(
             pokemon,
             opponentDamage,
             damage,
@@ -70,14 +70,14 @@ class BattleAiService {
     return { pokemon, move: bestMove };
   }
 
-  getDamageBeforeKO(
+  getDamageBeforeKoAsFullLife(
     pokemon: IPokemon,
     opponentDamage: number,
     damage: number,
     changeDamage: number
   ) {
     return Math.abs(
-      Math.ceil((pokemon.currentHp - changeDamage) / opponentDamage) * damage
+      Math.ceil((pokemon.stats.hp - changeDamage) / opponentDamage) * damage
     );
   }
   getChangeDamage(pokemons: IPokemon[], pokemon: IPokemon, edp: number) {
