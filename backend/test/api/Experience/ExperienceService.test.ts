@@ -77,7 +77,7 @@ describe("ExperienceService", () => {
 
       expect(result).toHaveProperty("xpGain");
 
-      expect(experienceService.getXp).toHaveBeenCalledWith(pokemon, 10);
+      expect(experienceService.getXp).toHaveBeenCalledWith(simplePokemon, 10);
       expect(experienceService.getLevel).toHaveBeenCalledWith(
         pokemon.level,
         pokemon.exp + 10,
