@@ -9,15 +9,16 @@ class PokemonBaseRepository extends ReadOnlyService<IPokemonBase> {
     if (!PokemonBaseRepository.instance) {
       PokemonBaseRepository.instance = new PokemonBaseRepository(
         PokemonBase,
-        PokemonBaseMapper
+        PokemonBaseMapper,
       );
     }
     return PokemonBaseRepository.instance;
   }
 
-  public getPokemonBaseById(id: number) {
+  public getPokemonBaseById(id: number): Promise<IPokemonBase> {
     return this.schema.findOne({ id });
   }
+
   public async getStartersBase(seed?: string): Promise<IPokemonBase[]> {
     const aggregation = this.schema.aggregate();
     aggregation.lookup({
@@ -44,9 +45,10 @@ class PokemonBaseRepository extends ReadOnlyService<IPokemonBase> {
       return pokemon;
     });
   }
+
   public async generateBasePokemon(
     quantity: number,
-    query: any
+    query: any,
   ): Promise<IPokemonBase[]> {
     return this.schema.aggregate().match(query).sample(quantity);
   }

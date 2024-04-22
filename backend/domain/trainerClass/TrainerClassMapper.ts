@@ -12,10 +12,7 @@ class TrainerClassMapper implements IMapper<ITrainerClass> {
     return TrainerClassMapper.instance;
   }
 
-  map(
-    entity: ITrainerClass,
-    gameId: string | undefined
-  ): Promise<ITrainerClass> | ITrainerClass {
+  map(entity: ITrainerClass): Promise<ITrainerClass> | ITrainerClass {
     return entity;
   }
 

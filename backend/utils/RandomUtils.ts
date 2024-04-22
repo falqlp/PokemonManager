@@ -1,13 +1,16 @@
 import seedrandom from "seedrandom";
-import { PeriodModel } from "../application/PeriodModel";
 
 function boxMullerRandom(): [number, number] {
   let u = 0,
     v = 0;
-  while (u === 0) u = Math.random();
-  while (v === 0) v = Math.random();
-  let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-  let num2 = Math.sqrt(-2.0 * Math.log(u)) * Math.sin(2.0 * Math.PI * v);
+  while (u === 0) {
+    u = Math.random();
+  }
+  while (v === 0) {
+    v = Math.random();
+  }
+  const num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+  const num2 = Math.sqrt(-2.0 * Math.log(u)) * Math.sin(2.0 * Math.PI * v);
   return [num, num2];
 }
 
@@ -19,7 +22,7 @@ export function normalRandom(mean: number = 0, stdDev: number = 1): number {
 export function sample<T>(
   documents: T[],
   sampleSize: number,
-  seed?: string
+  seed?: string,
 ): T[] {
   const rng = seedrandom(seed ?? "");
   const sampled: T[] = [];
@@ -33,7 +36,7 @@ export function sample<T>(
   return sampled;
 }
 
-export function shuffleArray(array: any[]) {
+export function shuffleArray(array: any[]): void {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];

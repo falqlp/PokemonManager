@@ -29,7 +29,7 @@ class CalendarEventService {
         NurseryService.getInstance(),
         TrainerService.getInstance(),
         BattleService.getInstance(),
-        CalendarEventMapper.getInstance()
+        CalendarEventMapper.getInstance(),
       );
     }
     return CalendarEventService.instance;
@@ -44,20 +44,20 @@ class CalendarEventService {
     protected nurseryService: NurseryService,
     protected trainerService: TrainerService,
     protected battleService: BattleService,
-    protected calendarEventMapper: CalendarEventMapper
+    protected calendarEventMapper: CalendarEventMapper,
   ) {}
 
   public async createBattleEvent(
     date: Date,
     trainers: ITrainer[],
-    gameId: string
+    gameId: string,
   ): Promise<ICalendarEvent> {
     const battleDTO = await this.battleInstanceService.create(
       {
         player: trainers[0],
         opponent: trainers[1],
       } as IBattleInstance,
-      gameId
+      gameId,
     );
     return await this.calendarEventRepository.create(
       {
@@ -66,14 +66,14 @@ class CalendarEventService {
         trainers,
         type: CalendarEventEvent.BATTLE,
       } as ICalendarEvent,
-      gameId
+      gameId,
     );
   }
 
   public async getWeekCalendar(
     trainerId: string,
     date: Date,
-    gameId: string
+    gameId: string,
   ): Promise<ICalendarEvent[][]> {
     const actualDate = new Date(date);
     const minDate = new Date(date);
@@ -102,7 +102,7 @@ class CalendarEventService {
   public async simulateDay(
     trainerId: string,
     date: Date,
-    game: string
+    game: string,
   ): Promise<{ date: Date; battle: IBattleInstance; redirectTo: string }> {
     date = new Date(date);
     let redirectTo: string = null;
@@ -110,7 +110,8 @@ class CalendarEventService {
       custom: { trainers: trainerId, date },
     });
     const battle = events.find(
-      (event) => event.type === CalendarEventEvent.BATTLE && !event.event.winner
+      (event) =>
+        event.type === CalendarEventEvent.BATTLE && !event.event.winner,
     )?.event;
     await this.simulateBattleForDay(game, date, trainerId);
     const trainer = await this.trainerRepository.getComplete(trainerId);
@@ -120,7 +121,7 @@ class CalendarEventService {
         trainer,
         date,
         game,
-        redirectTo
+        redirectTo,
       );
       date.setUTCDate(date.getUTCDate() + 1);
       const newGame = await this.gameRepository.get(game);
@@ -136,12 +137,12 @@ class CalendarEventService {
     trainer: ITrainer,
     date: Date,
     game: string,
-    redirectTo: string
+    redirectTo: string,
   ): Promise<string> {
     const nursery = trainer.nursery;
     if (
       events.find(
-        (event) => event.type === CalendarEventEvent.GENERATE_NURSERY_EGGS
+        (event) => event.type === CalendarEventEvent.GENERATE_NURSERY_EGGS,
       ) &&
       nursery.eggs?.length === 0
     ) {
@@ -151,7 +152,7 @@ class CalendarEventService {
       events.find(
         (event) =>
           event.type === CalendarEventEvent.NURSERY_FIRST_SELECTION_DEADLINE ||
-          event.type === CalendarEventEvent.NURSERY_LAST_SELECTION_DEADLINE
+          event.type === CalendarEventEvent.NURSERY_LAST_SELECTION_DEADLINE,
       )
     ) {
       if (
@@ -183,7 +184,7 @@ class CalendarEventService {
   private async simulateBattleForDay(
     gameId: string,
     date: Date,
-    trainerId: string
+    trainerId: string,
   ): Promise<void> {
     const battles = await this.calendarEventRepository.list(
       {
@@ -194,9 +195,9 @@ class CalendarEventService {
           trainers: { $nin: [trainerId] },
         },
       },
-      { map: this.calendarEventMapper.mapComplete }
+      { map: this.calendarEventMapper.mapComplete },
     );
-    for (let value of battles) {
+    for (const value of battles) {
       value.event = this.battleService.simulateBattle(value.event);
       await this.battleInstanceService.update(value.event._id, value.event);
     }

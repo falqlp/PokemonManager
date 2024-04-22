@@ -1,10 +1,11 @@
-import { IBattleTrainer } from "./BattleInterfaces";
+import { IBattleTrainer, ITrainerAutorizations } from "./BattleInterfaces";
 import BattleCalcService from "./BattleCalcService";
 import BattleAiService from "./BattleAiService";
 import { IBattleInstance } from "../../domain/battleInstance/Battle";
 import { ITrainer } from "../../domain/trainer/Trainer";
 import { PokemonType } from "../../models/Types/Types";
 import { IMove } from "../../api/move/Move";
+import { IPokemon } from "../../api/pokemon/Pokemon";
 
 class BattleService {
   private static instance: BattleService;
@@ -13,7 +14,7 @@ class BattleService {
     if (!BattleService.instance) {
       BattleService.instance = new BattleService(
         BattleCalcService.getInstance(),
-        BattleAiService.getInstance()
+        BattleAiService.getInstance(),
       );
     }
     return BattleService.instance;
@@ -21,7 +22,7 @@ class BattleService {
 
   constructor(
     protected battleCalcService: BattleCalcService,
-    protected battleAiService: BattleAiService
+    protected battleAiService: BattleAiService,
   ) {}
 
   public simulateBattle(battle: IBattleInstance): IBattleInstance {
@@ -30,7 +31,7 @@ class BattleService {
     for (let i = 0; i < 100000; i++) {
       const { trainer1, trainer2 } = this.simulateBattleRound(
         { ...trainerA },
-        { ...trainerB }
+        { ...trainerB },
       );
       trainerA = trainer1;
       trainerB = trainer2;
@@ -78,7 +79,10 @@ class BattleService {
     } as IBattleTrainer;
   }
 
-  simulateBattleRound(trainer1: IBattleTrainer, trainer2: IBattleTrainer) {
+  simulateBattleRound(
+    trainer1: IBattleTrainer,
+    trainer2: IBattleTrainer,
+  ): { trainer1: IBattleTrainer; trainer2: IBattleTrainer } {
     [trainer1, trainer2] = this.initializeTrainers(trainer1, trainer2);
     this.decreseCooldown(trainer1);
     this.decreseCooldown(trainer2);
@@ -91,54 +95,62 @@ class BattleService {
     this.checkPokemonKo(trainer2);
     return { trainer1, trainer2 };
   }
-  initializeTrainers(trainer1: IBattleTrainer, trainer2: IBattleTrainer) {
+
+  initializeTrainers(
+    trainer1: IBattleTrainer,
+    trainer2: IBattleTrainer,
+  ): [IBattleTrainer, IBattleTrainer] {
     trainer1.damage = trainer2.damage = null;
     return [trainer1, trainer2];
   }
-  processDamage(trainer1: IBattleTrainer, trainer2: IBattleTrainer) {
+
+  processDamage(trainer1: IBattleTrainer, trainer2: IBattleTrainer): void {
     trainer1.damage = this.battleCalcService.calcDamage(
       trainer2.pokemons[0],
       trainer1.pokemons[0],
-      trainer2.selectedMove
+      trainer2.selectedMove,
     );
     trainer2.damage = this.battleCalcService.calcDamage(
       trainer1.pokemons[0],
       trainer2.pokemons[0],
-      trainer1.selectedMove
+      trainer1.selectedMove,
     );
     trainer1.pokemons[0].currentHp = this.battleCalcService.damageOnPokemon(
       trainer1.pokemons[0],
-      trainer1.damage
+      trainer1.damage,
     );
     trainer2.pokemons[0].currentHp = this.battleCalcService.damageOnPokemon(
       trainer2.pokemons[0],
-      trainer2.damage
+      trainer2.damage,
     );
   }
-  checkPokemonKo(trainer: IBattleTrainer) {
+
+  checkPokemonKo(trainer: IBattleTrainer): void {
     if (trainer.pokemons[0].currentHp === 0) {
       trainer.onKo = true;
       trainer.defeat = !trainer.pokemons.some(
-        (pokemon) => pokemon.currentHp !== 0
+        (pokemon) => pokemon.currentHp !== 0,
       );
       if (!trainer.defeat) {
         trainer.autorizations = this.resetCooldowns();
       }
     }
   }
-  resetCooldowns() {
+
+  resetCooldowns(): ITrainerAutorizations {
     return {
       pokemonCooldown: 0,
       moveCooldown: 0,
       updateCooldown: 0,
     };
   }
-  updateDecision(trainer1: IBattleTrainer, trainer2: IBattleTrainer) {
+
+  updateDecision(trainer1: IBattleTrainer, trainer2: IBattleTrainer): void {
     if (trainer1.autorizations.updateCooldown === 0) {
       trainer1.decision = this.battleAiService.decisionMaking(
         trainer2.pokemons[0],
         trainer2.selectedMove,
-        trainer1.pokemons
+        trainer1.pokemons,
       );
     }
     if (trainer2.autorizations.updateCooldown === 0) {
@@ -146,17 +158,21 @@ class BattleService {
         this.battleAiService.decisionMaking(
           trainer1.pokemons[0],
           trainer1.selectedMove,
-          trainer2.pokemons
+          trainer2.pokemons,
         ) ?? trainer2.decision;
     }
   }
-  applyDecision(trainer: IBattleTrainer, opponent: IBattleTrainer) {
+
+  applyDecision(
+    trainer: IBattleTrainer,
+    opponent: IBattleTrainer,
+  ): IBattleTrainer {
     trainer = this.changePokemon(trainer, opponent);
     trainer = this.moveChange(trainer, opponent);
     return trainer;
   }
 
-  moveChange(trainer: IBattleTrainer, opp: IBattleTrainer) {
+  moveChange(trainer: IBattleTrainer, opp: IBattleTrainer): IBattleTrainer {
     if (
       !trainer.defeat &&
       trainer.autorizations.moveCooldown === 0 &&
@@ -170,7 +186,7 @@ class BattleService {
     return trainer;
   }
 
-  changePokemon(trainer: IBattleTrainer, opp: IBattleTrainer) {
+  changePokemon(trainer: IBattleTrainer, opp: IBattleTrainer): IBattleTrainer {
     if (
       !trainer.defeat &&
       trainer.autorizations.pokemonCooldown === 0 &&
@@ -189,14 +205,14 @@ class BattleService {
     return trainer;
   }
 
-  onChangePokemon(trainer: IBattleTrainer) {
+  onChangePokemon(trainer: IBattleTrainer): IPokemon[] {
     const pokemons = trainer.pokemons;
     const leadingPokemon = pokemons[0];
     const newLeadingPokemon = pokemons.find(
-      (playerPokemon) => playerPokemon?._id === trainer.decision.pokemon?._id
+      (playerPokemon) => playerPokemon?._id === trainer.decision.pokemon?._id,
     );
     const index = pokemons.findIndex(
-      (playerPokemon) => playerPokemon?._id === trainer.decision.pokemon?._id
+      (playerPokemon) => playerPokemon?._id === trainer.decision.pokemon?._id,
     );
     pokemons[index] = leadingPokemon;
     pokemons[index].currentHp = leadingPokemon.currentHp;
@@ -205,7 +221,7 @@ class BattleService {
     return pokemons;
   }
 
-  decreseCooldown(trainer: IBattleTrainer) {
+  decreseCooldown(trainer: IBattleTrainer): void {
     if (trainer.autorizations.moveCooldown > 0) {
       trainer.autorizations.moveCooldown -= 1;
     }

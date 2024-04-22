@@ -13,6 +13,6 @@ const trainerNameSchema = new Schema<ITrainerName>({
 
 const TrainerName = mongoose.model<ITrainerName>(
   "TrainerName",
-  trainerNameSchema
+  trainerNameSchema,
 );
 export default TrainerName;

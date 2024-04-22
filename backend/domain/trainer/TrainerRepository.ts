@@ -6,14 +6,18 @@ import { Model } from "mongoose";
 class TrainerRepository extends CompleteService<ITrainer> {
   private static instance: TrainerRepository;
 
-  constructor(trainer: Model<ITrainer>, protected mapper: TrainerMapper) {
+  constructor(
+    trainer: Model<ITrainer>,
+    protected mapper: TrainerMapper,
+  ) {
     super(trainer, mapper);
   }
+
   public static getInstance(): TrainerRepository {
     if (!TrainerRepository.instance) {
       TrainerRepository.instance = new TrainerRepository(
         Trainer,
-        TrainerMapper.getInstance()
+        TrainerMapper.getInstance(),
       );
     }
     return TrainerRepository.instance;

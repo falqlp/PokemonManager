@@ -16,46 +16,47 @@ class GenerateCalendarService {
     if (!GenerateCalendarService.instance) {
       GenerateCalendarService.instance = new GenerateCalendarService(
         BattleInstanceRepository.getInstance(),
-        CalendarEventRepository.getInstance()
+        CalendarEventRepository.getInstance(),
       );
     }
     return GenerateCalendarService.instance;
   }
+
   constructor(
     protected battleInstanceRepository: BattleInstanceRepository,
-    protected calendarEventRepository: CalendarEventRepository
+    protected calendarEventRepository: CalendarEventRepository,
   ) {}
 
   public async generateChampionship(
     trainers: ITrainer[],
     nbFaceEachOther: number,
     gameId: string,
-    period: PeriodModel
+    period: PeriodModel,
   ): Promise<void> {
     let matches = this.generateChampionshipMatches(
       trainers,
       nbFaceEachOther,
-      gameId
+      gameId,
     );
     matches =
       await this.battleInstanceRepository.insertManyWithoutMapAndPopulate(
-        matches
+        matches,
       );
     const availableMatchDate = this.getAvilableDayForTrainer(period, trainers);
     const calendarEvents = this.planMatches(
       matches,
       availableMatchDate,
-      gameId
+      gameId,
     );
     await this.calendarEventRepository.insertManyWithoutMapAndPopulate(
-      calendarEvents
+      calendarEvents,
     );
   }
 
   private generateChampionshipMatches(
     trainers: ITrainer[],
     nbFaceEachOther: number,
-    gameId: string
+    gameId: string,
   ): IBattleInstance[] {
     const matches: IBattleInstance[] = [];
     for (let i = 0; i < trainers.length; i++) {
@@ -76,19 +77,19 @@ class GenerateCalendarService {
   private planMatches(
     matches: IBattleInstance[],
     availableMatchDate: Map<string, Date[]>,
-    gameId: string
+    gameId: string,
   ): ICalendarEvent[] {
-    return matches.map((match, index) => {
+    return matches.map((match) => {
       const date = this.getRandomDate(match, availableMatchDate);
       availableMatchDate = this.deleteAvailableDateForTrainer(
         availableMatchDate,
         date,
-        match.player
+        match.player,
       );
       availableMatchDate = this.deleteAvailableDateForTrainer(
         availableMatchDate,
         date,
-        match.opponent
+        match.opponent,
       );
       return {
         date,
@@ -103,8 +104,8 @@ class GenerateCalendarService {
   private deleteAvailableDateForTrainer(
     availableMatchDate: Map<string, Date[]>,
     date: Date,
-    trainer: ITrainer
-  ) {
+    trainer: ITrainer,
+  ): Map<string, Date[]> {
     const index = availableMatchDate
       .get(trainer._id.toString())
       .findIndex((value) => value.getTime() === date.getTime());
@@ -116,18 +117,19 @@ class GenerateCalendarService {
 
   private getRandomDate(
     match: IBattleInstance,
-    availableMatchDate: Map<string, Date[]>
+    availableMatchDate: Map<string, Date[]>,
   ): Date {
     return getRandomFromArray(
       this.commonAvailableDate(
         availableMatchDate.get(match.player._id.toString()),
-        availableMatchDate.get(match.opponent._id.toString())
-      )
+        availableMatchDate.get(match.opponent._id.toString()),
+      ),
     );
   }
+
   private getAvilableDayForTrainer(
     period: PeriodModel,
-    trainers: ITrainer[]
+    trainers: ITrainer[],
   ): Map<string, Date[]> {
     const availableDays: Date[] = [];
     const date = new Date(period.startDate);
@@ -145,7 +147,7 @@ class GenerateCalendarService {
   private commonAvailableDate(dates1: Date[], dates2: Date[]): Date[] {
     const dates = [...dates1];
     return dates.filter((date1) =>
-      dates2.some((date2) => date1.getTime() === date2.getTime())
+      dates2.some((date2) => date1.getTime() === date2.getTime()),
     );
   }
 }

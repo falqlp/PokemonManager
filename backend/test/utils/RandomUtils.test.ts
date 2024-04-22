@@ -72,7 +72,7 @@ describe("getRandomFromArray function", () => {
   it("should throw an error when an empty array is passed", () => {
     const emptyArray: never[] = [];
     expect(() => getRandomFromArray(emptyArray)).toThrowError(
-      "Array must not be empty"
+      "Array must not be empty",
     );
   });
 

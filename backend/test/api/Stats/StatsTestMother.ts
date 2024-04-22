@@ -4,6 +4,7 @@ export class StatsTestMother {
   static getEvs(): IPokemonStats {
     return this.getAll0();
   }
+
   static getAll0(): IPokemonStats {
     return {
       hp: 0,
@@ -14,6 +15,7 @@ export class StatsTestMother {
       spe: 0,
     } as IPokemonStats;
   }
+
   static getIVs(): IPokemonStats {
     return {
       hp: 31,

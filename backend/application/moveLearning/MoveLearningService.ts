@@ -5,6 +5,7 @@ import { ListBody } from "../../api/ReadOnlyService";
 import MoveService from "../../api/move/MoveService";
 import { IMoveLearning } from "../../domain/moveLearning/MoveLearning";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
+import { IMove } from "../../api/move/Move";
 
 export default class MoveLearningService {
   private static instance: MoveLearningService;
@@ -13,15 +14,16 @@ export default class MoveLearningService {
       MoveLearningService.instance = new MoveLearningService(
         MoveLearningRepository.getInstance(),
         MoveService.getInstance(),
-        EvolutionRepository.getInstance()
+        EvolutionRepository.getInstance(),
       );
     }
     return MoveLearningService.instance;
   }
+
   constructor(
     protected moveLearningRepository: MoveLearningRepository,
     protected moveService: MoveService,
-    protected evolutionRepository: EvolutionRepository
+    protected evolutionRepository: EvolutionRepository,
   ) {}
 
   public newMoveLearned(pokemon: IPokemon): void {
@@ -33,7 +35,12 @@ export default class MoveLearningService {
         }
       });
   }
-  public async learnableMoves(id: number, level: number, query?: ListBody) {
+
+  public async learnableMoves(
+    id: number,
+    level: number,
+    query?: ListBody,
+  ): Promise<IMove[]> {
     const allMoves = await this.getMovesOfAllEvolutions(id, level);
     const allMovesString = allMoves.map((move) => {
       return move.moveId;
@@ -45,7 +52,7 @@ export default class MoveLearningService {
 
   public async getMovesOfAllEvolutions(
     id: number,
-    level: number
+    level: number,
   ): Promise<IMoveLearning[]> {
     let moveLearn: IMoveLearning[] =
       await this.moveLearningRepository.getAllMoveAtLevel(id, level);
@@ -56,14 +63,14 @@ export default class MoveLearningService {
       const moveLearn2: IMoveLearning[] =
         await this.moveLearningRepository.getAllMoveAtLevel(
           evolution.pokemonId,
-          evolution.minLevel + 1
+          evolution.minLevel + 1,
         );
 
       moveLearn = this.mergeAndOverwrite(moveLearn, moveLearn2);
 
       const previousEvolutionMoves = await this.getMovesOfAllEvolutions(
         evolution.pokemonId,
-        evolution.minLevel
+        evolution.minLevel,
       );
       moveLearn = this.mergeAndOverwrite(moveLearn, previousEvolutionMoves);
     }
@@ -73,7 +80,7 @@ export default class MoveLearningService {
 
   public mergeAndOverwrite(
     list1: IMoveLearning[],
-    list2: IMoveLearning[]
+    list2: IMoveLearning[],
   ): IMoveLearning[] {
     const map: { [key: string]: IMoveLearning } = {};
 

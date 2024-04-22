@@ -14,7 +14,7 @@ class MoveLearningRepository {
 
   public getAllMoveAtLevel(
     id: number,
-    level: number
+    level: number,
   ): Promise<IMoveLearning[]> {
     return MoveLearning.find({
       pokemonId: id,

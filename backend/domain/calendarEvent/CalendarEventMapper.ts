@@ -10,7 +10,7 @@ class CalendarEventMapper implements IMapper<ICalendarEvent> {
   private static instance: CalendarEventMapper;
   constructor(
     protected trainerMapper: TrainerMapper,
-    protected battleInstanceMapper: BattleInstanceMapper
+    protected battleInstanceMapper: BattleInstanceMapper,
   ) {}
 
   public populate(): PopulateOptions[] {
@@ -27,6 +27,7 @@ class CalendarEventMapper implements IMapper<ICalendarEvent> {
       },
     ];
   }
+
   public map(dto: ICalendarEvent): ICalendarEvent {
     if (dto.type === CalendarEventEvent.BATTLE) {
       dto.event = this.battleInstanceMapper.map(dto.event);
@@ -35,7 +36,7 @@ class CalendarEventMapper implements IMapper<ICalendarEvent> {
     return dto;
   }
 
-  public mapComplete = (dto: ICalendarEvent) => {
+  public mapComplete = (dto: ICalendarEvent): ICalendarEvent => {
     if (dto.type === CalendarEventEvent.BATTLE) {
       dto.event = this.battleInstanceMapper.mapComplete(dto.event);
     }
@@ -50,7 +51,7 @@ class CalendarEventMapper implements IMapper<ICalendarEvent> {
     if (!CalendarEventMapper.instance) {
       CalendarEventMapper.instance = new CalendarEventMapper(
         TrainerMapper.getInstance(),
-        BattleInstanceMapper.getInstance()
+        BattleInstanceMapper.getInstance(),
       );
     }
     return CalendarEventMapper.instance;

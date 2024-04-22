@@ -15,7 +15,7 @@ class ExperienceService {
       ExperienceService.instance = new ExperienceService(
         TrainerRepository.getInstance(),
         MoveLearningService.getInstance(),
-        EvolutionRepository.getInstance()
+        EvolutionRepository.getInstance(),
       );
     }
     return ExperienceService.instance;
@@ -24,8 +24,9 @@ class ExperienceService {
   constructor(
     protected trainerService: TrainerRepository,
     protected moveLearningService: MoveLearningService,
-    protected evolutionRepository: EvolutionRepository
+    protected evolutionRepository: EvolutionRepository,
   ) {}
+
   public async weeklyXpGain(trainerId: string): Promise<{
     trainer: ITrainer;
     xpAndLevelGain: { xp: number; level: number }[];
@@ -36,14 +37,14 @@ class ExperienceService {
       evolution: IPokemonBase;
       name: string;
     }[] = [];
-    let trainer = await this.trainerService.getComplete(trainerId);
+    const trainer = await this.trainerService.getComplete(trainerId);
     const xpAndLevelGain: { xp: number; level: number }[] = [];
     const pokemonPromise = trainer.pokemons
       .filter((pokemon) => pokemon.level !== 0)
       .map(async (pokemon) => {
         const res = await this.mapPokemonXp(
           pokemon,
-          trainer.trainingCamp.level
+          trainer.trainingCamp.level,
         );
         xpAndLevelGain[
           trainer.pokemons.findIndex((pokemon2) => pokemon2._id === pokemon._id)
@@ -58,7 +59,7 @@ class ExperienceService {
       .map(async (storage) => {
         const res = await this.mapPokemonXp(
           storage.pokemon,
-          trainer.trainingCamp.level
+          trainer.trainingCamp.level,
         );
         if (res?.evolutions) {
           evolutions.push(res.evolutions);
@@ -74,7 +75,7 @@ class ExperienceService {
 
   public async mapPokemonXp(
     pokemon: IPokemon,
-    trainingCampLevel: number
+    trainingCampLevel: number,
   ): Promise<{
     xp: number;
     level: number;
@@ -88,7 +89,7 @@ class ExperienceService {
       evolution: IPokemonBase;
       name: string;
     };
-    let result = this.updateLevelAndXp(pokemon, trainingCampLevel);
+    const result = this.updateLevelAndXp(pokemon, trainingCampLevel);
     pokemon = result.pokemon;
     const levelUp = result.variation > 0;
     if (levelUp) {
@@ -99,7 +100,7 @@ class ExperienceService {
       const evolution = await this.evolutionRepository.evolve(
         pokemon.basePokemon.id,
         pokemon.level,
-        "LEVEL-UP"
+        "LEVEL-UP",
       );
       if (evolution) {
         evolutions = {
@@ -114,7 +115,7 @@ class ExperienceService {
 
   public updateLevelAndXp(
     pokemon: IPokemon,
-    trainingCampLevel: number
+    trainingCampLevel: number,
   ): { pokemon: IPokemon; variation: number; xpGain: number } {
     const xpGain = this.getXp(pokemon, trainingCampLevel);
     pokemon.exp += xpGain;
@@ -137,27 +138,27 @@ class ExperienceService {
 
   public getLevel(
     level: number,
-    exp: number
+    exp: number,
   ): { level: number; exp: number; variation: number } {
     let variation = 0;
     while (exp > XP_PER_LEVEL) {
       exp -= XP_PER_LEVEL;
-      level++;
+      level += 1;
       if (level > 100) {
         level = 100;
         exp = XP_PER_LEVEL;
       } else {
-        variation++;
+        variation += 1;
       }
     }
     while (exp < 0) {
-      level--;
+      level -= 1;
       exp += XP_PER_LEVEL;
       if (level < 0) {
         level = 0;
         exp = 0;
       } else {
-        variation++;
+        variation += 1;
       }
     }
     return { level, exp, variation };

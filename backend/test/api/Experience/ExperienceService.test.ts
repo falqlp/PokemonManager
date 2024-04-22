@@ -63,14 +63,14 @@ describe("ExperienceService", () => {
   });
   describe("updateLevelAndXp", () => {
     it("should update the level and experience of a Pokémon", () => {
-      const pokemon = PokemonTestMother.generateBulbasaur() as IPokemon;
+      const simplePokemon = PokemonTestMother.generateBulbasaur() as IPokemon;
       jest.spyOn(experienceService, "getXp").mockReturnValue(10);
       jest.spyOn(experienceService, "getLevel").mockReturnValue({
-        level: pokemon.level,
-        exp: pokemon.exp,
+        level: simplePokemon.level,
+        exp: simplePokemon.exp,
         variation: 0,
       });
-      const result = experienceService.updateLevelAndXp(pokemon, 10);
+      const result = experienceService.updateLevelAndXp(simplePokemon, 10);
 
       expect(result).toHaveProperty("pokemon");
       expect(result).toHaveProperty("variation");
@@ -80,7 +80,7 @@ describe("ExperienceService", () => {
       expect(experienceService.getXp).toHaveBeenCalledWith(pokemon, 10);
       expect(experienceService.getLevel).toHaveBeenCalledWith(
         pokemon.level,
-        pokemon.exp + 10
+        pokemon.exp + 10,
       );
     });
   });

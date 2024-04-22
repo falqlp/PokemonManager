@@ -12,18 +12,20 @@ export class PokedexService {
         PokemonBaseRepository.getInstance(),
         MoveLearningService.getInstance(),
         MoveService.getInstance(),
-        EvolutionRepository.getInstance()
+        EvolutionRepository.getInstance(),
       );
     }
     return PokedexService.instance;
   }
+
   private static instance: PokedexService;
   constructor(
     protected pokemonBaseService: PokemonBaseRepository,
     protected moveLearningService: MoveLearningService,
     protected moveService: MoveService,
-    protected evolutionRepository: EvolutionRepository
+    protected evolutionRepository: EvolutionRepository,
   ) {}
+
   public async getPokemonDetails(pokemonId: number): Promise<IPokedex> {
     const evolutions = await this.getEvolutions(pokemonId);
     const evolutionOf = await this.getEvolutionOf(pokemonId);
@@ -39,27 +41,26 @@ export class PokedexService {
   }
 
   protected async getEvolutions(
-    pokemonId: number
+    pokemonId: number,
   ): Promise<IPokedexEvolution[]> {
     const evolutions: IPokedexEvolution[] = [];
-    const hasEvolutions = await this.evolutionRepository.hasEvolution(
-      pokemonId
-    );
+    const hasEvolutions =
+      await this.evolutionRepository.hasEvolution(pokemonId);
     for (const evolution of hasEvolutions) {
       evolutions.push({
         pokemon: await this.pokemonBaseService.getPokemonBaseById(
-          evolution.evolveTo
+          evolution.evolveTo,
         ),
         evolutionMethod: evolution.evolutionMethod,
         minLevel: evolution.minLevel,
       });
       const hasEvolutions2 = await this.evolutionRepository.hasEvolution(
-        evolution.evolveTo
+        evolution.evolveTo,
       );
       for (const evolution2 of hasEvolutions2) {
         evolutions.push({
           pokemon: await this.pokemonBaseService.getPokemonBaseById(
-            evolution2.evolveTo
+            evolution2.evolveTo,
           ),
           evolutionMethod: evolution2.evolutionMethod,
           minLevel: evolution2.minLevel,
@@ -68,26 +69,27 @@ export class PokedexService {
     }
     return evolutions;
   }
+
   protected async getEvolutionOf(
-    pokemonId: number
+    pokemonId: number,
   ): Promise<IPokedexEvolution[]> {
     const evolutionOf: IPokedexEvolution[] = [];
     const isEvolution = await this.evolutionRepository.isEvolution(pokemonId);
     if (isEvolution) {
       evolutionOf.push({
         pokemon: await this.pokemonBaseService.getPokemonBaseById(
-          isEvolution.pokemonId
+          isEvolution.pokemonId,
         ),
         evolutionMethod: isEvolution.evolutionMethod,
         minLevel: isEvolution.minLevel,
       });
       const isEvolution2 = await this.evolutionRepository.isEvolution(
-        isEvolution.pokemonId
+        isEvolution.pokemonId,
       );
       if (isEvolution2) {
         evolutionOf.unshift({
           pokemon: await this.pokemonBaseService.getPokemonBaseById(
-            isEvolution2.pokemonId
+            isEvolution2.pokemonId,
           ),
           evolutionMethod: isEvolution2.evolutionMethod,
           minLevel: isEvolution2.minLevel,
@@ -98,7 +100,7 @@ export class PokedexService {
   }
 
   protected async getMovesLearned(
-    pokemonId: number
+    pokemonId: number,
   ): Promise<IPokedexMoveLearned[]> {
     const movesLearning =
       await this.moveLearningService.getMovesOfAllEvolutions(pokemonId, 100);

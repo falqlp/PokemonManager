@@ -10,7 +10,7 @@ export interface WebsocketMessage {
   payload?: any;
 }
 
-export const initializeWebSocketServer = (server: any) => {
+export const initializeWebSocketServer = (server: any): void => {
   wss = new WebSocketServer({ server });
   wss.on("connection", (ws: WebSocket) => {
     ws.on("message", (message: string) => {
@@ -33,12 +33,18 @@ export const initializeWebSocketServer = (server: any) => {
       }
     });
     ws.send(
-      JSON.stringify({ type: "connexion", payload: "Connected with websocket" })
+      JSON.stringify({
+        type: "connexion",
+        payload: "Connected with websocket",
+      }),
     );
   });
 };
 
-export const updatePlayer = async (trainerId: string, gameId: string) => {
+export const updatePlayer = async (
+  trainerId: string,
+  gameId: string,
+): Promise<void> => {
   const player = (await GameRepository.getInstance().get(gameId)).player;
   if (player._id.toString() === trainerId && clients[gameId]) {
     clients[gameId].forEach((client: WebSocket) => {
@@ -47,6 +53,17 @@ export const updatePlayer = async (trainerId: string, gameId: string) => {
       }
     });
   }
+};
+
+export const sendMessageToClientInGame = (
+  gameId: string,
+  message: WebsocketMessage,
+): void => {
+  clients[gameId]?.forEach((client: WebSocket) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify(message));
+    }
+  });
 };
 
 export const notifyNewMoveLearned = (pokemon: IPokemon): void => {
@@ -81,15 +98,4 @@ export const eggHatched = (pokemon: IPokemon): void => {
     },
   };
   sendMessageToClientInGame(pokemon.gameId, message);
-};
-
-export const sendMessageToClientInGame = (
-  gameId: string,
-  message: WebsocketMessage
-): void => {
-  clients[gameId]?.forEach((client: WebSocket) => {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(JSON.stringify(message));
-    }
-  });
 };

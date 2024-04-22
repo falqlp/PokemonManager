@@ -11,21 +11,21 @@ const completeRouter = new CompleteRouter(gameRepository);
 
 router.use("/", completeRouter.router);
 
-router.get("/player/:id", (req, res, next) => {
+router.get("/player/:id", (req, res) => {
   gameRepository
     .get(req.params.id, { map: gameMapper.mapPlayer })
     .then((result) => res.status(200).json(result.player))
     .catch(console.log);
 });
 
-router.get("/time/:id", (req, res, next) => {
+router.get("/time/:id", (req, res) => {
   gameRepository
     .get(req.params.id)
     .then((result) => res.status(200).json(result.actualDate))
     .catch(console.log);
 });
 
-router.post("/init-game", (req, res, next) => {
+router.post("/init-game", (req, res) => {
   const gameId = req.headers["game-id"] as string;
   gameService
     .initGame(gameId)
@@ -33,7 +33,7 @@ router.post("/init-game", (req, res, next) => {
     .catch(console.log);
 });
 
-router.post("/:userId", (req, res, next) => {
+router.post("/:userId", (req, res) => {
   gameService
     .createWithUser(req.body, undefined, req.params.userId)
     .then((game) => res.status(200).json(game))

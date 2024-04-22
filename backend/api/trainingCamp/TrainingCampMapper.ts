@@ -9,6 +9,7 @@ class TrainingCampMapper implements IMapper<ITrainingCamp> {
   public populate(): PopulateOptions {
     return "" as unknown as PopulateOptions;
   }
+
   public map(dto: ITrainingCamp): ITrainingCamp {
     return dto;
   }

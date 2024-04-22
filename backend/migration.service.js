@@ -49,7 +49,7 @@ const MigrationService = {
                   baseHappiness: specie.base_happiness,
                   base: specie.evolves_from_species === null,
                 },
-              }
+              },
             ).then(console.log);
           })
           .catch((error) => {
@@ -110,7 +110,7 @@ const MigrationService = {
                       upsert: true,
                       new: true,
                       rawResult: true,
-                    }
+                    },
                   )
                     .then((result) => {
                       if (result.lastErrorObject.upserted) {
@@ -135,6 +135,7 @@ const MigrationService = {
                       //   evolution2.evolution_details[0].min_level,
                       //   evolution2.evolution_details[0].trigger.name.toUpperCase()
                       // );
+                      // eslint-disable-next-line @typescript-eslint/no-shadow
                       const evolutionData = {
                         evolutionMethod:
                           evolution2.evolution_details[0].trigger.name.toUpperCase(),
@@ -151,7 +152,7 @@ const MigrationService = {
                           upsert: true,
                           new: true,
                           rawResult: true,
-                        }
+                        },
                       )
                         .then((result) => {
                           if (result.lastErrorObject.upserted) {
@@ -168,7 +169,7 @@ const MigrationService = {
             }
           })();
         })
-        .catch((error) => console.log("pb"));
+        .catch((error) => console.log(error));
     }
   },
   checkNullorFalse: function (obj) {
@@ -180,7 +181,7 @@ const MigrationService = {
           value !== "" &&
           value !== obj.min_happiness &&
           value !== obj.min_level &&
-          value !== obj.trigger
+          value !== obj.trigger,
       );
     }
     return false;

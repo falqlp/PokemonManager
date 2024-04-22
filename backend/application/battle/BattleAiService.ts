@@ -1,6 +1,7 @@
 import { IPokemon } from "../../api/pokemon/Pokemon";
 import { IMove } from "../../api/move/Move";
 import BattleCalcService from "./BattleCalcService";
+import { IDecision } from "./BattleInterfaces";
 
 class BattleAiService {
   private static instance: BattleAiService;
@@ -8,18 +9,19 @@ class BattleAiService {
   public static getInstance(): BattleAiService {
     if (!BattleAiService.instance) {
       BattleAiService.instance = new BattleAiService(
-        BattleCalcService.getInstance()
+        BattleCalcService.getInstance(),
       );
     }
     return BattleAiService.instance;
   }
+
   constructor(protected battleService: BattleCalcService) {}
 
   decisionMaking(
     opponentPokemon: IPokemon,
     selectedMove: IMove,
-    pokemons: IPokemon[]
-  ) {
+    pokemons: IPokemon[],
+  ): IDecision {
     if (selectedMove === undefined) {
       return this.noSelectedMoveDecision(pokemons[0], opponentPokemon);
     }
@@ -32,20 +34,20 @@ class BattleAiService {
         opponentDamage = this.battleService.estimator(
           opponentPokemon,
           pokemon,
-          selectedMove
+          selectedMove,
         );
         changeDamage = this.getChangeDamage(pokemons, pokemon, opponentDamage);
         pokemon.moves.forEach((move) => {
           const damage = this.battleService.estimator(
             pokemon,
             opponentPokemon,
-            move
+            move,
           );
           const damageBeforeKOindicator = this.getDamageBeforeKoAsFullLife(
             pokemon,
             opponentDamage,
             damage,
-            changeDamage
+            changeDamage,
           );
           if (damageBeforeKOindicator >= damageBeforeKO) {
             damageBeforeKO = damageBeforeKOindicator;
@@ -57,7 +59,7 @@ class BattleAiService {
     return decision;
   }
 
-  noSelectedMoveDecision(pokemon: IPokemon, oppPokemon: IPokemon) {
+  noSelectedMoveDecision(pokemon: IPokemon, oppPokemon: IPokemon): IDecision {
     let maxDamage = 0;
     let bestMove;
     pokemon.moves.forEach((move) => {
@@ -74,13 +76,18 @@ class BattleAiService {
     pokemon: IPokemon,
     opponentDamage: number,
     damage: number,
-    changeDamage: number
-  ) {
+    changeDamage: number,
+  ): number {
     return Math.abs(
-      Math.ceil((pokemon.stats.hp - changeDamage) / opponentDamage) * damage
+      Math.ceil((pokemon.stats.hp - changeDamage) / opponentDamage) * damage,
     );
   }
-  getChangeDamage(pokemons: IPokemon[], pokemon: IPokemon, edp: number) {
+
+  getChangeDamage(
+    pokemons: IPokemon[],
+    pokemon: IPokemon,
+    edp: number,
+  ): number {
     if (pokemon._id === pokemons[0]._id) {
       return 0;
     }

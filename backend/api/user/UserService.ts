@@ -13,11 +13,12 @@ class UserService extends CompleteService<IUser> {
 
   public get(
     _id: string,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     options?: {
       gameId?: string;
       map?: (entity: IUser) => IUser | Promise<IUser>;
-    }
-  ) {
+    },
+  ): Promise<IUser> {
     return super.get(_id);
   }
 }

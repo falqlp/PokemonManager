@@ -12,16 +12,17 @@ class NurseryService extends CompleteService<INursery> {
   constructor(
     schema: Model<INursery>,
     mapper: IMapper<INursery>,
-    protected pokemonService: PokemonService
+    protected pokemonService: PokemonService,
   ) {
     super(schema, mapper);
   }
+
   public static getInstance(): NurseryService {
     if (!NurseryService.instance) {
       NurseryService.instance = new NurseryService(
         Nursery,
         NurseryMapper.getInstance(),
-        PokemonService.getInstance()
+        PokemonService.getInstance(),
       );
     }
     return NurseryService.instance;
@@ -29,9 +30,9 @@ class NurseryService extends CompleteService<INursery> {
 
   public async generateNurseryEgg(
     nursery: INursery,
-    gameId: string
+    gameId: string,
   ): Promise<INursery> {
-    let eggs: IPokemon[] = [];
+    const eggs: IPokemon[] = [];
     for (let i = 0; i < nursery.wishList.quantity * 4; i++) {
       eggs.push(await this.pokemonService.generateEgg(nursery, gameId));
     }

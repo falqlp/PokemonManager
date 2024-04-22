@@ -4,7 +4,7 @@ import BattleInstanceRepository from "../../domain/battleInstance/BattleInstance
 
 const router = express.Router();
 const completeRouter = new CompleteRouter(
-  BattleInstanceRepository.getInstance()
+  BattleInstanceRepository.getInstance(),
 );
 
 router.use("/", completeRouter.router);

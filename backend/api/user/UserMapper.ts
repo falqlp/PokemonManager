@@ -9,14 +9,16 @@ class UserMapper implements IMapper<IUser> {
   private static instance: UserMapper;
   constructor(
     protected gameService: GameRepository,
-    protected hashService: HashService
+    protected hashService: HashService,
   ) {}
+
   public populate(): PopulateOptions {
     return {
       path: "games",
       model: Game,
     };
   }
+
   public async map(dto: IUser): Promise<IUser> {
     dto.games = await this.gameService.list({
       ids: dto.games as unknown as string[],
@@ -36,7 +38,7 @@ class UserMapper implements IMapper<IUser> {
     if (!UserMapper.instance) {
       UserMapper.instance = new UserMapper(
         GameRepository.getInstance(),
-        HashService.getInstance()
+        HashService.getInstance(),
       );
     }
     return UserMapper.instance;

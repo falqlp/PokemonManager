@@ -8,7 +8,7 @@ class pcStorageService extends CompleteService<IPcStorage> {
     if (!pcStorageService.instance) {
       pcStorageService.instance = new pcStorageService(
         PcStorage,
-        PcStorageMapper.getInstance()
+        PcStorageMapper.getInstance(),
       );
     }
     return pcStorageService.instance;

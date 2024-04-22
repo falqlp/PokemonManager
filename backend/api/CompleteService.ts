@@ -3,11 +3,14 @@ import { Document, Model, UpdateQuery } from "mongoose";
 import { IMapper } from "./IMapper";
 
 abstract class CompleteService<T extends Document> extends ReadOnlyService<T> {
-  constructor(protected schema: Model<T>, protected mapper: IMapper<T>) {
+  constructor(
+    protected schema: Model<T>,
+    protected mapper: IMapper<T>,
+  ) {
     super(schema, mapper);
   }
 
-  async update(_id: string, dto: T) {
+  async update(_id: string, dto: T): Promise<T> {
     try {
       if ("updateAt" in dto) {
         dto.updateAt = Date.now();
@@ -18,7 +21,7 @@ abstract class CompleteService<T extends Document> extends ReadOnlyService<T> {
           {
             $set: { ...(await this.mapper.update(dto)) },
           } as unknown as UpdateQuery<T>,
-          { new: true }
+          { new: true },
         )
         .populate(this.mapper.populate())) as T;
       return this.mapper.map(updatedDoc);
@@ -27,7 +30,7 @@ abstract class CompleteService<T extends Document> extends ReadOnlyService<T> {
     }
   }
 
-  async create(dto: T, gameId: string) {
+  async create(dto: T, gameId: string): Promise<T> {
     try {
       const updatedDto = await this.mapper.update({ ...dto, gameId });
       if ("createdAt" in updatedDto) {
@@ -36,15 +39,15 @@ abstract class CompleteService<T extends Document> extends ReadOnlyService<T> {
       return this.mapper.map(
         (await this.schema.populate(
           await this.schema.create(updatedDto),
-          this.mapper.populate()
-        )) as T
+          this.mapper.populate(),
+        )) as T,
       );
     } catch (error) {
       return Promise.reject(error);
     }
   }
 
-  async delete(_id: string) {
+  async delete(_id: string): Promise<T> {
     try {
       return await this.schema.findByIdAndDelete({ _id });
     } catch (error) {

@@ -22,11 +22,13 @@ class BattleInstanceMapper implements IMapper<IBattleInstance> {
       },
     ];
   }
+
   public map(entity: IBattleInstance): IBattleInstance {
     entity.player = this.trainerMapper.mapPartial(entity.player);
     entity.opponent = this.trainerMapper.mapPartial(entity.opponent);
     return entity;
   }
+
   public mapComplete(entity: IBattleInstance): IBattleInstance {
     entity.player = this.trainerMapper.mapComplete(entity.player);
     entity.opponent = this.trainerMapper.mapComplete(entity.opponent);
@@ -36,10 +38,11 @@ class BattleInstanceMapper implements IMapper<IBattleInstance> {
   public update(entity: IBattleInstance): IBattleInstance {
     return entity;
   }
+
   public static getInstance(): BattleInstanceMapper {
     if (!BattleInstanceMapper.instance) {
       BattleInstanceMapper.instance = new BattleInstanceMapper(
-        TrainerMapper.getInstance()
+        TrainerMapper.getInstance(),
       );
     }
     return BattleInstanceMapper.instance;

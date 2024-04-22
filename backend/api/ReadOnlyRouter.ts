@@ -7,8 +7,8 @@ class ReadOnlyRouter<T extends Document> {
     this.initReadOnlyRouter();
   }
 
-  initReadOnlyRouter() {
-    this.router.get("/:id", (req, res, next) => {
+  initReadOnlyRouter(): void {
+    this.router.get("/:id", (req, res) => {
       const gameId = req.headers["game-id"] as string;
       this.service
         .get(req.params.id, { gameId })
@@ -16,7 +16,7 @@ class ReadOnlyRouter<T extends Document> {
         .catch((error: any) => console.log(error));
     });
 
-    this.router.put("/", (req, res, next) => {
+    this.router.put("/", (req, res) => {
       const gameId = req.headers["game-id"] as string;
       this.service
         .list(req.body, { gameId })
@@ -24,7 +24,7 @@ class ReadOnlyRouter<T extends Document> {
         .catch((error: any) => console.log(error));
     });
 
-    this.router.put("/query-table", (req, res, next) => {
+    this.router.put("/query-table", (req, res) => {
       const gameId = req.headers["game-id"] as string;
       const lang = req.headers["lang"] as string;
       this.service

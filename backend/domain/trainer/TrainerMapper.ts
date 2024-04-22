@@ -28,7 +28,7 @@ class TrainerMapper implements IMapper<ITrainer> {
     protected pokemonMapper: PokemonMapper,
     protected pcStorageMapper: PcStorageMapper,
     protected trainingCampMapper: TrainingCampMapper,
-    protected nurseryMapper: NurseryMapper
+    protected nurseryMapper: NurseryMapper,
   ) {}
 
   public populate(): PopulateOptions[] {
@@ -55,6 +55,7 @@ class TrainerMapper implements IMapper<ITrainer> {
       },
     ];
   }
+
   public map(trainer: ITrainer): ITrainer {
     trainer = this.mapPlayer(trainer);
     trainer.berries = undefined;
@@ -75,11 +76,13 @@ class TrainerMapper implements IMapper<ITrainer> {
     }
     return trainer;
   };
+
   public mapPartial = (trainer: ITrainer): ITrainer => {
     this.map(trainer);
     trainer.pokemons = undefined;
     return trainer;
   };
+
   public mapComplete = (trainer: ITrainer): ITrainer => {
     return trainer;
   };
@@ -92,31 +95,31 @@ class TrainerMapper implements IMapper<ITrainer> {
       trainer.pokemons.map(async (pokemon) => {
         pokemon = await this.pokemonService.update(pokemon._id, pokemon);
         return pokemon;
-      })
+      }),
     );
     if (!trainer.pcStorage) {
       trainer.pcStorage = await this.pcStorageService.create(
         undefined,
-        trainer.gameId
+        trainer.gameId,
       );
     }
     if (!trainer.nursery) {
       trainer.nursery = await this.nurseryService.create(
         undefined,
-        trainer.gameId
+        trainer.gameId,
       );
     }
     if (!trainer.trainingCamp) {
       trainer.trainingCamp = await this.trainingCampService.create(
         { level: 1 } as unknown as ITrainingCamp,
-        trainer.gameId
+        trainer.gameId,
       );
     }
 
     if (typeof trainer.pcStorage !== "string") {
       await this.pcStorageService.update(
         trainer.pcStorage._id,
-        trainer.pcStorage
+        trainer.pcStorage,
       );
     }
     if (!trainer.monney) {
@@ -141,7 +144,7 @@ class TrainerMapper implements IMapper<ITrainer> {
         PokemonMapper.getInstance(),
         PcStorageMapper.getInstance(),
         TrainingCampMapper.getInstance(),
-        NurseryMapper.getInstance()
+        NurseryMapper.getInstance(),
       );
     }
     return TrainerMapper.instance;

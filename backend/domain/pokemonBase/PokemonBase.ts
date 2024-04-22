@@ -34,6 +34,6 @@ const pokemonBaseSchema = new Schema<IPokemonBase>({
 
 const PokemonBase = mongoose.model<IPokemonBase>(
   "PokemonBase",
-  pokemonBaseSchema
+  pokemonBaseSchema,
 );
 export default PokemonBase;

@@ -68,7 +68,7 @@ describe("PokemonUtilsService", () => {
           expect(pMax).toBeLessThanOrEqual(100);
           expect(pMin).toBeLessThanOrEqual(pMax);
         });
-      }
+      },
     );
   });
 
@@ -96,37 +96,37 @@ describe("PokemonUtilsService", () => {
           baseStats.hp,
           mockPokemon.level,
           iv.hp,
-          ev.hp
+          ev.hp,
         ),
         atk: pokemonUtilsService.calcStat(
           baseStats.atk,
           mockPokemon.level,
           iv.atk,
-          ev.atk
+          ev.atk,
         ),
         def: pokemonUtilsService.calcStat(
           baseStats.def,
           mockPokemon.level,
           iv.def,
-          ev.def
+          ev.def,
         ),
         spAtk: pokemonUtilsService.calcStat(
           baseStats.spAtk,
           mockPokemon.level,
           iv.spAtk,
-          ev.spAtk
+          ev.spAtk,
         ),
         spDef: pokemonUtilsService.calcStat(
           baseStats.spDef,
           mockPokemon.level,
           iv.spDef,
-          ev.spDef
+          ev.spDef,
         ),
         spe: pokemonUtilsService.calcStat(
           baseStats.spe,
           mockPokemon.level,
           iv.spe,
-          ev.spe
+          ev.spe,
         ),
       });
     });
@@ -207,7 +207,9 @@ describe("PokemonUtilsService", () => {
       let shinyCounter = 0;
       const trials = 10_000_000;
       for (let i = 0; i < trials; i++) {
-        if (service.generateShiny()) shinyCounter++;
+        if (service.generateShiny()) {
+          shinyCounter += 1;
+        }
       }
       const shinyRate = shinyCounter / trials;
       expect(shinyRate).toBeCloseTo(1 / 4096, 2); // "2" is the number of decimal places

@@ -69,37 +69,37 @@ class PokemonUtilsService {
         pokemon.basePokemon.baseStats.hp,
         pokemon.level,
         pokemon.iv.hp,
-        pokemon.ev.hp
+        pokemon.ev.hp,
       ),
       atk: this.calcStat(
         pokemon.basePokemon.baseStats.atk,
         pokemon.level,
         pokemon.iv.atk,
-        pokemon.ev.atk
+        pokemon.ev.atk,
       ),
       def: this.calcStat(
         pokemon.basePokemon.baseStats.def,
         pokemon.level,
         pokemon.iv.def,
-        pokemon.ev.def
+        pokemon.ev.def,
       ),
       spAtk: this.calcStat(
         pokemon.basePokemon.baseStats.spAtk,
         pokemon.level,
         pokemon.iv.spAtk,
-        pokemon.ev.spAtk
+        pokemon.ev.spAtk,
       ),
       spDef: this.calcStat(
         pokemon.basePokemon.baseStats.spDef,
         pokemon.level,
         pokemon.iv.spDef,
-        pokemon.ev.spDef
+        pokemon.ev.spDef,
       ),
       spe: this.calcStat(
         pokemon.basePokemon.baseStats.spe,
         pokemon.level,
         pokemon.iv.spe,
-        pokemon.ev.spe
+        pokemon.ev.spe,
       ),
     } as IPokemonStats;
   }
@@ -107,7 +107,7 @@ class PokemonUtilsService {
   public calcStat(bs: number, niv: number, iv: number, ev: number): number {
     return (
       Math.floor(
-        ((2 * bs + (ev === 0 ? 0 : Math.floor(ev / 4)) + iv) * niv) / 100
+        ((2 * bs + (ev === 0 ? 0 : Math.floor(ev / 4)) + iv) * niv) / 100,
       ) + 5
     );
   }
@@ -115,7 +115,7 @@ class PokemonUtilsService {
   public calcHp(bs: number, niv: number, iv: number, ev: number): number {
     return (
       Math.floor(
-        ((2 * bs + (ev === 0 ? 0 : Math.floor(ev / 4)) + iv) * niv) / 100
+        ((2 * bs + (ev === 0 ? 0 : Math.floor(ev / 4)) + iv) * niv) / 100,
       ) +
       niv +
       10
@@ -131,7 +131,7 @@ class PokemonUtilsService {
       monthDifference < 0 ||
       (monthDifference === 0 && today.getDate() < birthdate.getDate())
     ) {
-      age--;
+      age -= 1;
     }
     return age;
   }

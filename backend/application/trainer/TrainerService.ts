@@ -23,11 +23,12 @@ class TrainerService {
         PokemonUtilsService.getInstance(),
         PokemonBaseService.getInstance(),
         MoveLearningService.getInstance(),
-        EvolutionRepository.getInstance()
+        EvolutionRepository.getInstance(),
       );
     }
     return TrainerService.instance;
   }
+
   constructor(
     protected pokemonService: PokemonService,
     protected pcStorageService: PcStorageService,
@@ -36,10 +37,13 @@ class TrainerService {
     protected pokemonUtilsService: PokemonUtilsService,
     protected pokemonBaseService: PokemonBaseService,
     protected moveLearningService: MoveLearningService,
-    protected evolutionRepository: EvolutionRepository
+    protected evolutionRepository: EvolutionRepository,
   ) {}
 
-  public async addPokemonForTrainer(pokemon: IPokemon, trainerId: string) {
+  public async addPokemonForTrainer(
+    pokemon: IPokemon,
+    trainerId: string,
+  ): Promise<void> {
     pokemon.trainerId = trainerId;
     await this.pokemonService.update(pokemon._id, pokemon);
     const trainer = await this.trainerRepository.getComplete(trainerId);
@@ -60,7 +64,7 @@ class TrainerService {
       } else {
         await this.pcStorageService.update(
           trainer.pcStorage._id,
-          trainer.pcStorage
+          trainer.pcStorage,
         );
       }
     }
@@ -83,28 +87,27 @@ class TrainerService {
     gameId: string,
     trainer: ITrainer,
     quantityRange: RangeModel,
-    levelRange: RangeModel
+    levelRange: RangeModel,
   ): Promise<void> {
     const quantity = Math.floor(
       quantityRange.min +
-        Math.random() * (quantityRange.max - quantityRange.min + 1)
+        Math.random() * (quantityRange.max - quantityRange.min + 1),
     );
-    const pokemonBases = await this.pokemonBaseService.generateBasePokemon(
-      quantity
-    );
+    const pokemonBases =
+      await this.pokemonBaseService.generateBasePokemon(quantity);
     for (let basePokemon of pokemonBases) {
       const level = Math.floor(
-        levelRange.min + Math.random() * (levelRange.max - levelRange.min + 1)
+        levelRange.min + Math.random() * (levelRange.max - levelRange.min + 1),
       );
       const potential = this.pokemonUtilsService.generatePotential(
-        trainer.nursery.level
+        trainer.nursery.level,
       );
       const hiddenPotential =
         this.pokemonUtilsService.generateHiddenPotential(potential);
       const evolution = await this.evolutionRepository.maxEvolution(
         basePokemon.id,
         level,
-        "LEVEL-UP"
+        "LEVEL-UP",
       );
       if (evolution) {
         basePokemon = evolution;

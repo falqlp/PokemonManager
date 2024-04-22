@@ -10,10 +10,11 @@ class EffectivenessService {
     }
     return EffectivenessService.instance;
   }
+
   public calculateEffectiveness(types: string[]): Record<string, number> {
-    let effectiveness: Record<string, number> = {};
+    const effectiveness: Record<string, number> = {};
     types.forEach((type) => {
-      for (let pokemonTypeKey in PokemonType) {
+      for (const pokemonTypeKey in PokemonType) {
         if (!effectiveness[pokemonTypeKey]) {
           effectiveness[pokemonTypeKey] = 1;
         }

@@ -9,14 +9,14 @@ class CalendarEventRepository extends CompleteService<ICalendarEvent> {
     if (!CalendarEventRepository.instance) {
       CalendarEventRepository.instance = new CalendarEventRepository(
         CalendarEvent,
-        CalendarEventMapper.getInstance()
+        CalendarEventMapper.getInstance(),
       );
     }
     return CalendarEventRepository.instance;
   }
 
   public insertManyWithoutMapAndPopulate(
-    dtos: ICalendarEvent[]
+    dtos: ICalendarEvent[],
   ): Promise<ICalendarEvent[]> {
     return this.schema.insertMany(dtos);
   }

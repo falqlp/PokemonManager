@@ -4,7 +4,7 @@ import HashService from "../application/hash/HashService";
 const router = express.Router();
 const hashService = HashService.getInstance();
 
-router.post("/", (req, res, next) => {
+router.post("/", (req, res) => {
   User.findOne({ username: req.body.username })
     .then(async (user) => {
       if (await hashService.checkPassword(user, req.body.password)) {

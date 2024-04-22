@@ -19,6 +19,7 @@ class PokemonMapper implements IMapper<IPokemon> {
       { path: "basePokemon", model: PokemonBase },
     ];
   }
+
   public map(pokemon: IPokemon): IPokemon {
     delete pokemon.ev;
     delete pokemon.iv;
@@ -61,7 +62,7 @@ class PokemonMapper implements IMapper<IPokemon> {
       }
     } else {
       const savedPokemon = await Pokemon.findOne({ _id: pokemon._id }).populate(
-        this.populate()
+        this.populate(),
       );
       if (!pokemon.trainerId) {
         pokemon.trainerId = savedPokemon.trainerId;
@@ -70,7 +71,7 @@ class PokemonMapper implements IMapper<IPokemon> {
       if (!pokemon.hiddenPotential) {
         pokemon.hiddenPotential =
           this.pokemonUtilsService.generateHiddenPotential(
-            savedPokemon.potential ?? pokemon.potential
+            savedPokemon.potential ?? pokemon.potential,
           );
       }
       if (pokemon.level <= 1 || !pokemon.basePokemon?.id) {
@@ -87,7 +88,7 @@ class PokemonMapper implements IMapper<IPokemon> {
     if (pokemon.birthday) {
       pokemon.age = this.pokemonUtilsService.calculateAge(
         pokemon.birthday,
-        (await Game.findOne({ _id: pokemon.gameId })).actualDate
+        (await Game.findOne({ _id: pokemon.gameId })).actualDate,
       );
     }
     const newPokemon = { ...pokemon };
@@ -105,7 +106,7 @@ class PokemonMapper implements IMapper<IPokemon> {
   public static getInstance(): PokemonMapper {
     if (!PokemonMapper.instance) {
       PokemonMapper.instance = new PokemonMapper(
-        PokemonUtilsService.getInstance()
+        PokemonUtilsService.getInstance(),
       );
     }
     return PokemonMapper.instance;

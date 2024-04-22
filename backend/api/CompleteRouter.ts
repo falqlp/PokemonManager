@@ -8,8 +8,8 @@ class CompleteRouter<T extends Document> extends ReadOnlyRouter<T> {
     this.initCompleteRouter();
   }
 
-  public initCompleteRouter() {
-    this.router.post("/", (req, res, next) => {
+  public initCompleteRouter(): void {
+    this.router.post("/", (req, res) => {
       const gameId = req.headers["game-id"] as string;
       this.service
         .create(req.body, gameId)
@@ -17,14 +17,14 @@ class CompleteRouter<T extends Document> extends ReadOnlyRouter<T> {
         .catch((error) => console.log(error));
     });
 
-    this.router.put("/:id", (req, res, next) => {
+    this.router.put("/:id", (req, res) => {
       this.service
         .update(req.params.id, req.body)
         .then((obj) => res.status(200).json(obj))
         .catch((error) => console.log(error));
     });
 
-    this.router.delete("/:id", (req, res, next) => {
+    this.router.delete("/:id", (req, res) => {
       this.service
         .delete(req.params.id)
         .then(() => res.status(200).json())

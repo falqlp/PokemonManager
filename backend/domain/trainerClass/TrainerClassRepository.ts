@@ -10,7 +10,7 @@ class TrainerClassRepository extends ReadOnlyService<ITrainerClass> {
     if (!TrainerClassRepository.instance) {
       TrainerClassRepository.instance = new TrainerClassRepository(
         TrainerClass,
-        TrainerClassMapper.getInstance()
+        TrainerClassMapper.getInstance(),
       );
     }
     return TrainerClassRepository.instance;

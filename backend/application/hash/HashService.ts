@@ -19,7 +19,7 @@ class HashService {
 
   public async checkPassword(
     user: IUser,
-    inputPassword: string
+    inputPassword: string,
   ): Promise<boolean> {
     return bcrypt.compare(inputPassword, user.password);
   }

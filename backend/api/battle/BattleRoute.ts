@@ -3,10 +3,10 @@ import BattleService from "../../application/battle/BattleService";
 const router = express.Router();
 const battleService = BattleService.getInstance();
 
-router.post("/simulateBattleRound", (req, res, next) => {
+router.post("/simulateBattleRound", (req, res) => {
   const round = battleService.simulateBattleRound(
     req.body.trainer1,
-    req.body.trainer2
+    req.body.trainer2,
   );
   res.status(200).json(round);
 });

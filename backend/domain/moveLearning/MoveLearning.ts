@@ -27,6 +27,6 @@ const moveLearningSchema = new Schema<IMoveLearning>({
 
 const MoveLearning = mongoose.model<IMoveLearning>(
   "MoveLearning",
-  moveLearningSchema
+  moveLearningSchema,
 );
 export default MoveLearning;

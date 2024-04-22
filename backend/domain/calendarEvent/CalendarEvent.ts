@@ -29,6 +29,6 @@ const CalendarEventSchema = new Schema<ICalendarEvent>({
 
 const CalendarEvent = mongoose.model<ICalendarEvent>(
   "CalendarEvent",
-  CalendarEventSchema
+  CalendarEventSchema,
 );
 export default CalendarEvent;

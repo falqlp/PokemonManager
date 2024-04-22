@@ -6,7 +6,7 @@ import ReadOnlyGlobalRouter from "../ReadOnlyGlobalRouter";
 
 const router: Router = express.Router();
 const readOnlyRouter = new ReadOnlyGlobalRouter(
-  new MoveService(Move, MoveMapper)
+  new MoveService(Move, MoveMapper),
 );
 
 router.use("/", readOnlyRouter.router);

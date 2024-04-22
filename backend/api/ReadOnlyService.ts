@@ -16,14 +16,17 @@ export interface TableResult<T> {
 }
 
 abstract class ReadOnlyService<T extends Document> {
-  constructor(protected schema: Model<T>, protected mapper: IMapper<T>) {}
+  constructor(
+    protected schema: Model<T>,
+    protected mapper: IMapper<T>,
+  ) {}
 
   async get(
     _id: string,
     options?: {
       gameId?: string;
       map?: (entity: T) => Promise<T> | T;
-    }
+    },
   ): Promise<T> {
     try {
       const query: { _id: string; gameId?: string } = { _id };
@@ -45,7 +48,7 @@ abstract class ReadOnlyService<T extends Document> {
       gameId?: string;
       lang?: string;
       map?: (entity: T) => Promise<T> | T;
-    }
+    },
   ): Promise<T[]> {
     try {
       const query = { ...body.custom };
@@ -74,7 +77,7 @@ abstract class ReadOnlyService<T extends Document> {
       return await Promise.all(
         dtos.map(async (dto) => {
           return options?.map ? options.map(dto) : this.mapper.map(dto);
-        })
+        }),
       );
     } catch (error) {
       return Promise.reject(error);
@@ -87,7 +90,7 @@ abstract class ReadOnlyService<T extends Document> {
       gameId?: string;
       lang?: string;
       map?: (entity: T) => Promise<T> | T;
-    }
+    },
   ): Promise<TableResult<T>> {
     try {
       const query = { ...body.custom };
@@ -101,7 +104,7 @@ abstract class ReadOnlyService<T extends Document> {
         translateQuery,
         nonTranslateQuery,
         aggregation,
-        options
+        options,
       );
       let sortParts;
       if (Object.keys(body.sort).length > 0) {
@@ -125,10 +128,10 @@ abstract class ReadOnlyService<T extends Document> {
         nonTranslateQuery,
         translateQuery,
         Object.keys(body.sort)[0],
-        options
+        options,
       );
       if (Object.keys(sortQuery).length > 0) {
-        // @ts-ignore
+        // @ts-expect-error attends un Record
         aggregation.sort(sortQuery);
       }
       aggregation.facet({
@@ -150,7 +153,7 @@ abstract class ReadOnlyService<T extends Document> {
       if (this.mapper.populate()) {
         result.data = await this.schema.populate(
           result.data,
-          this.mapper.populate()
+          this.mapper.populate(),
         );
       }
       result.data?.map(async (dto) => {
@@ -171,12 +174,12 @@ abstract class ReadOnlyService<T extends Document> {
       gameId?: string;
       lang?: string;
       map?: (entity: T) => Promise<T> | T;
-    }
-  ) {
+    },
+  ): void {
     if (Object.keys(nonTranslateQuery).length > 0) {
       aggregation.match(nonTranslateQuery);
     }
-    let modifiedTranslateQuery: Record<string, unknown> = {};
+    const modifiedTranslateQuery: Record<string, unknown> = {};
     Object.keys(translateQuery).forEach((key) => {
       const newKey = key + "." + options.lang;
       modifiedTranslateQuery[newKey] = translateQuery[key];
@@ -205,8 +208,8 @@ abstract class ReadOnlyService<T extends Document> {
       gameId?: string;
       lang?: string;
       map?: (entity: T) => Promise<T> | T;
-    }
-  ) {
+    },
+  ): void {
     Object.keys(query).forEach((key) => {
       const splitMatch = key.split(".");
       if (splitMatch.length > 1) {
@@ -220,7 +223,7 @@ abstract class ReadOnlyService<T extends Document> {
             aggregation,
             nonTranslateQuery,
             query,
-            key
+            key,
           );
         }
       } else {
@@ -231,12 +234,13 @@ abstract class ReadOnlyService<T extends Document> {
       nonTranslateQuery["gameId"] = options.gameId;
     }
   }
+
   private customLookup(
     splitMatch: string[],
     aggregation: Aggregate<any>,
     nonTranslateQuery: Record<string, any>,
     query: any,
-    key: string
+    key: string,
   ): void {
     const schema = (this.schema.schema as any).tree[splitMatch[0]];
     const isArray = Array.isArray(schema);

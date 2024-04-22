@@ -1,9 +1,9 @@
-import express, { NextFunction, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { PokedexService } from "./PokedexService";
 
 const router = express.Router();
 const pokedexService = PokedexService.getInstance();
-router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
+router.get("/:id", async (req: Request, res: Response) => {
   try {
     res
       .status(200)

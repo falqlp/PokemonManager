@@ -8,7 +8,7 @@ class TrainingCampService extends CompleteService<ITrainingCamp> {
     if (!TrainingCampService.instance) {
       TrainingCampService.instance = new TrainingCampService(
         TrainingCamp,
-        TrainingCampMapper.getInstance()
+        TrainingCampMapper.getInstance(),
       );
     }
     return TrainingCampService.instance;

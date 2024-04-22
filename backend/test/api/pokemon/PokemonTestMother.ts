@@ -20,12 +20,14 @@ export class PokemonTestMother {
       shiny: false,
     } as IPokemon;
   }
+
   static withCustomOptions(options: Partial<IPokemon>): IPokemon {
     return {
       ...this.generateBulbasaur(),
       ...options,
     } as IPokemon;
   }
+
   static generateArticuno(): IPokemon {
     return this.withCustomOptions({
       age: 1,

@@ -1,7 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
-import PokemonStats, {
-  IPokemonStats,
-} from "../../models/PokemonModels/pokemonStats";
+import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import { IPokemonBase } from "../../domain/pokemonBase/PokemonBase";
 import { IMove } from "../move/Move";
 

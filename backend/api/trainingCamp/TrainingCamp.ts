@@ -12,6 +12,6 @@ const TrainingCampSchema = new Schema<ITrainingCamp>({
 
 const TrainingCamp = mongoose.model<ITrainingCamp>(
   "TrainingCamp",
-  TrainingCampSchema
+  TrainingCampSchema,
 );
 export default TrainingCamp;

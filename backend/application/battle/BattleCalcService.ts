@@ -143,6 +143,7 @@ class BattleCalcService {
     }
     return BattleCalcService.instance;
   }
+
   calcDamage(attPokemon: IPokemon, defPokemon: IPokemon, move: IMove): IDamage {
     if (attPokemon.currentHp === 0 || move === undefined) {
       return;
@@ -168,7 +169,11 @@ class BattleCalcService {
     };
   }
 
-  calcDamageBase(attPokemon: IPokemon, defPokemon: IPokemon, move: IMove) {
+  calcDamageBase(
+    attPokemon: IPokemon,
+    defPokemon: IPokemon,
+    move: IMove,
+  ): number {
     if (move.category === "status" || move.power === 0) {
       return 0;
     }
@@ -188,7 +193,7 @@ class BattleCalcService {
     );
   }
 
-  calcEffectiveness(move: IMove, defPokemon: IPokemon) {
+  calcEffectiveness(move: IMove, defPokemon: IPokemon): number {
     let modifier = 1;
     defPokemon.basePokemon.types.forEach((type) => {
       if (TYPE_EFFECTIVENESS[move.type][type] !== undefined) {
@@ -209,7 +214,7 @@ class BattleCalcService {
     return "EFFECTIVE";
   }
 
-  stab(move: IMove, attPokemon: IPokemon) {
+  stab(move: IMove, attPokemon: IPokemon): number {
     let modifier = 1;
     attPokemon.basePokemon.types.forEach((type) => {
       if (type === move.type) {
@@ -219,36 +224,36 @@ class BattleCalcService {
     return modifier;
   }
 
-  criticalHit(attPokemon: IPokemon) {
+  criticalHit(attPokemon: IPokemon): number {
     return this.criticalHitProbability()
       ? this.criticalHitDamage(attPokemon)
       : 1;
   }
 
-  criticalHitDamage(attPokemon: IPokemon) {
+  criticalHitDamage(attPokemon: IPokemon): number {
     return (2 * attPokemon.level + 5) / (attPokemon.level + 5);
   }
 
-  criticalHitProbability() {
+  criticalHitProbability(): boolean {
     return Math.floor(Math.random() * 24) === 0;
   }
 
-  roll() {
+  roll(): number {
     return Math.random() * (1 - MIN_ROLL) + MIN_ROLL;
   }
 
-  damageOnPokemon(pokemon: IPokemon, damage: IDamage) {
+  damageOnPokemon(pokemon: IPokemon, damage: IDamage): number {
     return Math.max(
       0,
-      Math.round((pokemon.currentHp - (damage ? damage.damage : 0)) * 10) / 10
+      Math.round((pokemon.currentHp - (damage ? damage.damage : 0)) * 10) / 10,
     );
   }
 
-  moveOnTarget(move: IMove) {
+  moveOnTarget(move: IMove): boolean {
     return Math.random() > move.accuracy / 100;
   }
 
-  estimator(attPokemon: IPokemon, defPokemon: IPokemon, move: IMove) {
+  estimator(attPokemon: IPokemon, defPokemon: IPokemon, move: IMove): number {
     if (!move) {
       return 0;
     }
@@ -259,10 +264,12 @@ class BattleCalcService {
       (move.accuracy / 100)
     );
   }
-  getCooldownMs(pokemon: IPokemon) {
+
+  getCooldownMs(pokemon: IPokemon): number {
     return 6 + 200 / Math.sqrt(pokemon.stats["spe"]);
   }
-  getCooldownTurn(pokemon: IPokemon) {
+
+  getCooldownTurn(pokemon: IPokemon): number {
     return Math.ceil((this.getCooldownMs(pokemon) * 100) / TURN_TIME_MS);
   }
 }

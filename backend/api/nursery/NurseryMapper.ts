@@ -15,6 +15,7 @@ class NurseryMapper implements IMapper<INursery> {
       populate: this.pokemonMapper.populate(),
     };
   }
+
   public map(dto: INursery): INursery {
     if (dto.eggs) {
       if (dto.step !== "LAST_SELECTION") {

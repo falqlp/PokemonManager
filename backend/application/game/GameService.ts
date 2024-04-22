@@ -20,23 +20,24 @@ class GameService {
         TrainerRepository.getInstance(),
         TrainerService.getInstance(),
         GenerateCalendarService.getInstance(),
-        CalendarEventService.getInstance()
+        CalendarEventService.getInstance(),
       );
     }
     return GameService.instance;
   }
+
   constructor(
     protected gameRepository: GameRepository,
     protected trainerRepository: TrainerRepository,
     protected trainerService: TrainerService,
     protected generateCalendarService: GenerateCalendarService,
-    protected calendarEventService: CalendarEventService
+    protected calendarEventService: CalendarEventService,
   ) {}
 
   public async createWithUser(
     dto: IGame,
     gameId: string,
-    userId: string
+    userId: string,
   ): Promise<IGame> {
     const currentDate = new Date(Date.now());
     const currentYear = currentDate.getUTCFullYear();
@@ -65,7 +66,7 @@ class GameService {
         gameId,
         trainer,
         { max: 3, min: 1 },
-        { max: 8, min: 3 }
+        { max: 8, min: 3 },
       );
     }
 
@@ -88,7 +89,7 @@ class GameService {
       trainers,
       3,
       gameId,
-      championshipPeriod
+      championshipPeriod,
     );
     sendMessageToClientInGame(gameId, {
       type: "initGameEnd",

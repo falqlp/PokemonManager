@@ -8,14 +8,14 @@ class BattleInstanceRepository extends CompleteService<IBattleInstance> {
     if (!BattleInstanceRepository.instance) {
       BattleInstanceRepository.instance = new BattleInstanceRepository(
         Battle,
-        BattleInstanceMapper.getInstance()
+        BattleInstanceMapper.getInstance(),
       );
     }
     return BattleInstanceRepository.instance;
   }
 
   public insertManyWithoutMapAndPopulate(
-    dtos: IBattleInstance[]
+    dtos: IBattleInstance[],
   ): Promise<IBattleInstance[]> {
     return this.schema.insertMany(dtos);
   }

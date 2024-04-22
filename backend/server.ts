@@ -1,5 +1,6 @@
 import http from "http";
 import https from "https";
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import fs from "fs";
 import app from "./app";
 import { AddressInfo } from "net";

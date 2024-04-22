@@ -8,7 +8,7 @@ class PokemonBaseService {
   public static getInstance(): PokemonBaseService {
     if (!PokemonBaseService.instance) {
       PokemonBaseService.instance = new PokemonBaseService(
-        PokemonBaseRepository.getInstance()
+        PokemonBaseRepository.getInstance(),
       );
     }
     return PokemonBaseService.instance;
@@ -25,14 +25,14 @@ class PokemonBaseService {
     return this.getRandomPokemon(query);
   }
 
-  public getTypeBasedQuery(choosenType: string) {
+  public getTypeBasedQuery(choosenType: string): any {
     return {
       ...this.getDefaultQuery(),
       types: { $in: [choosenType.toUpperCase()] },
     };
   }
 
-  public getDefaultQuery() {
+  public getDefaultQuery(): any {
     return {
       base: true,
       legendary: { $not: { $eq: true } },
@@ -44,9 +44,10 @@ class PokemonBaseService {
     const filteredTypes = Object.entries(
       (
         wishlist.typeRepartition as unknown as { toObject: () => any }
-      ).toObject()
+      ).toObject(),
     ).filter(
-      ([type, percentage]) => percentage !== null && (percentage as number) > 0
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ([type, percentage]) => percentage !== null && (percentage as number) > 0,
     );
     let cumulative = 0;
     const randomNumber = Math.random() * 100;
@@ -64,10 +65,11 @@ class PokemonBaseService {
     const randomIndex = Math.floor(Math.random() * pokemons.length);
     return pokemons[randomIndex];
   }
+
   public generateBasePokemon(quantity: number): Promise<IPokemonBase[]> {
     return this.pokemonBaseRepository.generateBasePokemon(
       quantity,
-      this.getDefaultQuery()
+      this.getDefaultQuery(),
     );
   }
 }

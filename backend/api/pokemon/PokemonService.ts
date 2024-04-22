@@ -20,10 +20,11 @@ class PokemonService extends CompleteService<IPokemon> {
     mapper: IMapper<IPokemon>,
     protected pokemonBaseRepository: PokemonBaseRepository,
     protected pokemonBaseService: PokemonBaseService,
-    protected pokemonUtilsService: PokemonUtilsService
+    protected pokemonUtilsService: PokemonUtilsService,
   ) {
     super(schema, mapper);
   }
+
   public static getInstance(): PokemonService {
     if (!PokemonService.instance) {
       PokemonService.instance = new PokemonService(
@@ -31,14 +32,15 @@ class PokemonService extends CompleteService<IPokemon> {
         PokemonMapper.getInstance(),
         PokemonBaseRepository.getInstance(),
         PokemonBaseService.getInstance(),
-        PokemonUtilsService.getInstance()
+        PokemonUtilsService.getInstance(),
       );
     }
     return PokemonService.instance;
   }
+
   public async listComplete(
     body: ListBody,
-    gameId?: string
+    gameId?: string,
   ): Promise<IPokemon[]> {
     return await this.list(body, { map: this.mapper.mapComplete, gameId });
   }
@@ -56,7 +58,7 @@ class PokemonService extends CompleteService<IPokemon> {
 
   public async createPokemon(
     pokemon: IPokemon,
-    gameId: string
+    gameId: string,
   ): Promise<IPokemon> {
     pokemon.gameId = gameId;
     if (!pokemon.birthday) {
@@ -93,13 +95,13 @@ class PokemonService extends CompleteService<IPokemon> {
 
   public async savePokemon(
     newPokemon: IPokemon,
-    gameId: string
+    gameId: string,
   ): Promise<IPokemon> {
     const createdPokemon = await super.create(newPokemon, gameId);
     if (createdPokemon.trainerId) {
       Trainer.findOneAndUpdate(
         { _id: createdPokemon.trainerId },
-        { $push: { pokemons: createdPokemon._id } }
+        { $push: { pokemons: createdPokemon._id } },
       )
         .then()
         .catch((error: Error) => console.log(error));
@@ -107,29 +109,30 @@ class PokemonService extends CompleteService<IPokemon> {
     return createdPokemon;
   }
 
-  public async createEgg(pokemon: IPokemon, gameId: string) {
+  public async createEgg(pokemon: IPokemon, gameId: string): Promise<IPokemon> {
     pokemon = await this.createPokemon(pokemon, gameId);
     pokemon.hatchingDate = pokemon.birthday;
     pokemon.hatchingDate.setMonth(pokemon.birthday.getUTCMonth() + 3);
     pokemon.birthday = undefined;
     return pokemon;
   }
-  public async isHatched(actualDate: Date, gameId: string) {
+
+  public async isHatched(actualDate: Date, gameId: string): Promise<void> {
     const hatched = await this.listComplete(
       { custom: { hatchingDate: { $lte: actualDate } } },
-      gameId
+      gameId,
     );
     hatched.forEach(eggHatched);
   }
 
   public async generateEgg(
     nursery: INursery,
-    gameId: string
+    gameId: string,
   ): Promise<IPokemon> {
     const potential = this.pokemonUtilsService.generatePotential(nursery.level);
     const egg = {
       basePokemon: await this.pokemonBaseService.generateEggBase(
-        nursery.wishList
+        nursery.wishList,
       ),
       level: 0,
       potential,
@@ -137,14 +140,14 @@ class PokemonService extends CompleteService<IPokemon> {
     return this.create(egg as IPokemon, gameId);
   }
 
-  public override async delete(_id: string) {
+  public override async delete(_id: string): Promise<IPokemon> {
     await Trainer.updateMany(
       { pokemons: { $in: [_id] } },
-      { $pull: { pokemons: _id } }
+      { $pull: { pokemons: _id } },
     );
     await Nursery.updateMany(
       { eggs: { $in: [_id] } },
-      { $pull: { eggs: _id } }
+      { $pull: { eggs: _id } },
     );
     return super.delete(_id);
   }
@@ -152,9 +155,8 @@ class PokemonService extends CompleteService<IPokemon> {
   public async generateStarters(gameId: string): Promise<IPokemon[]> {
     const actualDate: Date = (await Game.findById(gameId)).actualDate;
 
-    const pokemonBases = await this.pokemonBaseRepository.getStartersBase(
-      gameId
-    );
+    const pokemonBases =
+      await this.pokemonBaseRepository.getStartersBase(gameId);
     const starters: IPokemon[] = [];
     for (const base of pokemonBases) {
       const starter: IPokemon = {

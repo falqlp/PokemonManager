@@ -20,6 +20,6 @@ const pokemonStatsSchema = new Schema<IPokemonStats>({
 
 const PokemonStats = mongoose.model<IPokemonStats>(
   "PokemonStats",
-  pokemonStatsSchema
+  pokemonStatsSchema,
 );
 export default PokemonStats;

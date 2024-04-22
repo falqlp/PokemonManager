@@ -16,13 +16,13 @@ class GameRepository extends CompleteService<IGame> {
     if (!GameRepository.instance) {
       GameRepository.instance = new GameRepository(
         Game,
-        GameMapper.getInstance()
+        GameMapper.getInstance(),
       );
     }
     return GameRepository.instance;
   }
 
-  public async delete(_id: string) {
+  public async delete(_id: string): Promise<IGame> {
     try {
       await User.updateMany({}, { $pull: { games: _id } });
       await Trainer.deleteMany({ gameId: _id });
