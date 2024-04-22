@@ -1,6 +1,5 @@
 module.exports = {
-  ignores: ["/dist"],
-  ignorePatterns: ["**/*.html"],
+  ignorePatterns: ["**/*.html", "/dist"],
   env: {
     browser: true,
     node: true,
