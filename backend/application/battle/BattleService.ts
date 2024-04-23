@@ -3,8 +3,6 @@ import BattleCalcService from "./BattleCalcService";
 import BattleAiService from "./BattleAiService";
 import { IBattleInstance } from "../../domain/battleInstance/Battle";
 import { ITrainer } from "../../domain/trainer/Trainer";
-import { PokemonType } from "../../models/Types/Types";
-import { IMove } from "../../domain/move/Move";
 import { IPokemon } from "../../domain/pokemon/Pokemon";
 import { DefaultMove } from "./BattleConst";
 
