@@ -1,5 +1,5 @@
-import { IPokemon } from "../../api/pokemon/Pokemon";
-import { IMove } from "../../api/move/Move";
+import { IPokemon } from "../../domain/pokemon/Pokemon";
+import { IMove } from "../../domain/move/Move";
 import { Effectiveness, IDamage } from "./BattleInterfaces";
 
 export const TYPE_EFFECTIVENESS: { [key: string]: { [key: string]: number } } =

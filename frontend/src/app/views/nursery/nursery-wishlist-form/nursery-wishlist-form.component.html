@@ -2,38 +2,33 @@
   *ngIf="form"
   [formGroup]="form"
   (submit)="save()"
-  class="nursery-wishlist"
->
+  class="nursery-wishlist">
   <div class="nursery-wishlist__right-part">
     <mat-form-field class="nursery-wishlist__right-part__input">
-      <mat-label>{{ "NUMBER_OF_WISHED_POKEMON" | translate }}</mat-label>
+      <mat-label>{{ 'NUMBER_OF_WISHED_POKEMON' | translate }}</mat-label>
       <input
         matInput
         type="number"
         min="0"
         [max]="nursery.level"
-        [formControl]="form.controls.quantity"
-      />
+        [formControl]="form.controls.quantity" />
     </mat-form-field>
     <div class="nursery-wishlist__right-part__forms">
       <div
         class="nursery-wishlist__right-part__forms__form"
         [ngClass]="type.toUpperCase()"
-        *ngFor="let type of typeNames"
-      >
+        *ngFor="let type of typeNames">
         <img
           class="icon-type"
           [src]="'assets/types/simple/' + type.toUpperCase() + '.png'"
-          [alt]="type.toUpperCase()"
-        />
+          [alt]="type.toUpperCase()" />
         <mat-slider
           color="accent"
           max="100"
           min="0"
           discrete
           step="10"
-          [disabled]="nursery.step !== 'WISHLIST'"
-        >
+          [disabled]="nursery.step !== 'WISHLIST'">
           <input matSliderThumb [formControl]="getFormControl(type)" />
         </mat-slider>
       </div>
@@ -44,24 +39,21 @@
         mat-flat-button
         color="accent"
         type="submit"
-        [disabled]="form.invalid || nursery.step !== 'WISHLIST'"
-      >
-        {{ "SAVE" | translate }}
+        [disabled]="form.invalid || nursery.step !== 'WISHLIST'">
+        {{ 'SAVE' | translate }}
       </button>
       <button
         class="nursery-wishlist__right-part__buttons__button"
         mat-flat-button
         color="warn"
         [disabled]="form.invalid || nursery.step !== 'WISHLIST'"
-        (click)="submit()"
-      >
-        {{ "SUBMIT" | translate }}
+        (click)="submit()">
+        {{ 'SUBMIT' | translate }}
       </button>
     </div>
   </div>
   <pm-pie
     class="nursery-wishlist__recap"
     [data]="pieData"
-    [colors]="pieColors"
-  ></pm-pie>
+    [colors]="pieColors"></pm-pie>
 </form>

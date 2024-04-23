@@ -1,7 +1,8 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { IBattleInstance } from "../battleInstance/Battle";
 import { ITrainer } from "../trainer/Trainer";
-import { entitySchema, IEntity } from "../../api/Entity";
+import { entitySchema, IEntity } from "../Entity";
+import { MongoId } from "../MongoId";
 
 export enum CalendarEventEvent {
   BATTLE = "BATTLE",
@@ -10,7 +11,7 @@ export enum CalendarEventEvent {
   NURSERY_LAST_SELECTION_DEADLINE = "NURSERY_LAST_SELECTION_DEADLINE",
 }
 
-export interface ICalendarEvent extends Document, IEntity {
+export interface ICalendarEvent extends MongoId, IEntity {
   date: Date;
   type: CalendarEventEvent;
   event?: IBattleInstance;

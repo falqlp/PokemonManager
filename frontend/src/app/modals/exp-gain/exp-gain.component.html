@@ -5,23 +5,21 @@
       let i = index;
       trackBy: trackById
     "
-    class="exp-gain__pokemon"
-  >
+    class="exp-gain__pokemon">
     <ng-container *ngIf="pokemon.level !== 0">
       <app-display-pokemon-image
         class="thumbnails_05"
         [pokemon]="pokemon"
-        type="thumbnails"
-      />
+        type="thumbnails" />
       <div class="exp-gain__pokemon__infos">
         <div>
           <span
             >{{
               pokemon.nickname ??
                 (pokemon.basePokemon?.name | translate) ??
-                ("EGG" | translate)
+                ('EGG' | translate)
             }}
-            {{ "LVL" | translate }}: {{ pokemon.level }}</span
+            {{ 'LVL' | translate }}: {{ pokemon.level }}</span
           >
           <span
             *ngIf="data.xpAndLevelGain && data.xpAndLevelGain[i].level !== 0"
@@ -34,7 +32,7 @@
             }"
             >{{
               data.xpAndLevelGain[i]?.level > 0
-                ? "+" + data.xpAndLevelGain[i]?.level
+                ? '+' + data.xpAndLevelGain[i]?.level
                 : data.xpAndLevelGain[i]?.level
             }}</span
           >
@@ -46,6 +44,6 @@
 </div>
 <div mat-dialog-actions>
   <button mat-flat-button [disabled]="!data.xpAndLevelGain" (click)="close()">
-    {{ "CLOSE" | translate }}
+    {{ 'CLOSE' | translate }}
   </button>
 </div>

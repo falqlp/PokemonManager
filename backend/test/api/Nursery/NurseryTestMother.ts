@@ -1,4 +1,4 @@
-import { INursery, IWishList } from "../../../api/nursery/Nursery";
+import { INursery, IWishList } from "../../../domain/nursery/Nursery";
 
 export class NurseryTestMother {
   static basicWishList(): IWishList {

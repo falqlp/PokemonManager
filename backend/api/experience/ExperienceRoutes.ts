@@ -1,5 +1,5 @@
 import { Router } from "express";
-import ExperienceService from "./ExperienceService";
+import ExperienceService from "../../application/experience/ExperienceService";
 
 const router: Router = Router();
 const experienceService = ExperienceService.getInstance();

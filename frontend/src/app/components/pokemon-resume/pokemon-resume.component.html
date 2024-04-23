@@ -1,7 +1,7 @@
 <div class="pokemon-resume">
   <div class="pokemon-resume__title" [ngClass]="pokemon.basePokemon?.types[0]">
     <span class="pokemon-resume__title__nickname">{{
-      pokemon.nickname ?? (pokemon.basePokemon?.name ?? "EGG" | translate)
+      pokemon.nickname ?? (pokemon.basePokemon?.name ?? 'EGG' | translate)
     }}</span>
     <mat-icon (click)="editNickname()">edit</mat-icon>
   </div>
@@ -11,13 +11,12 @@
       <app-display-pokemon-image
         class="pokemon-resume__content__main-infos__image"
         [pokemon]="pokemon"
-        type="max-size"
-      />
+        type="max-size" />
       <div class="pokemon-resume__content__main-infos__types">
         <pm-display-type [types]="pokemon.basePokemon.types" />
       </div>
       <div class="pokemon-resume__content__main-infos__level">
-        <span>{{ "LVL" | translate }}: {{ pokemon.level }}</span>
+        <span>{{ 'LVL' | translate }}: {{ pokemon.level }}</span>
         <progress-bar [currentProgress]="pokemon.exp" [max]="100000" />
       </div>
     </div>

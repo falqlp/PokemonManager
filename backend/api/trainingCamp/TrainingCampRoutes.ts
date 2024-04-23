@@ -1,9 +1,9 @@
 import express from "express";
 import CompleteRouter from "../CompleteRouter";
-import TrainingCampService from "./TrainingCampService";
+import TrainingCampRepository from "../../domain/trainingCamp/TrainingCampRepository";
 
 const router = express.Router();
-const completeRouter = new CompleteRouter(TrainingCampService.getInstance());
+const completeRouter = new CompleteRouter(TrainingCampRepository.getInstance());
 
 router.use("/", completeRouter.router);
 

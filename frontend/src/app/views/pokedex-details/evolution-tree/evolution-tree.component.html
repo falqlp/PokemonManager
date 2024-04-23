@@ -2,12 +2,11 @@
   <app-display-pokemon-image
     [pokemon]="evolution.pokemon"
     [type]="'thumbnails'"
-    (click)="navigateToPokemon(evolution.pokemon.id)"
-  />
+    (click)="navigateToPokemon(evolution.pokemon.id)" />
   <div class="evolution-tree__evolution__method">
     <mat-icon>arrow_forward</mat-icon>
     <span *ngIf="evolution.evolutionMethod === 'LEVEL-UP'"
-      >{{ "LVL" | translate }}: {{ evolution.minLevel }}</span
+      >{{ 'LVL' | translate }}: {{ evolution.minLevel }}</span
     >
   </div>
 </div>
@@ -16,12 +15,11 @@
   <div class="evolution-tree__evolution__method">
     <mat-icon>arrow_forward</mat-icon>
     <span *ngIf="evolution.evolutionMethod === 'LEVEL-UP'"
-      >{{ "LVL" | translate }}: {{ evolution.minLevel }}</span
+      >{{ 'LVL' | translate }}: {{ evolution.minLevel }}</span
     >
   </div>
   <app-display-pokemon-image
     [pokemon]="evolution.pokemon"
     [type]="'thumbnails'"
-    (click)="navigateToPokemon(evolution.pokemon.id)"
-  />
+    (click)="navigateToPokemon(evolution.pokemon.id)" />
 </div>

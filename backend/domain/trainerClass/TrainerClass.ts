@@ -1,7 +1,8 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { Gender } from "../Gender";
+import { MongoId } from "../MongoId";
 
-export interface ITrainerClass extends Document {
+export interface ITrainerClass extends MongoId {
   class: string;
   gender: Gender[];
 }

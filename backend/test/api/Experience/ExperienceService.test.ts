@@ -1,5 +1,5 @@
-import ExperienceService from "../../../api/experience/ExperienceService";
-import { IPokemon } from "../../../api/pokemon/Pokemon";
+import ExperienceService from "../../../application/experience/ExperienceService";
+import { IPokemon } from "../../../domain/pokemon/Pokemon";
 import { PokemonTestMother } from "../pokemon/PokemonTestMother";
 
 describe("ExperienceService", () => {

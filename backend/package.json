@@ -8,10 +8,10 @@
     "dev": "tsc-watch --onSuccess \"node dist/server.js\"",
     "test": "jest",
     "build": "webpack",
-    "lint:check": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "format:fix": "prettier --write .",
-    "format:check": "prettier --check ."
+    "lintCheck": "eslint .",
+    "lintFix": "eslint --fix .",
+    "formatFix": "prettier --write .",
+    "formatCheck": "prettier --check ."
   },
   "author": "Popole",
   "license": "ISC",

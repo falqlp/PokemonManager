@@ -1,6 +1,6 @@
 import WebSocket, { WebSocketServer } from "ws";
 import GameRepository from "./domain/game/GameRepository";
-import { IPokemon } from "./api/pokemon/Pokemon";
+import { IPokemon } from "./domain/pokemon/Pokemon";
 
 let wss: WebSocketServer;
 const clients: { [gameId: string]: WebSocket[] } = {};

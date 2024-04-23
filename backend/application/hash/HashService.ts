@@ -1,5 +1,5 @@
 import * as bcrypt from "bcryptjs";
-import { IUser } from "../../api/user/User";
+import { IUser } from "../../domain/user/User";
 
 class HashService {
   private static readonly saltRounds = 10;

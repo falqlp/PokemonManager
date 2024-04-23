@@ -1,66 +1,60 @@
 <div class="stat">
-  <span>{{ "HP" | translate }}: {{ pokemon.stats["hp"] }}</span>
+  <span>{{ 'HP' | translate }}: {{ pokemon.stats['hp'] }}</span>
   <progress-bar
     class="stat__progress-bar"
     [min]="0"
     [max]="max"
     [style]="'hp'"
     [displayHp]="false"
-    [currentProgress]="pokemon.stats['hp'] - pokemon.level - 5"
-  />
+    [currentProgress]="pokemon.stats['hp'] - pokemon.level - 5" />
 </div>
 <div class="stat">
-  <span>{{ "ATTACK" | translate }}: {{ pokemon.stats["atk"] }}</span>
+  <span>{{ 'ATTACK' | translate }}: {{ pokemon.stats['atk'] }}</span>
   <progress-bar
     class="stat__progress-bar"
     [min]="0"
     [max]="max"
     [style]="'hp'"
     [displayHp]="false"
-    [currentProgress]="pokemon.stats['atk']"
-  />
+    [currentProgress]="pokemon.stats['atk']" />
 </div>
 <div class="stat">
-  <span>{{ "DEFENSE" | translate }}: {{ pokemon.stats["def"] }}</span>
+  <span>{{ 'DEFENSE' | translate }}: {{ pokemon.stats['def'] }}</span>
   <progress-bar
     class="stat__progress-bar"
     [min]="0"
     [max]="max"
     [style]="'hp'"
     [displayHp]="false"
-    [currentProgress]="pokemon.stats['def']"
-  />
+    [currentProgress]="pokemon.stats['def']" />
 </div>
 <div class="stat">
-  <span>{{ "SPECIAL_ATTACK" | translate }}: {{ pokemon.stats["spAtk"] }}</span>
+  <span>{{ 'SPECIAL_ATTACK' | translate }}: {{ pokemon.stats['spAtk'] }}</span>
   <progress-bar
     class="stat__progress-bar"
     [min]="0"
     [max]="max"
     [style]="'hp'"
     [displayHp]="false"
-    [currentProgress]="pokemon.stats['spAtk']"
-  />
+    [currentProgress]="pokemon.stats['spAtk']" />
 </div>
 <div class="stat">
-  <span>{{ "SPECIAL_DEFENSE" | translate }}: {{ pokemon.stats["spDef"] }}</span>
+  <span>{{ 'SPECIAL_DEFENSE' | translate }}: {{ pokemon.stats['spDef'] }}</span>
   <progress-bar
     class="stat__progress-bar"
     [min]="0"
     [max]="max"
     [style]="'hp'"
     [displayHp]="false"
-    [currentProgress]="pokemon.stats['spDef']"
-  />
+    [currentProgress]="pokemon.stats['spDef']" />
 </div>
 <div class="stat">
-  <span>{{ "SPEED" | translate }}: {{ pokemon.stats["spe"] }}</span>
+  <span>{{ 'SPEED' | translate }}: {{ pokemon.stats['spe'] }}</span>
   <progress-bar
     class="stat__progress-bar"
     [min]="0"
     [max]="max"
     [style]="'hp'"
     [displayHp]="false"
-    [currentProgress]="pokemon.stats['spe']"
-  />
+    [currentProgress]="pokemon.stats['spe']" />
 </div>

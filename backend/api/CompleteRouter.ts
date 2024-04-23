@@ -1,9 +1,9 @@
 import ReadOnlyRouter from "./ReadOnlyRouter";
-import { Document } from "mongoose";
-import CompleteService from "./CompleteService";
+import CompleteRepository from "../domain/CompleteRepository";
+import { MongoId } from "../domain/MongoId";
 
-class CompleteRouter<T extends Document> extends ReadOnlyRouter<T> {
-  constructor(protected service: CompleteService<T>) {
+class CompleteRouter<T extends MongoId> extends ReadOnlyRouter<T> {
+  constructor(protected service: CompleteRepository<T>) {
     super(service);
     this.initCompleteRouter();
   }

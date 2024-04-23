@@ -1,7 +1,7 @@
-import PokemonUtilsService from "../../../api/pokemon/PokemonUtilsService";
+import PokemonUtilsService from "../../../application/pokemon/PokemonUtilsService";
 import { mocked } from "jest-mock";
 import { IPokemonStats } from "../../../models/PokemonModels/pokemonStats";
-import { IPokemon } from "../../../api/pokemon/Pokemon";
+import { IPokemon } from "../../../domain/pokemon/Pokemon";
 import { PokemonTestMother } from "./PokemonTestMother";
 import { StatsTestMother } from "../Stats/StatsTestMother";
 import { normalRandom } from "../../../utils/RandomUtils";

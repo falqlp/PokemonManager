@@ -4,11 +4,10 @@
     *ngFor="let day of data$ | async; let i = index"
     [ngClass]="{
       'top-bar-week-calendar__day--actual': day.split('-')[0] === actualDate
-    }"
-  >
+    }">
     <label class="top-bar-week-calendar__day__date">
       {{
-        day.split("-")[0].charAt(0).toUpperCase() + day.split("-")[0].slice(1)
+        day.split('-')[0].charAt(0).toUpperCase() + day.split('-')[0].slice(1)
       }}</label
     >
     <div
@@ -22,8 +21,7 @@
           'NURSERY_LAST_SELECTION_DEADLINE'
         ].includes(event.type)
       }"
-      [ngSwitch]="event.type"
-    >
+      [ngSwitch]="event.type">
       <div *ngSwitchCase="'BATTLE'">
         <span>{{
           event?.event.opponent.name !== player.name
@@ -33,13 +31,13 @@
         <pm-battle-status [battle]="event.event" [playerId]="player._id" />
       </div>
       <div *ngSwitchCase="'GENERATE_NURSERY_EGGS'">
-        <span>{{ "GENERATE_NURSERY_EGGS" | translate }}</span>
+        <span>{{ 'GENERATE_NURSERY_EGGS' | translate }}</span>
       </div>
       <div *ngSwitchCase="'NURSERY_FIRST_SELECTION_DEADLINE'">
-        <span>{{ "NURSERY_FIRST_SELECTION_DEADLINE" | translate }}</span>
+        <span>{{ 'NURSERY_FIRST_SELECTION_DEADLINE' | translate }}</span>
       </div>
       <div *ngSwitchCase="'NURSERY_LAST_SELECTION_DEADLINE'">
-        <span>{{ "NURSERY_LAST_SELECTION_DEADLINE" | translate }}</span>
+        <span>{{ 'NURSERY_LAST_SELECTION_DEADLINE' | translate }}</span>
       </div>
     </div>
   </div>

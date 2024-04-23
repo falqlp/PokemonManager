@@ -2,20 +2,17 @@
   matSort
   (matSortChange)="sort($event)"
   mat-table
-  [dataSource]="dataSource"
->
+  [dataSource]="dataSource">
   <ng-container
     *ngFor="let column of conf.columns; let i = index"
-    [matColumnDef]="column.name"
-  >
+    [matColumnDef]="column.name">
     <th *matHeaderCellDef>
       <ng-container *ngIf="column.sort; else notSortable">
         <div mat-sort-header>
           <ng-container
             pmDynamicCell
             [componentType]="column.header.component"
-            [data]="column.header.data"
-          >
+            [data]="column.header.data">
           </ng-container>
         </div>
       </ng-container>
@@ -23,8 +20,7 @@
         <ng-container
           pmDynamicCell
           [componentType]="column.header.component"
-          [data]="column.header.data"
-        >
+          [data]="column.header.data">
         </ng-container>
       </ng-template>
     </th>
@@ -56,19 +52,16 @@
                 (dateChange)="
                   onDateRangeChange(formInput.controls[i], 0, $event)
                 "
-                matStartDate
-              />
+                matStartDate />
               <input
                 (dateChange)="
                   onDateRangeChange(formInput.controls[i], 1, $event)
                 "
-                matEndDate
-              />
+                matEndDate />
             </mat-date-range-input>
             <mat-datepicker-toggle
               matIconSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
+              [for]="picker"></mat-datepicker-toggle>
             <mat-date-range-picker #picker></mat-date-range-picker>
           </ng-container>
 
@@ -88,8 +81,7 @@
       <ng-container
         pmDynamicCell
         [componentType]="column.content.component"
-        [data]="getData(element, column.content.data)"
-      />
+        [data]="getData(element, column.content.data)" />
     </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="mapColumnName()"></tr>
@@ -97,11 +89,9 @@
   <tr
     mat-row
     *matRowDef="let row; columns: mapColumnName()"
-    (click)="onRowClick.emit(row)"
-  ></tr>
+    (click)="onRowClick.emit(row)"></tr>
 </table>
 <mat-paginator
   [pageSize]="conf.defaultPageSize ?? 15"
   [pageSizeOptions]="[5, 10, 15, 20]"
-  showFirstLastButtons
-></mat-paginator>
+  showFirstLastButtons></mat-paginator>

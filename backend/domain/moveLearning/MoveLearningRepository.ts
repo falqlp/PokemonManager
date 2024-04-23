@@ -1,5 +1,5 @@
 import MoveLearning, { IMoveLearning } from "./MoveLearning";
-import { IPokemon } from "../../api/pokemon/Pokemon";
+import { IPokemon } from "../pokemon/Pokemon";
 
 class MoveLearningRepository {
   private static instance: MoveLearningRepository;

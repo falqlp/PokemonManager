@@ -1,43 +1,39 @@
 <div *ngIf="battle" class="battle-resume">
   <div
     class="battle-resume__player"
-    [ngClass]="battle.winner === 'player' ? 'winner' : 'looser'"
-  >
+    [ngClass]="battle.winner === 'player' ? 'winner' : 'looser'">
     <h3>{{ battle.player.name }}</h3>
     <div class="battle-resume__player__pokemon">
       <div *ngFor="let pokemon of battle.player.pokemons">
         <app-display-pokemon-image
           class="pokemon-image"
           [pokemon]="pokemon"
-          [type]="'max-size'"
-        />
+          [type]="'max-size'" />
       </div>
     </div>
   </div>
   <div class="battle-resume__center">
-    <h2>{{ "WINNER" | translate }}</h2>
+    <h2>{{ 'WINNER' | translate }}</h2>
     <h3>
       {{
-        battle.winner === "player" ? battle.player.name : battle.opponent.name
+        battle.winner === 'player' ? battle.player.name : battle.opponent.name
       }}
     </h3>
     <button mat-flat-button class="btn-primary" (click)="backHome()">
       <mat-icon>home</mat-icon>
-      {{ "BACK_HOME" | translate }}
+      {{ 'BACK_HOME' | translate }}
     </button>
   </div>
   <div
     class="battle-resume__opponent"
-    [ngClass]="battle.winner === 'opponent' ? 'winner' : 'looser'"
-  >
+    [ngClass]="battle.winner === 'opponent' ? 'winner' : 'looser'">
     <h3>{{ battle.opponent.name }}</h3>
     <div class="battle-resume__opponent__pokemon">
       <div *ngFor="let pokemon of battle.opponent.pokemons">
         <app-display-pokemon-image
           class="pokemon-image"
           [pokemon]="pokemon"
-          [type]="'max-size'"
-        />
+          [type]="'max-size'" />
       </div>
     </div>
   </div>

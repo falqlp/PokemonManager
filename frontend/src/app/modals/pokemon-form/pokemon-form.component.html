@@ -8,16 +8,13 @@
         type="text"
         matInput
         [formControl]="pokemonForm.controls.basePokemon"
-        [matAutocomplete]="auto"
-      />
+        [matAutocomplete]="auto" />
       <mat-autocomplete
         #auto="matAutocomplete"
-        [displayWith]="displayPokemon.bind(this)"
-      >
+        [displayWith]="displayPokemon.bind(this)">
         <mat-option
           *ngFor="let pokemon of filteredPokemons | async"
-          [value]="pokemon"
-        >
+          [value]="pokemon">
           {{ pokemon.name | translate }}
         </mat-option>
       </mat-autocomplete>
@@ -35,8 +32,7 @@
         max="100"
         min="0"
         type="number"
-        [formControl]="pokemonForm.controls.level"
-      />
+        [formControl]="pokemonForm.controls.level" />
     </mat-form-field>
 
     <mat-form-field>
@@ -57,16 +53,14 @@
           [disabled]="
             pokemonForm.controls.moves.value?.length > 1 &&
             !pokemonForm.controls.moves.value?.includes(move)
-          "
-        >
+          ">
           {{ move.name | translate }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <span>Shiny</span>
     <mat-slide-toggle
-      [formControl]="pokemonForm.controls.shiny"
-    ></mat-slide-toggle>
+      [formControl]="pokemonForm.controls.shiny"></mat-slide-toggle>
     <div>
       <span *ngFor="let displayedMove of pokemonForm.controls.moves.value">{{
         displayedMove.name | translate
@@ -81,8 +75,7 @@
     mat-flat-button
     color="warn"
     [disabled]="!pokemonForm.valid"
-    (click)="submit()"
-  >
+    (click)="submit()">
     Soumettre
   </button>
 </mat-dialog-actions>

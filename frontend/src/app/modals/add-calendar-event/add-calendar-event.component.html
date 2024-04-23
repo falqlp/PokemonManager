@@ -1,19 +1,17 @@
 <form [formGroup]="calendarEventForm" (submit)="submit()">
-  <h2 mat-dialog-title>{{ "CREATE_CALENDAR_EVENT" | translate }}</h2>
+  <h2 mat-dialog-title>{{ 'CREATE_CALENDAR_EVENT' | translate }}</h2>
   <div mat-dialog-content>
     <mat-form-field>
-      <mat-label>{{ "CHOOSE_DATE" | translate }}</mat-label>
+      <mat-label>{{ 'CHOOSE_DATE' | translate }}</mat-label>
       <input
         matInput
         [min]="currentDate$ | async"
         [max]="maxDate"
         [formControl]="calendarEventForm.controls.date"
-        [matDatepicker]="picker"
-      />
+        [matDatepicker]="picker" />
       <mat-datepicker-toggle
         matIconSuffix
-        [for]="picker"
-      ></mat-datepicker-toggle>
+        [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-form-field>
@@ -25,8 +23,7 @@
           [disabled]="
             calendarEventForm.controls.trainers.value?.length > 1 &&
             !calendarEventForm.controls.trainers.value?.includes(trainer)
-          "
-        >
+          ">
           {{ trainer.name }}
         </mat-option>
       </mat-select>
@@ -34,16 +31,15 @@
   </div>
   <div mat-dialog-actions>
     <button mat-flat-button type="button" (click)="cancel()">
-      {{ "CANCEL" | translate }}
+      {{ 'CANCEL' | translate }}
     </button>
     <button
       mat-flat-button
       mat-dialog-close
       type="submit"
       color="accent"
-      [disabled]="calendarEventForm.invalid"
-    >
-      {{ "SUBMIT" | translate }}
+      [disabled]="calendarEventForm.invalid">
+      {{ 'SUBMIT' | translate }}
     </button>
   </div>
 </form>

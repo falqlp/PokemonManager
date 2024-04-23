@@ -5,8 +5,7 @@
     mat-flat-button
     *ngFor="let button of data.buttons"
     [color]="button.color"
-    (click)="click(button.click, button.close)"
-  >
+    (click)="click(button.click, button.close)">
     {{ button.label | translate }}
   </button>
 </div>

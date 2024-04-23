@@ -1,8 +1,9 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { ITrainer } from "../trainer/Trainer";
-import { entitySchema, IEntity } from "../../api/Entity";
+import { entitySchema, IEntity } from "../Entity";
+import { MongoId } from "../MongoId";
 
-export interface IGame extends Document, IEntity {
+export interface IGame extends MongoId, IEntity {
   player: ITrainer;
   actualDate: Date;
   name: string;

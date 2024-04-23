@@ -1,6 +1,7 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import { MongoId } from "../MongoId";
 
-export interface IMoveLearning extends Document {
+export interface IMoveLearning extends MongoId {
   learnMethod: string;
   levelLearnAt?: number;
   pokemonId: number;

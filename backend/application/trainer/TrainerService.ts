@@ -1,14 +1,15 @@
-import { IPokemon } from "../../api/pokemon/Pokemon";
-import PokemonService from "../../api/pokemon/PokemonService";
-import PcStorageService from "../../api/pcStorage/PcStorageService";
+import { IPokemon } from "../../domain/pokemon/Pokemon";
+import PokemonRepository from "../../domain/pokemon/PokemonRepository";
+import PcStorageService from "../../domain/pcStorage/PcStorageRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import TrainerClassRepository from "../../domain/trainerClass/TrainerClassRepository";
 import { ITrainer } from "../../domain/trainer/Trainer";
 import { RangeModel } from "../RangeModel";
-import PokemonUtilsService from "../../api/pokemon/PokemonUtilsService";
+import PokemonUtilsService from "../pokemon/PokemonUtilsService";
 import PokemonBaseService from "../pokemonBase/PokemonBaseService";
 import MoveLearningService from "../moveLearning/MoveLearningService";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
+import PokemonService from "../pokemon/PokemonService";
 
 class TrainerService {
   private static instance: TrainerService;
@@ -16,7 +17,7 @@ class TrainerService {
   public static getInstance(): TrainerService {
     if (!TrainerService.instance) {
       TrainerService.instance = new TrainerService(
-        PokemonService.getInstance(),
+        PokemonRepository.getInstance(),
         PcStorageService.getInstance(),
         TrainerRepository.getInstance(),
         TrainerClassRepository.getInstance(),
@@ -24,13 +25,14 @@ class TrainerService {
         PokemonBaseService.getInstance(),
         MoveLearningService.getInstance(),
         EvolutionRepository.getInstance(),
+        PokemonService.getInstance(),
       );
     }
     return TrainerService.instance;
   }
 
   constructor(
-    protected pokemonService: PokemonService,
+    protected pokemonRepository: PokemonRepository,
     protected pcStorageService: PcStorageService,
     protected trainerRepository: TrainerRepository,
     protected trainerClassRepository: TrainerClassRepository,
@@ -38,6 +40,7 @@ class TrainerService {
     protected pokemonBaseService: PokemonBaseService,
     protected moveLearningService: MoveLearningService,
     protected evolutionRepository: EvolutionRepository,
+    protected pokemonService: PokemonService,
   ) {}
 
   public async addPokemonForTrainer(
@@ -45,7 +48,7 @@ class TrainerService {
     trainerId: string,
   ): Promise<void> {
     pokemon.trainerId = trainerId;
-    await this.pokemonService.update(pokemon._id, pokemon);
+    await this.pokemonRepository.update(pokemon._id, pokemon);
     const trainer = await this.trainerRepository.getComplete(trainerId);
     if (trainer.pokemons.length < 6) {
       trainer.pokemons.push(pokemon);
@@ -60,7 +63,7 @@ class TrainerService {
         }
       }
       if (!freeIndex) {
-        await this.pokemonService.delete(pokemon._id);
+        await this.pokemonRepository.delete(pokemon._id);
       } else {
         await this.pcStorageService.update(
           trainer.pcStorage._id,

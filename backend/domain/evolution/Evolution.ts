@@ -1,6 +1,7 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import { MongoId } from "../MongoId";
 
-export interface IEvolution extends Document {
+export interface IEvolution extends MongoId {
   evolutionMethod: string;
   minLevel?: number;
   pokemonId: number;

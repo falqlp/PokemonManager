@@ -5,8 +5,7 @@
   draggable="false"
   [src]="imageUrl"
   (load)="loadImg()"
-  alt="{{ basePokemon?.name ?? 'EGG' | translate }} {{ type }}"
-/>
+  alt="{{ basePokemon?.name ?? 'EGG' | translate }} {{ type }}" />
 <mat-icon
   *ngIf="shiny"
   class="shiny"

@@ -1,4 +1,4 @@
-import { IMapper } from "../../api/IMapper";
+import { IMapper } from "../IMapper";
 import { CalendarEventEvent, ICalendarEvent } from "./CalendarEvent";
 import { PopulateOptions } from "mongoose";
 import Battle from "../battleInstance/Battle";

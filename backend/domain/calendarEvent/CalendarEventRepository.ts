@@ -1,8 +1,8 @@
-import CompleteService from "../../api/CompleteService";
+import CompleteRepository from "../CompleteRepository";
 import CalendarEvent, { ICalendarEvent } from "./CalendarEvent";
 import CalendarEventMapper from "./CalendarEventMapper";
 
-class CalendarEventRepository extends CompleteService<ICalendarEvent> {
+class CalendarEventRepository extends CompleteRepository<ICalendarEvent> {
   private static instance: CalendarEventRepository;
 
   public static getInstance(): CalendarEventRepository {

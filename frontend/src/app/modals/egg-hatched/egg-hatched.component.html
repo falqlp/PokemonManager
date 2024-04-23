@@ -4,14 +4,12 @@
       <img
         class="egg-hatched__img"
         src="assets/pokemons/Front/000.png"
-        [alt]="'EGG' | translate"
-      />
+        [alt]="'EGG' | translate" />
       <img
         class="egg-hatched__img__cracks"
         src="assets/animations/egg/eggCracks_{{ cracksNumber }}.png"
         [alt]="'EGG' | translate"
-        (click)="addCracked()"
-      />
+        (click)="addCracked()" />
     </div>
     <ng-template #pokemon>
       <img
@@ -19,22 +17,21 @@
         src="assets/pokemons/{{ data.shiny ? 'Front shiny' : 'Front' }}/{{
           data.pokemonBase.name
         }}.png"
-        [alt]="data.pokemonBase.name"
-      />
+        [alt]="data.pokemonBase.name" />
     </ng-template>
   </div>
   <div class="egg-hatched__message" *ngIf="cracksNumber > 5">
     {{
-      "CONGRAT_EGG_HATCHED"
+      'CONGRAT_EGG_HATCHED'
         | translate : { pokemonName: data.pokemonBase.name | translate }
     }}
   </div>
 </div>
 <div *ngIf="cracksNumber > 5" mat-dialog-actions>
   <button mat-flat-button color="warn" (click)="changeNickname()">
-    {{ "CHANGE_NICKNAME" | translate }}
+    {{ 'CHANGE_NICKNAME' | translate }}
   </button>
   <button mat-flat-button (click)="close()">
-    {{ "CLOSE" | translate }}
+    {{ 'CLOSE' | translate }}
   </button>
 </div>

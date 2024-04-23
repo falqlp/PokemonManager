@@ -1,4 +1,4 @@
-import EffectivenessService from "../../../api/pokemon/EffectivenessService";
+import EffectivenessService from "../../../application/pokemon/EffectivenessService";
 import { PokemonType } from "../../../models/Types/Types";
 
 describe("EffectivenessService", () => {

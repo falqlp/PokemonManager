@@ -8,20 +8,18 @@
         secondSelected: storage.secondSelected
       }"
       (click)="setFirstSelected(storage)"
-      (contextmenu)="setSecondSelected(storage, $event)"
-    >
+      (contextmenu)="setSecondSelected(storage, $event)">
       <app-display-pokemon-image
         *ngIf="storage.pokemon"
         class="flex"
         [pokemon]="storage.pokemon"
-        type="thumbnails"
-      />
+        type="thumbnails" />
     </div>
   </div>
   <div class="pc-storage__main-part">
     <div class="pc-storage__main-part__buttons">
       <button mat-flat-button color="accent" (click)="switchPokemon()">
-        {{ "SWAP" | translate }}
+        {{ 'SWAP' | translate }}
       </button>
     </div>
     <div class="pc-storage__main-part__box" *ngIf="pcStorage">
@@ -34,14 +32,12 @@
           disabled: storage.disabled
         }"
         (click)="!storage.disabled && setFirstSelected(storage)"
-        (contextmenu)="!storage.disabled && setSecondSelected(storage, $event)"
-      >
+        (contextmenu)="!storage.disabled && setSecondSelected(storage, $event)">
         <app-display-pokemon-image
           class="pc-storage__main-part__box__cell__icon"
           *ngIf="storage.pokemon; else emptyDiv"
           [pokemon]="storage.pokemon"
-          type="icon"
-        />
+          type="icon" />
       </div>
     </div>
   </div>
@@ -49,13 +45,11 @@
     <app-pokemon-resume
       *ngIf="firstSelected; else emptyResume"
       class="pc-storage__resumes__box"
-      [pokemon]="firstSelected"
-    />
+      [pokemon]="firstSelected" />
     <app-pokemon-resume
       *ngIf="secondSelected; else emptyResume"
       class="pc-storage__resumes__box"
-      [pokemon]="secondSelected"
-    />
+      [pokemon]="secondSelected" />
   </div>
 </div>
 <ng-template #emptyDiv>

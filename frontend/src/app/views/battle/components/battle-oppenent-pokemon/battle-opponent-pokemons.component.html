@@ -6,8 +6,7 @@
   <div
     *ngFor="let pokemon of trainer.pokemons.slice(1)"
     class="battle-trainer-pokemons__pokemon-box"
-    [ngClass]="{ ko: pokemon.currentHp === 0 }"
-  >
+    [ngClass]="{ ko: pokemon.currentHp === 0 }">
     <div class="battle-trainer-pokemons__pokemon-box__info">
       <app-circular-hp-pokemon [pokemon]="pokemon" />
       <span>{{
@@ -15,7 +14,7 @@
           ? pokemon.nickname
           : (pokemon.basePokemon.name | translate)
       }}</span>
-      <span>{{ "LVL" | translate }}: {{ pokemon.level }}</span>
+      <span>{{ 'LVL' | translate }}: {{ pokemon.level }}</span>
       <span
         *ngIf="pokemon.currentHp === 0"
         class="battle-trainer-pokemons__pokemon-box__info--ko"

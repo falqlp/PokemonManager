@@ -1,4 +1,4 @@
 <div *ngFor="let moveLearned of movesLearned" class="pokedex-moves-learned">
-  <span>{{ "LVL" | translate }}: {{ moveLearned.levelLearnAt }}</span>
+  <span>{{ 'LVL' | translate }}: {{ moveLearned.levelLearnAt }}</span>
   <pm-move [move]="moveLearned.move" />
 </div>

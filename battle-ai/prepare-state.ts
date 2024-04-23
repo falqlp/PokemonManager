@@ -1,5 +1,5 @@
-import { IPokemon } from "../backend/api/pokemon/Pokemon";
-import { IMove } from "../backend/api/move/Move";
+import { IPokemon } from "../backend/domain/pokemon/Pokemon";
+import { IMove } from "../backend/domain/move/Move";
 import { IBattleTrainer } from "../backend/application/battle/BattleInterfaces";
 const allTypes = [
   "BUG",

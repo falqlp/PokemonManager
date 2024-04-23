@@ -1,63 +1,57 @@
 <div class="pokemon-details-stats">
-  <div>{{ "HP" | translate }}: {{ baseStats["hp"] }}</div>
+  <div>{{ 'HP' | translate }}: {{ baseStats['hp'] }}</div>
   <progress-bar
     [style]="'hp'"
     [min]="0"
     [max]="255"
     [displayHp]="false"
-    [currentProgress]="baseStats['hp']"
-  />
+    [currentProgress]="baseStats['hp']" />
 </div>
 <div class="pokemon-details-stats">
-  <div>{{ "ATTACK" | translate }}: {{ baseStats["atk"] }}</div>
+  <div>{{ 'ATTACK' | translate }}: {{ baseStats['atk'] }}</div>
   <progress-bar
     [style]="'hp'"
     [min]="0"
     [max]="255"
     [displayHp]="false"
-    [currentProgress]="baseStats['atk']"
-  />
+    [currentProgress]="baseStats['atk']" />
 </div>
 <div class="pokemon-details-stats">
-  <div>{{ "DEFENSE" | translate }}: {{ baseStats["def"] }}</div>
+  <div>{{ 'DEFENSE' | translate }}: {{ baseStats['def'] }}</div>
   <progress-bar
     [style]="'hp'"
     [min]="0"
     [max]="255"
     [displayHp]="false"
-    [currentProgress]="baseStats['def']"
-  />
+    [currentProgress]="baseStats['def']" />
 </div>
 <div class="pokemon-details-stats">
-  <div>{{ "SPECIAL_ATTACK" | translate }}: {{ baseStats["spAtk"] }}</div>
+  <div>{{ 'SPECIAL_ATTACK' | translate }}: {{ baseStats['spAtk'] }}</div>
   <progress-bar
     [style]="'hp'"
     [min]="0"
     [max]="255"
     [displayHp]="false"
-    [currentProgress]="baseStats['spAtk']"
-  />
+    [currentProgress]="baseStats['spAtk']" />
 </div>
 <div class="pokemon-details-stats">
   <div>
-    {{ "SPECIAL_DEFENSE" | translate }}:
-    {{ baseStats["spDef"] }}
+    {{ 'SPECIAL_DEFENSE' | translate }}:
+    {{ baseStats['spDef'] }}
   </div>
   <progress-bar
     [style]="'hp'"
     [min]="0"
     [max]="255"
     [displayHp]="false"
-    [currentProgress]="baseStats['spDef']"
-  />
+    [currentProgress]="baseStats['spDef']" />
 </div>
 <div class="pokemon-details-stats">
-  <div>{{ "SPEED" | translate }}: {{ baseStats["spe"] }}</div>
+  <div>{{ 'SPEED' | translate }}: {{ baseStats['spe'] }}</div>
   <progress-bar
     [style]="'hp'"
     [min]="0"
     [max]="255"
     [displayHp]="false"
-    [currentProgress]="baseStats['spe']"
-  />
+    [currentProgress]="baseStats['spe']" />
 </div>

@@ -70,6 +70,5 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-shadow": ["warn"],
     "import/no-extraneous-dependencies": "off",
-    "prettier/prettier": "error",
   },
 };

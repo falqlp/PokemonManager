@@ -1,5 +1,5 @@
-import { IPokemon } from "../../api/pokemon/Pokemon";
-import { IMove } from "../../api/move/Move";
+import { IPokemon } from "../../domain/pokemon/Pokemon";
+import { IMove } from "../../domain/move/Move";
 import BattleCalcService from "./BattleCalcService";
 import { IDecision } from "./BattleInterfaces";
 

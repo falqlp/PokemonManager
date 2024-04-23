@@ -1,4 +1,4 @@
-import { IPokemon } from "../../../api/pokemon/Pokemon";
+import { IPokemon } from "../../../domain/pokemon/Pokemon";
 import { PokemonBaseTestMother } from "../PokemonBase/PokemonBaseTestMother";
 import { StatsTestMother } from "../Stats/StatsTestMother";
 import { MoveTestMother } from "../Move/MoveTestMother";

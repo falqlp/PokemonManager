@@ -1,12 +1,10 @@
 <div *ngIf="effectiveness" class="pokemon-base-effectiveness">
   <div
     *ngFor="let type of Object.keys(effectiveness)"
-    class="pokemon-base-effectiveness__type-effectiveness"
-  >
+    class="pokemon-base-effectiveness__type-effectiveness">
     <div
       class="pokemon-base-effectiveness__type-effectiveness__type"
-      [ngClass]="type"
-    >
+      [ngClass]="type">
       <pm-display-type [types]="type" [displayText]="false" />
       <span>{{ type | translate }}</span>
     </div>
@@ -17,8 +15,7 @@
         NOT_VERY_EFFECTIVE: effectiveness[type] < 1 && effectiveness[type] > 0,
         SUPER_EFFECTIVE: effectiveness[type] > 1,
         IMMUNE: effectiveness[type] === 0
-      }"
-    >
+      }">
       x{{ effectiveness[type] }}
     </div>
   </div>

@@ -1,9 +1,9 @@
-import ReadOnlyService from "../../api/ReadOnlyService";
+import ReadOnlyRepository from "../ReadOnlyRepository";
 import TrainerClass, { ITrainerClass } from "./TrainerClass";
 import TrainerClassMapper from "./TrainerClassMapper";
 import { Aggregate } from "mongoose";
 
-class TrainerClassRepository extends ReadOnlyService<ITrainerClass> {
+class TrainerClassRepository extends ReadOnlyRepository<ITrainerClass> {
   private static instance: TrainerClassRepository;
 
   public static getInstance(): TrainerClassRepository {

@@ -1,4 +1,4 @@
-import { IMapper } from "../../api/IMapper";
+import { IMapper } from "../IMapper";
 import { ITrainerClass } from "./TrainerClass";
 import { PopulateOptions } from "mongoose";
 

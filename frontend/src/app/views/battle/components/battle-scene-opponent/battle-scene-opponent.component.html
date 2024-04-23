@@ -7,7 +7,7 @@
             ? opponentActivePokemon.nickname
             : (opponentActivePokemon.basePokemon.name | translate)
         }}</span>
-        <span>{{ "LVL" | translate }}: {{ opponentActivePokemon.level }}</span>
+        <span>{{ 'LVL' | translate }}: {{ opponentActivePokemon.level }}</span>
       </div>
       <progress-bar
         [style]="'hp'"
@@ -15,8 +15,7 @@
         [currentProgress]="
           opponentActivePokemon.currentHp ?? opponentActivePokemon.stats['hp']
         "
-        [max]="opponentActivePokemon.stats['hp']"
-      />
+        [max]="opponentActivePokemon.stats['hp']" />
     </div>
     <div class="opponent__pokemon__info__move">
       <app-battle-scene-move-info [damage]="opponentDamage" />
@@ -26,27 +25,23 @@
     <div class="opponent__pokemon__image__damage">
       <div
         *ngIf="opponentDamage?.critical"
-        class="opponent__pokemon__image__damage--critical"
-      >
-        {{ "CRITICAL_HIT!" | translate }}
+        class="opponent__pokemon__image__damage--critical">
+        {{ 'CRITICAL_HIT!' | translate }}
       </div>
       <div
         *ngIf="opponentDamage?.missed"
-        class="opponent__pokemon__image__damage--missed"
-      >
-        {{ "MISS!" | translate }}
+        class="opponent__pokemon__image__damage--missed">
+        {{ 'MISS!' | translate }}
       </div>
     </div>
     <img
       *ngIf="opponentDamage?.animation?.opponent"
       class="opponent__pokemon__image--animation"
       src="assets/move_animation/{{ opponentDamage.animation.opponent }}.gif"
-      [alt]="opponentDamage.animation.opponent"
-    />
+      [alt]="opponentDamage.animation.opponent" />
     <app-display-pokemon-image
       class="opponent__pokemon__image--thumbnails"
       [pokemon]="opponentActivePokemon"
-      [type]="'thumbnails'"
-    />
+      [type]="'thumbnails'" />
   </div>
 </div>

@@ -1,26 +1,25 @@
-<h3 mat-dialog-title>{{ "NEW_GAME" | translate }}</h3>
+<h3 mat-dialog-title>{{ 'NEW_GAME' | translate }}</h3>
 <form [formGroup]="gameForm" (submit)="submit()">
   <div mat-dialog-content>
     <mat-form-field>
-      <mat-label>{{ "GAME_NAME" | translate }}</mat-label>
+      <mat-label>{{ 'GAME_NAME' | translate }}</mat-label>
       <input matInput [formControl]="gameForm.controls.gameName" />
     </mat-form-field>
     <mat-form-field>
-      <mat-label>{{ "PLAYER_NAME" | translate }}</mat-label>
+      <mat-label>{{ 'PLAYER_NAME' | translate }}</mat-label>
       <input matInput [formControl]="gameForm.controls.playerName" />
     </mat-form-field>
   </div>
   <div mat-dialog-actions>
     <button mat-flat-button mat-dialog-close color="accent">
-      {{ "CANCEL" | translate }}
+      {{ 'CANCEL' | translate }}
     </button>
     <button
       mat-flat-button
       color="warn"
       type="submit"
-      [disabled]="gameForm.invalid"
-    >
-      {{ "CREATE" | translate }}
+      [disabled]="gameForm.invalid">
+      {{ 'CREATE' | translate }}
     </button>
   </div>
 </form>

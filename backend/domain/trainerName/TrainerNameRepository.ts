@@ -1,8 +1,8 @@
-import ReadOnlyService from "../../api/ReadOnlyService";
+import ReadOnlyRepository from "../ReadOnlyRepository";
 import TrainerNameMapper from "./TrainerNameMapper";
 import TrainerName, { ITrainerName } from "./TrainerName";
 
-class TrainerNameRepository extends ReadOnlyService<ITrainerName> {
+class TrainerNameRepository extends ReadOnlyRepository<ITrainerName> {
   private static instance: TrainerNameRepository;
 
   public static getInstance(): TrainerNameRepository {

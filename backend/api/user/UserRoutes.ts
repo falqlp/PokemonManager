@@ -1,9 +1,9 @@
 import express from "express";
 import CompleteRouter from "../CompleteRouter";
-import UserService from "./UserService";
+import UserRepository from "../../domain/user/UserRepository";
 
 const router = express.Router();
-const completeRouter = new CompleteRouter(UserService.getInstance());
+const completeRouter = new CompleteRouter(UserRepository.getInstance());
 
 router.use("/", completeRouter.router);
 

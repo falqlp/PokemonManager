@@ -8,12 +8,13 @@ import BattleInstanceRepository from "../../domain/battleInstance/BattleInstance
 import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import GameRepository from "../../domain/game/GameRepository";
-import PokemonService from "../../api/pokemon/PokemonService";
 import { notify } from "../../websocketServer";
-import NurseryService from "../../api/nursery/NurseryService";
+import NurseryRepository from "../../domain/nursery/NurseryRepository";
 import TrainerService from "../trainer/TrainerService";
 import BattleService from "../battle/BattleService";
 import CalendarEventMapper from "../../domain/calendarEvent/CalendarEventMapper";
+import NurseryService from "../nursery/NurseryService";
+import PokemonService from "../pokemon/PokemonService";
 
 class CalendarEventService {
   private static instance: CalendarEventService;
@@ -30,6 +31,7 @@ class CalendarEventService {
         TrainerService.getInstance(),
         BattleService.getInstance(),
         CalendarEventMapper.getInstance(),
+        NurseryRepository.getInstance(),
       );
     }
     return CalendarEventService.instance;
@@ -45,6 +47,7 @@ class CalendarEventService {
     protected trainerService: TrainerService,
     protected battleService: BattleService,
     protected calendarEventMapper: CalendarEventMapper,
+    protected nurseryRepository: NurseryRepository,
   ) {}
 
   public async createBattleEvent(
@@ -175,7 +178,7 @@ class CalendarEventService {
           nursery.eggs = [];
           nursery.step = "WISHLIST";
         }
-        await this.nurseryService.update(nursery._id, nursery);
+        await this.nurseryRepository.update(nursery._id, nursery);
       }
     }
     return redirectTo;

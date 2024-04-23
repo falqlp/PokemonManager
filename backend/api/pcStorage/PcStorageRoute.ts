@@ -1,6 +1,6 @@
 import express from "express";
 import CompleteRouter from "../CompleteRouter";
-import PcStorageService from "./PcStorageService";
+import PcStorageService from "../../domain/pcStorage/PcStorageRepository";
 
 const router = express.Router();
 const completeRouter = new CompleteRouter(PcStorageService.getInstance());

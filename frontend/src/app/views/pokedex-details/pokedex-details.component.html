@@ -6,7 +6,7 @@
     </div>
     <div class="pokedex_details__left-part__infos">
       <span class="pokedex_details__left-part__infos__info">
-        <span> {{ "EGG_AVAILABLE" | translate }}</span>
+        <span> {{ 'EGG_AVAILABLE' | translate }}</span>
         <mat-icon
           [ngClass]="
             !!pokemonBase.base &&
@@ -19,35 +19,34 @@
             !!pokemonBase.base &&
             !pokemonBase.mythical &&
             !pokemonBase.legendary
-              ? "done"
-              : "close"
+              ? 'done'
+              : 'close'
           }}</mat-icon
         >
       </span>
       <span class="pokedex_details__left-part__infos__info">{{
-        "MORE_TO_COME" | translate
+        'MORE_TO_COME' | translate
       }}</span>
     </div>
   </div>
   <div class="pokedex_details__right-part">
     <div>
-      <h3>{{ "WEAKNESS_AND_RESISTANCE" | translate }}</h3>
+      <h3>{{ 'WEAKNESS_AND_RESISTANCE' | translate }}</h3>
       <pm-pokemon-base-effictiveness [pokemonBase]="pokemonBase" />
     </div>
     <div *ngIf="evolutionOf.length > 0 || evolutions.length > 0">
-      <h3>{{ "EVOLUTION_TREE" | translate }}</h3>
+      <h3>{{ 'EVOLUTION_TREE' | translate }}</h3>
       <pm-evolution-tree
         [evolutionOf]="evolutionOf"
         [evolutions]="evolutions"
-        [pokemonBase]="pokemonBase"
-      />
+        [pokemonBase]="pokemonBase" />
     </div>
     <div>
-      <h3>{{ "POKEMON_STATS" | translate }}</h3>
+      <h3>{{ 'POKEMON_STATS' | translate }}</h3>
       <pm-pokemon-details-stats [baseStats]="pokemonBase.baseStats" />
     </div>
     <div>
-      <h3>{{ "MOVES_LEARNED" | translate }}</h3>
+      <h3>{{ 'MOVES_LEARNED' | translate }}</h3>
       <pm-pokedex-moves-learned [movesLearned]="movesLearned" />
     </div>
   </div>

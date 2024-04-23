@@ -1,6 +1,6 @@
 <div class="nursery-pokemon-list__header">
   <span
-    >{{ "MAX_POKEMONS_TO_KEEP" | translate }} :
+    >{{ 'MAX_POKEMONS_TO_KEEP' | translate }} :
     <span
       class="nursery-pokemon-list__header__ratio"
       [ngClass]="{
@@ -11,7 +11,7 @@
       }"
       >{{ nursery?.eggs?.length }}/{{
         nursery?.wishList?.quantity *
-          (nursery?.step === "FIRST_SELECTION" ? 2 : 1)
+          (nursery?.step === 'FIRST_SELECTION' ? 2 : 1)
       }}</span
     ></span
   >
@@ -22,9 +22,9 @@
     <div>
       <pm-display-type [types]="egg.basePokemon.types" />
     </div>
-    {{ "POTENTIAL" | translate }} : {{ egg.hiddenPotential }}
+    {{ 'POTENTIAL' | translate }} : {{ egg.hiddenPotential }}
     <button mat-flat-button (click)="release(egg)" color="warn">
-      {{ "RELEASE" | translate }}
+      {{ 'RELEASE' | translate }}
     </button>
   </div>
 </div>

@@ -206,7 +206,7 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
   protected onDateRangeChange(
     control: FormControl,
     index: number,
-    event: MatDatepickerInputEvent<any>
+    event: MatDatepickerInputEvent<Date>
   ): void {
     const newValue = [
       control.value ? control.value[0] : undefined,

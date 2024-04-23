@@ -1,10 +1,11 @@
-import mongoose, { Document, Schema } from "mongoose";
-import { IPokemon } from "../../api/pokemon/Pokemon";
-import { IPcStorage } from "../../api/pcStorage/PcStorage";
-import { ITrainingCamp } from "../../api/trainingCamp/TrainingCamp";
-import { INursery } from "../../api/nursery/Nursery";
+import mongoose, { Schema } from "mongoose";
+import { IPokemon } from "../pokemon/Pokemon";
+import { IPcStorage } from "../pcStorage/PcStorage";
+import { ITrainingCamp } from "../trainingCamp/TrainingCamp";
+import { INursery } from "../nursery/Nursery";
+import { MongoId } from "../MongoId";
 
-export interface ITrainer extends Document {
+export interface ITrainer extends MongoId {
   name: string;
   class?: string;
   pokemons: IPokemon[];

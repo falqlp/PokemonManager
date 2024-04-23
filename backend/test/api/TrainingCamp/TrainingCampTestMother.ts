@@ -1,4 +1,4 @@
-import { ITrainingCamp } from "../../../api/trainingCamp/TrainingCamp";
+import { ITrainingCamp } from "../../../domain/trainingCamp/TrainingCamp";
 
 export class TrainingCampTestMother {
   static basicTrainingCamp(): ITrainingCamp {

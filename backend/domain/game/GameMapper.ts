@@ -1,4 +1,4 @@
-import { IMapper } from "../../api/IMapper";
+import { IMapper } from "../IMapper";
 import { IGame } from "./Game";
 import { PopulateOptions } from "mongoose";
 import Trainer from "../trainer/Trainer";

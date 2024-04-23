@@ -1,5 +1,5 @@
 import { IGame } from "../../domain/game/Game";
-import User from "../../api/user/User";
+import User from "../../domain/user/User";
 import GameRepository from "../../domain/game/GameRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import TrainerService from "../trainer/TrainerService";

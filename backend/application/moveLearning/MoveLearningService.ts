@@ -1,11 +1,11 @@
 import { notifyNewMoveLearned } from "../../websocketServer";
 import MoveLearningRepository from "../../domain/moveLearning/MoveLearningRepository";
-import { IPokemon } from "../../api/pokemon/Pokemon";
-import { ListBody } from "../../api/ReadOnlyService";
-import MoveService from "../../api/move/MoveService";
+import { IPokemon } from "../../domain/pokemon/Pokemon";
+import { ListBody } from "../../domain/ReadOnlyRepository";
+import MoveRepository from "../../domain/move/MoveRepository";
 import { IMoveLearning } from "../../domain/moveLearning/MoveLearning";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
-import { IMove } from "../../api/move/Move";
+import { IMove } from "../../domain/move/Move";
 
 export default class MoveLearningService {
   private static instance: MoveLearningService;
@@ -13,7 +13,7 @@ export default class MoveLearningService {
     if (!MoveLearningService.instance) {
       MoveLearningService.instance = new MoveLearningService(
         MoveLearningRepository.getInstance(),
-        MoveService.getInstance(),
+        MoveRepository.getInstance(),
         EvolutionRepository.getInstance(),
       );
     }
@@ -22,7 +22,7 @@ export default class MoveLearningService {
 
   constructor(
     protected moveLearningRepository: MoveLearningRepository,
-    protected moveService: MoveService,
+    protected moveService: MoveRepository,
     protected evolutionRepository: EvolutionRepository,
   ) {}
 

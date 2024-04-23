@@ -4,8 +4,9 @@ import BattleAiService from "./BattleAiService";
 import { IBattleInstance } from "../../domain/battleInstance/Battle";
 import { ITrainer } from "../../domain/trainer/Trainer";
 import { PokemonType } from "../../models/Types/Types";
-import { IMove } from "../../api/move/Move";
-import { IPokemon } from "../../api/pokemon/Pokemon";
+import { IMove } from "../../domain/move/Move";
+import { IPokemon } from "../../domain/pokemon/Pokemon";
+import { DefaultMove } from "./BattleConst";
 
 class BattleService {
   private static instance: BattleService;
@@ -50,18 +51,7 @@ class BattleService {
       pokemons: trainer.pokemons.map((pokemon) => {
         pokemon.currentHp = pokemon.stats.hp;
         if (pokemon.moves.length === 0) {
-          pokemon.moves = [
-            {
-              type: PokemonType.FIGHTING,
-              category: "physical",
-              name: "STRUGGLE",
-              accuracy: 100,
-              power: 10,
-              animation: {
-                opponent: "FIGHTING",
-              },
-            } as IMove,
-          ];
+          pokemon.moves.push(DefaultMove);
         }
         return pokemon;
       }),

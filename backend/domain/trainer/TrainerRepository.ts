@@ -1,9 +1,9 @@
 import Trainer, { ITrainer } from "./Trainer";
-import CompleteService from "../../api/CompleteService";
+import CompleteRepository from "../CompleteRepository";
 import TrainerMapper from "./TrainerMapper";
-import { Model } from "mongoose";
+import { FilterQuery, Model, UpdateQuery } from "mongoose";
 
-class TrainerRepository extends CompleteService<ITrainer> {
+class TrainerRepository extends CompleteRepository<ITrainer> {
   private static instance: TrainerRepository;
 
   constructor(
@@ -25,6 +25,13 @@ class TrainerRepository extends CompleteService<ITrainer> {
 
   public async getComplete(_id: string): Promise<ITrainer> {
     return this.get(_id, { map: this.mapper.mapComplete });
+  }
+
+  public async findOneAndUpdate(
+    filter?: FilterQuery<ITrainer>,
+    update?: UpdateQuery<ITrainer>,
+  ): Promise<ITrainer> {
+    return this.schema.findOneAndUpdate(filter, update);
   }
 }
 

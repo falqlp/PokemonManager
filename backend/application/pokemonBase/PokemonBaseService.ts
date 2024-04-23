@@ -1,4 +1,4 @@
-import { IWishList } from "../../api/nursery/Nursery";
+import { IWishList } from "../../domain/nursery/Nursery";
 import { IPokemonBase } from "../../domain/pokemonBase/PokemonBase";
 import PokemonBaseRepository from "../../domain/pokemonBase/PokemonBaseRepository";
 

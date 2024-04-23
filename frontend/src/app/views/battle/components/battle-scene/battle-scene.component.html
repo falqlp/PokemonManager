@@ -1,23 +1,21 @@
 <div class="host">
   <div *ngIf="!started" class="btn-play" #start>
     <button class="btn-primary" (click)="onStart()">
-      {{ "PLAY" | translate }}
+      {{ 'PLAY' | translate }}
     </button>
-    <span *ngIf="!canStart">{{ "PLEASE_SELECT_ATTACK" | translate }}</span>
+    <span *ngIf="!canStart">{{ 'PLEASE_SELECT_ATTACK' | translate }}</span>
   </div>
 
   <div class="battle-scene">
     <div class="opponent">
       <app-battle-scene-opponent
         [opponentActivePokemon]="opponentActivePokemon"
-        [opponentDamage]="opponentDamage"
-      />
+        [opponentDamage]="opponentDamage" />
     </div>
     <div class="player">
       <app-battle-scene-player
         [playerActivePokemon]="playerActivePokemon"
-        [playerDamage]="playerDamage"
-      />
+        [playerDamage]="playerDamage" />
     </div>
   </div>
 </div>

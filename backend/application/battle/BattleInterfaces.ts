@@ -1,5 +1,5 @@
-import { IPokemon } from "../../api/pokemon/Pokemon";
-import { IAnimation, IMove } from "../../api/move/Move";
+import { IPokemon } from "../../domain/pokemon/Pokemon";
+import { IAnimation, IMove } from "../../domain/move/Move";
 
 export type Effectiveness =
   | "IMMUNE"

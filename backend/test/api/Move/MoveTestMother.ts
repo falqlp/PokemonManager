@@ -1,4 +1,4 @@
-import { IMove } from "../../../api/move/Move";
+import { IMove } from "../../../domain/move/Move";
 import { PokemonType } from "../../../models/Types/Types";
 
 export class MoveTestMother {

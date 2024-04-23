@@ -1,44 +1,41 @@
 <form [formGroup]="addUserForm" (ngSubmit)="addUser()" class="add-user">
   <mat-form-field>
-    <mat-label>{{ "USERNAME" | translate }}</mat-label>
+    <mat-label>{{ 'USERNAME' | translate }}</mat-label>
     <input
       matInput
       type="text"
       name="username"
       autocomplete="username"
-      [formControl]="addUserForm.controls.username"
-    />
+      [formControl]="addUserForm.controls.username" />
   </mat-form-field>
   <mat-form-field>
-    <mat-label>{{ "PASSWORD" | translate }}</mat-label>
+    <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
     <input
       matInput
       type="password"
       name="password"
       autocomplete="current-password"
-      [formControl]="addUserForm.controls.password"
-    />
+      [formControl]="addUserForm.controls.password" />
   </mat-form-field>
   <mat-form-field>
-    <mat-label>{{ "VERIFY_PASSWORD" | translate }}</mat-label>
+    <mat-label>{{ 'VERIFY_PASSWORD' | translate }}</mat-label>
     <input
       matInput
       type="password"
-      [formControl]="addUserForm.controls.verifyPassword"
-    />
+      [formControl]="addUserForm.controls.verifyPassword" />
   </mat-form-field>
 
   <div *ngIf="addUserForm.errors?.['passwordsNotMatching']">
-    {{ "PASSWORD_DO_NOT_MATCH" | translate }}
+    {{ 'PASSWORD_DO_NOT_MATCH' | translate }}
   </div>
 
   <div mat-dialog-actions class="add-user__buttons">
     <button mat-flat-button [disabled]="addUserForm.invalid" type="submit">
-      {{ "CREATE_ACCOUNT" | translate }}
+      {{ 'CREATE_ACCOUNT' | translate }}
     </button>
 
     <button mat-flat-button mat-dialog-close>
-      {{ "CANCEL" | translate }}
+      {{ 'CANCEL' | translate }}
     </button>
   </div>
 </form>

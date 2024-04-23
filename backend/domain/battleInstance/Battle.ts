@@ -1,7 +1,8 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { ITrainer } from "../trainer/Trainer";
+import { MongoId } from "../MongoId";
 
-export interface IBattleInstance extends Document {
+export interface IBattleInstance extends MongoId {
   player: ITrainer;
   opponent: ITrainer;
   winner?: string;

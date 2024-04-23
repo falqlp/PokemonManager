@@ -1,9 +1,9 @@
 import PokemonBase, { IPokemonBase } from "./PokemonBase";
-import ReadOnlyService from "../../api/ReadOnlyService";
+import ReadOnlyRepository from "../ReadOnlyRepository";
 import PokemonBaseMapper from "./PokemonBaseMapper";
 import { sample } from "../../utils/RandomUtils";
 
-class PokemonBaseRepository extends ReadOnlyService<IPokemonBase> {
+class PokemonBaseRepository extends ReadOnlyRepository<IPokemonBase> {
   private static instance: PokemonBaseRepository;
   public static getInstance(): PokemonBaseRepository {
     if (!PokemonBaseRepository.instance) {

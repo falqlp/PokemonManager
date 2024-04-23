@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import "source-map-support/register";
-import { RoutesMap } from "./RoutesMap";
+import { RoutesMap } from "./api/RoutesMap";
 import { convertStringsToDateInObject } from "./utils/DateConverter";
 dotenv.config();
 

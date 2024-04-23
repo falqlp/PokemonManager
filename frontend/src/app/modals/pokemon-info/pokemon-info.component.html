@@ -2,21 +2,19 @@
   <h2
     class="pokemon-info__header"
     [ngClass]="data.basePokemon?.types[0]"
-    mat-dialog-title
-  >
-    {{ data.nickname ?? (data.basePokemon?.name ?? "EGG" | translate) }}
+    mat-dialog-title>
+    {{ data.nickname ?? (data.basePokemon?.name ?? 'EGG' | translate) }}
   </h2>
   <mat-dialog-content class="pokemon-info__content">
     <app-display-pokemon-image
       class="pokemon-info__content--image img-pokemon"
       type="max-size"
-      [pokemon]="data"
-    />
+      [pokemon]="data" />
     <div class="pokemon-info__content--type">
       <pm-display-type [types]="data.basePokemon.types" />
     </div>
     <div class="pokemon-info__content--level">
-      <span>{{ "LVL" | translate }}: {{ data.level }}</span
+      <span>{{ 'LVL' | translate }}: {{ data.level }}</span
       ><progress-bar [currentProgress]="data.exp" [max]="100000" />
     </div>
     <div class="pokemon-info__content--stats">
@@ -24,6 +22,6 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-flat-button mat-dialog-close>{{ "CLOSE" | translate }}</button>
+    <button mat-flat-button mat-dialog-close>{{ 'CLOSE' | translate }}</button>
   </mat-dialog-actions>
 </div>

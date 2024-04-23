@@ -1,30 +1,28 @@
 import { ITrainer } from "./Trainer";
-import { IMapper } from "../../api/IMapper";
-import PokemonService from "../../api/pokemon/PokemonService";
-import TrainingCampService from "../../api/trainingCamp/TrainingCampService";
-import PcStorageService from "../../api/pcStorage/PcStorageService";
+import { IMapper } from "../IMapper";
+import PokemonRepository from "../pokemon/PokemonRepository";
+import TrainingCampRepository from "../trainingCamp/TrainingCampRepository";
+import PcStorageService from "../pcStorage/PcStorageRepository";
 import { updatePlayer } from "../../websocketServer";
-import TrainingCamp, {
-  ITrainingCamp,
-} from "../../api/trainingCamp/TrainingCamp";
-import NurseryService from "../../api/nursery/NurseryService";
+import TrainingCamp, { ITrainingCamp } from "../trainingCamp/TrainingCamp";
+import NurseryRepository from "../nursery/NurseryRepository";
 import { PopulateOptions } from "mongoose";
-import Pokemon from "../../api/pokemon/Pokemon";
-import PokemonMapper from "../../api/pokemon/PokemonMapper";
-import PcStorage from "../../api/pcStorage/PcStorage";
-import PcStorageMapper from "../../api/pcStorage/PcStorageMapper";
-import TrainingCampMapper from "../../api/trainingCamp/TrainingCampMapper";
-import Nursery from "../../api/nursery/Nursery";
-import NurseryMapper from "../../api/nursery/NurseryMapper";
+import Pokemon from "../pokemon/Pokemon";
+import PokemonMapper from "../pokemon/PokemonMapper";
+import PcStorage, { IPcStorage } from "../pcStorage/PcStorage";
+import PcStorageMapper from "../pcStorage/PcStorageMapper";
+import TrainingCampMapper from "../trainingCamp/TrainingCampMapper";
+import Nursery, { INursery } from "../nursery/Nursery";
+import NurseryMapper from "../nursery/NurseryMapper";
 
 class TrainerMapper implements IMapper<ITrainer> {
   private static instance: TrainerMapper;
 
   constructor(
-    protected pokemonService: PokemonService,
-    protected trainingCampService: TrainingCampService,
+    protected pokemonService: PokemonRepository,
+    protected trainingCampService: TrainingCampRepository,
     protected pcStorageService: PcStorageService,
-    protected nurseryService: NurseryService,
+    protected nurseryService: NurseryRepository,
     protected pokemonMapper: PokemonMapper,
     protected pcStorageMapper: PcStorageMapper,
     protected trainingCampMapper: TrainingCampMapper,
@@ -66,13 +64,14 @@ class TrainerMapper implements IMapper<ITrainer> {
   public mapPlayer = (trainer: ITrainer): ITrainer => {
     trainer.pokemons?.map((pokemon) => this.pokemonMapper.map(pokemon));
     if (trainer.pcStorage?._id) {
-      trainer.pcStorage = trainer.pcStorage._id;
+      trainer.pcStorage = trainer.pcStorage._id as unknown as IPcStorage;
     }
     if (trainer.trainingCamp?._id) {
-      trainer.trainingCamp = trainer.trainingCamp._id;
+      trainer.trainingCamp = trainer.trainingCamp
+        ._id as unknown as ITrainingCamp;
     }
     if (trainer.nursery?._id) {
-      trainer.nursery = trainer.nursery._id;
+      trainer.nursery = trainer.nursery._id as unknown as INursery;
     }
     return trainer;
   };
@@ -137,10 +136,10 @@ class TrainerMapper implements IMapper<ITrainer> {
   public static getInstance(): TrainerMapper {
     if (!TrainerMapper.instance) {
       TrainerMapper.instance = new TrainerMapper(
-        PokemonService.getInstance(),
-        TrainingCampService.getInstance(),
+        PokemonRepository.getInstance(),
+        TrainingCampRepository.getInstance(),
         PcStorageService.getInstance(),
-        NurseryService.getInstance(),
+        NurseryRepository.getInstance(),
         PokemonMapper.getInstance(),
         PcStorageMapper.getInstance(),
         TrainingCampMapper.getInstance(),

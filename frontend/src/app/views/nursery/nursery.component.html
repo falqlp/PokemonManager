@@ -3,15 +3,13 @@
     <div class="nursery__top-content__infos__image">
       <img
         [src]="'assets/structures/Nursery/Level_' + nursery.level + '.png'"
-        [alt]="nursery.level"
-      />
+        [alt]="nursery.level" />
     </div>
-    <span>{{ "LVL" | translate }}: {{ nursery.level }}</span>
-    <span>{{ "STEP" | translate }}: {{ nursery.step | translate }}</span>
+    <span>{{ 'LVL' | translate }}: {{ nursery.level }}</span>
+    <span>{{ 'STEP' | translate }}: {{ nursery.step | translate }}</span>
   </div>
   <pm-nursery-wishlist-form [nursery]="nursery" />
 </div>
 <pm-nursery-pokemon-list
   *ngIf="nursery?.step !== 'WISHLIST'"
-  [nursery]="nursery"
-/>
+  [nursery]="nursery" />

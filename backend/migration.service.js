@@ -1,7 +1,7 @@
 import PokemonBase from "./domain/pokemonBase/PokemonBase";
 
 const axios = require("axios");
-import Move from "./api/move/Move";
+import Move from "./domain/move/Move";
 import Evolution from "./domain/evolution/Evolution";
 const MoveLearning = require("./domain/moveLearning/MoveLearning");
 const { response } = require("express");

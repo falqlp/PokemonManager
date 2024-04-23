@@ -1,5 +1,5 @@
 import { IPokemonBase } from "./PokemonBase";
-import { IMapper } from "../../api/IMapper";
+import { IMapper } from "../IMapper";
 import { PopulateOptions } from "mongoose";
 
 const MoveMapper: IMapper<IPokemonBase> = {

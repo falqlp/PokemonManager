@@ -1,16 +1,16 @@
-import CompleteService from "../../api/CompleteService";
+import CompleteRepository from "../CompleteRepository";
 import Game, { IGame } from "./Game";
 import GameMapper from "./GameMapper";
-import User from "../../api/user/User";
+import User from "../user/User";
 import Trainer from "../trainer/Trainer";
-import Pokemon from "../../api/pokemon/Pokemon";
-import TrainingCamp from "../../api/trainingCamp/TrainingCamp";
+import Pokemon from "../pokemon/Pokemon";
+import TrainingCamp from "../trainingCamp/TrainingCamp";
 import Battle from "../battleInstance/Battle";
 import CalendarEvent from "../calendarEvent/CalendarEvent";
-import PcStorage from "../../api/pcStorage/PcStorage";
-import Nursery from "../../api/nursery/Nursery";
+import PcStorage from "../pcStorage/PcStorage";
+import Nursery from "../nursery/Nursery";
 
-class GameRepository extends CompleteService<IGame> {
+class GameRepository extends CompleteRepository<IGame> {
   private static instance: GameRepository;
   public static getInstance(): GameRepository {
     if (!GameRepository.instance) {

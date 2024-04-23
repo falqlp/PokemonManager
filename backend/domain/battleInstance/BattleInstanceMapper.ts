@@ -1,5 +1,5 @@
 import { IBattleInstance } from "./Battle";
-import { IMapper } from "../../api/IMapper";
+import { IMapper } from "../IMapper";
 import { PopulateOptions } from "mongoose";
 import TrainerMapper from "../trainer/TrainerMapper";
 import Trainer from "../trainer/Trainer";

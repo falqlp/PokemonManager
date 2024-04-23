@@ -4,8 +4,7 @@
       <button
         mat-icon-button
         [disabled]="goHomeDisabled$ | async"
-        (click)="menu()"
-      >
+        (click)="menu()">
         <mat-icon>menu</mat-icon>
       </button>
       <span>{{ player.name }}</span>
@@ -23,8 +22,7 @@
           class="clickable-icon"
           [pokemon]="pokemon"
           type="icon"
-          (click)="openInfo(pokemon)"
-        />
+          (click)="openInfo(pokemon)" />
       </div>
     </div>
     {{ title$ | async | translate }}
@@ -32,12 +30,12 @@
       <button
         mat-flat-button
         *ngIf="lang"
-        (click)="changeLanguage(lang === 'fr-FR' ? 'en-EN' : 'fr-FR')"
-      >
+        (click)="changeLanguage(lang === 'fr-FR' ? 'en-EN' : 'fr-FR')">
         <img
           [alt]="lang"
-          [src]="'https://flagsapi.com/' + getLangFlag(lang) + '/flat/32.png'"
-        />
+          [src]="
+            'https://flagsapi.com/' + getLangFlag(lang) + '/flat/32.png'
+          " />
       </button>
       <button mat-flat-button (click)="showCalendar()">
         {{ date }} <mat-icon>calendar_today</mat-icon>
@@ -45,9 +43,8 @@
       <button mat-flat-button color="accent" (click)="simulate(player._id)">
         <span
           class="top-bar__right-content__continue"
-          *ngIf="!simulating; else spinner"
-        >
-          {{ "CONTINUE" | translate }} <mat-icon>arrow_forward</mat-icon></span
+          *ngIf="!simulating; else spinner">
+          {{ 'CONTINUE' | translate }} <mat-icon>arrow_forward</mat-icon></span
         >
         <ng-template #spinner>
           <mat-spinner color="warn" diameter="20"></mat-spinner
@@ -58,6 +55,5 @@
   <app-top-bar-week-calendar
     *ngIf="showWeekCalendar"
     [player]="player"
-    (click)="showCalendar()"
-  ></app-top-bar-week-calendar>
+    (click)="showCalendar()"></app-top-bar-week-calendar>
 </div>

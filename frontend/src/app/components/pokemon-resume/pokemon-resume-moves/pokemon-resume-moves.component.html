@@ -4,14 +4,12 @@
     mat-flat-button
     [disabled]="!pokemon.basePokemon"
     (click)="modify = !modify"
-    color="warn"
-  >
-    {{ "MODIFY" | translate }}
+    color="warn">
+    {{ 'MODIFY' | translate }}
   </button>
 </div>
 <ng-template #modifyTemplate>
   <pm-pokemon-resume-modify-moves
     [pokemon]="pokemon"
-    (save)="modify = !modify"
-  />
+    (save)="modify = !modify" />
 </ng-template>

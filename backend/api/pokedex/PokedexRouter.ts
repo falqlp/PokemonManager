@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { PokedexService } from "./PokedexService";
+import { PokedexService } from "../../application/pokedex/PokedexService";
 
 const router = express.Router();
 const pokedexService = PokedexService.getInstance();
