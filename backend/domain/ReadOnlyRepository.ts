@@ -59,7 +59,7 @@ abstract class ReadOnlyRepository<T extends MongoId> {
       if (body.ids) {
         query._id = { $in: body.ids };
       }
-      const dtos = await this.schema
+      const dtos: T[] = await this.schema
         .find(query)
         .populate(this.mapper.populate())
         .limit(body.limit || 0)
@@ -67,7 +67,7 @@ abstract class ReadOnlyRepository<T extends MongoId> {
         .sort(body.sort);
 
       if (body.ids?.length && !body.sort) {
-        dtos.sort((a: any, b: any) => {
+        dtos.sort((a: T, b: T) => {
           return (
             body.ids!.indexOf(a._id.toString()) -
             body.ids!.indexOf(b._id.toString())

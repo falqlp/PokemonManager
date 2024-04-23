@@ -4,7 +4,6 @@ import { PopulateOptions } from "mongoose";
 
 class TrainingCampMapper implements IMapper<ITrainingCamp> {
   private static instance: TrainingCampMapper;
-  constructor() {}
 
   public populate(): PopulateOptions {
     return "" as unknown as PopulateOptions;
