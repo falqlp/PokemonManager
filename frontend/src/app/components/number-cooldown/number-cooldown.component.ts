@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -9,13 +9,5 @@ import { NgIf } from '@angular/common';
   imports: [NgIf],
 })
 export class NumberCooldownComponent {
-  @Input() public set cooldown(value: number) {
-    this._cooldown = value;
-  }
-
-  public get cooldown(): number {
-    return this._cooldown;
-  }
-
-  protected _cooldown: number;
+  public cooldown = input<number>();
 }

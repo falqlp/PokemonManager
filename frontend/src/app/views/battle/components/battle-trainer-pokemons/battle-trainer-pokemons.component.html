@@ -1,12 +1,11 @@
 <div class="trainer">
-  {{ trainer.name }}
+  {{ trainer().name }}
 </div>
 <div class="battle-trainer-pokemons">
   <div
-    *ngFor="let pokemon of trainer.pokemons.slice(1)"
+    *ngFor="let pokemon of trainer().pokemons.slice(1)"
     class="battle-trainer-pokemons__pokemon-box"
-    [ngClass]="{ ko: pokemon.currentHp === 0 }"
-    (click)="pokemon.currentHp !== 0 && click(pokemon)">
+    [ngClass]="{ ko: pokemon.currentHp === 0 }">
     <div class="battle-trainer-pokemons__pokemon-box__info">
       <app-display-pokemon-image [pokemon]="pokemon" [type]="'icon'" />
       <span>{{
@@ -26,5 +25,5 @@
       [currentProgress]="pokemon.currentHp ?? pokemon.stats['hp']"
       [max]="pokemon.stats['hp']" />
   </div>
-  <app-number-cooldown [cooldown]="cooldown"></app-number-cooldown>
+  <app-number-cooldown [cooldown]="cooldown()"></app-number-cooldown>
 </div>

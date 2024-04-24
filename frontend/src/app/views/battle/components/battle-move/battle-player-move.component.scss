@@ -29,10 +29,6 @@
       }
     }
   }
-  &__move:hover {
-    border-color: $select-border;
-    cursor: pointer;
-  }
 }
 .selectedMove {
   border-color: green;

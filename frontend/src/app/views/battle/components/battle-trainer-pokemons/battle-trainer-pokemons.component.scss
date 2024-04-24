@@ -18,7 +18,6 @@
     &__pokemon-box {
       border: $background-color2 2px solid;
       border-radius: 4px;
-      cursor: pointer;
       display: flex;
       flex-direction: column;
       padding-bottom: 5px;
@@ -40,10 +39,6 @@
     .ko {
       opacity: 0.5;
       cursor: default;
-    }
-
-    &__pokemon-box:hover {
-      border-color: $select-border;
     }
     &__cooldown {
       margin: 0;

@@ -1,9 +1,8 @@
 <div class="battle-move">
   <div
-    *ngFor="let move of activePokemon.moves"
+    *ngFor="let move of activePokemon().moves"
     class="battle-move__move"
-    [ngClass]="{ selectedMove: selectedMove?.name === move.name }"
-    (click)="selectedMove?.name !== move.name && onMoveChange.emit(move)">
+    [ngClass]="{ selectedMove: selectedMove()?.name === move.name }">
     <div class="battle-move__move__top">
       <img
         class="icon-type"
@@ -22,5 +21,5 @@
       </div>
     </div>
   </div>
-  <app-number-cooldown [cooldown]="cooldown"></app-number-cooldown>
+  <app-number-cooldown [cooldown]="cooldown()"></app-number-cooldown>
 </div>

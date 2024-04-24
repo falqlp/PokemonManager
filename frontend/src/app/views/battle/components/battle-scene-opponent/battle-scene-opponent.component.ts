@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { PokemonModel } from '../../../../models/PokemonModels/pokemon.model';
 import { DamageModel } from '../../../../models/damage.model';
 
@@ -8,6 +8,6 @@ import { DamageModel } from '../../../../models/damage.model';
   styleUrls: ['./battle-scene-opponent.component.scss'],
 })
 export class BattleSceneOpponentComponent {
-  @Input() public opponentActivePokemon: PokemonModel;
-  @Input() public opponentDamage: DamageModel;
+  public opponentActivePokemon = input<PokemonModel>();
+  public opponentDamage = input<DamageModel>();
 }

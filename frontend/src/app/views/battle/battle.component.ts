@@ -1,4 +1,4 @@
-import { DestroyRef, Input, OnInit } from '@angular/core';
+import { DestroyRef, Input, OnInit, signal } from '@angular/core';
 import { Component } from '@angular/core';
 import { TrainerQueriesService } from 'src/app/services/queries/trainer-queries.service';
 import { BattleService } from './battle.service';
@@ -8,9 +8,7 @@ import { BattleInstanceQueriesService } from '../../services/queries/battle-inst
 import { BattleModel } from '../../models/Battle.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BattleQueriesService } from './battle-queries.service';
-import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { BattleTrainerModel } from './battle.model';
-import { MoveModel } from '../../models/move.model';
 import { PlayerService } from '../../services/player.service';
 import { RouterService } from '../../services/router.service';
 
@@ -25,7 +23,7 @@ export class BattleComponent implements OnInit {
   protected battleLoop: number;
   protected battle: BattleModel;
   protected opponent: BattleTrainerModel;
-  protected player: BattleTrainerModel;
+  protected player = signal<BattleTrainerModel>(null);
 
   public constructor(
     protected trainerService: TrainerQueriesService,
@@ -75,9 +73,9 @@ export class BattleComponent implements OnInit {
 
         if (playerData._id === opponent._id) {
           this.opponent = this.service.mapBattleTrainer(player);
-          this.player = this.service.mapBattleTrainer(opponent);
+          this.player.set(this.service.mapBattleTrainer(opponent));
         } else {
-          this.player = this.service.mapBattleTrainer(player);
+          this.player.set(this.service.mapBattleTrainer(player));
           this.opponent = this.service.mapBattleTrainer(opponent);
         }
       });
@@ -96,13 +94,13 @@ export class BattleComponent implements OnInit {
 
   protected simulateTurn(): void {
     this.battleQueriesService
-      .simulateTurn(this.player, this.opponent)
+      .simulateTurn(this.player(), this.opponent)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((round) => {
-        this.player = round.trainer1;
-        this.opponent = round.trainer2;
-        if (this.player.defeat) {
-          this.onDefeat(this.player);
+        this.player.set(round.trainer1);
+        this.opponent = { ...round.trainer2 };
+        if (this.player().defeat) {
+          this.onDefeat(this.player());
         }
         if (this.opponent.defeat) {
           this.onDefeat(this.opponent);
@@ -120,22 +118,5 @@ export class BattleComponent implements OnInit {
           queryParams: { battle: this.battle._id },
         });
       });
-  }
-
-  protected onMoveChange(move: MoveModel): void {
-    this.player.selectedMove = move;
-  }
-
-  protected onPokemonChange(pokemon: PokemonModel): void {
-    this.changePokemon(pokemon);
-  }
-
-  protected changePokemon(pokemon: PokemonModel): void {
-    this.player.pokemons[
-      this.player.pokemons.findIndex(
-        (playerPokemon) => playerPokemon?._id === pokemon?._id
-      )
-    ] = this.player.pokemons[0];
-    this.player.pokemons[0] = pokemon;
   }
 }

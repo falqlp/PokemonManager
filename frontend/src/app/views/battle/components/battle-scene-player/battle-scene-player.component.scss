@@ -18,6 +18,8 @@
         height: fit-content;
         width: 100%;
         max-width: 250px;
+        margin-bottom: 10px;
+        z-index: 5;
         &--info {
           margin-bottom: 10px;
           display: flex;
@@ -29,6 +31,13 @@
 
     &__image {
       position: relative;
+      &__ground {
+        position: absolute;
+        bottom: 25px;
+        width: 150%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
       &__damage {
         position: absolute;
         top: 50%;
@@ -59,6 +68,7 @@
         left: 50%;
         transform: translateX(-50%);
         opacity: 80%;
+        z-index: 10;
       }
 
       &--back {
