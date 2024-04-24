@@ -1,6 +1,6 @@
 import Battle, { IBattleInstance } from "./Battle";
 import CompleteRepository from "../CompleteRepository";
-import BattleInstanceMapper from "./BattleInstanceMapper";
+import { BattleInstancePopulater } from "./BattleInstancePopulater";
 
 class BattleInstanceRepository extends CompleteRepository<IBattleInstance> {
   private static instance: BattleInstanceRepository;
@@ -8,7 +8,7 @@ class BattleInstanceRepository extends CompleteRepository<IBattleInstance> {
     if (!BattleInstanceRepository.instance) {
       BattleInstanceRepository.instance = new BattleInstanceRepository(
         Battle,
-        BattleInstanceMapper.getInstance(),
+        BattleInstancePopulater.getInstance(),
       );
     }
     return BattleInstanceRepository.instance;

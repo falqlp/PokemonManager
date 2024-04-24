@@ -44,6 +44,7 @@ export class EggHatchedComponent {
   protected changeNickname(): void {
     const pokemon = {
       pokemonBase: this.data.pokemonBase,
+      hatchingDate: null,
       level: 1,
       _id: this.data._id,
     } as unknown as PokemonModel;

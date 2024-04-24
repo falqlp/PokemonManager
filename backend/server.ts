@@ -4,7 +4,7 @@ import https from "https";
 import fs from "fs";
 import app from "./app";
 import { AddressInfo } from "net";
-import { initializeWebSocketServer } from "./websocketServer";
+import WebsocketServerService from "./WebsocketServerService";
 
 const normalizePort = (val: string | number): number | string | boolean => {
   const port = parseInt(String(val), 10);
@@ -62,7 +62,7 @@ if (fs.existsSync(sslOptions.keyPath) && fs.existsSync(sslOptions.certPath)) {
   console.log("Lancement du serveur en mode HTTP.");
 }
 
-initializeWebSocketServer(server);
+WebsocketServerService.getInstance().initializeWebSocketServer(server);
 
 server.on("error", errorHandler);
 server.on("listening", () => {

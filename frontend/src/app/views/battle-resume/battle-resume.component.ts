@@ -37,6 +37,11 @@ export class BattleResumeComponent implements OnInit {
           });
         }),
         tap((result) => {
+          result.map((trainer) => {
+            trainer.pokemons = trainer.pokemons.filter(
+              (pokemon) => pokemon.level > 0
+            );
+          });
           this.battle.player = result[0];
           this.battle.opponent = result[1];
         })

@@ -1,6 +1,5 @@
 import CompleteRepository from "../CompleteRepository";
 import Game, { IGame } from "./Game";
-import GameMapper from "./GameMapper";
 import User from "../user/User";
 import Trainer from "../trainer/Trainer";
 import Pokemon from "../pokemon/Pokemon";
@@ -9,6 +8,7 @@ import Battle from "../battleInstance/Battle";
 import CalendarEvent from "../calendarEvent/CalendarEvent";
 import PcStorage from "../pcStorage/PcStorage";
 import Nursery from "../nursery/Nursery";
+import GamePopulater from "./GamePopulater";
 
 class GameRepository extends CompleteRepository<IGame> {
   private static instance: GameRepository;
@@ -16,7 +16,7 @@ class GameRepository extends CompleteRepository<IGame> {
     if (!GameRepository.instance) {
       GameRepository.instance = new GameRepository(
         Game,
-        GameMapper.getInstance(),
+        GamePopulater.getInstance(),
       );
     }
     return GameRepository.instance;

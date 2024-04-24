@@ -1,9 +1,9 @@
 import Pokemon, { IPokemon } from "./Pokemon";
 import Trainer from "../trainer/Trainer";
 import CompleteRepository from "../CompleteRepository";
-import PokemonMapper from "./PokemonMapper";
-import { ListBody } from "../ReadOnlyRepository";
 import Nursery from "../nursery/Nursery";
+import PokemonPopulater from "./PokemonPopulater";
+import { FilterQuery, UpdateQuery } from "mongoose";
 
 class PokemonRepository extends CompleteRepository<IPokemon> {
   private static instance: PokemonRepository;
@@ -12,17 +12,10 @@ class PokemonRepository extends CompleteRepository<IPokemon> {
     if (!PokemonRepository.instance) {
       PokemonRepository.instance = new PokemonRepository(
         Pokemon,
-        PokemonMapper.getInstance(),
+        PokemonPopulater.getInstance(),
       );
     }
     return PokemonRepository.instance;
-  }
-
-  public async listComplete(
-    body: ListBody,
-    gameId?: string,
-  ): Promise<IPokemon[]> {
-    return await this.list(body, { map: this.mapper.mapComplete, gameId });
   }
 
   public override async delete(_id: string): Promise<IPokemon> {
@@ -35,6 +28,13 @@ class PokemonRepository extends CompleteRepository<IPokemon> {
       { $pull: { eggs: _id } },
     );
     return super.delete(_id);
+  }
+
+  public findOneAndUpdate(
+    filter: FilterQuery<IPokemon>,
+    update: UpdateQuery<IPokemon>,
+  ): Promise<IPokemon> {
+    return this.schema.findOneAndUpdate(filter, update);
   }
 }
 

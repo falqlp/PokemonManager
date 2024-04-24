@@ -17,4 +17,5 @@ export interface PokemonModel {
   currentHp?: number;
   maxLevel: number;
   hiddenPotential: string;
+  hatchingDate?: Date;
 }

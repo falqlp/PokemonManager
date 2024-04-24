@@ -1,7 +1,7 @@
-import { IMapper } from "./IMapper";
 import { Aggregate, FilterQuery, Model } from "mongoose";
 import { ObjectId } from "mongodb";
 import { MongoId } from "./MongoId";
+import Populater from "./Populater";
 
 export interface ListBody {
   custom?: any;
@@ -19,14 +19,13 @@ export interface TableResult<T> {
 abstract class ReadOnlyRepository<T extends MongoId> {
   constructor(
     protected schema: Model<T>,
-    protected mapper: IMapper<T>,
+    protected populater: Populater,
   ) {}
 
   async get(
     _id: string,
     options?: {
       gameId?: string;
-      map?: (entity: T) => Promise<T> | T;
     },
   ): Promise<T> {
     try {
@@ -34,10 +33,9 @@ abstract class ReadOnlyRepository<T extends MongoId> {
       if (options?.gameId) {
         query["gameId"] = options.gameId;
       }
-      const entity = (await this.schema
+      return (await this.schema
         .findOne(query as FilterQuery<T>)
-        .populate(this.mapper.populate())) as T;
-      return options?.map ? options.map(entity) : this.mapper.map(entity);
+        .populate(this.populater.populate())) as T;
     } catch (error) {
       return Promise.reject(error);
     }
@@ -61,7 +59,7 @@ abstract class ReadOnlyRepository<T extends MongoId> {
       }
       const dtos: T[] = await this.schema
         .find(query)
-        .populate(this.mapper.populate())
+        .populate(this.populater.populate())
         .limit(body.limit || 0)
         .skip(body.skip)
         .sort(body.sort);
@@ -75,11 +73,7 @@ abstract class ReadOnlyRepository<T extends MongoId> {
         });
       }
 
-      return await Promise.all(
-        dtos.map(async (dto) => {
-          return options?.map ? options.map(dto) : this.mapper.map(dto);
-        }),
-      );
+      return await Promise.all(dtos);
     } catch (error) {
       return Promise.reject(error);
     }
@@ -98,7 +92,7 @@ abstract class ReadOnlyRepository<T extends MongoId> {
       const translateQuery: Record<string, unknown> = {};
       const nonTranslateQuery: Record<string, unknown> = {};
       let sortQuery: Record<string, unknown> = {};
-      const aggregation = this.schema.aggregate([]);
+      const aggregation = this.schema.aggregate<TableResult<T>>([]);
 
       this.getTranslateAndNonTranslateQuery(
         query,
@@ -151,15 +145,12 @@ abstract class ReadOnlyRepository<T extends MongoId> {
           }
         });
       });
-      if (this.mapper.populate()) {
+      if (this.populater.populate()) {
         result.data = await this.schema.populate(
           result.data,
-          this.mapper.populate(),
+          this.populater.populate(),
         );
       }
-      result.data?.map(async (dto) => {
-        return options?.map ? options.map(dto) : this.mapper.map(dto);
-      });
       return result;
     } catch (error) {
       return Promise.reject(error);
@@ -167,7 +158,7 @@ abstract class ReadOnlyRepository<T extends MongoId> {
   }
 
   private getTranslatedData(
-    aggregation: Aggregate<Array<any>>,
+    aggregation: Aggregate<TableResult<T>[]>,
     nonTranslateQuery: Record<string, unknown>,
     translateQuery: Record<string, unknown>,
     sortKey: string,
@@ -204,7 +195,7 @@ abstract class ReadOnlyRepository<T extends MongoId> {
     query: any,
     translateQuery: Record<string, unknown>,
     nonTranslateQuery: Record<string, unknown>,
-    aggregation: Aggregate<any>,
+    aggregation: Aggregate<TableResult<T>[]>,
     options: {
       gameId?: string;
       lang?: string;
@@ -238,7 +229,7 @@ abstract class ReadOnlyRepository<T extends MongoId> {
 
   private customLookup(
     splitMatch: string[],
-    aggregation: Aggregate<any>,
+    aggregation: Aggregate<TableResult<T>[]>,
     nonTranslateQuery: Record<string, any>,
     query: any,
     key: string,

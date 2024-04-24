@@ -10,6 +10,8 @@ import PokemonBaseService from "../pokemonBase/PokemonBaseService";
 import MoveLearningService from "../moveLearning/MoveLearningService";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import PokemonService from "../pokemon/PokemonService";
+import TrainingCampRepository from "../../domain/trainingCamp/TrainingCampRepository";
+import NurseryRepository from "../../domain/nursery/NurseryRepository";
 
 class TrainerService {
   private static instance: TrainerService;
@@ -26,6 +28,8 @@ class TrainerService {
         MoveLearningService.getInstance(),
         EvolutionRepository.getInstance(),
         PokemonService.getInstance(),
+        TrainingCampRepository.getInstance(),
+        NurseryRepository.getInstance(),
       );
     }
     return TrainerService.instance;
@@ -41,6 +45,8 @@ class TrainerService {
     protected moveLearningService: MoveLearningService,
     protected evolutionRepository: EvolutionRepository,
     protected pokemonService: PokemonService,
+    protected trainingCampRepository: TrainingCampRepository,
+    protected nurseryRepository: NurseryRepository,
   ) {}
 
   public async addPokemonForTrainer(
@@ -49,7 +55,7 @@ class TrainerService {
   ): Promise<void> {
     pokemon.trainerId = trainerId;
     await this.pokemonRepository.update(pokemon._id, pokemon);
-    const trainer = await this.trainerRepository.getComplete(trainerId);
+    const trainer = await this.trainerRepository.get(trainerId);
     if (trainer.pokemons.length < 6) {
       trainer.pokemons.push(pokemon);
     } else {
@@ -71,7 +77,7 @@ class TrainerService {
         );
       }
     }
-    await this.trainerRepository.update(trainerId, trainer);
+    await this.update(trainer);
   }
 
   public async generateTrainer(gameId: string): Promise<ITrainer> {
@@ -83,7 +89,7 @@ class TrainerService {
       name: nameAndClass.name,
       class: nameAndClass.class,
     } as ITrainer;
-    return this.trainerRepository.create(trainer, gameId);
+    return this.create(trainer);
   }
 
   public async generateTrainerPokemons(
@@ -132,6 +138,58 @@ class TrainerService {
       pokemon = await this.pokemonService.create(pokemon, gameId);
       await this.addPokemonForTrainer(pokemon, trainer._id);
     }
+  }
+
+  public async update(trainer: ITrainer): Promise<ITrainer> {
+    trainer.pokemons = await Promise.all(
+      trainer.pokemons.map(async (pokemon) => {
+        pokemon = await this.pokemonService.update(pokemon._id, pokemon);
+        return pokemon;
+      }),
+    );
+
+    if (typeof trainer.pcStorage !== "string") {
+      await this.pcStorageService.update(
+        trainer.pcStorage._id,
+        trainer.pcStorage,
+      );
+    }
+    return this.trainerRepository.update(trainer._id, trainer);
+  }
+
+  public async create(trainer: ITrainer): Promise<ITrainer> {
+    if (!trainer.pokemons) {
+      trainer.pokemons = [];
+    }
+    const gameId = trainer.gameId;
+    if (!trainer.pcStorage) {
+      trainer.pcStorage = await this.pcStorageService.create({
+        gameId,
+        maxSize: 0,
+        storage: [],
+      });
+    }
+    if (!trainer.nursery) {
+      trainer.nursery = await this.nurseryRepository.create({
+        gameId,
+        level: 1,
+        eggs: [],
+        step: "WISHLIST",
+      });
+    }
+    if (!trainer.trainingCamp) {
+      trainer.trainingCamp = await this.trainingCampRepository.create({
+        level: 1,
+        gameId,
+      });
+    }
+    if (!trainer.monney) {
+      trainer.monney = 0;
+    }
+    if (!trainer.berries) {
+      trainer.berries = 0;
+    }
+    return this.trainerRepository.create(trainer);
   }
 }
 

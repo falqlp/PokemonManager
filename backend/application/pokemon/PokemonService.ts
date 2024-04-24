@@ -2,12 +2,11 @@ import { IPokemon } from "../../domain/pokemon/Pokemon";
 import PokemonRepository from "../../domain/pokemon/PokemonRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import PokemonUtilsService from "./PokemonUtilsService";
-import PokemonMapper from "../../domain/pokemon/PokemonMapper";
-import { eggHatched } from "../../websocketServer";
 import { INursery } from "../../domain/nursery/Nursery";
 import PokemonBaseService from "../pokemonBase/PokemonBaseService";
 import PokemonBaseRepository from "../../domain/pokemonBase/PokemonBaseRepository";
 import GameRepository from "../../domain/game/GameRepository";
+import WebsocketServerService from "../../WebsocketServerService";
 
 class PokemonService {
   private static instance: PokemonService;
@@ -18,10 +17,10 @@ class PokemonService {
         PokemonRepository.getInstance(),
         TrainerRepository.getInstance(),
         PokemonUtilsService.getInstance(),
-        PokemonMapper.getInstance(),
         PokemonBaseService.getInstance(),
         PokemonBaseRepository.getInstance(),
         GameRepository.getInstance(),
+        WebsocketServerService.getInstance(),
       );
     }
     return PokemonService.instance;
@@ -31,11 +30,47 @@ class PokemonService {
     protected pokemonRepository: PokemonRepository,
     protected trainerRepository: TrainerRepository,
     protected pokemonUtilsService: PokemonUtilsService,
-    protected pokemonMapper: PokemonMapper,
     protected pokemonBaseService: PokemonBaseService,
     protected pokemonBaseRepository: PokemonBaseRepository,
     protected gameRepository: GameRepository,
+    protected websocketServerService: WebsocketServerService,
   ) {}
+
+  public async update(_id: string, pokemon: IPokemon): Promise<IPokemon> {
+    const oldPokemon = await this.pokemonRepository.get(_id);
+    pokemon.ev = pokemon.ev ?? oldPokemon.ev;
+    pokemon.iv = pokemon.iv ?? oldPokemon.iv;
+    pokemon.basePokemon = pokemon.basePokemon ?? oldPokemon.basePokemon;
+    pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
+    pokemon.birthday = pokemon.birthday ?? oldPokemon.birthday;
+    if (pokemon.level === 1 && pokemon.level !== oldPokemon.level) {
+      await this.pokemonRepository.findOneAndUpdate(
+        { _id },
+        { $set: { hatchingDate: null } },
+      );
+      pokemon.hatchingDate = null;
+    }
+    const actualDate = (await this.gameRepository.get(pokemon.gameId))
+      .actualDate;
+    if (!pokemon.birthday) {
+      pokemon.birthday = actualDate;
+    }
+    pokemon.age = this.pokemonUtilsService.calculateAge(
+      pokemon.birthday ?? oldPokemon.birthday,
+      actualDate,
+    );
+    if (
+      oldPokemon.basePokemon.id !== pokemon.basePokemon.id ||
+      (pokemon.level === 0 && pokemon.trainerId) ||
+      (oldPokemon.level === 0 && pokemon.level === 1)
+    ) {
+      await this.websocketServerService.updatePlayer(
+        pokemon.trainerId ?? oldPokemon.trainerId,
+        pokemon.gameId,
+      );
+    }
+    return this.pokemonRepository.update(_id, pokemon);
+  }
 
   public async create(pokemon: IPokemon, gameId: string): Promise<IPokemon> {
     let newPokemon: IPokemon;
@@ -43,6 +78,10 @@ class PokemonService {
       newPokemon = await this.createEgg(pokemon, gameId);
     } else {
       newPokemon = await this.createPokemon(pokemon, gameId);
+    }
+    if (!pokemon.hiddenPotential) {
+      pokemon.hiddenPotential =
+        this.pokemonUtilsService.generateHiddenPotential(pokemon.potential);
     }
     newPokemon.shiny = this.pokemonUtilsService.generateShiny();
     return this.savePokemon(newPokemon, gameId);
@@ -71,17 +110,26 @@ class PokemonService {
     if (pokemon.ev === undefined) {
       pokemon.ev = this.pokemonUtilsService.initEvs();
     }
-    if (!pokemon.potential) {
-      pokemon.potential = 100;
+    if (pokemon.trainingPercentage === undefined) {
+      pokemon.trainingPercentage = 0;
+    }
+    const actualDate = (await this.gameRepository.get(pokemon.gameId))
+      .actualDate;
+    if (!pokemon.birthday) {
+      pokemon.birthday = new Date(actualDate);
     }
     if (pokemon.age === undefined) {
       pokemon.age = 0;
     }
-    if (pokemon.trainingPercentage === undefined) {
-      pokemon.trainingPercentage = 0;
+    pokemon.age = this.pokemonUtilsService.calculateAge(
+      pokemon.birthday,
+      actualDate,
+    );
+    if (!pokemon.potential) {
+      pokemon.potential = 100;
     }
+    pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
     pokemon.maxLevel = pokemon.level;
-    pokemon = await this.pokemonMapper.update(pokemon);
     return pokemon;
   }
 
@@ -97,11 +145,13 @@ class PokemonService {
     newPokemon: IPokemon,
     gameId: string,
   ): Promise<IPokemon> {
-    const createdPokemon = await this.pokemonRepository.create(
-      newPokemon,
-      gameId,
-    );
+    newPokemon.gameId = gameId;
+    const createdPokemon = await this.pokemonRepository.create(newPokemon);
     if (createdPokemon.trainerId) {
+      await this.websocketServerService.updatePlayer(
+        newPokemon.trainerId,
+        newPokemon.gameId,
+      );
       this.trainerRepository
         .findOneAndUpdate(
           { _id: createdPokemon.trainerId },
@@ -114,11 +164,13 @@ class PokemonService {
   }
 
   public async isHatched(actualDate: Date, gameId: string): Promise<void> {
-    const hatched = await this.pokemonRepository.listComplete(
+    const hatched = await this.pokemonRepository.list(
       { custom: { hatchingDate: { $lte: actualDate } } },
-      gameId,
+      { gameId },
     );
-    hatched.forEach(eggHatched);
+    hatched.forEach((egg) => {
+      this.websocketServerService.eggHatched(egg);
+    });
   }
 
   public async generateEgg(

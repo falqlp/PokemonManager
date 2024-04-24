@@ -1,3 +1,3 @@
 export interface MongoId {
-  _id: string;
+  _id?: string;
 }

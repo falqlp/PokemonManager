@@ -8,13 +8,12 @@ import BattleInstanceRepository from "../../domain/battleInstance/BattleInstance
 import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import GameRepository from "../../domain/game/GameRepository";
-import { notify } from "../../websocketServer";
 import NurseryRepository from "../../domain/nursery/NurseryRepository";
 import TrainerService from "../trainer/TrainerService";
 import BattleService from "../battle/BattleService";
-import CalendarEventMapper from "../../domain/calendarEvent/CalendarEventMapper";
 import NurseryService from "../nursery/NurseryService";
 import PokemonService from "../pokemon/PokemonService";
+import WebsocketServerService from "../../WebsocketServerService";
 
 class CalendarEventService {
   private static instance: CalendarEventService;
@@ -30,8 +29,8 @@ class CalendarEventService {
         NurseryService.getInstance(),
         TrainerService.getInstance(),
         BattleService.getInstance(),
-        CalendarEventMapper.getInstance(),
         NurseryRepository.getInstance(),
+        WebsocketServerService.getInstance(),
       );
     }
     return CalendarEventService.instance;
@@ -46,8 +45,8 @@ class CalendarEventService {
     protected nurseryService: NurseryService,
     protected trainerService: TrainerService,
     protected battleService: BattleService,
-    protected calendarEventMapper: CalendarEventMapper,
     protected nurseryRepository: NurseryRepository,
+    protected websocketServerService: WebsocketServerService,
   ) {}
 
   public async createBattleEvent(
@@ -55,22 +54,18 @@ class CalendarEventService {
     trainers: ITrainer[],
     gameId: string,
   ): Promise<ICalendarEvent> {
-    const battleDTO = await this.battleInstanceService.create(
-      {
-        player: trainers[0],
-        opponent: trainers[1],
-      } as IBattleInstance,
+    const battleDTO = await this.battleInstanceService.create({
+      player: trainers[0],
+      opponent: trainers[1],
       gameId,
-    );
-    return await this.calendarEventRepository.create(
-      {
-        event: battleDTO,
-        date,
-        trainers,
-        type: CalendarEventEvent.BATTLE,
-      } as ICalendarEvent,
+    });
+    return await this.calendarEventRepository.create({
+      event: battleDTO,
+      date,
+      trainers,
+      type: CalendarEventEvent.BATTLE,
       gameId,
-    );
+    });
   }
 
   public async getWeekCalendar(
@@ -117,7 +112,7 @@ class CalendarEventService {
         event.type === CalendarEventEvent.BATTLE && !event.event.winner,
     )?.event;
     await this.simulateBattleForDay(game, date, trainerId);
-    const trainer = await this.trainerRepository.getComplete(trainerId);
+    const trainer = await this.trainerRepository.get(trainerId);
     if (!battle) {
       redirectTo = await this.nurseryEvents(
         events,
@@ -164,7 +159,11 @@ class CalendarEventService {
       ) {
         date.setUTCDate(date.getUTCDate() - 1);
         redirectTo = "nursery";
-        notify("SELECT_VALID_NUMBER_OF_EGGS", "error", game);
+        this.websocketServerService.notify(
+          "SELECT_VALID_NUMBER_OF_EGGS",
+          "error",
+          game,
+        );
       } else {
         if (nursery.step === "FIRST_SELECTION") {
           nursery.step = "LAST_SELECTION";
@@ -189,17 +188,14 @@ class CalendarEventService {
     date: Date,
     trainerId: string,
   ): Promise<void> {
-    const battles = await this.calendarEventRepository.list(
-      {
-        custom: {
-          gameId,
-          date,
-          "event.winner": { $exists: false },
-          trainers: { $nin: [trainerId] },
-        },
+    const battles = await this.calendarEventRepository.list({
+      custom: {
+        gameId,
+        date,
+        "event.winner": { $exists: false },
+        trainers: { $nin: [trainerId] },
       },
-      { map: this.calendarEventMapper.mapComplete },
-    );
+    });
     for (const value of battles) {
       value.event = this.battleService.simulateBattle(value.event);
       await this.battleInstanceService.update(value.event._id, value.event);

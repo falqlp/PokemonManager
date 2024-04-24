@@ -25,7 +25,9 @@
 
       &__egg {
         @include flexbox(left, 2, column);
+        align-items: center;
         gap: 5px;
+        min-width: 200px;
       }
     }
   }

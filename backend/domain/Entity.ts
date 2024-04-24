@@ -1,6 +1,6 @@
 export interface IEntity {
-  createdAt: Date;
-  updateAt: Date;
+  createdAt?: Date;
+  updateAt?: Date;
 }
 
 export const entitySchema = {

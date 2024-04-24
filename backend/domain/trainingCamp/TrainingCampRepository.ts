@@ -1,6 +1,6 @@
 import CompleteRepository from "../CompleteRepository";
 import TrainingCamp, { ITrainingCamp } from "./TrainingCamp";
-import TrainingCampMapper from "./TrainingCampMapper";
+import TrainingCampPopulater from "./TrainingCampPopulater";
 
 class TrainingCampRepository extends CompleteRepository<ITrainingCamp> {
   private static instance: TrainingCampRepository;
@@ -8,7 +8,7 @@ class TrainingCampRepository extends CompleteRepository<ITrainingCamp> {
     if (!TrainingCampRepository.instance) {
       TrainingCampRepository.instance = new TrainingCampRepository(
         TrainingCamp,
-        TrainingCampMapper.getInstance(),
+        TrainingCampPopulater.getInstance(),
       );
     }
     return TrainingCampRepository.instance;

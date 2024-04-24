@@ -1,12 +1,12 @@
 import express, { Router } from "express";
 import MoveRepository from "../../domain/move/MoveRepository";
-import Move from "../../domain/move/Move";
-import MoveMapper from "../../domain/move/MoveMapper";
+import MoveMapper from "./MoveMapper";
 import ReadOnlyGlobalRouter from "../ReadOnlyGlobalRouter";
 
 const router: Router = express.Router();
 const readOnlyRouter = new ReadOnlyGlobalRouter(
-  new MoveRepository(Move, MoveMapper),
+  MoveRepository.getInstance(),
+  MoveMapper,
 );
 
 router.use("/", readOnlyRouter.router);

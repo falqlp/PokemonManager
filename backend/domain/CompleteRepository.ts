@@ -1,49 +1,45 @@
 import ReadOnlyRepository from "./ReadOnlyRepository";
 import { Model, UpdateQuery } from "mongoose";
-import { IMapper } from "./IMapper";
 import { MongoId } from "./MongoId";
+import Populater from "./Populater";
 
 abstract class CompleteRepository<
   T extends MongoId,
 > extends ReadOnlyRepository<T> {
   constructor(
     protected schema: Model<T>,
-    protected mapper: IMapper<T>,
+    protected populater: Populater,
   ) {
-    super(schema, mapper);
+    super(schema, populater);
   }
 
-  async update(_id: string, dto: T): Promise<T> {
+  public async update(_id: string, dto: T): Promise<T> {
     try {
       if ("updateAt" in dto) {
         dto.updateAt = Date.now();
       }
-      const updatedDoc = (await this.schema
+      return (await this.schema
         .findByIdAndUpdate(
           _id,
           {
-            $set: { ...(await this.mapper.update(dto)) },
+            $set: { ...dto },
           } as unknown as UpdateQuery<T>,
           { new: true },
         )
-        .populate(this.mapper.populate())) as T;
-      return this.mapper.map(updatedDoc);
+        .populate(this.populater.populate())) as T;
     } catch (error) {
       return Promise.reject(error);
     }
   }
 
-  async create(dto: T, gameId: string): Promise<T> {
+  async create(dto: T): Promise<T> {
     try {
-      const updatedDto = await this.mapper.update({ ...dto, gameId });
-      if ("createdAt" in updatedDto) {
-        updatedDto.createdAt = Date.now();
+      if ("createdAt" in dto) {
+        dto.createdAt = Date.now();
       }
-      return this.mapper.map(
-        (await this.schema.populate(
-          await this.schema.create(updatedDto),
-          this.mapper.populate(),
-        )) as T,
+      return await this.schema.populate(
+        await this.schema.create(dto),
+        this.populater.populate(),
       );
     } catch (error) {
       return Promise.reject(error);

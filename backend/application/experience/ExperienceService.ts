@@ -5,6 +5,7 @@ import { IPokemonBase } from "../../domain/pokemonBase/PokemonBase";
 import { normalRandom } from "../../utils/RandomUtils";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import MoveLearningService from "../moveLearning/MoveLearningService";
+import TrainerService from "../trainer/TrainerService";
 
 const XP_PER_LEVEL = 100000;
 
@@ -16,15 +17,17 @@ class ExperienceService {
         TrainerRepository.getInstance(),
         MoveLearningService.getInstance(),
         EvolutionRepository.getInstance(),
+        TrainerService.getInstance(),
       );
     }
     return ExperienceService.instance;
   }
 
   constructor(
-    protected trainerService: TrainerRepository,
+    protected trainerRepository: TrainerRepository,
     protected moveLearningService: MoveLearningService,
     protected evolutionRepository: EvolutionRepository,
+    protected trainerService: TrainerService,
   ) {}
 
   public async weeklyXpGain(trainerId: string): Promise<{
@@ -37,7 +40,7 @@ class ExperienceService {
       evolution: IPokemonBase;
       name: string;
     }[] = [];
-    const trainer = await this.trainerService.getComplete(trainerId);
+    const trainer = await this.trainerRepository.get(trainerId);
     const xpAndLevelGain: { xp: number; level: number }[] = [];
     const pokemonPromise = trainer.pokemons
       .filter((pokemon) => pokemon.level !== 0)
@@ -69,7 +72,7 @@ class ExperienceService {
     await Promise.all(pokemonPromise);
     await Promise.all(storagePromise);
     const updateTrainer = { ...(trainer as any)._doc } as ITrainer;
-    await this.trainerService.update(updateTrainer._id, updateTrainer);
+    await this.trainerService.update(updateTrainer);
     return { trainer, xpAndLevelGain, evolutions };
   }
 

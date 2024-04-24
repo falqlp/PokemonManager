@@ -46,13 +46,15 @@ class BattleService {
     return {
       _id: trainer._id,
       name: trainer.name,
-      pokemons: trainer.pokemons.map((pokemon) => {
-        pokemon.currentHp = pokemon.stats.hp;
-        if (pokemon.moves.length === 0) {
-          pokemon.moves.push(DefaultMove);
-        }
-        return pokemon;
-      }),
+      pokemons: trainer.pokemons
+        .filter((value) => value.level > 0)
+        .map((pokemon) => {
+          pokemon.currentHp = pokemon.stats.hp;
+          if (pokemon.moves.length === 0) {
+            pokemon.moves.push(DefaultMove);
+          }
+          return pokemon;
+        }),
       selectedMove: undefined,
       damage: undefined,
       decision: undefined,

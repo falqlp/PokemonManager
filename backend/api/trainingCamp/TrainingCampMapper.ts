@@ -1,5 +1,5 @@
-import { IMapper } from "../IMapper";
-import { ITrainingCamp } from "./TrainingCamp";
+import { IMapper } from "../../domain/IMapper";
+import { ITrainingCamp } from "../../domain/trainingCamp/TrainingCamp";
 import { PopulateOptions } from "mongoose";
 
 class TrainingCampMapper implements IMapper<ITrainingCamp> {
@@ -10,10 +10,6 @@ class TrainingCampMapper implements IMapper<ITrainingCamp> {
   }
 
   public map(dto: ITrainingCamp): ITrainingCamp {
-    return dto;
-  }
-
-  public update(dto: ITrainingCamp): ITrainingCamp {
     return dto;
   }
 

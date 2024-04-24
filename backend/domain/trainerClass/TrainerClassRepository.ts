@@ -1,17 +1,12 @@
-import ReadOnlyRepository from "../ReadOnlyRepository";
-import TrainerClass, { ITrainerClass } from "./TrainerClass";
-import TrainerClassMapper from "./TrainerClassMapper";
+import TrainerClass from "./TrainerClass";
 import { Aggregate } from "mongoose";
 
-class TrainerClassRepository extends ReadOnlyRepository<ITrainerClass> {
+class TrainerClassRepository {
   private static instance: TrainerClassRepository;
 
   public static getInstance(): TrainerClassRepository {
     if (!TrainerClassRepository.instance) {
-      TrainerClassRepository.instance = new TrainerClassRepository(
-        TrainerClass,
-        TrainerClassMapper.getInstance(),
-      );
+      TrainerClassRepository.instance = new TrainerClassRepository();
     }
     return TrainerClassRepository.instance;
   }

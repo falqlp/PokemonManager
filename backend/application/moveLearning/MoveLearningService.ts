@@ -1,4 +1,3 @@
-import { notifyNewMoveLearned } from "../../websocketServer";
 import MoveLearningRepository from "../../domain/moveLearning/MoveLearningRepository";
 import { IPokemon } from "../../domain/pokemon/Pokemon";
 import { ListBody } from "../../domain/ReadOnlyRepository";
@@ -6,6 +5,7 @@ import MoveRepository from "../../domain/move/MoveRepository";
 import { IMoveLearning } from "../../domain/moveLearning/MoveLearning";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import { IMove } from "../../domain/move/Move";
+import WebsocketServerService from "../../WebsocketServerService";
 
 export default class MoveLearningService {
   private static instance: MoveLearningService;
@@ -15,6 +15,7 @@ export default class MoveLearningService {
         MoveLearningRepository.getInstance(),
         MoveRepository.getInstance(),
         EvolutionRepository.getInstance(),
+        WebsocketServerService.getInstance(),
       );
     }
     return MoveLearningService.instance;
@@ -24,6 +25,7 @@ export default class MoveLearningService {
     protected moveLearningRepository: MoveLearningRepository,
     protected moveService: MoveRepository,
     protected evolutionRepository: EvolutionRepository,
+    protected websocketServerService: WebsocketServerService,
   ) {}
 
   public newMoveLearned(pokemon: IPokemon): void {
@@ -31,7 +33,7 @@ export default class MoveLearningService {
       .getNewMoveLearned(pokemon)
       .then((movesLearn) => {
         if (movesLearn.length > 0) {
-          notifyNewMoveLearned(pokemon);
+          this.websocketServerService.notifyNewMoveLearned(pokemon);
         }
       });
   }

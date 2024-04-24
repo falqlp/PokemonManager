@@ -1,7 +1,7 @@
 import PokemonBase, { IPokemonBase } from "./PokemonBase";
 import ReadOnlyRepository from "../ReadOnlyRepository";
-import PokemonBaseMapper from "./PokemonBaseMapper";
 import { sample } from "../../utils/RandomUtils";
+import PokemonBasePopulater from "./PokemonBasePopulater";
 
 class PokemonBaseRepository extends ReadOnlyRepository<IPokemonBase> {
   private static instance: PokemonBaseRepository;
@@ -9,7 +9,7 @@ class PokemonBaseRepository extends ReadOnlyRepository<IPokemonBase> {
     if (!PokemonBaseRepository.instance) {
       PokemonBaseRepository.instance = new PokemonBaseRepository(
         PokemonBase,
-        PokemonBaseMapper,
+        PokemonBasePopulater.getInstance(),
       );
     }
     return PokemonBaseRepository.instance;
@@ -41,7 +41,6 @@ class PokemonBaseRepository extends ReadOnlyRepository<IPokemonBase> {
     const dtos = sample<IPokemonBase>(await aggregation, 3, seed);
     return dtos.map((pokemon: IPokemonBase) => {
       delete (pokemon as any).evolution;
-      this.mapper.map(pokemon);
       return pokemon;
     });
   }

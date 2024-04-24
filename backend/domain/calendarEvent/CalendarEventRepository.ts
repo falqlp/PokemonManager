@@ -1,6 +1,6 @@
 import CompleteRepository from "../CompleteRepository";
 import CalendarEvent, { ICalendarEvent } from "./CalendarEvent";
-import CalendarEventMapper from "./CalendarEventMapper";
+import CalendarEventPopulater from "./CalendarEventPopulater";
 
 class CalendarEventRepository extends CompleteRepository<ICalendarEvent> {
   private static instance: CalendarEventRepository;
@@ -9,7 +9,7 @@ class CalendarEventRepository extends CompleteRepository<ICalendarEvent> {
     if (!CalendarEventRepository.instance) {
       CalendarEventRepository.instance = new CalendarEventRepository(
         CalendarEvent,
-        CalendarEventMapper.getInstance(),
+        CalendarEventPopulater.getInstance(),
       );
     }
     return CalendarEventRepository.instance;

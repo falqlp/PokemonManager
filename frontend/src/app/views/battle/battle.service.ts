@@ -10,23 +10,25 @@ export class BattleService {
     return {
       _id: trainer._id,
       name: trainer.name,
-      pokemons: trainer.pokemons.map((pokemon) => {
-        if (pokemon.moves.length === 0) {
-          pokemon.moves = [
-            {
-              type: 'FIGHTING',
-              category: 'physical',
-              name: 'STRUGGLE',
-              accuracy: 100,
-              power: 10,
-              animation: {
-                opponent: 'FIGHTING',
+      pokemons: trainer.pokemons
+        .filter((value) => value.level > 0)
+        .map((pokemon) => {
+          if (pokemon.moves.length === 0) {
+            pokemon.moves = [
+              {
+                type: 'NORMAL',
+                category: 'physical',
+                name: 'STRUGGLE',
+                accuracy: 100,
+                power: 10,
+                animation: {
+                  opponent: 'NORMAL',
+                },
               },
-            },
-          ];
-        }
-        return pokemon;
-      }),
+            ];
+          }
+          return pokemon;
+        }),
       selectedMove: undefined,
       damage: undefined,
       decision: undefined,

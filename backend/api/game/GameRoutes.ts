@@ -1,20 +1,24 @@
 import express from "express";
 import CompleteRouter from "../CompleteRouter";
 import GameRepository from "../../domain/game/GameRepository";
-import GameMapper from "../../domain/game/GameMapper";
 import GameService from "../../application/game/GameService";
+import TrainerMapper from "../trainer/TrainerMapper";
+import GameMapper from "./GameMapper";
 const gameRepository = GameRepository.getInstance();
 const gameService = GameService.getInstance();
+const trainerMapper = TrainerMapper.getInstance();
 const gameMapper = GameMapper.getInstance();
 const router = express.Router();
-const completeRouter = new CompleteRouter(gameRepository);
+const completeRouter = new CompleteRouter(gameRepository, gameMapper);
 
 router.use("/", completeRouter.router);
 
 router.get("/player/:id", (req, res) => {
   gameRepository
-    .get(req.params.id, { map: gameMapper.mapPlayer })
-    .then((result) => res.status(200).json(result.player))
+    .get(req.params.id)
+    .then((result) =>
+      res.status(200).json(trainerMapper.mapPlayer(result.player)),
+    )
     .catch(console.log);
 });
 
@@ -35,8 +39,8 @@ router.post("/init-game", (req, res) => {
 
 router.post("/:userId", (req, res) => {
   gameService
-    .createWithUser(req.body, undefined, req.params.userId)
-    .then((game) => res.status(200).json(game))
+    .createWithUser(req.body, req.params.userId)
+    .then((game) => res.status(200).json(gameMapper.map(game)))
     .catch(console.log);
 });
 
