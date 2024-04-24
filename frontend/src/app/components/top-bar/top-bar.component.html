@@ -40,7 +40,11 @@
       <button mat-flat-button (click)="showCalendar()">
         {{ date }} <mat-icon>calendar_today</mat-icon>
       </button>
-      <button mat-flat-button color="accent" (click)="simulate(player._id)">
+      <button
+        mat-flat-button
+        color="accent"
+        [disabled]="simulating"
+        (click)="simulate(player._id)">
         <span
           class="top-bar__right-content__continue"
           *ngIf="!simulating; else spinner">

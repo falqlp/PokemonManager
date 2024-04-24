@@ -26,6 +26,7 @@ import {
   MatDatepickerModule,
 } from '@angular/material/datepicker';
 import { TableConfModel, TableSearchType } from './custom-table.model';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'pm-custom-table',
@@ -42,6 +43,7 @@ import { TableConfModel, TableSearchType } from './custom-table.model';
     ReactiveFormsModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatProgressBarModule,
   ],
   templateUrl: './custom-table.component.html',
   styleUrls: ['./custom-table.component.scss'],
@@ -52,6 +54,7 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
   @Input() public specificQuery: Record<string, unknown>;
   @Output() public onRowClick = new EventEmitter<T>();
   protected sortQuerySubject: BehaviorSubject<void> = new BehaviorSubject(null);
+  protected loading = false;
 
   protected dataSource = new MatTableDataSource<T>();
   protected formInput: FormArray<FormControl> = new FormArray([]);
@@ -80,7 +83,7 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
     this.formInput.valueChanges
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        debounceTime(200),
+        debounceTime(150),
         startWith([]),
         switchMap((values) => {
           this.getQueryFromInputs(values);
@@ -95,10 +98,12 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
             skip: this.paginator.pageIndex * this.paginator.pageSize,
             limit: this.paginator.pageSize,
           };
+          this.loading = true;
           return this.queryService.queryTable(this.query);
         })
       )
       .subscribe((result) => {
+        this.loading = false;
         this.dataSource.data = result.data;
         this.paginator.length = result.count;
       });

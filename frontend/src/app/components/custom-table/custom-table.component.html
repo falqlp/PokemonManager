@@ -1,3 +1,6 @@
+@if (loading) {
+<mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+}
 <table
   matSort
   (matSortChange)="sort($event)"
