@@ -24,6 +24,10 @@ class UserRepository extends CompleteRepository<IUser> {
     return super.get(_id);
   }
 
+  public getByUsername(username: string): Promise<IUser> {
+    return this.schema.findOne({ username });
+  }
+
   public async update(_id: string, dto: IUser): Promise<IUser> {
     if (dto.password) {
       dto.password = await this.hashService.hashPassword(dto.password);

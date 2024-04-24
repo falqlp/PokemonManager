@@ -4,7 +4,7 @@ import { container } from "tsyringe";
 const router: Router = Router();
 const moveLearningService = container.resolve(MoveLearningService);
 
-router.put("/learnableMoves", async (req: Request, res: Response) => {
+router.put("/learnableMoves", async (req: Request, res: Response, next) => {
   try {
     const moves = await moveLearningService.learnableMoves(
       req.body.id,
@@ -13,7 +13,7 @@ router.put("/learnableMoves", async (req: Request, res: Response) => {
     );
     res.status(200).json(moves);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 });
 

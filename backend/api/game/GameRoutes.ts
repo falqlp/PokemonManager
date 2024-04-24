@@ -14,35 +14,41 @@ const completeRouter = new CompleteRouter(gameRepository, gameMapper);
 
 router.use("/", completeRouter.router);
 
-router.get("/player/:id", (req, res) => {
-  gameRepository
-    .get(req.params.id)
-    .then((result) =>
-      res.status(200).json(trainerMapper.mapPlayer(result.player)),
-    )
-    .catch(console.log);
+router.get("/player/:id", async (req, res, next) => {
+  try {
+    const obj = await gameRepository.get(req.params.id);
+    res.status(200).json(trainerMapper.mapPlayer(obj.player));
+  } catch (error) {
+    next(error);
+  }
 });
 
-router.get("/time/:id", (req, res) => {
-  gameRepository
-    .get(req.params.id)
-    .then((result) => res.status(200).json(result.actualDate))
-    .catch(console.log);
+router.get("/time/:id", async (req, res, next) => {
+  try {
+    const obj = await gameRepository.get(req.params.id);
+    res.status(200).json(obj.actualDate);
+  } catch (error) {
+    next(error);
+  }
 });
 
-router.post("/init-game", (req, res) => {
-  const gameId = req.headers["game-id"] as string;
-  gameService
-    .initGame(gameId)
-    .then(() => res.status(200).json("OK"))
-    .catch(console.log);
+router.post("/init-game", async (req, res, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    await gameService.initGame(gameId);
+    res.status(200).json();
+  } catch (error) {
+    next(error);
+  }
 });
 
-router.post("/:userId", (req, res) => {
-  gameService
-    .createWithUser(req.body, req.params.userId)
-    .then((game) => res.status(200).json(gameMapper.map(game)))
-    .catch(console.log);
+router.post("/:userId", async (req, res, next) => {
+  try {
+    const obj = await gameService.createWithUser(req.body, req.params.userId);
+    res.status(200).json(gameMapper.map(obj));
+  } catch (error) {
+    next(error);
+  }
 });
 
 export default router;

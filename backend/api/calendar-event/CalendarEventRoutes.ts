@@ -16,36 +16,51 @@ const completeRouter = new CompleteRouter(
 );
 
 router.use("/", completeRouter.router);
-router.post("/battle", (req) => {
-  const gameId = req.headers["game-id"] as string;
-  return calendarEventService.createBattleEvent(
-    req.body.date,
-    req.body.trainers,
-    gameId,
-  );
+router.post("/battle", async (req, res, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    const obj = await calendarEventService.createBattleEvent(
+      req.body.date,
+      req.body.trainers,
+      gameId,
+    );
+    res.status(200).json(mapper.map(obj));
+  } catch (error) {
+    next(error);
+  }
 });
-router.post("/weekCalendar", (req, res) => {
-  const gameId = req.headers["game-id"] as string;
-  calendarEventService
-    .getWeekCalendar(req.body.trainerId, req.body.date, gameId)
-    .then((result) =>
-      res
-        .status(200)
-        .json(result.map((events) => events.map((event) => mapper.map(event)))),
-    )
-    .catch((error: Error) => console.log(error));
+
+router.post("/weekCalendar", async (req, res, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    const obj = await calendarEventService.getWeekCalendar(
+      req.body.trainerId,
+      req.body.date,
+      gameId,
+    );
+    res
+      .status(200)
+      .json(obj.map((events) => events.map((event) => mapper.map(event))));
+  } catch (error) {
+    next(error);
+  }
 });
-router.post("/simulateDay", (req, res) => {
-  const gameId = req.headers["game-id"] as string;
-  calendarEventService
-    .simulateDay(req.body.trainerId, req.body.date, gameId)
-    .then((result) => {
-      if (result.battle) {
-        result.battle = battleInstanceMapper.map(result.battle);
-      }
-      res.status(200).json(result);
-    })
-    .catch((error: Error) => console.log(error));
+
+router.post("/simulateDay", async (req, res, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    const obj = await calendarEventService.simulateDay(
+      req.body.trainerId,
+      req.body.date,
+      gameId,
+    );
+    if (obj.battle) {
+      obj.battle = battleInstanceMapper.map(obj.battle);
+    }
+    res.status(200).json(obj);
+  } catch (error) {
+    next(error);
+  }
 });
 
 export default router;

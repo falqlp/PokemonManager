@@ -1,10 +1,12 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import "source-map-support/register";
 import { RoutesMap } from "./api/RoutesMap";
 import { convertStringsToDateInObject } from "./utils/DateConverter";
+import { container } from "tsyringe";
+import WebsocketServerService from "./WebsocketServerService";
 dotenv.config();
 
 const app = express();
@@ -46,4 +48,17 @@ app.use((req, res, next) => {
 for (const routesKey in RoutesMap) {
   app.use(`/api/${routesKey}`, RoutesMap[routesKey]);
 }
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err);
+  const gameId = req.headers["game-id"] as string;
+  container
+    .resolve(WebsocketServerService)
+    .notify("INTERNAL_ERROR", "error", gameId);
+  res.status(500);
+  res.json({
+    error: err,
+  });
+});
 export default app;

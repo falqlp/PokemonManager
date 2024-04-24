@@ -1,5 +1,5 @@
 import { Router } from "express";
-import ReadOnlyRepository, { TableResult } from "../domain/ReadOnlyRepository";
+import ReadOnlyRepository from "../domain/ReadOnlyRepository";
 import { MongoId } from "../domain/MongoId";
 import { IMapper } from "../domain/IMapper";
 class ReadOnlyGlobalRouter<T extends MongoId> {
@@ -12,31 +12,33 @@ class ReadOnlyGlobalRouter<T extends MongoId> {
   }
 
   initReadOnlyRouter(): void {
-    this.router.get("/:id", (req, res) => {
-      this.service
-        .get(req.params.id)
-        .then((obj: T) => res.status(200).json(this.mapper.map(obj)))
-        .catch((error: Error) => console.log(error));
+    this.router.get("/:id", async (req, res, next) => {
+      try {
+        const obj = await this.service.get(req.params.id);
+        res.status(200).json(this.mapper.map(obj));
+      } catch (error) {
+        next(error);
+      }
     });
 
-    this.router.put("/", (req, res) => {
-      this.service
-        .list(req.body)
-        .then((obj: T[]) =>
-          res.status(200).json(obj.map((value) => this.mapper.map(value))),
-        )
-        .catch((error: Error) => console.log(error));
+    this.router.put("/", async (req, res, next) => {
+      try {
+        const obj = await this.service.list(req.body);
+        res.status(200).json(obj.map((value) => this.mapper.map(value)));
+      } catch (error) {
+        next(error);
+      }
     });
 
-    this.router.put("/query-table", (req, res) => {
-      const lang = req.headers["lang"] as string;
-      this.service
-        .queryTable(req.body, { lang })
-        .then((obj: TableResult<T>) => {
-          obj.data = obj.data.map((value) => this.mapper.map(value));
-          res.status(200).json(obj);
-        })
-        .catch((error: Error) => console.log(error));
+    this.router.put("/query-table", async (req, res, next) => {
+      try {
+        const lang = req.headers["lang"] as string;
+        const obj = await this.service.queryTable(req.body, { lang });
+        obj.data = obj.data.map((value) => this.mapper.map(value));
+        res.status(200).json(obj);
+      } catch (error) {
+        next(error);
+      }
     });
   }
 }

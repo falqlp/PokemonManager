@@ -4,6 +4,7 @@ import { ITrainer } from "../trainer/Trainer";
 import { entitySchema, IEntity } from "../Entity";
 import { MongoId } from "../MongoId";
 
+// eslint-disable-next-line no-shadow
 export enum CalendarEventEvent {
   BATTLE = "BATTLE",
   GENERATE_NURSERY_EGGS = "GENERATE_NURSERY_EGGS",

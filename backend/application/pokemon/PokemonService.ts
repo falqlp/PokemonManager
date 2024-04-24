@@ -142,8 +142,7 @@ class PokemonService {
           { _id: createdPokemon.trainerId },
           { $push: { pokemons: createdPokemon._id } },
         )
-        .then()
-        .catch((error: Error) => console.log(error));
+        .then();
     }
     return createdPokemon;
   }

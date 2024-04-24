@@ -15,38 +15,35 @@ const completeRouter = new CompleteRouter(
   pokemonMapper,
 );
 
-router.put("/effectiveness", (req: Request, res: Response) => {
+router.put("/effectiveness", (req: Request, res: Response, next) => {
   try {
     const effectiveness = effectivenessService.calculateEffectiveness(req.body);
     res.status(200).json(effectiveness);
   } catch (err) {
-    res.status(500).json(err);
-    console.log(err);
+    next(err);
   }
 });
-router.get("/starters", async (req: Request, res: Response) => {
+router.get("/starters", async (req: Request, res: Response, next) => {
   try {
     const gameId = req.headers["game-id"] as string;
     const starters = await pokemonService.generateStarters(gameId);
     starters.map((starter) => pokemonMapper.mapStarters(starter));
     res.status(200).json(starters);
   } catch (err) {
-    res.status(500).json(err);
-    console.log(err);
+    next(err);
   }
 });
-router.post("/", async (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response, next) => {
   try {
     const gameId = req.headers["game-id"] as string;
     res
       .status(200)
       .json(pokemonMapper.map(await pokemonService.create(req.body, gameId)));
   } catch (err) {
-    res.status(500).json(err);
-    console.log(err);
+    next(err);
   }
 });
-router.put("/:id", async (req: Request, res: Response) => {
+router.put("/:id", async (req: Request, res: Response, next) => {
   req.body.gameId = req.headers["game-id"] as string;
   try {
     res
@@ -55,8 +52,7 @@ router.put("/:id", async (req: Request, res: Response) => {
         pokemonMapper.map(await pokemonService.update(req.params.id, req.body)),
       );
   } catch (err) {
-    res.status(500).json(err);
-    console.log(err);
+    next(err);
   }
 });
 router.use("/", completeRouter.router);
