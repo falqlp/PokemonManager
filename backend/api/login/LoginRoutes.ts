@@ -1,8 +1,9 @@
 import express from "express";
 import User from "../../domain/user/User";
 import HashService from "../../application/hash/HashService";
+import { container } from "tsyringe";
 const router = express.Router();
-const hashService = HashService.getInstance();
+const hashService = container.resolve(HashService);
 
 router.post("/", (req, res) => {
   User.findOne({ username: req.body.username })

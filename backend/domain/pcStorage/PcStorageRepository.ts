@@ -1,17 +1,12 @@
 import PcStorage, { IPcStorage } from "./PcStorage";
 import CompleteRepository from "../CompleteRepository";
 import PcStoragePopulater from "./PcStoragePopulater";
+import { singleton } from "tsyringe";
 
+@singleton()
 class PcStorageRepository extends CompleteRepository<IPcStorage> {
-  private static instance: PcStorageRepository;
-  public static getInstance(): PcStorageRepository {
-    if (!PcStorageRepository.instance) {
-      PcStorageRepository.instance = new PcStorageRepository(
-        PcStorage,
-        PcStoragePopulater.getInstance(),
-      );
-    }
-    return PcStorageRepository.instance;
+  constructor(pcStoragePopulater: PcStoragePopulater) {
+    super(PcStorage, pcStoragePopulater);
   }
 
   public async create(dto: IPcStorage): Promise<IPcStorage> {

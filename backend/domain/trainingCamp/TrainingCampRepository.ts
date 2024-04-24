@@ -1,17 +1,12 @@
 import CompleteRepository from "../CompleteRepository";
 import TrainingCamp, { ITrainingCamp } from "./TrainingCamp";
+import { singleton } from "tsyringe";
 import TrainingCampPopulater from "./TrainingCampPopulater";
 
+@singleton()
 class TrainingCampRepository extends CompleteRepository<ITrainingCamp> {
-  private static instance: TrainingCampRepository;
-  public static getInstance(): TrainingCampRepository {
-    if (!TrainingCampRepository.instance) {
-      TrainingCampRepository.instance = new TrainingCampRepository(
-        TrainingCamp,
-        TrainingCampPopulater.getInstance(),
-      );
-    }
-    return TrainingCampRepository.instance;
+  constructor(populater: TrainingCampPopulater) {
+    super(TrainingCamp, populater);
   }
 }
 

@@ -1,16 +1,9 @@
 import { TYPE_EFFECTIVENESS } from "../battle/BattleCalcService";
 import { PokemonType } from "../../models/Types/Types";
+import { singleton } from "tsyringe";
 
+@singleton()
 class EffectivenessService {
-  private static instance: EffectivenessService;
-
-  public static getInstance(): EffectivenessService {
-    if (!EffectivenessService.instance) {
-      EffectivenessService.instance = new EffectivenessService();
-    }
-    return EffectivenessService.instance;
-  }
-
   public calculateEffectiveness(types: string[]): Record<string, number> {
     const effectiveness: Record<string, number> = {};
     types.forEach((type) => {

@@ -2,20 +2,10 @@ import { INursery } from "../../domain/nursery/Nursery";
 import { IPokemon } from "../../domain/pokemon/Pokemon";
 import NurseryRepository from "../../domain/nursery/NurseryRepository";
 import PokemonService from "../pokemon/PokemonService";
+import { singleton } from "tsyringe";
 
+@singleton()
 class NurseryService {
-  private static instance: NurseryService;
-
-  public static getInstance(): NurseryService {
-    if (!NurseryService.instance) {
-      NurseryService.instance = new NurseryService(
-        NurseryRepository.getInstance(),
-        PokemonService.getInstance(),
-      );
-    }
-    return NurseryService.instance;
-  }
-
   constructor(
     protected nurseryRepository: NurseryRepository,
     protected pokemonService: PokemonService,

@@ -1,18 +1,13 @@
 import PokemonBase, { IPokemonBase } from "./PokemonBase";
 import ReadOnlyRepository from "../ReadOnlyRepository";
 import { sample } from "../../utils/RandomUtils";
+import { singleton } from "tsyringe";
 import PokemonBasePopulater from "./PokemonBasePopulater";
 
+@singleton()
 class PokemonBaseRepository extends ReadOnlyRepository<IPokemonBase> {
-  private static instance: PokemonBaseRepository;
-  public static getInstance(): PokemonBaseRepository {
-    if (!PokemonBaseRepository.instance) {
-      PokemonBaseRepository.instance = new PokemonBaseRepository(
-        PokemonBase,
-        PokemonBasePopulater.getInstance(),
-      );
-    }
-    return PokemonBaseRepository.instance;
+  constructor(populater: PokemonBasePopulater) {
+    super(PokemonBase, populater);
   }
 
   public getPokemonBaseById(id: number): Promise<IPokemonBase> {

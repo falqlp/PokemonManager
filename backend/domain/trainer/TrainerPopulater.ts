@@ -8,22 +8,10 @@ import PokemonPopulater from "../pokemon/PokemonPopulater";
 import PcStoragePopulater from "../pcStorage/PcStoragePopulater";
 import NurseryPopulater from "../nursery/NurseryPopulater";
 import TrainingCampPopulater from "../trainingCamp/TrainingCampPopulater";
+import { singleton } from "tsyringe";
 
+@singleton()
 class TrainerPopulater extends Populater {
-  private static instance: TrainerPopulater;
-
-  public static getInstance(): TrainerPopulater {
-    if (!TrainerPopulater.instance) {
-      TrainerPopulater.instance = new TrainerPopulater(
-        PokemonPopulater.getInstance(),
-        PcStoragePopulater.getInstance(),
-        NurseryPopulater.getInstance(),
-        TrainingCampPopulater.getInstance(),
-      );
-    }
-    return TrainerPopulater.instance;
-  }
-
   constructor(
     protected pokemonPopulater: PokemonPopulater,
     protected pcStoragePopulater: PcStoragePopulater,

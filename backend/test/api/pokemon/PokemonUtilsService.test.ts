@@ -5,6 +5,7 @@ import { IPokemon } from "../../../domain/pokemon/Pokemon";
 import { PokemonTestMother } from "./PokemonTestMother";
 import { StatsTestMother } from "../Stats/StatsTestMother";
 import { normalRandom } from "../../../utils/RandomUtils";
+import { container } from "tsyringe";
 
 jest.mock("../../../utils/RandomUtils");
 
@@ -12,7 +13,7 @@ describe("PokemonUtilsService", () => {
   let service: PokemonUtilsService;
 
   beforeEach(() => {
-    service = PokemonUtilsService.getInstance();
+    service = container.resolve(PokemonUtilsService);
   });
 
   afterEach(() => {
@@ -73,7 +74,7 @@ describe("PokemonUtilsService", () => {
   });
 
   describe("updateStats", () => {
-    const pokemonUtilsService = PokemonUtilsService.getInstance();
+    const pokemonUtilsService = container.resolve(PokemonUtilsService);
     let mockPokemon: IPokemon;
 
     beforeEach(() => {

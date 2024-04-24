@@ -1,10 +1,12 @@
 import http from "http";
 import https from "https";
+import "reflect-metadata";
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import fs from "fs";
 import app from "./app";
 import { AddressInfo } from "net";
 import WebsocketServerService from "./WebsocketServerService";
+import { container } from "tsyringe";
 
 const normalizePort = (val: string | number): number | string | boolean => {
   const port = parseInt(String(val), 10);
@@ -62,7 +64,7 @@ if (fs.existsSync(sslOptions.keyPath) && fs.existsSync(sslOptions.certPath)) {
   console.log("Lancement du serveur en mode HTTP.");
 }
 
-WebsocketServerService.getInstance().initializeWebSocketServer(server);
+container.resolve(WebsocketServerService).initializeWebSocketServer(server);
 
 server.on("error", errorHandler);
 server.on("listening", () => {

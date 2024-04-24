@@ -2,19 +2,10 @@ import CompleteRepository from "../CompleteRepository";
 import User, { IUser } from "./User";
 import HashService from "../../application/hash/HashService";
 import UserPopulater from "./UserPopulater";
+import { singleton } from "tsyringe";
 
+@singleton()
 class UserRepository extends CompleteRepository<IUser> {
-  private static instance: UserRepository;
-  public static getInstance(): UserRepository {
-    if (!UserRepository.instance) {
-      UserRepository.instance = new UserRepository(
-        HashService.getInstance(),
-        UserPopulater.getInstance(),
-      );
-    }
-    return UserRepository.instance;
-  }
-
   constructor(
     protected hashService: HashService,
     userPopulater: UserPopulater,

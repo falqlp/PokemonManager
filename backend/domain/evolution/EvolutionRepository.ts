@@ -1,19 +1,10 @@
 import Evolution, { IEvolution } from "./Evolution";
 import { IPokemonBase } from "../pokemonBase/PokemonBase";
 import PokemonBaseRepository from "../pokemonBase/PokemonBaseRepository";
+import { singleton } from "tsyringe";
 
+@singleton()
 class EvolutionRepository {
-  private static instance: EvolutionRepository;
-
-  public static getInstance(): EvolutionRepository {
-    if (!EvolutionRepository.instance) {
-      EvolutionRepository.instance = new EvolutionRepository(
-        PokemonBaseRepository.getInstance(),
-      );
-    }
-    return EvolutionRepository.instance;
-  }
-
   constructor(protected pokemonBaseRepository: PokemonBaseRepository) {}
 
   public hasEvolution(id: number): Promise<IEvolution[]> {

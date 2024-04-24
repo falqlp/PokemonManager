@@ -1,18 +1,12 @@
 import CompleteRepository from "../CompleteRepository";
 import Nursery, { INursery } from "./Nursery";
+import { singleton } from "tsyringe";
 import NurseryPopulater from "./NurseryPopulater";
 
+@singleton()
 class NurseryRepository extends CompleteRepository<INursery> {
-  private static instance: NurseryRepository;
-
-  public static getInstance(): NurseryRepository {
-    if (!NurseryRepository.instance) {
-      NurseryRepository.instance = new NurseryRepository(
-        Nursery,
-        NurseryPopulater.getInstance(),
-      );
-    }
-    return NurseryRepository.instance;
+  constructor(nurseryPopulater: NurseryPopulater) {
+    super(Nursery, nurseryPopulater);
   }
 
   public async create(dto: INursery): Promise<INursery> {

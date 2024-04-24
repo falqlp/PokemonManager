@@ -1,10 +1,10 @@
 import { IPokemon } from "../../domain/pokemon/Pokemon";
 import { IMapper } from "../../domain/IMapper";
 import { IPokemonBase } from "../../domain/pokemonBase/PokemonBase";
+import { singleton } from "tsyringe";
 
+@singleton()
 class PokemonMapper implements IMapper<IPokemon> {
-  private static instance: PokemonMapper;
-
   public map(pokemon: IPokemon): IPokemon {
     pokemon.ev = undefined;
     pokemon.iv = undefined;
@@ -47,13 +47,6 @@ class PokemonMapper implements IMapper<IPokemon> {
     delete pokemon.hatchingDate;
     return pokemon;
   };
-
-  public static getInstance(): PokemonMapper {
-    if (!PokemonMapper.instance) {
-      PokemonMapper.instance = new PokemonMapper();
-    }
-    return PokemonMapper.instance;
-  }
 }
 
 export default PokemonMapper;

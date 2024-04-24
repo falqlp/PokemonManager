@@ -1,9 +1,9 @@
 import MoveLearning, { IMoveLearning } from "./MoveLearning";
 import { IPokemon } from "../pokemon/Pokemon";
+import { singleton } from "tsyringe";
 
+@singleton()
 class MoveLearningRepository {
-  private static instance: MoveLearningRepository;
-
   public async getNewMoveLearned(pokemon: IPokemon): Promise<IMoveLearning[]> {
     return MoveLearning.find({
       pokemonId: pokemon.basePokemon.id,
@@ -21,13 +21,6 @@ class MoveLearningRepository {
       levelLearnAt: { $lte: level },
       learnMethod: "LEVEL-UP",
     });
-  }
-
-  public static getInstance(): MoveLearningRepository {
-    if (!MoveLearningRepository.instance) {
-      MoveLearningRepository.instance = new MoveLearningRepository();
-    }
-    return MoveLearningRepository.instance;
   }
 }
 

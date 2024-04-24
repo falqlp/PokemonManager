@@ -1,5 +1,6 @@
 import MoveLearningService from "../../../application/moveLearning/MoveLearningService";
 import { IMoveLearning } from "../../../domain/moveLearning/MoveLearning";
+import { container } from "tsyringe";
 
 describe("MoveLearningService", () => {
   let moveLearningService: MoveLearningService;
@@ -7,7 +8,7 @@ describe("MoveLearningService", () => {
   let list2: IMoveLearning[];
 
   beforeEach(() => {
-    moveLearningService = MoveLearningService.getInstance();
+    moveLearningService = container.resolve(MoveLearningService);
 
     list1 = [
       {

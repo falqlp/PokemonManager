@@ -8,18 +8,13 @@ import Battle from "../battleInstance/Battle";
 import CalendarEvent from "../calendarEvent/CalendarEvent";
 import PcStorage from "../pcStorage/PcStorage";
 import Nursery from "../nursery/Nursery";
+import { singleton } from "tsyringe";
 import GamePopulater from "./GamePopulater";
 
+@singleton()
 class GameRepository extends CompleteRepository<IGame> {
-  private static instance: GameRepository;
-  public static getInstance(): GameRepository {
-    if (!GameRepository.instance) {
-      GameRepository.instance = new GameRepository(
-        Game,
-        GamePopulater.getInstance(),
-      );
-    }
-    return GameRepository.instance;
+  constructor(gamePopulater: GamePopulater) {
+    super(Game, gamePopulater);
   }
 
   public async delete(_id: string): Promise<IGame> {

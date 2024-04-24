@@ -2,17 +2,10 @@ import Populater from "../Populater";
 import { PopulateOptions } from "mongoose";
 import Game from "../game/Game";
 import GamePopulater from "../game/GamePopulater";
+import { singleton } from "tsyringe";
 
+@singleton()
 class UserPopulater extends Populater {
-  private static instance: UserPopulater;
-
-  public static getInstance(): UserPopulater {
-    if (!UserPopulater.instance) {
-      UserPopulater.instance = new UserPopulater(GamePopulater.getInstance());
-    }
-    return UserPopulater.instance;
-  }
-
   constructor(protected gamePopulater: GamePopulater) {
     super();
   }

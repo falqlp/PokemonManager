@@ -8,20 +8,10 @@ import { PeriodModel } from "../PeriodModel";
 import { IBattleInstance } from "../../domain/battleInstance/Battle";
 import BattleInstanceRepository from "../../domain/battleInstance/BattleInstanceRepository";
 import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
+import { singleton } from "tsyringe";
 
+@singleton()
 class GenerateCalendarService {
-  private static instance: GenerateCalendarService;
-
-  public static getInstance(): GenerateCalendarService {
-    if (!GenerateCalendarService.instance) {
-      GenerateCalendarService.instance = new GenerateCalendarService(
-        BattleInstanceRepository.getInstance(),
-        CalendarEventRepository.getInstance(),
-      );
-    }
-    return GenerateCalendarService.instance;
-  }
-
   constructor(
     protected battleInstanceRepository: BattleInstanceRepository,
     protected calendarEventRepository: CalendarEventRepository,

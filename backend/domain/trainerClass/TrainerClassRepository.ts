@@ -1,16 +1,9 @@
 import TrainerClass from "./TrainerClass";
 import { Aggregate } from "mongoose";
+import { singleton } from "tsyringe";
 
+@singleton()
 class TrainerClassRepository {
-  private static instance: TrainerClassRepository;
-
-  public static getInstance(): TrainerClassRepository {
-    if (!TrainerClassRepository.instance) {
-      TrainerClassRepository.instance = new TrainerClassRepository();
-    }
-    return TrainerClassRepository.instance;
-  }
-
   public generateTrainerName(): Aggregate<
     Array<{ class: string; name: string }>
   > {

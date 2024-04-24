@@ -4,13 +4,14 @@ import PokemonRepository from "../../domain/pokemon/PokemonRepository";
 import EffectivenessService from "../../application/pokemon/EffectivenessService";
 import PokemonService from "../../application/pokemon/PokemonService";
 import PokemonMapper from "./PokemonMapper";
-const effectivenessService = EffectivenessService.getInstance();
-const pokemonService = PokemonService.getInstance();
-const pokemonMapper = PokemonMapper.getInstance();
+import { container } from "tsyringe";
+const effectivenessService = container.resolve(EffectivenessService);
+const pokemonService = container.resolve(PokemonService);
+const pokemonMapper = container.resolve(PokemonMapper);
 
 const router = express.Router();
 const completeRouter = new CompleteRouter(
-  PokemonRepository.getInstance(),
+  container.resolve(PokemonRepository),
   pokemonMapper,
 );
 

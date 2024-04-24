@@ -1,17 +1,10 @@
 import * as bcrypt from "bcryptjs";
 import { IUser } from "../../domain/user/User";
+import { singleton } from "tsyringe";
 
+@singleton()
 class HashService {
   private static readonly saltRounds = 10;
-
-  private static instance: HashService;
-
-  public static getInstance(): HashService {
-    if (!HashService.instance) {
-      HashService.instance = new HashService();
-    }
-    return HashService.instance;
-  }
 
   public async hashPassword(password: string): Promise<string> {
     return bcrypt.hash(password, HashService.saltRounds);

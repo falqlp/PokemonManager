@@ -12,29 +12,10 @@ import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import PokemonService from "../pokemon/PokemonService";
 import TrainingCampRepository from "../../domain/trainingCamp/TrainingCampRepository";
 import NurseryRepository from "../../domain/nursery/NurseryRepository";
+import { singleton } from "tsyringe";
 
+@singleton()
 class TrainerService {
-  private static instance: TrainerService;
-
-  public static getInstance(): TrainerService {
-    if (!TrainerService.instance) {
-      TrainerService.instance = new TrainerService(
-        PokemonRepository.getInstance(),
-        PcStorageService.getInstance(),
-        TrainerRepository.getInstance(),
-        TrainerClassRepository.getInstance(),
-        PokemonUtilsService.getInstance(),
-        PokemonBaseService.getInstance(),
-        MoveLearningService.getInstance(),
-        EvolutionRepository.getInstance(),
-        PokemonService.getInstance(),
-        TrainingCampRepository.getInstance(),
-        NurseryRepository.getInstance(),
-      );
-    }
-    return TrainerService.instance;
-  }
-
   constructor(
     protected pokemonRepository: PokemonRepository,
     protected pcStorageService: PcStorageService,

@@ -2,19 +2,10 @@ import Populater from "../Populater";
 import { PopulateOptions } from "mongoose";
 import Trainer from "../trainer/Trainer";
 import TrainerPopulater from "../trainer/TrainerPopulater";
+import { singleton } from "tsyringe";
 
+@singleton()
 class GamePopulater extends Populater {
-  private static instance: GamePopulater;
-
-  public static getInstance(): GamePopulater {
-    if (!GamePopulater.instance) {
-      GamePopulater.instance = new GamePopulater(
-        TrainerPopulater.getInstance(),
-      );
-    }
-    return GamePopulater.instance;
-  }
-
   constructor(protected trainerPopulater: TrainerPopulater) {
     super();
   }

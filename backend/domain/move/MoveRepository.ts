@@ -1,17 +1,12 @@
 import Move, { IMove } from "./Move";
 import ReadOnlyRepository from "../ReadOnlyRepository";
+import { singleton } from "tsyringe";
 import MovePopulater from "./MovePopulater";
 
+@singleton()
 class MoveRepository extends ReadOnlyRepository<IMove> {
-  private static instance: MoveRepository;
-  public static getInstance(): MoveRepository {
-    if (!MoveRepository.instance) {
-      MoveRepository.instance = new MoveRepository(
-        Move,
-        MovePopulater.getInstance(),
-      );
-    }
-    return MoveRepository.instance;
+  constructor(movePopulater: MovePopulater) {
+    super(Move, movePopulater);
   }
 }
 

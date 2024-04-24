@@ -1,11 +1,12 @@
 import EffectivenessService from "../../../application/pokemon/EffectivenessService";
 import { PokemonType } from "../../../models/Types/Types";
+import { container } from "tsyringe";
 
 describe("EffectivenessService", () => {
   let service: EffectivenessService;
 
   beforeAll(() => {
-    service = EffectivenessService.getInstance();
+    service = container.resolve(EffectivenessService);
   });
 
   it("should correctly calculate water effectiveness", () => {

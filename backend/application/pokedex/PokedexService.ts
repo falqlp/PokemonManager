@@ -4,21 +4,10 @@ import { IPokedex, IPokedexEvolution, IPokedexMoveLearned } from "./Pokedex";
 import MoveRepository from "../../domain/move/MoveRepository";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import MoveLearningService from "../moveLearning/MoveLearningService";
+import { singleton } from "tsyringe";
 
+@singleton()
 export class PokedexService {
-  public static getInstance(): PokedexService {
-    if (!PokedexService.instance) {
-      PokedexService.instance = new PokedexService(
-        PokemonBaseRepository.getInstance(),
-        MoveLearningService.getInstance(),
-        MoveRepository.getInstance(),
-        EvolutionRepository.getInstance(),
-      );
-    }
-    return PokedexService.instance;
-  }
-
-  private static instance: PokedexService;
   constructor(
     protected pokemonBaseService: PokemonBaseRepository,
     protected moveLearningService: MoveLearningService,

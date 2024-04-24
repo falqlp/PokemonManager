@@ -2,11 +2,12 @@ import express from "express";
 import CompleteRouter from "../CompleteRouter";
 import TrainingCampRepository from "../../domain/trainingCamp/TrainingCampRepository";
 import TrainingCampMapper from "./TrainingCampMapper";
+import { container } from "tsyringe";
 
 const router = express.Router();
 const completeRouter = new CompleteRouter(
-  TrainingCampRepository.getInstance(),
-  TrainingCampMapper.getInstance(),
+  container.resolve(TrainingCampRepository),
+  container.resolve(TrainingCampMapper),
 );
 
 router.use("/", completeRouter.router);

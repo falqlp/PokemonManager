@@ -4,10 +4,10 @@ import { ITrainingCamp } from "../../domain/trainingCamp/TrainingCamp";
 import PokemonMapper from "../pokemon/PokemonMapper";
 import { IPcStorage } from "../../domain/pcStorage/PcStorage";
 import { INursery } from "../../domain/nursery/Nursery";
+import { singleton } from "tsyringe";
 
+@singleton()
 class TrainerMapper implements IMapper<ITrainer> {
-  private static instance: TrainerMapper;
-
   constructor(protected pokemonMapper: PokemonMapper) {}
 
   public map(trainer: ITrainer): ITrainer {
@@ -37,13 +37,6 @@ class TrainerMapper implements IMapper<ITrainer> {
     trainer.pokemons = undefined;
     return trainer;
   };
-
-  public static getInstance(): TrainerMapper {
-    if (!TrainerMapper.instance) {
-      TrainerMapper.instance = new TrainerMapper(PokemonMapper.getInstance());
-    }
-    return TrainerMapper.instance;
-  }
 }
 
 export default TrainerMapper;

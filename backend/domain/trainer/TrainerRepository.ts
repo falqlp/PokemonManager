@@ -1,19 +1,13 @@
 import Trainer, { ITrainer } from "./Trainer";
 import CompleteRepository from "../CompleteRepository";
 import { FilterQuery, UpdateQuery } from "mongoose";
+import { singleton } from "tsyringe";
 import TrainerPopulater from "./TrainerPopulater";
 
+@singleton()
 class TrainerRepository extends CompleteRepository<ITrainer> {
-  private static instance: TrainerRepository;
-
-  public static getInstance(): TrainerRepository {
-    if (!TrainerRepository.instance) {
-      TrainerRepository.instance = new TrainerRepository(
-        Trainer,
-        TrainerPopulater.getInstance(),
-      );
-    }
-    return TrainerRepository.instance;
+  constructor(trainerPopulater: TrainerPopulater) {
+    super(Trainer, trainerPopulater);
   }
 
   public async findOneAndUpdate(

@@ -6,21 +6,10 @@ import { IMoveLearning } from "../../domain/moveLearning/MoveLearning";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import { IMove } from "../../domain/move/Move";
 import WebsocketServerService from "../../WebsocketServerService";
+import { singleton } from "tsyringe";
 
+@singleton()
 export default class MoveLearningService {
-  private static instance: MoveLearningService;
-  public static getInstance(): MoveLearningService {
-    if (!MoveLearningService.instance) {
-      MoveLearningService.instance = new MoveLearningService(
-        MoveLearningRepository.getInstance(),
-        MoveRepository.getInstance(),
-        EvolutionRepository.getInstance(),
-        WebsocketServerService.getInstance(),
-      );
-    }
-    return MoveLearningService.instance;
-  }
-
   constructor(
     protected moveLearningRepository: MoveLearningRepository,
     protected moveService: MoveRepository,

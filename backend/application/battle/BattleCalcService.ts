@@ -1,6 +1,7 @@
 import { IPokemon } from "../../domain/pokemon/Pokemon";
 import { IMove } from "../../domain/move/Move";
 import { Effectiveness, IDamage } from "./BattleInterfaces";
+import { singleton } from "tsyringe";
 
 export const TYPE_EFFECTIVENESS: { [key: string]: { [key: string]: number } } =
   {
@@ -134,16 +135,8 @@ const STAB_MODIFIER = 1.5;
 const MIN_ROLL = 0.85;
 const TURN_TIME_MS = 500;
 
+@singleton()
 class BattleCalcService {
-  private static instance: BattleCalcService;
-
-  public static getInstance(): BattleCalcService {
-    if (!BattleCalcService.instance) {
-      BattleCalcService.instance = new BattleCalcService();
-    }
-    return BattleCalcService.instance;
-  }
-
   calcDamage(attPokemon: IPokemon, defPokemon: IPokemon, move: IMove): IDamage {
     if (attPokemon.currentHp === 0 || move === undefined) {
       return;

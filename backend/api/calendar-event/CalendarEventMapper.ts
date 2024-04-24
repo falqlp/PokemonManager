@@ -5,9 +5,10 @@ import {
 } from "../../domain/calendarEvent/CalendarEvent";
 import TrainerMapper from "../trainer/TrainerMapper";
 import BattleInstanceMapper from "../battle-instance/BattleInstanceMapper";
+import { singleton } from "tsyringe";
 
+@singleton()
 class CalendarEventMapper implements IMapper<ICalendarEvent> {
-  private static instance: CalendarEventMapper;
   constructor(
     protected trainerMapper: TrainerMapper,
     protected battleInstanceMapper: BattleInstanceMapper,
@@ -19,16 +20,6 @@ class CalendarEventMapper implements IMapper<ICalendarEvent> {
     }
     dto.trainers.map((trainer) => this.trainerMapper.mapPartial(trainer));
     return dto;
-  }
-
-  public static getInstance(): CalendarEventMapper {
-    if (!CalendarEventMapper.instance) {
-      CalendarEventMapper.instance = new CalendarEventMapper(
-        TrainerMapper.getInstance(),
-        BattleInstanceMapper.getInstance(),
-      );
-    }
-    return CalendarEventMapper.instance;
   }
 }
 

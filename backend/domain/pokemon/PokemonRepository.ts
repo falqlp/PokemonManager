@@ -2,20 +2,14 @@ import Pokemon, { IPokemon } from "./Pokemon";
 import Trainer from "../trainer/Trainer";
 import CompleteRepository from "../CompleteRepository";
 import Nursery from "../nursery/Nursery";
-import PokemonPopulater from "./PokemonPopulater";
 import { FilterQuery, UpdateQuery } from "mongoose";
+import { singleton } from "tsyringe";
+import PokemonPopulater from "./PokemonPopulater";
 
+@singleton()
 class PokemonRepository extends CompleteRepository<IPokemon> {
-  private static instance: PokemonRepository;
-
-  public static getInstance(): PokemonRepository {
-    if (!PokemonRepository.instance) {
-      PokemonRepository.instance = new PokemonRepository(
-        Pokemon,
-        PokemonPopulater.getInstance(),
-      );
-    }
-    return PokemonRepository.instance;
+  constructor(pokemonPopulater: PokemonPopulater) {
+    super(Pokemon, pokemonPopulater);
   }
 
   public override async delete(_id: string): Promise<IPokemon> {

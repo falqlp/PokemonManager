@@ -1,23 +1,16 @@
 import { IMapper } from "../../domain/IMapper";
 import { ITrainingCamp } from "../../domain/trainingCamp/TrainingCamp";
 import { PopulateOptions } from "mongoose";
+import { singleton } from "tsyringe";
 
+@singleton()
 class TrainingCampMapper implements IMapper<ITrainingCamp> {
-  private static instance: TrainingCampMapper;
-
   public populate(): PopulateOptions {
     return "" as unknown as PopulateOptions;
   }
 
   public map(dto: ITrainingCamp): ITrainingCamp {
     return dto;
-  }
-
-  public static getInstance(): TrainingCampMapper {
-    if (!TrainingCampMapper.instance) {
-      TrainingCampMapper.instance = new TrainingCampMapper();
-    }
-    return TrainingCampMapper.instance;
   }
 }
 

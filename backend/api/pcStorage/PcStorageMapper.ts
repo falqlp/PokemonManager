@@ -1,9 +1,10 @@
 import { IPcStorage } from "../../domain/pcStorage/PcStorage";
 import { IMapper } from "../../domain/IMapper";
 import PokemonMapper from "../pokemon/PokemonMapper";
+import { singleton } from "tsyringe";
 
+@singleton()
 class PcStorageMapper implements IMapper<IPcStorage> {
-  private static instance: PcStorageMapper;
   public constructor(protected pokemonMapper: PokemonMapper) {}
 
   public map(pcStorage: IPcStorage): IPcStorage {
@@ -12,15 +13,6 @@ class PcStorageMapper implements IMapper<IPcStorage> {
       return s;
     });
     return pcStorage;
-  }
-
-  public static getInstance(): PcStorageMapper {
-    if (!PcStorageMapper.instance) {
-      PcStorageMapper.instance = new PcStorageMapper(
-        PokemonMapper.getInstance(),
-      );
-    }
-    return PcStorageMapper.instance;
   }
 }
 

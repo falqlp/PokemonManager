@@ -2,19 +2,10 @@ import Populater from "../Populater";
 import { PopulateOptions } from "mongoose";
 import Pokemon from "../pokemon/Pokemon";
 import PokemonPopulater from "../pokemon/PokemonPopulater";
+import { singleton } from "tsyringe";
 
+@singleton()
 class PcStoragePopulater extends Populater {
-  private static instance: PcStoragePopulater;
-
-  public static getInstance(): PcStoragePopulater {
-    if (!PcStoragePopulater.instance) {
-      PcStoragePopulater.instance = new PcStoragePopulater(
-        PokemonPopulater.getInstance(),
-      );
-    }
-    return PcStoragePopulater.instance;
-  }
-
   constructor(protected pokemonPopulater: PokemonPopulater) {
     super();
   }

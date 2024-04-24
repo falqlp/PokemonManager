@@ -4,13 +4,14 @@ import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRep
 import CalendarEventService from "../../application/calendarEvent/CalendarEventService";
 import CalendarEventMapper from "./CalendarEventMapper";
 import BattleInstanceMapper from "../battle-instance/BattleInstanceMapper";
+import { container } from "tsyringe";
 
 const router = express.Router();
-const calendarEventService = CalendarEventService.getInstance();
-const mapper = CalendarEventMapper.getInstance();
-const battleInstanceMapper = BattleInstanceMapper.getInstance();
+const calendarEventService = container.resolve(CalendarEventService);
+const mapper = container.resolve(CalendarEventMapper);
+const battleInstanceMapper = container.resolve(BattleInstanceMapper);
 const completeRouter = new CompleteRouter(
-  CalendarEventRepository.getInstance(),
+  container.resolve(CalendarEventRepository),
   mapper,
 );
 

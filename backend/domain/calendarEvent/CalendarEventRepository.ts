@@ -1,18 +1,12 @@
 import CompleteRepository from "../CompleteRepository";
 import CalendarEvent, { ICalendarEvent } from "./CalendarEvent";
+import { singleton } from "tsyringe";
 import CalendarEventPopulater from "./CalendarEventPopulater";
 
+@singleton()
 class CalendarEventRepository extends CompleteRepository<ICalendarEvent> {
-  private static instance: CalendarEventRepository;
-
-  public static getInstance(): CalendarEventRepository {
-    if (!CalendarEventRepository.instance) {
-      CalendarEventRepository.instance = new CalendarEventRepository(
-        CalendarEvent,
-        CalendarEventPopulater.getInstance(),
-      );
-    }
-    return CalendarEventRepository.instance;
+  constructor(calendarEventPopulater: CalendarEventPopulater) {
+    super(CalendarEvent, calendarEventPopulater);
   }
 
   public insertManyWithoutMapAndPopulate(

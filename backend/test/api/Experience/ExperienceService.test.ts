@@ -1,13 +1,14 @@
 import ExperienceService from "../../../application/experience/ExperienceService";
 import { IPokemon } from "../../../domain/pokemon/Pokemon";
 import { PokemonTestMother } from "../pokemon/PokemonTestMother";
+import { container } from "tsyringe";
 
 describe("ExperienceService", () => {
   let experienceService: ExperienceService;
   let pokemon: IPokemon;
 
   beforeEach(() => {
-    experienceService = ExperienceService.getInstance();
+    experienceService = container.resolve(ExperienceService);
   });
 
   describe("getXp", () => {

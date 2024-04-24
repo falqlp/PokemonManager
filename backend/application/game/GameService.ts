@@ -6,25 +6,12 @@ import TrainerService from "../trainer/TrainerService";
 import GenerateCalendarService from "../calendarEvent/GenerateCalendarService";
 import { PeriodModel } from "../PeriodModel";
 import WebsocketServerService from "../../WebsocketServerService";
+import { singleton } from "tsyringe";
 
 export const NB_GENERATED_TRAINER = 19;
 
+@singleton()
 class GameService {
-  private static instance: GameService;
-
-  public static getInstance(): GameService {
-    if (!GameService.instance) {
-      GameService.instance = new GameService(
-        GameRepository.getInstance(),
-        TrainerRepository.getInstance(),
-        TrainerService.getInstance(),
-        GenerateCalendarService.getInstance(),
-        WebsocketServerService.getInstance(),
-      );
-    }
-    return GameService.instance;
-  }
-
   constructor(
     protected gameRepository: GameRepository,
     protected trainerRepository: TrainerRepository,

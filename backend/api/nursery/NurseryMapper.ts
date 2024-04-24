@@ -1,9 +1,10 @@
 import { IMapper } from "../../domain/IMapper";
 import { INursery } from "../../domain/nursery/Nursery";
 import PokemonMapper from "../pokemon/PokemonMapper";
+import { singleton } from "tsyringe";
 
+@singleton()
 class NurseryMapper implements IMapper<INursery> {
-  private static instance: NurseryMapper;
   constructor(protected pokemonMapper: PokemonMapper) {}
 
   public map(dto: INursery): INursery {
@@ -17,13 +18,6 @@ class NurseryMapper implements IMapper<INursery> {
       }
     }
     return dto;
-  }
-
-  public static getInstance(): NurseryMapper {
-    if (!NurseryMapper.instance) {
-      NurseryMapper.instance = new NurseryMapper(PokemonMapper.getInstance());
-    }
-    return NurseryMapper.instance;
   }
 }
 

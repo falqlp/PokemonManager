@@ -2,19 +2,10 @@ import { IPokemon } from "../../domain/pokemon/Pokemon";
 import { IMove } from "../../domain/move/Move";
 import BattleCalcService from "./BattleCalcService";
 import { IDecision } from "./BattleInterfaces";
+import { singleton } from "tsyringe";
 
+@singleton()
 class BattleAiService {
-  private static instance: BattleAiService;
-
-  public static getInstance(): BattleAiService {
-    if (!BattleAiService.instance) {
-      BattleAiService.instance = new BattleAiService(
-        BattleCalcService.getInstance(),
-      );
-    }
-    return BattleAiService.instance;
-  }
-
   constructor(protected battleService: BattleCalcService) {}
 
   decisionMaking(

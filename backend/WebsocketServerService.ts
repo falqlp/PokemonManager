@@ -1,22 +1,15 @@
 import WebSocket, { WebSocketServer } from "ws";
 import GameRepository from "./domain/game/GameRepository";
 import { IPokemon } from "./domain/pokemon/Pokemon";
+import { container, singleton } from "tsyringe";
 
 export interface WebsocketMessage {
   type: string;
   payload?: any;
 }
 
+@singleton()
 class WebsocketServerService {
-  private static instance: WebsocketServerService;
-
-  public static getInstance(): WebsocketServerService {
-    if (!WebsocketServerService.instance) {
-      WebsocketServerService.instance = new WebsocketServerService();
-    }
-    return WebsocketServerService.instance;
-  }
-
   private wss: WebSocketServer;
   private clients: { [gameId: string]: WebSocket[] } = {};
 
@@ -52,7 +45,7 @@ class WebsocketServerService {
   }
 
   public async updatePlayer(trainerId: string, gameId: string): Promise<void> {
-    const player = (await GameRepository.getInstance().get(gameId)).player;
+    const player = (await container.resolve(GameRepository).get(gameId)).player;
     if (player._id.toString() === trainerId && this.clients[gameId]) {
       this.clients[gameId].forEach((client: WebSocket) => {
         if (client.readyState === WebSocket.OPEN) {

@@ -14,28 +14,10 @@ import BattleService from "../battle/BattleService";
 import NurseryService from "../nursery/NurseryService";
 import PokemonService from "../pokemon/PokemonService";
 import WebsocketServerService from "../../WebsocketServerService";
+import { singleton } from "tsyringe";
 
+@singleton()
 class CalendarEventService {
-  private static instance: CalendarEventService;
-
-  public static getInstance(): CalendarEventService {
-    if (!CalendarEventService.instance) {
-      CalendarEventService.instance = new CalendarEventService(
-        BattleInstanceRepository.getInstance(),
-        CalendarEventRepository.getInstance(),
-        TrainerRepository.getInstance(),
-        GameRepository.getInstance(),
-        PokemonService.getInstance(),
-        NurseryService.getInstance(),
-        TrainerService.getInstance(),
-        BattleService.getInstance(),
-        NurseryRepository.getInstance(),
-        WebsocketServerService.getInstance(),
-      );
-    }
-    return CalendarEventService.instance;
-  }
-
   constructor(
     protected battleInstanceService: BattleInstanceRepository,
     protected calendarEventRepository: CalendarEventRepository,

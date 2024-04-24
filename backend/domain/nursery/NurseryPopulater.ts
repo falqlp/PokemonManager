@@ -2,19 +2,10 @@ import Populater from "../Populater";
 import { PopulateOptions } from "mongoose";
 import Pokemon from "../pokemon/Pokemon";
 import PokemonPopulater from "../pokemon/PokemonPopulater";
+import { singleton } from "tsyringe";
 
+@singleton()
 class NurseryPopulater extends Populater {
-  private static instance: NurseryPopulater;
-
-  public static getInstance(): NurseryPopulater {
-    if (!NurseryPopulater.instance) {
-      NurseryPopulater.instance = new NurseryPopulater(
-        PokemonPopulater.getInstance(),
-      );
-    }
-    return NurseryPopulater.instance;
-  }
-
   constructor(protected pokemonPopulater: PokemonPopulater) {
     super();
   }

@@ -1,7 +1,8 @@
 import express from "express";
 import BattleService from "../../application/battle/BattleService";
+import { container } from "tsyringe";
 const router = express.Router();
-const battleService = BattleService.getInstance();
+const battleService = container.resolve(BattleService);
 
 router.post("/simulateBattleRound", (req, res) => {
   const round = battleService.simulateBattleRound(

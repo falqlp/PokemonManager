@@ -1,7 +1,8 @@
 import { Request, Response, Router } from "express";
 import MoveLearningService from "../../application/moveLearning/MoveLearningService";
+import { container } from "tsyringe";
 const router: Router = Router();
-const moveLearningService = MoveLearningService.getInstance();
+const moveLearningService = container.resolve(MoveLearningService);
 
 router.put("/learnableMoves", async (req: Request, res: Response) => {
   try {

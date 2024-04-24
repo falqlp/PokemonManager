@@ -7,25 +7,10 @@ import PokemonBaseService from "../pokemonBase/PokemonBaseService";
 import PokemonBaseRepository from "../../domain/pokemonBase/PokemonBaseRepository";
 import GameRepository from "../../domain/game/GameRepository";
 import WebsocketServerService from "../../WebsocketServerService";
+import { singleton } from "tsyringe";
 
+@singleton()
 class PokemonService {
-  private static instance: PokemonService;
-
-  public static getInstance(): PokemonService {
-    if (!PokemonService.instance) {
-      PokemonService.instance = new PokemonService(
-        PokemonRepository.getInstance(),
-        TrainerRepository.getInstance(),
-        PokemonUtilsService.getInstance(),
-        PokemonBaseService.getInstance(),
-        PokemonBaseRepository.getInstance(),
-        GameRepository.getInstance(),
-        WebsocketServerService.getInstance(),
-      );
-    }
-    return PokemonService.instance;
-  }
-
   constructor(
     protected pokemonRepository: PokemonRepository,
     protected trainerRepository: TrainerRepository,

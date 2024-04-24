@@ -1,19 +1,10 @@
 import { IWishList } from "../../domain/nursery/Nursery";
 import { IPokemonBase } from "../../domain/pokemonBase/PokemonBase";
 import PokemonBaseRepository from "../../domain/pokemonBase/PokemonBaseRepository";
+import { singleton } from "tsyringe";
 
+@singleton()
 class PokemonBaseService {
-  private static instance: PokemonBaseService;
-
-  public static getInstance(): PokemonBaseService {
-    if (!PokemonBaseService.instance) {
-      PokemonBaseService.instance = new PokemonBaseService(
-        PokemonBaseRepository.getInstance(),
-      );
-    }
-    return PokemonBaseService.instance;
-  }
-
   constructor(protected pokemonBaseRepository: PokemonBaseRepository) {}
 
   public async generateEggBase(wishlist: IWishList): Promise<IPokemonBase> {

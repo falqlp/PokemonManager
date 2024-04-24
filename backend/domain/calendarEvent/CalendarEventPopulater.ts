@@ -4,20 +4,10 @@ import Battle from "../battleInstance/Battle";
 import Trainer from "../trainer/Trainer";
 import { BattleInstancePopulater } from "../battleInstance/BattleInstancePopulater";
 import TrainerPopulater from "../trainer/TrainerPopulater";
+import { singleton } from "tsyringe";
 
+@singleton()
 class CalendarEventPopulater extends Populater {
-  private static instance: CalendarEventPopulater;
-
-  public static getInstance(): CalendarEventPopulater {
-    if (!CalendarEventPopulater.instance) {
-      CalendarEventPopulater.instance = new CalendarEventPopulater(
-        BattleInstancePopulater.getInstance(),
-        TrainerPopulater.getInstance(),
-      );
-    }
-    return CalendarEventPopulater.instance;
-  }
-
   constructor(
     protected battleInstancePopulater: BattleInstancePopulater,
     protected trainerPopulater: TrainerPopulater,

@@ -6,23 +6,12 @@ import { normalRandom } from "../../utils/RandomUtils";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import MoveLearningService from "../moveLearning/MoveLearningService";
 import TrainerService from "../trainer/TrainerService";
+import { singleton } from "tsyringe";
 
 const XP_PER_LEVEL = 100000;
 
+@singleton()
 class ExperienceService {
-  private static instance: ExperienceService;
-  public static getInstance(): ExperienceService {
-    if (!ExperienceService.instance) {
-      ExperienceService.instance = new ExperienceService(
-        TrainerRepository.getInstance(),
-        MoveLearningService.getInstance(),
-        EvolutionRepository.getInstance(),
-        TrainerService.getInstance(),
-      );
-    }
-    return ExperienceService.instance;
-  }
-
   constructor(
     protected trainerRepository: TrainerRepository,
     protected moveLearningService: MoveLearningService,

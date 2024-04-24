@@ -1,17 +1,10 @@
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import { IPokemon } from "../../domain/pokemon/Pokemon";
 import { normalRandom } from "../../utils/RandomUtils";
+import { singleton } from "tsyringe";
 
+@singleton()
 class PokemonUtilsService {
-  private static instance: PokemonUtilsService;
-
-  public static getInstance(): PokemonUtilsService {
-    if (!PokemonUtilsService.instance) {
-      PokemonUtilsService.instance = new PokemonUtilsService();
-    }
-    return PokemonUtilsService.instance;
-  }
-
   public generatePotential(nurseryLevel: number): number {
     let potential = 10 + Math.floor(normalRandom(nurseryLevel * 10, 6));
     if (potential > 100) {

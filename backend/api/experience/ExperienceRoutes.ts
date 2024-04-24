@@ -1,8 +1,9 @@
 import { Router } from "express";
 import ExperienceService from "../../application/experience/ExperienceService";
+import { container } from "tsyringe";
 
 const router: Router = Router();
-const experienceService = ExperienceService.getInstance();
+const experienceService = container.resolve(ExperienceService);
 
 router.get("/weeklyXpGain/:id", (req, res) => {
   experienceService.weeklyXpGain(req.params.id).then((result) => {

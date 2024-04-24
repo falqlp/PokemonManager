@@ -4,10 +4,11 @@ import GameRepository from "../../domain/game/GameRepository";
 import GameService from "../../application/game/GameService";
 import TrainerMapper from "../trainer/TrainerMapper";
 import GameMapper from "./GameMapper";
-const gameRepository = GameRepository.getInstance();
-const gameService = GameService.getInstance();
-const trainerMapper = TrainerMapper.getInstance();
-const gameMapper = GameMapper.getInstance();
+import { container } from "tsyringe";
+const gameRepository = container.resolve(GameRepository);
+const gameService = container.resolve(GameService);
+const trainerMapper = container.resolve(TrainerMapper);
+const gameMapper = container.resolve(GameMapper);
 const router = express.Router();
 const completeRouter = new CompleteRouter(gameRepository, gameMapper);
 

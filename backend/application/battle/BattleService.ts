@@ -5,20 +5,10 @@ import { IBattleInstance } from "../../domain/battleInstance/Battle";
 import { ITrainer } from "../../domain/trainer/Trainer";
 import { IPokemon } from "../../domain/pokemon/Pokemon";
 import { DefaultMove } from "./BattleConst";
+import { singleton } from "tsyringe";
 
+@singleton()
 class BattleService {
-  private static instance: BattleService;
-
-  public static getInstance(): BattleService {
-    if (!BattleService.instance) {
-      BattleService.instance = new BattleService(
-        BattleCalcService.getInstance(),
-        BattleAiService.getInstance(),
-      );
-    }
-    return BattleService.instance;
-  }
-
   constructor(
     protected battleCalcService: BattleCalcService,
     protected battleAiService: BattleAiService,
