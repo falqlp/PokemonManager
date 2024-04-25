@@ -4,11 +4,11 @@ import {
   ICalendarEvent,
 } from "../../domain/calendarEvent/CalendarEvent";
 import { getRandomFromArray, shuffleArray } from "../../utils/RandomUtils";
-import { PeriodModel } from "../PeriodModel";
 import { IBattleInstance } from "../../domain/battleInstance/Battle";
 import BattleInstanceRepository from "../../domain/battleInstance/BattleInstanceRepository";
 import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
 import { singleton } from "tsyringe";
+import { ICompetition } from "../../domain/competiton/Competition";
 
 @singleton()
 class GenerateCalendarService {
@@ -21,18 +21,22 @@ class GenerateCalendarService {
     trainers: ITrainer[],
     nbFaceEachOther: number,
     gameId: string,
-    period: PeriodModel,
+    championship: ICompetition,
   ): Promise<void> {
     let matches = this.generateChampionshipMatches(
       trainers,
       nbFaceEachOther,
       gameId,
+      championship,
     );
     matches =
       await this.battleInstanceRepository.insertManyWithoutMapAndPopulate(
         matches,
       );
-    const availableMatchDate = this.getAvilableDayForTrainer(period, trainers);
+    const availableMatchDate = this.getAvilableDayForTrainer(
+      championship,
+      trainers,
+    );
     const calendarEvents = this.planMatches(
       matches,
       availableMatchDate,
@@ -47,6 +51,7 @@ class GenerateCalendarService {
     trainers: ITrainer[],
     nbFaceEachOther: number,
     gameId: string,
+    championship: ICompetition,
   ): IBattleInstance[] {
     const matches: IBattleInstance[] = [];
     for (let i = 0; i < trainers.length; i++) {
@@ -56,7 +61,8 @@ class GenerateCalendarService {
             player: trainers[i],
             opponent: trainers[j],
             gameId,
-          } as IBattleInstance);
+            competition: championship,
+          });
         }
       }
     }
@@ -118,12 +124,12 @@ class GenerateCalendarService {
   }
 
   private getAvilableDayForTrainer(
-    period: PeriodModel,
+    competition: ICompetition,
     trainers: ITrainer[],
   ): Map<string, Date[]> {
     const availableDays: Date[] = [];
-    const date = new Date(period.startDate);
-    while (period.endDate.getTime() >= date.getTime()) {
+    const date = new Date(competition.startDate);
+    while (competition.endDate.getTime() >= date.getTime()) {
       availableDays.push(new Date(date));
       date.setUTCDate(date.getUTCDate() + 1);
     }

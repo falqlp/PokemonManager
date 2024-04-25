@@ -61,6 +61,10 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { DisplayTypeComponent } from './components/display-type/display-type.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NumberFormatterPipe } from './pipes/number-formatter.pipe';
+import { LocalDatePipe } from './pipes/local-date.pipe';
+import { MatTableModule } from '@angular/material/table';
+import { RankingComponent } from './components/ranking/ranking.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -126,6 +130,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     DisplayTypeComponent,
     MatSlideToggleModule,
     NumberFormatterPipe,
+    LocalDatePipe,
+    MatTableModule,
+    RankingComponent,
+    MatTabsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

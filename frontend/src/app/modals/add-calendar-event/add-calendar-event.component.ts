@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit } from '@angular/core';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import {
@@ -21,6 +21,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { Observable, tap } from 'rxjs';
 import { TimeService } from '../../services/time.service';
+import { CompetitionModel } from '../../models/competition.model';
+import { CompetitionQueriesService } from '../../services/queries/competition-queries.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'pm-add-calendar-event',
@@ -44,11 +47,13 @@ import { TimeService } from '../../services/time.service';
 })
 export class AddCalendarEventComponent implements OnInit {
   protected trainers: TrainerModel[];
+  protected competitions: CompetitionModel[];
   protected calendarEventForm = new FormGroup({
     date: new FormControl<Date>(null, Validators.required),
     trainers: new FormControl<TrainerModel[]>(null, [
       this.customValidatorService.arrayExactLength(2),
     ]),
+    competition: new FormControl<CompetitionModel>(null, Validators.required),
   });
 
   protected currentDate$: Observable<Date>;
@@ -59,26 +64,38 @@ export class AddCalendarEventComponent implements OnInit {
     protected customValidatorService: CustomValidatorService,
     protected timeService: TimeService,
     protected dialogRef: MatDialogRef<AddCalendarEventComponent>,
-    protected calendarEventQueriesService: CalendarEventQueriesService
+    protected calendarEventQueriesService: CalendarEventQueriesService,
+    protected competitionQueriesService: CompetitionQueriesService,
+    protected destroyRef: DestroyRef
   ) {}
 
   public ngOnInit(): void {
-    this.trainerQueriesService.list().subscribe((trainers) => {
-      this.trainers = trainers;
-    });
+    this.trainerQueriesService
+      .list()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((trainers) => {
+        this.trainers = trainers;
+      });
     this.currentDate$ = this.timeService.getActualDate().pipe(
       tap((actualDate) => {
         const currentYear = actualDate.getFullYear();
         this.maxDate = new Date(currentYear, 11, 31);
       })
     );
+    this.competitionQueriesService
+      .list()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((competitions) => {
+        this.competitions = competitions;
+      });
   }
 
   protected submit(): void {
     this.calendarEventQueriesService
       .createBattleEvent(
         this.calendarEventForm.controls.date.value,
-        this.calendarEventForm.controls.trainers.value
+        this.calendarEventForm.controls.trainers.value,
+        this.calendarEventForm.controls.competition.value
       )
       .subscribe(() => {
         this.dialogRef.close();

@@ -29,7 +29,7 @@ export class GameQueriesService extends CompleteQuery<GameModel> {
     return this.http.post<GameModel>(this.url + '/' + userId, game);
   }
 
-  public initGame(): Observable<void> {
-    return this.http.post<void>(this.url + '/init-game', {});
+  public initGame(playerId: string): Observable<void> {
+    return this.http.post<void>(this.url + '/init-game', { playerId });
   }
 }

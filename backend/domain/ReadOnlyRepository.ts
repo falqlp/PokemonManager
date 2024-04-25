@@ -60,10 +60,9 @@ abstract class ReadOnlyRepository<T extends MongoId> {
       const dtos: T[] = await this.schema
         .find(query)
         .populate(this.populater.populate())
-        .limit(body.limit || 0)
-        .skip(body.skip)
-        .sort(body.sort);
-
+        .sort(body.sort)
+        .limit(body.limit)
+        .skip(body.skip);
       if (body.ids?.length && !body.sort) {
         dtos.sort((a: T, b: T) => {
           return (
@@ -73,7 +72,7 @@ abstract class ReadOnlyRepository<T extends MongoId> {
         });
       }
 
-      return await Promise.all(dtos);
+      return dtos;
     } catch (error) {
       return Promise.reject(error);
     }

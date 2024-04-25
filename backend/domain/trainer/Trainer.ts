@@ -4,6 +4,7 @@ import { IPcStorage } from "../pcStorage/PcStorage";
 import { ITrainingCamp } from "../trainingCamp/TrainingCamp";
 import { INursery } from "../nursery/Nursery";
 import { MongoId } from "../MongoId";
+import { ICompetition } from "../competiton/Competition";
 
 export interface ITrainer extends MongoId {
   name: string;
@@ -15,11 +16,13 @@ export interface ITrainer extends MongoId {
   gameId: string;
   berries: number;
   monney: number;
+  competitions: ICompetition[];
 }
 
 const trainerSchema = new Schema<ITrainer>({
   name: { type: String, required: true },
   pokemons: [{ type: Schema.Types.ObjectId, ref: "Pokemon" }],
+  competitions: [{ type: Schema.Types.ObjectId, ref: "Competition" }],
   pcStorage: {
     type: Schema.Types.ObjectId,
     ref: "PcStorage",

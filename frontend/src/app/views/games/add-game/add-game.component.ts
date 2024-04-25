@@ -57,7 +57,7 @@ export class AddGameComponent {
         switchMap((game) => {
           this.cacheService.setGameId(game._id);
           this.router.navigateByUrl('starters');
-          return this.gameQueriesService.initGame();
+          return this.gameQueriesService.initGame(game.player._id);
         })
       )
       .subscribe();

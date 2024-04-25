@@ -13,6 +13,7 @@ import PokemonService from "../pokemon/PokemonService";
 import TrainingCampRepository from "../../domain/trainingCamp/TrainingCampRepository";
 import NurseryRepository from "../../domain/nursery/NurseryRepository";
 import { singleton } from "tsyringe";
+import { ICompetition } from "../../domain/competiton/Competition";
 
 @singleton()
 class TrainerService {
@@ -61,7 +62,10 @@ class TrainerService {
     await this.update(trainer);
   }
 
-  public async generateTrainer(gameId: string): Promise<ITrainer> {
+  public async generateTrainer(
+    gameId: string,
+    championship: ICompetition,
+  ): Promise<ITrainer> {
     const nameAndClass = (
       await this.trainerClassRepository.generateTrainerName()
     )[0];
@@ -69,6 +73,7 @@ class TrainerService {
       gameId,
       name: nameAndClass.name,
       class: nameAndClass.class,
+      competitions: [championship],
     } as ITrainer;
     return this.create(trainer);
   }
@@ -143,6 +148,9 @@ class TrainerService {
       trainer.pokemons = [];
     }
     const gameId = trainer.gameId;
+    if (!trainer.competitions) {
+      trainer.competitions = [];
+    }
     if (!trainer.pcStorage) {
       trainer.pcStorage = await this.pcStorageService.create({
         gameId,

@@ -3,6 +3,7 @@ import { PopulateOptions } from "mongoose";
 import Trainer from "../trainer/Trainer";
 import TrainerPopulater from "../trainer/TrainerPopulater";
 import { singleton } from "tsyringe";
+import Competition from "../competiton/Competition";
 
 @singleton()
 export class BattleInstancePopulater extends Populater {
@@ -21,6 +22,10 @@ export class BattleInstancePopulater extends Populater {
         path: "opponent",
         model: Trainer,
         populate: this.trainerPopulater.populate(),
+      },
+      {
+        path: "competition",
+        model: Competition,
       },
     ];
   }

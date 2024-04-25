@@ -17,6 +17,14 @@
   .mat-mdc-table .mdc-data-table__row {
     height: 40px;
   }
+  .mdc-data-table__cell {
+    color: inherit;
+  }
+
+  pm-ranking .mat-mdc-table .mdc-data-table__row {
+    height: 30px;
+    font-size: 16px;
+  }
 
   .mat-mdc-slider.mat-accent {
     --mdc-slider-handle-color: #ffffff;

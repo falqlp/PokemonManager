@@ -35,7 +35,7 @@ router.get("/time/:id", async (req, res, next) => {
 router.post("/init-game", async (req, res, next) => {
   try {
     const gameId = req.headers["game-id"] as string;
-    await gameService.initGame(gameId);
+    await gameService.initGame(gameId, req.body.playerId);
     res.status(200).json();
   } catch (error) {
     next(error);

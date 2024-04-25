@@ -22,6 +22,7 @@ router.post("/battle", async (req, res, next) => {
     const obj = await calendarEventService.createBattleEvent(
       req.body.date,
       req.body.trainers,
+      req.body.competition,
       gameId,
     );
     res.status(200).json(mapper.map(obj));

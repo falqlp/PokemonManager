@@ -9,6 +9,7 @@ import PcStoragePopulater from "../pcStorage/PcStoragePopulater";
 import NurseryPopulater from "../nursery/NurseryPopulater";
 import TrainingCampPopulater from "../trainingCamp/TrainingCampPopulater";
 import { singleton } from "tsyringe";
+import Competition from "../competiton/Competition";
 
 @singleton()
 class TrainerPopulater extends Populater {
@@ -42,6 +43,10 @@ class TrainerPopulater extends Populater {
         path: "nursery",
         model: Nursery,
         populate: this.nurseryPopulater.populate(),
+      },
+      {
+        path: "competitions",
+        model: Competition,
       },
     ];
   }

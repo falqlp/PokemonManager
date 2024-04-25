@@ -15,6 +15,7 @@ import NurseryService from "../nursery/NurseryService";
 import PokemonService from "../pokemon/PokemonService";
 import WebsocketServerService from "../../WebsocketServerService";
 import { singleton } from "tsyringe";
+import { ICompetition } from "../../domain/competiton/Competition";
 
 @singleton()
 class CalendarEventService {
@@ -34,11 +35,13 @@ class CalendarEventService {
   public async createBattleEvent(
     date: Date,
     trainers: ITrainer[],
+    competition: ICompetition,
     gameId: string,
   ): Promise<ICalendarEvent> {
     const battleDTO = await this.battleInstanceService.create({
       player: trainers[0],
       opponent: trainers[1],
+      competition,
       gameId,
     });
     return await this.calendarEventRepository.create({

@@ -13,6 +13,7 @@ import experienceRoutes from "./experience/ExperienceRoutes";
 import userRoutes from "./user/UserRoutes";
 import nurseryRoutes from "./nursery/NurseryRoutes";
 import pokedexRouter from "./pokedex/PokedexRouter";
+import competitionRoutes from "./competition/CompetitionRoutes";
 import { Router } from "express";
 
 export const RoutesMap: Record<string, Router> = {
@@ -31,4 +32,5 @@ export const RoutesMap: Record<string, Router> = {
   user: userRoutes,
   nursery: nurseryRoutes,
   pokedex: pokedexRouter,
+  competition: competitionRoutes,
 };

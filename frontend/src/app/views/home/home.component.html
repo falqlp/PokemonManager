@@ -1,7 +1,31 @@
+@if(environment.name === 'prod') {
 <button mat-flat-button color="accent" (click)="click()">Create pokemon</button>
-<button mat-flat-button (click)="clickP()">Test</button>
-<button mat-flat-button color="warn" (click)="testRoute()">Test route</button>
-<button mat-flat-button color="accent" (click)="goToCreateCalendarEvent()">
-  calendar event
-</button>
-<button mat-flat-button color="warn" (click)="goToGames()">Games</button>
+<button mat-flat-button color="warn" (click)="goToCreateCalendarEvent()">
+  calendar event</button
+>}
+<div class="home">
+  <div class="home__rankings">
+    <h3>{{ 'RANKINGS' | translate }}</h3>
+    <mat-tab-group>
+      @for (competition of player.competitions; track competition._id) {
+      <mat-tab [label]="competition.name | translate">
+        <pm-ranking [competitionId]="competition._id" />
+      </mat-tab>
+      }
+    </mat-tab-group>
+  </div>
+  @if (nextBattle$|async; as nextBattle) {
+  <div class="home__next-battle">
+    <h3>{{ 'NEXT_BATTLE' | translate }}</h3>
+    <div class="home__next-battle__info">
+      <span>{{ dayToNextBattle }}</span>
+      <span>
+        {{ nextBattle.event.competition.name | translate }}
+        {{ 'AGAINST' | translate }}
+        {{ nextBattle.event.opponent.class | translate }}
+        {{ nextBattle.event.opponent.name }}</span
+      >
+    </div>
+  </div>
+  }
+</div>

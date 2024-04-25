@@ -6,6 +6,7 @@ import { Observable, tap } from 'rxjs';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { BattleModel } from '../../models/Battle.model';
 import { TimeService } from '../time.service';
+import { CompetitionModel } from '../../models/competition.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,11 +22,13 @@ export class CalendarEventQueriesService extends CompleteQuery<CalendarEventMode
 
   public createBattleEvent(
     date: Date,
-    trainers: TrainerModel[]
+    trainers: TrainerModel[],
+    competition: CompetitionModel
   ): Observable<CalendarEventModel> {
     return this.http.post<CalendarEventModel>(this.url + '/battle', {
       date,
       trainers,
+      competition,
     });
   }
 

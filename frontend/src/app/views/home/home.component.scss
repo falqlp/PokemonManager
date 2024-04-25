@@ -1,8 +1,21 @@
-.btn {
-  margin: 5px;
-}
-.flex {
-  gap: 15px;
+@import 'src/styles/flexbox';
+
+.home {
   display: flex;
-  flex-direction: row;
+  gap: 15px;
+  &__rankings {
+    @include flexbox(left, 2, column);
+    width: fit-content;
+    align-items: center;
+  }
+  &__next-battle {
+    @include flexbox(center, 2, column);
+    align-items: center;
+    height: fit-content;
+    &__info {
+      @include flexbox(center, 1, column);
+      align-items: center;
+      gap: 10px;
+    }
+  }
 }
