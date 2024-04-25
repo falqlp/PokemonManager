@@ -1,0 +1,50 @@
+@if(colorStats['hp']) {
+<div
+  class="stat"
+  [ngStyle]="{
+    'background-color': colorStats['hp']
+  }">
+  <span>{{ 'HP' | translate }}</span>
+  <span>{{ pokemon.stats['hp'] }}</span>
+</div>
+<div
+  class="stat"
+  [ngStyle]="{
+    'background-color': colorStats['atk']
+  }">
+  <span>{{ 'ATK' | translate }}</span>
+  <span>{{ pokemon.stats['atk'] }}</span>
+</div>
+<div
+  class="stat"
+  [ngStyle]="{
+    'background-color': colorStats['def']
+  }">
+  <span>{{ 'DEF' | translate }}</span>
+  <span>{{ pokemon.stats['def'] }}</span>
+</div>
+<div
+  class="stat"
+  [ngStyle]="{
+    'background-color': colorStats['spAtk']
+  }">
+  <span>{{ 'SP_ATK' | translate }}</span>
+  <span>{{ pokemon.stats['spAtk'] }}</span>
+</div>
+<div
+  class="stat"
+  [ngStyle]="{
+    'background-color': colorStats['spDef']
+  }">
+  <span>{{ 'SP_DEF' | translate }}</span>
+  <span>{{ pokemon.stats['spDef'] }}</span>
+</div>
+<div
+  class="stat"
+  [ngStyle]="{
+    'background-color': colorStats['spe']
+  }">
+  <span>{{ 'SPE' | translate }}</span>
+  <span>{{ pokemon.stats['spe'] }}</span>
+</div>
+}

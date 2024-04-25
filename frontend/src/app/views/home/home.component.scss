@@ -1,5 +1,8 @@
 @import 'src/styles/flexbox';
 
+h3 {
+  margin: 10px;
+}
 .home {
   display: flex;
   gap: 15px;
@@ -16,6 +19,35 @@
       @include flexbox(center, 1, column);
       align-items: center;
       gap: 10px;
+    }
+  }
+  &__team {
+    @include flexbox(center, 2, column);
+    align-items: center;
+    height: fit-content;
+    flex: 1;
+    &__pokemons {
+      display: flex;
+      gap: 5px;
+      flex-direction: column;
+      width: -webkit-fill-available;
+      &__pokemon {
+        @include flexbox(space-between, 1);
+        align-items: center;
+        gap: 5px;
+        display: grid;
+        grid-template-columns: 1fr 1.5fr 1fr;
+        grid-template-rows: auto;
+        &__main-info {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+        &__moves {
+          display: flex;
+          flex-direction: column;
+        }
+      }
     }
   }
 }

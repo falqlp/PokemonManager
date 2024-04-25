@@ -1,5 +1,10 @@
 {
   "10-000-000-VOLT-THUNDERBOLT": "Giga-Tonnerre",
+  "ATK": "Atk.",
+  "SP_ATK": "Atk.Sp.",
+  "DEF": "Def.",
+  "SP_DEF": "Def.Sp.",
+  "SPE": "Vit.",
   "ABOMASNOW": "Blizzaroi",
   "ABRA": "Abra",
   "ABSOL": "Absol",

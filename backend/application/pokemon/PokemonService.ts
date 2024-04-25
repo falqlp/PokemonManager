@@ -44,16 +44,10 @@ class PokemonService {
       pokemon.birthday ?? oldPokemon.birthday,
       actualDate,
     );
-    if (
-      oldPokemon.basePokemon.id !== pokemon.basePokemon.id ||
-      (pokemon.level === 0 && pokemon.trainerId) ||
-      (oldPokemon.level === 0 && pokemon.level === 1)
-    ) {
-      await this.websocketServerService.updatePlayer(
-        pokemon.trainerId ?? oldPokemon.trainerId,
-        pokemon.gameId,
-      );
-    }
+    await this.websocketServerService.updatePlayer(
+      pokemon.trainerId ?? oldPokemon.trainerId,
+      pokemon.gameId,
+    );
     return this.pokemonRepository.update(_id, pokemon);
   }
 

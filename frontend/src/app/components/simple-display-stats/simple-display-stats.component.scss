@@ -1,0 +1,15 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.stat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 3px;
+  font-size: 16px;
+}

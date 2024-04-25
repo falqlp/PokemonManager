@@ -11,10 +11,12 @@ import { CacheService } from './cache.service';
 })
 export class PlayerService {
   protected playerSubject = new BehaviorSubject<TrainerModel>(undefined);
-
   protected gameId: string;
 
   public maxStat = 0;
+
+  protected maxStatSubject = new BehaviorSubject<number>(this.maxStat);
+  public maxStat$ = this.maxStatSubject.asObservable();
 
   public player$ = this.playerSubject.asObservable();
 
@@ -73,6 +75,7 @@ export class PlayerService {
           }
         });
       });
+      this.maxStatSubject.next(this.maxStat);
     });
   }
 }

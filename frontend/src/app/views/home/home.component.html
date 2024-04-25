@@ -1,4 +1,4 @@
-@if(environment.name === 'prod') {
+@if(environment.name === 'dev') {
 <button mat-flat-button color="accent" (click)="click()">Create pokemon</button>
 <button mat-flat-button color="warn" (click)="goToCreateCalendarEvent()">
   calendar event</button
@@ -25,6 +25,34 @@
         {{ nextBattle.event.opponent.class | translate }}
         {{ nextBattle.event.opponent.name }}</span
       >
+    </div>
+  </div>
+  } @if (player) {
+  <div class="home__team">
+    <h3>{{ 'TEAM' | translate }}</h3>
+    <div class="home__team__pokemons">
+      @for (pokemon of player.pokemons; track pokemon._id){ @if(pokemon.level
+      !== 0) {
+      <div class="home__team__pokemons__pokemon">
+        <div class="home__team__pokemons__pokemon__main-info">
+          <app-display-pokemon-image
+            [pokemon]="pokemon"
+            type="thumbnails"></app-display-pokemon-image>
+          <pm-display-type
+            [displayText]="false"
+            [types]="pokemon.basePokemon.types" />
+          <span>{{
+            pokemon.nickname ?? pokemon.basePokemon.name | translate
+          }}</span>
+        </div>
+        <div class="home__team__pokemons__pokemon__moves">
+          @for (move of pokemon.moves; track move._id) {
+          <pm-move [move]="move" />
+          }
+        </div>
+        <pm-simple-display-stats [pokemon]="pokemon" />
+      </div>
+      } }
     </div>
   </div>
   }

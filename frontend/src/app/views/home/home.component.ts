@@ -59,13 +59,15 @@ export class HomeComponent implements OnInit {
               },
               type: CalendarEventEvent.BATTLE,
             },
-            limit: 1,
+            limit: 2,
             sort: {
               date: 1,
             },
           })
           .pipe(
-            map((result) => result[0]),
+            map((result) => {
+              return result[0].event.winner ? result[1] : result[0];
+            }),
             tap((nextBattle) => {
               this.dayToNextBattle = this.getDayToNextBattle(
                 new Date(nextBattle.date)
@@ -76,7 +78,8 @@ export class HomeComponent implements OnInit {
   }
 
   protected getDayToNextBattle(battleDate: Date): string {
-    const days = battleDate.getUTCDay() - this.actualDate.getUTCDay();
+    const diffInMilliseconds = battleDate.getTime() - this.actualDate.getTime();
+    const days = Math.abs(diffInMilliseconds / (1000 * 60 * 60 * 24));
     switch (days) {
       case 0:
         return this.translateService.instant('TODAY');
@@ -84,7 +87,7 @@ export class HomeComponent implements OnInit {
         return this.translateService.instant('TOMORROW');
       default:
         return this.translateService.instant('IN_X_DAYS', {
-          days: battleDate.getUTCDay() - this.actualDate.getUTCDay(),
+          days,
         });
     }
   }

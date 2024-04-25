@@ -65,6 +65,8 @@ import { LocalDatePipe } from './pipes/local-date.pipe';
 import { MatTableModule } from '@angular/material/table';
 import { RankingComponent } from './components/ranking/ranking.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MoveComponent } from './components/move/move.component';
+import { SimpleDisplayStatsComponent } from './components/simple-display-stats/simple-display-stats.component';
 
 register();
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -134,6 +136,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MatTableModule,
     RankingComponent,
     MatTabsModule,
+    MoveComponent,
+    SimpleDisplayStatsComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

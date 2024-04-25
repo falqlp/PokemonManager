@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { PlayerService } from '../../services/player.service';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
@@ -11,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./pokemon-stats.component.scss'],
   imports: [ProgressBarComponent, TranslateModule],
 })
-export class PokemonStatsComponent {
+export class PokemonStatsComponent implements OnInit {
   @Input()
   public set pokemon(value: PokemonModel) {
     this._pokemon = value;
