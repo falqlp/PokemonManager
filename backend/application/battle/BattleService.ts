@@ -1,9 +1,13 @@
-import { IBattleTrainer, ITrainerAutorizations } from "./BattleInterfaces";
+import {
+  IBattleMove,
+  IBattlePokemon,
+  IBattleTrainer,
+  ITrainerAutorizations,
+} from "./BattleInterfaces";
 import BattleCalcService from "./BattleCalcService";
 import BattleAiService from "./BattleAiService";
 import { IBattleInstance } from "../../domain/battleInstance/Battle";
 import { ITrainer } from "../../domain/trainer/Trainer";
-import { IPokemon } from "../../domain/pokemon/Pokemon";
 import { DefaultMove } from "./BattleConst";
 import { singleton } from "tsyringe";
 
@@ -39,7 +43,11 @@ class BattleService {
       pokemons: trainer.pokemons
         .filter((value) => value.level > 0)
         .map((pokemon) => {
-          pokemon.currentHp = pokemon.stats.hp;
+          (pokemon as IBattlePokemon).currentHp = pokemon.stats.hp;
+          pokemon.moves.map((move) => {
+            (move as IBattleMove).used = false;
+            return move;
+          });
           if (pokemon.moves.length === 0) {
             pokemon.moves.push(DefaultMove);
           }
@@ -129,7 +137,6 @@ class BattleService {
     if (trainer1.autorizations.updateCooldown === 0) {
       trainer1.decision = this.battleAiService.decisionMaking(
         trainer2.pokemons[0],
-        trainer2.selectedMove,
         trainer1.pokemons,
       );
     }
@@ -137,7 +144,6 @@ class BattleService {
       trainer2.decision =
         this.battleAiService.decisionMaking(
           trainer1.pokemons[0],
-          trainer1.selectedMove,
           trainer2.pokemons,
         ) ?? trainer2.decision;
     }
@@ -159,6 +165,9 @@ class BattleService {
       trainer.selectedMove?.name !== trainer.decision.move.name
     ) {
       trainer.selectedMove = trainer.decision.move;
+      trainer.pokemons[0].moves.find(
+        (move) => move.name === trainer.decision.move.name,
+      ).used = true;
       opp.autorizations.updateCooldown = 3;
       trainer.autorizations.moveCooldown =
         this.battleCalcService.getCooldownTurn(trainer.pokemons[0]);
@@ -185,7 +194,7 @@ class BattleService {
     return trainer;
   }
 
-  onChangePokemon(trainer: IBattleTrainer): IPokemon[] {
+  onChangePokemon(trainer: IBattleTrainer): IBattlePokemon[] {
     const pokemons = trainer.pokemons;
     const leadingPokemon = pokemons[0];
     const newLeadingPokemon = pokemons.find(

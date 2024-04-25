@@ -1,7 +1,6 @@
 import { IPokemon } from "../../domain/pokemon/Pokemon";
-import { IMove } from "../../domain/move/Move";
 import BattleCalcService from "./BattleCalcService";
-import { IDecision } from "./BattleInterfaces";
+import { IBattleMove, IBattlePokemon, IDecision } from "./BattleInterfaces";
 import { singleton } from "tsyringe";
 
 @singleton()
@@ -9,48 +8,59 @@ class BattleAiService {
   constructor(protected battleService: BattleCalcService) {}
 
   decisionMaking(
-    opponentPokemon: IPokemon,
-    selectedMove: IMove,
-    pokemons: IPokemon[],
+    opponentPokemon: IBattlePokemon,
+    pokemons: IBattlePokemon[],
   ): IDecision {
-    if (selectedMove === undefined) {
+    const opponentMoves = opponentPokemon.moves.filter(
+      (move: IBattleMove) => move.used,
+    );
+    if (opponentMoves.length === 0) {
       return this.noSelectedMoveDecision(pokemons[0], opponentPokemon);
     }
     let decision;
     let damageBeforeKO = -1;
     pokemons.forEach((pokemon) => {
       if (pokemon.currentHp !== 0) {
-        let opponentDamage = 0;
-        let changeDamage = 0;
-        opponentDamage = this.battleService.estimator(
-          opponentPokemon,
-          pokemon,
-          selectedMove,
-        );
-        changeDamage = this.getChangeDamage(pokemons, pokemon, opponentDamage);
-        pokemon.moves.forEach((move) => {
-          const damage = this.battleService.estimator(
-            pokemon,
+        opponentMoves.forEach((opponentMove) => {
+          let opponentDamage = 0;
+          let changeDamage = 0;
+          opponentDamage = this.battleService.estimator(
             opponentPokemon,
-            move,
+            pokemon,
+            opponentMove,
           );
-          const damageBeforeKOindicator = this.getDamageBeforeKoAsFullLife(
+          changeDamage = this.getChangeDamage(
+            pokemons,
             pokemon,
             opponentDamage,
-            damage,
-            changeDamage,
           );
-          if (damageBeforeKOindicator >= damageBeforeKO) {
-            damageBeforeKO = damageBeforeKOindicator;
-            decision = { pokemon, move };
-          }
+          pokemon.moves.forEach((move) => {
+            const damage = this.battleService.estimator(
+              pokemon,
+              opponentPokemon,
+              move,
+            );
+            const damageBeforeKOindicator = this.getDamageBeforeKoAsFullLife(
+              pokemon,
+              opponentDamage,
+              damage,
+              changeDamage,
+            );
+            if (damageBeforeKOindicator >= damageBeforeKO) {
+              damageBeforeKO = damageBeforeKOindicator;
+              decision = { pokemon, move };
+            }
+          });
         });
       }
     });
     return decision;
   }
 
-  noSelectedMoveDecision(pokemon: IPokemon, oppPokemon: IPokemon): IDecision {
+  noSelectedMoveDecision(
+    pokemon: IBattlePokemon,
+    oppPokemon: IBattlePokemon,
+  ): IDecision {
     let maxDamage = 0;
     let bestMove;
     pokemon.moves.forEach((move) => {

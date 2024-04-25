@@ -15,22 +15,30 @@ export interface IDamage {
   animation: IAnimation;
 }
 
-export interface IDecision {
-  pokemon: IPokemon;
-  move: IMove;
-}
-
 export interface ITrainerAutorizations {
   pokemonCooldown: number;
   moveCooldown: number;
   updateCooldown: number;
 }
 
+export interface IBattleMove extends IMove {
+  used: boolean;
+}
+export interface IBattlePokemon extends IPokemon {
+  moves: IBattleMove[];
+  currentHp: number;
+}
+
+export interface IDecision {
+  pokemon: IBattlePokemon;
+  move: IBattleMove;
+}
+
 export interface IBattleTrainer {
   name: string;
   _id: string;
-  pokemons: IPokemon[];
-  selectedMove: IMove;
+  pokemons: IBattlePokemon[];
+  selectedMove: IBattleMove;
   damage: IDamage;
   decision: IDecision;
   updateDecision: boolean;

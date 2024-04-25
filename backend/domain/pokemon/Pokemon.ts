@@ -7,7 +7,6 @@ import { MongoId } from "../MongoId";
 export interface IPokemon extends MongoId {
   trainerId?: string;
   nickname?: string;
-  currentHp?: number;
   basePokemon: IPokemonBase;
   level: number;
   exp: number;

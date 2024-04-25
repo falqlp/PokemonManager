@@ -119,12 +119,13 @@ class ExperienceService {
   }
 
   public getXp(pokemon: IPokemon, lvlTrainingCamp: number): number {
-    const gainXp =
+    const gain =
       (0.9 + 0.1 * pokemon.trainingPercentage) * //TODO a changer lorsque l'entrainement arrivera
-        lvlTrainingCamp *
-        50 *
-        (pokemon.potential - pokemon.level) -
-      Math.pow((pokemon.level * pokemon.age * 7) / 5000, 2);
+      lvlTrainingCamp *
+      70 *
+      (pokemon.potential - pokemon.level);
+    const loss = Math.pow(pokemon.age, 2) * pokemon.level;
+    const gainXp = gain - loss;
     return Math.floor(normalRandom(7 * gainXp, lvlTrainingCamp * 500));
   }
 

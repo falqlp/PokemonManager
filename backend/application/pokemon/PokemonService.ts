@@ -182,7 +182,7 @@ class PokemonService {
       const starter: IPokemon = {
         basePokemon: base,
         level: 5,
-        potential: 25,
+        potential: 30,
         exp: 0,
         iv: this.pokemonUtilsService.generateIvs(),
         ev: this.pokemonUtilsService.initEvs(),
