@@ -26,7 +26,7 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
   @Input() public pokemon: PokemonModel | PokemonBaseModel;
   @Input() public type: DisplayType;
   @Input() public height: number;
-  protected shiny = false;
+  @Input() public shiny = false;
   protected fontSize: number;
 
   protected basePokemon: PokemonBaseModel;
@@ -54,7 +54,6 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
           : this.pokemon.basePokemon.name?.replace('-', '');
     } else {
       this.basePokemon = this.pokemon;
-      this.shiny = false;
       idString = this.pokemon.name?.replace('-', '');
     }
     switch (this.type) {

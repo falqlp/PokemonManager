@@ -7,11 +7,19 @@ import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 
 @Component({
   selector: 'pm-evolution',
   standalone: true,
-  imports: [MatDialogModule, NgIf, MatButtonModule, TranslateModule, AsyncPipe],
+  imports: [
+    MatDialogModule,
+    NgIf,
+    MatButtonModule,
+    TranslateModule,
+    AsyncPipe,
+    DisplayPokemonImageComponent,
+  ],
   templateUrl: './evolution.component.html',
   styleUrls: ['./evolution.component.scss'],
 })
