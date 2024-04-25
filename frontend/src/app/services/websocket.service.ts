@@ -30,6 +30,7 @@ export class WebsocketService {
   protected isConected = false;
   protected readonly url = environment.wsUrl;
   private gameId: string;
+  private registered = false;
 
   constructor(
     protected playerService: PlayerService,
@@ -50,6 +51,7 @@ export class WebsocketService {
           }
           this.isConected = false;
           console.log('Connection closed');
+          this.deleteRegistrationToGame(this.gameId);
           this.notifierService.notify('error', 'Connection closed');
         },
       },
@@ -158,10 +160,13 @@ export class WebsocketService {
   }
 
   public registerToGame(gameId: string): void {
-    this.websocket.next({
-      type: 'register',
-      payload: { gameId },
-    });
+    if (!this.registered) {
+      this.websocket.next({
+        type: 'register',
+        payload: { gameId },
+      });
+    }
+    this.registered = true;
   }
 
   public deleteRegistrationToGame(gameId: string): void {
@@ -169,9 +174,6 @@ export class WebsocketService {
       type: 'deleteRegistration',
       payload: { gameId },
     });
-  }
-
-  public getConnected(): boolean {
-    return this.isConected;
+    this.registered = false;
   }
 }

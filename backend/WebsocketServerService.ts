@@ -24,6 +24,7 @@ class WebsocketServerService {
             this.clients[gameId] = [];
           }
           this.clients[gameId].push(ws);
+          (ws as any).gameId = gameId;
         }
       });
       ws.on("message", (message: string) => {
@@ -32,6 +33,18 @@ class WebsocketServerService {
           const gameId = parsedMessage.payload.gameId;
           if (this.clients[gameId]) {
             delete this.clients[gameId];
+          }
+        }
+      });
+      ws.on("close", () => {
+        const gameId = (ws as any).gameId;
+        if (gameId && this.clients[gameId]) {
+          const index = this.clients[gameId].indexOf(ws);
+          if (index !== -1) {
+            this.clients[gameId].splice(index, 1);
+            if (this.clients[gameId].length === 0) {
+              delete this.clients[gameId];
+            }
           }
         }
       });
