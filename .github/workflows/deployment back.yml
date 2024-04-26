@@ -35,8 +35,5 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Connect to VM and Deploy
-        run: scp -o StrictHostKeyChecking=no ./backend/dist/bundle.js ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.DEPLOY_PATH }}
-#
-#      - name: Execute bundle.js on VM
-#        run: ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'screen -dm sudo node ${{ secrets.DEPLOY_PATH }}bundle.js'
+        run: rsync -avz --exclude='.env' -e "ssh -o StrictHostKeyChecking=no" ./backend/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.DEPLOY_PATH }}
 
