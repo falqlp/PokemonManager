@@ -14,6 +14,11 @@ import TrainingCampRepository from "../../domain/trainingCamp/TrainingCampReposi
 import NurseryRepository from "../../domain/nursery/NurseryRepository";
 import { singleton } from "tsyringe";
 import { ICompetition } from "../../domain/competiton/Competition";
+import { ObjectId } from "mongodb";
+import { IPcStorage } from "../../domain/pcStorage/PcStorage";
+import { INursery } from "../../domain/nursery/Nursery";
+import { ITrainingCamp } from "../../domain/trainingCamp/TrainingCamp";
+import PcStorageRepository from "../../domain/pcStorage/PcStorageRepository";
 
 @singleton()
 class TrainerService {
@@ -29,6 +34,7 @@ class TrainerService {
     protected pokemonService: PokemonService,
     protected trainingCampRepository: TrainingCampRepository,
     protected nurseryRepository: NurseryRepository,
+    protected pcStorageRepository: PcStorageRepository,
   ) {}
 
   public async addPokemonForTrainer(
@@ -62,68 +68,90 @@ class TrainerService {
     await this.update(trainer);
   }
 
-  public async generateTrainer(
+  public async generateTrainers(
     gameId: string,
     championship: ICompetition,
-  ): Promise<ITrainer> {
-    const nameAndClass = (
-      await this.trainerClassRepository.generateTrainerName()
-    )[0];
-    const trainer: ITrainer = {
-      gameId,
-      name: nameAndClass.name,
-      class: nameAndClass.class,
-      competitions: [championship],
-    } as ITrainer;
-    return this.create(trainer);
+    quantity: number,
+  ): Promise<ITrainer[]> {
+    const trainers: ITrainer[] = [];
+    for (let i = 1; i <= quantity; i++) {
+      const nameAndClass = (
+        await this.trainerClassRepository.generateTrainerName()
+      )[0];
+      const trainer: ITrainer = {
+        _id: new ObjectId() as unknown as string,
+        gameId,
+        name: nameAndClass.name,
+        class: nameAndClass.class,
+        competitions: [championship],
+        pokemons: [],
+      } as ITrainer;
+      trainers.push(trainer);
+    }
+    return trainers;
   }
 
-  public async generateTrainerPokemons(
+  public async generateTrainersPokemons(
     gameId: string,
-    trainer: ITrainer,
+    trainers: ITrainer[],
     quantityRange: RangeModel,
     levelRange: RangeModel,
-  ): Promise<void> {
-    const quantity = Math.floor(
-      quantityRange.min +
-        Math.random() * (quantityRange.max - quantityRange.min + 1),
-    );
-    const pokemonBases =
-      await this.pokemonBaseService.generateBasePokemon(quantity);
-    for (let basePokemon of pokemonBases) {
-      const level = Math.floor(
-        levelRange.min + Math.random() * (levelRange.max - levelRange.min + 1),
+  ): Promise<{ pokemons: IPokemon[]; trainers: ITrainer[] }> {
+    const pokemons: IPokemon[] = [];
+    for (const trainer of trainers) {
+      const quantity = Math.floor(
+        quantityRange.min +
+          Math.random() * (quantityRange.max - quantityRange.min + 1),
       );
-      const potential = this.pokemonUtilsService.generatePotential(
-        trainer.nursery.level,
-      );
-      const hiddenPotential =
-        this.pokemonUtilsService.generateHiddenPotential(potential);
-      const evolution = await this.evolutionRepository.maxEvolution(
-        basePokemon.id,
-        level,
-        "LEVEL-UP",
-      );
-      if (evolution) {
-        basePokemon = evolution;
+      const pokemonBases =
+        await this.pokemonBaseService.generateBasePokemon(quantity);
+      for (let basePokemon of pokemonBases) {
+        const level = Math.floor(
+          levelRange.min +
+            Math.random() * (levelRange.max - levelRange.min + 1),
+        );
+        const potential = this.pokemonUtilsService.generatePotential(1);
+        const hiddenPotential =
+          this.pokemonUtilsService.generateHiddenPotential(potential);
+        const evolution = await this.evolutionRepository.maxEvolution(
+          basePokemon.id,
+          level,
+          "LEVEL-UP",
+        );
+        if (evolution) {
+          basePokemon = evolution;
+        }
+        const moves = (
+          await this.moveLearningService.learnableMoves(basePokemon.id, level, {
+            sort: { power: -1 },
+          })
+        ).slice(0, 2);
+        const pokemon: IPokemon = {
+          _id: new ObjectId() as unknown as string,
+          trainerId: trainer._id.toString(),
+          basePokemon,
+          level,
+          gameId,
+          age: 0,
+          potential,
+          hiddenPotential,
+          moves,
+          happiness: basePokemon.baseHappiness,
+          exp: 0,
+          iv: this.pokemonUtilsService.generateIvs(),
+          ev: this.pokemonUtilsService.initEvs(),
+          trainingPercentage: 0,
+          maxLevel: level,
+        } as IPokemon;
+        pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
+        trainer.pokemons.push(pokemon);
+        pokemons.push(pokemon);
       }
-      const moves = (
-        await this.moveLearningService.learnableMoves(basePokemon.id, level, {
-          sort: { power: -1 },
-        })
-      ).slice(0, 2);
-      let pokemon: IPokemon = {
-        basePokemon,
-        level,
-        gameId,
-        age: 1,
-        potential,
-        hiddenPotential,
-        moves,
-      } as IPokemon;
-      pokemon = await this.pokemonService.create(pokemon, gameId);
-      await this.addPokemonForTrainer(pokemon, trainer._id);
     }
+    return {
+      pokemons,
+      trainers,
+    };
   }
 
   public async update(trainer: ITrainer): Promise<ITrainer> {
@@ -179,6 +207,61 @@ class TrainerService {
       trainer.berries = 0;
     }
     return this.trainerRepository.create(trainer);
+  }
+
+  public async createMany(trainers: ITrainer[]): Promise<ITrainer[]> {
+    const pcStorages: IPcStorage[] = [];
+    const nurseries: INursery[] = [];
+    const trainingCamps: ITrainingCamp[] = [];
+    for (const trainer of trainers) {
+      if (!trainer.pokemons) {
+        trainer.pokemons = [];
+      }
+      const gameId = trainer.gameId;
+      if (!trainer.competitions) {
+        trainer.competitions = [];
+      }
+      if (!trainer.pcStorage) {
+        const newPcStorage: IPcStorage = {
+          gameId,
+          maxSize: 0,
+          storage: [],
+          _id: new ObjectId() as unknown as string,
+        };
+        trainer.pcStorage = newPcStorage;
+        pcStorages.push(newPcStorage);
+      }
+      if (!trainer.nursery) {
+        const newNursery: INursery = {
+          gameId,
+          level: 1,
+          eggs: [],
+          step: "WISHLIST",
+          _id: new ObjectId() as unknown as string,
+        };
+        trainer.nursery = newNursery;
+        nurseries.push(newNursery);
+      }
+      if (!trainer.trainingCamp) {
+        const newTrainingCamp: ITrainingCamp = {
+          level: 1,
+          gameId,
+          _id: new ObjectId() as unknown as string,
+        };
+        trainer.trainingCamp = newTrainingCamp;
+        trainingCamps.push(newTrainingCamp);
+      }
+      if (!trainer.monney) {
+        trainer.monney = 0;
+      }
+      if (!trainer.berries) {
+        trainer.berries = 0;
+      }
+    }
+    await this.pcStorageRepository.insertMany(pcStorages);
+    await this.nurseryRepository.insertMany(nurseries);
+    await this.trainingCampRepository.insertMany(trainingCamps);
+    return await this.trainerRepository.insertMany(trainers);
   }
 }
 

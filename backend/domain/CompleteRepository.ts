@@ -46,6 +46,19 @@ abstract class CompleteRepository<
     }
   }
 
+  async insertMany(dtos: T[]): Promise<T[]> {
+    dtos.map((dto: T) => {
+      if ("createdAt" in dto) {
+        dto.createdAt = Date.now();
+      }
+      return dto;
+    });
+    return await this.schema.populate(
+      await this.schema.insertMany(dtos),
+      this.populater.populate(),
+    );
+  }
+
   async delete(_id: string): Promise<T> {
     try {
       return await this.schema.findByIdAndDelete({ _id });

@@ -8,6 +8,7 @@ import WebsocketServerService from "../../WebsocketServerService";
 import { singleton } from "tsyringe";
 import CompetitionRepository from "../../domain/competiton/CompetitionRepository";
 import { CompetitionType } from "../../domain/competiton/Competition";
+import PokemonService from "../pokemon/PokemonService";
 
 export const NB_GENERATED_TRAINER = 19;
 
@@ -20,6 +21,7 @@ class GameService {
     protected generateCalendarService: GenerateCalendarService,
     protected websocketServerService: WebsocketServerService,
     protected competitionRepository: CompetitionRepository,
+    protected pokemonService: PokemonService,
   ) {}
 
   public async createWithUser(dto: IGame, userId: string): Promise<IGame> {
@@ -37,6 +39,12 @@ class GameService {
   }
 
   public async initGame(gameId: string, playerId: string): Promise<void> {
+    this.websocketServerService.sendMessageToClientInGame(gameId, {
+      type: "initGame",
+      payload: {
+        key: "TRAINER_GENERATION",
+      },
+    });
     const game = await this.gameRepository.get(gameId);
     await this.competitionRepository.create({
       gameId,
@@ -58,25 +66,19 @@ class GameService {
       { _id: playerId },
       { $push: { competitions: championship } },
     );
-    for (let i = 0; i < NB_GENERATED_TRAINER; i++) {
-      this.websocketServerService.sendMessageToClientInGame(gameId, {
-        type: "initGame",
-        payload: {
-          key: "TRAINER_GENERATION",
-          value: `${i}/${NB_GENERATED_TRAINER}`,
-        },
-      });
-      const trainer = await this.trainerService.generateTrainer(
-        gameId,
-        championship,
-      );
-      await this.trainerService.generateTrainerPokemons(
-        gameId,
-        trainer,
-        { max: 3, min: 1 },
-        { max: 8, min: 3 },
-      );
-    }
+    const generatedTrainers = await this.trainerService.generateTrainers(
+      gameId,
+      championship,
+      NB_GENERATED_TRAINER,
+    );
+    const res = await this.trainerService.generateTrainersPokemons(
+      gameId,
+      generatedTrainers,
+      { max: 3, min: 1 },
+      { max: 8, min: 3 },
+    );
+    await this.pokemonService.createPokemons(res.pokemons, gameId);
+    await this.trainerService.createMany(res.trainers);
     const trainers = await this.trainerRepository.list({}, { gameId });
     this.websocketServerService.sendMessageToClientInGame(gameId, {
       type: "initGame",
