@@ -6,6 +6,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { RouterService } from '../../services/router.service';
 import { SidenavService } from './sidenav.service';
 import { PlayerService } from '../../services/player.service';
+import { MatListModule } from '@angular/material/list';
 
 export interface NavsModel {
   link: string;
@@ -13,11 +14,21 @@ export interface NavsModel {
   icon: string;
   action?: () => void;
 }
+export interface NavGroupModel {
+  name: string;
+  navs: NavsModel[];
+}
 
 @Component({
   selector: 'pm-sidenav',
   standalone: true,
-  imports: [TranslateModule, NgForOf, MatIconModule, MatRippleModule],
+  imports: [
+    TranslateModule,
+    NgForOf,
+    MatIconModule,
+    MatRippleModule,
+    MatListModule,
+  ],
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss'],
 })
@@ -28,47 +39,67 @@ export class SidenavComponent {
     protected playerService: PlayerService
   ) {}
 
-  protected navs: NavsModel[] = [
+  protected navs: NavGroupModel[] = [
     {
-      link: 'home',
-      label: 'HOME',
-      icon: 'home',
+      name: 'Home',
+      navs: [
+        {
+          link: 'home',
+          label: 'HOME',
+          icon: 'home',
+        },
+      ],
     },
     {
-      link: 'pcStorage',
-      label: 'PC-STORAGE',
-      icon: 'computer',
+      name: 'Trainer Structures',
+      navs: [
+        {
+          link: 'pcStorage',
+          label: 'PC-STORAGE',
+          icon: 'computer',
+        },
+        {
+          link: 'nursery',
+          label: 'NURSERY',
+          icon: 'egg',
+        },
+      ],
     },
     {
-      link: 'nursery',
-      label: 'NURSERY',
-      icon: 'egg',
+      name: 'Game info',
+      navs: [
+        {
+          link: 'events',
+          label: 'EVENTS',
+          icon: 'event',
+        },
+        {
+          link: 'trainers',
+          label: 'TRAINERS',
+          icon: 'groups',
+        },
+        {
+          link: 'pokedex',
+          label: 'POKEDEX',
+          icon: 'devices',
+        },
+      ],
     },
     {
-      link: 'pokedex',
-      label: 'POKEDEX',
-      icon: 'devices',
-    },
-    {
-      link: 'trainers',
-      label: 'TRAINERS',
-      icon: 'groups',
-    },
-    {
-      link: 'events',
-      label: 'EVENTS',
-      icon: 'event',
-    },
-    {
-      link: 'games',
-      label: 'BACK_TO_MENU',
-      icon: 'videogame_asset',
-    },
-    {
-      link: 'login',
-      label: 'LOGOUT',
-      icon: 'logout',
-      action: (): void => this.playerService.logout(),
+      name: 'Exit',
+      navs: [
+        {
+          link: 'games',
+          label: 'BACK_TO_MENU',
+          icon: 'videogame_asset',
+        },
+        {
+          link: 'login',
+          label: 'LOGOUT',
+          icon: 'logout',
+          action: (): void => this.playerService.logout(),
+        },
+      ],
     },
   ];
 

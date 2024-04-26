@@ -229,3 +229,9 @@ progress-bar {
 .font-green {
   color: $green-good-color;
 }
+:root {
+  --swiper-navigation-color: #ff5722;
+  --swiper-pagination-color: #ff5722;
+  --swiper-pagination-bullet-inactive-color: #8d8d8d;
+  --swiper-pagination-bullet-size: 10px;
+}

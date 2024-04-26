@@ -1,9 +1,13 @@
 <div class="sidenav">
+  @for (navgroups of navs; track navgroups.name) {
   <div
     mat-ripple
-    *ngFor="let nav of navs"
+    *ngFor="let nav of navgroups.navs"
     class="sidenav__nav"
     (click)="click(nav)">
-    <mat-icon>{{ nav.icon }}</mat-icon> {{ nav.label | translate }}
+    <mat-icon>{{ nav.icon }}</mat-icon>
+    {{ nav.label | translate }}
   </div>
+  <mat-divider></mat-divider>
+  }
 </div>

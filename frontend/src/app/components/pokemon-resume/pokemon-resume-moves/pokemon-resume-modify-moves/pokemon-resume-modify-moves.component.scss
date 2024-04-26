@@ -9,7 +9,6 @@
   height: calc(100% - 66px);
   &__move {
     @include flexbox(space-between, 1, row);
-    flex: 1;
     position: relative;
     align-items: center;
     &--disabled {
@@ -46,5 +45,5 @@
   }
 }
 .test {
-  height: 100%;
+  height: 96%;
 }

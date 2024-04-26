@@ -19,6 +19,7 @@ import { PokemonStatsComponent } from '../pokemon-stats/pokemon-stats.component'
 import { PokemonResumeMovesComponent } from './pokemon-resume-moves/pokemon-resume-moves.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgClass } from '@angular/common';
+import { PokemonResumeInfosComponent } from './pokemon-resume-infos/pokemon-resume-infos.component';
 
 @Component({
   selector: 'app-pokemon-resume',
@@ -34,6 +35,7 @@ import { NgClass } from '@angular/common';
     PokemonResumeMovesComponent,
     TranslateModule,
     NgClass,
+    PokemonResumeInfosComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
@@ -58,6 +60,7 @@ export class PokemonResumeComponent implements AfterViewInit {
       pagination: {
         clickable: true,
       },
+      mousewheel: true,
     };
     const swiperContainerEl = this.swiperContainer.nativeElement;
     Object.assign(swiperContainerEl, swiperOption);

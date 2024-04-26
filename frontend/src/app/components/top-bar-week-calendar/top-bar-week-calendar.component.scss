@@ -39,10 +39,10 @@
       &__event {
         width: -webkit-fill-available;
         text-align: center;
-        background-color: #9100ff;
+        background-color: $battle-event;
         padding: 5px;
         &--green {
-          background-color: #44c74a;
+          background-color: $nursery-event;
         }
         &--passed {
           background-color: #777373 !important;

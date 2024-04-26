@@ -81,7 +81,17 @@ export class BattleInstanceService {
       }
       const aWinsOverB = a.directWins[b._id] || 0;
       const bWinsOverA = b.directWins[a._id] || 0;
-      return bWinsOverA - aWinsOverB;
+      const directWinsDiff = bWinsOverA - aWinsOverB;
+      if (directWinsDiff !== 0) {
+        return directWinsDiff;
+      }
+
+      const totalWinsDiff = b.wins - a.wins;
+      if (totalWinsDiff !== 0) {
+        return totalWinsDiff;
+      }
+
+      return a.losses - b.losses;
     });
 
     rankedTrainers.forEach((trainer, index) => {
