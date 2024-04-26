@@ -5,7 +5,10 @@ import { NgForOf } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { MatSortModule } from '@angular/material/sort';
 import { CustomTableComponent } from '../../components/custom-table/custom-table.component';
-import { TableConfModel } from '../../components/custom-table/custom-table.model';
+import {
+  TableConfModel,
+  TableSearchType,
+} from '../../components/custom-table/custom-table.model';
 
 @Component({
   standalone: true,
@@ -24,22 +27,37 @@ export class TrainersComponent {
   protected conf: TableConfModel = {
     columns: [
       {
+        name: 'class',
+        header: {
+          component: 'displayText',
+          data: 'CLASS',
+        },
+        content: {
+          component: 'displayText',
+          data: 'class',
+        },
+      },
+      {
         sort: true,
         name: 'name',
         header: {
           component: 'displayText',
-          data: 'Trainer',
+          data: 'NAME',
         },
         content: {
           component: 'displayText',
           data: 'name',
+        },
+        search: {
+          type: TableSearchType.TEXT,
+          value: 'name',
         },
       },
       {
         name: 'pokemons',
         header: {
           component: 'displayText',
-          data: 'Pokemons',
+          data: 'TEAM',
         },
         content: {
           component: 'displayTrainerPokemons',

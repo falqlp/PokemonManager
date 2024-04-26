@@ -24,7 +24,7 @@
             calendarEventForm.controls.trainers.value?.length > 1 &&
             !calendarEventForm.controls.trainers.value?.includes(trainer)
           ">
-          {{ trainer.name }}
+          <pm-trainer-name [trainer]="trainer" />
         </mat-option>
       </mat-select>
     </mat-form-field>

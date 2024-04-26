@@ -6,11 +6,18 @@ import { PlayerService } from '../../../../services/player.service';
 import { Observable } from 'rxjs';
 import { TrainerModel } from '../../../../models/TrainersModels/trainer.model';
 import { BattleStatusComponent } from '../../../battle-status/battle-status.component';
+import { TrainerNameComponent } from '../../../trainer-name/trainer-name.component';
 
 @Component({
   selector: 'pm-table-display-battle',
   standalone: true,
-  imports: [NgForOf, NgIf, AsyncPipe, BattleStatusComponent],
+  imports: [
+    NgForOf,
+    NgIf,
+    AsyncPipe,
+    BattleStatusComponent,
+    TrainerNameComponent,
+  ],
   templateUrl: './table-display-battle.component.html',
   styleUrl: './table-display-battle.component.scss',
 })

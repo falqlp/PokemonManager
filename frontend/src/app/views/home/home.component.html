@@ -22,9 +22,8 @@
       <span>
         {{ nextBattle.event.competition.name | translate }}
         {{ 'AGAINST' | translate }}
-        {{ nextBattle.event.opponent.class | translate }}
-        {{ nextBattle.event.opponent.name }}</span
-      >
+        <pm-trainer-name [trainer]="nextBattle.event.opponent"
+      /></span>
     </div>
   </div>
   } @if (player) {

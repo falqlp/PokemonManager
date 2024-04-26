@@ -14,6 +14,7 @@ export class BattleService {
     return {
       _id: trainer._id,
       name: trainer.name,
+      class: trainer.class,
       pokemons: trainer.pokemons
         .filter((value) => value.level > 0)
         .map((pokemon) => {

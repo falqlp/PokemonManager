@@ -25,6 +25,7 @@ export interface DecisionModel {
 export interface BattleTrainerModel {
   name: string;
   _id: string;
+  class: string;
   pokemons: BattlePokemonModel[];
   selectedMove: MoveModel;
   damage: DamageModel;

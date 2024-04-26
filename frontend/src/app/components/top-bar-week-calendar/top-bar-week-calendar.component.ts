@@ -15,6 +15,7 @@ import { CalendarEventQueriesService } from '../../services/queries/calendar-eve
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { TranslateModule } from '@ngx-translate/core';
 import { BattleStatusComponent } from '../battle-status/battle-status.component';
+import { TrainerNameComponent } from '../trainer-name/trainer-name.component';
 
 @Component({
   standalone: true,
@@ -30,6 +31,7 @@ import { BattleStatusComponent } from '../battle-status/battle-status.component'
     NgSwitch,
     NgSwitchCase,
     BattleStatusComponent,
+    TrainerNameComponent,
   ],
 })
 export class TopBarWeekCalendarComponent implements OnInit {

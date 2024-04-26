@@ -24,6 +24,7 @@ import { TimeService } from '../../services/time.service';
 import { CompetitionModel } from '../../models/competition.model';
 import { CompetitionQueriesService } from '../../services/queries/competition-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TrainerNameComponent } from '../../components/trainer-name/trainer-name.component';
 
 @Component({
   selector: 'pm-add-calendar-event',
@@ -41,6 +42,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     ReactiveFormsModule,
     MatButtonModule,
     AsyncPipe,
+    TrainerNameComponent,
   ],
   templateUrl: './add-calendar-event.component.html',
   styleUrls: ['./add-calendar-event.component.scss'],

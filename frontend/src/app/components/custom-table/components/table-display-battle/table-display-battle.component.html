@@ -1,6 +1,8 @@
 <span *ngIf="data.type === 'BATTLE' && getPlayer() | async as player">
   <ng-container *ngFor="let trainer of data.trainers">
-    <span *ngIf="trainer._id !== player._id">{{ trainer.name }}</span>
+    <span *ngIf="trainer._id !== player._id"
+      ><pm-trainer-name [trainer]="trainer" />
+    </span>
   </ng-container>
   <pm-battle-status [battle]="data.event" [playerId]="player._id" />
 </span>

@@ -23,11 +23,14 @@
       }"
       [ngSwitch]="event.type">
       <div *ngSwitchCase="'BATTLE'">
-        <span>{{
-          event?.event.opponent.name !== player.name
-            ? event?.event.opponent.name
-            : event?.event.player.name
-        }}</span>
+        <span>
+          <pm-trainer-name
+            [trainer]="
+              event?.event.opponent.name !== player.name
+                ? event?.event.opponent
+                : event?.event.player
+            "
+        /></span>
         <pm-battle-status [battle]="event.event" [playerId]="player._id" />
       </div>
       <div *ngSwitchCase="'GENERATE_NURSERY_EGGS'">

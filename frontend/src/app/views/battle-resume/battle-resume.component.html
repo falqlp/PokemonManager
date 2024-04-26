@@ -2,7 +2,9 @@
   <div
     class="battle-resume__player"
     [ngClass]="battle.winner === 'player' ? 'winner' : 'looser'">
-    <h3>{{ battle.player.name }}</h3>
+    <h3>
+      <pm-trainer-name [trainer]="battle.player" />
+    </h3>
     <div class="battle-resume__player__pokemon">
       <div *ngFor="let pokemon of battle.player.pokemons">
         <app-display-pokemon-image
@@ -15,9 +17,10 @@
   <div class="battle-resume__center">
     <h2>{{ 'WINNER' | translate }}</h2>
     <h3>
-      {{
-        battle.winner === 'player' ? battle.player.name : battle.opponent.name
-      }}
+      <pm-trainer-name
+        [trainer]="
+          battle.winner === 'player' ? battle.player : battle.opponent
+        " />
     </h3>
     <button mat-flat-button class="btn-primary" (click)="backHome()">
       <mat-icon>home</mat-icon>
@@ -27,7 +30,9 @@
   <div
     class="battle-resume__opponent"
     [ngClass]="battle.winner === 'opponent' ? 'winner' : 'looser'">
-    <h3>{{ battle.opponent.name }}</h3>
+    <h3>
+      <pm-trainer-name [trainer]="battle.opponent" />
+    </h3>
     <div class="battle-resume__opponent__pokemon">
       <div *ngFor="let pokemon of battle.opponent.pokemons">
         <app-display-pokemon-image
