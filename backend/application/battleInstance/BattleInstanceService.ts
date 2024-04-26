@@ -2,6 +2,7 @@ import { singleton } from "tsyringe";
 import BattleInstanceRepository from "../../domain/battleInstance/BattleInstanceRepository";
 import { ObjectId } from "mongodb";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
+import BattleService from "../battle/BattleService";
 
 export interface TrainerRanking {
   _id: string;
@@ -19,6 +20,7 @@ export class BattleInstanceService {
   constructor(
     protected battleInstanceRepository: BattleInstanceRepository,
     protected trainerRepository: TrainerRepository,
+    protected battleService: BattleService,
   ) {}
 
   public async getRanking(competitionId: string): Promise<TrainerRanking[]> {
@@ -87,5 +89,13 @@ export class BattleInstanceService {
     });
 
     return rankedTrainers;
+  }
+
+  public async simulateBattle(battleId: string): Promise<void> {
+    const battle = await this.battleInstanceRepository.get(battleId);
+    await this.battleInstanceRepository.update(
+      battleId,
+      this.battleService.simulateBattle(battle),
+    );
   }
 }

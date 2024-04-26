@@ -20,7 +20,7 @@ import { ICompetition } from "../../domain/competiton/Competition";
 @singleton()
 class CalendarEventService {
   constructor(
-    protected battleInstanceService: BattleInstanceRepository,
+    protected battleInstanceRepository: BattleInstanceRepository,
     protected calendarEventRepository: CalendarEventRepository,
     protected trainerRepository: TrainerRepository,
     protected gameRepository: GameRepository,
@@ -38,7 +38,7 @@ class CalendarEventService {
     competition: ICompetition,
     gameId: string,
   ): Promise<ICalendarEvent> {
-    const battleDTO = await this.battleInstanceService.create({
+    const battleDTO = await this.battleInstanceRepository.create({
       player: trainers[0],
       opponent: trainers[1],
       competition,
@@ -183,7 +183,7 @@ class CalendarEventService {
     });
     for (const value of battles) {
       value.event = this.battleService.simulateBattle(value.event);
-      await this.battleInstanceService.update(value.event._id, value.event);
+      await this.battleInstanceRepository.update(value.event._id, value.event);
     }
   }
 }

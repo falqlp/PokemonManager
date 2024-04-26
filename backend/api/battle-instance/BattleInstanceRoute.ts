@@ -28,6 +28,15 @@ router.get("/ranking/:id", async (req, res, next) => {
   }
 });
 
+router.post("/simulateBattle", async (req, res, next) => {
+  try {
+    await battleInstanceService.simulateBattle(req.body._id);
+    res.status(200).json();
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.use("/", completeRouter.router);
 
 export default router;

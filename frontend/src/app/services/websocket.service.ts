@@ -146,13 +146,9 @@ export class WebsocketService {
         });
         break;
       case 'initGameEnd':
-        setTimeout(() => {
-          this.dialog.openDialogs
-            .find(
-              (value) => value.componentInstance instanceof InitGameComponent
-            )
-            ?.close();
-        }, 1000); //TODO a retier
+        this.dialog.openDialogs
+          .find((value) => value.componentInstance instanceof InitGameComponent)
+          ?.close();
         break;
       default:
         console.warn('Unknown message type:', message.type);

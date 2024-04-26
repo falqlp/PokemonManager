@@ -8,16 +8,16 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class BattleQueriesService {
-  public readonly simulateTurnUrl =
+  public readonly simulateBattleRoundUrl =
     environment.apiUrl + '/api/battle/simulateBattleRound';
 
   public constructor(protected http: HttpClient) {}
 
-  public simulateTurn(
+  public simulateBattleRound(
     battleTrainer1: BattleTrainerModel,
     battleTrainer2: BattleTrainerModel
   ): Observable<BattleRoundModel> {
-    return this.http.post<BattleRoundModel>(this.simulateTurnUrl, {
+    return this.http.post<BattleRoundModel>(this.simulateBattleRoundUrl, {
       trainer1: battleTrainer1,
       trainer2: battleTrainer2,
     });

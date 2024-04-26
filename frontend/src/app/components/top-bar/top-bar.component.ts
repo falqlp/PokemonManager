@@ -18,6 +18,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SidenavService } from '../sidenav/sidenav.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
+import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -46,7 +47,8 @@ export class TopBarComponent implements OnInit {
     protected destroyRef: DestroyRef,
     protected sidenavService: SidenavService,
     protected translateService: TranslateService,
-    protected languageService: LanguageService
+    protected languageService: LanguageService,
+    protected battleInstanceQueriesService: BattleInstanceQueriesService
   ) {}
 
   public ngOnInit(): void {
@@ -109,6 +111,28 @@ export class TopBarComponent implements OnInit {
   }
 
   protected goToBattle(battle: BattleModel): void {
+    const lambdaButtons: DialogButtonsModel[] = [
+      {
+        label: 'YES',
+        color: 'warn',
+        close: true,
+        click: (): void => {
+          this.battleInstanceQueriesService
+            .simulateBattle(battle)
+            .subscribe(() => {
+              this.router.navigate(['battle-resume'], {
+                queryParams: { battle: battle._id },
+              });
+              this.dialog.closeAll();
+            });
+        },
+      },
+      {
+        label: 'NO',
+        color: 'primary',
+        close: true,
+      },
+    ];
     const buttons: DialogButtonsModel[] = [
       {
         label: 'CANCEL',
@@ -121,6 +145,18 @@ export class TopBarComponent implements OnInit {
         close: true,
         click: (): void => {
           this.router.navigate(['pcStorage']);
+        },
+      },
+      {
+        label: 'SIMULATE',
+        color: 'accent',
+        click: (): void => {
+          this.dialog.open(GenericDialogComponent, {
+            data: {
+              buttons: lambdaButtons,
+              message: 'SURE_SIMULATE',
+            },
+          });
         },
       },
       {

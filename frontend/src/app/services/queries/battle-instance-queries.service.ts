@@ -27,4 +27,10 @@ export class BattleInstanceQueriesService extends CompleteQuery<BattleModel> {
       `${this.url}/ranking/${competitionId}`
     );
   }
+
+  public simulateBattle(battle: BattleModel): Observable<BattleModel> {
+    return this.http.post<BattleModel>(`${this.url}/simulateBattle`, {
+      _id: battle._id,
+    });
+  }
 }

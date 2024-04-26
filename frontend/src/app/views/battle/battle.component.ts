@@ -94,7 +94,7 @@ export class BattleComponent implements OnInit {
 
   protected simulateTurn(): void {
     this.battleQueriesService
-      .simulateTurn(this.player(), this.opponent)
+      .simulateBattleRound(this.player(), this.opponent)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((round) => {
         this.player.set(round.trainer1);
