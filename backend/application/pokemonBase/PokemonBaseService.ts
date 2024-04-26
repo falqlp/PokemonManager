@@ -31,6 +31,16 @@ class PokemonBaseService {
     };
   }
 
+  public getBaseGenerationQuery(): any {
+    return {
+      base: true,
+      legendary: { $not: { $eq: true } },
+      mythical: { $not: { $eq: true } },
+      ultraBeast: { $not: { $eq: true } },
+      paradox: { $not: { $eq: true } },
+    };
+  }
+
   public chooseTypeBasedOnWishlist(wishlist: IWishList): string {
     const filteredTypes = Object.entries(
       (
@@ -60,7 +70,7 @@ class PokemonBaseService {
   public generateBasePokemon(quantity: number): Promise<IPokemonBase[]> {
     return this.pokemonBaseRepository.generateBasePokemon(
       quantity,
-      this.getDefaultQuery(),
+      this.getBaseGenerationQuery(),
     );
   }
 }

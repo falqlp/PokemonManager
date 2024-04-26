@@ -17,6 +17,8 @@ export interface IPokemonBase extends MongoId {
   captureRate: number;
   baseHappiness: number;
   base: boolean;
+  ultraBeast?: boolean;
+  paradox?: boolean;
 }
 
 const pokemonBaseSchema = new Schema<IPokemonBase>({
@@ -26,6 +28,8 @@ const pokemonBaseSchema = new Schema<IPokemonBase>({
   baseStats: { type: PokemonStats.schema, required: true },
   legendary: { type: Boolean },
   mythical: { type: Boolean },
+  ultraBeast: { type: Boolean },
+  paradox: { type: Boolean },
   baby: { type: Boolean },
   genderRate: { type: Number },
   captureRate: { type: Number, required: true },

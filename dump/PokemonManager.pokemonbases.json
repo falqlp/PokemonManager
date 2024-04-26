@@ -860,7 +860,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "ultraBeast": true
 },
 {
   "_id": {
@@ -2437,7 +2438,8 @@
   ],
   "captureRate": 50,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -3153,7 +3155,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "ultraBeast": true
 },
 {
   "_id": {
@@ -3179,7 +3182,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "ultraBeast": true
 },
 {
   "_id": {
@@ -3205,7 +3209,8 @@
   ],
   "captureRate": 30,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "ultraBeast": true
 },
 {
   "_id": {
@@ -3256,7 +3261,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "ultraBeast": true
 },
 {
   "_id": {
@@ -3308,7 +3314,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 0,
-  "base": false
+  "base": false,
+  "ultraBeast": true
 },
 {
   "_id": {
@@ -3360,7 +3367,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "ultraBeast": true
 },
 {
   "_id": {
@@ -3412,7 +3420,8 @@
   ],
   "captureRate": 30,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "ultraBeast": true
 },
 {
   "_id": {
@@ -4346,7 +4355,8 @@
   ],
   "captureRate": 50,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -4372,7 +4382,8 @@
   ],
   "captureRate": 30,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -4425,7 +4436,8 @@
   ],
   "captureRate": 50,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -4451,7 +4463,8 @@
   ],
   "captureRate": 30,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -4477,7 +4490,8 @@
   ],
   "captureRate": 30,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -4503,7 +4517,8 @@
   ],
   "captureRate": 50,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -4556,7 +4571,8 @@
   ],
   "captureRate": 30,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -4609,7 +4625,8 @@
   ],
   "captureRate": 30,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -4689,7 +4706,8 @@
   ],
   "captureRate": 30,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -4872,7 +4890,8 @@
   ],
   "captureRate": 30,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -5162,7 +5181,8 @@
   ],
   "captureRate": 30,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -6012,7 +6032,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "ultraBeast": true
 },
 {
   "_id": {
@@ -6090,7 +6111,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "ultraBeast": true
 },
 {
   "_id": {
@@ -6116,7 +6138,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "ultraBeast": true
 },
 {
   "_id": {
@@ -6168,7 +6191,8 @@
   "captureRate": 255,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "ultraBeast": true
 },
 {
   "_id": {
@@ -6619,7 +6643,8 @@
   ],
   "captureRate": 10,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -6884,7 +6909,8 @@
   ],
   "captureRate": 5,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -6936,7 +6962,8 @@
   ],
   "captureRate": 5,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {
@@ -9929,7 +9956,8 @@
   ],
   "captureRate": 10,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "paradox": true
 },
 {
   "_id": {

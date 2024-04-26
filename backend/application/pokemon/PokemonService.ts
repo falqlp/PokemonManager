@@ -8,6 +8,7 @@ import PokemonBaseRepository from "../../domain/pokemonBase/PokemonBaseRepositor
 import GameRepository from "../../domain/game/GameRepository";
 import WebsocketServerService from "../../WebsocketServerService";
 import { singleton } from "tsyringe";
+import MoveLearningService from "../moveLearning/MoveLearningService";
 
 @singleton()
 class PokemonService {
@@ -19,6 +20,7 @@ class PokemonService {
     protected pokemonBaseRepository: PokemonBaseRepository,
     protected gameRepository: GameRepository,
     protected websocketServerService: WebsocketServerService,
+    protected moveLearningService: MoveLearningService,
   ) {}
 
   public async update(_id: string, pokemon: IPokemon): Promise<IPokemon> {
@@ -182,6 +184,11 @@ class PokemonService {
         ev: this.pokemonUtilsService.initEvs(),
         happiness: base.baseHappiness,
         gameId,
+        moves: (
+          await this.moveLearningService.learnableMoves(base.id, 5, {
+            sort: { power: -1 },
+          })
+        ).slice(0, 2),
         trainerId: null,
         nickname: null,
         shiny: this.pokemonUtilsService.generateShiny(),

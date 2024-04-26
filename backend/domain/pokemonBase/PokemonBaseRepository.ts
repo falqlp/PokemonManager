@@ -31,6 +31,7 @@ class PokemonBaseRepository extends ReadOnlyRepository<IPokemonBase> {
     });
     aggregation.match({
       base: true,
+      legendary: { $not: true },
       "evolution.evolution": { $ne: [] },
     });
     const dtos = sample<IPokemonBase>(await aggregation, 3, seed);
