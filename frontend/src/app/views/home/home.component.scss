@@ -5,7 +5,7 @@ h3 {
 }
 .home {
   display: flex;
-  gap: 15px;
+  gap: 10px;
   &__rankings {
     @include flexbox(left, 2, column);
     width: fit-content;
