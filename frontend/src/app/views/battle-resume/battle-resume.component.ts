@@ -6,11 +6,28 @@ import { switchMap, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { RouterService } from '../../services/router.service';
+import { TrainerNameComponent } from '../../components/trainer-name/trainer-name.component';
+import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
+import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-battle-resume',
   templateUrl: './battle-resume.component.html',
   styleUrls: ['./battle-resume.component.scss'],
+  standalone: true,
+  imports: [
+    TrainerNameComponent,
+    DisplayPokemonImageComponent,
+    MatIconModule,
+    TranslateModule,
+    NgClass,
+    NgForOf,
+    MatButtonModule,
+    NgIf,
+  ],
 })
 export class BattleResumeComponent implements OnInit {
   protected battle: BattleModel;

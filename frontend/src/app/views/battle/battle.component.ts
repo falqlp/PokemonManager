@@ -11,11 +11,24 @@ import { BattleQueriesService } from './battle-queries.service';
 import { BattleTrainerModel } from './battle.model';
 import { PlayerService } from '../../services/player.service';
 import { RouterService } from '../../services/router.service';
+import { BattleTrainerPokemonsComponent } from './components/battle-trainer-pokemons/battle-trainer-pokemons.component';
+import { BattleSceneComponent } from './components/battle-scene/battle-scene.component';
+import { BattlePlayerMoveComponent } from './components/battle-move/battle-player-move.component';
+import { BattleOpponentPokemonsComponent } from './components/battle-oppenent-pokemon/battle-opponent-pokemons.component';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'pm-battle',
   templateUrl: './battle.component.html',
   styleUrls: ['./battle.component.scss'],
+  standalone: true,
+  imports: [
+    BattleTrainerPokemonsComponent,
+    BattleSceneComponent,
+    BattlePlayerMoveComponent,
+    BattleOpponentPokemonsComponent,
+    NgIf,
+  ],
 })
 export class BattleComponent implements OnInit {
   @Input('id') public battleId: string;

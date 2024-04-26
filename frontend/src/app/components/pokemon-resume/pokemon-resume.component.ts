@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
   Input,
   ViewChild,
@@ -10,11 +11,31 @@ import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeNicknameComponent } from '../../modals/change-nickname/change-nickname.component';
+import { MatIconModule } from '@angular/material/icon';
+import { DisplayPokemonImageComponent } from '../display-pokemon-image/display-pokemon-image.component';
+import { DisplayTypeComponent } from '../display-type/display-type.component';
+import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
+import { PokemonStatsComponent } from '../pokemon-stats/pokemon-stats.component';
+import { PokemonResumeMovesComponent } from './pokemon-resume-moves/pokemon-resume-moves.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-pokemon-resume',
   templateUrl: './pokemon-resume.component.html',
   styleUrls: ['./pokemon-resume.component.scss'],
+  standalone: true,
+  imports: [
+    MatIconModule,
+    DisplayPokemonImageComponent,
+    DisplayTypeComponent,
+    ProgressBarComponent,
+    PokemonStatsComponent,
+    PokemonResumeMovesComponent,
+    TranslateModule,
+    NgClass,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PokemonResumeComponent implements AfterViewInit {
   @ViewChild('swiperContainer') protected swiperContainer: ElementRef;

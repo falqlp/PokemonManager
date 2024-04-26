@@ -15,12 +15,34 @@ import {
   CalendarEventEvent,
   CalendarEventModel,
 } from '../../models/calendar-event.model';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
+import { DisplayTypeComponent } from '../../components/display-type/display-type.component';
+import { AsyncPipe } from '@angular/common';
+import { TrainerNameComponent } from '../../components/trainer-name/trainer-name.component';
+import { RankingComponent } from '../../components/ranking/ranking.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
+import { MoveComponent } from '../../components/move/move.component';
+import { SimpleDisplayStatsComponent } from '../../components/simple-display-stats/simple-display-stats.component';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  imports: [
+    DisplayPokemonImageComponent,
+    DisplayTypeComponent,
+    AsyncPipe,
+    TrainerNameComponent,
+    RankingComponent,
+    MatTabsModule,
+    MatButtonModule,
+    TranslateModule,
+    MoveComponent,
+    SimpleDisplayStatsComponent,
+  ],
 })
 export class HomeComponent implements OnInit {
   protected player: TrainerModel;

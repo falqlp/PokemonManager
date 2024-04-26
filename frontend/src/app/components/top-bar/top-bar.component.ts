@@ -16,14 +16,34 @@ import { ExpGainComponent } from '../../modals/exp-gain/exp-gain.component';
 import { first, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SidenavService } from '../sidenav/sidenav.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
+import { MatIconModule } from '@angular/material/icon';
+import { DisplayPokemonImageComponent } from '../display-pokemon-image/display-pokemon-image.component';
+import { NumberFormatterPipe } from '../../pipes/number-formatter.pipe';
+import { MatButtonModule } from '@angular/material/button';
+import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TopBarWeekCalendarComponent } from '../top-bar-week-calendar/top-bar-week-calendar.component';
 
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss'],
+  standalone: true,
+  imports: [
+    MatIconModule,
+    DisplayPokemonImageComponent,
+    NumberFormatterPipe,
+    MatButtonModule,
+    NgIf,
+    NgForOf,
+    AsyncPipe,
+    TranslateModule,
+    MatProgressSpinnerModule,
+    TopBarWeekCalendarComponent,
+  ],
 })
 export class TopBarComponent implements OnInit {
   protected player$: Observable<TrainerModel>;

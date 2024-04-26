@@ -1,22 +1,20 @@
-import { NgModule } from '@angular/core';
 import type { Routes } from '@angular/router';
-import { RouterModule } from '@angular/router';
+import { ErrorComponent } from './core/components/error/error.component';
 import { HomeComponent } from './views/home/home.component';
+import { AuthGuard, GameGuard } from './core/guards/permission-service';
 import { LoginComponent } from './views/login/login.component';
 import { BattleComponent } from './views/battle/battle.component';
+import { PokedexDetailsComponent } from './views/pokedex-details/pokedex-details.component';
 import { BattleResumeComponent } from './views/battle-resume/battle-resume.component';
 import { PcStorageComponent } from './views/pc-storage/pc-storage.component';
 import { TrainersComponent } from './views/trainers/trainers.component';
 import { GamesComponent } from './views/games/games.component';
 import { NurseryComponent } from './views/nursery/nursery.component';
-import { ErrorComponent } from './core/components/error/error.component';
 import { PokedexComponent } from './views/pokedex/pokedex.component';
-import { AuthGuard, GameGuard } from './core/guards/permission-service';
-import { PokedexDetailsComponent } from './views/pokedex-details/pokedex-details.component';
 import { EventsComponent } from './views/events/events.component';
 import { StartersComponent } from './views/starters/starters.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '404Error', component: ErrorComponent },
   {
     path: 'home',
@@ -86,13 +84,3 @@ const routes: Routes = [
   },
   { path: '**', redirectTo: 'home' },
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {
-      bindToComponentInputs: true,
-    }),
-  ],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}

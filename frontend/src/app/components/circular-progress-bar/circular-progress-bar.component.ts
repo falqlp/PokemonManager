@@ -1,10 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ColorService } from '../../services/color.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-circular-progress-bar',
   templateUrl: './circular-progress-bar.component.html',
   styleUrls: ['./circular-progress-bar.component.scss'],
+  standalone: true,
+  imports: [NgIf],
 })
 export class CircularProgressBarComponent implements OnInit {
   @Input() public currentProgress: number;

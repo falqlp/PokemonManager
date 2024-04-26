@@ -1,24 +1,50 @@
 import { DestroyRef, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import type { Observable } from 'rxjs';
 import { combineLatest, debounceTime, map, startWith, switchMap } from 'rxjs';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import type { PokemonBaseModel } from 'src/app/models/PokemonModels/pokemonBase.model';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PokemonBaseQueriesService } from '../../services/queries/pokemon-base-queries.service';
 import { MoveModel } from '../../models/move.model';
 import { MoveLearningQueriesService } from '../../services/queries/move-learning-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CustomValidatorService } from '../../services/custom-validator.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AsyncPipe, NgForOf } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
+import { TrainerNameComponent } from '../../components/trainer-name/trainer-name.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-pokemon-form',
   templateUrl: './pokemon-form.component.html',
   styleUrls: ['./pokemon-form.component.scss'],
+  standalone: true,
+  imports: [
+    MatDialogModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    AsyncPipe,
+    TranslateModule,
+    MatSelectModule,
+    TrainerNameComponent,
+    MatSlideToggleModule,
+    MatButtonModule,
+    NgForOf,
+  ],
 })
 export class PokemonFormComponent implements OnInit {
   protected pokemonForm = new FormGroup({

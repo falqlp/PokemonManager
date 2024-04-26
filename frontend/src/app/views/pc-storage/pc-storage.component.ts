@@ -11,11 +11,26 @@ import {
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
+import { MatButtonModule } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
+import { PokemonResumeComponent } from '../../components/pokemon-resume/pokemon-resume.component';
 
 @Component({
   selector: 'app-pc-storage',
   templateUrl: './pc-storage.component.html',
   styleUrls: ['./pc-storage.component.scss'],
+  standalone: true,
+  imports: [
+    NgForOf,
+    NgClass,
+    DisplayPokemonImageComponent,
+    MatButtonModule,
+    TranslateModule,
+    NgIf,
+    PokemonResumeComponent,
+  ],
 })
 export class PcStorageComponent implements OnInit {
   protected player: TrainerModel;
