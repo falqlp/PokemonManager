@@ -10,6 +10,12 @@
       (click)="setFirstSelected(storage)"
       (contextmenu)="setSecondSelected(storage, $event)">
       <app-display-pokemon-image
+        [matBadgeHidden]="
+          !badgeDataService.pokemon.includes(storage.pokemon._id)
+        "
+        matBadgeColor="warn"
+        matBadge="&#8288;"
+        matBadgeSize="small"
         *ngIf="storage.pokemon"
         class="flex"
         [pokemon]="storage.pokemon"
@@ -34,6 +40,12 @@
         (click)="!storage.disabled && setFirstSelected(storage)"
         (contextmenu)="!storage.disabled && setSecondSelected(storage, $event)">
         <app-display-pokemon-image
+          [matBadgeHidden]="
+            !badgeDataService.pokemon.includes(storage.pokemon._id)
+          "
+          matBadgeColor="warn"
+          matBadge="&#8288;"
+          matBadgeSize="small"
           class="pc-storage__main-part__box__cell__icon"
           *ngIf="storage.pokemon; else emptyDiv"
           [pokemon]="storage.pokemon"

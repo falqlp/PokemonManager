@@ -53,9 +53,7 @@ for (const routesKey in RoutesMap) {
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err);
   const gameId = req.headers["game-id"] as string;
-  container
-    .resolve(WebsocketServerService)
-    .notify("INTERNAL_ERROR", "error", gameId);
+  container.resolve(WebsocketServerService).notify("INTERNAL_ERROR", gameId);
   res.status(500);
   res.json({
     error: err,

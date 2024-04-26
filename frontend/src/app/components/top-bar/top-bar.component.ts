@@ -26,6 +26,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TopBarWeekCalendarComponent } from '../top-bar-week-calendar/top-bar-week-calendar.component';
+import { MatBadgeModule } from '@angular/material/badge';
+import { BadgeDataService } from '../../services/badge.data.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -43,6 +45,7 @@ import { TopBarWeekCalendarComponent } from '../top-bar-week-calendar/top-bar-we
     TranslateModule,
     MatProgressSpinnerModule,
     TopBarWeekCalendarComponent,
+    MatBadgeModule,
   ],
 })
 export class TopBarComponent implements OnInit {
@@ -68,7 +71,8 @@ export class TopBarComponent implements OnInit {
     protected sidenavService: SidenavService,
     protected translateService: TranslateService,
     protected languageService: LanguageService,
-    protected battleInstanceQueriesService: BattleInstanceQueriesService
+    protected battleInstanceQueriesService: BattleInstanceQueriesService,
+    protected badgeDataService: BadgeDataService
   ) {}
 
   public ngOnInit(): void {

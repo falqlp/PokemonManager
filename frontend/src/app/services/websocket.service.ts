@@ -7,7 +7,6 @@ import {
 import { catchError, retry } from 'rxjs/operators';
 import { EMPTY, first } from 'rxjs';
 import { PlayerService } from './player.service';
-import { NotifierService } from 'angular-notifier';
 import { TranslateService } from '@ngx-translate/core';
 import { CacheService } from './cache.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,6 +15,8 @@ import { RouterService } from './router.service';
 import { environment } from '../../environments/environment';
 import { InitGameComponent } from '../modals/init-game/init-game.component';
 import { AddGameComponent } from '../views/games/add-game/add-game.component';
+import { BadgeDataService } from './badge.data.service';
+import { NotifierService } from './notifier.service';
 
 export interface WebSocketModel {
   type: string;
@@ -38,7 +39,8 @@ export class WebsocketService {
     protected translateService: TranslateService,
     protected cacheService: CacheService,
     protected dialog: MatDialog,
-    protected routerService: RouterService
+    protected routerService: RouterService,
+    protected badgeDataService: BadgeDataService
   ) {}
 
   private getWebSocketConfig(): WebSocketSubjectConfig<WebSocketModel> {
@@ -52,14 +54,14 @@ export class WebsocketService {
           this.isConected = false;
           console.log('Connection closed');
           this.deleteRegistrationToGame(this.gameId);
-          this.notifierService.notify('error', 'Connection closed');
+          this.notifierService.notify('Connection closed');
         },
       },
       openObserver: {
         next: (): void => {
           this.isConected = true;
           console.log('Connection opened');
-          this.notifierService.notify('success', 'Connection opened');
+          this.notifierService.notify('Connection opened');
           const gameId = this.cacheService.getGameId();
           if (gameId && gameId !== 'null') {
             this.registerToGame(gameId);
@@ -103,8 +105,9 @@ export class WebsocketService {
         console.log(message.payload);
         break;
       case 'notifyNewMoveLearned':
+        this.badgeDataService.pokemon.push(message.payload.id);
+        this.badgeDataService.sidenav.push('PC-STORAGE');
         this.notifierService.notify(
-          'success',
           this.translateService.instant(message.payload.key, {
             pokemon: this.translateService.instant(message.payload.pokemonName),
           })
@@ -112,7 +115,6 @@ export class WebsocketService {
         break;
       case 'notify':
         this.notifierService.notify(
-          message.payload.type,
           this.translateService.instant(message.payload.key)
         );
         break;

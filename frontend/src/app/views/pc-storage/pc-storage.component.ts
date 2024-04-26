@@ -16,6 +16,8 @@ import { DisplayPokemonImageComponent } from '../../components/display-pokemon-i
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { PokemonResumeComponent } from '../../components/pokemon-resume/pokemon-resume.component';
+import { MatBadgeModule } from '@angular/material/badge';
+import { BadgeDataService } from '../../services/badge.data.service';
 
 @Component({
   selector: 'app-pc-storage',
@@ -30,6 +32,7 @@ import { PokemonResumeComponent } from '../../components/pokemon-resume/pokemon-
     TranslateModule,
     NgIf,
     PokemonResumeComponent,
+    MatBadgeModule,
   ],
 })
 export class PcStorageComponent implements OnInit {
@@ -43,7 +46,8 @@ export class PcStorageComponent implements OnInit {
     protected pcStorageQueriesService: PcStorageQueriesService,
     protected playerService: PlayerService,
     protected trainerService: TrainerQueriesService,
-    protected destroyRef: DestroyRef
+    protected destroyRef: DestroyRef,
+    protected badgeDataService: BadgeDataService
   ) {}
 
   public ngOnInit(): void {
@@ -86,6 +90,9 @@ export class PcStorageComponent implements OnInit {
   }
 
   protected setFirstSelected(storage: StorageArrayModel): void {
+    this.badgeDataService.pokemon = this.badgeDataService.pokemon.filter(
+      (el) => el !== storage.pokemon._id
+    );
     if (storage.secondSelected) {
       this.deselectSecondSelected();
     }
@@ -106,6 +113,9 @@ export class PcStorageComponent implements OnInit {
     storage: StorageArrayModel,
     event: MouseEvent
   ): void {
+    this.badgeDataService.pokemon = this.badgeDataService.pokemon.filter(
+      (el) => el !== storage.pokemon._id
+    );
     if (storage.firstSelected) {
       this.deselectFirstSelected();
     }

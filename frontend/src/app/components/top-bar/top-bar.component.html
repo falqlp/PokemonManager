@@ -5,7 +5,13 @@
         mat-icon-button
         [disabled]="goHomeDisabled$ | async"
         (click)="menu()">
-        <mat-icon>menu</mat-icon>
+        <mat-icon
+          [matBadgeHidden]="badgeDataService.sidenav.length === 0"
+          matBadgeColor="warn"
+          matBadge="&#8288;"
+          matBadgeSize="small"
+          >menu</mat-icon
+        >
       </button>
       <span>{{ player.name }}</span>
       <div class="top-bar__left-content__berries-count">

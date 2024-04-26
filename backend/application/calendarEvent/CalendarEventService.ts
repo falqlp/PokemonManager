@@ -144,11 +144,7 @@ class CalendarEventService {
       ) {
         date.setUTCDate(date.getUTCDate() - 1);
         redirectTo = "nursery";
-        this.websocketServerService.notify(
-          "SELECT_VALID_NUMBER_OF_EGGS",
-          "error",
-          game,
-        );
+        this.websocketServerService.notify("SELECT_VALID_NUMBER_OF_EGGS", game);
       } else {
         if (nursery.step === "FIRST_SELECTION") {
           nursery.step = "LAST_SELECTION";

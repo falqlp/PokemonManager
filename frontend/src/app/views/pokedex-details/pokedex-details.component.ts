@@ -17,6 +17,7 @@ import { EvolutionTreeComponent } from './evolution-tree/evolution-tree.componen
 import { PokedexMovesLearnedComponent } from './pokedex-moves-learned/pokedex-moves-learned.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PokemonBaseEffictivenessComponent } from './pokemon-base-effictiveness/pokemon-base-effictiveness.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'pm-pokedex-details',
@@ -41,7 +42,6 @@ import { PokemonBaseEffictivenessComponent } from './pokemon-base-effictiveness/
 })
 export class PokedexDetailsComponent implements OnInit, OnChanges {
   @Input('id') public pokemonId: number;
-  protected destroyRef: DestroyRef;
   protected pokemonBase: PokemonBaseModel;
   protected evolutions: PokedexEvolutionModel[];
   protected evolutionOf: PokedexEvolutionModel[];
@@ -49,7 +49,8 @@ export class PokedexDetailsComponent implements OnInit, OnChanges {
 
   constructor(
     protected pokedexQueriesService: PokedexQueriesService,
-    protected routerService: RouterService
+    protected routerService: RouterService,
+    protected destroyRef: DestroyRef
   ) {}
 
   public ngOnInit(): void {
@@ -63,7 +64,7 @@ export class PokedexDetailsComponent implements OnInit, OnChanges {
   protected refresh(): void {
     this.pokedexQueriesService
       .get(String(this.pokemonId))
-      // .pipe(takeUntilDestroyed(this.destroyRef))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((pokedexDetails) => {
         this.evolutions = pokedexDetails.evolutions;
         this.evolutionOf = pokedexDetails.evolutionOf;

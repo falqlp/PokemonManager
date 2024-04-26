@@ -7,6 +7,8 @@ import { RouterService } from '../../services/router.service';
 import { SidenavService } from './sidenav.service';
 import { PlayerService } from '../../services/player.service';
 import { MatListModule } from '@angular/material/list';
+import { MatBadgeModule } from '@angular/material/badge';
+import { BadgeDataService } from '../../services/badge.data.service';
 
 export interface NavsModel {
   link: string;
@@ -28,6 +30,7 @@ export interface NavGroupModel {
     MatIconModule,
     MatRippleModule,
     MatListModule,
+    MatBadgeModule,
   ],
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss'],
@@ -36,7 +39,8 @@ export class SidenavComponent {
   constructor(
     protected routerService: RouterService,
     protected sidenavService: SidenavService,
-    protected playerService: PlayerService
+    protected playerService: PlayerService,
+    protected badgeDataService: BadgeDataService
   ) {}
 
   protected navs: NavGroupModel[] = [
@@ -107,6 +111,9 @@ export class SidenavComponent {
     if (nav.action) {
       nav.action();
     }
+    this.badgeDataService.sidenav = this.badgeDataService.sidenav.filter(
+      (el) => el !== nav.label
+    );
     this.routerService.navigateByUrl(nav.link);
     this.sidenavService.closeSidenav();
   }

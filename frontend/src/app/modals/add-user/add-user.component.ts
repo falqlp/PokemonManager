@@ -14,7 +14,7 @@ import { AddUserForm } from './add-user-form.model';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CustomValidatorService } from '../../services/custom-validator.service';
 import { NgIf } from '@angular/common';
-import { NotifierService } from 'angular-notifier';
+import { NotifierService } from '../../services/notifier.service';
 
 @Component({
   selector: 'pm-add-user',
@@ -55,7 +55,6 @@ export class AddUserComponent {
       .create({ username: addUser.username, password: addUser.password })
       .subscribe(() => {
         this.notifierService.notify(
-          'success',
           this.translateService.instant('ACCOUNT_CREATED')
         );
         this.dialogRef.close();

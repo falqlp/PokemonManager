@@ -12,20 +12,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { RouterOutlet } from '@angular/router';
-import { NotifierModule } from 'angular-notifier';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [
-    MatSidenavModule,
-    SidenavComponent,
-    TopBarComponent,
-    RouterOutlet,
-    NotifierModule,
-  ],
+  imports: [MatSidenavModule, SidenavComponent, TopBarComponent, RouterOutlet],
 })
 export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('drawer') public drawer: MatDrawer;

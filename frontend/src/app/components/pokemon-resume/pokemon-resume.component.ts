@@ -60,7 +60,6 @@ export class PokemonResumeComponent implements AfterViewInit {
       pagination: {
         clickable: true,
       },
-      mousewheel: true,
     };
     const swiperContainerEl = this.swiperContainer.nativeElement;
     Object.assign(swiperContainerEl, swiperOption);

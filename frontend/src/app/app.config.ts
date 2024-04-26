@@ -9,7 +9,7 @@ import {
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideRouter } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import {
@@ -17,9 +17,9 @@ import {
   MomentDateAdapter,
 } from '@angular/material-moment-adapter';
 import { HeaderInterceptor } from './core/header-interceptor.service';
-import { NotifierModule } from 'angular-notifier';
 import { register } from 'swiper/element/bundle';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 register();
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
@@ -42,10 +42,12 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom([
       HttpClientModule,
       TranslateModule.forRoot(provideTranslation()),
-      NotifierModule,
       MatDialogModule,
+      MatSnackBarModule,
+      RouterModule.forRoot(routes, {
+        bindToComponentInputs: true,
+      }),
     ]),
-    provideRouter(routes),
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
     {

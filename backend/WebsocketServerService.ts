@@ -85,17 +85,17 @@ class WebsocketServerService {
       payload: {
         key: "NOTIFY_NEW_MOVE_LEARNED",
         pokemonName: pokemon.nickname ?? pokemon.basePokemon.name,
+        id: pokemon._id.toString(),
       },
     };
     this.sendMessageToClientInGame(pokemon.gameId, message);
   }
 
-  public notify(key: string, type: string, gameId: string): void {
+  public notify(key: string, gameId: string): void {
     const message = {
       type: "notify",
       payload: {
         key,
-        type,
       },
     };
     this.sendMessageToClientInGame(gameId, message);

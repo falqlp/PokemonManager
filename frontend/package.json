@@ -27,7 +27,6 @@
     "@angular/router": "^17.3.5",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
-    "angular-notifier": "^14.0.0",
     "echarts": "^5.4.3",
     "moment": "^2.30.1",
     "rxjs": "~7.8.0",
