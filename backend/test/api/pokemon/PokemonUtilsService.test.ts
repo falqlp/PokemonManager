@@ -6,6 +6,7 @@ import { PokemonTestMother } from "./PokemonTestMother";
 import { StatsTestMother } from "../Stats/StatsTestMother";
 import { normalRandom } from "../../../utils/RandomUtils";
 import { container } from "tsyringe";
+import { POKEMON_NATURES } from "../../../domain/pokemon/pokemonConst";
 
 jest.mock("../../../utils/RandomUtils");
 
@@ -88,6 +89,7 @@ describe("PokemonUtilsService", () => {
         basePokemon: { baseStats },
         iv,
         ev,
+        nature,
       } = mockPokemon;
 
       const stats = pokemonUtilsService.updateStats(mockPokemon);
@@ -104,30 +106,35 @@ describe("PokemonUtilsService", () => {
           mockPokemon.level,
           iv.atk,
           ev.atk,
+          POKEMON_NATURES[nature].atk,
         ),
         def: pokemonUtilsService.calcStat(
           baseStats.def,
           mockPokemon.level,
           iv.def,
           ev.def,
+          POKEMON_NATURES[nature].def,
         ),
         spAtk: pokemonUtilsService.calcStat(
           baseStats.spAtk,
           mockPokemon.level,
           iv.spAtk,
           ev.spAtk,
+          POKEMON_NATURES[nature].spAtk,
         ),
         spDef: pokemonUtilsService.calcStat(
           baseStats.spDef,
           mockPokemon.level,
           iv.spDef,
           ev.spDef,
+          POKEMON_NATURES[nature].spDef,
         ),
         spe: pokemonUtilsService.calcStat(
           baseStats.spe,
           mockPokemon.level,
           iv.spe,
           ev.spe,
+          POKEMON_NATURES[nature].spe,
         ),
       });
     });

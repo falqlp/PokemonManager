@@ -1,4 +1,4 @@
-import { IPokemon } from "../../../domain/pokemon/Pokemon";
+import { IPokemon, PokemonNature } from "../../../domain/pokemon/Pokemon";
 import { PokemonBaseTestMother } from "../PokemonBase/PokemonBaseTestMother";
 import { StatsTestMother } from "../Stats/StatsTestMother";
 import { MoveTestMother } from "../Move/MoveTestMother";
@@ -18,6 +18,7 @@ export class PokemonTestMother {
       trainingPercentage: 100,
       moves: [MoveTestMother.basicMove(), MoveTestMother.powerfulMove()],
       shiny: false,
+      nature: PokemonNature.HARDY,
     } as IPokemon;
   }
 

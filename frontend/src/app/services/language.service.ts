@@ -5,7 +5,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LanguageService {
-  private language = new BehaviorSubject<string>('fr-FR');
+  private language = new BehaviorSubject<string>(
+    navigator.language === 'fr-FR' ? 'fr-FR' : 'en-EN'
+  );
 
   public setLanguage(lang: string): void {
     this.language.next(lang);

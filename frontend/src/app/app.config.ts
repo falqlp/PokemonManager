@@ -27,7 +27,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
 }
 
 export const provideTranslation = (): any => ({
-  defaultLanguage: 'fr-FR',
+  defaultLanguage: navigator.language === 'fr-FR' ? 'fr-FR' : 'en-EN',
   loader: {
     provide: TranslateLoader,
     useFactory: HttpLoaderFactory,
