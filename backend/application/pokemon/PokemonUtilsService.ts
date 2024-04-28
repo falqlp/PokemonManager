@@ -146,8 +146,8 @@ class PokemonUtilsService {
     return nombreAleatoire === 0;
   }
 
-  public getRandomNature(): string {
-    return getRandomFromArray(Object.keys(PokemonNature));
+  public getRandomNature(): PokemonNature {
+    return getRandomFromArray(Object.values(PokemonNature));
   }
 }
 

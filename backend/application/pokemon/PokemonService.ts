@@ -1,4 +1,4 @@
-import { IPokemon } from "../../domain/pokemon/Pokemon";
+import { IPokemon, PokemonNature } from "../../domain/pokemon/Pokemon";
 import PokemonRepository from "../../domain/pokemon/PokemonRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import PokemonUtilsService from "./PokemonUtilsService";
@@ -28,7 +28,7 @@ class PokemonService {
     pokemon.ev = pokemon.ev ?? oldPokemon.ev;
     pokemon.iv = pokemon.iv ?? oldPokemon.iv;
     pokemon.basePokemon = pokemon.basePokemon ?? oldPokemon.basePokemon;
-    pokemon.nature = pokemon.nature ?? oldPokemon.nature ?? "HARDY";
+    pokemon.nature = pokemon.nature ?? oldPokemon.nature ?? PokemonNature.HARDY;
     pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
     pokemon.birthday = pokemon.birthday ?? oldPokemon.birthday;
     if (pokemon.level === 1 && pokemon.level !== oldPokemon.level) {
