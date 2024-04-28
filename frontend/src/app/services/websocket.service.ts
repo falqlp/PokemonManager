@@ -16,7 +16,7 @@ import { environment } from '../../environments/environment';
 import { InitGameComponent } from '../modals/init-game/init-game.component';
 import { AddGameComponent } from '../views/games/add-game/add-game.component';
 import { BadgeDataService } from './badge.data.service';
-import { NotifierService } from './notifier.service';
+import { NotificationType, NotifierService } from './notifier.service';
 
 export interface WebSocketModel {
   type: string;
@@ -54,14 +54,20 @@ export class WebsocketService {
           this.isConected = false;
           console.log('Connection closed');
           this.deleteRegistrationToGame(this.gameId);
-          this.notifierService.notify('Connection closed');
+          this.notifierService.notify(
+            'Connection closed',
+            NotificationType.Error
+          );
         },
       },
       openObserver: {
         next: (): void => {
           this.isConected = true;
           console.log('Connection opened');
-          this.notifierService.notify('Connection opened');
+          this.notifierService.notify(
+            'Connection opened',
+            NotificationType.Success
+          );
           const gameId = this.cacheService.getGameId();
           if (gameId && gameId !== 'null') {
             this.registerToGame(gameId);
@@ -115,7 +121,8 @@ export class WebsocketService {
         break;
       case 'notify':
         this.notifierService.notify(
-          this.translateService.instant(message.payload.key)
+          this.translateService.instant(message.payload.key),
+          message.payload.type
         );
         break;
       case 'eggHatched':

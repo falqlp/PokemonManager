@@ -7,6 +7,11 @@ export interface WebsocketMessage {
   type: string;
   payload?: any;
 }
+export enum NotificationType {
+  Neutral = "Neutral",
+  Success = "Success",
+  Error = "Error",
+}
 
 @singleton()
 class WebsocketServerService {
@@ -91,11 +96,12 @@ class WebsocketServerService {
     this.sendMessageToClientInGame(pokemon.gameId, message);
   }
 
-  public notify(key: string, gameId: string): void {
+  public notify(key: string, type: NotificationType, gameId: string): void {
     const message = {
       type: "notify",
       payload: {
         key,
+        type,
       },
     };
     this.sendMessageToClientInGame(gameId, message);

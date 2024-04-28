@@ -4,6 +4,7 @@
   calendar event</button
 >}
 <div class="home">
+  @if (player.competitions.length > 0) {
   <div class="home__rankings">
     <h3>{{ 'RANKINGS' | translate }}</h3>
     <mat-tab-group>
@@ -14,7 +15,7 @@
       }
     </mat-tab-group>
   </div>
-  @if (nextBattle$|async; as nextBattle) {
+  } @if (nextBattle$|async; as nextBattle) {
   <div class="home__next-battle">
     <h3>{{ 'NEXT_BATTLE' | translate }}</h3>
     <div class="home__next-battle__info">

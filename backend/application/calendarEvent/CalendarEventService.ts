@@ -13,7 +13,9 @@ import TrainerService from "../trainer/TrainerService";
 import BattleService from "../battle/BattleService";
 import NurseryService from "../nursery/NurseryService";
 import PokemonService from "../pokemon/PokemonService";
-import WebsocketServerService from "../../WebsocketServerService";
+import WebsocketServerService, {
+  NotificationType,
+} from "../../WebsocketServerService";
 import { singleton } from "tsyringe";
 import { ICompetition } from "../../domain/competiton/Competition";
 
@@ -144,7 +146,11 @@ class CalendarEventService {
       ) {
         date.setUTCDate(date.getUTCDate() - 1);
         redirectTo = "nursery";
-        this.websocketServerService.notify("SELECT_VALID_NUMBER_OF_EGGS", game);
+        this.websocketServerService.notify(
+          "SELECT_VALID_NUMBER_OF_EGGS",
+          NotificationType.Neutral,
+          game,
+        );
       } else {
         if (nursery.step === "FIRST_SELECTION") {
           nursery.step = "LAST_SELECTION";

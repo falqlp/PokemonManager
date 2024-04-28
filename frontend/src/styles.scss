@@ -234,3 +234,20 @@ progress-bar {
   --swiper-pagination-bullet-inactive-color: #8d8d8d;
   --swiper-pagination-bullet-size: 10px;
 }
+.Error {
+  --mdc-snackbar-container-color: #881818;
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-snack-bar-button-color: white;
+}
+
+.Success {
+  --mdc-snackbar-container-color: #166e16;
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-snack-bar-button-color: white;
+}
+
+.Neutral {
+  --mdc-snackbar-container-color: #9e9e9e;
+  --mdc-snackbar-supporting-text-color: black;
+  --mat-snack-bar-button-color: black;
+}

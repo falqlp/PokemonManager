@@ -6,7 +6,10 @@ import "source-map-support/register";
 import { RoutesMap } from "./api/RoutesMap";
 import { convertStringsToDateInObject } from "./utils/DateConverter";
 import { container } from "tsyringe";
-import WebsocketServerService from "./WebsocketServerService";
+import WebsocketServerService, {
+  NotificationType,
+} from "./WebsocketServerService";
+
 dotenv.config();
 
 const app = express();
@@ -53,7 +56,9 @@ for (const routesKey in RoutesMap) {
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err);
   const gameId = req.headers["game-id"] as string;
-  container.resolve(WebsocketServerService).notify("INTERNAL_ERROR", gameId);
+  container
+    .resolve(WebsocketServerService)
+    .notify("INTERNAL_ERROR", NotificationType.Error, gameId);
   res.status(500);
   res.json({
     error: err,
