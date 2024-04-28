@@ -15,6 +15,7 @@ class PokemonMapper implements IMapper<IPokemon> {
       pokemon.basePokemon = undefined;
       pokemon.hatchingDate = undefined;
       pokemon.shiny = undefined;
+      pokemon.nature = undefined;
     }
     return pokemon;
   }
@@ -27,6 +28,7 @@ class PokemonMapper implements IMapper<IPokemon> {
     pokemon.trainingPercentage = undefined;
     pokemon.hatchingDate = undefined;
     pokemon.shiny = undefined;
+    pokemon.nature = undefined;
     pokemon.basePokemon = {
       types: pokemon.basePokemon.types,
     } as unknown as IPokemonBase;
@@ -40,11 +42,11 @@ class PokemonMapper implements IMapper<IPokemon> {
   };
 
   public mapStarters = (pokemon: IPokemon): IPokemon => {
-    delete pokemon.ev;
-    delete pokemon.iv;
-    delete pokemon.happiness;
-    delete pokemon.trainingPercentage;
-    delete pokemon.hatchingDate;
+    pokemon.ev = undefined;
+    pokemon.iv = undefined;
+    pokemon.happiness = undefined;
+    pokemon.trainingPercentage = undefined;
+    pokemon.hatchingDate = undefined;
     return pokemon;
   };
 }

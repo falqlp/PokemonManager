@@ -1,56 +1,7 @@
-import type { PokemonBaseModel } from './pokemonBase.model';
-import type { PokemonStatsModel } from './pokemonStats.model';
-import { MoveModel } from '../move.model';
-export enum PokemonNature {
-  HARDY = 'HARDY',
-  LONELY = 'LONELY',
-  BRAVE = 'BRAVE',
-  ADAMANT = 'ADAMANT',
-  NAUGHTY = 'NAUGHTY',
-  BOLD = 'BOLD',
-  DOCILE = 'DOCILE',
-  RELAXED = 'RELAXED',
-  IMPISH = 'IMPISH',
-  LAX = 'LAX',
-  TIMID = 'TIMID',
-  HASTY = 'HASTY',
-  SERIOUS = 'SERIOUS',
-  JOLLY = 'JOLLY',
-  NAIVE = 'NAIVE',
-  MODEST = 'MODEST',
-  MILD = 'MILD',
-  QUIET = 'QUIET',
-  BASHFUL = 'BASHFUL',
-  RASH = 'RASH',
-  CALM = 'CALM',
-  GENTLE = 'GENTLE',
-  SASSY = 'SASSY',
-  CAREFUL = 'CAREFUL',
-  QUIRKY = 'QUIRKY',
-}
+import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
+import { PokemonNature } from "./Pokemon";
 
-export interface PokemonModel {
-  _id?: string;
-  trainerId: string;
-  nickname?: string;
-  basePokemon: PokemonBaseModel;
-  level: number;
-  exp: number;
-  moves?: MoveModel[];
-  stats: PokemonStatsModel;
-  ev?: PokemonStatsModel;
-  iv?: PokemonStatsModel;
-  shiny: boolean;
-  currentHp?: number;
-  maxLevel: number;
-  hiddenPotential: string;
-  hatchingDate?: Date;
-  age: number;
-  birthday: Date;
-  nature: PokemonNature;
-}
-
-export const POKEMON_NATURES: Record<PokemonNature, PokemonStatsModel> = {
+export const POKEMON_NATURES: Record<PokemonNature, IPokemonStats> = {
   HARDY: { hp: 0, atk: 0, def: 0, spAtk: 0, spDef: 0, spe: 0 },
   LONELY: { hp: 0, atk: 10, def: -10, spAtk: 0, spDef: 0, spe: 0 },
   BRAVE: { hp: 0, atk: 10, def: 0, spAtk: 0, spDef: 0, spe: -10 },

@@ -28,6 +28,7 @@ class PokemonService {
     pokemon.ev = pokemon.ev ?? oldPokemon.ev;
     pokemon.iv = pokemon.iv ?? oldPokemon.iv;
     pokemon.basePokemon = pokemon.basePokemon ?? oldPokemon.basePokemon;
+    pokemon.nature = pokemon.nature ?? oldPokemon.nature ?? "HARDY";
     pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
     pokemon.birthday = pokemon.birthday ?? oldPokemon.birthday;
     if (pokemon.level === 1 && pokemon.level !== oldPokemon.level) {
@@ -91,6 +92,9 @@ class PokemonService {
     }
     if (pokemon.ev === undefined) {
       pokemon.ev = this.pokemonUtilsService.initEvs();
+    }
+    if (!pokemon.nature) {
+      pokemon.nature = this.pokemonUtilsService.getRandomNature();
     }
     if (pokemon.trainingPercentage === undefined) {
       pokemon.trainingPercentage = 0;

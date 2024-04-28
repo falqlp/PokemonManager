@@ -1,8 +1,8 @@
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
-import { IPokemon } from "../../domain/pokemon/Pokemon";
-import { normalRandom } from "../../utils/RandomUtils";
+import { IPokemon, PokemonNature } from "../../domain/pokemon/Pokemon";
+import { getRandomFromArray, normalRandom } from "../../utils/RandomUtils";
 import { singleton } from "tsyringe";
-
+import { POKEMON_NATURES } from "../../domain/pokemon/pokemonConst";
 @singleton()
 class PokemonUtilsService {
   public generatePotential(nurseryLevel: number): number {
@@ -69,40 +69,52 @@ class PokemonUtilsService {
         pokemon.level,
         pokemon.iv.atk,
         pokemon.ev.atk,
+        POKEMON_NATURES[pokemon.nature].atk,
       ),
       def: this.calcStat(
         pokemon.basePokemon.baseStats.def,
         pokemon.level,
         pokemon.iv.def,
         pokemon.ev.def,
+        POKEMON_NATURES[pokemon.nature].def,
       ),
       spAtk: this.calcStat(
         pokemon.basePokemon.baseStats.spAtk,
         pokemon.level,
         pokemon.iv.spAtk,
         pokemon.ev.spAtk,
+        POKEMON_NATURES[pokemon.nature].spAtk,
       ),
       spDef: this.calcStat(
         pokemon.basePokemon.baseStats.spDef,
         pokemon.level,
         pokemon.iv.spDef,
         pokemon.ev.spDef,
+        POKEMON_NATURES[pokemon.nature].spDef,
       ),
       spe: this.calcStat(
         pokemon.basePokemon.baseStats.spe,
         pokemon.level,
         pokemon.iv.spe,
         pokemon.ev.spe,
+        POKEMON_NATURES[pokemon.nature].spe,
       ),
     } as IPokemonStats;
   }
 
-  public calcStat(bs: number, niv: number, iv: number, ev: number): number {
-    return (
+  public calcStat(
+    bs: number,
+    niv: number,
+    iv: number,
+    ev: number,
+    natureModifier: number,
+  ): number {
+    const base =
       Math.floor(
         ((2 * bs + (ev === 0 ? 0 : Math.floor(ev / 4)) + iv) * niv) / 100,
-      ) + 5
-    );
+      ) + 5;
+    const natureModification = Math.round((base * natureModifier) / 100);
+    return base + natureModification;
   }
 
   public calcHp(bs: number, niv: number, iv: number, ev: number): number {
@@ -132,6 +144,10 @@ class PokemonUtilsService {
   public generateShiny(): boolean {
     const nombreAleatoire = Math.floor(Math.random() * 4096);
     return nombreAleatoire === 0;
+  }
+
+  public getRandomNature(): string {
+    return getRandomFromArray(Object.keys(PokemonNature));
   }
 }
 

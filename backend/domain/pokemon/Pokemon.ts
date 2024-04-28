@@ -3,6 +3,33 @@ import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import { IPokemonBase } from "../pokemonBase/PokemonBase";
 import { IMove } from "../move/Move";
 import { MongoId } from "../MongoId";
+export enum PokemonNature {
+  HARDY = "HARDY",
+  LONELY = "LONELY",
+  BRAVE = "BRAVE",
+  ADAMANT = "ADAMANT",
+  NAUGHTY = "NAUGHTY",
+  BOLD = "BOLD",
+  DOCILE = "DOCILE",
+  RELAXED = "RELAXED",
+  IMPISH = "IMPISH",
+  LAX = "LAX",
+  TIMID = "TIMID",
+  HASTY = "HASTY",
+  SERIOUS = "SERIOUS",
+  JOLLY = "JOLLY",
+  NAIVE = "NAIVE",
+  MODEST = "MODEST",
+  MILD = "MILD",
+  QUIET = "QUIET",
+  BASHFUL = "BASHFUL",
+  RASH = "RASH",
+  CALM = "CALM",
+  GENTLE = "GENTLE",
+  SASSY = "SASSY",
+  CAREFUL = "CAREFUL",
+  QUIRKY = "QUIRKY",
+}
 
 export interface IPokemon extends MongoId {
   trainerId?: string;
@@ -24,6 +51,7 @@ export interface IPokemon extends MongoId {
   hatchingDate?: Date;
   hiddenPotential: string;
   shiny: boolean;
+  nature: PokemonNature;
 }
 
 const pokemonSchema = new Schema<IPokemon>({
@@ -46,6 +74,7 @@ const pokemonSchema = new Schema<IPokemon>({
   hatchingDate: { type: Date },
   hiddenPotential: { type: String, required: true },
   shiny: { type: Boolean },
+  nature: { type: String, required: true },
 });
 
 const Pokemon = mongoose.model<IPokemon>("Pokemon", pokemonSchema);

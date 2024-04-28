@@ -142,6 +142,7 @@ class TrainerService {
           ev: this.pokemonUtilsService.initEvs(),
           trainingPercentage: 0,
           maxLevel: level,
+          nature: this.pokemonUtilsService.getRandomNature(),
         } as IPokemon;
         pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
         trainer.pokemons.push(pokemon);
