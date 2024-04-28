@@ -26,6 +26,7 @@ export interface IBattleMove extends IMove {
 }
 export interface IBattlePokemon extends IPokemon {
   moves: IBattleMove[];
+  dailyForm: number;
   currentHp: number;
 }
 

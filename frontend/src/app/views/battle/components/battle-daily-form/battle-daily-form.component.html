@@ -1,0 +1,21 @@
+@switch (dailyForm()){ @case (1){
+<img
+  [matTooltip]="'+10%_FOR_ALL_STATS' | translate"
+  src="assets/other/fire.png" />
+} @case (2){
+<div [matTooltip]="'+20%_FOR_ALL_STATS' | translate">
+  <img src="assets/other/fire.png" />
+  <img src="assets/other/fire.png" />
+</div>
+} @case (-1){
+<img
+  [matTooltip]="'-10%_FOR_ALL_STATS' | translate"
+  src="assets/other/snowflake.png" />
+
+} @case (-2){
+<div [matTooltip]="'-20%_FOR_ALL_STATS' | translate">
+  <img src="assets/other/snowflake.png" />
+  <img src="assets/other/snowflake.png" />
+</div>
+
+} @default { } }

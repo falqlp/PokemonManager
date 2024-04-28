@@ -15,6 +15,7 @@
           : (pokemon.basePokemon.name | translate)
       }}</span>
       <span>{{ 'LVL' | translate }}: {{ pokemon.level }}</span>
+      <pm-battle-daily-form [dailyForm]="pokemon.dailyForm" />
       <span
         *ngIf="pokemon.currentHp === 0"
         class="battle-trainer-pokemons__pokemon-box__info--ko"

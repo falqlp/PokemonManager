@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { BattleModel } from '../../models/Battle.model';
 import { CompleteQuery } from '../../core/complete-query';
 import { RankingModel } from '../../models/ranking.model';
+import { BattleTrainerModel } from '../../views/battle/battle.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,10 +16,14 @@ export class BattleInstanceQueriesService extends CompleteQuery<BattleModel> {
   }
 
   public setWinner(
-    battle: BattleModel,
-    looserId: string
+    battleId: string,
+    looserId: string,
+    playerId: string
   ): Observable<BattleModel> {
-    battle.winner = looserId === battle.player._id ? 'opponent' : 'player';
+    const battle = {
+      _id: battleId,
+      winner: looserId === playerId ? 'opponent' : 'player',
+    } as BattleModel;
     return this.update(battle, battle._id);
   }
 
@@ -32,5 +37,14 @@ export class BattleInstanceQueriesService extends CompleteQuery<BattleModel> {
     return this.http.post<BattleModel>(`${this.url}/simulateBattle`, {
       _id: battle._id,
     });
+  }
+
+  public initBattle(
+    battleId: string
+  ): Observable<{ player: BattleTrainerModel; opponent: BattleTrainerModel }> {
+    return this.http.get<{
+      player: BattleTrainerModel;
+      opponent: BattleTrainerModel;
+    }>(`${this.url}/init-battle/${battleId}`);
   }
 }

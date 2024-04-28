@@ -14,6 +14,7 @@ export interface BattleMoveModel extends MoveModel {
 
 export interface BattlePokemonModel extends PokemonModel {
   currentHp: number;
+  dailyForm: number;
   moves: BattleMoveModel[];
 }
 

@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CircularHpPokemonComponent } from '../../../../components/circular-hp-pokemon/circular-hp-pokemon.component';
 import { NumberCooldownComponent } from '../../../../components/number-cooldown/number-cooldown.component';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { BattleDailyFormComponent } from '../battle-daily-form/battle-daily-form.component';
 
 @Component({
   selector: 'app-battle-oppenent-pokemons',
@@ -20,6 +21,7 @@ import { NgClass, NgForOf, NgIf } from '@angular/common';
     NgClass,
     NgForOf,
     NgIf,
+    BattleDailyFormComponent,
   ],
 })
 export class BattleOpponentPokemonsComponent {

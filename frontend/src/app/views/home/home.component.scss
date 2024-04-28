@@ -24,6 +24,7 @@ h3 {
       align-items: center;
       gap: 10px;
       padding: 10px 0;
+      width: 100%;
     }
     &__opponent {
       background-color: $battle-event;
@@ -31,6 +32,7 @@ h3 {
       height: 30px;
       display: flex;
       align-items: center;
+      justify-content: center;
       &__name {
         padding: 10px;
       }

@@ -6,6 +6,7 @@ import { DisplayPokemonImageComponent } from '../../../../components/display-pok
 import { ProgressBarComponent } from '../../../../components/progress-bar/progress-bar.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NumberCooldownComponent } from '../../../../components/number-cooldown/number-cooldown.component';
+import { BattleDailyFormComponent } from '../battle-daily-form/battle-daily-form.component';
 
 @Component({
   selector: 'app-battle-trainer-pokemons',
@@ -21,6 +22,7 @@ import { NumberCooldownComponent } from '../../../../components/number-cooldown/
     TranslateModule,
     NumberCooldownComponent,
     NgIf,
+    BattleDailyFormComponent,
   ],
 })
 export class BattleTrainerPokemonsComponent {

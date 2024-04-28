@@ -1,5 +1,4 @@
 import {
-  IBattleMove,
   IBattlePokemon,
   IBattleTrainer,
   ITrainerAutorizations,
@@ -10,6 +9,8 @@ import { IBattleInstance } from "../../domain/battleInstance/Battle";
 import { ITrainer } from "../../domain/trainer/Trainer";
 import { DefaultMove } from "./BattleConst";
 import { singleton } from "tsyringe";
+import { getRandomValue } from "../../utils/RandomUtils";
+import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 
 @singleton()
 class BattleService {
@@ -19,8 +20,11 @@ class BattleService {
   ) {}
 
   public simulateBattle(battle: IBattleInstance): IBattleInstance {
-    let trainerA = this.mapBattleTrainer(battle.player);
-    let trainerB = this.mapBattleTrainer(battle.opponent);
+    let trainerA = this.mapBattleTrainer(battle.player, battle._id.toString());
+    let trainerB = this.mapBattleTrainer(
+      battle.opponent,
+      battle._id.toString(),
+    );
     for (let i = 0; i < 100000; i++) {
       const { trainer1, trainer2 } = this.simulateBattleRound(
         { ...trainerA },
@@ -36,23 +40,51 @@ class BattleService {
     return battle;
   }
 
-  private mapBattleTrainer(trainer: ITrainer): IBattleTrainer {
+  public initBattle(battle: IBattleInstance): {
+    player: IBattleTrainer;
+    opponent: IBattleTrainer;
+  } {
+    const player = this.mapBattleTrainer(battle.player, battle._id.toString());
+    const opponent = this.mapBattleTrainer(
+      battle.opponent,
+      battle._id.toString(),
+    );
+    return { player, opponent };
+  }
+
+  private mapBattleTrainer(
+    trainer: ITrainer,
+    battleId: string,
+  ): IBattleTrainer {
+    trainer = { ...(trainer as any)._doc };
+    const battlePokemons = trainer.pokemons
+      .filter((value) => value.level > 0)
+      .map((pokemon) => {
+        const battlePokemon: IBattlePokemon = {
+          ...(pokemon as any)._doc,
+        } as IBattlePokemon;
+        battlePokemon.dailyForm = this.getDailyForm(
+          battlePokemon._id,
+          battleId,
+        );
+        battlePokemon.stats = this.setDailyForm(
+          battlePokemon.dailyForm,
+          battlePokemon.stats,
+        );
+        battlePokemon.currentHp = battlePokemon.stats.hp;
+        battlePokemon.moves.map((move) => {
+          move.used = false;
+          return move;
+        });
+        if (battlePokemon.moves.length === 0) {
+          battlePokemon.moves.push(DefaultMove);
+        }
+        return battlePokemon;
+      });
     return {
       _id: trainer._id,
       name: trainer.name,
-      pokemons: trainer.pokemons
-        .filter((value) => value.level > 0)
-        .map((pokemon) => {
-          (pokemon as IBattlePokemon).currentHp = pokemon.stats.hp;
-          pokemon.moves.map((move) => {
-            (move as IBattleMove).used = false;
-            return move;
-          });
-          if (pokemon.moves.length === 0) {
-            pokemon.moves.push(DefaultMove);
-          }
-          return pokemon;
-        }),
+      pokemons: battlePokemons,
       selectedMove: undefined,
       damage: undefined,
       decision: undefined,
@@ -65,6 +97,32 @@ class BattleService {
       defeat: false,
       onKo: false,
     } as IBattleTrainer;
+  }
+
+  private getDailyForm(battleId: string, pokemonId: string): number {
+    const randomValue = getRandomValue(battleId + pokemonId);
+
+    if (randomValue < 0.5) {
+      return 0;
+    } else if (randomValue < 0.7) {
+      return 1;
+    } else if (randomValue < 0.9) {
+      return -1;
+    } else if (randomValue < 0.95) {
+      return 2;
+    } else {
+      return -2;
+    }
+  }
+
+  private setDailyForm(dailyForm: number, stats: IPokemonStats): IPokemonStats {
+    const newStats: { [key: string]: number } = stats as unknown as {
+      [key: string]: number;
+    };
+    Object.keys(stats).forEach((key) => {
+      newStats[key] += Math.round((newStats[key] * dailyForm) / 10);
+    });
+    return stats;
   }
 
   simulateBattleRound(

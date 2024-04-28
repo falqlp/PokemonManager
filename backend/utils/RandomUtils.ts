@@ -49,3 +49,8 @@ export function getRandomFromArray<T>(array: T[]): T {
   }
   return array[Math.floor(Math.random() * array.length)];
 }
+
+export function getRandomValue(seed: string): number {
+  const rng = seedrandom(seed ?? "");
+  return rng();
+}

@@ -3,6 +3,7 @@ import BattleInstanceRepository from "../../domain/battleInstance/BattleInstance
 import { ObjectId } from "mongodb";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import BattleService from "../battle/BattleService";
+import { IBattleTrainer } from "../battle/BattleInterfaces";
 
 export interface TrainerRanking {
   _id: string;
@@ -107,5 +108,12 @@ export class BattleInstanceService {
       battleId,
       this.battleService.simulateBattle(battle),
     );
+  }
+
+  public async initBattle(
+    battleId: string,
+  ): Promise<{ player: IBattleTrainer; opponent: IBattleTrainer }> {
+    const battle = await this.battleInstanceRepository.get(battleId);
+    return this.battleService.initBattle(battle);
   }
 }

@@ -34,6 +34,7 @@
           : (playerActivePokemon().basePokemon.name | translate)
       }}</span>
       <span>{{ 'LVL' | translate }}: {{ playerActivePokemon().level }}</span>
+      <pm-battle-daily-form [dailyForm]="playerActivePokemon().dailyForm" />
     </div>
     <progress-bar
       [style]="'hp'"

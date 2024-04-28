@@ -10,6 +10,7 @@
         <span
           >{{ 'LVL' | translate }}: {{ opponentActivePokemon().level }}</span
         >
+        <pm-battle-daily-form [dailyForm]="opponentActivePokemon().dailyForm" />
       </div>
       <progress-bar
         [style]="'hp'"

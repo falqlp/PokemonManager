@@ -1,5 +1,4 @@
 import { Component, EventEmitter, input, Output } from '@angular/core';
-import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import { DamageModel } from '../../../../models/damage.model';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
@@ -7,6 +6,7 @@ import { BattleSceneOpponentComponent } from '../battle-scene-opponent/battle-sc
 import { BattleScenePlayerComponent } from '../battle-scene-player/battle-scene-player.component';
 import { MatButtonModule } from '@angular/material/button';
 import { NgIf } from '@angular/common';
+import { BattlePokemonModel } from '../../battle.model';
 
 @Component({
   selector: 'app-battle-scene',
@@ -23,10 +23,10 @@ import { NgIf } from '@angular/common';
   ],
 })
 export class BattleSceneComponent {
-  public opponentActivePokemon = input<PokemonModel>();
+  public opponentActivePokemon = input<BattlePokemonModel>();
   public opponentDamage = input<DamageModel>();
   public playerDamage = input<DamageModel>();
-  public playerActivePokemon = input<PokemonModel>();
+  public playerActivePokemon = input<BattlePokemonModel>();
   @Output() public battleStart = new EventEmitter<void>();
   protected started = false;
 
