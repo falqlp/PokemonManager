@@ -46,7 +46,7 @@ class BattleAiService {
               damage,
               changeDamage,
             );
-            if (damageBeforeKOindicator >= damageBeforeKO) {
+            if (damageBeforeKOindicator > damageBeforeKO) {
               damageBeforeKO = damageBeforeKOindicator;
               decision = { pokemon, move };
             }
@@ -79,9 +79,14 @@ class BattleAiService {
     damage: number,
     changeDamage: number,
   ): number {
-    return Math.abs(
+    const damageBeforeKoAsFullLife = Math.abs(
       Math.ceil((pokemon.stats.hp - changeDamage) / opponentDamage) * damage,
     );
+    if (isNaN(damageBeforeKoAsFullLife)) {
+      return 0;
+    } else {
+      return damageBeforeKoAsFullLife;
+    }
   }
 
   getChangeDamage(
@@ -92,7 +97,7 @@ class BattleAiService {
     if (pokemon._id === pokemons[0]._id) {
       return 0;
     }
-    return this.battleService.getCooldownTurn(pokemon) * edp;
+    return Math.floor(this.battleService.getCooldownTurn(pokemon) * edp * 1.2);
   }
 }
 export default BattleAiService;

@@ -2,8 +2,8 @@
   <pm-trainer-name [trainer]="trainer()" />
 </div>
 <div class="battle-trainer-pokemons">
+  @for (pokemon of trainer().pokemons.slice(1); track pokemon._id) {
   <div
-    *ngFor="let pokemon of trainer().pokemons.slice(1)"
     class="battle-trainer-pokemons__pokemon-box"
     [ngClass]="{ ko: pokemon.currentHp === 0 }">
     <div class="battle-trainer-pokemons__pokemon-box__info">
@@ -26,5 +26,6 @@
       [currentProgress]="pokemon.currentHp ?? pokemon.stats['hp']"
       [max]="pokemon.stats['hp']" />
   </div>
+  }
   <app-number-cooldown [cooldown]="cooldown()"></app-number-cooldown>
 </div>

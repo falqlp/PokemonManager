@@ -84,6 +84,7 @@ class BattleService {
     return {
       _id: trainer._id,
       name: trainer.name,
+      class: trainer.class,
       pokemons: battlePokemons,
       selectedMove: undefined,
       damage: undefined,
@@ -129,12 +130,12 @@ class BattleService {
     trainer1: IBattleTrainer,
     trainer2: IBattleTrainer,
   ): { trainer1: IBattleTrainer; trainer2: IBattleTrainer } {
-    [trainer1, trainer2] = this.initializeTrainers(trainer1, trainer2);
     this.decreseCooldown(trainer1);
     this.decreseCooldown(trainer2);
     this.updateDecision(trainer1, trainer2);
     trainer1 = this.applyDecision(trainer1, trainer2);
     trainer2 = this.applyDecision(trainer2, trainer1);
+    [trainer1, trainer2] = this.initializeTrainers(trainer1, trainer2);
     this.processDamage(trainer1, trainer2);
     trainer1.onKo = trainer2.onKo = false;
     this.checkPokemonKo(trainer1);
@@ -223,9 +224,12 @@ class BattleService {
       trainer.selectedMove?.name !== trainer.decision.move.name
     ) {
       trainer.selectedMove = trainer.decision.move;
-      trainer.pokemons[0].moves.find(
-        (move) => move.name === trainer.decision.move.name,
-      ).used = true;
+      trainer.pokemons[0].moves.map((move) => {
+        if (move.name === trainer.decision.move.name) {
+          move.used = true;
+        }
+        return move;
+      });
       opp.autorizations.updateCooldown = 3;
       trainer.autorizations.moveCooldown =
         this.battleCalcService.getCooldownTurn(trainer.pokemons[0]);
@@ -244,7 +248,8 @@ class BattleService {
       opp.autorizations.updateCooldown = 3;
       trainer.autorizations.pokemonCooldown = trainer.onKo
         ? 0
-        : this.battleCalcService.getCooldownTurn(trainer.pokemons[0]);
+        : this.battleCalcService.getCooldownTurn(trainer.pokemons[0]) *
+          (opp.damage?.damage ? 1 : 2);
       trainer.autorizations.moveCooldown = trainer.onKo
         ? 0
         : this.battleCalcService.getCooldownTurn(trainer.pokemons[0]);

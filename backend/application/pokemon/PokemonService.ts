@@ -56,8 +56,7 @@ class PokemonService {
 
   public async create(pokemon: IPokemon, gameId: string): Promise<IPokemon> {
     let newPokemon: IPokemon;
-    const actualDate = (await this.gameRepository.get(pokemon.gameId))
-      .actualDate;
+    const actualDate = (await this.gameRepository.get(gameId)).actualDate;
     if (pokemon.level === 0) {
       newPokemon = await this.createEgg(pokemon, gameId, actualDate);
     } else {

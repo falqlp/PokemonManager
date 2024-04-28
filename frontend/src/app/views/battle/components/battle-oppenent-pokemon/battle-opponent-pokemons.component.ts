@@ -5,7 +5,7 @@ import { TrainerNameComponent } from '../../../../components/trainer-name/traine
 import { TranslateModule } from '@ngx-translate/core';
 import { CircularHpPokemonComponent } from '../../../../components/circular-hp-pokemon/circular-hp-pokemon.component';
 import { NumberCooldownComponent } from '../../../../components/number-cooldown/number-cooldown.component';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { BattleDailyFormComponent } from '../battle-daily-form/battle-daily-form.component';
 
 @Component({
@@ -19,7 +19,6 @@ import { BattleDailyFormComponent } from '../battle-daily-form/battle-daily-form
     CircularHpPokemonComponent,
     NumberCooldownComponent,
     NgClass,
-    NgForOf,
     NgIf,
     BattleDailyFormComponent,
   ],

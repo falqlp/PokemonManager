@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { BattleTrainerModel } from '../../battle.model';
 import { TrainerNameComponent } from '../../../../components/trainer-name/trainer-name.component';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../../../components/display-pokemon-image/display-pokemon-image.component';
 import { ProgressBarComponent } from '../../../../components/progress-bar/progress-bar.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -15,7 +15,6 @@ import { BattleDailyFormComponent } from '../battle-daily-form/battle-daily-form
   standalone: true,
   imports: [
     TrainerNameComponent,
-    NgForOf,
     NgClass,
     DisplayPokemonImageComponent,
     ProgressBarComponent,

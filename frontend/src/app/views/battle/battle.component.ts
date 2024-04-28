@@ -79,6 +79,7 @@ export class BattleComponent implements OnInit {
   }
 
   protected simulateTurn(): void {
+    console.log(this.player().damage);
     this.battleQueriesService
       .simulateBattleRound(this.player(), this.opponent)
       .pipe(takeUntilDestroyed(this.destroyRef))

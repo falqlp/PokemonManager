@@ -3,8 +3,8 @@
 </div>
 <div class="move">{{ selectedMove?.name | translate }}</div>
 <div class="battle-trainer-pokemons">
+  @for (pokemon of trainer.pokemons.slice(1); track pokemon._id) {
   <div
-    *ngFor="let pokemon of trainer.pokemons.slice(1)"
     class="battle-trainer-pokemons__pokemon-box"
     [ngClass]="{ ko: pokemon.currentHp === 0 }">
     <div class="battle-trainer-pokemons__pokemon-box__info">
@@ -23,5 +23,6 @@
       >
     </div>
   </div>
+  }
   <app-number-cooldown [cooldown]="pokemonCooldown"></app-number-cooldown>
 </div>

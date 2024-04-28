@@ -37,6 +37,7 @@ export interface IDecision {
 
 export interface IBattleTrainer {
   name: string;
+  class: string;
   _id: string;
   pokemons: IBattlePokemon[];
   selectedMove: IBattleMove;

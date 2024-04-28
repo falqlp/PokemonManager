@@ -2,11 +2,11 @@
   <img
     src="assets/battleback/ground_city.PNG"
     class="player__pokemon__image__ground" />
-  @if (playerDamage()?.animation.opponent) {
+  @if (playerDamage()?.animation?.opponent) {
   <img
     class="player__pokemon__image--animation"
-    src="assets/move_animation/{{ playerDamage().animation.opponent }}.gif"
-    [alt]="playerDamage().animation.opponent" />
+    src="assets/move_animation/{{ playerDamage().animation?.opponent }}.gif"
+    [alt]="playerDamage().animation?.opponent" />
   }
   <div class="player__pokemon__image__damage">
     @if (playerDamage()?.critical) {
