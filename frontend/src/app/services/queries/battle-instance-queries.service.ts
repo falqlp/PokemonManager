@@ -4,7 +4,10 @@ import { Observable } from 'rxjs';
 import { BattleModel } from '../../models/Battle.model';
 import { CompleteQuery } from '../../core/complete-query';
 import { RankingModel } from '../../models/ranking.model';
-import { BattleTrainerModel } from '../../views/battle/battle.model';
+import {
+  BattlePokemonModel,
+  BattleTrainerModel,
+} from '../../views/new-battle/battle.model';
 
 @Injectable({
   providedIn: 'root',
@@ -39,12 +42,15 @@ export class BattleInstanceQueriesService extends CompleteQuery<BattleModel> {
     });
   }
 
-  public initBattle(
-    battleId: string
-  ): Observable<{ player: BattleTrainerModel; opponent: BattleTrainerModel }> {
+  public initBattle(battleId: string): Observable<{
+    player: BattleTrainerModel;
+    opponent: BattleTrainerModel;
+    battleOrder: BattlePokemonModel[];
+  }> {
     return this.http.get<{
       player: BattleTrainerModel;
       opponent: BattleTrainerModel;
+      battleOrder: BattlePokemonModel[];
     }>(`${this.url}/init-battle/${battleId}`);
   }
 }

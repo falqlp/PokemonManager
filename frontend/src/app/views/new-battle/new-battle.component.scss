@@ -1,0 +1,229 @@
+@import 'src/styles/flexbox';
+:host {
+  display: flex;
+  height: 100%;
+  gap: 15px;
+  .battle {
+    &__right-part {
+      @include flexbox(left, 2, column);
+      flex: 1;
+      gap: 10px;
+      &__move-order {
+        @include flexbox(left, 1, column);
+        height: fit-content;
+        width: -webkit-fill-available;
+        gap: 5px;
+        overflow: hidden;
+        &__pokemon {
+          animation: translateY 0.3s ease;
+          background-color: rgba(36, 36, 206, 0.5);
+          padding: 5px;
+          width: -webkit-fill-available;
+          &--opponent {
+            background-color: rgba(178, 35, 35, 0.5);
+          }
+        }
+      }
+      &__message {
+        @include flexbox(left, 1, column);
+        flex: 1;
+        overflow: auto;
+        width: -webkit-fill-available;
+        &__separator {
+          width: -webkit-fill-available;
+          margin: 5px 0;
+        }
+      }
+      &__top {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        &__title {
+          display: flex;
+          gap: 3px;
+          align-items: center;
+        }
+        &__player {
+          background-color: rgba(36, 36, 206, 0.5);
+          padding: 5px;
+          border-radius: 5px;
+        }
+        &__opponent {
+          background-color: rgba(178, 35, 35, 0.5);
+          padding: 5px;
+          border-radius: 5px;
+        }
+      }
+      &__actions {
+        display: flex;
+        justify-content: right;
+      }
+    }
+
+    &__scene {
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      width: fit-content;
+
+      &__background {
+        height: 100%;
+        border-radius: 8px;
+      }
+
+      &__player {
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+
+        &__pokemon {
+          width: 33%;
+          &--1 {
+            width: 70%;
+          }
+          &--2 {
+            width: 50%;
+          }
+
+          &__image {
+            width: 100%;
+            position: relative;
+
+            &__pokemon {
+              height: 130px;
+              &--moving {
+                animation: moveUpDown 0.8s infinite ease-in-out;
+              }
+              &--1 {
+                height: 288px;
+              }
+              &--2 {
+                height: 250px;
+              }
+            }
+
+            &__ground {
+              position: absolute;
+              width: 100%;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+            }
+            &__animation {
+              position: absolute;
+              bottom: 0;
+              opacity: 80%;
+              height: 100%;
+              left: 50%;
+              transform: translateX(-50%);
+            }
+          }
+
+          &__info {
+            margin: 10px;
+            @include flexbox(center, 2, column);
+            gap: 5px;
+          }
+        }
+      }
+
+      &__opponent {
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        width: 100%;
+        display: flex;
+        justify-content: right;
+
+        &__pokemon {
+          //width: 14%;
+          &--1,
+          &--2 {
+            width: 40%;
+          }
+          &--3 {
+            width: 25%;
+          }
+          &--4 {
+            width: 20%;
+          }
+          &--5 {
+            width: 17%;
+          }
+          width: 14%;
+          &__image {
+            width: 100%;
+            position: relative;
+
+            &__pokemon {
+              &--moving {
+                animation: moveUpDown 0.8s infinite ease-in-out;
+              }
+              &--1,
+              &--2 {
+                height: 200px;
+              }
+              &--3,
+              &--4 {
+                height: 150px;
+              }
+            }
+
+            &__ground {
+              position: absolute;
+              width: 100%;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+              &--1 {
+                width: 300px;
+              }
+            }
+            &__animation {
+              position: absolute;
+              bottom: 0;
+              opacity: 80%;
+              height: 100%;
+              left: 50%;
+              transform: translateX(-50%);
+            }
+          }
+
+          &__info {
+            margin: 10px;
+            @include flexbox(center, 2, column);
+            gap: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  .flex {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@keyframes moveUpDown {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes translateY {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

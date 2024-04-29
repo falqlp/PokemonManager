@@ -3,7 +3,6 @@ import { ErrorComponent } from './core/components/error/error.component';
 import { HomeComponent } from './views/home/home.component';
 import { AuthGuard, GameGuard } from './core/guards/permission-service';
 import { LoginComponent } from './views/login/login.component';
-import { BattleComponent } from './views/battle/battle.component';
 import { PokedexDetailsComponent } from './views/pokedex-details/pokedex-details.component';
 import { BattleResumeComponent } from './views/battle-resume/battle-resume.component';
 import { PcStorageComponent } from './views/pc-storage/pc-storage.component';
@@ -13,6 +12,7 @@ import { NurseryComponent } from './views/nursery/nursery.component';
 import { PokedexComponent } from './views/pokedex/pokedex.component';
 import { EventsComponent } from './views/events/events.component';
 import { StartersComponent } from './views/starters/starters.component';
+import { NewBattleComponent } from './views/new-battle/new-battle.component';
 
 export const routes: Routes = [
   { path: '404Error', component: ErrorComponent },
@@ -25,7 +25,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { title: 'LOGIN' } },
   {
     path: 'battle/:id',
-    component: BattleComponent,
+    component: NewBattleComponent,
     data: { goHomeDisabled: true, title: 'BATTLE' },
     canActivate: [GameGuard],
   },

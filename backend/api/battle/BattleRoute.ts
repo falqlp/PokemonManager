@@ -6,9 +6,10 @@ const battleService = container.resolve(BattleService);
 
 router.post("/simulateBattleRound", (req, res, next) => {
   try {
-    const round = battleService.simulateBattleRound(
-      req.body.trainer1,
-      req.body.trainer2,
+    const round = battleService.simulateNewBattleRound(
+      req.body.player,
+      req.body.opponent,
+      req.body.battleOrder,
     );
     res.status(200).json(round);
   } catch (error) {

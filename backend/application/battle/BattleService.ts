@@ -1,37 +1,31 @@
-import {
-  IBattlePokemon,
-  IBattleTrainer,
-  ITrainerAutorizations,
-} from "./BattleInterfaces";
+import { IBattlePokemon, IBattleTrainer, IDamage } from "./BattleInterfaces";
 import BattleCalcService from "./BattleCalcService";
-import BattleAiService from "./BattleAiService";
 import { IBattleInstance } from "../../domain/battleInstance/Battle";
 import { ITrainer } from "../../domain/trainer/Trainer";
 import { DefaultMove } from "./BattleConst";
 import { singleton } from "tsyringe";
-import { getRandomValue } from "../../utils/RandomUtils";
+import { getRandomFromArray, getRandomValue } from "../../utils/RandomUtils";
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
+import { IMove } from "../../domain/move/Move";
 
 @singleton()
 class BattleService {
-  constructor(
-    protected battleCalcService: BattleCalcService,
-    protected battleAiService: BattleAiService,
-  ) {}
+  constructor(protected battleCalcService: BattleCalcService) {}
 
   public simulateBattle(battle: IBattleInstance): IBattleInstance {
-    let trainerA = this.mapBattleTrainer(battle.player, battle._id.toString());
-    let trainerB = this.mapBattleTrainer(
-      battle.opponent,
-      battle._id.toString(),
-    );
+    const res = this.initBattle(battle);
+    let trainerA = res.player;
+    let trainerB = res.opponent;
+    let moveOrder = res.battleOrder;
     for (let i = 0; i < 100000; i++) {
-      const { trainer1, trainer2 } = this.simulateBattleRound(
+      const { player, opponent, battleOrder } = this.simulateNewBattleRound(
         { ...trainerA },
         { ...trainerB },
+        [...moveOrder],
       );
-      trainerA = trainer1;
-      trainerB = trainer2;
+      trainerA = player;
+      trainerB = opponent;
+      moveOrder = battleOrder;
       if (trainerA.defeat || trainerB.defeat) {
         break;
       }
@@ -43,13 +37,42 @@ class BattleService {
   public initBattle(battle: IBattleInstance): {
     player: IBattleTrainer;
     opponent: IBattleTrainer;
+    battleOrder: IBattlePokemon[];
   } {
     const player = this.mapBattleTrainer(battle.player, battle._id.toString());
     const opponent = this.mapBattleTrainer(
       battle.opponent,
       battle._id.toString(),
     );
-    return { player, opponent };
+    const battleOrder = this.initBattleOrder(player, opponent);
+    return { player, opponent, battleOrder };
+  }
+
+  private initBattleOrder(
+    player: IBattleTrainer,
+    opponent: IBattleTrainer,
+    moveOrder?: IBattlePokemon[],
+  ): IBattlePokemon[] {
+    const pokemons = [
+      ...player.pokemons.filter((pokemon) => pokemon.currentHp > 0),
+      ...opponent.pokemons.filter((pokemon) => pokemon.currentHp > 0),
+    ];
+    moveOrder = moveOrder ?? [];
+    while (moveOrder.length < 5) {
+      const maxPokemon = pokemons.reduce((prev, current) => {
+        return prev.cumulatedSpeed > current.cumulatedSpeed ? prev : current;
+      });
+      moveOrder.push(maxPokemon);
+      pokemons.map((pokemon) => {
+        if (pokemon._id === maxPokemon._id) {
+          pokemon.cumulatedSpeed = 0;
+        } else {
+          pokemon.cumulatedSpeed += pokemon.stats.spe;
+        }
+        return pokemon;
+      });
+    }
+    return moveOrder;
   }
 
   private mapBattleTrainer(
@@ -71,11 +94,8 @@ class BattleService {
           battlePokemon.dailyForm,
           battlePokemon.stats,
         );
+        battlePokemon.cumulatedSpeed = battlePokemon.stats.spe;
         battlePokemon.currentHp = battlePokemon.stats.hp;
-        battlePokemon.moves.map((move) => {
-          move.used = false;
-          return move;
-        });
         if (battlePokemon.moves.length === 0) {
           battlePokemon.moves.push(DefaultMove);
         }
@@ -86,17 +106,7 @@ class BattleService {
       name: trainer.name,
       class: trainer.class,
       pokemons: battlePokemons,
-      selectedMove: undefined,
-      damage: undefined,
-      decision: undefined,
-      updateDecision: true,
-      autorizations: {
-        pokemonCooldown: 0,
-        moveCooldown: 0,
-        updateCooldown: 0,
-      },
       defeat: false,
-      onKo: false,
     } as IBattleTrainer;
   }
 
@@ -126,163 +136,126 @@ class BattleService {
     return stats;
   }
 
-  simulateBattleRound(
-    trainer1: IBattleTrainer,
-    trainer2: IBattleTrainer,
-  ): { trainer1: IBattleTrainer; trainer2: IBattleTrainer } {
-    this.decreseCooldown(trainer1);
-    this.decreseCooldown(trainer2);
-    this.updateDecision(trainer1, trainer2);
-    trainer1 = this.applyDecision(trainer1, trainer2);
-    trainer2 = this.applyDecision(trainer2, trainer1);
-    [trainer1, trainer2] = this.initializeTrainers(trainer1, trainer2);
-    this.processDamage(trainer1, trainer2);
-    trainer1.onKo = trainer2.onKo = false;
-    this.checkPokemonKo(trainer1);
-    this.checkPokemonKo(trainer2);
-    return { trainer1, trainer2 };
-  }
-
-  initializeTrainers(
-    trainer1: IBattleTrainer,
-    trainer2: IBattleTrainer,
-  ): [IBattleTrainer, IBattleTrainer] {
-    trainer1.damage = trainer2.damage = null;
-    return [trainer1, trainer2];
-  }
-
-  processDamage(trainer1: IBattleTrainer, trainer2: IBattleTrainer): void {
-    trainer1.damage = this.battleCalcService.calcDamage(
-      trainer2.pokemons[0],
-      trainer1.pokemons[0],
-      trainer2.selectedMove,
-    );
-    trainer2.damage = this.battleCalcService.calcDamage(
-      trainer1.pokemons[0],
-      trainer2.pokemons[0],
-      trainer1.selectedMove,
-    );
-    trainer1.pokemons[0].currentHp = this.battleCalcService.damageOnPokemon(
-      trainer1.pokemons[0],
-      trainer1.damage,
-    );
-    trainer2.pokemons[0].currentHp = this.battleCalcService.damageOnPokemon(
-      trainer2.pokemons[0],
-      trainer2.damage,
-    );
-  }
-
-  checkPokemonKo(trainer: IBattleTrainer): void {
-    if (trainer.pokemons[0].currentHp === 0) {
-      trainer.onKo = true;
-      trainer.defeat = !trainer.pokemons.some(
-        (pokemon) => pokemon.currentHp !== 0,
-      );
-      if (!trainer.defeat) {
-        trainer.autorizations = this.resetCooldowns();
-      }
-    }
-  }
-
-  resetCooldowns(): ITrainerAutorizations {
-    return {
-      pokemonCooldown: 0,
-      moveCooldown: 0,
-      updateCooldown: 0,
-    };
-  }
-
-  updateDecision(trainer1: IBattleTrainer, trainer2: IBattleTrainer): void {
-    if (trainer1.autorizations.updateCooldown === 0) {
-      trainer1.decision = this.battleAiService.decisionMaking(
-        trainer2.pokemons[0],
-        trainer1.pokemons,
-      );
-    }
-    if (trainer2.autorizations.updateCooldown === 0) {
-      trainer2.decision =
-        this.battleAiService.decisionMaking(
-          trainer1.pokemons[0],
-          trainer2.pokemons,
-        ) ?? trainer2.decision;
-    }
-  }
-
-  applyDecision(
-    trainer: IBattleTrainer,
+  public simulateNewBattleRound(
+    player: IBattleTrainer,
     opponent: IBattleTrainer,
-  ): IBattleTrainer {
-    trainer = this.changePokemon(trainer, opponent);
-    trainer = this.moveChange(trainer, opponent);
-    return trainer;
+    battleOrder: IBattlePokemon[],
+  ): {
+    player: IBattleTrainer;
+    opponent: IBattleTrainer;
+    battleOrder: IBattlePokemon[];
+    damage: IDamage;
+  } {
+    this.resetPokemonStates(player.pokemons);
+    this.resetPokemonStates(opponent.pokemons);
+
+    const attPokemon = this.findAttackingPokemon(
+      [player, opponent],
+      battleOrder,
+    );
+    attPokemon.moving = true;
+    const selectedMove = getRandomFromArray(attPokemon.moves);
+
+    const { damage, maxDamagedPokemon } = this.conductBattleRound(
+      attPokemon,
+      player._id.toString() === attPokemon.trainerId.toString()
+        ? opponent.pokemons
+        : player.pokemons,
+      selectedMove,
+    );
+
+    battleOrder = this.updatePostBattleStates(
+      player,
+      opponent,
+      battleOrder,
+      maxDamagedPokemon,
+    );
+
+    return { player, opponent, battleOrder, damage };
   }
 
-  moveChange(trainer: IBattleTrainer, opp: IBattleTrainer): IBattleTrainer {
-    if (
-      !trainer.defeat &&
-      trainer.autorizations.moveCooldown === 0 &&
-      trainer.selectedMove?.name !== trainer.decision.move.name
-    ) {
-      trainer.selectedMove = trainer.decision.move;
-      trainer.pokemons[0].moves.map((move) => {
-        if (move.name === trainer.decision.move.name) {
-          move.used = true;
-        }
-        return move;
+  private getMaxDamagedPokemon(
+    pokemons: IBattlePokemon[],
+    move: IMove,
+    selectedPokemon: IBattlePokemon,
+  ): IBattlePokemon {
+    return pokemons
+      .filter((pokemon) => pokemon.currentHp > 0)
+      .reduce((prev, current) => {
+        return this.battleCalcService.estimator(selectedPokemon, prev, move) >
+          this.battleCalcService.estimator(selectedPokemon, current, move)
+          ? prev
+          : current;
       });
-      opp.autorizations.updateCooldown = 3;
-      trainer.autorizations.moveCooldown =
-        this.battleCalcService.getCooldownTurn(trainer.pokemons[0]);
-    }
-    return trainer;
   }
 
-  changePokemon(trainer: IBattleTrainer, opp: IBattleTrainer): IBattleTrainer {
-    if (
-      !trainer.defeat &&
-      trainer.autorizations.pokemonCooldown === 0 &&
-      trainer.decision?.pokemon?._id !== trainer.pokemons[0]._id
-    ) {
-      trainer.pokemons = this.onChangePokemon(trainer);
-      trainer.selectedMove = undefined;
-      opp.autorizations.updateCooldown = 3;
-      trainer.autorizations.pokemonCooldown = trainer.onKo
-        ? 0
-        : this.battleCalcService.getCooldownTurn(trainer.pokemons[0]) *
-          (opp.damage?.damage ? 1 : 2);
-      trainer.autorizations.moveCooldown = trainer.onKo
-        ? 0
-        : this.battleCalcService.getCooldownTurn(trainer.pokemons[0]);
-    }
-    return trainer;
+  private resetPokemonStates(pokemons: IBattlePokemon[]): void {
+    pokemons.forEach((pokemon) => {
+      pokemon.animation = undefined;
+      pokemon.moving = false;
+    });
   }
 
-  onChangePokemon(trainer: IBattleTrainer): IBattlePokemon[] {
-    const pokemons = trainer.pokemons;
-    const leadingPokemon = pokemons[0];
-    const newLeadingPokemon = pokemons.find(
-      (playerPokemon) => playerPokemon?._id === trainer.decision.pokemon?._id,
+  private findAttackingPokemon(
+    trainers: IBattleTrainer[],
+    battleOrder: IBattlePokemon[],
+  ): IBattlePokemon {
+    const { trainerId, _id } = battleOrder[0];
+    return trainers
+      .find((trainer) => trainer._id.toString() === trainerId.toString())
+      ?.pokemons.find((pokemon) => pokemon._id.toString() === _id.toString());
+  }
+
+  private conductBattleRound(
+    attPokemon: IBattlePokemon,
+    opponents: IBattlePokemon[],
+    selectedMove: IMove,
+  ): { damage: IDamage; maxDamagedPokemon: IBattlePokemon } {
+    const maxDamagedPokemon = this.getMaxDamagedPokemon(
+      opponents,
+      selectedMove,
+      attPokemon,
     );
-    const index = pokemons.findIndex(
-      (playerPokemon) => playerPokemon?._id === trainer.decision.pokemon?._id,
+    const damage = this.battleCalcService.calcDamage(
+      attPokemon,
+      maxDamagedPokemon,
+      selectedMove,
     );
-    pokemons[index] = leadingPokemon;
-    pokemons[index].currentHp = leadingPokemon.currentHp;
-    pokemons[0] = newLeadingPokemon;
-    pokemons[0].currentHp = newLeadingPokemon.currentHp;
-    return pokemons;
+
+    if (!damage.missed && damage.effectiveness !== "IMMUNE") {
+      attPokemon.animation = selectedMove.animation.player;
+      maxDamagedPokemon.animation = selectedMove.animation.opponent;
+      maxDamagedPokemon.currentHp = this.battleCalcService.damageOnPokemon(
+        maxDamagedPokemon,
+        damage,
+      );
+    }
+
+    return { damage, maxDamagedPokemon };
   }
 
-  decreseCooldown(trainer: IBattleTrainer): void {
-    if (trainer.autorizations.moveCooldown > 0) {
-      trainer.autorizations.moveCooldown -= 1;
-    }
-    if (trainer.autorizations.pokemonCooldown > 0) {
-      trainer.autorizations.pokemonCooldown -= 1;
-    }
-    if (trainer.autorizations.updateCooldown > 0) {
-      trainer.autorizations.updateCooldown -= 1;
-    }
+  private updatePostBattleStates(
+    player: IBattleTrainer,
+    opponent: IBattleTrainer,
+    battleOrder: IBattlePokemon[],
+    maxDamagedPokemon: IBattlePokemon,
+  ): IBattlePokemon[] {
+    battleOrder.shift();
+    battleOrder = this.initBattleOrder(
+      player,
+      opponent,
+      battleOrder.filter(
+        (pokemon) =>
+          maxDamagedPokemon.currentHp > 0 ||
+          pokemon._id.toString() !== maxDamagedPokemon._id.toString(),
+      ),
+    );
+
+    player.defeat = player.pokemons.every((pokemon) => pokemon.currentHp === 0);
+    opponent.defeat = opponent.pokemons.every(
+      (pokemon) => pokemon.currentHp === 0,
+    );
+    return battleOrder;
   }
 }
 export default BattleService;

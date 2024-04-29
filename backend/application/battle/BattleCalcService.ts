@@ -133,7 +133,6 @@ export const TYPE_EFFECTIVENESS: { [key: string]: { [key: string]: number } } =
 
 const STAB_MODIFIER = 1.5;
 const MIN_ROLL = 0.85;
-const TURN_TIME_MS = 500;
 
 @singleton()
 class BattleCalcService {
@@ -147,8 +146,6 @@ class BattleCalcService {
     }
     const missed = this.moveOnTarget(move);
     const effectiveness = this.calcEffectiveness(move, defPokemon);
-    const animation =
-      missed || effectiveness === 0 ? undefined : move.animation;
     const criticalHit =
       effectiveness === 0 || missed ? 1 : this.criticalHit(attPokemon);
     return {
@@ -162,7 +159,9 @@ class BattleCalcService {
       effectiveness: this.getEffectiveness(effectiveness),
       critical: criticalHit !== 1 && !missed,
       missed,
-      animation,
+      attPokemon,
+      defPokemon,
+      move,
     };
   }
 
@@ -184,9 +183,7 @@ class BattleCalcService {
       pokemonDef = defPokemon.stats["spDef"];
     }
     return (
-      ((attPokemon.level * 0.4 * pokemonAtt * move.power) / pokemonDef / 50 +
-        2) /
-      10
+      (attPokemon.level * 0.4 * pokemonAtt * move.power) / pokemonDef / 50 + 2
     );
   }
 
@@ -260,14 +257,6 @@ class BattleCalcService {
       this.stab(move, attPokemon) *
       (move.accuracy / 100)
     );
-  }
-
-  getCooldownMs(pokemon: IPokemon): number {
-    return 6 + 200 / Math.sqrt(pokemon.stats["spe"]);
-  }
-
-  getCooldownTurn(pokemon: IPokemon): number {
-    return Math.ceil((this.getCooldownMs(pokemon) * 100) / TURN_TIME_MS);
   }
 }
 export default BattleCalcService;

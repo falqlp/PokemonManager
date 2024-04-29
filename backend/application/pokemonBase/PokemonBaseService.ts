@@ -28,6 +28,8 @@ class PokemonBaseService {
       base: true,
       legendary: { $not: { $eq: true } },
       mythical: { $not: { $eq: true } },
+      ultraBeast: { $not: { $eq: true } },
+      paradox: { $not: { $eq: true } },
     };
   }
 

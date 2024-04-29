@@ -1,4 +1,5 @@
-import { AnimationModel } from './move.model';
+import { BattlePokemonModel } from '../views/new-battle/battle.model';
+import { MoveModel } from './move.model';
 
 export type Effectiveness =
   | 'IMMUNE'
@@ -11,5 +12,7 @@ export interface DamageModel {
   critical: boolean;
   effectiveness: Effectiveness;
   missed: boolean;
-  animation: AnimationModel;
+  attPokemon: BattlePokemonModel;
+  defPokemon: BattlePokemonModel;
+  move: MoveModel;
 }

@@ -14,6 +14,7 @@ import { routes } from './app.routes';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import {
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+  MatMomentDateModule,
   MomentDateAdapter,
 } from '@angular/material-moment-adapter';
 import { HeaderInterceptor } from './core/header-interceptor.service';
@@ -44,6 +45,7 @@ export const appConfig: ApplicationConfig = {
       TranslateModule.forRoot(provideTranslation()),
       MatDialogModule,
       MatSnackBarModule,
+      MatMomentDateModule,
       RouterModule.forRoot(routes, {
         bindToComponentInputs: true,
       }),

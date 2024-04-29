@@ -1,5 +1,5 @@
 import { IPokemon } from "../../domain/pokemon/Pokemon";
-import { IAnimation, IMove } from "../../domain/move/Move";
+import { IMove } from "../../domain/move/Move";
 
 export type Effectiveness =
   | "IMMUNE"
@@ -12,27 +12,17 @@ export interface IDamage {
   critical: boolean;
   effectiveness: Effectiveness;
   missed: boolean;
-  animation: IAnimation;
-}
-
-export interface ITrainerAutorizations {
-  pokemonCooldown: number;
-  moveCooldown: number;
-  updateCooldown: number;
-}
-
-export interface IBattleMove extends IMove {
-  used: boolean;
+  attPokemon: IBattlePokemon;
+  defPokemon: IBattlePokemon;
+  move: IMove;
 }
 export interface IBattlePokemon extends IPokemon {
-  moves: IBattleMove[];
+  moves: IMove[];
   dailyForm: number;
   currentHp: number;
-}
-
-export interface IDecision {
-  pokemon: IBattlePokemon;
-  move: IBattleMove;
+  cumulatedSpeed: number;
+  animation: string;
+  moving: boolean;
 }
 
 export interface IBattleTrainer {
@@ -40,12 +30,6 @@ export interface IBattleTrainer {
   class: string;
   _id: string;
   pokemons: IBattlePokemon[];
-  selectedMove: IBattleMove;
-  damage: IDamage;
-  decision: IDecision;
-  updateDecision: boolean;
-  autorizations: ITrainerAutorizations;
   defeat: boolean;
-  onKo: boolean;
   isAI: boolean;
 }
