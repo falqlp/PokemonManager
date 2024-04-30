@@ -34,8 +34,13 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Clean directory on VM except .env
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "sudo find ${{ secrets.DEPLOY_PATH }} -type f ! -name '.env' ! -path '*/.ssh/*' -delete"
+
+
       - name: Connect to VM and Deploy
-        run: scp -r -o StrictHostKeyChecking=no ./backend ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.DEPLOY_PATH }}
+        run: rsync -ah --progress ./backend/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.DEPLOY_PATH }}
 
 #
 #      - name: Execute bundle.js on VM

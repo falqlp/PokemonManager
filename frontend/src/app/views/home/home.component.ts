@@ -7,7 +7,7 @@ import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { PokemonQueriesService } from 'src/app/services/queries/pokemon-queries.service';
 import { AddCalendarEventComponent } from '../../modals/add-calendar-event/add-calendar-event.component';
-import { map, Observable, switchMap, tap } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { TimeService } from '../../services/time.service';
@@ -47,7 +47,7 @@ import { SimpleDisplayStatsComponent } from '../../components/simple-display-sta
 export class HomeComponent implements OnInit {
   protected player: TrainerModel;
   protected readonly environment = environment;
-  protected nextBattle$: Observable<CalendarEventModel>;
+  protected nextBattle: CalendarEventModel;
   protected dayToNextBattle: string;
   protected actualDate: Date;
 
@@ -66,36 +66,39 @@ export class HomeComponent implements OnInit {
         switchMap((player) => {
           this.player = player;
           return this.timeService.getActualDate();
+        }),
+        switchMap((date) => {
+          this.actualDate = date;
+          return this.calendarEventQueriesService
+            .list({
+              custom: {
+                trainers: {
+                  $in: this.player._id,
+                },
+                date: {
+                  $gte: date,
+                },
+                type: CalendarEventEvent.BATTLE,
+              },
+              limit: 2,
+              sort: {
+                date: 1,
+              },
+            })
+            .pipe(
+              map((result) => {
+                return result[0].event.winner ? result[1] : result[0];
+              }),
+              tap((nextBattle) => {
+                this.dayToNextBattle = this.getDayToNextBattle(
+                  new Date(nextBattle.date)
+                );
+              })
+            );
         })
       )
-      .subscribe((date) => {
-        this.actualDate = date;
-        this.nextBattle$ = this.calendarEventQueriesService
-          .list({
-            custom: {
-              trainers: {
-                $in: this.player._id,
-              },
-              date: {
-                $gte: date,
-              },
-              type: CalendarEventEvent.BATTLE,
-            },
-            limit: 2,
-            sort: {
-              date: 1,
-            },
-          })
-          .pipe(
-            map((result) => {
-              return result[0].event.winner ? result[1] : result[0];
-            }),
-            tap((nextBattle) => {
-              this.dayToNextBattle = this.getDayToNextBattle(
-                new Date(nextBattle.date)
-              );
-            })
-          );
+      .subscribe((nextBattle) => {
+        this.nextBattle = nextBattle;
       });
   }
 
