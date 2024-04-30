@@ -283,7 +283,7 @@
   "CHIP-AWAY": "Attrition",
   "CHLOROBLAST": "Chloroblast",
   "CHOOSE": "Choisir",
-  "CHOOSE_THIS_POKEMON": "Vous choisissez {{name}}",
+  "CHOOSE_THESE_POKEMON": "Vous choisissez {{first}}, {{sec}} et {{third}}",
   "CINCCINO": "Pashmilla",
   "CINDERACE": "Pyrobut",
   "CIRCLE-THROW": "Projection",

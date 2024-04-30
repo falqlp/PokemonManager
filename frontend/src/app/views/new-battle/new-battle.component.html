@@ -92,7 +92,10 @@
               ? 'battle__scene__opponent__pokemon__image__pokemon--moving'
               : '',
             'battle__scene__opponent__pokemon__image__pokemon--' +
-              opponent.pokemons.length
+              opponent.pokemons.length,
+            opponentPokemon.currentHp === 0
+              ? 'battle__scene__opponent__pokemon__image__pokemon--ko'
+              : ''
           ]"
           [pokemon]="opponentPokemon"
           type="thumbnails" />
@@ -124,6 +127,9 @@
           [ngClass]="[
             playerPokemon.moving
               ? 'battle__scene__player__pokemon__image__pokemon--moving'
+              : '',
+            playerPokemon.currentHp === 0
+              ? 'battle__scene__player__pokemon__image__pokemon--ko'
               : '',
             'battle__scene__player__pokemon__image__pokemon--' +
               player.pokemons.length

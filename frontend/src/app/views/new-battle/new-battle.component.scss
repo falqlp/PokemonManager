@@ -94,6 +94,9 @@
             position: relative;
 
             &__pokemon {
+              &--ko {
+                filter: grayscale(100%);
+              }
               height: 130px;
               &--moving {
                 animation: moveUpDown 0.8s infinite ease-in-out;
@@ -140,7 +143,6 @@
         justify-content: right;
 
         &__pokemon {
-          //width: 14%;
           &--1,
           &--2 {
             width: 40%;
@@ -160,6 +162,9 @@
             position: relative;
 
             &__pokemon {
+              &--ko {
+                filter: grayscale(100%);
+              }
               &--moving {
                 animation: moveUpDown 0.8s infinite ease-in-out;
               }

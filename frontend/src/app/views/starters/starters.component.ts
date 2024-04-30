@@ -3,7 +3,6 @@ import { PokemonQueriesService } from '../../services/queries/pokemon-queries.se
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter, first } from 'rxjs';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
-import { NgForOf, NgIf } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -14,16 +13,20 @@ import { ChangeNicknameComponent } from '../../modals/change-nickname/change-nic
 import { PlayerService } from '../../services/player.service';
 import { RouterService } from '../../services/router.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgClass } from '@angular/common';
+import { MatRippleModule } from '@angular/material/core';
 
 @Component({
   selector: 'pm-starters',
   standalone: true,
   imports: [
-    NgIf,
     DisplayPokemonImageComponent,
-    NgForOf,
     MatButtonModule,
     TranslateModule,
+    MatCheckboxModule,
+    NgClass,
+    MatRippleModule,
   ],
   templateUrl: './starters.component.html',
   styleUrl: './starters.component.scss',
@@ -31,6 +34,7 @@ import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 export class StartersComponent implements OnInit {
   protected starters: PokemonModel[];
   protected player: TrainerModel;
+  protected selected: PokemonModel[] = [];
   constructor(
     protected pokemonService: PokemonQueriesService,
     protected destroyRef: DestroyRef,
@@ -58,44 +62,33 @@ export class StartersComponent implements OnInit {
       });
   }
 
+  protected findPokemon(pokemon: PokemonModel): boolean {
+    return !!this.selected.find(
+      (selectedEl) => selectedEl.basePokemon.id === pokemon.basePokemon.id
+    );
+  }
+
   protected selectPokemon(pokemon: PokemonModel): void {
-    pokemon.trainerId = this.player._id;
+    if (!this.findPokemon(pokemon)) {
+      this.selected.push(pokemon);
+    } else {
+      this.selected = this.selected.filter(
+        (selectedEl) => selectedEl.basePokemon.id !== pokemon.basePokemon.id
+      );
+    }
+  }
+
+  protected chooseStarters(): void {
     const selectLambda = (): void => {
+      this.selected.map((pokemon) => {
+        pokemon.trainerId = this.player._id;
+        return pokemon;
+      });
       this.pokemonService
-        .create(pokemon)
+        .createStarters(this.selected)
         .pipe(first())
-        .subscribe((newPokemon) => {
-          const lambdaButtons: DialogButtonsModel[] = [
-            {
-              label: 'YES',
-              color: 'warn',
-              close: true,
-              click: (): void => {
-                this.matDialog
-                  .open(ChangeNicknameComponent, {
-                    data: newPokemon,
-                  })
-                  .afterClosed()
-                  .subscribe(() => {
-                    this.router.navigateByUrl('home');
-                  });
-              },
-            },
-            {
-              label: 'NO',
-              color: 'primary',
-              close: true,
-              click: (): void => {
-                this.router.navigateByUrl('home');
-              },
-            },
-          ];
-          this.matDialog.open(GenericDialogComponent, {
-            data: {
-              message: 'WANT_CHANGE_NICKNAME',
-              buttons: lambdaButtons,
-            },
-          });
+        .subscribe(() => {
+          this.router.navigateByUrl('home');
         });
     };
     const buttons: DialogButtonsModel[] = [
@@ -114,8 +107,14 @@ export class StartersComponent implements OnInit {
     this.matDialog.open(GenericDialogComponent, {
       data: {
         buttons,
-        message: this.translateService.instant('CHOOSE_THIS_POKEMON', {
-          name: this.translateService.instant(pokemon.basePokemon.name),
+        message: this.translateService.instant('CHOOSE_THESE_POKEMON', {
+          first: this.translateService.instant(
+            this.selected[0].basePokemon.name
+          ),
+          sec: this.translateService.instant(this.selected[1].basePokemon.name),
+          third: this.translateService.instant(
+            this.selected[2].basePokemon.name
+          ),
         }),
       },
     });

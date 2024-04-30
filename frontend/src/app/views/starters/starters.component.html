@@ -1,12 +1,20 @@
-<div *ngIf="starters" class="starters">
-  <div *ngFor="let starter of starters" class="starters__starter">
+@if (starters) {
+<div class="starters">
+  @for (starter of starters; track starter.basePokemon.id) {
+  <div
+    class="starters__starter"
+    mat-ripple
+    [ngClass]="findPokemon(starter) ? 'starters__starter--selected' : ''"
+    (click)="selectPokemon(starter)">
     <app-display-pokemon-image [pokemon]="starter" type="max-size" />
-    <button
-      mat-flat-button
-      color="warn"
-      [disabled]="player.pokemons.length !== 0"
-      (click)="selectPokemon(starter)">
-      {{ 'CHOOSE' | translate }}
-    </button>
   </div>
+  }
 </div>
+<button
+  mat-flat-button
+  color="warn"
+  (click)="chooseStarters()"
+  [disabled]="player.pokemons.length !== 0 || selected.length !== 3">
+  {{ 'CHOOSE' | translate }}
+</button>
+}

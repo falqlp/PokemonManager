@@ -5,6 +5,7 @@ import EffectivenessService from "../../application/pokemon/EffectivenessService
 import PokemonService from "../../application/pokemon/PokemonService";
 import PokemonMapper from "./PokemonMapper";
 import { container } from "tsyringe";
+import { IPokemon } from "../../domain/pokemon/Pokemon";
 const effectivenessService = container.resolve(EffectivenessService);
 const pokemonService = container.resolve(PokemonService);
 const pokemonMapper = container.resolve(PokemonMapper);
@@ -29,6 +30,17 @@ router.get("/starters", async (req: Request, res: Response, next) => {
     const starters = await pokemonService.generateStarters(gameId);
     starters.map((starter) => pokemonMapper.mapStarters(starter));
     res.status(200).json(starters);
+  } catch (err) {
+    next(err);
+  }
+});
+router.post("/starters", async (req: Request, res: Response, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    for (const pokemon of req.body.starters as IPokemon[]) {
+      await pokemonService.create(pokemon, gameId);
+    }
+    res.status(200).json();
   } catch (err) {
     next(err);
   }

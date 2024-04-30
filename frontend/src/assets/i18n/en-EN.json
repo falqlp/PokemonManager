@@ -288,7 +288,7 @@
   "CHIP-AWAY": "Chip Away",
   "CHLOROBLAST": "Chloroblast",
   "CHOOSE": "Choose",
-  "CHOOSE_THIS_POKEMON": "You choose {{name}}",
+  "CHOOSE_THESE_POKEMON": "You choose {{first}}, {{sec}} and {{third}}",
   "CINCCINO": "Cinccino",
   "CINDERACE": "Cinderace",
   "CIRCLE-THROW": "Circle Throw",

@@ -62,10 +62,6 @@ class PokemonService {
     } else {
       newPokemon = await this.createPokemon(pokemon, gameId, actualDate);
     }
-    if (!pokemon.hiddenPotential) {
-      pokemon.hiddenPotential =
-        this.pokemonUtilsService.generateHiddenPotential(pokemon.potential);
-    }
     newPokemon.shiny = this.pokemonUtilsService.generateShiny();
     return this.savePokemon(newPokemon, gameId);
   }
@@ -110,6 +106,10 @@ class PokemonService {
     );
     if (!pokemon.potential) {
       pokemon.potential = 100;
+    }
+    if (!pokemon.hiddenPotential) {
+      pokemon.hiddenPotential =
+        this.pokemonUtilsService.generateHiddenPotential(pokemon.potential);
     }
     pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
     pokemon.maxLevel = pokemon.level;

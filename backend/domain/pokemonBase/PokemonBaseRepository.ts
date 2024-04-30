@@ -34,7 +34,7 @@ class PokemonBaseRepository extends ReadOnlyRepository<IPokemonBase> {
       legendary: { $not: { $eq: true } },
       "evolution.evolution": { $ne: [] },
     });
-    const dtos = sample<IPokemonBase>(await aggregation, 3, seed);
+    const dtos = sample<IPokemonBase>(await aggregation, 6, seed);
     return dtos.map((pokemon: IPokemonBase) => {
       delete (pokemon as any).evolution;
       return pokemon;

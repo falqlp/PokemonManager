@@ -74,7 +74,7 @@ class GameService {
     const res = await this.trainerService.generateTrainersPokemons(
       gameId,
       generatedTrainers,
-      { max: 2, min: 1 },
+      { max: 4, min: 2 },
       { max: 8, min: 3 },
     );
     await this.pokemonService.createPokemons(res.pokemons, gameId);
