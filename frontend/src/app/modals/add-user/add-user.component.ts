@@ -54,9 +54,7 @@ export class AddUserComponent {
     this.userQueriesService
       .create({ username: addUser.username, password: addUser.password })
       .subscribe(() => {
-        this.notifierService.notify(
-          this.translateService.instant('ACCOUNT_CREATED')
-        );
+        this.notifierService.notify('ACCOUNT_CREATED');
         this.dialogRef.close();
       });
   }

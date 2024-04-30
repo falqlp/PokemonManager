@@ -48,6 +48,7 @@ export interface PokemonModel {
   age: number;
   birthday: Date;
   nature: PokemonNature;
+  strategy: number[];
 }
 
 export const POKEMON_NATURES: Record<PokemonNature, PokemonStatsModel> = {

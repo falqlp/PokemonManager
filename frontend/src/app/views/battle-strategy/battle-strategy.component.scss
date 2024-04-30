@@ -1,0 +1,35 @@
+@import 'src/styles/flexbox';
+
+.battle-strategy {
+  @include flexbox(left, 2, column);
+  gap: 10px;
+  &__pokemon {
+    @include flexbox(space-between, 1);
+    width: -webkit-fill-available;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: auto;
+    &__infos {
+      display: flex;
+      align-items: center;
+    }
+    &__move-form {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      &__moves {
+        flex: 1;
+        &__move {
+          display: flex;
+          align-items: center;
+        }
+      }
+      &__actions {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+  }
+}

@@ -55,8 +55,13 @@ export class SidenavComponent {
       ],
     },
     {
-      name: 'Trainer Structures',
+      name: 'Trainer relative',
       navs: [
+        {
+          link: 'battle-strategy',
+          label: 'BATTLE-STRATEGY',
+          icon: 'military_tech',
+        },
         {
           link: 'pcStorage',
           label: 'PC-STORAGE',

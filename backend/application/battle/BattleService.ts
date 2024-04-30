@@ -154,7 +154,7 @@ class BattleService {
       battleOrder,
     );
     attPokemon.moving = true;
-    const selectedMove = getRandomFromArray(attPokemon.moves);
+    const selectedMove = this.selectMove(attPokemon.moves, attPokemon.strategy);
 
     const { damage, maxDamagedPokemon } = this.conductBattleRound(
       attPokemon,
@@ -172,6 +172,25 @@ class BattleService {
     );
 
     return { player, opponent, battleOrder, damage };
+  }
+
+  private selectMove(moves: IMove[], strategy: number[]): IMove {
+    if (
+      !strategy ||
+      strategy.length === 0 ||
+      strategy.length !== moves.length
+    ) {
+      return getRandomFromArray(moves);
+    }
+    const randomValue = Math.random();
+    let percentageSum = 0;
+    for (let i = 0; i < strategy.length; i++) {
+      percentageSum += strategy[i] / 100;
+      if (randomValue < percentageSum) {
+        return moves[i];
+      }
+    }
+    return moves[0];
   }
 
   private getMaxDamagedPokemon(

@@ -1,0 +1,44 @@
+@if (player){
+<div class="battle-strategy">
+  @for (pokemon of player.pokemons; track pokemon._id; let i =$index){
+  <div class="battle-strategy__pokemon">
+    <div class="battle-strategy__pokemon__infos">
+      <app-display-pokemon-image type="thumbnails" [pokemon]="pokemon" />
+      <pm-display-type
+        [types]="pokemon.basePokemon.types"
+        [displayText]="false" />
+      <span>{{
+        pokemon.nickname ?? pokemon.basePokemon.name | translate
+      }}</span>
+    </div>
+    <div class="battle-strategy__pokemon__move-form">
+      <div class="battle-strategy__pokemon__move-form__moves">
+        @for (move of pokemon.moves;track move._id; let j = $index) {
+        <div class="battle-strategy__pokemon__move-form__moves__move">
+          <pm-move [move]="move" />
+          <mat-slider color="accent" max="100" min="10" discrete step="10">
+            <input
+              matSliderThumb
+              [formControl]="form.controls.at(i).controls.at(j)" />
+          </mat-slider>
+          <span>{{ form.controls.at(i).controls.at(j).value }}%</span>
+        </div>
+        }
+      </div>
+      <div class="battle-strategy__pokemon__move-form__actions">
+        <button
+          [disabled]="form.controls.at(i).errors"
+          mat-flat-button
+          (click)="save(i)"
+          color="warn">
+          {{ 'SAVE' | translate }}
+        </button>
+        <button mat-flat-button (click)="modifyMove(pokemon)" color="warn">
+          {{ 'CHANGE_MOVES' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+}

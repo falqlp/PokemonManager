@@ -13,6 +13,7 @@ import { PokedexComponent } from './views/pokedex/pokedex.component';
 import { EventsComponent } from './views/events/events.component';
 import { StartersComponent } from './views/starters/starters.component';
 import { NewBattleComponent } from './views/new-battle/new-battle.component';
+import { BattleStrategyComponent } from './views/battle-strategy/battle-strategy.component';
 
 export const routes: Routes = [
   { path: '404Error', component: ErrorComponent },
@@ -38,6 +39,12 @@ export const routes: Routes = [
     path: 'battle-resume',
     component: BattleResumeComponent,
     data: { title: 'BATTLE-RESUME' },
+    canActivate: [GameGuard],
+  },
+  {
+    path: 'battle-strategy',
+    component: BattleStrategyComponent,
+    data: { title: 'BATTLE-STRATEGY' },
     canActivate: [GameGuard],
   },
   {

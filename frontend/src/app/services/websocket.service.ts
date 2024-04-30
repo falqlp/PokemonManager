@@ -120,10 +120,7 @@ export class WebsocketService {
         );
         break;
       case 'notify':
-        this.notifierService.notify(
-          this.translateService.instant(message.payload.key),
-          message.payload.type
-        );
+        this.notifierService.notify(message.payload.key, message.payload.type);
         break;
       case 'eggHatched':
         setTimeout(() => {

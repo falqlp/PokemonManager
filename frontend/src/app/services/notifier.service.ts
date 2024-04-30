@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 export enum NotificationType {
   Neutral = 'Neutral',
@@ -11,9 +12,13 @@ export enum NotificationType {
   providedIn: 'root',
 })
 export class NotifierService {
-  constructor(protected snackBar: MatSnackBar) {}
+  constructor(
+    protected snackBar: MatSnackBar,
+    protected translateService: TranslateService
+  ) {}
+
   public notify(msg: string, type?: NotificationType): void {
-    this.snackBar.open(msg, 'Ok', {
+    this.snackBar.open(this.translateService.instant(msg), 'Ok', {
       verticalPosition: 'bottom',
       horizontalPosition: 'right',
       duration: 3000,

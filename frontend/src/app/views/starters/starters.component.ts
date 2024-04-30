@@ -9,7 +9,6 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GenericDialogComponent } from '../../modals/generic-dialog/generic-dialog.component';
 import { DialogButtonsModel } from '../../modals/generic-dialog/generic-dialog.models';
-import { ChangeNicknameComponent } from '../../modals/change-nickname/change-nickname.component';
 import { PlayerService } from '../../services/player.service';
 import { RouterService } from '../../services/router.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';

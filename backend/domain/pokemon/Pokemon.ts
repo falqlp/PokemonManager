@@ -52,6 +52,7 @@ export interface IPokemon extends MongoId {
   hiddenPotential: string;
   shiny: boolean;
   nature: PokemonNature;
+  strategy: number[];
 }
 
 const pokemonSchema = new Schema<IPokemon>({
@@ -75,6 +76,7 @@ const pokemonSchema = new Schema<IPokemon>({
   hiddenPotential: { type: String, required: true },
   shiny: { type: Boolean },
   nature: { type: String, required: true },
+  strategy: [{ type: Number }],
 });
 
 const Pokemon = mongoose.model<IPokemon>("Pokemon", pokemonSchema);

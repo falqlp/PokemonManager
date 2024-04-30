@@ -27,6 +27,7 @@ class PokemonService {
     const oldPokemon = await this.pokemonRepository.get(_id);
     pokemon.ev = pokemon.ev ?? oldPokemon.ev;
     pokemon.iv = pokemon.iv ?? oldPokemon.iv;
+    pokemon.strategy = pokemon.strategy ?? oldPokemon.strategy ?? [];
     pokemon.basePokemon = pokemon.basePokemon ?? oldPokemon.basePokemon;
     pokemon.nature = pokemon.nature ?? oldPokemon.nature ?? PokemonNature.HARDY;
     pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
@@ -110,6 +111,9 @@ class PokemonService {
     if (!pokemon.hiddenPotential) {
       pokemon.hiddenPotential =
         this.pokemonUtilsService.generateHiddenPotential(pokemon.potential);
+    }
+    if (!pokemon.strategy) {
+      pokemon.strategy = [];
     }
     pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
     pokemon.maxLevel = pokemon.level;

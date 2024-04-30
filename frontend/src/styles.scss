@@ -7,6 +7,8 @@
 @import './styles/palette-theme';
 @import 'src/styles/colors';
 
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 @include mat.core();
 
 $pokemon-manager-primary: mat.define-palette($primary-palette);
