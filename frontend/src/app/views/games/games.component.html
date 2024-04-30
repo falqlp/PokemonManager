@@ -26,6 +26,14 @@
         </div>
       </td>
     </ng-container>
+    <ng-container matColumnDef="playingTime">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ 'PLAYING_TIME' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ formatPlayingTime(element.playingTime) }}
+      </td>
+    </ng-container>
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element" class="games__table__icons">

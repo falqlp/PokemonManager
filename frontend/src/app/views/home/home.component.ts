@@ -7,7 +7,7 @@ import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { PokemonQueriesService } from 'src/app/services/queries/pokemon-queries.service';
 import { AddCalendarEventComponent } from '../../modals/add-calendar-event/add-calendar-event.component';
-import { map, switchMap, tap } from 'rxjs';
+import { filter, map, switchMap, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { TimeService } from '../../services/time.service';
@@ -63,6 +63,7 @@ export class HomeComponent implements OnInit {
   public ngOnInit(): void {
     this.playerService.player$
       .pipe(
+        filter((player) => !!player),
         switchMap((player) => {
           this.player = player;
           return this.timeService.getActualDate();

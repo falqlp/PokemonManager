@@ -18,6 +18,8 @@ class WebsocketServerService {
   private wss: WebSocketServer;
   private clients: { [gameId: string]: WebSocket[] } = {};
 
+  constructor(protected gameRepository: GameRepository) {}
+
   public initializeWebSocketServer(server: any): void {
     this.wss = new WebSocketServer({ server });
     this.wss.on("connection", (ws: WebSocket) => {
@@ -30,18 +32,23 @@ class WebsocketServerService {
           }
           this.clients[gameId].push(ws);
           (ws as any).gameId = gameId;
+          (ws as any).startTime = Date.now();
         }
       });
-      ws.on("message", (message: string) => {
+      ws.on("message", async (message: string) => {
         const parsedMessage = JSON.parse(message);
         if (parsedMessage.type === "deleteRegistration") {
           const gameId = parsedMessage.payload.gameId;
           if (this.clients[gameId]) {
             delete this.clients[gameId];
           }
+          await this.gameRepository.updatePlayingTime(
+            gameId,
+            Date.now() - (ws as any).startTime,
+          );
         }
       });
-      ws.on("close", () => {
+      ws.on("close", async () => {
         const gameId = (ws as any).gameId;
         if (gameId && this.clients[gameId]) {
           const index = this.clients[gameId].indexOf(ws);
@@ -51,6 +58,10 @@ class WebsocketServerService {
               delete this.clients[gameId];
             }
           }
+          await this.gameRepository.updatePlayingTime(
+            gameId,
+            Date.now() - (ws as any).startTime,
+          );
         }
       });
       ws.send(

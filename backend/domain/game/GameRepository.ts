@@ -32,6 +32,17 @@ class GameRepository extends CompleteRepository<IGame> {
     }
     return super.delete(_id);
   }
+
+  public async updatePlayingTime(
+    gameId: number,
+    sessionTime: number,
+  ): Promise<void> {
+    if (sessionTime) {
+      await this.schema.findByIdAndUpdate(gameId, {
+        $inc: { playingTime: sessionTime },
+      });
+    }
+  }
 }
 
 export default GameRepository;

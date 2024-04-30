@@ -44,6 +44,7 @@ export class GamesComponent implements OnInit {
     'actualDate',
     'player',
     'pokemons',
+    'playingTime',
     'play',
     'delete',
   ];
@@ -88,5 +89,19 @@ export class GamesComponent implements OnInit {
         this.user = user;
         this.gameSubject.next(user.games);
       });
+  }
+
+  protected formatPlayingTime(time: number): string {
+    if (!time) {
+      return '00:00';
+    }
+    const minutes = Math.floor(time / 60000);
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    const formattedHours = hours < 10 ? '0' + hours : hours;
+    const formattedMinutes =
+      remainingMinutes < 10 ? '0' + remainingMinutes : remainingMinutes;
+
+    return `${formattedHours}:${formattedMinutes}`;
   }
 }
