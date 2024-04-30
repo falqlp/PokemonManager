@@ -18,6 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PokemonResumeComponent } from '../../components/pokemon-resume/pokemon-resume.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { BadgeDataService } from '../../services/badge.data.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-pc-storage',
@@ -33,6 +34,7 @@ import { BadgeDataService } from '../../services/badge.data.service';
     NgIf,
     PokemonResumeComponent,
     MatBadgeModule,
+    MatIconModule,
   ],
 })
 export class PcStorageComponent implements OnInit {

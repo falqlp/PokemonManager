@@ -1,10 +1,10 @@
 <img
-  *ngFor="let type of typesArray"
+  *ngFor="let type of typesArray()"
   class="type-displayText"
-  [ngClass]="displayText ? 'type-displayText' : 'icon-type'"
+  [ngClass]="displayText() ? 'type-displayText' : 'icon-type'"
   [src]="
     'assets/types/' +
-    (displayText ? 'displayText' : 'simple') +
+    (displayText() ? 'displayText' : 'simple') +
     '/' +
     type +
     '.png'

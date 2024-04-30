@@ -27,6 +27,10 @@
       <button mat-flat-button color="accent" (click)="switchPokemon()">
         {{ 'SWAP' | translate }}
       </button>
+      <div class="pc-storage__main-part__buttons__info">
+        <mat-icon>info</mat-icon
+        ><span>{{ 'PC_STORAGE_INFO' | translate }}</span>
+      </div>
     </div>
     <div class="pc-storage__main-part__box" *ngIf="pcStorage">
       <div

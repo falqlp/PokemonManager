@@ -1,7 +1,9 @@
 <div class="pokemon-resume">
-  <div class="pokemon-resume__title" [ngClass]="pokemon.basePokemon?.types[0]">
+  <div
+    class="pokemon-resume__title"
+    [ngClass]="pokemon().basePokemon?.types[0]">
     <span class="pokemon-resume__title__nickname">{{
-      pokemon.nickname ?? (pokemon.basePokemon?.name ?? 'EGG' | translate)
+      pokemon().nickname ?? (pokemon().basePokemon?.name ?? 'EGG' | translate)
     }}</span>
     <mat-icon (click)="editNickname()">edit</mat-icon>
   </div>
@@ -10,25 +12,25 @@
     <div class="pokemon-resume__content__main-infos">
       <app-display-pokemon-image
         class="pokemon-resume__content__main-infos__image"
-        [pokemon]="pokemon"
+        [pokemon]="pokemon()"
         type="max-size" />
       <div class="pokemon-resume__content__main-infos__types">
-        <pm-display-type [types]="pokemon.basePokemon.types" />
+        <pm-display-type [types]="pokemon().basePokemon.types" />
       </div>
       <div class="pokemon-resume__content__main-infos__level">
-        <span>{{ 'LVL' | translate }}: {{ pokemon.level }}</span>
-        <progress-bar [currentProgress]="pokemon.exp" [max]="100000" />
+        <span>{{ 'LVL' | translate }}: {{ pokemon().level }}</span>
+        <progress-bar [currentProgress]="pokemon().exp" [max]="100000" />
       </div>
     </div>
     <swiper-container class="swiper" #swiperContainer init="false">
       <swiper-slide class="swiper__slide1">
-        <app-pokemon-stats [pokemon]="pokemon"></app-pokemon-stats>
+        <app-pokemon-stats [pokemon]="pokemon()"></app-pokemon-stats>
       </swiper-slide>
       <swiper-slide>
-        <pm-pokemon-resume-moves [pokemon]="pokemon" />
+        <pm-pokemon-resume-moves [pokemon]="pokemon()" />
       </swiper-slide>
       <swiper-slide>
-        <pm-pokemon-resume-infos [pokemon]="pokemon" />
+        <pm-pokemon-resume-infos [pokemon]="pokemon()" />
       </swiper-slide>
     </swiper-container>
   </div>

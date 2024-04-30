@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, computed, input, Input } from '@angular/core';
 import { NgClass, NgForOf } from '@angular/common';
 
 @Component({
@@ -8,12 +8,12 @@ import { NgClass, NgForOf } from '@angular/common';
   templateUrl: './display-type.component.html',
   styleUrls: ['./display-type.component.scss'],
 })
-export class DisplayTypeComponent implements OnInit {
-  @Input() public types: string[] | string;
-  @Input() public displayText = true;
-  public typesArray: string[];
-
-  public ngOnInit(): void {
-    this.typesArray = Array.isArray(this.types) ? this.types : [this.types];
-  }
+export class DisplayTypeComponent {
+  public types = input<string[] | string>();
+  public displayText = input<boolean>(true);
+  public typesArray = computed(() => {
+    return Array.isArray(this.types())
+      ? (this.types() as string[])
+      : [this.types() as string];
+  });
 }

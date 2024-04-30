@@ -3,7 +3,7 @@ import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
-  Input,
+  input,
   ViewChild,
 } from '@angular/core';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
@@ -42,16 +42,7 @@ import { PokemonResumeInfosComponent } from './pokemon-resume-infos/pokemon-resu
 export class PokemonResumeComponent implements AfterViewInit {
   @ViewChild('swiperContainer') protected swiperContainer: ElementRef;
   protected swiper = Swiper;
-  @Input()
-  public set pokemon(value: PokemonModel) {
-    this._pokemon = value;
-  }
-
-  public get pokemon(): PokemonModel {
-    return this._pokemon;
-  }
-
-  protected _pokemon: PokemonModel;
+  public pokemon = input<PokemonModel>();
 
   constructor(protected dialog: MatDialog) {}
 

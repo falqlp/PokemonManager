@@ -29,6 +29,18 @@
     &__buttons {
       display: flex;
       gap: 10px;
+      align-items: center;
+      &__info {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        gap: 5px;
+        background-color: $orange-light;
+        border-radius: 5px;
+        gap: 10px;
+        padding: 5px;
+        width: -webkit-fill-available;
+      }
     }
     &__box {
       display: grid;
@@ -58,7 +70,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: calc(100% - 794px);
+    width: calc(100% - 875px);
     &__box {
       flex: 1;
       height: 0;
