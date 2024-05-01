@@ -6,12 +6,9 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
 import { BattlePokemonModel, BattleTrainerModel } from './battle.model';
-import { ProgressBarComponent } from '../../components/progress-bar/progress-bar.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { BattleDailyFormComponent } from './battle-daily-form/battle-daily-form.component';
 import { NgClass } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { BattleQueriesService } from './battle-queries.service';
@@ -23,21 +20,22 @@ import { PlayerService } from '../../services/player.service';
 import { combineLatest } from 'rxjs';
 import { Router } from '@angular/router';
 import { TrainerNameComponent } from '../../components/trainer-name/trainer-name.component';
+import { BattleSceneComponent } from './components/battle-scene/battle-scene.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'pm-new-battle',
   standalone: true,
   imports: [
-    DisplayPokemonImageComponent,
-    ProgressBarComponent,
     TranslateModule,
-    BattleDailyFormComponent,
     NgClass,
     MatButtonModule,
     MatListModule,
     MatIconModule,
     MatCardModule,
     TrainerNameComponent,
+    BattleSceneComponent,
+    MatTooltipModule,
   ],
   templateUrl: './new-battle.component.html',
   styleUrl: './new-battle.component.scss',
