@@ -14,9 +14,19 @@ import { EventsComponent } from './views/events/events.component';
 import { StartersComponent } from './views/starters/starters.component';
 import { NewBattleComponent } from './views/new-battle/new-battle.component';
 import { BattleStrategyComponent } from './views/battle-strategy/battle-strategy.component';
+import { VerifyEmailComponent } from './views/verify-email/verify-email.component';
+import { ChangePasswordComponent } from './views/change-password/change-password.component';
 
 export const routes: Routes = [
   { path: '404Error', component: ErrorComponent },
+  {
+    path: 'verify-email/:id',
+    component: VerifyEmailComponent,
+  },
+  {
+    path: 'change-password/:id',
+    component: ChangePasswordComponent,
+  },
   {
     path: 'home',
     component: HomeComponent,

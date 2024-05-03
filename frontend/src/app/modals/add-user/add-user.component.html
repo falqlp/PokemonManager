@@ -7,6 +7,23 @@
       name="username"
       autocomplete="username"
       [formControl]="addUserForm.controls.username" />
+    @if (addUserForm.controls.email.hasError('usernameTaken')){
+    <mat-error>{{ 'USERNAME_ALREADY_USED' | translate }}</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>{{ 'EMAIL' | translate }}</mat-label>
+    <input
+      matInput
+      type="email"
+      name="email"
+      autocomplete="email"
+      [formControl]="addUserForm.controls.email" />
+    @if (addUserForm.controls.email.hasError('invalidEmail')){
+    <mat-error>{{ 'ENTER_VALID_EMAIL' | translate }}</mat-error>
+    } @else if (addUserForm.controls.email.hasError('emailTaken')){
+    <mat-error>{{ 'EMAIL_ALREADY_USED' | translate }}</mat-error>
+    }
   </mat-form-field>
   <mat-form-field>
     <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
@@ -24,11 +41,11 @@
       type="password"
       [formControl]="addUserForm.controls.verifyPassword" />
   </mat-form-field>
-
-  <div *ngIf="addUserForm.errors?.['passwordsNotMatching']">
-    {{ 'PASSWORD_DO_NOT_MATCH' | translate }}
-  </div>
-
+  <mat-checkbox [formControl]="addUserForm.controls.subscribeToNewsletter" />
+  <mat-label>{{ 'SUBSCRIBE_TO_NEWSLETTER' | translate }}</mat-label>
+  @if (addUserForm.hasError('passwordsNotMatching')){
+  <mat-error>{{ 'PASSWORD_DO_NOT_MATCH' | translate }}</mat-error>
+  }
   <div mat-dialog-actions class="add-user__buttons">
     <button mat-flat-button [disabled]="addUserForm.invalid" type="submit">
       {{ 'CREATE_ACCOUNT' | translate }}

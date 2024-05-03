@@ -15,6 +15,7 @@ import { AddUserComponent } from '../../modals/add-user/add-user.component';
 import { MatInputModule } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
+import { ForgottenPasswordComponent } from '../../modals/forgotten-password/forgotten-password.component';
 
 @Component({
   selector: 'app-login',
@@ -65,5 +66,9 @@ export class LoginComponent implements OnInit {
 
   protected createAccount(): void {
     this.dialog.open(AddUserComponent);
+  }
+
+  protected forgottenPassword(): void {
+    this.dialog.open(ForgottenPasswordComponent);
   }
 }

@@ -5,4 +5,7 @@ export interface UserModel {
   password?: string;
   _id?: string;
   games?: GameModel[];
+  email: string;
+  verified: boolean;
+  subscribeToNewsletter: boolean;
 }

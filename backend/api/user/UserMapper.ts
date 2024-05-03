@@ -8,7 +8,7 @@ class UserMapper implements IMapper<IUser> {
   constructor(protected gameMapper: GameMapper) {}
 
   public map(dto: IUser): IUser {
-    dto.games.map((value) => this.gameMapper.map(value));
+    dto.games?.map((value) => this.gameMapper.map(value));
     dto.password = undefined;
     return dto;
   }

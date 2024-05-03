@@ -7,6 +7,9 @@ export interface IUser extends MongoId, IEntity {
   username: string;
   password: string;
   games?: IGame[];
+  email: string;
+  verified?: boolean;
+  subscribeToNewsletter: boolean;
 }
 
 const userSchema = new Schema<IUser>({
@@ -14,6 +17,9 @@ const userSchema = new Schema<IUser>({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   games: [{ type: mongoose.Schema.Types.ObjectId, ref: "Game" }],
+  email: { type: String, required: true, unique: true },
+  verified: { type: Boolean },
+  subscribeToNewsletter: { type: Boolean },
 });
 
 const User = mongoose.model<IUser>("User", userSchema);

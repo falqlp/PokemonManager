@@ -14,6 +14,7 @@ import userRoutes from "./user/UserRoutes";
 import nurseryRoutes from "./nursery/NurseryRoutes";
 import pokedexRouter from "./pokedex/PokedexRouter";
 import competitionRoutes from "./competition/CompetitionRoutes";
+import passwordRequestRoutes from "./passwordRequest/PasswordRequestRoutes";
 import { Router } from "express";
 
 export const RoutesMap: Record<string, Router> = {
@@ -33,4 +34,5 @@ export const RoutesMap: Record<string, Router> = {
   nursery: nurseryRoutes,
   pokedex: pokedexRouter,
   competition: competitionRoutes,
+  "password-request": passwordRequestRoutes,
 };

@@ -18,14 +18,8 @@ export class CacheService {
   public init(): void {
     const gameId = localStorage.getItem('gameId');
     this.setGameId(gameId);
-    if (!gameId) {
-      this.router.navigateByUrl('games');
-    }
     const userId = localStorage.getItem('userId');
     this.setUserId(userId);
-    if (!userId) {
-      this.router.navigateByUrl('login');
-    }
   }
 
   public setUserId(id: string): void {
