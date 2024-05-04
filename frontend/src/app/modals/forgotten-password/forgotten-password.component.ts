@@ -55,6 +55,7 @@ export class ForgottenPasswordComponent {
       )
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
+        this.dialogRef.close();
         this.notifierService.notify(
           this.translateService.instant('MAIL_SENT_TO', {
             email: this.form.controls.email.value,
