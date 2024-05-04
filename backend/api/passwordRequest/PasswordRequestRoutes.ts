@@ -11,7 +11,12 @@ const userMapper = container.resolve(UserMapper);
 
 router.post("/", async (req, res, next) => {
   try {
-    await service.createPasswordRequest(req.body.username, req.body.email);
+    const lang = req.headers["lang"] as string;
+    await service.createPasswordRequest(
+      req.body.username,
+      req.body.email,
+      lang,
+    );
     res.status(200).json();
   } catch (error) {
     next(error);

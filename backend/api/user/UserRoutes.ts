@@ -16,7 +16,8 @@ const completeRouter = new CompleteRouter(
 
 router.post("/", async (req, res, next) => {
   try {
-    const obj = await service.create(req.body);
+    const lang = req.headers["lang"] as string;
+    const obj = await service.create(req.body, lang);
     res.status(200).json(obj);
   } catch (error: any) {
     if (error.message === "Bad email") {

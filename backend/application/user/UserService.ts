@@ -13,7 +13,7 @@ export class UserService {
     protected hashService: HashService,
   ) {}
 
-  public async create(user: IUser): Promise<IUser> {
+  public async create(user: IUser, lang: string): Promise<IUser> {
     if (user.password) {
       user.password = await this.hashService.hashPassword(user.password);
     }
@@ -24,7 +24,8 @@ export class UserService {
       throw new Error("Bad email");
     }
     const _id = new ObjectId();
-    this.mailService.sendVerifyUser(_id.toString(), user.email);
+    user._id = _id.toString();
+    this.mailService.sendVerifyUser(user, lang);
     return this.userRepository.create({
       ...user,
       _id: _id.toString(),

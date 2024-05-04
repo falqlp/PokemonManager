@@ -2,6 +2,10 @@ import { singleton } from "tsyringe";
 import { createTransport } from "nodemailer";
 import { MailOptions } from "nodemailer/lib/smtp-pool";
 import dotenv from "dotenv";
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+import fs from "fs";
+import path from "node:path";
+import { IUser } from "../../domain/user/User";
 
 dotenv.config();
 
@@ -19,12 +23,22 @@ export class MailService {
     });
   }
 
-  public sendVerifyUser(userId: string, mail: string): void {
+  public sendVerifyUser(user: IUser, lang: string): void {
+    let content = fs.readFileSync(
+      path.join(__dirname.replace("\\dist", ""), lang + "/verify-mail.html"),
+      "utf-8",
+    );
+    content = content.replace("username", user.username);
+    content = content.replace(
+      "link",
+      `${process.env.FRONT_URL}/verify-email/${user._id}`,
+    );
     const mailOptions: MailOptions = {
       from: this.mail,
-      to: mail,
-      subject: "Verify email",
-      html: `<a href="${process.env.FRONT_URL}/verify-email/${userId}">Verify</a>`,
+      to: user.email,
+      subject:
+        lang === "fr" ? "Vérification du compte" : "Account verification",
+      html: content,
     };
     this.transporter.sendMail(mailOptions, (error) => {
       if (error) {
@@ -33,12 +47,28 @@ export class MailService {
     });
   }
 
-  public sendModifyPassword(passwordRequestId: string, mail: string): void {
+  public sendModifyPassword(
+    passwordRequestId: string,
+    user: IUser,
+    lang: string,
+  ): void {
+    let content = fs.readFileSync(
+      path.join(
+        __dirname.replace("\\dist", ""),
+        lang + "/modify-password.html",
+      ),
+      "utf-8",
+    );
+    content = content.replace("username", user.username);
+    content = content.replace(
+      "link",
+      `${process.env.FRONT_URL}/change-password/${passwordRequestId}`,
+    );
     const mailOptions: MailOptions = {
       from: this.mail,
-      to: mail,
-      subject: "Change password",
-      html: `<a href="${process.env.FRONT_URL}/change-password/${passwordRequestId}">Change password</a>`,
+      to: user.email,
+      subject: lang === "fr" ? "Changement de mot de passe" : "Password change",
+      html: content,
     };
     this.transporter.sendMail(mailOptions, (error) => {
       if (error) {

@@ -14,6 +14,7 @@ export class PasswordRequestService {
   public async createPasswordRequest(
     username: string,
     email: string,
+    lang: string,
   ): Promise<void> {
     const user = await this.userRepository.list({
       custom: { username, email },
@@ -26,7 +27,8 @@ export class PasswordRequestService {
       });
       this.mailService.sendModifyPassword(
         passwordRequest._id.toString(),
-        user[0].email,
+        user[0],
+        lang,
       );
     }
   }
