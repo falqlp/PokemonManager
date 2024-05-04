@@ -1,4 +1,5 @@
 @if (starters) {
+<span>{{ 'SELECT_3_STARTERS' | translate }} {{ selected.length }}/3</span>
 <div class="starters">
   @for (starter of starters; track starter.basePokemon.id) {
   <div
