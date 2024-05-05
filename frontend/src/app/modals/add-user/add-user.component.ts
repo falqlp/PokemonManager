@@ -31,6 +31,7 @@ import { debounceTime, map, Observable, of } from 'rxjs';
 import { GenericDialogComponent } from '../generic-dialog/generic-dialog.component';
 import { DialogButtonsModel } from '../generic-dialog/generic-dialog.models';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { Languages } from '../../models/user.model';
 
 @Component({
   selector: 'pm-add-user',
@@ -88,6 +89,7 @@ export class AddUserComponent {
         email: addUser.email,
         verified: false,
         subscribeToNewsletter: addUser.subscribeToNewsletter,
+        lang: navigator.language as Languages,
       })
       .pipe(
         takeUntilDestroyed(this.destroyRef),

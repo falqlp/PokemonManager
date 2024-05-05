@@ -1,4 +1,8 @@
 import { GameModel } from './game.model';
+export enum Languages {
+  FR = 'fr-FR',
+  EN = 'en-EN',
+}
 
 export interface UserModel {
   username: string;
@@ -8,4 +12,5 @@ export interface UserModel {
   email: string;
   verified: boolean;
   subscribeToNewsletter: boolean;
+  lang: Languages;
 }

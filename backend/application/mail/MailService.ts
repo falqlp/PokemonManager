@@ -23,9 +23,12 @@ export class MailService {
     });
   }
 
-  public sendVerifyUser(user: IUser, lang: string): void {
+  public sendVerifyUser(user: IUser): void {
     let content = fs.readFileSync(
-      path.join(__dirname.replace("\\dist", ""), lang + "/verify-mail.html"),
+      path.join(
+        __dirname.replace("\\dist", ""),
+        user.lang + "/verify-mail.html",
+      ),
       "utf-8",
     );
     content = content.replace("username", user.username);
@@ -37,7 +40,9 @@ export class MailService {
       from: this.mail,
       to: user.email,
       subject:
-        lang === "fr" ? "Vérification du compte" : "Account verification",
+        user.lang === "fr-Fr"
+          ? "Vérification du compte"
+          : "Account verification",
       html: content,
     };
     this.transporter.sendMail(mailOptions, (error) => {

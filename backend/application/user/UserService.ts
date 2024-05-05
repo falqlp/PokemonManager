@@ -13,7 +13,7 @@ export class UserService {
     protected hashService: HashService,
   ) {}
 
-  public async create(user: IUser, lang: string): Promise<IUser> {
+  public async create(user: IUser): Promise<IUser> {
     if (user.password) {
       user.password = await this.hashService.hashPassword(user.password);
     }
@@ -25,7 +25,7 @@ export class UserService {
     }
     const _id = new ObjectId();
     user._id = _id.toString();
-    this.mailService.sendVerifyUser(user, lang);
+    this.mailService.sendVerifyUser(user);
     return this.userRepository.create({
       ...user,
       _id: _id.toString(),

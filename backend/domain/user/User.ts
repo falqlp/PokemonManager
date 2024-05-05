@@ -10,6 +10,7 @@ export interface IUser extends MongoId, IEntity {
   email: string;
   verified?: boolean;
   subscribeToNewsletter: boolean;
+  lang: string;
 }
 
 const userSchema = new Schema<IUser>({
@@ -18,6 +19,7 @@ const userSchema = new Schema<IUser>({
   password: { type: String, required: true },
   games: [{ type: mongoose.Schema.Types.ObjectId, ref: "Game" }],
   email: { type: String, required: true, unique: true },
+  lang: { type: String, required: true },
   verified: { type: Boolean },
   subscribeToNewsletter: { type: Boolean },
 });
