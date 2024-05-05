@@ -1,6 +1,7 @@
 import { IPokemon } from "../../domain/pokemon/Pokemon";
 import PokemonRepository from "../../domain/pokemon/PokemonRepository";
 import PcStorageService from "../../domain/pcStorage/PcStorageRepository";
+import PcStorageRepository from "../../domain/pcStorage/PcStorageRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import TrainerClassRepository from "../../domain/trainerClass/TrainerClassRepository";
 import { ITrainer } from "../../domain/trainer/Trainer";
@@ -18,7 +19,7 @@ import { ObjectId } from "mongodb";
 import { IPcStorage } from "../../domain/pcStorage/PcStorage";
 import { INursery } from "../../domain/nursery/Nursery";
 import { ITrainingCamp } from "../../domain/trainingCamp/TrainingCamp";
-import PcStorageRepository from "../../domain/pcStorage/PcStorageRepository";
+import { Gender } from "../../domain/Gender";
 
 @singleton()
 class TrainerService {
@@ -143,6 +144,11 @@ class TrainerService {
           trainingPercentage: 0,
           maxLevel: level,
           nature: this.pokemonUtilsService.getRandomNature(),
+          gender: basePokemon.genderRate
+            ? Math.random() < basePokemon.genderRate / 100
+              ? Gender.FEMALE
+              : Gender.MALE
+            : Gender.NONE,
         } as IPokemon;
         pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
         trainer.pokemons.push(pokemon);

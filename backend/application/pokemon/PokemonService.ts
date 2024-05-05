@@ -9,6 +9,7 @@ import GameRepository from "../../domain/game/GameRepository";
 import WebsocketServerService from "../../WebsocketServerService";
 import { singleton } from "tsyringe";
 import MoveLearningService from "../moveLearning/MoveLearningService";
+import { Gender } from "../../domain/Gender";
 
 @singleton()
 class PokemonService {
@@ -79,6 +80,16 @@ class PokemonService {
     }
     if (!pokemon.happiness) {
       pokemon.happiness = pokemon.basePokemon.baseHappiness;
+    }
+    if (!pokemon.gender) {
+      if (pokemon.basePokemon.genderRate) {
+        pokemon.gender =
+          Math.random() < pokemon.basePokemon.genderRate / 100
+            ? Gender.FEMALE
+            : Gender.MALE;
+      } else {
+        pokemon.gender = Gender.NONE;
+      }
     }
     if (pokemon.exp === undefined) {
       pokemon.exp = 0;

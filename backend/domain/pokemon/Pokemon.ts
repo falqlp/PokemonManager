@@ -3,6 +3,7 @@ import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import { IPokemonBase } from "../pokemonBase/PokemonBase";
 import { IMove } from "../move/Move";
 import { MongoId } from "../MongoId";
+import { Gender } from "../Gender";
 export enum PokemonNature {
   HARDY = "HARDY",
   LONELY = "LONELY",
@@ -53,6 +54,7 @@ export interface IPokemon extends MongoId {
   shiny: boolean;
   nature: PokemonNature;
   strategy: number[];
+  gender: Gender;
 }
 
 const pokemonSchema = new Schema<IPokemon>({
@@ -77,6 +79,7 @@ const pokemonSchema = new Schema<IPokemon>({
   shiny: { type: Boolean },
   nature: { type: String, required: true },
   strategy: [{ type: Number }],
+  gender: { type: String, required: true },
 });
 
 const Pokemon = mongoose.model<IPokemon>("Pokemon", pokemonSchema);

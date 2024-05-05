@@ -20,7 +20,7 @@
     "BUG"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -48,7 +48,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -72,7 +73,7 @@
     "BUG"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -98,7 +99,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -126,7 +127,7 @@
   ],
   "baby": true,
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -152,7 +153,7 @@
     "ELECTRIC"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -178,7 +179,7 @@
     "BUG"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -204,7 +205,7 @@
     "GRASS"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -230,7 +231,7 @@
     "DARK"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -256,7 +257,7 @@
     "NORMAL"
   ],
   "captureRate": 127,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -282,7 +283,7 @@
     "FAIRY"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -308,7 +309,7 @@
     "ELECTRIC"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -334,7 +335,7 @@
     "ROCK"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -361,7 +362,7 @@
     "NORMAL"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -388,7 +389,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -414,7 +415,7 @@
     "FIRE"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -440,7 +441,7 @@
     "BUG"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -467,7 +468,7 @@
     "WATER"
   ],
   "captureRate": 100,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -494,7 +495,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -518,7 +520,7 @@
     "BUG"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -544,7 +546,7 @@
     "BUG"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -571,7 +573,7 @@
     "POISON"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -598,7 +600,8 @@
   ],
   "captureRate": 35,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -624,7 +627,8 @@
   "captureRate": 45,
   "legendary": true,
   "baseHappiness": 0,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -650,7 +654,8 @@
   "captureRate": 45,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -674,7 +679,7 @@
     "BUG"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -700,7 +705,7 @@
     "BUG"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -727,7 +732,7 @@
     "FLYING"
   ],
   "captureRate": 120,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -753,7 +758,7 @@
     "BUG"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -780,7 +785,7 @@
     "FLYING"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -807,7 +812,7 @@
     "FLYING"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -833,7 +838,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -861,7 +866,8 @@
   "captureRate": 45,
   "baseHappiness": 0,
   "base": true,
-  "ultraBeast": true
+  "ultraBeast": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -885,7 +891,7 @@
     "GROUND"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -913,7 +919,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 0,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -937,7 +944,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -963,7 +970,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -989,7 +996,7 @@
     "FLYING"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -1015,7 +1022,7 @@
     "FLYING"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -1041,7 +1048,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -1068,7 +1075,7 @@
     "PSY"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -1094,7 +1101,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -1120,7 +1127,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -1146,7 +1153,7 @@
     "NORMAL"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -1173,7 +1180,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -1200,7 +1207,7 @@
     "POISON"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -1228,7 +1235,8 @@
   ],
   "captureRate": 3,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -1253,7 +1261,7 @@
     "PSY"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -1279,7 +1287,7 @@
     "DARK"
   ],
   "captureRate": 127,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -1306,7 +1314,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -1333,7 +1341,7 @@
     "BUG"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -1359,7 +1367,7 @@
     "WATER"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -1385,7 +1393,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -1411,7 +1419,7 @@
     "GROUND"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -1437,7 +1445,7 @@
     "ELECTRIC"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -1463,7 +1471,7 @@
     "FIGHTING"
   ],
   "captureRate": 180,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -1489,7 +1497,7 @@
     "ICE"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -1516,7 +1524,7 @@
     "FIRE"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -1542,7 +1550,7 @@
     "WATER"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -1569,7 +1577,8 @@
   ],
   "captureRate": 120,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -1593,7 +1602,7 @@
     "PSY"
   ],
   "captureRate": 235,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": true
 },
@@ -1620,7 +1629,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -1647,7 +1656,7 @@
     "BUG"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -1675,7 +1684,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -1699,7 +1709,7 @@
     "PSY"
   ],
   "captureRate": 120,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": false
 },
@@ -1727,7 +1737,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -1753,7 +1764,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -1778,7 +1790,8 @@
   ],
   "captureRate": 60,
   "baseHappiness": 50,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -1803,7 +1816,7 @@
     "NORMAL"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": null,
   "base": false
 },
@@ -1830,7 +1843,7 @@
     "FIRE"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -1857,7 +1870,7 @@
     "ROCK"
   ],
   "captureRate": 115,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": null,
   "base": false
 },
@@ -1884,7 +1897,7 @@
     "DARK"
   ],
   "captureRate": 180,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -1912,7 +1925,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -1938,7 +1952,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -1962,7 +1977,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -1989,7 +2004,8 @@
   ],
   "captureRate": 75,
   "baseHappiness": 50,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -2013,7 +2029,7 @@
     "WATER"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2039,7 +2055,7 @@
     "GRASS"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2065,7 +2081,7 @@
     "FIGHTING"
   ],
   "captureRate": 3,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "legendary": true,
   "baseHappiness": 50,
   "base": true
@@ -2093,7 +2109,7 @@
     "POISON"
   ],
   "captureRate": 135,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": null,
   "base": false
 },
@@ -2120,7 +2136,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -2146,7 +2162,7 @@
     "ROCK"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2173,7 +2189,7 @@
     "FLYING"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -2199,7 +2215,7 @@
     "DARK"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -2225,7 +2241,7 @@
     "DARK"
   ],
   "captureRate": 150,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2251,7 +2267,7 @@
     "GHOST"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -2278,7 +2294,7 @@
     "GHOST"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2304,7 +2320,7 @@
     "GRASS"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2331,7 +2347,7 @@
     "GHOST"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -2357,7 +2373,7 @@
     "ICE"
   ],
   "captureRate": 150,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2384,7 +2400,7 @@
     "PSY"
   ],
   "captureRate": 100,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2410,7 +2426,7 @@
     "ICE"
   ],
   "captureRate": 50,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -2439,7 +2455,8 @@
   "captureRate": 50,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -2464,7 +2481,7 @@
     "ICE"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2492,7 +2509,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 50,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -2517,7 +2535,7 @@
     "ICE"
   ],
   "captureRate": 25,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -2543,7 +2561,7 @@
     "FAIRY"
   ],
   "captureRate": 200,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": true
 },
@@ -2570,7 +2588,7 @@
     "DRAGON"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2596,7 +2614,7 @@
     "BUG"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 20,
   "base": true
 },
@@ -2623,7 +2641,7 @@
     "BUG"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2649,7 +2667,7 @@
     "PSY"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -2676,7 +2694,7 @@
   ],
   "baby": true,
   "captureRate": 125,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2702,7 +2720,7 @@
     "GRASS"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2728,7 +2746,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -2755,7 +2773,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -2784,7 +2802,8 @@
   "captureRate": 255,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -2810,7 +2829,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -2834,7 +2854,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -2860,7 +2880,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -2887,7 +2907,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 70,
   "base": true
 },
@@ -2913,7 +2933,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2940,7 +2960,7 @@
     "BUG"
   ],
   "captureRate": 100,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -2966,7 +2986,7 @@
     "WATER"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -2992,7 +3012,7 @@
     "NORMAL"
   ],
   "captureRate": 127,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -3019,7 +3039,7 @@
     "ELECTRIC"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -3046,7 +3066,7 @@
     "FAIRY"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -3073,7 +3093,7 @@
     "FAIRY"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -3100,7 +3120,7 @@
     "FAIRY"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -3127,7 +3147,7 @@
     "BUG"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -3156,7 +3176,8 @@
   "captureRate": 45,
   "baseHappiness": 0,
   "base": true,
-  "ultraBeast": true
+  "ultraBeast": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -3183,7 +3204,8 @@
   "captureRate": 45,
   "baseHappiness": 0,
   "base": true,
-  "ultraBeast": true
+  "ultraBeast": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -3210,7 +3232,8 @@
   "captureRate": 30,
   "baseHappiness": 0,
   "base": true,
-  "ultraBeast": true
+  "ultraBeast": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -3236,7 +3259,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -3262,7 +3286,8 @@
   "captureRate": 45,
   "baseHappiness": 0,
   "base": true,
-  "ultraBeast": true
+  "ultraBeast": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -3286,7 +3311,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -3315,7 +3340,8 @@
   "captureRate": 45,
   "baseHappiness": 0,
   "base": false,
-  "ultraBeast": true
+  "ultraBeast": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -3339,7 +3365,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -3368,7 +3394,8 @@
   "captureRate": 45,
   "baseHappiness": 0,
   "base": true,
-  "ultraBeast": true
+  "ultraBeast": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -3392,7 +3419,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -3421,7 +3448,8 @@
   "captureRate": 30,
   "baseHappiness": 0,
   "base": true,
-  "ultraBeast": true
+  "ultraBeast": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -3446,7 +3474,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -3472,7 +3500,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -3499,7 +3527,7 @@
     "ELECTRIC"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -3525,7 +3553,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -3552,7 +3580,7 @@
     "NORMAL"
   ],
   "captureRate": 30,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 140,
   "base": true
 },
@@ -3578,7 +3606,7 @@
     "STEEL"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -3605,7 +3633,7 @@
     "DARK"
   ],
   "captureRate": 3,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "legendary": true,
   "baseHappiness": 50,
   "base": false
@@ -3632,7 +3660,7 @@
     "STEEL"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -3661,7 +3689,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 100,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -3688,7 +3717,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -3714,7 +3744,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -3740,7 +3771,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -3765,7 +3797,7 @@
     "PSY"
   ],
   "captureRate": 135,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": null,
   "base": false
 },
@@ -3791,7 +3823,7 @@
     "FAIRY"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -3817,7 +3849,7 @@
     "FAIRY"
   ],
   "captureRate": 100,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": false
 },
@@ -3843,7 +3875,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -3870,7 +3902,7 @@
     "GHOST"
   ],
   "captureRate": 135,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": null,
   "base": false
 },
@@ -3897,7 +3929,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -3924,7 +3956,7 @@
     "NORMAL"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -3951,7 +3983,7 @@
     "FLYING"
   ],
   "captureRate": 180,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -3978,7 +4010,7 @@
     "PSY"
   ],
   "captureRate": 25,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 20,
   "base": false
 },
@@ -4005,7 +4037,7 @@
     "NORMAL"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -4032,7 +4064,7 @@
     "POISON"
   ],
   "captureRate": 135,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": null,
   "base": false
 },
@@ -4059,7 +4091,7 @@
     "GRASS"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -4086,7 +4118,7 @@
     "GRASS"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -4113,7 +4145,7 @@
     "POISON"
   ],
   "captureRate": 25,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -4140,7 +4172,7 @@
     "GHOST"
   ],
   "captureRate": 25,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 20,
   "base": false
 },
@@ -4166,7 +4198,7 @@
     "GHOST"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -4192,7 +4224,7 @@
     "ROCK"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -4219,7 +4251,7 @@
     "FIGHTING"
   ],
   "captureRate": 100,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -4246,7 +4278,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -4273,7 +4305,7 @@
     "GHOST"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -4300,7 +4332,7 @@
     "POISON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -4327,7 +4359,7 @@
     "PSY"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -4356,7 +4388,8 @@
   "captureRate": 50,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -4383,7 +4416,8 @@
   "captureRate": 30,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -4408,7 +4442,7 @@
     "STEEL"
   ],
   "captureRate": 25,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -4437,7 +4471,8 @@
   "captureRate": 50,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -4464,7 +4499,8 @@
   "captureRate": 30,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -4491,7 +4527,8 @@
   "captureRate": 30,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -4518,7 +4555,8 @@
   "captureRate": 50,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -4543,7 +4581,7 @@
     "ICE"
   ],
   "captureRate": 10,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -4572,7 +4610,8 @@
   "captureRate": 30,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -4597,7 +4636,7 @@
     "FLYING"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -4626,7 +4665,8 @@
   "captureRate": 30,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -4651,7 +4691,7 @@
     "GROUND"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -4680,7 +4720,8 @@
   "captureRate": 6,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -4707,7 +4748,8 @@
   "captureRate": 30,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -4734,7 +4776,8 @@
   "captureRate": 6,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -4759,7 +4802,7 @@
     "FLYING"
   ],
   "captureRate": 3,
-  "genderRate": 64,
+  "genderRate": 100,
   "legendary": true,
   "baseHappiness": null,
   "base": true
@@ -4787,7 +4830,8 @@
   ],
   "captureRate": 225,
   "baseHappiness": 70,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -4812,7 +4856,8 @@
   ],
   "captureRate": 150,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -4836,7 +4881,7 @@
     "BUG"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -4862,7 +4907,7 @@
     "BUG"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -4891,7 +4936,8 @@
   "captureRate": 30,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -4915,7 +4961,7 @@
     "ELECTRIC"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -4941,7 +4987,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -4968,7 +5014,7 @@
     "POISON"
   ],
   "captureRate": 70,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -4995,7 +5041,7 @@
     "GHOST"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -5047,7 +5093,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -5074,7 +5120,7 @@
     "STEEL"
   ],
   "captureRate": 90,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": false
 },
@@ -5100,7 +5146,7 @@
     "WATER"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -5126,7 +5172,7 @@
     "WATER"
   ],
   "captureRate": 25,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -5153,7 +5199,7 @@
     "DARK"
   ],
   "captureRate": 30,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 0,
   "base": false
 },
@@ -5182,7 +5228,8 @@
   "captureRate": 30,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -5206,7 +5253,7 @@
     "WATER"
   ],
   "captureRate": 50,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -5232,7 +5279,7 @@
     "PSY"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -5259,7 +5306,7 @@
     "POISON"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -5285,7 +5332,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -5312,7 +5359,7 @@
     "POISON"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -5338,7 +5385,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -5364,7 +5411,7 @@
     "STEEL"
   ],
   "captureRate": 25,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -5390,7 +5437,7 @@
     "WATER"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -5417,7 +5464,7 @@
     "GRASS"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -5443,7 +5490,7 @@
     "ROCK"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -5469,7 +5516,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -5495,7 +5542,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -5522,7 +5569,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -5549,7 +5596,7 @@
     "FAIRY"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -5576,7 +5623,7 @@
     "DARK"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -5603,7 +5650,7 @@
     "PSY"
   ],
   "captureRate": 80,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -5630,7 +5677,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -5657,7 +5704,7 @@
     "WATER"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -5686,7 +5733,8 @@
   "captureRate": 45,
   "legendary": true,
   "baseHappiness": 0,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -5710,7 +5758,7 @@
     "GRASS"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -5737,7 +5785,7 @@
     "DRAGON"
   ],
   "captureRate": 70,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -5764,7 +5812,7 @@
     "WATER"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -5790,7 +5838,7 @@
     "GROUND"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -5818,7 +5866,8 @@
   ],
   "captureRate": 25,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -5842,7 +5891,7 @@
     "ROCK"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -5869,7 +5918,7 @@
     "FAIRY"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -5896,7 +5945,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -5925,7 +5974,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -5952,7 +6002,8 @@
   "captureRate": 45,
   "legendary": true,
   "baseHappiness": 0,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -5979,7 +6030,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -6006,7 +6058,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -6033,7 +6086,8 @@
   "captureRate": 45,
   "baseHappiness": 0,
   "base": true,
-  "ultraBeast": true
+  "ultraBeast": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -6057,7 +6111,7 @@
     "GROUND"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -6083,7 +6137,7 @@
     "ELECTRIC"
   ],
   "captureRate": 50,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -6112,7 +6166,8 @@
   "captureRate": 45,
   "baseHappiness": 0,
   "base": true,
-  "ultraBeast": true
+  "ultraBeast": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -6139,7 +6194,8 @@
   "captureRate": 45,
   "baseHappiness": 0,
   "base": true,
-  "ultraBeast": true
+  "ultraBeast": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -6163,7 +6219,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -6192,7 +6248,8 @@
   "legendary": true,
   "baseHappiness": 0,
   "base": true,
-  "ultraBeast": true
+  "ultraBeast": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -6217,7 +6274,7 @@
     "FIRE"
   ],
   "captureRate": 120,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -6244,7 +6301,7 @@
     "STEEL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -6271,7 +6328,7 @@
     "ROCK"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -6297,7 +6354,7 @@
     "GHOST"
   ],
   "captureRate": 30,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 50,
   "base": false
 },
@@ -6324,7 +6381,7 @@
     "WATER"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -6350,7 +6407,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -6376,7 +6433,7 @@
     "ROCK"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -6403,7 +6460,7 @@
     "PSY"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -6430,7 +6487,7 @@
     "GHOST"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -6457,7 +6514,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -6481,7 +6539,7 @@
     "ELECTRIC"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -6507,7 +6565,7 @@
     "ROCK"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -6534,7 +6592,7 @@
     "FIGHTING"
   ],
   "captureRate": 80,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -6590,7 +6648,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -6644,7 +6703,8 @@
   "captureRate": 10,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -6669,7 +6729,7 @@
     "STEEL"
   ],
   "captureRate": 190,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": true
 },
@@ -6696,7 +6756,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -6723,7 +6783,7 @@
     "GHOST"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -6749,7 +6809,7 @@
     "BUG"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -6775,7 +6835,7 @@
     "ELECTRIC"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -6801,7 +6861,7 @@
     "ROCK"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -6828,7 +6888,7 @@
     "DARK"
   ],
   "captureRate": 25,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -6854,7 +6914,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -6881,7 +6941,7 @@
     "STEEL"
   ],
   "captureRate": 45,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": false
 },
@@ -6910,7 +6970,8 @@
   "captureRate": 5,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -6934,7 +6995,7 @@
     "PSY"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -6963,7 +7024,8 @@
   "captureRate": 5,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -6990,7 +7052,8 @@
   "captureRate": 6,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -7014,7 +7077,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -7040,7 +7103,7 @@
     "BUG"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -7069,7 +7132,8 @@
   "captureRate": 6,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -7093,7 +7157,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -7119,7 +7183,7 @@
     "GRASS"
   ],
   "captureRate": 75,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -7148,7 +7212,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -7173,7 +7238,7 @@
     "GROUND"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -7200,7 +7265,7 @@
     "GRASS"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -7227,7 +7292,7 @@
     "POISON"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -7256,7 +7321,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -7280,7 +7346,7 @@
     "ELECTRIC"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -7306,7 +7372,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -7333,7 +7399,8 @@
   ],
   "captureRate": 60,
   "baseHappiness": 50,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -7357,7 +7424,7 @@
     "BUG"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -7383,7 +7450,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -7409,7 +7476,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -7436,7 +7503,7 @@
     "FLYING"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -7463,7 +7530,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -7489,7 +7556,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -7516,7 +7583,7 @@
     "FLYING"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -7543,7 +7610,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -7569,7 +7636,7 @@
     "FAIRY"
   ],
   "captureRate": 140,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -7596,7 +7663,7 @@
     "NORMAL"
   ],
   "captureRate": 220,
-  "genderRate": 56,
+  "genderRate": 87.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -7622,7 +7689,7 @@
     "FAIRY"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -7649,7 +7716,7 @@
     "PSY"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -7676,7 +7743,7 @@
     "PSY"
   ],
   "captureRate": 80,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -7702,7 +7769,7 @@
     "FAIRY"
   ],
   "captureRate": 140,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -7729,7 +7796,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -7755,7 +7822,7 @@
     "WATER"
   ],
   "captureRate": 225,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -7782,7 +7849,7 @@
     "NORMAL"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -7809,7 +7876,7 @@
     "WATER"
   ],
   "captureRate": 225,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -7836,7 +7903,7 @@
     "NORMAL"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -7863,7 +7930,7 @@
     "FAIRY"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -7890,7 +7957,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": false
 },
@@ -7916,7 +7983,7 @@
     "ICE"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -7945,7 +8012,8 @@
   "captureRate": 45,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -7970,7 +8038,7 @@
     "GRASS"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -7999,7 +8067,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -8024,7 +8093,7 @@
     "GRASS"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -8051,7 +8120,7 @@
     "GHOST"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -8079,7 +8148,8 @@
   "captureRate": 45,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -8103,7 +8173,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -8130,7 +8200,7 @@
     "FAIRY"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -8157,7 +8227,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -8184,7 +8254,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -8210,7 +8280,7 @@
     "WATER"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -8236,7 +8306,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -8289,7 +8359,7 @@
     "FIGHTING"
   ],
   "captureRate": 225,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -8316,7 +8386,7 @@
     "FIGHTING"
   ],
   "captureRate": 140,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -8342,7 +8412,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -8368,7 +8438,7 @@
     "BUG"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -8396,7 +8466,8 @@
   ],
   "captureRate": 30,
   "baseHappiness": 70,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -8420,7 +8491,7 @@
     "WATER"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -8447,7 +8518,7 @@
     "PSY"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -8474,7 +8545,8 @@
   ],
   "captureRate": 130,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -8499,7 +8571,7 @@
     "BUG"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -8526,7 +8598,8 @@
   ],
   "captureRate": 3,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -8552,7 +8625,8 @@
   "captureRate": 10,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -8577,7 +8651,7 @@
     "GHOST"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -8603,7 +8677,7 @@
     "STEEL"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -8632,7 +8706,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -8657,7 +8732,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -8684,7 +8759,7 @@
     "DARK"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -8710,7 +8785,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -8737,7 +8812,7 @@
     "NORMAL"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -8763,7 +8838,7 @@
     "PSY"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -8789,7 +8864,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -8815,7 +8890,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -8841,7 +8916,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -8867,7 +8942,7 @@
     "NORMAL"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -8894,7 +8969,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -8920,7 +8995,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -8946,7 +9021,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -8972,7 +9047,7 @@
     "NORMAL"
   ],
   "captureRate": 60,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 50,
   "base": false
 },
@@ -8998,7 +9073,7 @@
     "WATER"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -9025,7 +9100,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -9052,7 +9127,7 @@
     "POISON"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -9078,7 +9153,7 @@
     "BUG"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -9105,7 +9180,8 @@
   ],
   "captureRate": 30,
   "baseHappiness": 50,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -9130,7 +9206,7 @@
     "WATER"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -9157,7 +9233,7 @@
     "FAIRY"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -9184,7 +9260,7 @@
     "DRAGON"
   ],
   "captureRate": 55,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -9210,7 +9286,7 @@
     "WATER"
   ],
   "captureRate": 55,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -9237,7 +9313,7 @@
     "ICE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -9264,7 +9340,7 @@
     "ICE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -9290,7 +9366,7 @@
     "FAIRY"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -9317,7 +9393,7 @@
     "DRAGON"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -9344,7 +9420,7 @@
     "GRASS"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -9372,7 +9448,8 @@
   ],
   "captureRate": 60,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -9399,7 +9476,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -9423,7 +9501,7 @@
     "FAIRY"
   ],
   "captureRate": 120,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 70,
   "base": false
 },
@@ -9450,7 +9528,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -9476,7 +9554,7 @@
     "FAIRY"
   ],
   "captureRate": 225,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 70,
   "base": true
 },
@@ -9503,7 +9581,7 @@
     "GROUND"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -9529,7 +9607,7 @@
     "FAIRY"
   ],
   "captureRate": 45,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 70,
   "base": false
 },
@@ -9556,7 +9634,7 @@
     "GHOST"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -9583,7 +9661,7 @@
     "GHOST"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -9609,7 +9687,7 @@
     "GRASS"
   ],
   "captureRate": 235,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": true
 },
@@ -9636,7 +9714,7 @@
     "GHOST"
   ],
   "captureRate": 180,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -9663,7 +9741,7 @@
     "FIGHTING"
   ],
   "captureRate": 70,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -9690,7 +9768,7 @@
     "ICE"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -9716,7 +9794,7 @@
     "GRASS"
   ],
   "captureRate": 120,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": false
 },
@@ -9743,7 +9821,7 @@
     "STEEL"
   ],
   "captureRate": 180,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -9769,7 +9847,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -9795,7 +9873,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": false
 },
@@ -9821,7 +9899,7 @@
     "FAIRY"
   ],
   "captureRate": 60,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 50,
   "base": true
 },
@@ -9848,7 +9926,7 @@
     "DRAGON"
   ],
   "captureRate": 70,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -9876,7 +9954,8 @@
   "captureRate": 10,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -9901,7 +9980,7 @@
     "GHOST"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -9928,7 +10007,7 @@
     "FAIRY"
   ],
   "captureRate": 45,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": false
 },
@@ -9957,7 +10036,8 @@
   "captureRate": 10,
   "baseHappiness": 0,
   "base": true,
-  "paradox": true
+  "paradox": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -9983,7 +10063,8 @@
   "captureRate": 45,
   "mythical": true,
   "baseHappiness": 100,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -10007,7 +10088,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -10034,7 +10115,7 @@
     "ELECTRIC"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -10060,7 +10141,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -10087,7 +10168,7 @@
     "FAIRY"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -10113,7 +10194,7 @@
     "GRASS"
   ],
   "captureRate": 190,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": true
 },
@@ -10140,7 +10221,7 @@
     "ROCK"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -10167,7 +10248,7 @@
     "ELECTRIC"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -10194,7 +10275,7 @@
     "STEEL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -10221,7 +10302,7 @@
     "POISON"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -10247,7 +10328,7 @@
     "POISON"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -10274,7 +10355,7 @@
     "FIRE"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -10300,7 +10381,7 @@
     "ELECTRIC"
   ],
   "captureRate": 30,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -10327,7 +10408,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -10353,7 +10434,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -10380,7 +10461,7 @@
     "DARK"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -10409,7 +10490,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -10433,7 +10515,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -10460,7 +10542,7 @@
     "PSY"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -10487,7 +10569,7 @@
     "GROUND"
   ],
   "captureRate": 127,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -10513,7 +10595,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -10540,7 +10622,7 @@
     "GRASS"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -10569,7 +10651,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -10596,7 +10679,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 100,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -10623,7 +10707,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 100,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -10647,7 +10732,7 @@
     "BUG"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -10673,7 +10758,7 @@
     "ICE"
   ],
   "captureRate": 55,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -10700,7 +10785,7 @@
     "NORMAL"
   ],
   "captureRate": 65,
-  "genderRate": 56,
+  "genderRate": 87.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -10726,7 +10811,7 @@
     "FIRE"
   ],
   "captureRate": 75,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -10753,7 +10838,7 @@
     "FLYING"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -10779,7 +10864,7 @@
     "WATER"
   ],
   "captureRate": 75,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -10806,7 +10891,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -10832,7 +10917,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -10858,7 +10943,7 @@
     "FAIRY"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -10884,7 +10969,7 @@
     "GRASS"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -10910,7 +10995,7 @@
     "PSY"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -10937,7 +11022,7 @@
     "PSY"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -10963,7 +11048,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -10989,7 +11074,7 @@
     "NORMAL"
   ],
   "captureRate": 160,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -11016,7 +11101,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -11043,7 +11128,7 @@
     "FLYING"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -11070,7 +11155,7 @@
     "POISON"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -11097,7 +11182,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 70,
   "base": false
 },
@@ -11123,7 +11208,7 @@
     "GRASS"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -11150,7 +11235,7 @@
     "POISON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -11177,7 +11262,7 @@
     "GROUND"
   ],
   "captureRate": 140,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -11203,7 +11288,7 @@
     "FIRE"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -11229,7 +11314,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -11255,7 +11340,7 @@
     "GRASS"
   ],
   "captureRate": 190,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -11281,7 +11366,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -11307,7 +11392,7 @@
     "PSY"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -11333,7 +11418,7 @@
     "FIRE"
   ],
   "captureRate": 190,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -11385,7 +11470,7 @@
     "DARK"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -11411,7 +11496,7 @@
     "DARK"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -11464,7 +11549,7 @@
     "FIRE"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -11491,7 +11576,7 @@
     "GROUND"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -11518,7 +11603,7 @@
     "ROCK"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -11545,7 +11630,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -11571,7 +11656,7 @@
     "GHOST"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -11598,7 +11683,7 @@
     "GHOST"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -11625,7 +11710,7 @@
     "ROCK"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -11651,7 +11736,7 @@
     "GRASS"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -11678,7 +11763,7 @@
     "ROCK"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -11704,7 +11789,7 @@
     "GHOST"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -11733,7 +11818,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -11757,7 +11843,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 50,
   "base": true
 },
@@ -11784,7 +11870,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -11813,7 +11899,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -11838,7 +11925,7 @@
     "FLYING"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -11867,7 +11954,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -11891,7 +11979,7 @@
     "POISON"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -11917,7 +12005,7 @@
     "PSY"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -11944,7 +12032,7 @@
     "STEEL"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -11971,7 +12059,7 @@
     "ELECTRIC"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -11997,7 +12085,7 @@
     "ICE"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -12023,7 +12111,7 @@
     "DRAGON"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -12052,7 +12140,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -12077,7 +12166,8 @@
   ],
   "captureRate": 25,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -12104,7 +12194,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -12131,7 +12222,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -12158,7 +12250,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -12183,7 +12276,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -12210,7 +12303,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -12237,7 +12330,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -12265,7 +12358,8 @@
   "captureRate": 30,
   "mythical": true,
   "baseHappiness": 70,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -12290,7 +12384,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -12317,7 +12411,7 @@
     "FLYING"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -12343,7 +12437,7 @@
     "GRASS"
   ],
   "captureRate": 75,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": false
 },
@@ -12370,7 +12464,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -12396,7 +12490,7 @@
     "ICE"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -12422,7 +12516,7 @@
     "ELECTRIC"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -12449,7 +12543,7 @@
     "FLYING"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -12477,7 +12571,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -12501,7 +12596,7 @@
     "ELECTRIC"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 100,
   "base": false
 },
@@ -12527,7 +12622,7 @@
     "BUG"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -12553,7 +12648,7 @@
     "WATER"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -12581,7 +12676,7 @@
   ],
   "baby": true,
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -12608,7 +12703,7 @@
     "STEEL"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -12661,7 +12756,7 @@
     "GRASS"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -12688,7 +12783,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -12714,7 +12809,7 @@
     "NORMAL"
   ],
   "captureRate": 75,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 70,
   "base": false
 },
@@ -12740,7 +12835,7 @@
     "WATER"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -12767,7 +12862,7 @@
     "FLYING"
   ],
   "captureRate": 30,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -12793,7 +12888,7 @@
     "GRASS"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -12820,7 +12915,7 @@
   ],
   "baby": true,
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -12849,7 +12944,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 100,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -12873,7 +12969,7 @@
     "WATER"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -12900,7 +12996,7 @@
     "FIGHTING"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -12926,7 +13022,7 @@
     "FIRE"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -12953,7 +13049,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -12979,7 +13075,7 @@
     "DARK"
   ],
   "captureRate": 75,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -13006,7 +13102,7 @@
     "FIGHTING"
   ],
   "captureRate": 180,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -13033,7 +13129,7 @@
     "DARK"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -13059,7 +13155,7 @@
     "PSY"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -13085,7 +13181,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -13111,7 +13207,7 @@
     "PSY"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -13165,7 +13261,7 @@
     "FIRE"
   ],
   "captureRate": 15,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -13247,7 +13343,7 @@
     "DRAGON"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -13274,7 +13370,7 @@
     "FLYING"
   ],
   "captureRate": 100,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -13300,7 +13396,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -13327,7 +13423,7 @@
     "STEEL"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -13354,7 +13450,7 @@
     "STEEL"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -13380,7 +13476,7 @@
     "PSY"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -13407,7 +13503,7 @@
     "GRASS"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -13434,7 +13530,7 @@
     "GRASS"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -13460,7 +13556,7 @@
     "ICE"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -13486,7 +13582,7 @@
     "GROUND"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -13512,7 +13608,7 @@
     "ROCK"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -13539,7 +13635,7 @@
     "STEEL"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -13566,7 +13662,7 @@
     "POISON"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -13619,7 +13715,7 @@
     "FIGHTING"
   ],
   "captureRate": 220,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -13646,7 +13742,7 @@
     "FAIRY"
   ],
   "captureRate": 180,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -13672,7 +13768,7 @@
     "FIGHTING"
   ],
   "captureRate": 90,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": false
 },
@@ -13698,7 +13794,7 @@
     "ICE"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -13725,7 +13821,7 @@
     "FLYING"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -13752,7 +13848,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -13778,7 +13874,7 @@
     "WATER"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -13804,7 +13900,7 @@
     "WATER"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -13831,7 +13927,7 @@
     "STEEL"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -13857,7 +13953,7 @@
     "ELECTRIC"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -13883,7 +13979,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -13910,7 +14006,7 @@
     "WATER"
   ],
   "captureRate": 127,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -13936,7 +14032,7 @@
     "ROCK"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -13962,7 +14058,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 35,
   "base": false
 },
@@ -13989,7 +14085,7 @@
     "STEEL"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -14015,7 +14111,7 @@
     "WATER"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -14041,7 +14137,7 @@
     "WATER"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -14067,7 +14163,7 @@
     "ELECTRIC"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -14094,7 +14190,7 @@
   ],
   "baby": true,
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -14120,7 +14216,7 @@
     "ELECTRIC"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 100,
   "base": true
 },
@@ -14147,7 +14243,7 @@
     "GROUND"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -14174,7 +14270,7 @@
     "FLYING"
   ],
   "captureRate": 30,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -14200,7 +14296,7 @@
     "ICE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 35,
   "base": false
 },
@@ -14227,7 +14323,8 @@
   ],
   "captureRate": 30,
   "baseHappiness": 50,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -14252,7 +14349,7 @@
     "GROUND"
   ],
   "captureRate": 50,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -14278,7 +14375,7 @@
     "ELECTRIC"
   ],
   "captureRate": 235,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -14305,7 +14402,7 @@
     "FLYING"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -14331,7 +14428,7 @@
     "DARK"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -14357,7 +14454,7 @@
     "PSY"
   ],
   "captureRate": 50,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 50,
   "base": false
 },
@@ -14383,7 +14480,7 @@
     "PSY"
   ],
   "captureRate": 200,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 50,
   "base": true
 },
@@ -14409,7 +14506,7 @@
     "ICE"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -14438,7 +14535,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 100,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -14462,7 +14560,7 @@
     "WATER"
   ],
   "captureRate": 190,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -14488,7 +14586,7 @@
     "FIGHTING"
   ],
   "captureRate": 180,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -14514,7 +14612,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": false
 },
@@ -14541,7 +14639,7 @@
     "DARK"
   ],
   "captureRate": 65,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -14568,7 +14666,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -14594,7 +14692,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -14621,7 +14719,7 @@
     "FLYING"
   ],
   "captureRate": 190,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 35,
   "base": true
 },
@@ -14675,7 +14773,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -14701,7 +14799,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -14728,7 +14826,7 @@
     "FLYING"
   ],
   "captureRate": 60,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 35,
   "base": false
 },
@@ -14756,7 +14854,8 @@
   ],
   "captureRate": 190,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -14780,7 +14879,7 @@
     "FIRE"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -14806,7 +14905,7 @@
     "WATER"
   ],
   "captureRate": 25,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -14832,7 +14931,7 @@
     "WATER"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -14858,7 +14957,7 @@
     "ROCK"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -14885,7 +14984,7 @@
     "FLYING"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -14912,7 +15011,7 @@
     "POISON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -14938,7 +15037,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -14965,7 +15064,7 @@
     "POISON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -14991,7 +15090,7 @@
     "WATER"
   ],
   "captureRate": 225,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 70,
   "base": true
 },
@@ -15019,7 +15118,7 @@
   ],
   "baby": true,
   "captureRate": 150,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 50,
   "base": true
 },
@@ -15046,7 +15145,7 @@
     "FLYING"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -15072,7 +15171,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 100,
   "base": false
 },
@@ -15098,7 +15197,7 @@
     "ROCK"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -15126,7 +15225,8 @@
   ],
   "captureRate": 255,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -15151,7 +15251,7 @@
     "DARK"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -15177,7 +15277,7 @@
     "NORMAL"
   ],
   "captureRate": 60,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 70,
   "base": false
 },
@@ -15204,7 +15304,7 @@
     "DARK"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -15231,7 +15331,7 @@
     "ICE"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -15258,7 +15358,7 @@
     "FLYING"
   ],
   "captureRate": 30,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -15286,7 +15386,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -15310,7 +15411,7 @@
     "ELECTRIC"
   ],
   "captureRate": 30,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": false
 },
@@ -15337,7 +15438,7 @@
     "DARK"
   ],
   "captureRate": 225,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -15364,7 +15465,7 @@
     "GROUND"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -15391,7 +15492,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -15417,7 +15518,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -15443,7 +15544,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -15469,7 +15570,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -15497,7 +15598,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -15521,7 +15623,7 @@
     "GROUND"
   ],
   "captureRate": 140,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -15547,7 +15649,7 @@
     "WATER"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -15574,7 +15676,7 @@
     "FLYING"
   ],
   "captureRate": 30,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -15602,7 +15704,7 @@
   ],
   "baby": true,
   "captureRate": 25,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -15629,7 +15731,7 @@
     "FLYING"
   ],
   "captureRate": 30,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -15657,7 +15759,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 70,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -15682,7 +15785,7 @@
     "DARK"
   ],
   "captureRate": 180,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -15709,7 +15812,7 @@
     "STEEL"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -15737,7 +15840,8 @@
   ],
   "captureRate": 90,
   "baseHappiness": 50,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -15762,7 +15866,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": false
 },
@@ -15788,7 +15892,7 @@
     "FIGHTING"
   ],
   "captureRate": 180,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 70,
   "base": true
 },
@@ -15815,7 +15919,7 @@
     "GHOST"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -15841,7 +15945,7 @@
     "ROCK"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -15867,7 +15971,7 @@
     "GRASS"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -15893,7 +15997,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -15920,7 +16024,7 @@
     "GRASS"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -15946,7 +16050,7 @@
     "ICE"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -15973,7 +16077,7 @@
   ],
   "baby": true,
   "captureRate": 75,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -15999,7 +16103,7 @@
     "NORMAL"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 0,
   "base": true
 },
@@ -16026,7 +16130,7 @@
     "DARK"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -16054,7 +16158,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 50,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -16078,7 +16183,7 @@
     "GRASS"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -16105,7 +16210,7 @@
     "WATER"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -16132,7 +16237,7 @@
     "WATER"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -16159,7 +16264,7 @@
     "POISON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -16185,7 +16290,7 @@
     "GRASS"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -16211,7 +16316,7 @@
     "GHOST"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -16238,7 +16343,7 @@
     "GROUND"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -16265,7 +16370,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -16291,7 +16396,7 @@
     "GROUND"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -16318,7 +16423,7 @@
     "GROUND"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -16344,7 +16449,7 @@
     "NORMAL"
   ],
   "captureRate": 190,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 70,
   "base": true
 },
@@ -16371,7 +16476,7 @@
     "ICE"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -16399,7 +16504,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -16423,7 +16529,7 @@
     "WATER"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -16449,7 +16555,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -16476,7 +16582,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -16503,7 +16609,7 @@
     "STEEL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -16530,7 +16636,7 @@
   ],
   "baby": true,
   "captureRate": 130,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 140,
   "base": true
 },
@@ -16556,7 +16662,7 @@
     "PSY"
   ],
   "captureRate": 3,
-  "genderRate": 64,
+  "genderRate": 100,
   "legendary": true,
   "baseHappiness": 100,
   "base": true
@@ -16583,7 +16689,7 @@
     "PSY"
   ],
   "captureRate": 100,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 50,
   "base": false
 },
@@ -16610,7 +16716,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -16637,7 +16743,7 @@
     "FLYING"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -16663,7 +16769,7 @@
     "PSY"
   ],
   "captureRate": 50,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -16690,7 +16796,7 @@
     "POISON"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -16717,7 +16823,7 @@
     "FLYING"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -16744,7 +16850,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -16771,7 +16877,7 @@
     "FLYING"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -16797,7 +16903,7 @@
     "FIRE"
   ],
   "captureRate": 75,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": false
 },
@@ -16824,7 +16930,7 @@
     "FLYING"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -16850,7 +16956,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -16876,7 +16982,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -16902,7 +17008,7 @@
     "GRASS"
   ],
   "captureRate": 235,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -16928,7 +17034,7 @@
     "ELECTRIC"
   ],
   "captureRate": 235,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -16954,7 +17060,7 @@
     "WATER"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -16980,7 +17086,7 @@
     "NORMAL"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -17007,7 +17113,7 @@
     "FLYING"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -17034,7 +17140,7 @@
     "FLYING"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -17060,7 +17166,7 @@
     "WATER"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -17086,7 +17192,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -17112,7 +17218,7 @@
     "ROCK"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -17139,7 +17245,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -17165,7 +17271,7 @@
     "FIRE"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -17191,7 +17297,7 @@
     "DARK"
   ],
   "captureRate": 127,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -17218,7 +17324,7 @@
     "GRASS"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -17245,7 +17351,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -17271,7 +17377,7 @@
     "ELECTRIC"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -17298,7 +17404,7 @@
     "DARK"
   ],
   "captureRate": 225,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -17324,7 +17430,7 @@
     "ELECTRIC"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -17350,7 +17456,7 @@
     "ELECTRIC"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -17376,7 +17482,7 @@
     "ELECTRIC"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -17402,7 +17508,7 @@
     "GROUND"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -17428,7 +17534,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -17455,7 +17561,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -17482,7 +17588,7 @@
     "STEEL"
   ],
   "captureRate": 3,
-  "genderRate": 32,
+  "genderRate": 50,
   "legendary": true,
   "baseHappiness": 100,
   "base": true
@@ -17509,7 +17615,7 @@
     "NORMAL"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 140,
   "base": false
 },
@@ -17536,7 +17642,7 @@
     "GROUND"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -17562,7 +17668,7 @@
     "PSY"
   ],
   "captureRate": 100,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -17589,7 +17695,7 @@
     "GHOST"
   ],
   "captureRate": 75,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": false
 },
@@ -17617,7 +17723,8 @@
   ],
   "captureRate": 30,
   "baseHappiness": 50,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -17642,7 +17749,7 @@
     "BUG"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -17668,7 +17775,7 @@
     "GRASS"
   ],
   "captureRate": 30,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -17694,7 +17801,7 @@
     "FIRE"
   ],
   "captureRate": 30,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": false
 },
@@ -17721,7 +17828,7 @@
     "STEEL"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -17747,7 +17854,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -17774,7 +17881,7 @@
     "POISON"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -17801,7 +17908,7 @@
     "POISON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -17827,7 +17934,7 @@
     "WATER"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -17880,7 +17987,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -17907,7 +18014,7 @@
     "POISON"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -17933,7 +18040,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -17959,7 +18066,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -17986,7 +18093,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -18012,7 +18119,7 @@
     "WATER"
   ],
   "captureRate": 225,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -18038,7 +18145,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -18065,7 +18172,7 @@
     "GROUND"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -18091,7 +18198,7 @@
     "WATER"
   ],
   "captureRate": 125,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -18118,7 +18225,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -18145,7 +18252,7 @@
     "BUG"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -18171,7 +18278,7 @@
     "PSY"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -18198,7 +18305,7 @@
     "POISON"
   ],
   "captureRate": 150,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -18251,7 +18358,7 @@
     "WATER"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -18278,7 +18385,7 @@
     "ROCK"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -18304,7 +18411,7 @@
     "BUG"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -18330,7 +18437,7 @@
     "ICE"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -18356,7 +18463,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -18383,7 +18490,7 @@
     "ROCK"
   ],
   "captureRate": 180,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -18409,7 +18516,7 @@
     "POISON"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -18437,7 +18544,8 @@
   ],
   "captureRate": 3,
   "baseHappiness": 35,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -18461,7 +18569,7 @@
     "GHOST"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -18488,7 +18596,7 @@
     "GROUND"
   ],
   "captureRate": 150,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -18516,7 +18624,8 @@
   ],
   "captureRate": 90,
   "baseHappiness": 50,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -18541,7 +18650,7 @@
     "STEEL"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -18568,7 +18677,7 @@
     "ROCK"
   ],
   "captureRate": 30,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -18595,7 +18704,7 @@
     "ICE"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -18621,7 +18730,7 @@
     "POISON"
   ],
   "captureRate": 225,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -18647,7 +18756,7 @@
     "DARK"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -18674,7 +18783,7 @@
     "FLYING"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -18700,7 +18809,7 @@
     "ELECTRIC"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -18726,7 +18835,7 @@
     "FIRE"
   ],
   "captureRate": 75,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 50,
   "base": false
 },
@@ -18753,7 +18862,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -18779,7 +18888,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -18806,7 +18915,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -18834,7 +18943,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 140,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -18861,7 +18971,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -18887,7 +18998,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 140,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -18912,7 +19024,7 @@
     "FLYING"
   ],
   "captureRate": 125,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -18938,7 +19050,7 @@
     "NORMAL"
   ],
   "captureRate": 30,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -18964,7 +19076,7 @@
     "GHOST"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -18990,7 +19102,7 @@
     "ELECTRIC"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -19016,7 +19128,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": false
 },
@@ -19043,7 +19155,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -19069,7 +19181,7 @@
     "GROUND"
   ],
   "captureRate": 50,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -19095,7 +19207,7 @@
     "WATER"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -19122,7 +19234,7 @@
     "GRASS"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -19149,7 +19261,7 @@
     "FLYING"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -19175,7 +19287,7 @@
     "WATER"
   ],
   "captureRate": 225,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -19203,7 +19315,8 @@
   ],
   "captureRate": 60,
   "baseHappiness": 50,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -19230,7 +19343,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -19257,7 +19371,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -19281,7 +19396,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -19307,7 +19422,7 @@
     "GHOST"
   ],
   "captureRate": 225,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -19336,7 +19451,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -19360,7 +19476,7 @@
     "GHOST"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -19386,7 +19502,7 @@
     "FIRE"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -19412,7 +19528,7 @@
     "PSY"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -19438,7 +19554,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 70,
   "base": true
 },
@@ -19465,7 +19581,7 @@
     "DARK"
   ],
   "captureRate": 100,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -19492,7 +19608,7 @@
     "ROCK"
   ],
   "captureRate": 25,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -19520,7 +19636,8 @@
   ],
   "captureRate": 3,
   "baseHappiness": 35,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -19545,7 +19662,7 @@
     "DARK"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -19571,7 +19688,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -19597,7 +19714,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -19623,7 +19740,7 @@
     "GROUND"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -19649,7 +19766,7 @@
     "GROUND"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -19676,7 +19793,7 @@
     "ROCK"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -19703,7 +19820,7 @@
   ],
   "baby": true,
   "captureRate": 45,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": true
 },
@@ -19729,7 +19846,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -19756,7 +19873,7 @@
     "FLYING"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -19782,7 +19899,7 @@
     "WATER"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -19809,7 +19926,7 @@
     "DARK"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -19835,7 +19952,7 @@
     "NORMAL"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -19862,7 +19979,7 @@
     "DARK"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -19888,7 +20005,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -19915,7 +20032,7 @@
     "GROUND"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -19941,7 +20058,7 @@
     "BUG"
   ],
   "captureRate": 150,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 70,
   "base": true
 },
@@ -19968,7 +20085,7 @@
     "FLYING"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -19995,7 +20112,7 @@
     "POISON"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -20022,7 +20139,7 @@
     "POISON"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -20049,7 +20166,7 @@
     "FLYING"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -20076,7 +20193,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -20103,7 +20220,7 @@
     "GROUND"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -20130,7 +20247,7 @@
   ],
   "baby": true,
   "captureRate": 50,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -20158,7 +20275,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -20184,7 +20302,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -20209,7 +20328,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -20237,7 +20356,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 140,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -20262,7 +20382,7 @@
     "GROUND"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -20289,7 +20409,7 @@
     "POISON"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -20316,7 +20436,7 @@
     "BUG"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -20345,7 +20465,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -20372,7 +20493,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -20397,7 +20519,7 @@
     "POISON"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -20423,7 +20545,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -20449,7 +20571,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -20476,7 +20598,7 @@
     "POISON"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -20503,7 +20625,7 @@
     "GRASS"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -20529,7 +20651,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -20555,7 +20677,7 @@
     "PSY"
   ],
   "captureRate": 200,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": true
 },
@@ -20582,7 +20704,7 @@
     "FLYING"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -20608,7 +20730,7 @@
     "FIGHTING"
   ],
   "captureRate": 90,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": false
 },
@@ -20635,7 +20757,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -20661,7 +20783,7 @@
     "ELECTRIC"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -20687,7 +20809,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -20714,7 +20836,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -20741,7 +20863,7 @@
     "PSY"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -20767,7 +20889,7 @@
     "NORMAL"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -20794,7 +20916,8 @@
   ],
   "captureRate": 225,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -20819,7 +20942,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -20845,7 +20968,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -20871,7 +20994,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -20898,7 +21021,7 @@
     "PSY"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -20924,7 +21047,7 @@
     "GROUND"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -20950,7 +21073,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -20977,7 +21100,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -21002,7 +21126,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -21028,7 +21152,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -21054,7 +21178,7 @@
     "GHOST"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -21080,7 +21204,7 @@
     "PSY"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -21107,7 +21231,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -21134,7 +21258,7 @@
     "FAIRY"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -21160,7 +21284,7 @@
     "DARK"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 35,
   "base": false
 },
@@ -21186,7 +21310,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -21213,7 +21337,7 @@
     "GROUND"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -21240,7 +21364,7 @@
     "GROUND"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -21266,7 +21390,7 @@
     "WATER"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -21292,7 +21416,7 @@
     "ELECTRIC"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -21319,7 +21443,7 @@
     "GROUND"
   ],
   "captureRate": 225,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -21346,7 +21470,7 @@
     "FIGHTING"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -21372,7 +21496,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -21398,7 +21522,7 @@
     "NORMAL"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -21424,7 +21548,7 @@
     "NORMAL"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -21450,7 +21574,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -21477,7 +21601,7 @@
     "FLYING"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -21503,7 +21627,7 @@
     "FIGHTING"
   ],
   "captureRate": 180,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 70,
   "base": true
 },
@@ -21530,7 +21654,7 @@
     "ELECTRIC"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -21556,7 +21680,7 @@
     "POISON"
   ],
   "captureRate": 120,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": false
 },
@@ -21583,7 +21707,7 @@
     "ICE"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -21611,7 +21735,8 @@
   ],
   "captureRate": 190,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -21636,7 +21761,7 @@
     "POISON"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -21663,7 +21788,7 @@
     "ELECTRIC"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -21690,7 +21815,7 @@
     "FLYING"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -21717,7 +21842,7 @@
     "FLYING"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -21744,7 +21869,7 @@
     "FLYING"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -21771,7 +21896,7 @@
     "GROUND"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -21798,7 +21923,7 @@
   ],
   "baby": true,
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -21825,7 +21950,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -21852,7 +21977,7 @@
     "ROCK"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -21880,7 +22005,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -21905,7 +22031,7 @@
     "FLYING"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -21958,7 +22084,7 @@
     "ICE"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -21985,7 +22111,7 @@
     "GROUND"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -22013,7 +22139,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -22039,7 +22166,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -22065,7 +22193,8 @@
   ],
   "captureRate": 255,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -22091,7 +22220,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -22116,7 +22246,7 @@
     "FLYING"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -22144,7 +22274,7 @@
   ],
   "baby": true,
   "captureRate": 145,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -22171,7 +22301,7 @@
     "FIGHTING"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -22198,7 +22328,7 @@
     "PSY"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -22225,7 +22355,7 @@
     "FLYING"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -22252,7 +22382,8 @@
   ],
   "captureRate": 190,
   "baseHappiness": 70,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -22277,7 +22408,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -22304,7 +22435,7 @@
     "DRAGON"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -22330,7 +22461,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -22356,7 +22487,7 @@
     "GROUND"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -22383,7 +22514,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -22410,7 +22541,7 @@
     "GROUND"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -22436,7 +22567,7 @@
     "FIRE"
   ],
   "captureRate": 190,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": true
 },
@@ -22463,7 +22594,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -22490,7 +22621,7 @@
     "FAIRY"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -22516,7 +22647,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -22542,7 +22673,7 @@
     "NORMAL"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -22569,7 +22700,7 @@
     "FAIRY"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -22595,7 +22726,7 @@
     "NORMAL"
   ],
   "captureRate": 200,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -22622,7 +22753,7 @@
     "PSY"
   ],
   "captureRate": 180,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -22648,7 +22779,7 @@
     "NORMAL"
   ],
   "captureRate": 127,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -22676,7 +22807,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -22700,7 +22832,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": false
 },
@@ -22726,7 +22858,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 70,
   "base": true
 },
@@ -22752,7 +22884,7 @@
     "GRASS"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -22779,7 +22911,7 @@
     "STEEL"
   ],
   "captureRate": 25,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -22808,7 +22940,8 @@
   "captureRate": 45,
   "mythical": true,
   "baseHappiness": 100,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -22833,7 +22966,7 @@
     "FAIRY"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -22860,7 +22993,7 @@
     "FLYING"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -22886,7 +23019,7 @@
     "POISON"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -22912,7 +23045,7 @@
     "WATER"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -22938,7 +23071,7 @@
     "POISON"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -22965,7 +23098,7 @@
     "GROUND"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -22992,7 +23125,7 @@
     "POISON"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -23019,7 +23152,7 @@
   ],
   "baby": true,
   "captureRate": 45,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": true
 },
@@ -23045,7 +23178,7 @@
     "POISON"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -23071,7 +23204,7 @@
     "WATER"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -23098,7 +23231,7 @@
     "STEEL"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -23125,7 +23258,7 @@
     "FLYING"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -23151,7 +23284,7 @@
     "PSY"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -23177,7 +23310,7 @@
     "WATER"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -23205,7 +23338,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -23230,7 +23364,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 50,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -23255,7 +23390,7 @@
     "FLYING"
   ],
   "captureRate": 25,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -23281,7 +23416,7 @@
     "FIGHTING"
   ],
   "captureRate": 200,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 70,
   "base": false
 },
@@ -23307,7 +23442,7 @@
     "GRASS"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -23334,7 +23469,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -23362,7 +23497,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -23387,7 +23523,7 @@
     "DARK"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -23414,7 +23550,7 @@
     "FIGHTING"
   ],
   "captureRate": 140,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 100,
   "base": true
 },
@@ -23440,7 +23576,7 @@
     "POISON"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -23466,7 +23602,7 @@
     "WATER"
   ],
   "captureRate": 205,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -23492,7 +23628,7 @@
     "WATER"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -23519,7 +23655,8 @@
   ],
   "captureRate": 60,
   "baseHappiness": 70,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -23543,7 +23680,7 @@
     "FIRE"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -23596,7 +23733,7 @@
     "GROUND"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -23622,7 +23759,7 @@
     "ROCK"
   ],
   "captureRate": 65,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -23649,7 +23786,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -23676,7 +23813,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -23702,7 +23839,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -23731,7 +23868,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -23756,7 +23894,7 @@
     "POISON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -23782,7 +23920,7 @@
     "GHOST"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -23809,7 +23947,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -23836,7 +23974,7 @@
     "FAIRY"
   ],
   "captureRate": 235,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -23862,7 +24000,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -23888,7 +24026,7 @@
     "FAIRY"
   ],
   "captureRate": 75,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 70,
   "base": false
 },
@@ -23916,7 +24054,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 35,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -23941,7 +24080,7 @@
     "FIRE"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -23967,7 +24106,7 @@
     "BUG"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -23995,7 +24134,7 @@
   ],
   "baby": true,
   "captureRate": 170,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 50,
   "base": true
 },
@@ -24022,7 +24161,7 @@
     "FLYING"
   ],
   "captureRate": 30,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -24050,7 +24189,8 @@
   ],
   "captureRate": 45,
   "baseHappiness": 50,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -24075,7 +24215,7 @@
     "FLYING"
   ],
   "captureRate": 25,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -24128,7 +24268,7 @@
     "POISON"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -24154,7 +24294,7 @@
     "ELECTRIC"
   ],
   "captureRate": 45,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": false
 },
@@ -24181,7 +24321,7 @@
     "FLYING"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -24208,7 +24348,7 @@
     "GROUND"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -24235,7 +24375,7 @@
   ],
   "baby": true,
   "captureRate": 150,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 140,
   "base": true
 },
@@ -24262,7 +24402,7 @@
     "GROUND"
   ],
   "captureRate": 25,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -24288,7 +24428,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -24315,7 +24455,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -24343,7 +24483,7 @@
   ],
   "baby": true,
   "captureRate": 45,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": true
 },
@@ -24371,7 +24511,8 @@
   ],
   "captureRate": 90,
   "baseHappiness": 50,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -24396,7 +24537,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -24422,7 +24563,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -24451,7 +24592,8 @@
   "captureRate": 3,
   "mythical": true,
   "baseHappiness": 100,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -24476,7 +24618,7 @@
     "FLYING"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -24503,7 +24645,7 @@
     "GROUND"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -24529,7 +24671,7 @@
     "WATER"
   ],
   "captureRate": 225,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -24555,7 +24697,7 @@
     "FIRE"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -24582,7 +24724,7 @@
     "DARK"
   ],
   "captureRate": 155,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -24608,7 +24750,7 @@
     "WATER"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -24634,7 +24776,7 @@
     "FIRE"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -24661,7 +24803,7 @@
     "FAIRY"
   ],
   "captureRate": 50,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 50,
   "base": false
 },
@@ -24687,7 +24829,7 @@
     "GROUND"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -24713,7 +24855,7 @@
     "PSY"
   ],
   "captureRate": 100,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": false
 },
@@ -24739,7 +24881,7 @@
     "DRAGON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -24765,7 +24907,7 @@
     "FIGHTING"
   ],
   "captureRate": 180,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": true
 },
@@ -24792,7 +24934,7 @@
     "ROCK"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -24821,7 +24963,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -24845,7 +24988,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": true
 },
@@ -24871,7 +25014,7 @@
     "POISON"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -24897,7 +25040,7 @@
     "POISON"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -24923,7 +25066,7 @@
     "FIRE"
   ],
   "captureRate": 190,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 50,
   "base": true
 },
@@ -24950,7 +25093,7 @@
     "POISON"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -24977,7 +25120,7 @@
   ],
   "baby": true,
   "captureRate": 190,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": true
 },
@@ -25004,7 +25147,7 @@
     "GROUND"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -25031,7 +25174,7 @@
     "FLYING"
   ],
   "captureRate": 75,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -25059,7 +25202,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -25084,7 +25228,7 @@
     "ROCK"
   ],
   "captureRate": 60,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 50,
   "base": true
 },
@@ -25110,7 +25254,7 @@
     "NORMAL"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -25137,7 +25281,7 @@
     "FAIRY"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -25164,7 +25308,7 @@
     "PSY"
   ],
   "captureRate": 3,
-  "genderRate": 64,
+  "genderRate": 100,
   "legendary": true,
   "baseHappiness": 90,
   "base": true
@@ -25246,7 +25390,7 @@
     "FIGHTING"
   ],
   "captureRate": 45,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": false
 },
@@ -25272,7 +25416,7 @@
     "WATER"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -25326,7 +25470,8 @@
   ],
   "captureRate": 60,
   "baseHappiness": 50,
-  "base": false
+  "base": false,
+  "genderRate": null
 },
 {
   "_id": {
@@ -25376,7 +25521,7 @@
     "POISON"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -25403,7 +25548,7 @@
     "GROUND"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -25429,7 +25574,7 @@
     "NORMAL"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -25456,7 +25601,7 @@
     "ROCK"
   ],
   "captureRate": 120,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -25482,7 +25627,7 @@
     "WATER"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -25508,7 +25653,7 @@
     "FIGHTING"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -25535,7 +25680,7 @@
     "PSY"
   ],
   "captureRate": 45,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": false
 },
@@ -25561,7 +25706,7 @@
     "FIGHTING"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -25587,7 +25732,7 @@
     "PSY"
   ],
   "captureRate": 50,
-  "genderRate": 16,
+  "genderRate": 25,
   "baseHappiness": 50,
   "base": false
 },
@@ -25613,7 +25758,7 @@
     "WATER"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -25640,7 +25785,7 @@
     "GHOST"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -25667,7 +25812,7 @@
     "ICE"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -25694,7 +25839,7 @@
     "PSY"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -25721,7 +25866,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -25747,7 +25892,7 @@
     "ELECTRIC"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -25774,7 +25919,7 @@
     "POISON"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -25801,7 +25946,7 @@
     "POISON"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -25828,7 +25973,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -25854,7 +25999,7 @@
     "FAIRY"
   ],
   "captureRate": 190,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 70,
   "base": true
 },
@@ -25880,7 +26025,7 @@
     "NORMAL"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -25909,7 +26054,8 @@
   "captureRate": 45,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -25960,7 +26106,7 @@
     "POISON"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -25987,7 +26133,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 },
@@ -26040,7 +26186,7 @@
     "NORMAL"
   ],
   "captureRate": 90,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -26066,7 +26212,7 @@
     "GROUND"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -26093,7 +26239,7 @@
     "FAIRY"
   ],
   "captureRate": 170,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 50,
   "base": false
 },
@@ -26119,7 +26265,7 @@
     "POISON"
   ],
   "captureRate": 235,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": true
 },
@@ -26146,7 +26292,7 @@
     "ICE"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -26173,7 +26319,7 @@
     "GROUND"
   ],
   "captureRate": 45,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": false
 },
@@ -26199,7 +26345,7 @@
     "PSY"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": true
 },
@@ -26225,7 +26371,7 @@
     "NORMAL"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -26251,7 +26397,7 @@
     "DARK"
   ],
   "captureRate": 30,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": true
 },
@@ -26277,7 +26423,7 @@
     "FAIRY"
   ],
   "captureRate": 25,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 140,
   "base": false
 },
@@ -26304,7 +26450,7 @@
     "FAIRY"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -26331,7 +26477,7 @@
     "DARK"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -26358,7 +26504,7 @@
     "PSY"
   ],
   "captureRate": 70,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -26385,7 +26531,7 @@
     "POISON"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -26411,7 +26557,7 @@
     "FAIRY"
   ],
   "captureRate": 150,
-  "genderRate": 48,
+  "genderRate": 75,
   "baseHappiness": 140,
   "base": false
 },
@@ -26437,7 +26583,7 @@
     "PSY"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 70,
   "base": false
 },
@@ -26463,7 +26609,7 @@
     "NORMAL"
   ],
   "captureRate": 30,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 140,
   "base": false
 },
@@ -26489,7 +26635,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 50,
   "base": true
 },
@@ -26516,7 +26662,7 @@
     "PSY"
   ],
   "captureRate": 190,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -26543,7 +26689,7 @@
     "FLYING"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 35,
   "base": false
 },
@@ -26570,7 +26716,7 @@
     "PSY"
   ],
   "captureRate": 75,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -26597,7 +26743,7 @@
     "ROCK"
   ],
   "captureRate": 60,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": false
 },
@@ -26623,7 +26769,7 @@
     "NORMAL"
   ],
   "captureRate": 45,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -26651,7 +26797,8 @@
   "captureRate": 3,
   "legendary": true,
   "baseHappiness": 0,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -26675,7 +26822,7 @@
     "NORMAL"
   ],
   "captureRate": 30,
-  "genderRate": 64,
+  "genderRate": 100,
   "baseHappiness": 140,
   "base": false
 },
@@ -26703,7 +26850,8 @@
   "captureRate": 45,
   "mythical": true,
   "baseHappiness": 100,
-  "base": true
+  "base": true,
+  "genderRate": null
 },
 {
   "_id": {
@@ -26727,7 +26875,7 @@
     "GROUND"
   ],
   "captureRate": 255,
-  "genderRate": 32,
+  "genderRate": 50,
   "baseHappiness": 50,
   "base": true
 },
@@ -26753,7 +26901,7 @@
     "NORMAL"
   ],
   "captureRate": 25,
-  "genderRate": 8,
+  "genderRate": 12.5,
   "baseHappiness": 50,
   "base": false
 }]

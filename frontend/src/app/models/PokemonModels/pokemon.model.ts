@@ -29,6 +29,12 @@ export enum PokemonNature {
   QUIRKY = 'QUIRKY',
 }
 
+export enum Gender {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+  NONE = 'NONE',
+}
+
 export interface PokemonModel {
   _id?: string;
   trainerId: string;
@@ -49,6 +55,7 @@ export interface PokemonModel {
   birthday: Date;
   nature: PokemonNature;
   strategy: number[];
+  gender: Gender;
 }
 
 export const POKEMON_NATURES: Record<PokemonNature, PokemonStatsModel> = {
