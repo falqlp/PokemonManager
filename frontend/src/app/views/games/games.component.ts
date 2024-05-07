@@ -141,4 +141,8 @@ export class GamesComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
   }
+
+  protected logout(): void {
+    this.router.navigateByUrl('login');
+  }
 }

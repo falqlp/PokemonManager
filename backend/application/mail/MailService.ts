@@ -81,4 +81,14 @@ export class MailService {
       }
     });
   }
+
+  public contactUs(subject: string, details: string, userId: string): void {
+    const mailOptions: MailOptions = {
+      from: this.mail,
+      to: this.mail,
+      subject: `[${userId}]: ${subject}`,
+      text: details,
+    };
+    this.transporter.sendMail(mailOptions);
+  }
 }

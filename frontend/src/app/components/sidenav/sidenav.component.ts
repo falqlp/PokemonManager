@@ -9,9 +9,11 @@ import { PlayerService } from '../../services/player.service';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { BadgeDataService } from '../../services/badge.data.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ContactUsComponent } from '../../modals/contact-us/contact-us.component';
 
 export interface NavsModel {
-  link: string;
+  link?: string;
   label: string;
   icon: string;
   action?: () => void;
@@ -40,7 +42,8 @@ export class SidenavComponent {
     protected routerService: RouterService,
     protected sidenavService: SidenavService,
     protected playerService: PlayerService,
-    protected badgeDataService: BadgeDataService
+    protected badgeDataService: BadgeDataService,
+    protected dialog: MatDialog
   ) {}
 
   protected navs: NavGroupModel[] = [
@@ -108,6 +111,13 @@ export class SidenavComponent {
           icon: 'logout',
           action: (): void => this.playerService.logout(),
         },
+        {
+          label: 'CONTACT-US',
+          icon: 'alternate_email',
+          action: (): void => {
+            this.dialog.open(ContactUsComponent);
+          },
+        },
       ],
     },
   ];
@@ -119,7 +129,9 @@ export class SidenavComponent {
     this.badgeDataService.sidenav = this.badgeDataService.sidenav.filter(
       (el) => el !== nav.label
     );
-    this.routerService.navigateByUrl(nav.link);
+    if (nav.link) {
+      this.routerService.navigateByUrl(nav.link);
+    }
     this.sidenavService.closeSidenav();
   }
 }

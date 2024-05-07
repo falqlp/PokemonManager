@@ -1,0 +1,24 @@
+<form [formGroup]="contactUsForm" (submit)="send()">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>{{ 'SUBJECT' | translate }}</mat-label>
+      <input matInput [formControl]="contactUsForm.controls.subject" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'Détail' | translate }}</mat-label>
+      <textarea
+        [formControl]="contactUsForm.controls.details"
+        matInput></textarea>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-flat-button mat-dialog-close>{{ 'CANCEL' | translate }}</button>
+    <button
+      [disabled]="contactUsForm.invalid"
+      mat-flat-button
+      type="submit"
+      color="warn">
+      {{ 'SUBMIT' | translate }}
+    </button>
+  </div>
+</form>

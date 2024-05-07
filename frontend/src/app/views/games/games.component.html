@@ -11,6 +11,9 @@
   <button mat-menu-item [matMenuTriggerFor]="languages">
     {{ 'LANGUAGES' | translate }}
   </button>
+  <button mat-menu-item (click)="logout()">
+    {{ 'LOGOUT' | translate }}
+  </button>
 </mat-menu>
 <mat-menu #languages>
   @for (lang of settings.languages; track lang) {

@@ -15,6 +15,7 @@ import nurseryRoutes from "./nursery/NurseryRoutes";
 import pokedexRouter from "./pokedex/PokedexRouter";
 import competitionRoutes from "./competition/CompetitionRoutes";
 import passwordRequestRoutes from "./passwordRequest/PasswordRequestRoutes";
+import mailRoutes from "./mail/MailRoutes";
 import { Router } from "express";
 
 export const RoutesMap: Record<string, Router> = {
@@ -35,4 +36,5 @@ export const RoutesMap: Record<string, Router> = {
   pokedex: pokedexRouter,
   competition: competitionRoutes,
   "password-request": passwordRequestRoutes,
+  email: mailRoutes,
 };
