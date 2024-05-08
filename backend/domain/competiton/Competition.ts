@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { MongoId } from "../MongoId";
+import { ITournament } from "../tournament/Tournament";
 
 export enum CompetitionType {
   CHAMPIONSHIP = "CHAMPIONSHIP",
@@ -7,7 +8,7 @@ export enum CompetitionType {
   FRIENDLY = "FRIENDLY",
 }
 
-export interface ICompetition extends MongoId {
+interface BaseCompetition extends MongoId {
   startDate?: Date;
   endDate?: Date;
   name: string;
@@ -15,12 +16,30 @@ export interface ICompetition extends MongoId {
   gameId: string;
 }
 
+export interface ITournamentCompetition extends BaseCompetition {
+  type: CompetitionType.TOURNAMENT;
+  tournament: ITournament;
+}
+
+interface NonTournamentCompetition extends BaseCompetition {
+  type: Exclude<CompetitionType, CompetitionType.TOURNAMENT>;
+}
+
+export type ICompetition = ITournamentCompetition | NonTournamentCompetition;
+
 const CompetitionSchema = new Schema<ICompetition>({
   name: { type: String, required: true },
   type: { type: String, required: true },
   startDate: { type: Date },
   endDate: { type: Date },
   gameId: { type: String, required: true },
+  tournament: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Tournament",
+    required: function (): boolean {
+      return this.type === CompetitionType.TOURNAMENT;
+    },
+  },
 });
 
 const Competition = mongoose.model<ICompetition>(

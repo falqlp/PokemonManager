@@ -2,12 +2,16 @@ import { Component, DestroyRef, input, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { TranslateModule } from '@ngx-translate/core';
 import { TimeService } from '../../services/time.service';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 import { RankingModel } from '../../models/ranking.model';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
 import { PlayerService } from '../../services/player.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgClass } from '@angular/common';
+import {
+  CompetitionModel,
+  CompetitionType,
+} from '../../models/competition.model';
 
 @Component({
   selector: 'pm-ranking',
@@ -17,7 +21,7 @@ import { NgClass } from '@angular/common';
   styleUrl: './ranking.component.scss',
 })
 export class RankingComponent implements OnInit {
-  public competitionId = input<string>();
+  public competition = input<CompetitionModel>();
   protected displayedColumns: string[] = [
     'ranking',
     'class',
@@ -41,9 +45,12 @@ export class RankingComponent implements OnInit {
   public ngOnInit(): void {
     this.ranking$ = this.timeService.getActualDate().pipe(
       switchMap(() => {
-        return this.battleInstanceQueriesService.getRanking(
-          this.competitionId()
-        );
+        if (this.competition().type === CompetitionType.CHAMPIONSHIP) {
+          return this.battleInstanceQueriesService.getRanking(
+            this.competition()._id
+          );
+        }
+        return of(null);
       })
     );
     this.playerService.player$

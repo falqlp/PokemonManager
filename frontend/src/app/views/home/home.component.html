@@ -10,7 +10,7 @@
     <mat-tab-group>
       @for (competition of player.competitions; track competition._id) {
       <mat-tab [label]="competition.name | translate">
-        <pm-ranking [competitionId]="competition._id" />
+        <pm-ranking [competition]="competition" />
       </mat-tab>
       }
     </mat-tab-group>

@@ -11,6 +11,7 @@ const battleInstanceService = container.resolve<BattleInstanceService>(
   BattleInstanceService,
 );
 const pokemonMapper = container.resolve(PokemonMapper);
+const battleMapper = container.resolve(BattleInstanceMapper);
 const router = express.Router();
 const completeRouter = new CompleteRouter(
   container.resolve(BattleInstanceRepository),
@@ -50,6 +51,15 @@ router.get("/init-battle/:id", async (req, res, next) => {
       return pokemonMapper.map(value) as IBattlePokemon;
     });
     res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put("/:id", async (req, res, next) => {
+  try {
+    const obj = await battleInstanceService.update(req.params.id, req.body);
+    res.status(200).json(battleMapper.map(obj));
   } catch (error) {
     next(error);
   }

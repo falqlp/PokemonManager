@@ -18,11 +18,16 @@ import WebsocketServerService, {
 } from "../../WebsocketServerService";
 import { singleton } from "tsyringe";
 import { ICompetition } from "../../domain/competiton/Competition";
+import CompetitionService from "../competition/CompetitionService";
+import { addDays } from "../../utils/DateUtils";
+import { BattleInstanceService } from "../battleInstance/BattleInstanceService";
+import TournamentService from "../competition/tournament/TournamentService";
 
 @singleton()
 class CalendarEventService {
   constructor(
     protected battleInstanceRepository: BattleInstanceRepository,
+    protected battleInstanceService: BattleInstanceService,
     protected calendarEventRepository: CalendarEventRepository,
     protected trainerRepository: TrainerRepository,
     protected gameRepository: GameRepository,
@@ -32,6 +37,8 @@ class CalendarEventService {
     protected battleService: BattleService,
     protected nurseryRepository: NurseryRepository,
     protected websocketServerService: WebsocketServerService,
+    protected competitionService: CompetitionService,
+    protected tournamentService: TournamentService,
   ) {}
 
   public async createBattleEvent(
@@ -108,10 +115,12 @@ class CalendarEventService {
         game,
         redirectTo,
       );
-      date.setUTCDate(date.getUTCDate() + 1);
+      date = addDays(date, 1);
       const newGame = await this.gameRepository.get(game);
       newGame.actualDate = date;
       await this.gameRepository.update(game, newGame);
+      await this.competitionService.championshipEnd(game, addDays(date, -1));
+      await this.tournamentService.tournamentStepEnd(game, addDays(date, -1));
     }
     await this.pokemonService.isHatched(date, game);
     return { date, battle, redirectTo };
@@ -185,7 +194,7 @@ class CalendarEventService {
     });
     for (const value of battles) {
       value.event = this.battleService.simulateBattle(value.event);
-      await this.battleInstanceRepository.update(value.event._id, value.event);
+      await this.battleInstanceService.update(value.event._id, value.event);
     }
   }
 }

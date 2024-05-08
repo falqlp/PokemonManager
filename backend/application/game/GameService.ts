@@ -6,9 +6,8 @@ import TrainerService from "../trainer/TrainerService";
 import GenerateCalendarService from "../calendarEvent/GenerateCalendarService";
 import WebsocketServerService from "../../WebsocketServerService";
 import { singleton } from "tsyringe";
-import CompetitionRepository from "../../domain/competiton/CompetitionRepository";
-import { CompetitionType } from "../../domain/competiton/Competition";
 import PokemonService from "../pokemon/PokemonService";
+import CompetitionService from "../competition/CompetitionService";
 
 export const NB_GENERATED_TRAINER = 19;
 
@@ -20,8 +19,8 @@ class GameService {
     protected trainerService: TrainerService,
     protected generateCalendarService: GenerateCalendarService,
     protected websocketServerService: WebsocketServerService,
-    protected competitionRepository: CompetitionRepository,
     protected pokemonService: PokemonService,
+    protected competitionService: CompetitionService,
   ) {}
 
   public async createWithUser(dto: IGame, userId: string): Promise<IGame> {
@@ -46,22 +45,8 @@ class GameService {
       },
     });
     const game = await this.gameRepository.get(gameId);
-    await this.competitionRepository.create({
-      gameId,
-      name: "FRIENDLY",
-      type: CompetitionType.FRIENDLY,
-    });
-    const startDate = new Date(game.actualDate);
-    const endDate = new Date(game.actualDate);
-    startDate.setUTCDate(startDate.getUTCDate() + 1);
-    endDate.setUTCMonth(endDate.getUTCMonth() + 6);
-    const championship = await this.competitionRepository.create({
-      gameId,
-      name: "CHAMPIONSHIP",
-      type: CompetitionType.CHAMPIONSHIP,
-      endDate,
-      startDate,
-    });
+    await this.competitionService.createFriendly(gameId);
+    const championship = await this.competitionService.createChampionship(game);
     await this.trainerRepository.findOneAndUpdate(
       { _id: playerId },
       { $push: { competitions: championship } },

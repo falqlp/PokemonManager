@@ -10,6 +10,8 @@ import PcStorage from "../pcStorage/PcStorage";
 import Nursery from "../nursery/Nursery";
 import { singleton } from "tsyringe";
 import GamePopulater from "./GamePopulater";
+import Competition from "../competiton/Competition";
+import Tournament from "../tournament/Tournament";
 
 @singleton()
 class GameRepository extends CompleteRepository<IGame> {
@@ -27,6 +29,8 @@ class GameRepository extends CompleteRepository<IGame> {
       await CalendarEvent.deleteMany({ gameId: _id });
       await PcStorage.deleteMany({ gameId: _id });
       await Nursery.deleteMany({ gameId: _id });
+      await Competition.deleteMany({ gameId: _id });
+      await Tournament.deleteMany({ gameId: _id });
     } catch (error) {
       return Promise.reject(error);
     }

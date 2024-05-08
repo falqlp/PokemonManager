@@ -9,6 +9,8 @@ import BattleInstanceRepository from "../../domain/battleInstance/BattleInstance
 import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
 import { singleton } from "tsyringe";
 import { ICompetition } from "../../domain/competiton/Competition";
+import { ObjectId } from "mongodb";
+import { addDays, isSevenDaysApart } from "../../utils/DateUtils";
 
 @singleton()
 class GenerateCalendarService {
@@ -145,6 +147,47 @@ class GenerateCalendarService {
     return dates.filter((date1) =>
       dates2.some((date2) => date1.getTime() === date2.getTime()),
     );
+  }
+
+  public generateBO3matches(
+    player: ITrainer,
+    opponent: ITrainer,
+    startDate: Date,
+    endDate: Date,
+    gameId: string,
+    tournamentId: string,
+  ): { battles: IBattleInstance[]; events: ICalendarEvent[] } {
+    if (!isSevenDaysApart(startDate, endDate)) {
+      throw new Error(
+        "Il doit il y avoir une periode de 7 jours pour planifier un BO3",
+      );
+    }
+    const battleDate = [
+      addDays(startDate, 2),
+      addDays(startDate, 4),
+      addDays(startDate, 6),
+    ];
+    const battles: IBattleInstance[] = [];
+    const events: ICalendarEvent[] = [];
+    battleDate.forEach((date) => {
+      const battle: IBattleInstance = {
+        _id: new ObjectId() as unknown as string,
+        gameId,
+        opponent,
+        player,
+        competition: tournamentId as unknown as ICompetition,
+      };
+      battles.push(battle);
+      events.push({
+        _id: new ObjectId() as unknown as string,
+        gameId,
+        date,
+        trainers: [opponent, player],
+        event: battle,
+        type: CalendarEventEvent.BATTLE,
+      });
+    });
+    return { battles, events };
   }
 }
 

@@ -4,6 +4,12 @@ import { ObjectId } from "mongodb";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import BattleService from "../battle/BattleService";
 import { IBattleTrainer } from "../battle/BattleInterfaces";
+import { IBattleInstance } from "../../domain/battleInstance/Battle";
+import { CompetitionType } from "../../domain/competiton/Competition";
+import BattleSerieRepository from "../../domain/battleSerie/BattleSerieRepository";
+import { IBattleSerie } from "../../domain/battleSerie/BattleSerie";
+import GameRepository from "../../domain/game/GameRepository";
+import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
 
 export interface TrainerRanking {
   _id: string;
@@ -22,6 +28,9 @@ export class BattleInstanceService {
     protected battleInstanceRepository: BattleInstanceRepository,
     protected trainerRepository: TrainerRepository,
     protected battleService: BattleService,
+    protected battleSerieRepository: BattleSerieRepository,
+    protected gameRepository: GameRepository,
+    protected calendarEventRepository: CalendarEventRepository,
   ) {}
 
   public async getRanking(competitionId: string): Promise<TrainerRanking[]> {
@@ -104,10 +113,7 @@ export class BattleInstanceService {
 
   public async simulateBattle(battleId: string): Promise<void> {
     const battle = await this.battleInstanceRepository.get(battleId);
-    await this.battleInstanceRepository.update(
-      battleId,
-      this.battleService.simulateBattle(battle),
-    );
+    await this.update(battleId, this.battleService.simulateBattle(battle));
   }
 
   public async initBattle(
@@ -115,5 +121,55 @@ export class BattleInstanceService {
   ): Promise<{ player: IBattleTrainer; opponent: IBattleTrainer }> {
     const battle = await this.battleInstanceRepository.get(battleId);
     return this.battleService.initBattle(battle);
+  }
+
+  public async update(
+    _id: string,
+    battle: IBattleInstance,
+  ): Promise<IBattleInstance> {
+    battle = await this.battleInstanceRepository.update(_id, battle);
+    if (battle.competition.type === CompetitionType.TOURNAMENT) {
+      const battleSeries = await this.battleSerieRepository.list({
+        custom: { battles: battle._id },
+      });
+      if (battleSeries.length > 0) {
+        const game = await this.gameRepository.get(battle.gameId);
+        for (const battleSerie of battleSeries) {
+          if (this.isSerieWin(battleSerie)) {
+            await this.calendarEventRepository.deleteTournamentBattle(
+              game.actualDate,
+              battleSerie.battles.map((value) => value._id),
+            );
+          }
+        }
+      }
+    }
+    return battle;
+  }
+
+  public isSerieWin(battleSerie: IBattleSerie): string {
+    const winMap: Map<string, number> = new Map<string, number>();
+
+    battleSerie.battles.forEach((battle) => {
+      if (battle.winner) {
+        const winnerId =
+          battle.winner === "player"
+            ? battle.player._id.toString()
+            : battle.opponent._id.toString();
+
+        const currentWins = winMap.get(winnerId) ?? 0;
+        winMap.set(winnerId, currentWins + 1);
+      }
+    });
+
+    const halfMaxBattle = Math.ceil(battleSerie.maxBattle / 2);
+
+    for (const trainerId of winMap.keys()) {
+      if (winMap.get(trainerId) >= halfMaxBattle) {
+        return trainerId;
+      }
+    }
+
+    return undefined;
   }
 }
