@@ -2,6 +2,7 @@ import { Component, input } from '@angular/core';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { TranslateModule } from '@ngx-translate/core';
 import { BattleTrainerModel } from '../../views/new-battle/battle.model';
+import { RankingBaseModel } from '../../models/ranking.model';
 
 @Component({
   selector: 'pm-trainer-name',
@@ -11,5 +12,7 @@ import { BattleTrainerModel } from '../../views/new-battle/battle.model';
   styleUrl: './trainer-name.component.scss',
 })
 export class TrainerNameComponent {
-  public trainer = input<TrainerModel | BattleTrainerModel>();
+  public trainer = input<
+    TrainerModel | BattleTrainerModel | RankingBaseModel
+  >();
 }

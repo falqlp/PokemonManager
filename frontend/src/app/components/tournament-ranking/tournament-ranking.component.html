@@ -1,0 +1,34 @@
+<mat-tab-group [selectedIndex]="tournamentStepValue.length - 1">
+  @for ( tournamentStep of tournamentStepValue; track tournamentStep.label){
+  <mat-tab [label]="tournamentStep.label | translate">
+    <div class="tournament-ranking">
+      @for (serieRanking of tournamentRanking[tournamentStep.index]; track
+      serieRanking){
+      <div class="tournament-ranking__ranking">
+        <div
+          class="tournament-ranking__ranking__trainer"
+          [ngClass]="
+            serieRanking.player._id === playerId
+              ? 'tournament-ranking__ranking__trainer--player'
+              : ''
+          ">
+          <span>{{ serieRanking.player.wins }}</span>
+          <pm-trainer-name [trainer]="serieRanking.player" />
+        </div>
+        <mat-divider />
+        <div
+          class="tournament-ranking__ranking__trainer"
+          [ngClass]="
+            serieRanking.opponent._id === playerId
+              ? 'tournament-ranking__ranking__trainer--player'
+              : ''
+          ">
+          <span>{{ serieRanking.opponent.wins }}</span>
+          <pm-trainer-name [trainer]="serieRanking.opponent" />
+        </div>
+      </div>
+      }
+    </div>
+  </mat-tab>
+  }
+</mat-tab-group>

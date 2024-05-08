@@ -11,4 +11,5 @@ export interface CompetitionModel {
   name: string;
   type: CompetitionType;
   gameId: string;
+  tournament: string;
 }

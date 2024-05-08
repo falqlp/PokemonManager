@@ -43,16 +43,15 @@ export class RankingComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.ranking$ = this.timeService.getActualDate().pipe(
-      switchMap(() => {
-        if (this.competition().type === CompetitionType.CHAMPIONSHIP) {
+    if (this.competition().type === CompetitionType.CHAMPIONSHIP) {
+      this.ranking$ = this.timeService.getActualDate().pipe(
+        switchMap(() => {
           return this.battleInstanceQueriesService.getRanking(
             this.competition()._id
           );
-        }
-        return of(null);
-      })
-    );
+        })
+      );
+    }
     this.playerService.player$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((player) => {

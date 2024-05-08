@@ -1,0 +1,27 @@
+@import 'src/styles/flexbox';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+  .tournament-ranking {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    &__ranking {
+      @include flexbox(left, 1, column);
+      align-items: normal;
+      width: -webkit-fill-available;
+      gap: 5px;
+      &__trainer {
+        display: grid;
+        grid-template-columns: 0.25fr 1fr;
+        &--player {
+          color: $orange;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

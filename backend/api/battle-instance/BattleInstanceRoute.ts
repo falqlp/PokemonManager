@@ -20,13 +20,24 @@ const completeRouter = new CompleteRouter(
 
 router.get("/ranking/:id", async (req, res, next) => {
   try {
-    const obj = await battleInstanceService.getRanking(req.params.id);
+    const obj = await battleInstanceService.getChampionshipRanking(
+      req.params.id,
+    );
     res.status(200).json(
       obj.map((value) => {
         value.directWins = undefined;
         return value;
       }),
     );
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/tournament-ranking/:id", async (req, res, next) => {
+  try {
+    const obj = await battleInstanceService.getTournamentRanking(req.params.id);
+    res.status(200).json(obj);
   } catch (err) {
     next(err);
   }

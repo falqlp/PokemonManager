@@ -25,6 +25,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MoveComponent } from '../../components/move/move.component';
 import { SimpleDisplayStatsComponent } from '../../components/simple-display-stats/simple-display-stats.component';
+import { TournamentRankingComponent } from '../../components/tournament-ranking/tournament-ranking.component';
 
 @Component({
   selector: 'app-home',
@@ -42,6 +43,7 @@ import { SimpleDisplayStatsComponent } from '../../components/simple-display-sta
     TranslateModule,
     MoveComponent,
     SimpleDisplayStatsComponent,
+    TournamentRankingComponent,
   ],
 })
 export class HomeComponent implements OnInit {

@@ -84,7 +84,7 @@ export default class CompetitionService {
       },
     });
     for (const championship of endedChampionships) {
-      const ranking = await this.battleInstanceService.getRanking(
+      const ranking = await this.battleInstanceService.getChampionshipRanking(
         championship._id.toString(),
       );
       const qualifiedPlayersId = ranking.slice(0, 8).map((value) => value._id);

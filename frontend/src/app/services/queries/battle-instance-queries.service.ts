@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BattleModel } from '../../models/Battle.model';
 import { CompleteQuery } from '../../core/complete-query';
-import { RankingModel } from '../../models/ranking.model';
+import { RankingModel, SerieRankingModel } from '../../models/ranking.model';
 import {
   BattlePokemonModel,
   BattleTrainerModel,
@@ -34,6 +34,15 @@ export class BattleInstanceQueriesService extends CompleteQuery<BattleModel> {
     return this.http.get<RankingModel[]>(
       `${this.url}/ranking/${competitionId}`
     );
+  }
+
+  public getTournamentRanking(
+    tournamentId: string
+  ): Observable<{ tournamentRanking: SerieRankingModel[][]; step: number }> {
+    return this.http.get<{
+      tournamentRanking: SerieRankingModel[][];
+      step: number;
+    }>(`${this.url}/tournament-ranking/${tournamentId}`);
   }
 
   public simulateBattle(battle: BattleModel): Observable<BattleModel> {

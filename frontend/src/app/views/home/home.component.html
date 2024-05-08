@@ -10,7 +10,11 @@
     <mat-tab-group>
       @for (competition of player.competitions; track competition._id) {
       <mat-tab [label]="competition.name | translate">
+        @switch (competition.type){ @case ('TOURNAMENT'){
+        <pm-tournament-ranking [competition]="competition" />
+        } @default {
         <pm-ranking [competition]="competition" />
+        } }
       </mat-tab>
       }
     </mat-tab-group>

@@ -10,16 +10,26 @@ import BattleSerieRepository from "../../domain/battleSerie/BattleSerieRepositor
 import { IBattleSerie } from "../../domain/battleSerie/BattleSerie";
 import GameRepository from "../../domain/game/GameRepository";
 import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
+import TournamentRepository from "../../domain/tournament/TournamentRepository";
+import { ITrainer } from "../../domain/trainer/Trainer";
 
-export interface TrainerRanking {
+export interface IRankingBase {
   _id: string;
   class: string;
   name: string;
   wins: number;
+}
+
+export interface ITrainerRanking extends IRankingBase {
   losses: number;
   winPercentage: number;
   ranking: number;
   directWins: any;
+}
+
+export interface ISerieRanking {
+  player: IRankingBase;
+  opponent: IRankingBase;
 }
 
 @singleton()
@@ -31,14 +41,27 @@ export class BattleInstanceService {
     protected battleSerieRepository: BattleSerieRepository,
     protected gameRepository: GameRepository,
     protected calendarEventRepository: CalendarEventRepository,
+    protected tournamentRepository: TournamentRepository,
   ) {}
 
-  public async getRanking(competitionId: string): Promise<TrainerRanking[]> {
-    const ranking = new Map<string, TrainerRanking>();
+  public async getChampionshipRanking(
+    competitionId: string,
+  ): Promise<ITrainerRanking[]> {
     const competitionObjId = new ObjectId(competitionId);
     const trainers = await this.trainerRepository.list({
       custom: { competitions: competitionObjId },
     });
+    const competitionMatches = await this.battleInstanceRepository.list({
+      custom: { competition: competitionObjId, winner: { $exists: true } },
+    });
+    return this.calculateRankings(trainers, competitionMatches);
+  }
+
+  public calculateRankings(
+    trainers: ITrainer[],
+    competitionMatches: IBattleInstance[],
+  ): ITrainerRanking[] {
+    const ranking = new Map<string, ITrainerRanking>();
 
     trainers.forEach((trainer) => {
       ranking.set(trainer._id.toString(), {
@@ -51,10 +74,6 @@ export class BattleInstanceService {
         ranking: 0,
         directWins: {},
       });
-    });
-
-    const competitionMatches = await this.battleInstanceRepository.list({
-      custom: { competition: competitionObjId, winner: { $exists: true } },
     });
 
     competitionMatches.forEach((competitionMatch) => {
@@ -109,6 +128,48 @@ export class BattleInstanceService {
     });
 
     return rankedTrainers;
+  }
+
+  public async getTournamentRanking(
+    tournamentId: string,
+  ): Promise<{ tournamentRanking: ISerieRanking[][]; step: number }> {
+    const tournament = await this.tournamentRepository.get(tournamentId);
+    const tournamentRanking: ISerieRanking[][] = [];
+    tournament.tournamentSteps.forEach((tournamentStep) => {
+      const tournamentStepResult: ISerieRanking[] = [];
+      tournamentStep.battleSeries.forEach((serie) => {
+        tournamentStepResult.push(this.getSerieResult(serie));
+      });
+      tournamentRanking.push(tournamentStepResult);
+    });
+    return { tournamentRanking, step: tournament.nbStep };
+  }
+
+  public getSerieResult(serie: IBattleSerie): ISerieRanking {
+    const serieResult: ISerieRanking = {
+      player: {
+        _id: serie.player._id,
+        class: serie.player.class,
+        name: serie.player.name,
+        wins: 0,
+      },
+      opponent: {
+        _id: serie.opponent._id,
+        class: serie.opponent.class,
+        name: serie.opponent.name,
+        wins: 0,
+      },
+    };
+    serie.battles.forEach((serieBattle) => {
+      if (serieBattle.winner) {
+        if (serieBattle.winner === "player") {
+          serieResult.player.wins += 1;
+        } else {
+          serieResult.opponent.wins += 1;
+        }
+      }
+    });
+    return serieResult;
   }
 
   public async simulateBattle(battleId: string): Promise<void> {
