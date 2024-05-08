@@ -2,7 +2,7 @@ import { Component, DestroyRef, input, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { TranslateModule } from '@ngx-translate/core';
 import { TimeService } from '../../services/time.service';
-import { Observable, of, switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { RankingModel } from '../../models/ranking.model';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
 import { PlayerService } from '../../services/player.service';
