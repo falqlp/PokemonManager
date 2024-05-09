@@ -1,5 +1,4 @@
 @import 'src/styles/flexbox';
-@import 'src/styles/colors';
 
 h3 {
   margin: 10px;
@@ -11,32 +10,6 @@ h3 {
     @include flexbox(left, 2, column);
     width: fit-content;
     align-items: center;
-  }
-  &__next-battle {
-    @include flexbox(center, 2, column);
-    align-items: center;
-    height: fit-content;
-    &__day-to-next-battle {
-      font-weight: bold;
-    }
-    &__info {
-      @include flexbox(center, 1, column);
-      align-items: center;
-      gap: 10px;
-      padding: 10px 0;
-      width: 100%;
-    }
-    &__opponent {
-      background-color: $battle-event;
-      width: 100%;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      &__name {
-        padding: 10px;
-      }
-    }
   }
   &__team {
     @include flexbox(center, 2, column);

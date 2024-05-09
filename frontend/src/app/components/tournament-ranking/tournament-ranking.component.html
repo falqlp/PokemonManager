@@ -7,22 +7,26 @@
       <div class="tournament-ranking__ranking">
         <div
           class="tournament-ranking__ranking__trainer"
-          [ngClass]="
-            serieRanking.player._id === playerId
-              ? 'tournament-ranking__ranking__trainer--player'
-              : ''
-          ">
+          [ngClass]="{
+            'tournament-ranking__ranking__trainer--player':
+              serieRanking.player._id === playerId,
+            'tournament-ranking__ranking__trainer--looser':
+              serieRanking.winner &&
+              serieRanking.player._id !== serieRanking.winner
+          }">
           <span>{{ serieRanking.player.wins }}</span>
           <pm-trainer-name [trainer]="serieRanking.player" />
         </div>
         <mat-divider />
         <div
           class="tournament-ranking__ranking__trainer"
-          [ngClass]="
-            serieRanking.opponent._id === playerId
-              ? 'tournament-ranking__ranking__trainer--player'
-              : ''
-          ">
+          [ngClass]="{
+            'tournament-ranking__ranking__trainer--player':
+              serieRanking.opponent._id === playerId,
+            'tournament-ranking__ranking__trainer--looser':
+              serieRanking.winner &&
+              serieRanking.opponent._id !== serieRanking.winner
+          }">
           <span>{{ serieRanking.opponent.wins }}</span>
           <pm-trainer-name [trainer]="serieRanking.opponent" />
         </div>

@@ -10,42 +10,58 @@
   background-color: rgba(0, 0, 0, 0.5);
   .top-bar-week-calendar {
     animation: translateY 0.5s ease;
-    @include flexbox(flex-start, 1);
+    @include flexbox(flex-start, 1, column);
     align-items: normal;
     gap: 10px;
     max-height: 50vh;
     overflow: hidden;
-    &__day {
-      @include flexbox(flex-start, 2, column);
+    &__next-battle {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
       gap: 10px;
-      flex: 1;
-      word-break: break-word;
-      animation: translateX 0.3s ease;
-      overflow: hidden;
-      padding: 10px 0;
-      &__date {
-        text-align: center;
-        width: 100%;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+      &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+    &__calendar {
+      display: flex;
+      gap: 10px;
+      &__day {
+        @include flexbox(flex-start, 2, column);
+        gap: 10px;
+        flex: 1;
+        word-break: break-word;
+        animation: translateX 0.3s ease;
         overflow: hidden;
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-      &--actual {
-        background-color: #9e9e9e;
-      }
-
-      &__event {
-        width: -webkit-fill-available;
-        text-align: center;
-        background-color: $battle-event;
-        padding: 5px;
-        &--green {
-          background-color: $nursery-event;
+        padding: 10px 0;
+        &__date {
+          text-align: center;
+          width: 100%;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          font-weight: bold;
+          margin-bottom: 10px;
         }
-        &--passed {
-          background-color: #777373 !important;
+        &--actual {
+          background-color: #9e9e9e;
+        }
+
+        &__event {
+          width: -webkit-fill-available;
+          text-align: center;
+          background-color: $battle-event;
+          padding: 5px;
+          &--green {
+            background-color: $nursery-event;
+          }
+          &--passed {
+            background-color: #777373 !important;
+          }
         }
       }
     }

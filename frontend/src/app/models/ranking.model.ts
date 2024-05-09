@@ -14,4 +14,5 @@ export interface RankingModel extends RankingBaseModel {
 export interface SerieRankingModel {
   player: RankingBaseModel;
   opponent: RankingBaseModel;
+  winner?: string;
 }

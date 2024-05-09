@@ -33,7 +33,7 @@ export default class CompetitionService {
     const startDate = new Date(game.actualDate);
     const endDate = new Date(game.actualDate);
     startDate.setUTCDate(startDate.getUTCDate() + 1);
-    endDate.setUTCMonth(endDate.getUTCMonth() + 6);
+    endDate.setUTCMonth(endDate.getUTCMonth() + 8);
     return await this.competitionRepository.create({
       gameId: game._id.toString(),
       name: "CHAMPIONSHIP",
@@ -95,7 +95,7 @@ export default class CompetitionService {
         gameId,
         "PLAYOFF",
         qualifiedTrainers,
-        addDays(actualDate, 1),
+        addDays(actualDate, 14),
       );
     }
   }

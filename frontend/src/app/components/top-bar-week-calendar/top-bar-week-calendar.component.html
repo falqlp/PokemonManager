@@ -1,46 +1,61 @@
 <div class="top-bar-week-calendar">
-  <div
-    class="top-bar-week-calendar__day"
-    *ngFor="let day of data$ | async; let i = index"
-    [ngClass]="{
-      'top-bar-week-calendar__day--actual': day.split('-')[0] === actualDate
-    }">
-    <label class="top-bar-week-calendar__day__date">
-      {{
-        day.split('-')[0].charAt(0).toUpperCase() + day.split('-')[0].slice(1)
-      }}</label
-    >
+  @if (nextBattle) {
+  <div class="top-bar-week-calendar__next-battle">
+    <h3>{{ 'NEXT_BATTLE' | translate }}:</h3>
+    <div class="top-bar-week-calendar__next-battle__info">
+      <span
+        >{{ dayToNextBattle }}
+        {{ nextBattle.event.competition.name | translate }}
+      </span>
+      <pm-trainer-name [trainer]="nextBattle.event.opponent" />
+    </div>
+  </div>
+  }
+  <div class="top-bar-week-calendar__calendar">
     <div
-      *ngFor="let event of events[i]"
-      class="top-bar-week-calendar__day__event"
+      class="top-bar-week-calendar__calendar__day"
+      *ngFor="let day of data$ | async; let i = index"
       [ngClass]="{
-        'top-bar-week-calendar__day__event--passed': i === 0,
-        'top-bar-week-calendar__day__event--green': [
-          'GENERATE_NURSERY_EGGS',
-          'NURSERY_FIRST_SELECTION_DEADLINE',
-          'NURSERY_LAST_SELECTION_DEADLINE'
-        ].includes(event.type)
-      }"
-      [ngSwitch]="event.type">
-      <div *ngSwitchCase="'BATTLE'">
-        <span>
-          <pm-trainer-name
-            [trainer]="
-              event?.event.opponent.name !== player.name
-                ? event?.event.opponent
-                : event?.event.player
-            "
-        /></span>
-        <pm-battle-status [battle]="event.event" [playerId]="player._id" />
-      </div>
-      <div *ngSwitchCase="'GENERATE_NURSERY_EGGS'">
-        <span>{{ 'GENERATE_NURSERY_EGGS' | translate }}</span>
-      </div>
-      <div *ngSwitchCase="'NURSERY_FIRST_SELECTION_DEADLINE'">
-        <span>{{ 'NURSERY_FIRST_SELECTION_DEADLINE' | translate }}</span>
-      </div>
-      <div *ngSwitchCase="'NURSERY_LAST_SELECTION_DEADLINE'">
-        <span>{{ 'NURSERY_LAST_SELECTION_DEADLINE' | translate }}</span>
+        'top-bar-week-calendar__calendar__day--actual':
+          day.split('-')[0] === actualDateString
+      }">
+      <label class="top-bar-week-calendar__calendar__day__date">
+        {{
+          day.split('-')[0].charAt(0).toUpperCase() + day.split('-')[0].slice(1)
+        }}</label
+      >
+      <div
+        *ngFor="let event of events[i]"
+        class="top-bar-week-calendar__calendar__day__event"
+        [ngClass]="{
+          'top-bar-week-calendar__calendar__day__event--passed': i === 0,
+          'top-bar-week-calendar__calendar__day__event--green': [
+            'GENERATE_NURSERY_EGGS',
+            'NURSERY_FIRST_SELECTION_DEADLINE',
+            'NURSERY_LAST_SELECTION_DEADLINE'
+          ].includes(event.type)
+        }"
+        [ngSwitch]="event.type">
+        <div *ngSwitchCase="'BATTLE'">
+          <span>
+            <pm-trainer-name
+              [trainer]="
+                event?.event.opponent.name !== player.name
+                  ? event?.event.opponent
+                  : event?.event.player
+              "
+          /></span>
+          <pm-battle-status [battle]="event.event" [playerId]="player._id" />
+        </div>
+        <div *ngSwitchCase="'GENERATE_NURSERY_EGGS'">
+          <span>{{ 'GENERATE_NURSERY_EGGS' | translate }}</span>
+        </div>
+        <div *ngSwitchCase="'NURSERY_FIRST_SELECTION_DEADLINE'">
+          <span>{{ 'NURSERY_FIRST_SELECTION_DEADLINE' | translate }}</span>
+        </div>
+        <div *ngSwitchCase="'NURSERY_LAST_SELECTION_DEADLINE'">
+          <span>{{ 'NURSERY_LAST_SELECTION_DEADLINE' | translate }}</span>
+        </div>
       </div>
     </div>
   </div>

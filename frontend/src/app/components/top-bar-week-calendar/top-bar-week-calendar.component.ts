@@ -1,7 +1,7 @@
 import { Component, DestroyRef, Input, OnInit } from '@angular/core';
 import { TimeService } from '../../services/time.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { map, Observable, switchMap } from 'rxjs';
+import { map, Observable, switchMap, tap } from 'rxjs';
 import {
   AsyncPipe,
   NgClass,
@@ -10,12 +10,16 @@ import {
   NgSwitch,
   NgSwitchCase,
 } from '@angular/common';
-import { CalendarEventModel } from '../../models/calendar-event.model';
+import {
+  CalendarEventEvent,
+  CalendarEventModel,
+} from '../../models/calendar-event.model';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BattleStatusComponent } from '../battle-status/battle-status.component';
 import { TrainerNameComponent } from '../trainer-name/trainer-name.component';
+import { PlayerService } from '../../services/player.service';
 
 @Component({
   standalone: true,
@@ -39,12 +43,16 @@ export class TopBarWeekCalendarComponent implements OnInit {
   protected data$: Observable<string[]>;
   protected events: CalendarEventModel[][];
   protected version = 0;
-  protected actualDate: string;
+  protected actualDateString: string;
+  protected dayToNextBattle: string;
+  protected nextBattle: CalendarEventModel;
 
   public constructor(
     protected timeService: TimeService,
     protected calendarEventQueriesService: CalendarEventQueriesService,
-    protected destroyRef: DestroyRef
+    protected destroyRef: DestroyRef,
+    protected playerService: PlayerService,
+    protected translateService: TranslateService
   ) {}
 
   public ngOnInit(): void {
@@ -60,8 +68,40 @@ export class TopBarWeekCalendarComponent implements OnInit {
             })
           );
       }),
+      switchMap((actualDate) => {
+        return this.calendarEventQueriesService
+          .list({
+            custom: {
+              trainers: {
+                $in: this.player._id,
+              },
+              date: {
+                $gte: new Date(actualDate),
+              },
+              type: CalendarEventEvent.BATTLE,
+            },
+            limit: 2,
+            sort: {
+              date: 1,
+            },
+          })
+          .pipe(
+            map((result) => {
+              return result[0].event.winner ? result[1] : result[0];
+            }),
+            tap((nextBattle) => {
+              this.dayToNextBattle = this.getDayToNextBattle(
+                new Date(nextBattle.date),
+                new Date(actualDate)
+              );
+              this.nextBattle = nextBattle;
+            }),
+            map(() => actualDate)
+          );
+      }),
       map((actualDate) => {
-        this.actualDate = this.timeService.dateToSimplifyLocalDate(actualDate);
+        this.actualDateString =
+          this.timeService.dateToSimplifyLocalDate(actualDate);
         this.version += 1;
         const week: string[] = [];
         const newDate = new Date(actualDate);
@@ -75,5 +115,20 @@ export class TopBarWeekCalendarComponent implements OnInit {
         return week;
       })
     );
+  }
+
+  protected getDayToNextBattle(battleDate: Date, actualDate: Date): string {
+    const diffInMilliseconds = battleDate.getTime() - actualDate.getTime();
+    const days = Math.abs(diffInMilliseconds / (1000 * 60 * 60 * 24));
+    switch (days) {
+      case 0:
+        return this.translateService.instant('TODAY');
+      case 1:
+        return this.translateService.instant('TOMORROW');
+      default:
+        return this.translateService.instant('IN_X_DAYS', {
+          days,
+        });
+    }
   }
 }

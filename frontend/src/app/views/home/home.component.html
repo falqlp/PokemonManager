@@ -19,23 +19,6 @@
       }
     </mat-tab-group>
   </div>
-  } @if (nextBattle) {
-  <div class="home__next-battle">
-    <h3>{{ 'NEXT_BATTLE' | translate }}</h3>
-    <div class="home__next-battle__info">
-      <span class="home__next-battle__day-to-next-battle">{{
-        dayToNextBattle
-      }}</span>
-      <span>
-        {{ nextBattle.event.competition.name | translate }}
-      </span>
-      <span class="home__next-battle__opponent"
-        ><pm-trainer-name
-          class="home__next-battle__opponent__name"
-          [trainer]="nextBattle.event.opponent"
-      /></span>
-    </div>
-  </div>
   } @if (player) {
   <div class="home__team">
     <h3>{{ 'TEAM' | translate }}</h3>

@@ -30,6 +30,7 @@ export interface ITrainerRanking extends IRankingBase {
 export interface ISerieRanking {
   player: IRankingBase;
   opponent: IRankingBase;
+  winner?: string;
 }
 
 @singleton()
@@ -159,6 +160,7 @@ export class BattleInstanceService {
         name: serie.opponent.name,
         wins: 0,
       },
+      winner: this.isSerieWin(serie),
     };
     serie.battles.forEach((serieBattle) => {
       if (serieBattle.winner) {

@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="ranking$" class="ranking">
+<table mat-table [dataSource]="ranking$">
   <ng-container matColumnDef="ranking">
     <th mat-header-cell *matHeaderCellDef>#</th>
     <td mat-cell *matCellDef="let element">{{ element.ranking }}</td>
@@ -29,5 +29,8 @@
   <tr
     mat-row
     *matRowDef="let row; columns: displayedColumns"
-    [ngClass]="playerId === row._id ? 'ranking__player' : ''"></tr>
+    [ngClass]="{
+      'ranking--player': playerId === row._id,
+      'ranking--good': row.ranking <= 8
+    }"></tr>
 </table>

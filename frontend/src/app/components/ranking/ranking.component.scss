@@ -1,6 +1,12 @@
 @import 'src/styles/colors';
 
-.ranking__player {
-  color: $orange;
-  font-weight: bold;
+.ranking {
+  &--player {
+    color: $orange;
+    font-weight: bold;
+  }
+  &--good,
+  &--good:hover {
+    background-color: rgba($green-good-color, 0.25) !important;
+  }
 }
