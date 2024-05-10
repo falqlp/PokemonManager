@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import {
+  POKEMON_NATURES,
+  PokemonModel,
+} from '../models/PokemonModels/pokemon.model';
 
 @Injectable({
   providedIn: 'root',
@@ -57,5 +61,14 @@ export class ColorService {
       default:
         return '#FFFFFF';
     }
+  }
+
+  public getNatureColor(pokemon: PokemonModel, key: string): string {
+    if (POKEMON_NATURES[pokemon.nature][key] > 0) {
+      return '#166e16';
+    } else if (POKEMON_NATURES[pokemon.nature][key] < 0) {
+      return '#881818';
+    }
+    return '';
   }
 }

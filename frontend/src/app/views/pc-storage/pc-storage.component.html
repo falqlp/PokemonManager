@@ -59,11 +59,11 @@
   </div>
   <div class="pc-storage__resumes">
     <app-pokemon-resume
-      *ngIf="firstSelected; else emptyResume"
+      *ngIf="firstSelected && firstSelected.level !== 0; else emptyResume"
       class="pc-storage__resumes__box"
       [pokemon]="firstSelected" />
     <app-pokemon-resume
-      *ngIf="secondSelected; else emptyResume"
+      *ngIf="secondSelected && secondSelected.level !== 0; else emptyResume"
       class="pc-storage__resumes__box"
       [pokemon]="secondSelected" />
   </div>

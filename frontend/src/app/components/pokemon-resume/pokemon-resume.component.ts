@@ -15,11 +15,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { DisplayPokemonImageComponent } from '../display-pokemon-image/display-pokemon-image.component';
 import { DisplayTypeComponent } from '../display-type/display-type.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
-import { PokemonStatsComponent } from '../pokemon-stats/pokemon-stats.component';
 import { PokemonResumeMovesComponent } from './pokemon-resume-moves/pokemon-resume-moves.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgClass } from '@angular/common';
 import { PokemonResumeInfosComponent } from './pokemon-resume-infos/pokemon-resume-infos.component';
+import { PokemonStatsRadarComponent } from '../pokemon-stats-radar/pokemon-stats-radar.component';
 
 @Component({
   selector: 'app-pokemon-resume',
@@ -31,11 +31,11 @@ import { PokemonResumeInfosComponent } from './pokemon-resume-infos/pokemon-resu
     DisplayPokemonImageComponent,
     DisplayTypeComponent,
     ProgressBarComponent,
-    PokemonStatsComponent,
     PokemonResumeMovesComponent,
     TranslateModule,
     NgClass,
     PokemonResumeInfosComponent,
+    PokemonStatsRadarComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

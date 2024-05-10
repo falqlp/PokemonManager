@@ -21,6 +21,7 @@ import { HeaderInterceptor } from './core/header-interceptor.service';
 import { register } from 'swiper/element/bundle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 register();
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
@@ -48,6 +49,9 @@ export const appConfig: ApplicationConfig = {
       MatMomentDateModule,
       RouterModule.forRoot(routes, {
         bindToComponentInputs: true,
+      }),
+      NgxEchartsModule.forRoot({
+        echarts: () => import('echarts'),
       }),
     ]),
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },

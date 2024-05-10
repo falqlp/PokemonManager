@@ -87,13 +87,15 @@ export class TopBarWeekCalendarComponent implements OnInit {
           })
           .pipe(
             map((result) => {
-              return result[0].event.winner ? result[1] : result[0];
+              return result[0]?.event.winner ? result[1] : result[0];
             }),
             tap((nextBattle) => {
-              this.dayToNextBattle = this.getDayToNextBattle(
-                new Date(nextBattle.date),
-                new Date(actualDate)
-              );
+              if (nextBattle) {
+                this.dayToNextBattle = this.getDayToNextBattle(
+                  new Date(nextBattle.date),
+                  new Date(actualDate)
+                );
+              }
               this.nextBattle = nextBattle;
             }),
             map(() => actualDate)

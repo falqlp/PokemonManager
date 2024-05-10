@@ -33,6 +33,10 @@ class PokemonService {
     pokemon.nature = pokemon.nature ?? oldPokemon.nature ?? PokemonNature.HARDY;
     pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
     pokemon.birthday = pokemon.birthday ?? oldPokemon.birthday;
+    pokemon.maxLevel = Math.max(
+      pokemon.level ?? oldPokemon.level,
+      pokemon.maxLevel ?? oldPokemon.maxLevel,
+    );
     if (pokemon.level === 1 && pokemon.level !== oldPokemon.level) {
       await this.pokemonRepository.findOneAndUpdate(
         { _id },

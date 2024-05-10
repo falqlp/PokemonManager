@@ -7,7 +7,12 @@
         >{{ dayToNextBattle }}
         {{ nextBattle.event.competition.name | translate }}
       </span>
-      <pm-trainer-name [trainer]="nextBattle.event.opponent" />
+      <pm-trainer-name
+        [trainer]="
+          nextBattle.event.player._id === player._id
+            ? nextBattle.event.opponent
+            : nextBattle.event.player
+        " />
     </div>
   </div>
   }
