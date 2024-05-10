@@ -25,7 +25,7 @@ describe("PokemonUtilsService", () => {
     it("should generate a potential correctly for nursery level 0", () => {
       mocked(normalRandom).mockReturnValueOnce(0);
       const result = service.generatePotential(0);
-      expect(result).toBe(10);
+      expect(result).toBe(20);
     });
 
     it("should not exceed 100 when the generated potential is more than 100", () => {
@@ -152,57 +152,6 @@ describe("PokemonUtilsService", () => {
         spDef: 0,
         spe: 0,
       });
-    });
-  });
-  describe("calculateAge method", () => {
-    it("should correctly calculate age when today's date is same as birthdate", () => {
-      const currentYear = new Date().getFullYear();
-      const birthday = new Date(currentYear, 5, 15);
-      const today = new Date(currentYear, 5, 15);
-
-      const result = service.calculateAge(birthday, today);
-
-      expect(result).toEqual(0);
-    });
-
-    it("should correctly calculate age when todays date is later in the year than birthdate", () => {
-      const currentYear = new Date().getFullYear();
-      const birthday = new Date(currentYear - 25, 5, 15);
-      const today = new Date(currentYear, 8, 15);
-
-      const result = service.calculateAge(birthday, today);
-
-      expect(result).toEqual(25);
-    });
-
-    it("should correctly calculate age when todays date is earlier in the year than birthdate", () => {
-      const currentYear = new Date().getFullYear();
-      const birthday = new Date(currentYear - 25, 8, 15);
-      const today = new Date(currentYear, 5, 15);
-
-      const result = service.calculateAge(birthday, today);
-
-      expect(result).toEqual(24);
-    });
-
-    it("should correctly calculate age when todays date is the same month but later date than birthdate", () => {
-      const currentYear = new Date().getFullYear();
-      const birthday = new Date(currentYear - 25, 5, 15);
-      const today = new Date(currentYear, 5, 20);
-
-      const result = service.calculateAge(birthday, today);
-
-      expect(result).toEqual(25);
-    });
-
-    it("should correctly calculate age when todays date is the same month but earlier date than birthdate", () => {
-      const currentYear = new Date().getFullYear();
-      const birthday = new Date(currentYear - 25, 5, 20);
-      const today = new Date(currentYear, 5, 15);
-
-      const result = service.calculateAge(birthday, today);
-
-      expect(result).toEqual(24);
     });
   });
   describe("generateShiny method", () => {

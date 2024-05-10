@@ -17,7 +17,7 @@ describe("ExperienceService", () => {
     });
 
     it("should return the correctly calculated experience points for a provided pokemon", () => {
-      const xp = experienceService.getXp(pokemon, 1);
+      const xp = experienceService.getXp(pokemon, 1, new Date(Date.now()));
       expect(xp).toBeDefined();
       expect(xp).not.toBeNaN();
     });
@@ -71,14 +71,19 @@ describe("ExperienceService", () => {
         exp: simplePokemon.exp,
         variation: 0,
       });
-      const result = experienceService.updateLevelAndXp(simplePokemon, 10);
+      const date = new Date(Date.now());
+      const result = experienceService.updateLevelAndXp(simplePokemon, 8, date);
 
       expect(result).toHaveProperty("pokemon");
       expect(result).toHaveProperty("variation");
 
       expect(result).toHaveProperty("xpGain");
 
-      expect(experienceService.getXp).toHaveBeenCalledWith(simplePokemon, 10);
+      expect(experienceService.getXp).toHaveBeenCalledWith(
+        simplePokemon,
+        8,
+        date,
+      );
       expect(experienceService.getLevel).toHaveBeenCalledWith(
         pokemon.level,
         pokemon.exp + 10,
