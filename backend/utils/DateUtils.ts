@@ -14,3 +14,23 @@ export function addDays(date: Date, days: number): Date {
   newDate.setUTCDate(newDate.getUTCDate() + days);
   return newDate;
 }
+
+export function addYears(date: Date, years: number): Date {
+  const newDate = new Date(date);
+  newDate.setUTCFullYear(newDate.getUTCFullYear() + years);
+  return newDate;
+}
+
+export function calculateAge(birthdate: Date, today: Date): number {
+  birthdate = new Date(birthdate);
+  let age = today.getFullYear() - birthdate.getFullYear();
+  const monthDifference = today.getMonth() - birthdate.getMonth();
+
+  if (
+    monthDifference < 0 ||
+    (monthDifference === 0 && today.getDate() < birthdate.getDate())
+  ) {
+    age -= 1;
+  }
+  return age;
+}

@@ -6,7 +6,6 @@ import { MoveTestMother } from "../Move/MoveTestMother";
 export class PokemonTestMother {
   static generateBulbasaur(): IPokemon {
     return {
-      age: 1,
       exp: 0,
       basePokemon: PokemonBaseTestMother.generateBulbasaurBase(),
       level: 100,
@@ -31,7 +30,6 @@ export class PokemonTestMother {
 
   static generateArticuno(): IPokemon {
     return this.withCustomOptions({
-      age: 1,
       exp: 0,
       basePokemon: PokemonBaseTestMother.generateArticunoBase(),
       level: 100,

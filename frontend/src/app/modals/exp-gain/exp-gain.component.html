@@ -1,11 +1,6 @@
-<div mat-dialog-content class="exp-gain" *ngIf="data">
-  <div
-    *ngFor="
-      let pokemon of data.trainer.pokemons;
-      let i = index;
-      trackBy: trackById
-    "
-    class="exp-gain__pokemon">
+<div mat-dialog-content class="exp-gain" *ngIf="xpData">
+  @for (pokemon of xpData.trainer.pokemons; track pokemon._id; let i=$index){
+  <div class="exp-gain__pokemon">
     <ng-container *ngIf="pokemon.level !== 0">
       <app-display-pokemon-image
         class="thumbnails_05"
@@ -22,18 +17,20 @@
             {{ 'LVL' | translate }}: {{ pokemon.level }}</span
           >
           <span
-            *ngIf="data.xpAndLevelGain && data.xpAndLevelGain[i].level !== 0"
+            *ngIf="
+              xpData.xpAndLevelGain && xpData.xpAndLevelGain[i].level !== 0
+            "
             class="exp-gain__pokemon__infos__level"
             [ngClass]="{
               'exp-gain__pokemon__infos__level--decrese':
-                data.xpAndLevelGain[i]?.level < 0,
+                xpData.xpAndLevelGain[i]?.level < 0,
               'exp-gain__pokemon__infos__level--increse':
-                data.xpAndLevelGain[i]?.level > 0
+                xpData.xpAndLevelGain[i]?.level > 0
             }"
             >{{
-              data.xpAndLevelGain[i]?.level > 0
-                ? '+' + data.xpAndLevelGain[i]?.level
-                : data.xpAndLevelGain[i]?.level
+              xpData.xpAndLevelGain[i]?.level > 0
+                ? '+' + xpData.xpAndLevelGain[i]?.level
+                : xpData.xpAndLevelGain[i]?.level
             }}</span
           >
         </div>
@@ -41,9 +38,10 @@
       </div>
     </ng-container>
   </div>
+  }
 </div>
 <div mat-dialog-actions>
-  <button mat-flat-button [disabled]="!data.xpAndLevelGain" (click)="close()">
+  <button mat-flat-button [disabled]="!xpData.xpAndLevelGain" (click)="close()">
     {{ 'CLOSE' | translate }}
   </button>
 </div>

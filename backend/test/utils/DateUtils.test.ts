@@ -1,4 +1,9 @@
-import { addDays, isSevenDaysApart } from "../../utils/DateUtils";
+import {
+  addDays,
+  isSevenDaysApart,
+  addYears,
+  calculateAge,
+} from "../../utils/DateUtils";
 
 describe("isSevenDaysApart function", () => {
   it("returns true if two dates are seven days apart", () => {
@@ -31,5 +36,39 @@ describe("addDays function", () => {
   it("returns the same date when zero days are added", () => {
     const date = new Date("2024-05-25");
     expect(addDays(date, 0)).toEqual(date);
+  });
+});
+
+describe("addYear function", () => {
+  it("adds the correct number of years to the date", () => {
+    const date = new Date("2024-05-25");
+    const numberOfYearsToAdd = 1;
+    const expectedResult = new Date("2025-05-25");
+    expect(addYears(date, numberOfYearsToAdd)).toEqual(expectedResult);
+  });
+
+  it("returns the same date when zero years are added", () => {
+    const date = new Date("2024-05-25");
+    expect(addYears(date, 0)).toEqual(date);
+  });
+});
+
+describe("calculateAge function", () => {
+  it("calculates the correct age for a birthdate", () => {
+    const birthdate = new Date("2000-05-25");
+    const today = new Date("2024-05-25");
+    expect(calculateAge(birthdate, today)).toEqual(24);
+  });
+
+  it("calculates the correct age if today is before the birthdate in the current year", () => {
+    const birthdate = new Date("2000-06-01");
+    const today = new Date("2024-05-25");
+    expect(calculateAge(birthdate, today)).toEqual(23);
+  });
+
+  it("returns 0 if the birthdate is today", () => {
+    const birthdate = new Date("2024-05-25");
+    const today = new Date("2024-05-25");
+    expect(calculateAge(birthdate, today)).toEqual(0);
   });
 });

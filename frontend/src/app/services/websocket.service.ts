@@ -17,6 +17,7 @@ import { InitGameComponent } from '../modals/init-game/init-game.component';
 import { AddGameComponent } from '../views/games/add-game/add-game.component';
 import { BadgeDataService } from './badge.data.service';
 import { NotificationType, NotifierService } from './notifier.service';
+import { ExpGainComponent } from '../modals/exp-gain/exp-gain.component';
 
 export interface WebSocketModel {
   type: string;
@@ -155,6 +156,12 @@ export class WebsocketService {
         this.dialog.openDialogs
           .find((value) => value.componentInstance instanceof InitGameComponent)
           ?.close();
+        break;
+      case 'weeklyXp':
+        this.dialog.open(ExpGainComponent, {
+          data: message.payload,
+          disableClose: true,
+        });
         break;
       default:
         console.warn('Unknown message type:', message.type);

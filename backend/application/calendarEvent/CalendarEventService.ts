@@ -22,6 +22,7 @@ import CompetitionService from "../competition/CompetitionService";
 import { addDays } from "../../utils/DateUtils";
 import { BattleInstanceService } from "../battleInstance/BattleInstanceService";
 import TournamentService from "../competition/tournament/TournamentService";
+import ExperienceService from "../experience/ExperienceService";
 
 @singleton()
 class CalendarEventService {
@@ -39,6 +40,7 @@ class CalendarEventService {
     protected websocketServerService: WebsocketServerService,
     protected competitionService: CompetitionService,
     protected tournamentService: TournamentService,
+    protected experienceService: ExperienceService,
   ) {}
 
   public async createBattleEvent(
@@ -121,6 +123,13 @@ class CalendarEventService {
       await this.gameRepository.update(game, newGame);
       await this.competitionService.championshipEnd(game, addDays(date, -1));
       await this.tournamentService.tournamentStepEnd(game, addDays(date, -1));
+      if (date.getDay() === 1) {
+        await this.experienceService.xpForOtherTrainer(game, trainerId, date);
+        this.websocketServerService.sendMessageToClientInGame(game, {
+          type: "weeklyXp",
+          payload: await this.experienceService.weeklyXpGain(trainerId),
+        });
+      }
     }
     await this.pokemonService.isHatched(date, game);
     return { date, battle, redirectTo };

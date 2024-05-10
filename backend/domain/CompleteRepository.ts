@@ -32,6 +32,33 @@ abstract class CompleteRepository<
     }
   }
 
+  public async updateMany(dtos: T[]): Promise<T[]> {
+    try {
+      for (const dto of dtos) {
+        if ("updateAt" in dto) {
+          dto.updateAt = Date.now();
+        }
+      }
+      await this.schema.bulkWrite(
+        dtos.map((dto: T) => {
+          return {
+            updateOne: {
+              filter: {
+                _id: dto._id,
+              },
+              update: {
+                $set: dto,
+              },
+            },
+          } as any;
+        }),
+      );
+      return dtos;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
   async create(dto: T): Promise<T> {
     try {
       if ("createdAt" in dto) {

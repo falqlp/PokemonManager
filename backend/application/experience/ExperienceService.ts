@@ -5,8 +5,10 @@ import { IPokemonBase } from "../../domain/pokemonBase/PokemonBase";
 import { normalRandom } from "../../utils/RandomUtils";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import MoveLearningService from "../moveLearning/MoveLearningService";
-import TrainerService from "../trainer/TrainerService";
 import { singleton } from "tsyringe";
+import { calculateAge } from "../../utils/DateUtils";
+import GameRepository from "../../domain/game/GameRepository";
+import PokemonService from "../pokemon/PokemonService";
 
 const XP_PER_LEVEL = 100000;
 
@@ -16,7 +18,8 @@ class ExperienceService {
     protected trainerRepository: TrainerRepository,
     protected moveLearningService: MoveLearningService,
     protected evolutionRepository: EvolutionRepository,
-    protected trainerService: TrainerService,
+    protected gameRepository: GameRepository,
+    protected pokemonService: PokemonService,
   ) {}
 
   public async weeklyXpGain(trainerId: string): Promise<{
@@ -30,6 +33,8 @@ class ExperienceService {
       name: string;
     }[] = [];
     const trainer = await this.trainerRepository.get(trainerId);
+    const actualDate = (await this.gameRepository.get(trainer.gameId))
+      .actualDate;
     const xpAndLevelGain: { xp: number; level: number }[] = [];
     const pokemonPromise = trainer.pokemons
       .filter((pokemon) => pokemon.level !== 0)
@@ -37,6 +42,7 @@ class ExperienceService {
         const res = await this.mapPokemonXp(
           pokemon,
           trainer.trainingCamp.level,
+          actualDate,
         );
         xpAndLevelGain[
           trainer.pokemons.findIndex((pokemon2) => pokemon2._id === pokemon._id)
@@ -52,6 +58,7 @@ class ExperienceService {
         const res = await this.mapPokemonXp(
           storage.pokemon,
           trainer.trainingCamp.level,
+          actualDate,
         );
         if (res?.evolutions) {
           evolutions.push(res.evolutions);
@@ -60,14 +67,13 @@ class ExperienceService {
       });
     await Promise.all(pokemonPromise);
     await Promise.all(storagePromise);
-    const updateTrainer = { ...(trainer as any)._doc } as ITrainer;
-    await this.trainerService.update(updateTrainer);
     return { trainer, xpAndLevelGain, evolutions };
   }
 
   public async mapPokemonXp(
     pokemon: IPokemon,
     trainingCampLevel: number,
+    actualDate: Date,
   ): Promise<{
     xp: number;
     level: number;
@@ -81,7 +87,11 @@ class ExperienceService {
       evolution: IPokemonBase;
       name: string;
     };
-    const result = this.updateLevelAndXp(pokemon, trainingCampLevel);
+    const result = this.updateLevelAndXp(
+      pokemon,
+      trainingCampLevel,
+      actualDate,
+    );
     pokemon = result.pokemon;
     const levelUp = result.variation > 0;
     if (levelUp) {
@@ -108,8 +118,9 @@ class ExperienceService {
   public updateLevelAndXp(
     pokemon: IPokemon,
     trainingCampLevel: number,
+    actualDate: Date,
   ): { pokemon: IPokemon; variation: number; xpGain: number } {
-    const xpGain = this.getXp(pokemon, trainingCampLevel);
+    const xpGain = this.getXp(pokemon, trainingCampLevel, actualDate);
     pokemon.exp += xpGain;
     const result = this.getLevel(pokemon.level, pokemon.exp);
     pokemon.level = result.level;
@@ -118,13 +129,18 @@ class ExperienceService {
     return { pokemon, variation: result.variation, xpGain };
   }
 
-  public getXp(pokemon: IPokemon, lvlTrainingCamp: number): number {
+  public getXp(
+    pokemon: IPokemon,
+    lvlTrainingCamp: number,
+    actualDate: Date,
+  ): number {
     const gain =
       (0.9 + 0.1 * pokemon.trainingPercentage) * //TODO a changer lorsque l'entrainement arrivera
       lvlTrainingCamp *
       70 *
       (pokemon.potential - pokemon.level);
-    const loss = Math.pow(pokemon.age, 2) * pokemon.level;
+    const loss =
+      Math.pow(calculateAge(pokemon.birthday, actualDate), 2) * pokemon.level;
     const gainXp = gain - loss;
     return Math.floor(normalRandom(7 * gainXp, lvlTrainingCamp * 500));
   }
@@ -155,6 +171,63 @@ class ExperienceService {
       }
     }
     return { level, exp, variation };
+  }
+
+  async xpForOtherTrainer(
+    gameId: string,
+    trainerId: string,
+    actualDate: Date,
+  ): Promise<void> {
+    const trainers = await this.trainerRepository.list({
+      custom: { gameId, _id: { $ne: trainerId } },
+    });
+    for (const trainer of trainers) {
+      for (const pokemon of trainer.pokemons.filter(
+        (pokemon) => pokemon.level !== 0,
+      )) {
+        await this.updateOtherPokemon(pokemon, trainer, actualDate);
+      }
+      for (const pokemon of trainer.pcStorage.storage.map((st) => st.pokemon)) {
+        await this.updateOtherPokemon(pokemon, trainer, actualDate);
+      }
+      await this.pokemonService.updateMany(trainer.pokemons, gameId);
+      await this.pokemonService.updateMany(
+        trainer.pcStorage.storage.map((st) => st.pokemon),
+        gameId,
+      );
+    }
+  }
+
+  private async updateOtherPokemon(
+    pokemon: IPokemon,
+    trainer: ITrainer,
+    actualDate: Date,
+  ): Promise<void> {
+    const res = this.updateLevelAndXp(
+      pokemon,
+      trainer.trainingCamp.level,
+      actualDate,
+    );
+    pokemon.maxLevel = Math.max(pokemon.maxLevel, pokemon.level);
+    if (res.variation > 0) {
+      pokemon.moves = (
+        await this.moveLearningService.learnableMoves(
+          pokemon.basePokemon.id,
+          pokemon.maxLevel,
+          {
+            sort: { power: -1 },
+          },
+        )
+      ).slice(0, 2);
+      const evolution = await this.evolutionRepository.evolve(
+        pokemon.basePokemon.id,
+        pokemon.level,
+        "LEVEL-UP",
+      );
+      if (evolution) {
+        pokemon.basePokemon = evolution;
+      }
+    }
   }
 }
 

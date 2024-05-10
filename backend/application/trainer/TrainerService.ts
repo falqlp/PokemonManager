@@ -20,6 +20,8 @@ import { IPcStorage } from "../../domain/pcStorage/PcStorage";
 import { INursery } from "../../domain/nursery/Nursery";
 import { ITrainingCamp } from "../../domain/trainingCamp/TrainingCamp";
 import { Gender } from "../../domain/Gender";
+import { IGame } from "../../domain/game/Game";
+import { addYears } from "../../utils/DateUtils";
 
 @singleton()
 class TrainerService {
@@ -93,7 +95,7 @@ class TrainerService {
   }
 
   public async generateTrainersPokemons(
-    gameId: string,
+    game: IGame,
     trainers: ITrainer[],
     quantityRange: RangeModel,
     levelRange: RangeModel,
@@ -111,7 +113,10 @@ class TrainerService {
           levelRange.min +
             Math.random() * (levelRange.max - levelRange.min + 1),
         );
-        const potential = this.pokemonUtilsService.generatePotential(1);
+        const potential = Math.max(
+          this.pokemonUtilsService.generatePotential(1),
+          level,
+        );
         const hiddenPotential =
           this.pokemonUtilsService.generateHiddenPotential(potential);
         const evolution = await this.evolutionRepository.maxEvolution(
@@ -127,13 +132,17 @@ class TrainerService {
             sort: { power: -1 },
           })
         ).slice(0, 2);
+        const birthday = addYears(
+          game.actualDate,
+          -(1 + Math.floor(Math.random() * 8)),
+        );
         const pokemon: IPokemon = {
           _id: new ObjectId() as unknown as string,
           trainerId: trainer._id.toString(),
           basePokemon,
           level,
-          gameId,
-          age: 0,
+          gameId: game._id.toString(),
+          birthday,
           potential,
           hiddenPotential,
           moves,

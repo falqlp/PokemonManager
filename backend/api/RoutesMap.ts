@@ -9,7 +9,6 @@ import moveLearningRoutes from "./moveLearning/MoveLearningRoutes";
 import pcStorageRoutes from "./pcStorage/PcStorageRoute";
 import calendarEventRoutes from "./calendar-event/CalendarEventRoutes";
 import gameRoutes from "./game/GameRoutes";
-import experienceRoutes from "./experience/ExperienceRoutes";
 import userRoutes from "./user/UserRoutes";
 import nurseryRoutes from "./nursery/NurseryRoutes";
 import pokedexRouter from "./pokedex/PokedexRouter";
@@ -30,7 +29,6 @@ export const RoutesMap: Record<string, Router> = {
   pcStorage: pcStorageRoutes,
   "calendar-event": calendarEventRoutes,
   game: gameRoutes,
-  xp: experienceRoutes,
   user: userRoutes,
   nursery: nurseryRoutes,
   pokedex: pokedexRouter,

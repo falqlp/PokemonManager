@@ -66,9 +66,8 @@ module.exports = {
         extendDefaults: true,
       },
     ],
-    "no-shadow": "warn",
     "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-shadow": ["warn"],
+    "@typescript-eslint/no-shadow": ["off"],
     "import/no-extraneous-dependencies": "off",
   },
 };

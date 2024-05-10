@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, Inject, OnInit } from '@angular/core';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import {
   MAT_DIALOG_DATA,
@@ -8,15 +8,17 @@ import {
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { ProgressBarComponent } from '../../components/progress-bar/progress-bar.component';
-import { ExperienceQueriesService } from '../../services/queries/experience-queries.service';
-import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { GenericDialogComponent } from '../generic-dialog/generic-dialog.component';
 import { DialogButtonsModel } from '../generic-dialog/generic-dialog.models';
 import { EvolutionComponent } from '../evolution/evolution.component';
+import { PlayerService } from '../../services/player.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter, first } from 'rxjs';
+import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 
 @Component({
   selector: 'pm-exp-gain',
@@ -26,7 +28,6 @@ import { EvolutionComponent } from '../evolution/evolution.component';
     MatButtonModule,
     MatDialogModule,
     NgClass,
-    NgForOf,
     NgIf,
     ProgressBarComponent,
     TranslateModule,
@@ -35,35 +36,52 @@ import { EvolutionComponent } from '../evolution/evolution.component';
   styleUrls: ['./exp-gain.component.scss'],
 })
 export class ExpGainComponent implements OnInit {
+  protected xpData: {
+    trainer: TrainerModel;
+    xpAndLevelGain?: { xp: number; level: number }[];
+    evolutions?: {
+      pokemonId: string;
+      evolution: PokemonBaseModel;
+      name: string;
+    }[];
+  };
+
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: {
       trainer: TrainerModel;
-      xpAndLevelGain: { xp: number; level: number }[];
-      evolutions: {
+      xpAndLevelGain?: { xp: number; level: number }[];
+      evolutions?: {
         pokemonId: string;
         evolution: PokemonBaseModel;
         name: string;
       }[];
     },
-    protected experienceQueriesService: ExperienceQueriesService,
     protected dialog: MatDialog,
     protected dialogRef: MatDialogRef<ExpGainComponent>,
-    protected translateService: TranslateService
+    protected translateService: TranslateService,
+    protected playerService: PlayerService,
+    protected destroyRef: DestroyRef,
+    protected trainerQueriesService: TrainerQueriesService
   ) {}
 
   public ngOnInit(): void {
-    setTimeout(() => {
-      this.experienceQueriesService
-        .getWeeklyXp(this.data.trainer._id)
-        .subscribe((result) => {
-          this.data = result;
-        });
-    }, 500);
-  }
-
-  protected trackById(index: number, item: PokemonModel): string {
-    return item._id;
+    this.playerService.player$
+      .pipe(
+        filter((trainer) => !!trainer),
+        first(),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe((player) => {
+        this.xpData = { trainer: player };
+        setTimeout(() => {
+          this.xpData = this.data;
+          this.trainerQueriesService
+            .update(this.data.trainer, this.data.trainer._id)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe();
+        }, 1000);
+      });
   }
 
   protected close(): void {

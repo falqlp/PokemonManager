@@ -6,7 +6,7 @@ import { POKEMON_NATURES } from "../../domain/pokemon/pokemonConst";
 @singleton()
 class PokemonUtilsService {
   public generatePotential(nurseryLevel: number): number {
-    let potential = 10 + Math.floor(normalRandom(nurseryLevel * 10, 6));
+    let potential = 20 + Math.floor(normalRandom(nurseryLevel * 10, 6));
     if (potential > 100) {
       potential = 100;
     }
@@ -125,20 +125,6 @@ class PokemonUtilsService {
       niv +
       10
     );
-  }
-
-  public calculateAge(birthdate: Date, today: Date): number {
-    birthdate = new Date(birthdate);
-    let age = today.getFullYear() - birthdate.getFullYear();
-    const monthDifference = today.getMonth() - birthdate.getMonth();
-
-    if (
-      monthDifference < 0 ||
-      (monthDifference === 0 && today.getDate() < birthdate.getDate())
-    ) {
-      age -= 1;
-    }
-    return age;
   }
 
   public generateShiny(): boolean {

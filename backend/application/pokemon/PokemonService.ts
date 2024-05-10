@@ -10,6 +10,7 @@ import WebsocketServerService from "../../WebsocketServerService";
 import { singleton } from "tsyringe";
 import MoveLearningService from "../moveLearning/MoveLearningService";
 import { Gender } from "../../domain/Gender";
+import { addDays, addYears } from "../../utils/DateUtils";
 
 @singleton()
 class PokemonService {
@@ -26,6 +27,42 @@ class PokemonService {
 
   public async update(_id: string, pokemon: IPokemon): Promise<IPokemon> {
     const oldPokemon = await this.pokemonRepository.get(_id);
+    const actualDate = (await this.gameRepository.get(pokemon.gameId))
+      .actualDate;
+    this.updateBase(pokemon, oldPokemon, actualDate);
+    if (pokemon.level === 1 && pokemon.level !== oldPokemon.level) {
+      await this.pokemonRepository.findOneAndUpdate(
+        { _id },
+        { $set: { hatchingDate: null } },
+      );
+      pokemon.hatchingDate = null;
+    }
+    await this.websocketServerService.updatePlayer(
+      pokemon.trainerId ?? oldPokemon.trainerId,
+      pokemon.gameId,
+    );
+    return this.pokemonRepository.update(_id, pokemon);
+  }
+
+  public async updateMany(
+    pokemons: IPokemon[],
+    gameId: string,
+  ): Promise<IPokemon[]> {
+    const actualDate = (await this.gameRepository.get(gameId)).actualDate;
+    const oldPokemons = await this.pokemonRepository.list({
+      ids: pokemons.map((pokemon) => pokemon._id),
+    });
+    for (let i = 0; i < pokemons.length; i++) {
+      this.updateBase(pokemons.at(i), oldPokemons.at(i), actualDate);
+    }
+    return this.pokemonRepository.updateMany(pokemons);
+  }
+
+  public updateBase(
+    pokemon: IPokemon,
+    oldPokemon: IPokemon,
+    actualDate: Date,
+  ): IPokemon {
     pokemon.ev = pokemon.ev ?? oldPokemon.ev;
     pokemon.iv = pokemon.iv ?? oldPokemon.iv;
     pokemon.strategy = pokemon.strategy ?? oldPokemon.strategy ?? [];
@@ -37,27 +74,10 @@ class PokemonService {
       pokemon.level ?? oldPokemon.level,
       pokemon.maxLevel ?? oldPokemon.maxLevel,
     );
-    if (pokemon.level === 1 && pokemon.level !== oldPokemon.level) {
-      await this.pokemonRepository.findOneAndUpdate(
-        { _id },
-        { $set: { hatchingDate: null } },
-      );
-      pokemon.hatchingDate = null;
-    }
-    const actualDate = (await this.gameRepository.get(pokemon.gameId))
-      .actualDate;
     if (!pokemon.birthday) {
       pokemon.birthday = actualDate;
     }
-    pokemon.age = this.pokemonUtilsService.calculateAge(
-      pokemon.birthday ?? oldPokemon.birthday,
-      actualDate,
-    );
-    await this.websocketServerService.updatePlayer(
-      pokemon.trainerId ?? oldPokemon.trainerId,
-      pokemon.gameId,
-    );
-    return this.pokemonRepository.update(_id, pokemon);
+    return pokemon;
   }
 
   public async create(pokemon: IPokemon, gameId: string): Promise<IPokemon> {
@@ -113,13 +133,6 @@ class PokemonService {
     if (!pokemon.birthday) {
       pokemon.birthday = new Date(actualDate);
     }
-    if (pokemon.age === undefined) {
-      pokemon.age = 0;
-    }
-    pokemon.age = this.pokemonUtilsService.calculateAge(
-      pokemon.birthday,
-      actualDate,
-    );
     if (!pokemon.potential) {
       pokemon.potential = 100;
     }
@@ -195,14 +208,14 @@ class PokemonService {
 
   public async generateStarters(gameId: string): Promise<IPokemon[]> {
     const actualDate: Date = (await this.gameRepository.get(gameId)).actualDate;
-
+    const birthday = addYears(actualDate, -1);
     const pokemonBases =
       await this.pokemonBaseRepository.getStartersBase(gameId);
     const starters: IPokemon[] = [];
     for (const base of pokemonBases) {
       const starter: IPokemon = {
         basePokemon: base,
-        level: 5,
+        level: 10,
         potential: 30,
         exp: 0,
         iv: this.pokemonUtilsService.generateIvs(),
@@ -217,9 +230,8 @@ class PokemonService {
         trainerId: null,
         nickname: null,
         shiny: this.pokemonUtilsService.generateShiny(),
-        birthday: actualDate,
+        birthday,
         hatchingDate: null,
-        age: 1,
         trainingPercentage: 0,
         maxLevel: 5,
       } as IPokemon;

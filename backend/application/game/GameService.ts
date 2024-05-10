@@ -57,10 +57,10 @@ class GameService {
       NB_GENERATED_TRAINER,
     );
     const res = await this.trainerService.generateTrainersPokemons(
-      gameId,
+      game,
       generatedTrainers,
       { max: 4, min: 2 },
-      { max: 8, min: 3 },
+      { max: 13, min: 8 },
     );
     await this.pokemonService.createPokemons(res.pokemons, gameId);
     await this.trainerService.createMany(res.trainers);

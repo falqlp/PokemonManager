@@ -51,7 +51,6 @@ export interface PokemonModel {
   maxLevel: number;
   hiddenPotential: string;
   hatchingDate?: Date;
-  age: number;
   birthday: Date;
   nature: PokemonNature;
   strategy: number[];

@@ -43,7 +43,6 @@ export interface IPokemon extends MongoId {
   ev?: IPokemonStats;
   iv?: IPokemonStats;
   happiness: number;
-  age?: number;
   potential: number;
   trainingPercentage: number;
   birthday?: Date;
@@ -68,7 +67,6 @@ const pokemonSchema = new Schema<IPokemon>({
   ev: { type: Schema.Types.Mixed, required: true },
   iv: { type: Schema.Types.Mixed, required: true },
   happiness: { type: Number, required: true },
-  age: { type: Number },
   potential: { type: Number, required: true },
   trainingPercentage: { type: Number, required: true },
   birthday: { type: Date },

@@ -102,24 +102,10 @@ export class TopBarComponent implements OnInit {
 
   protected simulate(playerId: string): void {
     this.simulating = true;
-    const oldDay = this.actualDate.getDay();
     this.calendarEventQueriesService
       .simulateDay(playerId, this.actualDate)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((res) => {
-        if (
-          this.actualDate.getDay() === 1 &&
-          this.actualDate.getDay() !== oldDay
-        ) {
-          this.dialog.afterAllClosed
-            .pipe(first(), takeUntilDestroyed(this.destroyRef))
-            .subscribe(() => {
-              this.dialog.open(ExpGainComponent, {
-                data: { trainer: this.player },
-                disableClose: true,
-              });
-            });
-        }
         if (res.battle) {
           this.goToBattle(res.battle);
         }
