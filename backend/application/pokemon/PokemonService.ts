@@ -10,7 +10,7 @@ import WebsocketServerService from "../../WebsocketServerService";
 import { singleton } from "tsyringe";
 import MoveLearningService from "../moveLearning/MoveLearningService";
 import { Gender } from "../../domain/Gender";
-import { addDays, addYears } from "../../utils/DateUtils";
+import { addYears } from "../../utils/DateUtils";
 
 @singleton()
 class PokemonService {

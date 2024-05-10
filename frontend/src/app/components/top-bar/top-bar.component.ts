@@ -12,7 +12,6 @@ import { CalendarEventQueriesService } from '../../services/queries/calendar-eve
 import { GenericDialogComponent } from '../../modals/generic-dialog/generic-dialog.component';
 import { DialogButtonsModel } from '../../modals/generic-dialog/generic-dialog.models';
 import { BattleModel } from '../../models/Battle.model';
-import { ExpGainComponent } from '../../modals/exp-gain/exp-gain.component';
 import { first, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SidenavService } from '../sidenav/sidenav.service';
