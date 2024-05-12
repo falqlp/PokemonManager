@@ -1,4 +1,4 @@
-import { IPcStorage } from "../../domain/pcStorage/PcStorage";
+import { IPcStorage } from "../../domain/trainer/pcStorage/PcStorage";
 import { IMapper } from "../../domain/IMapper";
 import PokemonMapper from "../pokemon/PokemonMapper";
 import { singleton } from "tsyringe";

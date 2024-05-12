@@ -1,6 +1,6 @@
 import { IPokemon } from "../../domain/pokemon/Pokemon";
 import { IMapper } from "../../domain/IMapper";
-import { IPokemonBase } from "../../domain/pokemonBase/PokemonBase";
+import { IPokemonBase } from "../../domain/pokemon/pokemonBase/PokemonBase";
 import { singleton } from "tsyringe";
 
 @singleton()

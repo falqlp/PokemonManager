@@ -1,5 +1,5 @@
 import { IMapper } from "../../domain/IMapper";
-import { INursery } from "../../domain/nursery/Nursery";
+import { INursery } from "../../domain/trainer/nursery/Nursery";
 import PokemonMapper from "../pokemon/PokemonMapper";
 import { singleton } from "tsyringe";
 

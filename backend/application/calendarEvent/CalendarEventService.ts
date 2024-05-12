@@ -8,10 +8,10 @@ import BattleInstanceRepository from "../../domain/battleInstance/BattleInstance
 import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import GameRepository from "../../domain/game/GameRepository";
-import NurseryRepository from "../../domain/nursery/NurseryRepository";
+import NurseryRepository from "../../domain/trainer/nursery/NurseryRepository";
 import TrainerService from "../trainer/TrainerService";
 import BattleService from "../battle/BattleService";
-import NurseryService from "../nursery/NurseryService";
+import NurseryService from "../trainer/nursery/NurseryService";
 import PokemonService from "../pokemon/PokemonService";
 import WebsocketServerService, {
   NotificationType,

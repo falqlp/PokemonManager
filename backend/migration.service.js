@@ -1,4 +1,4 @@
-import PokemonBase from "./domain/pokemonBase/PokemonBase";
+import PokemonBase from "./domain/pokemon/pokemonBase/PokemonBase";
 
 const axios = require("axios");
 import Move from "./domain/move/Move";

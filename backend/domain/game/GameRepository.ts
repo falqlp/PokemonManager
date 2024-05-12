@@ -3,15 +3,15 @@ import Game, { IGame } from "./Game";
 import User from "../user/User";
 import Trainer from "../trainer/Trainer";
 import Pokemon from "../pokemon/Pokemon";
-import TrainingCamp from "../trainingCamp/TrainingCamp";
+import TrainingCamp from "../trainer/trainingCamp/TrainingCamp";
 import Battle from "../battleInstance/Battle";
 import CalendarEvent from "../calendarEvent/CalendarEvent";
-import PcStorage from "../pcStorage/PcStorage";
-import Nursery from "../nursery/Nursery";
+import PcStorage from "../trainer/pcStorage/PcStorage";
+import Nursery from "../trainer/nursery/Nursery";
 import { singleton } from "tsyringe";
 import GamePopulater from "./GamePopulater";
 import Competition from "../competiton/Competition";
-import Tournament from "../tournament/Tournament";
+import Tournament from "../competiton/tournament/Tournament";
 
 @singleton()
 class GameRepository extends CompleteRepository<IGame> {

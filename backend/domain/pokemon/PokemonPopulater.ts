@@ -1,7 +1,7 @@
 import Populater from "../Populater";
 import { PopulateOptions } from "mongoose";
 import Move from "../move/Move";
-import PokemonBase from "../pokemonBase/PokemonBase";
+import PokemonBase from "./pokemonBase/PokemonBase";
 import { singleton } from "tsyringe";
 
 @singleton()

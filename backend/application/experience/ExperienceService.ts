@@ -1,7 +1,7 @@
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import { IPokemon } from "../../domain/pokemon/Pokemon";
 import { ITrainer } from "../../domain/trainer/Trainer";
-import { IPokemonBase } from "../../domain/pokemonBase/PokemonBase";
+import { IPokemonBase } from "../../domain/pokemon/pokemonBase/PokemonBase";
 import { normalRandom } from "../../utils/RandomUtils";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import MoveLearningService from "../moveLearning/MoveLearningService";

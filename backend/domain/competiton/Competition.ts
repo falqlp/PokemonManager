@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { MongoId } from "../MongoId";
-import { ITournament } from "../tournament/Tournament";
+import { ITournament } from "./tournament/Tournament";
 
 export enum CompetitionType {
   CHAMPIONSHIP = "CHAMPIONSHIP",

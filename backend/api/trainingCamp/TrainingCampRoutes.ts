@@ -1,6 +1,6 @@
 import express from "express";
 import CompleteRouter from "../CompleteRouter";
-import TrainingCampRepository from "../../domain/trainingCamp/TrainingCampRepository";
+import TrainingCampRepository from "../../domain/trainer/trainingCamp/TrainingCampRepository";
 import TrainingCampMapper from "./TrainingCampMapper";
 import { container } from "tsyringe";
 

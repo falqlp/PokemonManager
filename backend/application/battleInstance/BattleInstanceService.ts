@@ -6,11 +6,11 @@ import BattleService from "../battle/BattleService";
 import { IBattleTrainer } from "../battle/BattleInterfaces";
 import { IBattleInstance } from "../../domain/battleInstance/Battle";
 import { CompetitionType } from "../../domain/competiton/Competition";
-import BattleSerieRepository from "../../domain/battleSerie/BattleSerieRepository";
-import { IBattleSerie } from "../../domain/battleSerie/BattleSerie";
+import BattleSerieRepository from "../../domain/competiton/tournament/battleSerie/BattleSerieRepository";
+import { IBattleSerie } from "../../domain/competiton/tournament/battleSerie/BattleSerie";
 import GameRepository from "../../domain/game/GameRepository";
 import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
-import TournamentRepository from "../../domain/tournament/TournamentRepository";
+import TournamentRepository from "../../domain/competiton/tournament/TournamentRepository";
 import { ITrainer } from "../../domain/trainer/Trainer";
 
 export interface IRankingBase {

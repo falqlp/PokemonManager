@@ -3,7 +3,7 @@ import UserRepository from "../../domain/user/UserRepository";
 import { IUser } from "../../domain/user/User";
 import { ObjectId } from "mongodb";
 import { MailService } from "../mail/MailService";
-import HashService from "../hash/HashService";
+import HashService from "./hash/HashService";
 
 @singleton()
 export class UserService {

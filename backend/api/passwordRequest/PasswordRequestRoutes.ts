@@ -1,7 +1,7 @@
 import express from "express";
 import { container } from "tsyringe";
-import { PasswordRequestService } from "../../application/passwordRequest/PasswordRequestService";
-import { PasswordRequestRepository } from "../../domain/passwordRequest/PasswordRequestRepository";
+import { PasswordRequestService } from "../../application/user/passwordRequest/PasswordRequestService";
+import { PasswordRequestRepository } from "../../domain/user/passwordRequest/PasswordRequestRepository";
 import UserMapper from "../user/UserMapper";
 
 const router = express.Router();

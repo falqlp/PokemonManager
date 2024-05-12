@@ -1,7 +1,7 @@
 import {
   IPcStorage,
   IPcStorageStorage,
-} from "../../../domain/pcStorage/PcStorage";
+} from "../../../domain/trainer/pcStorage/PcStorage";
 import { PokemonTestMother } from "../pokemon/PokemonTestMother";
 
 export class PcStorageTestMother {

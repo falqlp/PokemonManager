@@ -1,28 +1,28 @@
 import { IPokemon } from "../../domain/pokemon/Pokemon";
 import PokemonRepository from "../../domain/pokemon/PokemonRepository";
-import PcStorageRepository from "../../domain/pcStorage/PcStorageRepository";
+import PcStorageRepository from "../../domain/trainer/pcStorage/PcStorageRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
-import TrainerClassRepository from "../../domain/trainerClass/TrainerClassRepository";
+import TrainerClassRepository from "../../domain/trainer/trainerClass/TrainerClassRepository";
 import { ITrainer } from "../../domain/trainer/Trainer";
 import { RangeModel } from "../RangeModel";
 import PokemonUtilsService from "../pokemon/PokemonUtilsService";
-import PokemonBaseService from "../pokemonBase/PokemonBaseService";
+import PokemonBaseService from "../pokemon/pokemonBase/PokemonBaseService";
 import MoveLearningService from "../moveLearning/MoveLearningService";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import PokemonService from "../pokemon/PokemonService";
-import TrainingCampRepository from "../../domain/trainingCamp/TrainingCampRepository";
-import NurseryRepository from "../../domain/nursery/NurseryRepository";
+import TrainingCampRepository from "../../domain/trainer/trainingCamp/TrainingCampRepository";
+import NurseryRepository from "../../domain/trainer/nursery/NurseryRepository";
 import { singleton } from "tsyringe";
 import { ICompetition } from "../../domain/competiton/Competition";
 import { ObjectId } from "mongodb";
-import { IPcStorage } from "../../domain/pcStorage/PcStorage";
-import { INursery } from "../../domain/nursery/Nursery";
-import { ITrainingCamp } from "../../domain/trainingCamp/TrainingCamp";
+import { IPcStorage } from "../../domain/trainer/pcStorage/PcStorage";
+import { INursery } from "../../domain/trainer/nursery/Nursery";
+import { ITrainingCamp } from "../../domain/trainer/trainingCamp/TrainingCamp";
 import { Gender } from "../../domain/Gender";
 import { IGame } from "../../domain/game/Game";
 import { addYears } from "../../utils/DateUtils";
 import WebsocketServerService from "../../WebsocketServerService";
-import { PcStorageService } from "../pcStorage/PcStorageService";
+import { PcStorageService } from "./pcStorage/PcStorageService";
 
 @singleton()
 class TrainerService {

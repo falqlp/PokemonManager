@@ -1,6 +1,6 @@
 import express from "express";
 import CompleteRouter from "../CompleteRouter";
-import NurseryRepository from "../../domain/nursery/NurseryRepository";
+import NurseryRepository from "../../domain/trainer/nursery/NurseryRepository";
 import NurseryMapper from "./NurseryMapper";
 import { container } from "tsyringe";
 

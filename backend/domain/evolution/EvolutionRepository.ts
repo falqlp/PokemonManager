@@ -1,6 +1,6 @@
 import Evolution, { IEvolution } from "./Evolution";
-import { IPokemonBase } from "../pokemonBase/PokemonBase";
-import PokemonBaseRepository from "../pokemonBase/PokemonBaseRepository";
+import { IPokemonBase } from "../pokemon/pokemonBase/PokemonBase";
+import PokemonBaseRepository from "../pokemon/pokemonBase/PokemonBaseRepository";
 import { singleton } from "tsyringe";
 
 @singleton()

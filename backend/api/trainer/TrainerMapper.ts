@@ -1,9 +1,9 @@
 import { ITrainer } from "../../domain/trainer/Trainer";
 import { IMapper } from "../../domain/IMapper";
-import { ITrainingCamp } from "../../domain/trainingCamp/TrainingCamp";
+import { ITrainingCamp } from "../../domain/trainer/trainingCamp/TrainingCamp";
 import PokemonMapper from "../pokemon/PokemonMapper";
-import { IPcStorage } from "../../domain/pcStorage/PcStorage";
-import { INursery } from "../../domain/nursery/Nursery";
+import { IPcStorage } from "../../domain/trainer/pcStorage/PcStorage";
+import { INursery } from "../../domain/trainer/nursery/Nursery";
 import { singleton } from "tsyringe";
 
 @singleton()

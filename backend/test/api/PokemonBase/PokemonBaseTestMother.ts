@@ -1,4 +1,4 @@
-import { IPokemonBase } from "../../../domain/pokemonBase/PokemonBase";
+import { IPokemonBase } from "../../../domain/pokemon/pokemonBase/PokemonBase";
 import { PokemonType } from "../../../models/Types/Types";
 import { StatsTestMother } from "../Stats/StatsTestMother";
 

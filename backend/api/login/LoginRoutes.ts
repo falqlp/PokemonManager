@@ -1,5 +1,5 @@
 import express from "express";
-import HashService from "../../application/hash/HashService";
+import HashService from "../../application/user/hash/HashService";
 import { container } from "tsyringe";
 import UserRepository from "../../domain/user/UserRepository";
 const router = express.Router();

@@ -1,6 +1,6 @@
 import express from "express";
 import CompleteRouter from "../CompleteRouter";
-import PcStorageService from "../../domain/pcStorage/PcStorageRepository";
+import PcStorageService from "../../domain/trainer/pcStorage/PcStorageRepository";
 import PcStorageMapper from "./PcStorageMapper";
 import { container } from "tsyringe";
 

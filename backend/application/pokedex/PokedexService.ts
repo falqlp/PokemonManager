@@ -1,5 +1,5 @@
-import PokemonBaseRepository from "../../domain/pokemonBase/PokemonBaseRepository";
-import { IPokemonBase } from "../../domain/pokemonBase/PokemonBase";
+import PokemonBaseRepository from "../../domain/pokemon/pokemonBase/PokemonBaseRepository";
+import { IPokemonBase } from "../../domain/pokemon/pokemonBase/PokemonBase";
 import { IPokedex, IPokedexEvolution, IPokedexMoveLearned } from "./Pokedex";
 import MoveRepository from "../../domain/move/MoveRepository";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";

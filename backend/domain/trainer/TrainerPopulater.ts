@@ -1,13 +1,13 @@
 import Populater from "../Populater";
 import { PopulateOptions } from "mongoose";
 import Pokemon from "../pokemon/Pokemon";
-import PcStorage from "../pcStorage/PcStorage";
-import TrainingCamp from "../trainingCamp/TrainingCamp";
-import Nursery from "../nursery/Nursery";
+import PcStorage from "./pcStorage/PcStorage";
+import TrainingCamp from "./trainingCamp/TrainingCamp";
+import Nursery from "./nursery/Nursery";
 import PokemonPopulater from "../pokemon/PokemonPopulater";
-import PcStoragePopulater from "../pcStorage/PcStoragePopulater";
-import NurseryPopulater from "../nursery/NurseryPopulater";
-import TrainingCampPopulater from "../trainingCamp/TrainingCampPopulater";
+import PcStoragePopulater from "./pcStorage/PcStoragePopulater";
+import NurseryPopulater from "./nursery/NurseryPopulater";
+import TrainingCampPopulater from "./trainingCamp/TrainingCampPopulater";
 import { singleton } from "tsyringe";
 import Competition from "../competiton/Competition";
 

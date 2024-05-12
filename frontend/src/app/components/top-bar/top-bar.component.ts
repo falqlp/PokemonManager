@@ -100,7 +100,7 @@ export class TopBarComponent implements OnInit {
     this.sidenavService.openSidenav();
   }
 
-  protected simulateButton(playerId: string) {
+  protected simulateButton(playerId: string): void {
     if (this.simulating) {
       this.stopRequest = true;
     } else {

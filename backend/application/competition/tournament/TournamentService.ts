@@ -1,21 +1,21 @@
 import { singleton } from "tsyringe";
-import TournamentRepository from "../../../domain/tournament/TournamentRepository";
+import TournamentRepository from "../../../domain/competiton/tournament/TournamentRepository";
 import { ITrainer } from "../../../domain/trainer/Trainer";
 import GenerateCalendarService from "../../calendarEvent/GenerateCalendarService";
 import { addDays } from "../../../utils/DateUtils";
 import {
   ITournament,
   ITournamentStep,
-} from "../../../domain/tournament/Tournament";
+} from "../../../domain/competiton/tournament/Tournament";
 import { IBattleInstance } from "../../../domain/battleInstance/Battle";
 import { ICalendarEvent } from "../../../domain/calendarEvent/CalendarEvent";
 import CalendarEventRepository from "../../../domain/calendarEvent/CalendarEventRepository";
 import BattleInstanceRepository from "../../../domain/battleInstance/BattleInstanceRepository";
-import BattleSerieRepository from "../../../domain/battleSerie/BattleSerieRepository";
+import BattleSerieRepository from "../../../domain/competiton/tournament/battleSerie/BattleSerieRepository";
 import {
   IBattleSerie,
   SerieTypes,
-} from "../../../domain/battleSerie/BattleSerie";
+} from "../../../domain/competiton/tournament/battleSerie/BattleSerie";
 import { ObjectId } from "mongodb";
 import { BattleInstanceService } from "../../battleInstance/BattleInstanceService";
 import TrainerRepository from "../../../domain/trainer/TrainerRepository";

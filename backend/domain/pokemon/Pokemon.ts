@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
-import { IPokemonBase } from "../pokemonBase/PokemonBase";
+import { IPokemonBase } from "./pokemonBase/PokemonBase";
 import { IMove } from "../move/Move";
 import { MongoId } from "../MongoId";
 import { Gender } from "../Gender";

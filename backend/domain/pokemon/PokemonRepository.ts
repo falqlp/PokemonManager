@@ -1,7 +1,7 @@
 import Pokemon, { IPokemon } from "./Pokemon";
 import Trainer from "../trainer/Trainer";
 import CompleteRepository from "../CompleteRepository";
-import Nursery from "../nursery/Nursery";
+import Nursery from "../trainer/nursery/Nursery";
 import { FilterQuery, UpdateQuery } from "mongoose";
 import { singleton } from "tsyringe";
 import PokemonPopulater from "./PokemonPopulater";

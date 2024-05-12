@@ -1,4 +1,4 @@
-import { IPokemonBase } from "../../domain/pokemonBase/PokemonBase";
+import { IPokemonBase } from "../../domain/pokemon/pokemonBase/PokemonBase";
 import { IMapper } from "../../domain/IMapper";
 
 const MoveMapper: IMapper<IPokemonBase> = {
