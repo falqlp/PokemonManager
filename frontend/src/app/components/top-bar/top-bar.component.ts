@@ -55,6 +55,7 @@ export class TopBarComponent implements OnInit {
   protected showWeekCalendar = false;
   protected actualDate: Date;
   protected simulating = false;
+  protected stopRequest = false;
   protected player: TrainerModel;
   protected lang =
     this.translateService.currentLang ?? this.translateService.defaultLang;
@@ -99,6 +100,15 @@ export class TopBarComponent implements OnInit {
     this.sidenavService.openSidenav();
   }
 
+  protected simulateButton(playerId: string) {
+    if (this.simulating) {
+      this.stopRequest = true;
+    } else {
+      this.showWeekCalendar = true;
+      this.simulate(playerId);
+    }
+  }
+
   protected simulate(playerId: string): void {
     this.simulating = true;
     this.calendarEventQueriesService
@@ -107,12 +117,26 @@ export class TopBarComponent implements OnInit {
       .subscribe((res) => {
         if (res.battle) {
           this.goToBattle(res.battle);
-        }
-        if (res.redirectTo) {
+          this.stopSimulation();
+        } else if (res.redirectTo) {
           this.router.navigateByUrl(res.redirectTo);
+          this.stopSimulation();
+        } else {
+          if (this.stopRequest) {
+            this.stopSimulation();
+          } else {
+            setTimeout(() => {
+              this.simulate(playerId);
+            }, 1000);
+          }
         }
-        this.simulating = false;
       });
+  }
+
+  private stopSimulation(): void {
+    this.simulating = false;
+    this.showWeekCalendar = false;
+    this.stopRequest = false;
   }
 
   protected showCalendar(): void {

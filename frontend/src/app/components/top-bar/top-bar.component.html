@@ -49,16 +49,17 @@
       <button
         mat-flat-button
         color="accent"
-        [disabled]="simulating"
-        (click)="simulate(player._id)">
-        <span
-          class="top-bar__right-content__continue"
-          *ngIf="!simulating; else spinner">
+        (click)="simulateButton(player._id)">
+        @if (!simulating){
+        <span class="top-bar__right-content__continue">
           {{ 'CONTINUE' | translate }} <mat-icon>arrow_forward</mat-icon></span
         >
-        <ng-template #spinner>
-          <mat-spinner color="warn" diameter="20"></mat-spinner
-        ></ng-template>
+        } @else {
+        <div class="top-bar__right-content__stop">
+          <mat-spinner color="warn" diameter="20"></mat-spinner>
+          <span>{{ 'STOP' | translate }}</span>
+        </div>
+        }
       </button>
     </div>
   </div>

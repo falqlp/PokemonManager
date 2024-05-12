@@ -1,4 +1,11 @@
-import { Component, DestroyRef, input, OnInit } from '@angular/core';
+import {
+  Component,
+  computed,
+  DestroyRef,
+  input,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { PokemonModel } from '../../../models/PokemonModels/pokemon.model';
 import { LocalDatePipe } from '../../../pipes/local-date.pipe';
 import { TranslateModule } from '@ngx-translate/core';
@@ -14,7 +21,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class PokemonResumeInfosComponent implements OnInit {
   public pokemon = input<PokemonModel>();
-  protected age: number;
+  protected age = computed(() => this.calculateAge(this.actualDate()));
+  protected actualDate = signal<Date>(null);
 
   constructor(
     private timeService: TimeService,
@@ -22,14 +30,13 @@ export class PokemonResumeInfosComponent implements OnInit {
   ) {}
 
   protected calculateAge(actualDate: Date): number {
-    let age = actualDate.getFullYear() - this.pokemon().birthday.getFullYear();
-    const monthDifference =
-      actualDate.getMonth() - this.pokemon().birthday.getMonth();
+    const birthday: Date = new Date(this.pokemon().birthday);
+    let age = actualDate.getFullYear() - birthday.getFullYear();
+    const monthDifference = actualDate.getMonth() - birthday.getMonth();
 
     if (
       monthDifference < 0 ||
-      (monthDifference === 0 &&
-        actualDate.getDate() < this.pokemon().birthday.getDate())
+      (monthDifference === 0 && actualDate.getDate() < birthday.getDate())
     ) {
       age -= 1;
     }
@@ -41,7 +48,7 @@ export class PokemonResumeInfosComponent implements OnInit {
       .getActualDate()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((date) => {
-        this.age = this.calculateAge(date);
+        this.actualDate.set(date);
       });
   }
 }

@@ -1,5 +1,5 @@
 <div class="pokemon-resume-infos">
-  <p>{{ 'AGE_X' | translate : { age } }}</p>
+  <p>{{ 'AGE_X' | translate : { age: age() } }}</p>
   <p>{{ 'BIRTHDAY' | translate }}: {{ pokemon().birthday | localDate }}</p>
   <p>{{ 'POTENTIAL' | translate }}: {{ pokemon().hiddenPotential }}</p>
   <p>{{ 'NATURE' | translate }}: {{ pokemon().nature | translate }}</p>
