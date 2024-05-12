@@ -70,15 +70,21 @@ export class NewBattleComponent implements OnInit {
     ])
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(([player, battle]) => {
-        this.playerId = battle.player._id;
-        if (player._id === battle.opponent._id) {
-          this.opponent = battle.player;
-          this.player = battle.opponent;
+        if (!battle) {
+          this.router.navigate(['battle-resume'], {
+            queryParams: { battle: this.id },
+          });
         } else {
-          this.player = battle.player;
-          this.opponent = battle.opponent;
+          this.playerId = battle.player._id;
+          if (player._id === battle.opponent._id) {
+            this.opponent = battle.player;
+            this.player = battle.opponent;
+          } else {
+            this.player = battle.player;
+            this.opponent = battle.opponent;
+          }
+          this.battleOrder = battle.battleOrder;
         }
-        this.battleOrder = battle.battleOrder;
       });
   }
 

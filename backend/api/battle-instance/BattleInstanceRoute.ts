@@ -55,12 +55,14 @@ router.post("/simulateBattle", async (req, res, next) => {
 router.get("/init-battle/:id", async (req, res, next) => {
   try {
     const result = await battleInstanceService.initBattle(req.params.id);
-    result.player.pokemons = result.player.pokemons.map((value) => {
-      return pokemonMapper.map(value) as IBattlePokemon;
-    });
-    result.opponent.pokemons = result.opponent.pokemons.map((value) => {
-      return pokemonMapper.map(value) as IBattlePokemon;
-    });
+    if (result) {
+      result.player.pokemons = result.player.pokemons.map((value) => {
+        return pokemonMapper.map(value) as IBattlePokemon;
+      });
+      result.opponent.pokemons = result.opponent.pokemons.map((value) => {
+        return pokemonMapper.map(value) as IBattlePokemon;
+      });
+    }
     res.status(200).json(result);
   } catch (error) {
     next(error);

@@ -23,6 +23,7 @@ import { addDays } from "../../utils/DateUtils";
 import { BattleInstanceService } from "../battleInstance/BattleInstanceService";
 import TournamentService from "../competition/tournament/TournamentService";
 import ExperienceService from "../experience/ExperienceService";
+import TrainerMapper from "../../api/trainer/TrainerMapper";
 
 @singleton()
 class CalendarEventService {
@@ -41,6 +42,7 @@ class CalendarEventService {
     protected competitionService: CompetitionService,
     protected tournamentService: TournamentService,
     protected experienceService: ExperienceService,
+    protected trainerMapper: TrainerMapper,
   ) {}
 
   public async createBattleEvent(
@@ -125,9 +127,11 @@ class CalendarEventService {
       await this.tournamentService.tournamentStepEnd(game, addDays(date, -1));
       if (date.getDay() === 1) {
         await this.experienceService.xpForOtherTrainer(game, trainerId, date);
+        const res = await this.experienceService.weeklyXpGain(trainerId);
+        res.trainer = this.trainerMapper.map(res.trainer);
         this.websocketServerService.sendMessageToClientInGame(game, {
           type: "weeklyXp",
-          payload: await this.experienceService.weeklyXpGain(trainerId),
+          payload: res,
         });
       }
     }

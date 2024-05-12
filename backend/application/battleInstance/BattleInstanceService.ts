@@ -183,6 +183,9 @@ export class BattleInstanceService {
     battleId: string,
   ): Promise<{ player: IBattleTrainer; opponent: IBattleTrainer }> {
     const battle = await this.battleInstanceRepository.get(battleId);
+    if (battle.winner) {
+      return;
+    }
     return this.battleService.initBattle(battle);
   }
 

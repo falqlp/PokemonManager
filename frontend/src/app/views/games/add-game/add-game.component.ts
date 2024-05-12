@@ -13,7 +13,6 @@ import { GameModel } from '../../../models/game.model';
 import { TrainerModel } from '../../../models/TrainersModels/trainer.model';
 import { GameQueriesService } from '../../../services/queries/game-queries.service';
 import { CacheService } from '../../../services/cache.service';
-import { DialogRef } from '@angular/cdk/dialog';
 import { RouterService } from '../../../services/router.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { switchMap } from 'rxjs';
@@ -41,7 +40,6 @@ export class AddGameComponent {
     protected router: RouterService,
     protected gameQueriesService: GameQueriesService,
     protected cacheService: CacheService,
-    protected dialogRef: DialogRef<AddGameComponent>,
     protected destroyRef: DestroyRef
   ) {}
 

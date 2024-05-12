@@ -30,7 +30,7 @@ class ReadOnlyGlobalRouter<T extends MongoId> {
       }
     });
 
-    this.router.put("/query-table", async (req, res, next) => {
+    this.router.post("/query-table", async (req, res, next) => {
       try {
         const lang = req.headers["lang"] as string;
         const obj = await this.service.queryTable(req.body, { lang });

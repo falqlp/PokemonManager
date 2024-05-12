@@ -1,6 +1,5 @@
 import { IPokemon } from "../../domain/pokemon/Pokemon";
 import PokemonRepository from "../../domain/pokemon/PokemonRepository";
-import PcStorageService from "../../domain/pcStorage/PcStorageRepository";
 import PcStorageRepository from "../../domain/pcStorage/PcStorageRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import TrainerClassRepository from "../../domain/trainerClass/TrainerClassRepository";
@@ -22,6 +21,8 @@ import { ITrainingCamp } from "../../domain/trainingCamp/TrainingCamp";
 import { Gender } from "../../domain/Gender";
 import { IGame } from "../../domain/game/Game";
 import { addYears } from "../../utils/DateUtils";
+import WebsocketServerService from "../../WebsocketServerService";
+import { PcStorageService } from "../pcStorage/PcStorageService";
 
 @singleton()
 class TrainerService {
@@ -38,6 +39,7 @@ class TrainerService {
     protected trainingCampRepository: TrainingCampRepository,
     protected nurseryRepository: NurseryRepository,
     protected pcStorageRepository: PcStorageRepository,
+    protected websocketServerService: WebsocketServerService,
   ) {}
 
   public async addPokemonForTrainer(
@@ -62,10 +64,7 @@ class TrainerService {
       if (!freeIndex) {
         await this.pokemonRepository.delete(pokemon._id);
       } else {
-        await this.pcStorageService.update(
-          trainer.pcStorage._id,
-          trainer.pcStorage,
-        );
+        await this.pcStorageService.update(trainer.pcStorage);
       }
     }
     await this.update(trainer);
@@ -171,19 +170,18 @@ class TrainerService {
   }
 
   public async update(trainer: ITrainer): Promise<ITrainer> {
-    trainer.pokemons = await Promise.all(
-      trainer.pokemons.map(async (pokemon) => {
-        pokemon = await this.pokemonService.update(pokemon._id, pokemon);
-        return pokemon;
-      }),
+    trainer.pokemons = await this.pokemonService.updateMany(
+      trainer.pokemons,
+      trainer.gameId,
     );
 
     if (typeof trainer.pcStorage !== "string") {
-      await this.pcStorageService.update(
-        trainer.pcStorage._id,
-        trainer.pcStorage,
-      );
+      await this.pcStorageService.update(trainer.pcStorage);
     }
+    await this.websocketServerService.updatePlayer(
+      trainer._id.toString(),
+      trainer.gameId,
+    );
     return this.trainerRepository.update(trainer._id, trainer);
   }
 
@@ -196,7 +194,7 @@ class TrainerService {
       trainer.competitions = [];
     }
     if (!trainer.pcStorage) {
-      trainer.pcStorage = await this.pcStorageService.create({
+      trainer.pcStorage = await this.pcStorageRepository.create({
         gameId,
         maxSize: 0,
         storage: [],
