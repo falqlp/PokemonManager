@@ -26,7 +26,7 @@ export class MailService {
   public sendVerifyUser(user: IUser): void {
     let content = fs.readFileSync(
       path.join(
-        __dirname.replace("\\dist", ""),
+        __dirname.replace("\\dist", "").replace("/dist", ""),
         user.lang + "/verify-mail.html",
       ),
       "utf-8",
@@ -59,7 +59,7 @@ export class MailService {
   ): void {
     let content = fs.readFileSync(
       path.join(
-        __dirname.replace("\\dist", ""),
+        __dirname.replace("\\dist", "").replace("/dist", ""),
         lang + "/modify-password.html",
       ),
       "utf-8",
