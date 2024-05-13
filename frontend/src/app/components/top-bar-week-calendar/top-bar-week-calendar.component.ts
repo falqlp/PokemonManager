@@ -64,6 +64,8 @@ export class TopBarWeekCalendarComponent implements OnInit {
           .pipe(
             map((res) => {
               this.events = res;
+              this.actualDateString =
+                this.timeService.dateToSimplifyLocalDate(actualDate);
               return actualDate;
             })
           );
@@ -102,8 +104,6 @@ export class TopBarWeekCalendarComponent implements OnInit {
           );
       }),
       map((actualDate) => {
-        this.actualDateString =
-          this.timeService.dateToSimplifyLocalDate(actualDate);
         this.version += 1;
         const week: string[] = [];
         const newDate = new Date(actualDate);
