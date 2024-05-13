@@ -7,7 +7,10 @@
     mat-ripple
     [ngClass]="findPokemon(starter) ? 'starters__starter--selected' : ''"
     (click)="selectPokemon(starter)">
-    <app-display-pokemon-image [pokemon]="starter" type="max-size" />
+    <app-display-pokemon-image
+      [pokemon]="starter"
+      [disabledClick]="true"
+      type="max-size" />
   </div>
   }
 </div>

@@ -108,4 +108,14 @@ export class BattleStrategyComponent implements OnInit {
   protected modifyMove(pokemon: PokemonModel): void {
     this.dialog.open(ModifyMoveModalComponent, { data: pokemon });
   }
+
+  protected compareArray(array1: number[], array2: number[]): boolean {
+    let isEqual = true;
+    for (let i = 0; i < array1.length; i++) {
+      if (array1.at(i) !== array2.at(i)) {
+        isEqual = false;
+      }
+    }
+    return isEqual;
+  }
 }

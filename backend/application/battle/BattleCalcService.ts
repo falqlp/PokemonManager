@@ -244,6 +244,9 @@ class BattleCalcService {
   }
 
   moveOnTarget(move: IMove): boolean {
+    if (!move.accuracy) {
+      return true;
+    }
     return Math.random() > move.accuracy / 100;
   }
 

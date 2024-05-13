@@ -12,7 +12,7 @@ import { singleton } from "tsyringe";
 export default class MoveLearningService {
   constructor(
     protected moveLearningRepository: MoveLearningRepository,
-    protected moveService: MoveRepository,
+    protected moveRepository: MoveRepository,
     protected evolutionRepository: EvolutionRepository,
     protected websocketServerService: WebsocketServerService,
   ) {}
@@ -20,9 +20,18 @@ export default class MoveLearningService {
   public newMoveLearned(pokemon: IPokemon): void {
     this.moveLearningRepository
       .getNewMoveLearned(pokemon)
-      .then((movesLearn) => {
-        if (movesLearn.length > 0) {
-          this.websocketServerService.notifyNewMoveLearned(pokemon);
+      .then(async (movesLearns) => {
+        if (movesLearns.length > 0) {
+          let damagedMove = false;
+          for (const moveLearn of movesLearns) {
+            const move = await this.moveRepository.get(moveLearn.moveId);
+            if (move.power > 0) {
+              damagedMove = true;
+            }
+          }
+          if (damagedMove) {
+            this.websocketServerService.notifyNewMoveLearned(pokemon);
+          }
         }
       });
   }
@@ -37,7 +46,7 @@ export default class MoveLearningService {
       return move.moveId;
     });
     return (
-      await this.moveService.list({ ...query, ids: allMovesString })
+      await this.moveRepository.list({ ...query, ids: allMovesString })
     ).filter((move) => move.power ?? 0 > 0);
   }
 

@@ -97,7 +97,10 @@ export class ExpGainComponent implements OnInit {
           close: true,
           color: 'warn',
           click: (): void => {
-            this.dialog.open(EvolutionComponent, { data: { evolution } });
+            this.dialog.open(EvolutionComponent, {
+              data: { evolution },
+              disableClose: true,
+            });
           },
         },
       ];

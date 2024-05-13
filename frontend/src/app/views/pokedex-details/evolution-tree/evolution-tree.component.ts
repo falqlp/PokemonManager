@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { PokemonBaseModel } from '../../../models/PokemonModels/pokemonBase.model';
 import { PokedexEvolutionModel } from '../pokedex-details.model';
-import { RouterService } from '../../../services/router.service';
 
 @Component({
   selector: 'pm-evolution-tree',
@@ -23,10 +22,4 @@ export class EvolutionTreeComponent {
   @Input() pokemonBase: PokemonBaseModel;
   @Input() evolutionOf: PokedexEvolutionModel[];
   @Input() evolutions: PokedexEvolutionModel[];
-
-  constructor(protected routerService: RouterService) {}
-
-  protected navigateToPokemon(id: number): void {
-    this.routerService.navigateByUrl('pokedex-details/' + id);
-  }
 }

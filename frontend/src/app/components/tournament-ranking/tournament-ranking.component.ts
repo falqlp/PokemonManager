@@ -13,6 +13,8 @@ import { MatListModule } from '@angular/material/list';
 import { NgClass } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CompetitionHistoryModel } from '../../models/competition-history.model';
+import { TimeService } from '../../services/time.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'pm-tournament-ranking',
@@ -47,7 +49,8 @@ export class TournamentRankingComponent implements OnInit {
   constructor(
     protected battleInstanceQueriesService: BattleInstanceQueriesService,
     protected playerService: PlayerService,
-    protected destroyRef: DestroyRef
+    protected destroyRef: DestroyRef,
+    private timeService: TimeService
   ) {}
 
   public ngOnInit(): void {
@@ -60,9 +63,16 @@ export class TournamentRankingComponent implements OnInit {
       }
     } else {
       if (this.competition().type === CompetitionType.TOURNAMENT) {
-        this.battleInstanceQueriesService
-          .getTournamentRanking(this.competition().tournament)
-          .pipe(takeUntilDestroyed(this.destroyRef))
+        this.timeService
+          .getActualDate()
+          .pipe(
+            takeUntilDestroyed(this.destroyRef),
+            switchMap(() =>
+              this.battleInstanceQueriesService.getTournamentRanking(
+                this.competition().tournament
+              )
+            )
+          )
           .subscribe((res) => {
             this.tournamentRanking = res.tournamentRanking;
             this.step = res.step;
@@ -80,6 +90,7 @@ export class TournamentRankingComponent implements OnInit {
   }
 
   private getTournamentStepValues(): void {
+    this.tournamentStepValue = [];
     let currentStep = this.step - 1;
     for (let i = 0; i < this.tournamentRanking.length; i++) {
       this.tournamentStepValue.push({

@@ -1,6 +1,7 @@
 @if (player){
 <div class="battle-strategy">
-  @for (pokemon of player.pokemons; track pokemon._id; let i =$index){
+  @for (pokemon of player.pokemons; track pokemon._id; let i =$index){ @if
+  (pokemon.level !== 0){
   <div class="battle-strategy__pokemon">
     <div class="battle-strategy__pokemon__infos">
       <app-display-pokemon-image type="thumbnails" [pokemon]="pokemon" />
@@ -27,7 +28,10 @@
       </div>
       <div class="battle-strategy__pokemon__move-form__actions">
         <button
-          [disabled]="form.controls.at(i).errors"
+          [disabled]="
+            form.controls.at(i).errors ||
+            compareArray(form.controls.at(i).getRawValue(), pokemon.strategy)
+          "
           mat-flat-button
           (click)="save(i)"
           color="warn">
@@ -39,6 +43,6 @@
       </div>
     </div>
   </div>
-  }
+  } }
 </div>
 }

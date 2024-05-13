@@ -7,6 +7,7 @@ import { singleton } from "tsyringe";
 import PokemonPopulater from "./PokemonPopulater";
 import { IGame } from "../game/Game";
 import { addYears } from "../../utils/DateUtils";
+import PcStorage from "../trainer/pcStorage/PcStorage";
 
 @singleton()
 class PokemonRepository extends CompleteRepository<IPokemon> {
@@ -44,6 +45,12 @@ class PokemonRepository extends CompleteRepository<IPokemon> {
       { gameId: game._id },
       {
         $pull: { pokemons: { $in: oldPokemonIds } },
+      },
+    );
+    await PcStorage.updateMany(
+      { gameId: game._id },
+      {
+        $pull: { storage: { pokemon: { $in: oldPokemonIds } } },
       },
     );
     await this.schema.updateMany(

@@ -73,8 +73,8 @@ class TrainerService {
 
   public async generateTrainers(
     gameId: string,
-    championship: ICompetition,
     quantity: number,
+    championship?: ICompetition,
   ): Promise<ITrainer[]> {
     const trainers: ITrainer[] = [];
     for (let i = 1; i <= quantity; i++) {
@@ -86,7 +86,7 @@ class TrainerService {
         gameId,
         name: nameAndClass.name,
         class: nameAndClass.class,
-        competitions: [championship],
+        competitions: championship ? [championship] : [],
         pokemons: [],
       } as ITrainer;
       trainers.push(trainer);
@@ -170,6 +170,26 @@ class TrainerService {
     };
   }
 
+  public async generateTrainerWithPokemon(
+    game: IGame,
+    nbGeneratedTrainer: number,
+    championship?: ICompetition,
+  ): Promise<void> {
+    const generatedTrainers = await this.generateTrainers(
+      game._id.toString(),
+      nbGeneratedTrainer,
+      championship,
+    );
+    const res = await this.generateTrainersPokemons(
+      game,
+      generatedTrainers,
+      { max: 4, min: 2 },
+      { max: 13, min: 8 },
+    );
+    await this.pokemonService.createPokemons(res.pokemons, game._id);
+    await this.createMany(res.trainers);
+  }
+
   public async update(trainer: ITrainer): Promise<ITrainer> {
     await this.updateBase(trainer);
     return this.trainerRepository.update(trainer._id, trainer);
@@ -184,10 +204,12 @@ class TrainerService {
     if (typeof trainer.pcStorage !== "string") {
       await this.pcStorageService.update(trainer.pcStorage);
     }
-    await this.websocketServerService.updatePlayer(
-      trainer._id.toString(),
-      trainer.gameId,
-    );
+    setTimeout(async () => {
+      await this.websocketServerService.updatePlayer(
+        trainer._id.toString(),
+        trainer.gameId,
+      );
+    }, 200);
     return trainer;
   }
 

@@ -12,6 +12,6 @@
     [alt]="move.type" />
   <div class="move__left--info">
     <span>{{ 'POWER' | translate }}: {{ move.power }}</span>
-    <span>{{ 'ACCURACY' | translate }}: {{ move.accuracy }}%</span>
+    <span>{{ 'ACCURACY' | translate }}: {{ move.accuracy ?? '--' }}%</span>
   </div>
 </div>

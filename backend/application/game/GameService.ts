@@ -6,7 +6,6 @@ import TrainerService from "../trainer/TrainerService";
 import GenerateCalendarService from "../calendarEvent/GenerateCalendarService";
 import WebsocketServerService from "../../WebsocketServerService";
 import { singleton } from "tsyringe";
-import PokemonService from "../pokemon/PokemonService";
 import CompetitionService from "../competition/CompetitionService";
 
 export const NB_GENERATED_TRAINER = 19;
@@ -19,7 +18,6 @@ class GameService {
     protected trainerService: TrainerService,
     protected generateCalendarService: GenerateCalendarService,
     protected websocketServerService: WebsocketServerService,
-    protected pokemonService: PokemonService,
     protected competitionService: CompetitionService,
   ) {}
 
@@ -51,19 +49,11 @@ class GameService {
       { _id: playerId },
       { $push: { competitions: championship } },
     );
-    const generatedTrainers = await this.trainerService.generateTrainers(
-      gameId,
-      championship,
-      NB_GENERATED_TRAINER,
-    );
-    const res = await this.trainerService.generateTrainersPokemons(
+    await this.trainerService.generateTrainerWithPokemon(
       game,
-      generatedTrainers,
-      { max: 4, min: 2 },
-      { max: 13, min: 8 },
+      NB_GENERATED_TRAINER,
+      championship,
     );
-    await this.pokemonService.createPokemons(res.pokemons, gameId);
-    await this.trainerService.createMany(res.trainers);
     const trainers = await this.trainerRepository.list({}, { gameId });
     this.websocketServerService.sendMessageToClientInGame(gameId, {
       type: "initGame",

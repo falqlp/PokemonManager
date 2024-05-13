@@ -131,6 +131,7 @@ export class WebsocketService {
             data: message.payload,
             disableClose: true,
           });
+          this.simulationService.stopSimulation();
         });
         break;
       case 'initGame':

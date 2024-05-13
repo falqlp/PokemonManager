@@ -230,6 +230,17 @@ class CalendarEventService {
   private async newSeason(game: IGame): Promise<void> {
     await this.archiveCurrentComepetition(game);
     await this.pokemonRepository.archiveOldPokemon(game);
+
+    const noPokemonTrainers = await this.trainerRepository.list({
+      custom: { gameId: game._id, pokemons: { $size: 0 } },
+    });
+    await this.trainerService.generateTrainerWithPokemon(
+      game,
+      noPokemonTrainers.length,
+    );
+    for (const trainer of noPokemonTrainers) {
+      await this.trainerRepository.deleteTrainer(trainer);
+    }
     const championship = await this.competitionService.createChampionship(game);
     const trainers = await this.trainerRepository.list(
       {},

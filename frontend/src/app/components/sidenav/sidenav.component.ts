@@ -86,11 +86,6 @@ export class SidenavComponent {
           icon: 'history',
         },
         {
-          link: 'events',
-          label: 'EVENTS',
-          icon: 'event',
-        },
-        {
           link: 'trainers',
           label: 'TRAINERS',
           icon: 'groups',

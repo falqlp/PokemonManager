@@ -13,5 +13,10 @@
   <div class="evolution__message">{{ message }}</div>
 </div>
 <div mat-dialog-actions>
-  <button mat-flat-button mat-dialog-close>{{ 'CLOSE' | translate }}</button>
+  <button
+    [disabled]="pokemon.basePokemon.id !== data.evolution.evolution.id"
+    mat-flat-button
+    mat-dialog-close>
+    {{ 'CLOSE' | translate }}
+  </button>
 </div>

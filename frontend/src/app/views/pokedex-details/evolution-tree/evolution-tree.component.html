@@ -1,8 +1,7 @@
 <div *ngFor="let evolution of evolutionOf" class="evolution-tree__evolution">
   <app-display-pokemon-image
     [pokemon]="evolution.pokemon"
-    [type]="'thumbnails'"
-    (click)="navigateToPokemon(evolution.pokemon.id)" />
+    [type]="'thumbnails'" />
   <div class="evolution-tree__evolution__method">
     <mat-icon>arrow_forward</mat-icon>
     <span *ngIf="evolution.evolutionMethod === 'LEVEL-UP'"
@@ -20,6 +19,5 @@
   </div>
   <app-display-pokemon-image
     [pokemon]="evolution.pokemon"
-    [type]="'thumbnails'"
-    (click)="navigateToPokemon(evolution.pokemon.id)" />
+    [type]="'thumbnails'" />
 </div>

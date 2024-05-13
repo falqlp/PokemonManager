@@ -6,6 +6,7 @@ import {
   SimpleChanges,
   ViewChild,
   ElementRef,
+  input,
 } from '@angular/core';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { DisplayType } from './display-pokemon-image.model';
@@ -13,6 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgClass, NgIf } from '@angular/common';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterService } from '../../services/router.service';
 
 @Component({
   standalone: true,
@@ -27,11 +29,13 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
   @Input() public type: DisplayType;
   @Input() public height: number;
   @Input() public shiny = false;
+  public disabledClick = input<boolean>(false);
   protected fontSize: number;
 
   protected basePokemon: PokemonBaseModel;
 
   protected imageUrl: string;
+  constructor(private routerService: RouterService) {}
 
   public ngOnInit(): void {
     this.updateImageUrl();
@@ -85,5 +89,13 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
 
   public loadImg(): void {
     this.fontSize = this.img.nativeElement.height * 0.2;
+  }
+
+  protected click(): void {
+    if (!('level' in this.pokemon && this.pokemon.level === 0)) {
+      this.routerService.navigateByUrl(
+        'pokedex-details/' + this.basePokemon.id
+      );
+    }
   }
 }
