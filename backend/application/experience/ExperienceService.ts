@@ -10,7 +10,7 @@ import { calculateAge } from "../../utils/DateUtils";
 import GameRepository from "../../domain/game/GameRepository";
 import PokemonService from "../pokemon/PokemonService";
 
-const XP_PER_LEVEL = 100000;
+export const XP_PER_LEVEL = 100000;
 
 @singleton()
 class ExperienceService {

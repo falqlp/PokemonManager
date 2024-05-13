@@ -5,6 +5,8 @@ import Nursery from "../trainer/nursery/Nursery";
 import { FilterQuery, UpdateQuery } from "mongoose";
 import { singleton } from "tsyringe";
 import PokemonPopulater from "./PokemonPopulater";
+import { IGame } from "../game/Game";
+import { addYears } from "../../utils/DateUtils";
 
 @singleton()
 class PokemonRepository extends CompleteRepository<IPokemon> {
@@ -29,6 +31,25 @@ class PokemonRepository extends CompleteRepository<IPokemon> {
     update: UpdateQuery<IPokemon>,
   ): Promise<IPokemon> {
     return this.schema.findOneAndUpdate(filter, update);
+  }
+
+  public async archiveOldPokemon(game: IGame): Promise<void> {
+    const old = addYears(game.actualDate, -8);
+    const oldPokemons = await this.list(
+      { custom: { birthday: { $lte: old } } },
+      { gameId: game._id },
+    );
+    const oldPokemonIds = oldPokemons.map((pokemon) => pokemon._id);
+    await Trainer.updateMany(
+      { gameId: game._id },
+      {
+        $pull: { pokemons: { $in: oldPokemonIds } },
+      },
+    );
+    await this.schema.updateMany(
+      { _id: { $in: oldPokemonIds } },
+      { $unset: { trainerId: "" } },
+    );
   }
 }
 

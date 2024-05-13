@@ -4,11 +4,11 @@
   calendar event</button
 >}
 <div class="home">
-  @if (player.competitions.length > 0) {
+  @if (player().competitions.length > 0) {
   <div class="home__rankings">
     <h3>{{ 'RANKINGS' | translate }}</h3>
     <mat-tab-group>
-      @for (competition of player.competitions; track competition._id) {
+      @for (competition of player().competitions; track competition._id) {
       <mat-tab [label]="competition.name | translate">
         @switch (competition.type){ @case ('TOURNAMENT'){
         <pm-tournament-ranking [competition]="competition" />
@@ -23,7 +23,7 @@
   <div class="home__team">
     <h3>{{ 'TEAM' | translate }}</h3>
     <div class="home__team__pokemons">
-      @for (pokemon of player.pokemons; track pokemon._id){ @if(pokemon.level
+      @for (pokemon of player().pokemons; track pokemon._id){ @if(pokemon.level
       !== 0) {
       <div class="home__team__pokemons__pokemon">
         <div class="home__team__pokemons__pokemon__main-info">

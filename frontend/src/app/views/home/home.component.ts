@@ -1,4 +1,4 @@
-import type { OnInit } from '@angular/core';
+import { OnInit, signal } from '@angular/core';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PokemonFormComponent } from 'src/app/modals/pokemon-form/pokemon-form.component';
@@ -41,7 +41,7 @@ import { TournamentRankingComponent } from '../../components/tournament-ranking/
   ],
 })
 export class HomeComponent implements OnInit {
-  protected player: TrainerModel;
+  protected player = signal<TrainerModel>(null);
   protected readonly environment = environment;
 
   constructor(
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
     this.playerService.player$
       .pipe(filter((player) => !!player))
       .subscribe((player) => {
-        this.player = player;
+        this.player.set(player);
       });
   }
 

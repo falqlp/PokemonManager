@@ -12,6 +12,7 @@ import { singleton } from "tsyringe";
 import GamePopulater from "./GamePopulater";
 import Competition from "../competiton/Competition";
 import Tournament from "../competiton/tournament/Tournament";
+import CompetitionHistory from "../competiton/competitionHistory/CompetitionHistory";
 
 @singleton()
 class GameRepository extends CompleteRepository<IGame> {
@@ -31,6 +32,7 @@ class GameRepository extends CompleteRepository<IGame> {
       await Nursery.deleteMany({ gameId: _id });
       await Competition.deleteMany({ gameId: _id });
       await Tournament.deleteMany({ gameId: _id });
+      await CompetitionHistory.deleteMany({ gameId: _id });
     } catch (error) {
       return Promise.reject(error);
     }

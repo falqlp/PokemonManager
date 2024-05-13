@@ -1,0 +1,50 @@
+<div class="competition-history__filters">
+  <div class="competition-history__filters__year">
+    <button
+      class="competition-history__filters__year--minus"
+      mat-flat-button
+      color="accent"
+      (click)="add(-1)">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <mat-form-field>
+      <mat-label>{{ 'YEAR' | translate }}</mat-label>
+      <input
+        [formControl]="competitionHistoryForm.controls.year"
+        matInput
+        [min]="2023"
+        type="number" />
+    </mat-form-field>
+    <button
+      class="competition-history__filters__year--add"
+      mat-flat-button
+      color="accent"
+      (click)="add(1)">
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+  </div>
+  <div class="competition-history__filters__competition">
+    <mat-form-field>
+      <mat-label>{{ 'COMPETITION' | translate }}</mat-label>
+      <mat-select [formControl]="competitionHistoryForm.controls.competition">
+        @for (competition of competitionHistory;track competition._id){
+        <mat-option [value]="competition">{{
+          competition.name | translate
+        }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+@if (competitionHistoryForm.controls.competition.value?.type ===
+'CHAMPIONSHIP'){
+<pm-ranking
+  class="competition-history__ranking"
+  [competitionHistory]="competitionHistoryForm.controls.competition.value" />
+} @else if (competitionHistoryForm.controls.competition.value?.type ===
+'TOURNAMENT'){
+<pm-tournament-ranking
+  class="competition-history__ranking"
+  [full]="true"
+  [competitionHistory]="competitionHistoryForm.controls.competition.value" />
+}

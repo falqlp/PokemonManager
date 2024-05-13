@@ -23,6 +23,7 @@ import { IGame } from "../../domain/game/Game";
 import { addYears } from "../../utils/DateUtils";
 import WebsocketServerService from "../../WebsocketServerService";
 import { PcStorageService } from "./pcStorage/PcStorageService";
+import { XP_PER_LEVEL } from "../experience/ExperienceService";
 
 @singleton()
 class TrainerService {
@@ -146,7 +147,7 @@ class TrainerService {
           hiddenPotential,
           moves,
           happiness: basePokemon.baseHappiness,
-          exp: 0,
+          exp: Math.floor(Math.random() * XP_PER_LEVEL),
           iv: this.pokemonUtilsService.generateIvs(),
           ev: this.pokemonUtilsService.initEvs(),
           trainingPercentage: 0,
@@ -170,6 +171,11 @@ class TrainerService {
   }
 
   public async update(trainer: ITrainer): Promise<ITrainer> {
+    await this.updateBase(trainer);
+    return this.trainerRepository.update(trainer._id, trainer);
+  }
+
+  public async updateBase(trainer: ITrainer): Promise<ITrainer> {
     trainer.pokemons = await this.pokemonService.updateMany(
       trainer.pokemons,
       trainer.gameId,
@@ -182,7 +188,14 @@ class TrainerService {
       trainer._id.toString(),
       trainer.gameId,
     );
-    return this.trainerRepository.update(trainer._id, trainer);
+    return trainer;
+  }
+
+  public async updateMany(trainers: ITrainer[]): Promise<ITrainer[]> {
+    for (let trainer of trainers) {
+      trainer = await this.updateBase(trainer);
+    }
+    return this.trainerRepository.updateMany(trainers);
   }
 
   public async create(trainer: ITrainer): Promise<ITrainer> {

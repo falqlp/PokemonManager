@@ -1,0 +1,41 @@
+@import 'src/styles/flexbox';
+
+:host {
+  @include flexbox(flex-start, 2, column);
+  height: -webkit-fill-available;
+  .competition-history {
+    &__filters {
+      width: 100%;
+      display: flex;
+      gap: 15px;
+
+      &__year,
+      &__competition {
+        display: flex;
+        flex: 1;
+
+        &--add,
+        &--minus {
+          height: 56px;
+
+          mat-icon {
+            margin: 0;
+          }
+        }
+
+        &--add {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        &--minus {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+    }
+    &__ranking {
+      width: 100%;
+    }
+  }
+}

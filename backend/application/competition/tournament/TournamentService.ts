@@ -163,7 +163,7 @@ export default class TournamentService {
         winnerIds.push(this.battleInstanceService.isSerieWin(serie));
       });
       const trainers = await this.trainerRepository.list({ ids: winnerIds });
-      if (tournament.nbStep < tournament.tournamentSteps.length) {
+      if (tournament.nbStep > tournament.tournamentSteps.length) {
         await this.addTournamentStep(trainers, tournament);
       }
     }

@@ -207,6 +207,7 @@ class PokemonService {
   }
 
   public async generateStarters(gameId: string): Promise<IPokemon[]> {
+    const level = 10;
     const actualDate: Date = (await this.gameRepository.get(gameId)).actualDate;
     const birthday = addYears(actualDate, -1);
     const pokemonBases =
@@ -215,7 +216,7 @@ class PokemonService {
     for (const base of pokemonBases) {
       const starter: IPokemon = {
         basePokemon: base,
-        level: 10,
+        level,
         potential: 30,
         exp: 0,
         iv: this.pokemonUtilsService.generateIvs(),
@@ -223,7 +224,7 @@ class PokemonService {
         happiness: base.baseHappiness,
         gameId,
         moves: (
-          await this.moveLearningService.learnableMoves(base.id, 5, {
+          await this.moveLearningService.learnableMoves(base.id, level, {
             sort: { power: -1 },
           })
         ).slice(0, 2),
@@ -233,7 +234,7 @@ class PokemonService {
         birthday,
         hatchingDate: null,
         trainingPercentage: 0,
-        maxLevel: 5,
+        maxLevel: level,
       } as IPokemon;
       starters.push(starter);
     }

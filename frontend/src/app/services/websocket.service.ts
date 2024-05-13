@@ -18,6 +18,7 @@ import { AddGameComponent } from '../views/games/add-game/add-game.component';
 import { BadgeDataService } from './badge.data.service';
 import { NotificationType, NotifierService } from './notifier.service';
 import { ExpGainComponent } from '../modals/exp-gain/exp-gain.component';
+import { SimulationService } from './simulation.service';
 
 export interface WebSocketModel {
   type: string;
@@ -41,7 +42,8 @@ export class WebsocketService {
     protected cacheService: CacheService,
     protected dialog: MatDialog,
     protected routerService: RouterService,
-    protected badgeDataService: BadgeDataService
+    protected badgeDataService: BadgeDataService,
+    private simulationService: SimulationService
   ) {}
 
   private getWebSocketConfig(): WebSocketSubjectConfig<WebSocketModel> {
@@ -162,6 +164,7 @@ export class WebsocketService {
           data: message.payload,
           disableClose: true,
         });
+        this.simulationService.stopSimulation();
         break;
       default:
         console.warn('Unknown message type:', message.type);

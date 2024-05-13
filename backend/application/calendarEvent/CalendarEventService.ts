@@ -17,32 +17,45 @@ import WebsocketServerService, {
   NotificationType,
 } from "../../WebsocketServerService";
 import { singleton } from "tsyringe";
-import { ICompetition } from "../../domain/competiton/Competition";
+import {
+  CompetitionType,
+  ICompetition,
+} from "../../domain/competiton/Competition";
 import CompetitionService from "../competition/CompetitionService";
 import { addDays } from "../../utils/DateUtils";
 import { BattleInstanceService } from "../battleInstance/BattleInstanceService";
 import TournamentService from "../competition/tournament/TournamentService";
 import ExperienceService from "../experience/ExperienceService";
 import TrainerMapper from "../../api/trainer/TrainerMapper";
+import CompetitionRepository from "../../domain/competiton/CompetitionRepository";
+import { IGame } from "../../domain/game/Game";
+import { ICompetitionHistory } from "../../domain/competiton/competitionHistory/CompetitionHistory";
+import CompetitionHistoryRepository from "../../domain/competiton/competitionHistory/CompetitionHistoryRepository";
+import PokemonRepository from "../../domain/pokemon/PokemonRepository";
+import GenerateCalendarService from "./GenerateCalendarService";
 
 @singleton()
 class CalendarEventService {
   constructor(
-    protected battleInstanceRepository: BattleInstanceRepository,
-    protected battleInstanceService: BattleInstanceService,
-    protected calendarEventRepository: CalendarEventRepository,
-    protected trainerRepository: TrainerRepository,
-    protected gameRepository: GameRepository,
-    protected pokemonService: PokemonService,
-    protected nurseryService: NurseryService,
-    protected trainerService: TrainerService,
-    protected battleService: BattleService,
-    protected nurseryRepository: NurseryRepository,
-    protected websocketServerService: WebsocketServerService,
-    protected competitionService: CompetitionService,
-    protected tournamentService: TournamentService,
-    protected experienceService: ExperienceService,
-    protected trainerMapper: TrainerMapper,
+    private battleInstanceRepository: BattleInstanceRepository,
+    private battleInstanceService: BattleInstanceService,
+    private calendarEventRepository: CalendarEventRepository,
+    private trainerRepository: TrainerRepository,
+    private gameRepository: GameRepository,
+    private pokemonService: PokemonService,
+    private nurseryService: NurseryService,
+    private trainerService: TrainerService,
+    private battleService: BattleService,
+    private nurseryRepository: NurseryRepository,
+    private websocketServerService: WebsocketServerService,
+    private competitionService: CompetitionService,
+    private tournamentService: TournamentService,
+    private experienceService: ExperienceService,
+    private trainerMapper: TrainerMapper,
+    private competitionRepository: CompetitionRepository,
+    private competitionHistoryRepository: CompetitionHistoryRepository,
+    private pokemonRepository: PokemonRepository,
+    private generateCalendarService: GenerateCalendarService,
   ) {}
 
   public async createBattleEvent(
@@ -134,6 +147,9 @@ class CalendarEventService {
           payload: res,
         });
       }
+      if (date.getMonth() === 0 && date.getDate() === 1) {
+        await this.newSeason(newGame);
+      }
     }
     await this.pokemonService.isHatched(date, game);
     return { date, battle, redirectTo };
@@ -209,6 +225,71 @@ class CalendarEventService {
       value.event = this.battleService.simulateBattle(value.event);
       await this.battleInstanceService.update(value.event._id, value.event);
     }
+  }
+
+  private async newSeason(game: IGame): Promise<void> {
+    await this.archiveCurrentComepetition(game);
+    await this.pokemonRepository.archiveOldPokemon(game);
+    const championship = await this.competitionService.createChampionship(game);
+    const trainers = await this.trainerRepository.list(
+      {},
+      { gameId: game._id },
+    );
+    trainers.map((trainer) => {
+      trainer.competitions.push(championship);
+      return trainer;
+    });
+    await this.trainerService.updateMany(trainers);
+    await this.generateCalendarService.generateChampionship(
+      trainers,
+      3,
+      game._id,
+      championship,
+    );
+  }
+
+  private async archiveCurrentComepetition(game: IGame): Promise<void> {
+    const year = game.actualDate.getUTCFullYear() - 1;
+    const startDate = new Date(`${year}-01-01T00:00:00.000Z`);
+    const endDate = new Date(`${year + 1}-01-01T00:00:00.000Z`);
+    const competitions = await this.competitionRepository.list({
+      custom: {
+        gameId: game._id.toString(),
+        startDate: {
+          $gte: startDate,
+          $lt: endDate,
+        },
+      },
+    });
+    const competitionHistoryArray: ICompetitionHistory[] = [];
+    for (const competition of competitions) {
+      const competitionHistory: ICompetitionHistory = {
+        season: year,
+        gameId: game._id,
+        type: competition.type,
+        name: competition.name,
+      } as ICompetitionHistory;
+      if (
+        competitionHistory.type === CompetitionType.TOURNAMENT &&
+        competition.type === CompetitionType.TOURNAMENT
+      ) {
+        competitionHistory.tournament = (
+          await this.battleInstanceService.getTournamentRanking(
+            competition.tournament._id,
+          )
+        ).tournamentRanking;
+      } else if (competitionHistory.type !== CompetitionType.TOURNAMENT) {
+        competitionHistory.ranking =
+          await this.battleInstanceService.getChampionshipRanking(
+            competition._id,
+          );
+      }
+      competitionHistoryArray.push(competitionHistory);
+    }
+    await this.competitionHistoryRepository.insertMany(competitionHistoryArray);
+    await this.competitionRepository.archiveMany(
+      competitions.map((competition) => competition._id),
+    );
   }
 }
 

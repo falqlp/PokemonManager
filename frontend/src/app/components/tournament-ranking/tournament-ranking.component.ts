@@ -12,6 +12,7 @@ import { TrainerNameComponent } from '../trainer-name/trainer-name.component';
 import { MatListModule } from '@angular/material/list';
 import { NgClass } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
+import { CompetitionHistoryModel } from '../../models/competition-history.model';
 
 @Component({
   selector: 'pm-tournament-ranking',
@@ -36,6 +37,8 @@ export class TournamentRankingComponent implements OnInit {
   ];
 
   public competition = input<CompetitionModel>();
+  public competitionHistory = input<CompetitionHistoryModel>();
+  public full = input<boolean>(false);
   protected tournamentRanking: SerieRankingModel[][];
   protected tournamentStepValue: { index: number; label: string }[] = [];
   protected playerId: string;
@@ -48,15 +51,24 @@ export class TournamentRankingComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    if (this.competition().type === CompetitionType.TOURNAMENT) {
-      this.battleInstanceQueriesService
-        .getTournamentRanking(this.competition().tournament)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((res) => {
-          this.tournamentRanking = res.tournamentRanking;
-          this.step = res.step;
-          this.getTournamentStepValues();
-        });
+    if (this.competitionHistory()) {
+      const competitionHistory = this.competitionHistory();
+      if ('tournament' in competitionHistory) {
+        this.tournamentRanking = competitionHistory.tournament;
+        this.step = competitionHistory.tournament.length;
+        this.getTournamentStepValues();
+      }
+    } else {
+      if (this.competition().type === CompetitionType.TOURNAMENT) {
+        this.battleInstanceQueriesService
+          .getTournamentRanking(this.competition().tournament)
+          .pipe(takeUntilDestroyed(this.destroyRef))
+          .subscribe((res) => {
+            this.tournamentRanking = res.tournamentRanking;
+            this.step = res.step;
+            this.getTournamentStepValues();
+          });
+      }
     }
     this.playerService.player$
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -76,5 +88,33 @@ export class TournamentRankingComponent implements OnInit {
       });
       currentStep -= 1;
     }
+    this.tournamentRanking = this.tournamentRanking.map(this.rearrangePairs);
+  }
+
+  private rearrangePairs<T>(pairs: T[]): T[] {
+    if (pairs.length === 1) {
+      return pairs;
+    }
+    const result = [];
+    const n = pairs.length;
+
+    result.push(pairs[0]);
+    result.push(pairs[n - 1]);
+
+    let left = 1;
+    let right = n - 2;
+
+    while (result.length < n) {
+      if (left <= right) {
+        result.push(pairs[left]);
+        left += 1;
+      }
+      if (left <= right) {
+        result.push(pairs[right]);
+        right -= 1;
+      }
+    }
+
+    return result;
   }
 }

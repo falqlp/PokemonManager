@@ -4,6 +4,11 @@
   display: flex;
   flex-direction: column;
   min-width: 500px;
+  .full {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
   .tournament-ranking {
     display: flex;
     gap: 20px;

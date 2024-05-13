@@ -15,6 +15,7 @@ import pokedexRouter from "./pokedex/PokedexRouter";
 import competitionRoutes from "./competition/CompetitionRoutes";
 import passwordRequestRoutes from "./passwordRequest/PasswordRequestRoutes";
 import mailRoutes from "./mail/MailRoutes";
+import competitionHistoryRoutes from "./competitionHistory/CompetitionHistoryRoutes";
 import { Router } from "express";
 
 export const RoutesMap: Record<string, Router> = {
@@ -35,4 +36,5 @@ export const RoutesMap: Record<string, Router> = {
   competition: competitionRoutes,
   "password-request": passwordRequestRoutes,
   email: mailRoutes,
+  "competition-history": competitionHistoryRoutes,
 };

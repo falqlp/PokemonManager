@@ -81,6 +81,11 @@ export class SidenavComponent {
       name: 'Game info',
       navs: [
         {
+          link: 'history',
+          label: 'HISTORY',
+          icon: 'history',
+        },
+        {
           link: 'events',
           label: 'EVENTS',
           icon: 'event',
