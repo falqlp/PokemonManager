@@ -19,7 +19,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MoveComponent } from '../../components/move/move.component';
 import { SimpleDisplayStatsComponent } from '../../components/simple-display-stats/simple-display-stats.component';
-import { TournamentRankingComponent } from '../../components/tournament-ranking/tournament-ranking.component';
+import { TournamentRankingComponent } from '../../components/ranking/tournament-ranking/tournament-ranking.component';
+import { GroupsRankingComponent } from '../../components/ranking/groups-ranking/groups-ranking.component';
 
 @Component({
   selector: 'app-home',
@@ -38,6 +39,7 @@ import { TournamentRankingComponent } from '../../components/tournament-ranking/
     MoveComponent,
     SimpleDisplayStatsComponent,
     TournamentRankingComponent,
+    GroupsRankingComponent,
   ],
 })
 export class HomeComponent implements OnInit {

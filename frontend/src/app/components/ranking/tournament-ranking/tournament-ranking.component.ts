@@ -1,19 +1,19 @@
 import { Component, DestroyRef, input, OnInit } from '@angular/core';
-import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
+import { BattleInstanceQueriesService } from '../../../services/queries/battle-instance-queries.service';
 import {
   CompetitionModel,
   CompetitionType,
-} from '../../models/competition.model';
-import { SerieRankingModel } from '../../models/ranking.model';
-import { PlayerService } from '../../services/player.service';
+} from '../../../models/competition.model';
+import { SerieRankingModel } from '../../../models/ranking.model';
+import { PlayerService } from '../../../services/player.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateModule } from '@ngx-translate/core';
-import { TrainerNameComponent } from '../trainer-name/trainer-name.component';
+import { TrainerNameComponent } from '../../trainer-name/trainer-name.component';
 import { MatListModule } from '@angular/material/list';
 import { NgClass } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
-import { CompetitionHistoryModel } from '../../models/competition-history.model';
-import { TimeService } from '../../services/time.service';
+import { CompetitionHistoryModel } from '../../../models/competition-history.model';
+import { TimeService } from '../../../services/time.service';
 import { switchMap } from 'rxjs';
 
 @Component({
@@ -62,14 +62,15 @@ export class TournamentRankingComponent implements OnInit {
         this.getTournamentStepValues();
       }
     } else {
-      if (this.competition().type === CompetitionType.TOURNAMENT) {
+      const competition = this.competition();
+      if (competition.type === CompetitionType.TOURNAMENT) {
         this.timeService
           .getActualDate()
           .pipe(
             takeUntilDestroyed(this.destroyRef),
             switchMap(() =>
               this.battleInstanceQueriesService.getTournamentRanking(
-                this.competition().tournament
+                competition.tournament as unknown as string
               )
             )
           )

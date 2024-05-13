@@ -9,8 +9,8 @@ import BattleInstanceRepository from "../../domain/battleInstance/BattleInstance
 import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
 import { singleton } from "tsyringe";
 import { ICompetition } from "../../domain/competiton/Competition";
-import { ObjectId } from "mongodb";
 import { addDays, isSevenDaysApart } from "../../utils/DateUtils";
+import { mongoId } from "../../utils/MongoUtils";
 
 @singleton()
 class GenerateCalendarService {
@@ -49,6 +49,39 @@ class GenerateCalendarService {
     );
   }
 
+  public async generateGroupMatches(
+    groups: ITrainer[][],
+    nbFaceEachOther: number,
+    gameId: string,
+    championship: ICompetition,
+  ): Promise<void> {
+    let battles: IBattleInstance[] = [];
+    let events: ICalendarEvent[] = [];
+    for (const trainers of groups) {
+      const matches = this.generateChampionshipMatches(
+        trainers,
+        nbFaceEachOther,
+        gameId,
+        championship,
+      );
+      battles = [...battles, ...matches];
+      const availableMatchDate = this.getAvilableDayForTrainer(
+        championship,
+        trainers,
+      );
+      const calendarEvents = this.planMatches(
+        matches,
+        availableMatchDate,
+        gameId,
+      );
+      events = [...events, ...calendarEvents];
+    }
+    await this.battleInstanceRepository.insertManyWithoutMapAndPopulate(
+      battles,
+    );
+    await this.calendarEventRepository.insertManyWithoutMapAndPopulate(events);
+  }
+
   private generateChampionshipMatches(
     trainers: ITrainer[],
     nbFaceEachOther: number,
@@ -60,6 +93,7 @@ class GenerateCalendarService {
       for (let j = i + 1; j < trainers.length; j++) {
         for (let k = 0; k < nbFaceEachOther; k++) {
           matches.push({
+            _id: mongoId(),
             player: trainers[i],
             opponent: trainers[j],
             gameId,
@@ -171,7 +205,7 @@ class GenerateCalendarService {
     const events: ICalendarEvent[] = [];
     battleDate.forEach((date) => {
       const battle: IBattleInstance = {
-        _id: new ObjectId() as unknown as string,
+        _id: mongoId(),
         gameId,
         opponent,
         player,
@@ -179,7 +213,7 @@ class GenerateCalendarService {
       };
       battles.push(battle);
       events.push({
-        _id: new ObjectId() as unknown as string,
+        _id: mongoId(),
         gameId,
         date,
         trainers: [opponent, player],

@@ -9,16 +9,18 @@ import { BattleInstanceService } from "../battleInstance/BattleInstanceService";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import TournamentService from "./tournament/TournamentService";
 import { ITrainer } from "../../domain/trainer/Trainer";
-import { ObjectId } from "mongodb";
 import { addDays } from "../../utils/DateUtils";
+import { mongoId } from "../../utils/MongoUtils";
+import GenerateCalendarService from "../calendarEvent/GenerateCalendarService";
 
 @singleton()
 export default class CompetitionService {
   constructor(
-    protected competitionRepository: CompetitionRepository,
-    protected battleInstanceService: BattleInstanceService,
-    protected trainerRepository: TrainerRepository,
-    protected tournamentService: TournamentService,
+    private competitionRepository: CompetitionRepository,
+    private battleInstanceService: BattleInstanceService,
+    private trainerRepository: TrainerRepository,
+    private tournamentService: TournamentService,
+    private generateCalendarService: GenerateCalendarService,
   ) {}
 
   public async createFriendly(gameId: string): Promise<ICompetition> {
@@ -48,14 +50,16 @@ export default class CompetitionService {
     name: string,
     trainers: ITrainer[],
     startDate: Date,
+    division: number,
   ): Promise<ICompetition> {
-    const competitionId = new ObjectId() as unknown as string;
+    const competitionId = mongoId();
 
     const competition = await this.competitionRepository.create({
       _id: competitionId,
       gameId,
       name,
       startDate,
+      division,
       type: CompetitionType.TOURNAMENT,
       tournament: await this.tournamentService.createTournament(
         trainers,
@@ -96,7 +100,71 @@ export default class CompetitionService {
         "PLAYOFF",
         qualifiedTrainers,
         addDays(actualDate, 14),
+        3,
+      );
+      const groupsTrainerIds = ranking.slice(8, 21).map((value) => value._id);
+      const groupsTrainers = await this.trainerRepository.list({
+        ids: groupsTrainerIds,
+      });
+      await this.createGroupsCompetition(
+        gameId,
+        "RELEGATION_GROUPS",
+        groupsTrainers,
+        3,
+        addDays(actualDate, 7),
+        addDays(actualDate, 49),
       );
     }
+  }
+
+  private async createGroupsCompetition(
+    gameId: string,
+    name: string,
+    trainers: ITrainer[],
+    division: number,
+    startDate: Date,
+    endDate: Date,
+  ): Promise<void> {
+    const groups = this.splitArray(trainers);
+    const competition = await this.competitionRepository.create({
+      gameId,
+      groups,
+      type: CompetitionType.GROUPS,
+      name,
+      division,
+      startDate,
+      endDate,
+    });
+    trainers.map((trainer) => {
+      trainer.competitions.unshift(competition);
+      return trainer;
+    });
+    await this.trainerRepository.updateMany(trainers);
+    await this.generateCalendarService.generateGroupMatches(
+      groups,
+      3,
+      gameId,
+      competition,
+    );
+  }
+
+  private splitArray<T>(inputArray: T[]): T[][] {
+    const array1: T[] = [];
+    const array2: T[] = [];
+
+    inputArray.forEach((element, index) => {
+      const position = Math.floor(index / 3);
+      const phase = index % 3;
+
+      if (position % 2 === 0 && phase !== 2) {
+        array1.push(element);
+      } else if (position % 2 !== 0 && phase === 2) {
+        array1.push(element);
+      } else {
+        array2.push(element);
+      }
+    });
+
+    return [array1, array2];
   }
 }

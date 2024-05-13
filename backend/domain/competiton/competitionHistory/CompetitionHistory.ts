@@ -12,6 +12,7 @@ interface BaseCompetitionHistory extends MongoId {
   type: CompetitionType;
   gameId: string;
   name: string;
+  division?: number;
 }
 
 export interface ITournamentCompetitionHistory extends BaseCompetitionHistory {
@@ -19,13 +20,19 @@ export interface ITournamentCompetitionHistory extends BaseCompetitionHistory {
   tournament: ISerieRanking[][];
 }
 
+export interface IGroupsCompetitionHistory extends BaseCompetitionHistory {
+  type: CompetitionType.GROUPS;
+  groups: ITrainerRanking[][];
+}
+
 interface NonTournamentCompetitionHistory extends BaseCompetitionHistory {
-  type: Exclude<CompetitionType, CompetitionType.TOURNAMENT>;
+  type: CompetitionType.CHAMPIONSHIP;
   ranking: ITrainerRanking[];
 }
 
 export type ICompetitionHistory =
   | ITournamentCompetitionHistory
+  | IGroupsCompetitionHistory
   | NonTournamentCompetitionHistory;
 
 const RankingBaseSchemaBase = {
@@ -33,6 +40,7 @@ const RankingBaseSchemaBase = {
   wins: { type: Number, required: true },
   class: { type: String },
   _id: { type: String, required: true },
+  division: { type: Number },
 };
 const RankingBaseSchema = new Schema<IRankingBase>(RankingBaseSchemaBase);
 const SerieRankingSchema = new Schema<ISerieRanking>({
@@ -55,7 +63,13 @@ const CompetitionHistorySchema = new Schema<ICompetitionHistory>({
   ranking: {
     type: [TrainerRankingSchema],
     required: function (): boolean {
-      return this.type !== CompetitionType.TOURNAMENT;
+      return this.type === CompetitionType.CHAMPIONSHIP;
+    },
+  },
+  groups: {
+    type: [[TrainerRankingSchema]],
+    required: function (): boolean {
+      return this.type === CompetitionType.GROUPS;
     },
   },
   tournament: {

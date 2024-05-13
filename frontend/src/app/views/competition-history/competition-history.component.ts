@@ -15,9 +15,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CompetitionHistoryQueriesService } from '../../services/queries/competition-history-queries.service';
 import { filter, startWith, switchMap } from 'rxjs';
 import { RankingComponent } from '../../components/ranking/ranking.component';
-import { TournamentRankingComponent } from '../../components/tournament-ranking/tournament-ranking.component';
+import { TournamentRankingComponent } from '../../components/ranking/tournament-ranking/tournament-ranking.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CacheService } from '../../services/cache.service';
+import { GroupsRankingComponent } from '../../components/ranking/groups-ranking/groups-ranking.component';
 
 @Component({
   selector: 'pm-competition-history',
@@ -31,6 +32,7 @@ import { CacheService } from '../../services/cache.service';
     RankingComponent,
     TournamentRankingComponent,
     TranslateModule,
+    GroupsRankingComponent,
   ],
   templateUrl: './competition-history.component.html',
   styleUrl: './competition-history.component.scss',

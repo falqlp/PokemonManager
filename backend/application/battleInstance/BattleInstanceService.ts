@@ -12,6 +12,7 @@ import GameRepository from "../../domain/game/GameRepository";
 import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
 import TournamentRepository from "../../domain/competiton/tournament/TournamentRepository";
 import { ITrainer } from "../../domain/trainer/Trainer";
+import CompetitionRepository from "../../domain/competiton/CompetitionRepository";
 
 export interface IRankingBase {
   _id: string;
@@ -36,13 +37,14 @@ export interface ISerieRanking {
 @singleton()
 export class BattleInstanceService {
   constructor(
-    protected battleInstanceRepository: BattleInstanceRepository,
-    protected trainerRepository: TrainerRepository,
-    protected battleService: BattleService,
-    protected battleSerieRepository: BattleSerieRepository,
-    protected gameRepository: GameRepository,
-    protected calendarEventRepository: CalendarEventRepository,
-    protected tournamentRepository: TournamentRepository,
+    private battleInstanceRepository: BattleInstanceRepository,
+    private trainerRepository: TrainerRepository,
+    private battleService: BattleService,
+    private battleSerieRepository: BattleSerieRepository,
+    private gameRepository: GameRepository,
+    private calendarEventRepository: CalendarEventRepository,
+    private tournamentRepository: TournamentRepository,
+    private competitionRepository: CompetitionRepository,
   ) {}
 
   public async getChampionshipRanking(
@@ -56,6 +58,26 @@ export class BattleInstanceService {
       custom: { competition: competitionObjId, winner: { $exists: true } },
     });
     return this.calculateRankings(trainers, competitionMatches);
+  }
+
+  public async getGroupsRanking(
+    competitionId: string,
+  ): Promise<ITrainerRanking[][]> {
+    const competition = await this.competitionRepository.get(competitionId);
+    const groupsRankings = [];
+    if (competition.type === CompetitionType.GROUPS) {
+      for (const group of competition.groups) {
+        const competitionMatches = await this.battleInstanceRepository.list({
+          custom: {
+            competition: competitionId,
+            winner: { $exists: true },
+            player: { $in: group.map((trainer) => trainer._id) },
+          },
+        });
+        groupsRankings.push(this.calculateRankings(group, competitionMatches));
+      }
+    }
+    return groupsRankings;
   }
 
   public calculateRankings(

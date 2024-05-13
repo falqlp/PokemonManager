@@ -47,4 +47,9 @@
   class="competition-history__ranking"
   [full]="true"
   [competitionHistory]="competitionHistoryForm.controls.competition.value" />
+} @else if (competitionHistoryForm.controls.competition.value?.type ===
+'GROUPS'){
+<pm-groups-ranking
+  class="competition-history__ranking"
+  [competitionHistory]="competitionHistoryForm.controls.competition.value" />
 }

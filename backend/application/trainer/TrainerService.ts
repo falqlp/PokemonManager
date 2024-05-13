@@ -14,7 +14,6 @@ import TrainingCampRepository from "../../domain/trainer/trainingCamp/TrainingCa
 import NurseryRepository from "../../domain/trainer/nursery/NurseryRepository";
 import { singleton } from "tsyringe";
 import { ICompetition } from "../../domain/competiton/Competition";
-import { ObjectId } from "mongodb";
 import { IPcStorage } from "../../domain/trainer/pcStorage/PcStorage";
 import { INursery } from "../../domain/trainer/nursery/Nursery";
 import { ITrainingCamp } from "../../domain/trainer/trainingCamp/TrainingCamp";
@@ -24,6 +23,7 @@ import { addYears } from "../../utils/DateUtils";
 import WebsocketServerService from "../../WebsocketServerService";
 import { PcStorageService } from "./pcStorage/PcStorageService";
 import { XP_PER_LEVEL } from "../experience/ExperienceService";
+import { mongoId } from "../../utils/MongoUtils";
 
 @singleton()
 class TrainerService {
@@ -82,7 +82,7 @@ class TrainerService {
         await this.trainerClassRepository.generateTrainerName()
       )[0];
       const trainer: ITrainer = {
-        _id: new ObjectId() as unknown as string,
+        _id: mongoId(),
         gameId,
         name: nameAndClass.name,
         class: nameAndClass.class,
@@ -137,7 +137,7 @@ class TrainerService {
           -(1 + Math.floor(Math.random() * 8)),
         );
         const pokemon: IPokemon = {
-          _id: new ObjectId() as unknown as string,
+          _id: mongoId(),
           trainerId: trainer._id.toString(),
           basePokemon,
           level,
@@ -275,7 +275,7 @@ class TrainerService {
           gameId,
           maxSize: 0,
           storage: [],
-          _id: new ObjectId() as unknown as string,
+          _id: mongoId(),
         };
         trainer.pcStorage = newPcStorage;
         pcStorages.push(newPcStorage);
@@ -286,7 +286,7 @@ class TrainerService {
           level: 1,
           eggs: [],
           step: "WISHLIST",
-          _id: new ObjectId() as unknown as string,
+          _id: mongoId(),
         };
         trainer.nursery = newNursery;
         nurseries.push(newNursery);
@@ -295,7 +295,7 @@ class TrainerService {
         const newTrainingCamp: ITrainingCamp = {
           level: 1,
           gameId,
-          _id: new ObjectId() as unknown as string,
+          _id: mongoId(),
         };
         trainer.trainingCamp = newTrainingCamp;
         trainingCamps.push(newTrainingCamp);

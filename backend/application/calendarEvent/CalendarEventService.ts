@@ -289,11 +289,14 @@ class CalendarEventService {
             competition.tournament._id,
           )
         ).tournamentRanking;
-      } else if (competitionHistory.type !== CompetitionType.TOURNAMENT) {
+      } else if (competitionHistory.type === CompetitionType.CHAMPIONSHIP) {
         competitionHistory.ranking =
           await this.battleInstanceService.getChampionshipRanking(
             competition._id,
           );
+      } else if (competitionHistory.type === CompetitionType.GROUPS) {
+        competitionHistory.groups =
+          await this.battleInstanceService.getGroupsRanking(competition._id);
       }
       competitionHistoryArray.push(competitionHistory);
     }

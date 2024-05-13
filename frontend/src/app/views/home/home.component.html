@@ -12,6 +12,8 @@
       <mat-tab [label]="competition.name | translate">
         @switch (competition.type){ @case ('TOURNAMENT'){
         <pm-tournament-ranking [competition]="competition" />
+        } @case ('GROUPS'){
+        <pm-groups-ranking [competition]="competition" />
         } @default {
         <pm-ranking [competition]="competition" />
         } }

@@ -5,43 +5,35 @@ import { TimeService } from '../../services/time.service';
 import { Observable, of, switchMap } from 'rxjs';
 import { RankingModel } from '../../models/ranking.model';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
-import { PlayerService } from '../../services/player.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgClass } from '@angular/common';
 import {
   CompetitionModel,
   CompetitionType,
 } from '../../models/competition.model';
 import { CompetitionHistoryModel } from '../../models/competition-history.model';
+import { RankingBaseComponent } from './ranking-base/ranking-base.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { PlayerService } from '../../services/player.service';
 
 @Component({
   selector: 'pm-ranking',
   standalone: true,
-  imports: [MatTableModule, TranslateModule, NgClass],
+  imports: [MatTableModule, TranslateModule, NgClass, RankingBaseComponent],
   templateUrl: './ranking.component.html',
   styleUrl: './ranking.component.scss',
 })
 export class RankingComponent implements OnInit {
   public competition = input<CompetitionModel>();
   public competitionHistory = input<CompetitionHistoryModel>();
-  protected displayedColumns: string[] = [
-    'ranking',
-    'class',
-    'name',
-    'wins',
-    'losses',
-    'winPercentage',
-  ];
-
   protected playerId: string;
 
   protected ranking$: Observable<RankingModel[]>;
 
   constructor(
-    protected timeService: TimeService,
-    protected battleInstanceQueriesService: BattleInstanceQueriesService,
-    protected playerService: PlayerService,
-    protected destroyRef: DestroyRef
+    private timeService: TimeService,
+    private battleInstanceQueriesService: BattleInstanceQueriesService,
+    private playerService: PlayerService,
+    private destroyRef: DestroyRef
   ) {}
 
   public ngOnInit(): void {

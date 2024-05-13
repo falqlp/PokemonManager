@@ -36,6 +36,12 @@ export class BattleInstanceQueriesService extends CompleteQuery<BattleModel> {
     );
   }
 
+  public getGroupsRanking(competitionId: string): Observable<RankingModel[][]> {
+    return this.http.get<RankingModel[][]>(
+      `${this.url}/groups-ranking/${competitionId}`
+    );
+  }
+
   public getTournamentRanking(
     tournamentId: string
   ): Observable<{ tournamentRanking: SerieRankingModel[][]; step: number }> {

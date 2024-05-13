@@ -16,10 +16,10 @@ import {
   IBattleSerie,
   SerieTypes,
 } from "../../../domain/competiton/tournament/battleSerie/BattleSerie";
-import { ObjectId } from "mongodb";
 import { BattleInstanceService } from "../../battleInstance/BattleInstanceService";
 import TrainerRepository from "../../../domain/trainer/TrainerRepository";
 import { isPowerOfTwo } from "../../../utils/NumberUtils";
+import { mongoId } from "../../../utils/MongoUtils";
 
 @singleton()
 export default class TournamentService {
@@ -90,7 +90,7 @@ export default class TournamentService {
       battles = [...battles, ...res.battles];
       events = [...events, ...res.events];
       const battleSerie: IBattleSerie = {
-        _id: new ObjectId() as unknown as string,
+        _id: mongoId(),
         gameId,
         maxBattle,
         battles: res.battles,

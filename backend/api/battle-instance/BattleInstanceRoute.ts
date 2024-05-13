@@ -34,6 +34,22 @@ router.get("/ranking/:id", async (req, res, next) => {
   }
 });
 
+router.get("/groups-ranking/:id", async (req, res, next) => {
+  try {
+    const obj = await battleInstanceService.getGroupsRanking(req.params.id);
+    res.status(200).json(
+      obj.map((value) => {
+        return value.map((val) => {
+          val.directWins = undefined;
+          return val;
+        });
+      }),
+    );
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get("/tournament-ranking/:id", async (req, res, next) => {
   try {
     const obj = await battleInstanceService.getTournamentRanking(req.params.id);

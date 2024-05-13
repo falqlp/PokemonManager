@@ -1,9 +1,9 @@
 import { singleton } from "tsyringe";
 import UserRepository from "../../domain/user/UserRepository";
 import { IUser } from "../../domain/user/User";
-import { ObjectId } from "mongodb";
 import { MailService } from "../mail/MailService";
 import HashService from "./hash/HashService";
+import { mongoId } from "../../utils/MongoUtils";
 
 @singleton()
 export class UserService {
@@ -23,7 +23,7 @@ export class UserService {
     ) {
       throw new Error("Bad email");
     }
-    const _id = new ObjectId();
+    const _id = mongoId();
     user._id = _id.toString();
     this.mailService.sendVerifyUser(user);
     return this.userRepository.create({

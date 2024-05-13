@@ -15,11 +15,17 @@ export interface TournamentCompetitionHistoryModel
   tournament: SerieRankingModel[][];
 }
 
+export interface GroupsCompetitionHistoryModel extends BaseCompetitionHistory {
+  type: CompetitionType.GROUPS;
+  groups: RankingModel[][];
+}
+
 interface NonTournamentCompetitionHistory extends BaseCompetitionHistory {
-  type: Exclude<CompetitionType, CompetitionType.TOURNAMENT>;
+  type: CompetitionType.CHAMPIONSHIP;
   ranking: RankingModel[];
 }
 
 export type CompetitionHistoryModel =
   | TournamentCompetitionHistoryModel
+  | GroupsCompetitionHistoryModel
   | NonTournamentCompetitionHistory;

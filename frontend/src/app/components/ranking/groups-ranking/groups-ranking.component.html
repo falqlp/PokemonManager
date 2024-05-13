@@ -1,0 +1,7 @@
+<mat-tab-group [selectedIndex]="selectedIndex">
+  @for (ranking$ of rankings; let i=$index; track i){
+  <mat-tab [label]="'GROUP_X' | translate : { nb: i + 1 }">
+    <pm-ranking-base [ranking$]="ranking$" [playerId]="playerId" [minBad]="5" />
+  </mat-tab>
+  }
+</mat-tab-group>
