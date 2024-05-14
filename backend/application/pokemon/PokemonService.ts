@@ -11,18 +11,20 @@ import { singleton } from "tsyringe";
 import MoveLearningService from "../moveLearning/MoveLearningService";
 import { Gender } from "../../domain/Gender";
 import { addYears } from "../../utils/DateUtils";
+import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 
 @singleton()
 class PokemonService {
   constructor(
-    protected pokemonRepository: PokemonRepository,
-    protected trainerRepository: TrainerRepository,
-    protected pokemonUtilsService: PokemonUtilsService,
-    protected pokemonBaseService: PokemonBaseService,
-    protected pokemonBaseRepository: PokemonBaseRepository,
-    protected gameRepository: GameRepository,
-    protected websocketServerService: WebsocketServerService,
-    protected moveLearningService: MoveLearningService,
+    private pokemonRepository: PokemonRepository,
+    private trainerRepository: TrainerRepository,
+    private pokemonUtilsService: PokemonUtilsService,
+    private pokemonBaseService: PokemonBaseService,
+    private pokemonBaseRepository: PokemonBaseRepository,
+    private gameRepository: GameRepository,
+    private websocketServerService: WebsocketServerService,
+    private moveLearningService: MoveLearningService,
+    private evolutionRepository: EvolutionRepository,
   ) {}
 
   public async update(_id: string, pokemon: IPokemon): Promise<IPokemon> {
@@ -70,6 +72,14 @@ class PokemonService {
     pokemon.nature = pokemon.nature ?? oldPokemon.nature ?? PokemonNature.HARDY;
     pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
     pokemon.birthday = pokemon.birthday ?? oldPokemon.birthday;
+    pokemon.strategy = pokemon.strategy ?? oldPokemon.strategy;
+    pokemon.moves = pokemon.moves ?? oldPokemon.moves;
+    if (!pokemon.strategy) {
+      pokemon.strategy = [];
+      pokemon.moves.forEach(() => {
+        pokemon.strategy.push(9);
+      });
+    }
     pokemon.maxLevel = Math.max(
       pokemon.level ?? oldPokemon.level,
       pokemon.maxLevel ?? oldPokemon.maxLevel,
@@ -143,6 +153,13 @@ class PokemonService {
     if (!pokemon.strategy) {
       pokemon.strategy = [];
     }
+    if (!pokemon.strategy) {
+      const strategy: number[] = [];
+      pokemon.moves.forEach((move) => {
+        strategy.push(9);
+      });
+      pokemon.strategy = strategy;
+    }
     pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
     pokemon.maxLevel = pokemon.level;
     return pokemon;
@@ -213,7 +230,15 @@ class PokemonService {
     const pokemonBases =
       await this.pokemonBaseRepository.getStartersBase(gameId);
     const starters: IPokemon[] = [];
-    for (const base of pokemonBases) {
+    for (let base of pokemonBases) {
+      const evolution = await this.evolutionRepository.maxEvolution(
+        base.id,
+        level,
+        "LEVEL-UP",
+      );
+      if (evolution) {
+        base = evolution;
+      }
       const starter: IPokemon = {
         basePokemon: base,
         level,

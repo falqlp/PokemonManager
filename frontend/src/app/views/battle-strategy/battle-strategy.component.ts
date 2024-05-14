@@ -14,6 +14,7 @@ import {
   ReactiveFormsModule,
   ValidationErrors,
   ValidatorFn,
+  Validators,
 } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,6 +26,8 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { ModifyMoveModalComponent } from '../../modals/modify-move-modal/modify-move-modal.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'pm-battle-strategy',
@@ -38,6 +41,7 @@ import { ModifyMoveModalComponent } from '../../modals/modify-move-modal/modify-
     TranslateModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatButtonToggleModule,
   ],
   templateUrl: './battle-strategy.component.html',
   styleUrl: './battle-strategy.component.scss',
@@ -55,17 +59,20 @@ export class BattleStrategyComponent implements OnInit {
 
   public ngOnInit(): void {
     this.playerService.player$
-      .pipe(takeUntilDestroyed(this.destroyRef))
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        filter((value) => !!value)
+      )
       .subscribe((player) => {
         player.pokemons.forEach((pokemon) => {
-          const formStrategy = new FormArray<FormControl<number>>(
-            [],
-            this.sumValidator(100)
-          );
+          const formStrategy = new FormArray<FormControl<number>>([]);
           pokemon.strategy = pokemon.strategy ?? [];
           pokemon.moves.forEach((move, index) => {
             formStrategy.push(
-              new FormControl<number>(pokemon.strategy[index] ?? 10)
+              new FormControl<number>(
+                pokemon.strategy[index] ?? 9,
+                Validators.required
+              )
             );
           });
           this.form.push(formStrategy);
@@ -92,24 +99,15 @@ export class BattleStrategyComponent implements OnInit {
       });
   }
 
-  private sumValidator(targetSum: number): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const formArray = control as FormArray;
-      const sum = formArray.controls
-        .map((ctrl) => parseFloat(ctrl.value) || 0)
-        .reduce((acc, current) => acc + current, 0);
-
-      return sum === targetSum
-        ? null
-        : { sumError: { requiredSum: targetSum, currentSum: sum } };
-    };
-  }
-
   protected modifyMove(pokemon: PokemonModel): void {
     this.dialog.open(ModifyMoveModalComponent, { data: pokemon });
   }
 
   protected compareArray(array1: number[], array2: number[]): boolean {
+    console.log(array1, array2);
+    if (!array1 || !array2) {
+      return false;
+    }
     let isEqual = true;
     for (let i = 0; i < array1.length; i++) {
       if (array1.at(i) !== array2.at(i)) {

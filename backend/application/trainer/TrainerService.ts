@@ -132,6 +132,10 @@ class TrainerService {
             sort: { power: -1 },
           })
         ).slice(0, 2);
+        const strategy: number[] = [];
+        moves.forEach((move) => {
+          strategy.push(9);
+        });
         const birthday = addYears(
           game.actualDate,
           -(1 + Math.floor(Math.random() * 8)),
@@ -146,6 +150,7 @@ class TrainerService {
           potential,
           hiddenPotential,
           moves,
+          strategy,
           happiness: basePokemon.baseHappiness,
           exp: Math.floor(Math.random() * XP_PER_LEVEL),
           iv: this.pokemonUtilsService.generateIvs(),

@@ -17,12 +17,34 @@
         @for (move of pokemon.moves;track move._id; let j = $index) {
         <div class="battle-strategy__pokemon__move-form__moves__move">
           <pm-move [move]="move" />
-          <mat-slider color="accent" max="100" min="10" discrete step="10">
-            <input
-              matSliderThumb
-              [formControl]="form.controls.at(i).controls.at(j)" />
-          </mat-slider>
-          <span>{{ form.controls.at(i).controls.at(j).value }}%</span>
+          <mat-button-toggle-group
+            [formControl]="form.controls.at(i).controls.at(j)">
+            <mat-button-toggle
+              [checked]="pokemon.strategy.at(j) === 3"
+              [value]="3"
+              >--</mat-button-toggle
+            >
+            <mat-button-toggle
+              [checked]="pokemon.strategy.at(j) === 6"
+              [value]="6"
+              >-</mat-button-toggle
+            >
+            <mat-button-toggle
+              [checked]="pokemon.strategy.at(j) === 9"
+              [value]="9"
+              >O</mat-button-toggle
+            >
+            <mat-button-toggle
+              [checked]="pokemon.strategy.at(j) === 12"
+              [value]="12"
+              >+</mat-button-toggle
+            >
+            <mat-button-toggle
+              [checked]="pokemon.strategy.at(j) === 15"
+              [value]="15"
+              >++</mat-button-toggle
+            >
+          </mat-button-toggle-group>
         </div>
         }
       </div>
