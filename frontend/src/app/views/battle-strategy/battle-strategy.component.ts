@@ -101,7 +101,6 @@ export class BattleStrategyComponent implements OnInit {
   }
 
   protected compareArray(array1: number[], array2: number[]): boolean {
-    console.log(array1, array2);
     if (!array1 || !array2) {
       return false;
     }
