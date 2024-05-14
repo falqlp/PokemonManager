@@ -184,7 +184,7 @@ class BattleService {
     }
     const randomValue = Math.random();
     const strategySum = strategy.reduce((acc, curr) => acc + curr, 0);
-    strategy.map((value) => value / strategySum);
+    strategy = strategy.map((value) => value / strategySum);
     let percentageSum = 0;
     for (let i = 0; i < strategy.length; i++) {
       percentageSum += strategy[i];
