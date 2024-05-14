@@ -8,11 +8,11 @@ import {
 } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgIf } from '@angular/common';
-import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { ChangeNicknameComponent } from '../change-nickname/change-nickname.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { EggHatchedModel } from '../../services/websocket-event.service';
 
 @Component({
   selector: 'pm-egg-hatched',
@@ -26,11 +26,7 @@ export class EggHatchedComponent {
   protected cracksNumber = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public data: {
-      pokemonBase: PokemonBaseModel;
-      shiny: boolean;
-      _id: string;
-    },
+    public data: EggHatchedModel,
     protected pokemonQueriesService: PokemonQueriesService,
     protected dialog: MatDialog,
     protected destroyRef: DestroyRef,

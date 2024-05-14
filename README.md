@@ -31,9 +31,3 @@ npm install (only the first time to install dependencies)
 `
 npm run dev
 `
-
-```
-When launched:
-Login: UserTest
-Password: test
-```

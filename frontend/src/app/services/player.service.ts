@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import type { TrainerModel } from '../models/TrainersModels/trainer.model';
-import { Observable, switchMap } from 'rxjs';
+import { first, Observable, switchMap } from 'rxjs';
 import { BehaviorSubject, of, tap } from 'rxjs';
 import { PcStorageQueriesService } from './queries/pc-storage-queries.service';
 import { GameQueriesService } from './queries/game-queries.service';
 import { CacheService } from './cache.service';
+import { WebsocketEventService } from './websocket-event.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,15 +22,23 @@ export class PlayerService {
   public player$ = this.playerSubject.asObservable();
 
   public constructor(
-    protected gameQueriesService: GameQueriesService,
-    protected pcStorageService: PcStorageQueriesService,
-    protected cacheService: CacheService
+    private gameQueriesService: GameQueriesService,
+    private pcStorageService: PcStorageQueriesService,
+    private cacheService: CacheService,
+    private websocketEventService: WebsocketEventService
   ) {
     this.cacheService.$gameId
       .pipe(
         switchMap((gameId) => {
           this.gameId = gameId;
           return this.getPlayer();
+        })
+      )
+      .subscribe();
+    this.websocketEventService.updatePlayerEvent$
+      .pipe(
+        switchMap(() => {
+          return this.getPlayer().pipe(first());
         })
       )
       .subscribe();

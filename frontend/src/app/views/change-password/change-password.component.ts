@@ -77,14 +77,14 @@ export class ChangePasswordComponent implements OnInit {
           this.passwordRequest.user._id
         )
         .subscribe(() => {
-          this.notifierService.notify(
-            'PASSWORD_SUCCESSFULLY_MODIFIED',
-            NotificationType.Success
-          );
+          this.notifierService.notify({
+            key: 'PASSWORD_SUCCESSFULLY_MODIFIED',
+            type: NotificationType.Success,
+          });
           this.routerService.navigateByUrl('login');
         });
     } else {
-      this.notifierService.notify('LINK_EXPIRED');
+      this.notifierService.notify({ key: 'LINK_EXPIRED' });
     }
   }
 }

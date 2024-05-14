@@ -29,10 +29,10 @@ export class VerifyEmailComponent implements OnInit {
       .update({ verified: true, _id: this.id } as UserModel, this.id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
-        this.notifierService.notify(
-          'EMAIL_SUCCESSFULLY_VERIFIED',
-          NotificationType.Success
-        );
+        this.notifierService.notify({
+          key: 'EMAIL_SUCCESSFULLY_VERIFIED',
+          type: NotificationType.Success,
+        });
         this.routerService.navigateByUrl('login');
       });
   }

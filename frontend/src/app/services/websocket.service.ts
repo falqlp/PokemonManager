@@ -5,20 +5,12 @@ import {
   WebSocketSubjectConfig,
 } from 'rxjs/webSocket';
 import { catchError, retry } from 'rxjs/operators';
-import { EMPTY, first } from 'rxjs';
-import { PlayerService } from './player.service';
-import { TranslateService } from '@ngx-translate/core';
+import { EMPTY } from 'rxjs';
 import { CacheService } from './cache.service';
-import { MatDialog } from '@angular/material/dialog';
-import { EggHatchedComponent } from '../modals/egg-hatched/egg-hatched.component';
 import { RouterService } from './router.service';
 import { environment } from '../../environments/environment';
-import { InitGameComponent } from '../modals/init-game/init-game.component';
-import { AddGameComponent } from '../views/games/add-game/add-game.component';
-import { BadgeDataService } from './badge.data.service';
 import { NotificationType, NotifierService } from './notifier.service';
-import { ExpGainComponent } from '../modals/exp-gain/exp-gain.component';
-import { SimulationService } from './simulation.service';
+import { WebsocketEventService } from './websocket-event.service';
 
 export interface WebSocketModel {
   type: string;
@@ -36,14 +28,10 @@ export class WebsocketService {
   private registered = false;
 
   constructor(
-    protected playerService: PlayerService,
-    protected notifierService: NotifierService,
-    protected translateService: TranslateService,
-    protected cacheService: CacheService,
-    protected dialog: MatDialog,
-    protected routerService: RouterService,
-    protected badgeDataService: BadgeDataService,
-    private simulationService: SimulationService
+    private notifierService: NotifierService,
+    private cacheService: CacheService,
+    private routerService: RouterService,
+    private websocketEventService: WebsocketEventService
   ) {}
 
   private getWebSocketConfig(): WebSocketSubjectConfig<WebSocketModel> {
@@ -57,20 +45,20 @@ export class WebsocketService {
           this.isConected = false;
           console.log('Connection closed');
           this.deleteRegistrationToGame(this.gameId);
-          this.notifierService.notify(
-            'Connection closed',
-            NotificationType.Error
-          );
+          this.notifierService.notify({
+            key: 'Connection closed',
+            type: NotificationType.Error,
+          });
         },
       },
       openObserver: {
         next: (): void => {
           this.isConected = true;
           console.log('Connection opened');
-          this.notifierService.notify(
-            'Connection opened',
-            NotificationType.Success
-          );
+          this.notifierService.notify({
+            key: 'Connection opened',
+            type: NotificationType.Success,
+          });
           const gameId = this.cacheService.getGameId();
           if (gameId && gameId !== 'null') {
             this.registerToGame(gameId);
@@ -94,7 +82,9 @@ export class WebsocketService {
           return EMPTY;
         })
       )
-      .subscribe((message) => this.handleMessage(message));
+      .subscribe((message) =>
+        this.websocketEventService.handleMessage(message)
+      );
     this.cacheService.$gameId.subscribe((id) => {
       if (id) {
         this.registerToGame(id);
@@ -103,73 +93,6 @@ export class WebsocketService {
         this.deleteRegistrationToGame(this.gameId);
       }
     });
-  }
-
-  private handleMessage(message: WebSocketModel): void {
-    switch (message.type) {
-      case 'updatePlayer':
-        this.playerService.getPlayer().pipe(first()).subscribe();
-        break;
-      case 'connexion':
-        console.log(message.payload);
-        break;
-      case 'notifyNewMoveLearned':
-        this.badgeDataService.pokemon.push(message.payload.id);
-        this.badgeDataService.sidenav.push('PC-STORAGE');
-        this.notifierService.notify(
-          this.translateService.instant(message.payload.key, {
-            pokemon: this.translateService.instant(message.payload.pokemonName),
-          })
-        );
-        break;
-      case 'notify':
-        this.notifierService.notify(message.payload.key, message.payload.type);
-        break;
-      case 'eggHatched':
-        setTimeout(() => {
-          this.dialog.open(EggHatchedComponent, {
-            data: message.payload,
-            disableClose: true,
-          });
-          this.simulationService.stopSimulation();
-        });
-        break;
-      case 'initGame':
-        setTimeout(() => {
-          this.dialog.openDialogs
-            .find(
-              (value) => value.componentInstance instanceof AddGameComponent
-            )
-            ?.close();
-          let dialog = this.dialog.openDialogs.find(
-            (value) => value.componentInstance instanceof InitGameComponent
-          );
-          if (!dialog) {
-            dialog = this.dialog.open(InitGameComponent, {
-              disableClose: true,
-            });
-          }
-          dialog.componentInstance.key = this.translateService.instant(
-            message.payload.key,
-            { value: message.payload.value }
-          );
-        });
-        break;
-      case 'initGameEnd':
-        this.dialog.openDialogs
-          .find((value) => value.componentInstance instanceof InitGameComponent)
-          ?.close();
-        break;
-      case 'weeklyXp':
-        this.dialog.open(ExpGainComponent, {
-          data: message.payload,
-          disableClose: true,
-        });
-        this.simulationService.stopSimulation();
-        break;
-      default:
-        console.warn('Unknown message type:', message.type);
-    }
   }
 
   public registerToGame(gameId: string): void {

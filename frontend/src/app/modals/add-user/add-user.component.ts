@@ -94,15 +94,15 @@ export class AddUserComponent {
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         catchError((err) => {
-          this.notifierService.notify(
-            err.error.message,
-            NotificationType.Error
-          );
+          this.notifierService.notify({
+            key: err.error.message,
+            type: NotificationType.Error,
+          });
           return of();
         })
       )
       .subscribe(() => {
-        this.notifierService.notify('ACCOUNT_CREATED');
+        this.notifierService.notify({ key: 'ACCOUNT_CREATED' });
         this.dialogRef.close();
         const buttons: DialogButtonsModel[] = [
           {

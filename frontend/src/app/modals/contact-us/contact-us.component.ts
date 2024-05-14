@@ -54,10 +54,10 @@ export class ContactUsComponent {
       )
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
-        this.notifierService.notify(
-          'MESSAGE_SUCCESSFULLY_SENT',
-          NotificationType.Success
-        );
+        this.notifierService.notify({
+          key: 'MESSAGE_SUCCESSFULLY_SENT',
+          type: NotificationType.Success,
+        });
         this.dialogRef.close();
       });
   }

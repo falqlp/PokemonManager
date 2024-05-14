@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  NotificationModel,
+  WebsocketEventService,
+} from './websocket-event.service';
 
 export enum NotificationType {
   Neutral = 'Neutral',
@@ -13,16 +17,19 @@ export enum NotificationType {
 })
 export class NotifierService {
   constructor(
-    protected snackBar: MatSnackBar,
-    protected translateService: TranslateService
-  ) {}
+    private snackBar: MatSnackBar,
+    private translateService: TranslateService,
+    private websocketEventService: WebsocketEventService
+  ) {
+    this.websocketEventService.notifyEvent$.subscribe(this.notify);
+  }
 
-  public notify(msg: string, type?: NotificationType): void {
-    this.snackBar.open(this.translateService.instant(msg), 'Ok', {
+  public notify(notification: NotificationModel): void {
+    this.snackBar.open(this.translateService.instant(notification.key), 'Ok', {
       verticalPosition: 'bottom',
       horizontalPosition: 'right',
       duration: 3000,
-      panelClass: type ?? NotificationType.Neutral,
+      panelClass: notification.type ?? NotificationType.Neutral,
     });
   }
 }

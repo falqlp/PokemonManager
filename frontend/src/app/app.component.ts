@@ -12,6 +12,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { RouterOutlet } from '@angular/router';
+import { InitGameService } from './services/init-game.service';
+import { EggHatchedService } from './services/egg-hatched.service';
+import { NewMoveLearnedService } from './services/new-move-learned.service';
+import { WeeklyXpService } from './services/weekly-xp.service';
 
 @Component({
   selector: 'app-root',
@@ -25,8 +29,17 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(
     protected websocketService: WebsocketService,
     protected sidenavService: SidenavService,
-    protected destroyRef: DestroyRef
-  ) {}
+    protected destroyRef: DestroyRef,
+    initGameService: InitGameService,
+    eggHatchedService: EggHatchedService,
+    newMoveLearnedService: NewMoveLearnedService,
+    weeklyXpService: WeeklyXpService
+  ) {
+    initGameService.init();
+    eggHatchedService.init();
+    newMoveLearnedService.init();
+    weeklyXpService.init();
+  }
 
   public ngOnInit(): void {
     this.websocketService.connect();

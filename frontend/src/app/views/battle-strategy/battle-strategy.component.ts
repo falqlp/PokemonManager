@@ -89,10 +89,10 @@ export class BattleStrategyComponent implements OnInit {
       )
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
-        this.notifierService.notify(
-          'MODIFICATIONS_SAVED',
-          NotificationType.Success
-        );
+        this.notifierService.notify({
+          key: 'MODIFICATIONS_SAVED',
+          type: NotificationType.Success,
+        });
       });
   }
 
