@@ -133,7 +133,7 @@ class TrainerService {
           })
         ).slice(0, 2);
         const strategy: number[] = [];
-        moves.forEach((move) => {
+        moves.forEach(() => {
           strategy.push(9);
         });
         const birthday = addYears(

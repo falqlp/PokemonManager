@@ -155,7 +155,7 @@ class PokemonService {
     }
     if (!pokemon.strategy) {
       const strategy: number[] = [];
-      pokemon.moves.forEach((move) => {
+      pokemon.moves.forEach(() => {
         strategy.push(9);
       });
       pokemon.strategy = strategy;

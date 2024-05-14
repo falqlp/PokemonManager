@@ -7,13 +7,10 @@ import { DisplayTypeComponent } from '../../components/display-type/display-type
 import { MoveComponent } from '../../components/move/move.component';
 import { MatSliderModule } from '@angular/material/slider';
 import {
-  AbstractControl,
   FormArray,
   FormControl,
   FormsModule,
   ReactiveFormsModule,
-  ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
