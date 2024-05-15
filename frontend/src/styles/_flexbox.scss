@@ -1,4 +1,4 @@
-@import './colors';
+@import 'colors';
 
 @mixin flexbox($justify-content, $level, $flex-direction: row, $padding: 10px) {
   display: flex;

@@ -1,4 +1,4 @@
-@import 'src/styles/flexbox';
+@import 'flexbox';
 
 .nursery-wishlist {
   @include flexbox(flex-start, 1);

@@ -1,5 +1,7 @@
 # PokemonManager
 
+Try demo on https://red-coast-04b827a03.5.azurestaticapps.net/login
+
 **Launch PokemonManager:**
 
 ```
@@ -31,3 +33,4 @@ npm install (only the first time to install dependencies)
 `
 npm run dev
 `
+

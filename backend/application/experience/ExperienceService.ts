@@ -181,6 +181,7 @@ class ExperienceService {
     const trainers = await this.trainerRepository.list({
       custom: { gameId, _id: { $ne: trainerId } },
     });
+    let pokemons: IPokemon[] = [];
     for (const trainer of trainers) {
       for (const pokemon of trainer.pokemons.filter(
         (pokemon) => pokemon.level !== 0,
@@ -190,12 +191,13 @@ class ExperienceService {
       for (const pokemon of trainer.pcStorage.storage.map((st) => st.pokemon)) {
         await this.updateOtherPokemon(pokemon, trainer, actualDate);
       }
-      await this.pokemonService.updateMany(trainer.pokemons, gameId);
-      await this.pokemonService.updateMany(
-        trainer.pcStorage.storage.map((st) => st.pokemon),
-        gameId,
-      );
+      pokemons = [
+        ...pokemons,
+        ...trainer.pokemons,
+        ...trainer.pcStorage.storage.map((st) => st.pokemon),
+      ];
     }
+    await this.pokemonService.updateMany(pokemons, gameId);
   }
 
   private async updateOtherPokemon(

@@ -2,10 +2,10 @@
 @use 'sass:map';
 @use 'styles/material-theme';
 
-@import './styles/modal';
-@import './styles/material-theme';
-@import './styles/palette-theme';
-@import 'src/styles/colors';
+@import 'styles/modal';
+@import 'styles/material-theme';
+@import 'styles/palette-theme';
+@import 'colors';
 
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 

@@ -1,4 +1,4 @@
-@import 'src/styles/flexbox';
+@import 'flexbox';
 
 :host {
   @include flexbox(space-between, 1, row);

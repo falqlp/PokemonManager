@@ -1,5 +1,5 @@
-@import 'src/styles/flexbox';
-@import 'src/styles/colors';
+@import 'flexbox';
+@import 'colors';
 
 .pokemon-resume {
   @include flexbox(flex-start, 2, column);

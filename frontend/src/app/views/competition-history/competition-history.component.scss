@@ -1,4 +1,4 @@
-@import 'src/styles/flexbox';
+@import 'flexbox';
 
 :host {
   @include flexbox(flex-start, 2, column);
