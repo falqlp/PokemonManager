@@ -40,7 +40,7 @@ class GameRepository extends CompleteRepository<IGame> {
   }
 
   public async updatePlayingTime(
-    gameId: number,
+    gameId: string,
     sessionTime: number,
   ): Promise<void> {
     if (sessionTime) {

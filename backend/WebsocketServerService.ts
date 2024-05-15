@@ -2,6 +2,8 @@ import WebSocket, { WebSocketServer } from "ws";
 import GameRepository from "./domain/game/GameRepository";
 import { IPokemon } from "./domain/pokemon/Pokemon";
 import { container, singleton } from "tsyringe";
+import { mongoId } from "./utils/MongoUtils";
+import { Server } from "https";
 
 export interface WebsocketMessage {
   type: string;
@@ -13,54 +15,54 @@ export enum NotificationType {
   Error = "Error",
 }
 
+export interface CustomWebsocket extends WebSocket {
+  id: string;
+  gameId?: string;
+  startTime?: number;
+  trainerId?: string;
+}
+
 @singleton()
 class WebsocketServerService {
   private wss: WebSocketServer;
-  private clients: { [gameId: string]: WebSocket[] } = {};
+  private clients: CustomWebsocket[] = [];
 
-  constructor(protected gameRepository: GameRepository) {}
+  constructor(private gameRepository: GameRepository) {}
 
-  public initializeWebSocketServer(server: any): void {
+  public initializeWebSocketServer(server: Server): void {
     this.wss = new WebSocketServer({ server });
-    this.wss.on("connection", (ws: WebSocket) => {
+    this.wss.on("connection", (ws: CustomWebsocket) => {
       ws.on("message", (message: string) => {
         const parsedMessage = JSON.parse(message);
         if (parsedMessage.type === "register") {
           const gameId = parsedMessage.payload.gameId;
-          if (!this.clients[gameId]) {
-            this.clients[gameId] = [];
-          }
-          this.clients[gameId].push(ws);
-          (ws as any).gameId = gameId;
-          (ws as any).startTime = Date.now();
+          const trainerId = parsedMessage.payload.trainerId;
+          ws.id = mongoId().toString();
+          ws.gameId = gameId;
+          ws.startTime = Date.now();
+          ws.trainerId = trainerId;
+          this.clients.push(ws);
         }
       });
       ws.on("message", async (message: string) => {
         const parsedMessage = JSON.parse(message);
         if (parsedMessage.type === "deleteRegistration") {
           const gameId = parsedMessage.payload.gameId;
-          if (this.clients[gameId]) {
-            delete this.clients[gameId];
-          }
+          this.clients = this.clients.filter((client) => client.id !== ws.id);
           await this.gameRepository.updatePlayingTime(
             gameId,
-            Date.now() - (ws as any).startTime,
+            Date.now() - ws.startTime,
           );
         }
       });
       ws.on("close", async () => {
-        const gameId = (ws as any).gameId;
-        if (gameId && this.clients[gameId]) {
-          const index = this.clients[gameId].indexOf(ws);
-          if (index !== -1) {
-            this.clients[gameId].splice(index, 1);
-            if (this.clients[gameId].length === 0) {
-              delete this.clients[gameId];
-            }
-          }
+        const gameId = ws.gameId;
+        const client = this.clients.find((client) => client.id === ws.id);
+        if (gameId && client) {
+          this.clients = this.clients.filter((client) => client.id !== ws.id);
           await this.gameRepository.updatePlayingTime(
             gameId,
-            Date.now() - (ws as any).startTime,
+            Date.now() - ws.startTime,
           );
         }
       });
@@ -75,8 +77,9 @@ class WebsocketServerService {
 
   public async updatePlayer(trainerId: string, gameId: string): Promise<void> {
     const player = (await container.resolve(GameRepository).get(gameId)).player;
-    if (player._id.toString() === trainerId && this.clients[gameId]) {
-      this.clients[gameId].forEach((client: WebSocket) => {
+    const clients = this.clients.filter((client) => client.gameId === gameId);
+    if (player._id.toString() === trainerId && clients.length > 0) {
+      clients.forEach((client: WebSocket) => {
         if (client.readyState === WebSocket.OPEN) {
           client.send(JSON.stringify({ type: "updatePlayer" }));
         }
@@ -88,7 +91,8 @@ class WebsocketServerService {
     gameId: string,
     message: WebsocketMessage,
   ): void {
-    this.clients[gameId]?.forEach((client: WebSocket) => {
+    const clients = this.clients.filter((client) => client.gameId === gameId);
+    clients.forEach((client: WebSocket) => {
       if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify(message));
       }
