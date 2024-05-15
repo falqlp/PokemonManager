@@ -14,7 +14,7 @@ import { WebsocketEventService } from './websocket-event.service';
 
 export interface WebSocketModel {
   type: string;
-  payload: any;
+  payload?: any;
 }
 
 @Injectable({
@@ -24,8 +24,6 @@ export class WebsocketService {
   private websocket: WebSocketSubject<WebSocketModel>;
   protected isConected = false;
   protected readonly url = environment.wsUrl;
-  private gameId: string;
-  private registered = false;
 
   constructor(
     private notifierService: NotifierService,
@@ -44,7 +42,6 @@ export class WebsocketService {
           }
           this.isConected = false;
           console.log('Connection closed');
-          this.deleteRegistrationToGame(this.gameId);
           this.notifierService.notify({
             key: 'Connection closed',
             type: NotificationType.Error,
@@ -59,10 +56,6 @@ export class WebsocketService {
             key: 'Connection opened',
             type: NotificationType.Success,
           });
-          const gameId = this.cacheService.getGameId();
-          if (gameId && gameId !== 'null') {
-            this.registerToGame(gameId);
-          }
           const lastUrl = this.routerService.getLastUrl();
           if (lastUrl && lastUrl !== '/') {
             this.routerService.navigateByUrl(lastUrl);
@@ -88,28 +81,62 @@ export class WebsocketService {
     this.cacheService.$gameId.subscribe((id) => {
       if (id) {
         this.registerToGame(id);
-        this.gameId = id;
       } else {
-        this.deleteRegistrationToGame(this.gameId);
+        this.deleteRegistrationToGame();
+      }
+    });
+    this.cacheService.$userId.subscribe((userId) => {
+      if (userId) {
+        this.registerUser(userId);
+      } else {
+        this.deleteRegistrationUser();
+      }
+    });
+    this.cacheService.$trainerId.subscribe((trainerId) => {
+      if (trainerId) {
+        this.registerTrainer(trainerId);
+      } else {
+        this.deleteRegistrationTrainer();
       }
     });
   }
 
   public registerToGame(gameId: string): void {
-    if (!this.registered) {
-      this.websocket.next({
-        type: 'register',
-        payload: { gameId },
-      });
-    }
-    this.registered = true;
-  }
-
-  public deleteRegistrationToGame(gameId: string): void {
     this.websocket.next({
-      type: 'deleteRegistration',
+      type: 'registerGame',
       payload: { gameId },
     });
-    this.registered = false;
+  }
+
+  public registerUser(userId: string): void {
+    this.websocket.next({
+      type: 'registerUser',
+      payload: { userId },
+    });
+  }
+
+  public registerTrainer(trainerId: string): void {
+    this.websocket.next({
+      type: 'registerTrainer',
+      payload: { trainerId },
+    });
+  }
+
+  public deleteRegistrationToGame(): void {
+    this.websocket.next({
+      type: 'deleteRegistrationGame',
+    });
+  }
+
+  public deleteRegistrationUser(): void {
+    this.websocket.next({
+      type: 'deleteRegistrationUser',
+    });
+  }
+
+  public deleteRegistrationTrainer(): void {
+    this.websocket.next({
+      type: 'deleteRegistrationTrainer',
+    });
   }
 }

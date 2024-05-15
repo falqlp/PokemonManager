@@ -8,10 +8,20 @@ import TrainerService from "../../application/trainer/TrainerService";
 const router = express.Router();
 const service = container.resolve(TrainerService);
 const mapper = container.resolve(TrainerMapper);
+const repository = container.resolve(TrainerRepository);
 const completeRouter = new CompleteRouter(
-  container.resolve(TrainerRepository),
+  repository,
   container.resolve(TrainerMapper),
 );
+
+router.get("/player/:id", async (req, res, next) => {
+  try {
+    const obj = await repository.get(req.params.id);
+    res.status(200).json(mapper.mapPlayer(obj));
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.put("/:id", async (req, res, next) => {
   try {

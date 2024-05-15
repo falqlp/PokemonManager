@@ -3,34 +3,34 @@ import type { TrainerModel } from '../models/TrainersModels/trainer.model';
 import { first, Observable, switchMap } from 'rxjs';
 import { BehaviorSubject, of, tap } from 'rxjs';
 import { PcStorageQueriesService } from './queries/pc-storage-queries.service';
-import { GameQueriesService } from './queries/game-queries.service';
 import { CacheService } from './cache.service';
 import { WebsocketEventService } from './websocket-event.service';
+import { TrainerQueriesService } from './queries/trainer-queries.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
-  protected playerSubject = new BehaviorSubject<TrainerModel>(undefined);
-  protected gameId: string;
+  private playerSubject = new BehaviorSubject<TrainerModel>(undefined);
+  private trainerId: string;
 
   public maxStat = 0;
 
-  protected maxStatSubject = new BehaviorSubject<number>(this.maxStat);
+  private maxStatSubject = new BehaviorSubject<number>(this.maxStat);
   public maxStat$ = this.maxStatSubject.asObservable();
 
   public player$ = this.playerSubject.asObservable();
 
   public constructor(
-    private gameQueriesService: GameQueriesService,
     private pcStorageService: PcStorageQueriesService,
     private cacheService: CacheService,
-    private websocketEventService: WebsocketEventService
+    private websocketEventService: WebsocketEventService,
+    private trainerQueriesService: TrainerQueriesService
   ) {
-    this.cacheService.$gameId
+    this.cacheService.$trainerId
       .pipe(
-        switchMap((gameId) => {
-          this.gameId = gameId;
+        switchMap((trainerId) => {
+          this.trainerId = trainerId;
           return this.getPlayer();
         })
       )
@@ -50,17 +50,14 @@ export class PlayerService {
   }
 
   public getPlayer(): Observable<TrainerModel> {
-    if (!this.gameId) {
+    if (!this.trainerId) {
       return of(null).pipe(
         tap((player) => {
-          if (player) {
-            this.getMaxStat(player);
-          }
           this.playerSubject?.next(player);
         })
       );
     }
-    return this.gameQueriesService.getPlayer(this.gameId).pipe(
+    return this.trainerQueriesService.getPlayer(this.trainerId).pipe(
       tap((player) => {
         if (player) {
           this.getMaxStat(player);

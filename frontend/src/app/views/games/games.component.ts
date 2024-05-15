@@ -70,7 +70,7 @@ export class GamesComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.cacheService.removeGameId();
+    this.cacheService.setGameId(undefined);
     this.languageService
       .getLanguage()
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -80,6 +80,7 @@ export class GamesComponent implements OnInit {
 
   protected click(game: GameModel): void {
     this.cacheService.setGameId(game._id);
+    this.cacheService.setTrainerId(game.player._id);
     this.router.navigateByUrl('home');
   }
 

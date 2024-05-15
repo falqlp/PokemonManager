@@ -14,7 +14,8 @@ class PermissionsService {
 
   gameGuard(): boolean {
     const gameId = this.cacheService.getGameId();
-    if (gameId === 'null') {
+    const trainerId = this.cacheService.getTrainerId();
+    if (gameId === 'null' || trainerId === 'null') {
       this.router.navigateByUrl('/games');
       return false;
     }

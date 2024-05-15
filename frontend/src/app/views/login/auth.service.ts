@@ -11,8 +11,4 @@ export class AuthService {
   public login(loginForm: LoginFormModel): Observable<any> {
     return this.http.post<any>(environment.apiUrl + '/api/login', loginForm);
   }
-
-  public getUser(_id: string): Observable<any> {
-    return this.http.get<any>(environment.apiUrl + '/api/login/' + _id);
-  }
 }

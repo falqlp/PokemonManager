@@ -54,6 +54,7 @@ export class AddGameComponent {
         takeUntilDestroyed(this.destroyRef),
         switchMap((game) => {
           this.cacheService.setGameId(game._id);
+          this.cacheService.setTrainerId(game.player._id);
           this.router.navigateByUrl('starters');
           return this.gameQueriesService.initGame(game.player._id);
         })

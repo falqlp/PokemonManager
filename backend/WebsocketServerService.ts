@@ -20,6 +20,7 @@ export interface CustomWebsocket extends WebSocket {
   gameId?: string;
   startTime?: number;
   trainerId?: string;
+  userId?: string;
 }
 
 @singleton()
@@ -32,39 +33,65 @@ class WebsocketServerService {
   public initializeWebSocketServer(server: Server): void {
     this.wss = new WebSocketServer({ server });
     this.wss.on("connection", (ws: CustomWebsocket) => {
+      this.clients.push(ws);
       ws.on("message", (message: string) => {
         const parsedMessage = JSON.parse(message);
-        if (parsedMessage.type === "register") {
+        if (parsedMessage.type === "registerGame") {
           const gameId = parsedMessage.payload.gameId;
           const trainerId = parsedMessage.payload.trainerId;
           ws.id = mongoId().toString();
           ws.gameId = gameId;
           ws.startTime = Date.now();
           ws.trainerId = trainerId;
-          this.clients.push(ws);
         }
       });
       ws.on("message", async (message: string) => {
         const parsedMessage = JSON.parse(message);
-        if (parsedMessage.type === "deleteRegistration") {
-          const gameId = parsedMessage.payload.gameId;
-          this.clients = this.clients.filter((client) => client.id !== ws.id);
+        if (parsedMessage.type === "deleteRegistrationGame" && ws.gameId) {
           await this.gameRepository.updatePlayingTime(
-            gameId,
+            ws.gameId,
             Date.now() - ws.startTime,
           );
+          ws.gameId = undefined;
+        }
+      });
+      ws.on("message", (message: string) => {
+        const parsedMessage = JSON.parse(message);
+        if (parsedMessage.type === "registerUser") {
+          ws.userId = parsedMessage.payload.userId;
+        }
+      });
+      ws.on("message", async (message: string) => {
+        const parsedMessage = JSON.parse(message);
+        if (parsedMessage.type === "deleteRegistrationUser" && ws.userId) {
+          ws.userId = undefined;
+        }
+      });
+      ws.on("message", (message: string) => {
+        const parsedMessage = JSON.parse(message);
+        if (parsedMessage.type === "registerTrainer") {
+          ws.trainerId = parsedMessage.payload.trainerId;
+        }
+      });
+      ws.on("message", async (message: string) => {
+        const parsedMessage = JSON.parse(message);
+        if (
+          parsedMessage.type === "deleteRegistrationTrainer" &&
+          ws.trainerId
+        ) {
+          ws.trainerId = undefined;
         }
       });
       ws.on("close", async () => {
-        const gameId = ws.gameId;
         const client = this.clients.find((client) => client.id === ws.id);
-        if (gameId && client) {
+        if (ws.gameId && client) {
           this.clients = this.clients.filter((client) => client.id !== ws.id);
           await this.gameRepository.updatePlayingTime(
-            gameId,
+            ws.gameId,
             Date.now() - ws.startTime,
           );
         }
+        this.clients = this.clients.filter((client) => client.id !== ws.id);
       });
       ws.send(
         JSON.stringify({

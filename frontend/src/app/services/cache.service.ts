@@ -10,6 +10,8 @@ export class CacheService {
   public $userId = this.userIdSubject.asObservable();
   protected gameIdSubject = new BehaviorSubject<string>(undefined);
   public $gameId = this.gameIdSubject.asObservable();
+  protected trainerIdSubject = new BehaviorSubject<string>(undefined);
+  public $trainerId = this.trainerIdSubject.asObservable();
 
   constructor(protected router: Router) {
     this.init();
@@ -20,6 +22,8 @@ export class CacheService {
     this.setGameId(gameId);
     const userId = localStorage.getItem('userId');
     this.setUserId(userId);
+    const trainerId = localStorage.getItem('trainerId');
+    this.setTrainerId(trainerId);
   }
 
   public setUserId(id: string): void {
@@ -32,6 +36,9 @@ export class CacheService {
   }
 
   public setGameId(id: string): void {
+    if (!id) {
+      this.setTrainerId(undefined);
+    }
     localStorage.setItem('gameId', id);
     this.gameIdSubject.next(id);
   }
@@ -40,8 +47,12 @@ export class CacheService {
     return localStorage.getItem('gameId');
   }
 
-  public removeGameId(): void {
-    localStorage.removeItem('gameId');
-    this.gameIdSubject.next(undefined);
+  public setTrainerId(id: string): void {
+    localStorage.setItem('trainerId', id);
+    this.trainerIdSubject.next(id);
+  }
+
+  public getTrainerId(): string {
+    return localStorage.getItem('trainerId');
   }
 }
