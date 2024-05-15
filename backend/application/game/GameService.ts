@@ -4,7 +4,7 @@ import GameRepository from "../../domain/game/GameRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import TrainerService from "../trainer/TrainerService";
 import GenerateCalendarService from "../calendarEvent/GenerateCalendarService";
-import WebsocketServerService from "../../WebsocketServerService";
+import WebsocketServerService from "../../websocket/WebsocketServerService";
 import { singleton } from "tsyringe";
 import CompetitionService from "../competition/CompetitionService";
 

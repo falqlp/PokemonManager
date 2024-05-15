@@ -3,6 +3,7 @@ import { BehaviorSubject, filter, Observable } from 'rxjs';
 import { PokemonBaseModel } from '../models/PokemonModels/pokemonBase.model';
 import { TrainerModel } from '../models/TrainersModels/trainer.model';
 import { WebSocketModel } from './websocket.service';
+import { BattleStateModel } from '../views/new-battle/battle.model';
 
 export interface NotificationModel {
   key: string;
@@ -74,42 +75,49 @@ export class WebsocketEventService {
     .asObservable()
     .pipe(filter((value) => !!value));
 
-  constructor() {
-    this.initGameEvent$.subscribe(console.log);
-  }
+  private battleEventSubject = new BehaviorSubject<BattleStateModel>(null);
+  public battleEvent$: Observable<BattleStateModel> = this.battleEventSubject
+    .asObservable()
+    .pipe(filter((value) => !!value));
+
+  constructor() {}
 
   public handleMessage = (message: WebSocketModel): void => {
     this.eventMap[message.type](message.payload);
   };
 
-  public notifyEvent = (notification: NotificationModel): void => {
+  private notifyEvent = (notification: NotificationModel): void => {
     this.notifyEventSubject.next(notification);
   };
 
-  public updatePlayerEvent = (): void => {
+  private updatePlayerEvent = (): void => {
     this.updatePlayerEventSubject.next();
   };
 
-  public notifyNewMoveLearnedEvent = (
+  private notifyNewMoveLearnedEvent = (
     payload: NotificationNewMoveLearnedModel
   ): void => {
     this.notifyNewMoveLearnedEventSubject.next(payload);
   };
 
-  public eggHatchedEvent = (payload: EggHatchedModel): void => {
+  private eggHatchedEvent = (payload: EggHatchedModel): void => {
     this.eggHatchedEventSubject.next(payload);
   };
 
-  public initGameEvent = (payload: InitGameModel): void => {
+  private initGameEvent = (payload: InitGameModel): void => {
     this.initGameEventSubject.next(payload);
   };
 
-  public initGameEndEvent = (): void => {
+  private initGameEndEvent = (): void => {
     this.initGameEndEventSubject.next();
   };
 
-  public weeklyXpEvent = (payload: WeeklyXpModel): void => {
+  private weeklyXpEvent = (payload: WeeklyXpModel): void => {
     this.weeklyXpEventSubject.next(payload);
+  };
+
+  private battleEvent = (payload: BattleStateModel): void => {
+    this.battleEventSubject.next(payload);
   };
 
   private eventMap: Record<string, (payload?: any) => void> = {
@@ -121,5 +129,6 @@ export class WebsocketEventService {
     initGame: this.initGameEvent,
     initGameEnd: this.initGameEndEvent,
     weeklyXp: this.weeklyXpEvent,
+    playRound: this.battleEvent,
   };
 }

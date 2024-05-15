@@ -5,7 +5,7 @@ import "reflect-metadata";
 import fs from "fs";
 import app from "./app";
 import { AddressInfo } from "net";
-import WebsocketServerService from "./WebsocketServerService";
+import WebsocketServerService from "./websocket/WebsocketServerService";
 import { container } from "tsyringe";
 
 const normalizePort = (val: string | number): number | string | boolean => {

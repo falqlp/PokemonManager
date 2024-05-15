@@ -15,7 +15,7 @@ import NurseryService from "../trainer/nursery/NurseryService";
 import PokemonService from "../pokemon/PokemonService";
 import WebsocketServerService, {
   NotificationType,
-} from "../../WebsocketServerService";
+} from "../../websocket/WebsocketServerService";
 import { singleton } from "tsyringe";
 import {
   CompetitionType,

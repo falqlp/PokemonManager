@@ -20,7 +20,7 @@ import { ITrainingCamp } from "../../domain/trainer/trainingCamp/TrainingCamp";
 import { Gender } from "../../domain/Gender";
 import { IGame } from "../../domain/game/Game";
 import { addYears } from "../../utils/DateUtils";
-import WebsocketServerService from "../../WebsocketServerService";
+import WebsocketServerService from "../../websocket/WebsocketServerService";
 import { PcStorageService } from "./pcStorage/PcStorageService";
 import { XP_PER_LEVEL } from "../experience/ExperienceService";
 import { mongoId } from "../../utils/MongoUtils";

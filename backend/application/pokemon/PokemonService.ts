@@ -6,7 +6,7 @@ import { INursery } from "../../domain/trainer/nursery/Nursery";
 import PokemonBaseService from "./pokemonBase/PokemonBaseService";
 import PokemonBaseRepository from "../../domain/pokemon/pokemonBase/PokemonBaseRepository";
 import GameRepository from "../../domain/game/GameRepository";
-import WebsocketServerService from "../../WebsocketServerService";
+import WebsocketServerService from "../../websocket/WebsocketServerService";
 import { singleton } from "tsyringe";
 import MoveLearningService from "../moveLearning/MoveLearningService";
 import { Gender } from "../../domain/Gender";

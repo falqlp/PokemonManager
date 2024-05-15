@@ -33,3 +33,10 @@ export interface IBattleTrainer {
   defeat: boolean;
   isAI: boolean;
 }
+
+export interface IBattleState {
+  player: IBattleTrainer;
+  opponent: IBattleTrainer;
+  battleOrder: IBattlePokemon[];
+  damage?: IDamage;
+}

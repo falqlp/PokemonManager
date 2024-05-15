@@ -8,7 +8,7 @@ import { convertStringsToDateInObject } from "./utils/DateConverter";
 import { container } from "tsyringe";
 import WebsocketServerService, {
   NotificationType,
-} from "./WebsocketServerService";
+} from "./websocket/WebsocketServerService";
 
 dotenv.config();
 

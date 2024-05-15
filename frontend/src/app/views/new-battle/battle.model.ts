@@ -18,7 +18,7 @@ export interface BattleTrainerModel {
   defeat: boolean;
 }
 
-export interface NewBattleRoundModel {
+export interface BattleStateModel {
   player: BattleTrainerModel;
   opponent: BattleTrainerModel;
   battleOrder: BattlePokemonModel[];

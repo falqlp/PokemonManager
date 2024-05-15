@@ -1,4 +1,9 @@
-import { IBattlePokemon, IBattleTrainer, IDamage } from "./BattleInterfaces";
+import {
+  IBattlePokemon,
+  IBattleState,
+  IBattleTrainer,
+  IDamage,
+} from "./BattleInterfaces";
 import BattleCalcService from "./BattleCalcService";
 import { IBattleInstance } from "../../domain/battleInstance/Battle";
 import { ITrainer } from "../../domain/trainer/Trainer";
@@ -7,10 +12,16 @@ import { singleton } from "tsyringe";
 import { getRandomFromArray, getRandomValue } from "../../utils/RandomUtils";
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import { IMove } from "../../domain/move/Move";
+import { BattleDataService } from "./BattleDataService";
+import BattleInstanceRepository from "../../domain/battleInstance/BattleInstanceRepository";
 
 @singleton()
 class BattleService {
-  constructor(protected battleCalcService: BattleCalcService) {}
+  constructor(
+    private battleCalcService: BattleCalcService,
+    private battleDataService: BattleDataService,
+    private battleInstanceRepository: BattleInstanceRepository,
+  ) {}
 
   public simulateBattle(battle: IBattleInstance): IBattleInstance {
     const res = this.initBattle(battle);
@@ -18,7 +29,7 @@ class BattleService {
     let trainerB = res.opponent;
     let moveOrder = res.battleOrder;
     for (let i = 0; i < 100000; i++) {
-      const { player, opponent, battleOrder } = this.simulateNewBattleRound(
+      const { player, opponent, battleOrder } = this.simulateBattleRound(
         { ...trainerA },
         { ...trainerB },
         [...moveOrder],
@@ -34,11 +45,7 @@ class BattleService {
     return battle;
   }
 
-  public initBattle(battle: IBattleInstance): {
-    player: IBattleTrainer;
-    opponent: IBattleTrainer;
-    battleOrder: IBattlePokemon[];
-  } {
+  public initBattle(battle: IBattleInstance): IBattleState {
     const player = this.mapBattleTrainer(battle.player, battle._id.toString());
     const opponent = this.mapBattleTrainer(
       battle.opponent,
@@ -136,16 +143,11 @@ class BattleService {
     return stats;
   }
 
-  public simulateNewBattleRound(
+  public simulateBattleRound(
     player: IBattleTrainer,
     opponent: IBattleTrainer,
     battleOrder: IBattlePokemon[],
-  ): {
-    player: IBattleTrainer;
-    opponent: IBattleTrainer;
-    battleOrder: IBattlePokemon[];
-    damage: IDamage;
-  } {
+  ): IBattleState {
     this.resetPokemonStates(player.pokemons);
     this.resetPokemonStates(opponent.pokemons);
 
@@ -277,6 +279,43 @@ class BattleService {
       (pokemon) => pokemon.currentHp === 0,
     );
     return battleOrder;
+  }
+
+  public async playNextRound(
+    battleId: string,
+    init?: boolean,
+  ): Promise<IBattleState> {
+    const battleState = this.battleDataService.get(battleId);
+    let newBattleState: IBattleState;
+    if (!init && battleState) {
+      newBattleState = this.simulateBattleRound(
+        battleState.player,
+        battleState.opponent,
+        battleState.battleOrder,
+      );
+    } else {
+      const battle = await this.battleInstanceRepository.get(battleId);
+      newBattleState =
+        this.battleDataService.get(battleId) ?? this.initBattle(battle);
+      if (battle.winner) {
+        if (battle.winner === "player") {
+          newBattleState.opponent.defeat = true;
+        } else {
+          newBattleState.player.defeat = true;
+        }
+      }
+    }
+    if (newBattleState.player.defeat || newBattleState.opponent.defeat) {
+      const battle = {
+        _id: battleId,
+        winner: newBattleState.player.defeat ? "opponent" : "player",
+      } as IBattleInstance;
+      await this.battleInstanceRepository.update(battleId, battle);
+      this.battleDataService.delete(battleId);
+    } else {
+      this.battleDataService.set(battleId, newBattleState);
+    }
+    return newBattleState;
   }
 }
 export default BattleService;

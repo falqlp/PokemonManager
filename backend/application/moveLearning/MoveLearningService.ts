@@ -5,7 +5,7 @@ import MoveRepository from "../../domain/move/MoveRepository";
 import { IMoveLearning } from "../../domain/moveLearning/MoveLearning";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import { IMove } from "../../domain/move/Move";
-import WebsocketServerService from "../../WebsocketServerService";
+import WebsocketServerService from "../../websocket/WebsocketServerService";
 import { singleton } from "tsyringe";
 
 @singleton()

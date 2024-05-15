@@ -139,4 +139,11 @@ export class WebsocketService {
       type: 'deleteRegistrationTrainer',
     });
   }
+
+  public playRound(battleId: string, init: boolean): void {
+    this.websocket.next({
+      type: 'playRound',
+      payload: { battleId, init },
+    });
+  }
 }
