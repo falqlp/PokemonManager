@@ -24,12 +24,6 @@ export class MailService {
   }
 
   public sendVerifyUser(user: IUser): void {
-    console.log(
-      path.join(
-        __dirname.replace("\\dist", "").replace("/dist", ""),
-        (user.lang === "fr-FR" ? "fr-FR" : "en-EN") + "/verify-mail.html",
-      ),
-    );
     let content = fs.readFileSync(
       path.join(
         __dirname.replace("\\dist", "").replace("/dist", ""),
@@ -66,7 +60,7 @@ export class MailService {
     let content = fs.readFileSync(
       path.join(
         __dirname.replace("\\dist", "").replace("/dist", ""),
-        user.lang === "fr-FR" ? "fr-FR" : "en-EN" + "/modify-password.html",
+        (user.lang === "fr-FR" ? "fr-FR" : "en-EN") + "/modify-password.html",
       ),
       "utf-8",
     );
