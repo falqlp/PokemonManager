@@ -3,7 +3,7 @@ import { UserQueriesService } from '../../services/queries/user-queries.service'
 import { Languages, UserModel } from '../../models/user.model';
 import { NgForOf, NgIf } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, filter, switchMap } from 'rxjs';
 import { MatSortModule } from '@angular/material/sort';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LocalDatePipe } from '../../pipes/local-date.pipe';
@@ -19,6 +19,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterService } from '../../services/router.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { LanguageService } from '../../services/language.service';
+import { FriendsComponent } from './friends/friends.component';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @Component({
   selector: 'pm-games',
@@ -34,6 +36,7 @@ import { LanguageService } from '../../services/language.service';
     NgForOf,
     MatIconModule,
     MatMenuModule,
+    MatBadgeModule,
   ],
   templateUrl: './games.component.html',
   styleUrls: ['./games.component.scss'],
@@ -98,9 +101,14 @@ export class GamesComponent implements OnInit {
   }
 
   protected update(): void {
-    this.userQueriesService
-      .get(this.cacheService.getUserId())
-      .pipe(takeUntilDestroyed(this.destroyRef))
+    this.cacheService.$userId
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        filter((value) => !!value),
+        switchMap((id) => {
+          return this.userQueriesService.get(id);
+        })
+      )
       .subscribe((user) => {
         this.user = user;
         this.gameSubject.next(user.games);
@@ -145,5 +153,15 @@ export class GamesComponent implements OnInit {
 
   protected logout(): void {
     this.router.navigateByUrl('login');
+  }
+
+  protected friends(): void {
+    this.dialog
+      .open(FriendsComponent)
+      .afterClosed()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.update();
+      });
   }
 }

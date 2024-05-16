@@ -15,7 +15,11 @@ export class HandleWebsocketMessageService {
     ws: CustomWebsocket,
     message: WebsocketMessage,
   ): Promise<void | WebsocketMessage> {
-    return this.messageHandleMap[message.type](ws, message.payload);
+    try {
+      return this.messageHandleMap[message.type](ws, message.payload);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   private registerGame = (ws: CustomWebsocket, payload: any): void => {

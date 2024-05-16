@@ -1,0 +1,9 @@
+<div class="friends-list" mat-dialog-content>
+  @if (user.friends.length===0){
+  <span>{{ 'NO_FRIEND_YET' | translate }}</span>
+  } @else { @for (friend of user.friends; track friend._id){
+  <div class="friends-list__friend">
+    <span>{{ friend.username }}</span>
+  </div>
+  } }
+</div>

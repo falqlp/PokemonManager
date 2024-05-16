@@ -90,6 +90,8 @@ export class AddUserComponent {
         verified: false,
         subscribeToNewsletter: addUser.subscribeToNewsletter,
         lang: navigator.language as Languages,
+        friends: [],
+        friendRequest: [],
       })
       .pipe(
         takeUntilDestroyed(this.destroyRef),

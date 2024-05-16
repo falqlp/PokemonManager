@@ -1,0 +1,15 @@
+<div class="friend-request" mat-dialog-content>
+  @for (friend of user.friendRequest; track friend._id){
+  <div class="friend-request__request">
+    <span>{{ friend.username }}</span>
+    <div class="friend-request__request__buttons">
+      <button mat-icon-button (click)="add(friend)">
+        <mat-icon>check</mat-icon>
+      </button>
+      <button mat-icon-button (click)="delete(friend)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+  }
+</div>

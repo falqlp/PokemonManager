@@ -104,6 +104,24 @@ class WebsocketServerService {
     this.sendMessageToClientInGame(gameId, message);
   }
 
+  public notifyUser(
+    key: string,
+    userId: string,
+    type?: NotificationType,
+  ): void {
+    const clients = this.clients.filter((client) => client.userId === userId);
+    clients.forEach((client: WebSocket) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(
+          JSON.stringify({
+            type: "notify",
+            payload: { key, type: type ?? NotificationType.Neutral },
+          }),
+        );
+      }
+    });
+  }
+
   public eggHatched(pokemon: IPokemon): void {
     const message = {
       type: "eggHatched",

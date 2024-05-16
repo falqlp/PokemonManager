@@ -28,7 +28,7 @@ export class CacheService {
 
   public setUserId(id: string): void {
     localStorage.setItem('userId', id);
-    this.userIdSubject.next(id);
+    this.userIdSubject.next(id === 'undefined' ? undefined : id);
   }
 
   public getUserId(): string {
@@ -40,7 +40,7 @@ export class CacheService {
       this.setTrainerId(undefined);
     }
     localStorage.setItem('gameId', id);
-    this.gameIdSubject.next(id);
+    this.gameIdSubject.next(id === 'undefined' ? undefined : id);
   }
 
   public getGameId(): string {
@@ -49,7 +49,7 @@ export class CacheService {
 
   public setTrainerId(id: string): void {
     localStorage.setItem('trainerId', id);
-    this.trainerIdSubject.next(id);
+    this.trainerIdSubject.next(id === 'undefined' ? undefined : id);
   }
 
   public getTrainerId(): string {

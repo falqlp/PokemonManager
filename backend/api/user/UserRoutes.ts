@@ -27,6 +27,15 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.put("/add-friend", async (req, res, next) => {
+  try {
+    await service.addFriend(req.body.userId, req.body.friendId);
+    res.status(200).json();
+  } catch (error: any) {
+    next(error);
+  }
+});
+
 router.put("/is-email-used", async (req, res, next) => {
   try {
     const obj = await repository.list({ custom: { email: req.body.email } });

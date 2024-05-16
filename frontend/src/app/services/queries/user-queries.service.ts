@@ -20,4 +20,11 @@ export class UserQueriesService extends CompleteQuery<UserModel> {
   public isUsernameUsed(username: string): Observable<boolean> {
     return this.http.put<boolean>(this.url + '/is-username-used', { username });
   }
+
+  public addFriend(userId: string, friendId: string): Observable<boolean> {
+    return this.http.put<boolean>(this.url + '/add-friend', {
+      userId,
+      friendId,
+    });
+  }
 }

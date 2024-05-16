@@ -1,0 +1,11 @@
+<mat-tab-group>
+  <mat-tab [label]="'FRIENDS' | translate">
+    <pm-friends-list [user]="user" />
+  </mat-tab>
+  <mat-tab [label]="'FRIENDS_REQUEST' | translate">
+    <pm-friends-request [user]="user" />
+  </mat-tab>
+  <mat-tab [label]="'FIND' | translate">
+    <pm-find-friend [user]="user" />
+  </mat-tab>
+</mat-tab-group>

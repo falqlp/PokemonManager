@@ -25,7 +25,7 @@ export class TimeService {
     this.cacheService.$gameId
       .pipe(
         switchMap((gameId) => {
-          if (gameId) {
+          if (gameId && gameId !== 'undefined') {
             return this.gameQueriesService.getTime(gameId);
           }
           return of(null);

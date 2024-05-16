@@ -13,4 +13,6 @@ export interface UserModel {
   verified: boolean;
   subscribeToNewsletter: boolean;
   lang: Languages;
+  friends: UserModel[];
+  friendRequest: UserModel[];
 }

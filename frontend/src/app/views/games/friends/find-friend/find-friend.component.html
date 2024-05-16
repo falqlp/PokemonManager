@@ -1,0 +1,21 @@
+<form mat-dialog-content>
+  <mat-form-field>
+    <mat-label>{{ 'FIND' | translate }}</mat-label>
+    <input matInput [matAutocomplete]="auto" [formControl]="autoCompeteForm" />
+    <mat-autocomplete
+      [displayWith]="display"
+      autoActiveFirstOption
+      #auto="matAutocomplete">
+      @for (user of $users|async;track user._id){
+      <mat-option [value]="user">{{ user.username }}</mat-option>
+
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+  <button
+    (click)="sendInvitation()"
+    [disabled]="autoCompeteForm.invalid || !isUser(autoCompeteForm.value)"
+    mat-flat-button>
+    {{ 'SEND_INVITATION' | translate }}
+  </button>
+</form>

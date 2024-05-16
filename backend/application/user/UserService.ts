@@ -4,13 +4,15 @@ import { IUser } from "../../domain/user/User";
 import { MailService } from "../mail/MailService";
 import HashService from "./hash/HashService";
 import { mongoId } from "../../utils/MongoUtils";
+import WebsocketServerService from "../../websocket/WebsocketServerService";
 
 @singleton()
 export class UserService {
   constructor(
-    protected userRepository: UserRepository,
-    protected mailService: MailService,
-    protected hashService: HashService,
+    private userRepository: UserRepository,
+    private mailService: MailService,
+    private hashService: HashService,
+    private websocketServerService: WebsocketServerService,
   ) {}
 
   public async create(user: IUser): Promise<IUser> {
@@ -30,5 +32,10 @@ export class UserService {
       ...user,
       _id: _id.toString(),
     });
+  }
+
+  public addFriend(userId: string, friendId: string): Promise<IUser> {
+    this.websocketServerService.notifyUser("NEW_FRIEND_REQUEST", userId);
+    return this.userRepository.addFriend(userId, friendId);
   }
 }

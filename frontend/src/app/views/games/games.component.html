@@ -1,4 +1,14 @@
 <div class="games-header">
+  <button
+    [matBadge]="user.friendRequest.length"
+    matBadgeColor="warn"
+    matBadgeSize="small"
+    [matBadgeHidden]="user.friendRequest.length === 0"
+    mat-icon-button
+    class="games-header__friends"
+    (click)="friends()">
+    <mat-icon>group</mat-icon>
+  </button>
   <h3 *ngIf="user">{{ user.username }}</h3>
   <button
     [matMenuTriggerFor]="settingsMenu"

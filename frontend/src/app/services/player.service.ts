@@ -30,7 +30,11 @@ export class PlayerService {
     this.cacheService.$trainerId
       .pipe(
         switchMap((trainerId) => {
-          this.trainerId = trainerId;
+          if (trainerId !== 'undefined') {
+            this.trainerId = trainerId;
+          } else {
+            this.trainerId = undefined;
+          }
           return this.getPlayer();
         })
       )
