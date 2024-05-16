@@ -1,6 +1,6 @@
 # PokemonManager
 
-Try demo on https://red-coast-04b827a03.5.azurestaticapps.net/login
+Try demo on https://pokemon-manager.com/login
 
 **Launch PokemonManager:**
 
