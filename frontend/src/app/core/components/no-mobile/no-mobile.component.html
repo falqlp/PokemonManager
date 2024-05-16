@@ -1,0 +1,9 @@
+<div class="no-mobile">
+  <mat-icon class="no-mobile__icon">warning</mat-icon>
+  <span class="no-mobile__text">
+    {{ 'MOBILE_WARNING' | translate }}
+  </span>
+  <button mat-flat-button color="accent" (click)="show.emit(true)">
+    {{ 'CONTINUE_ANYWAY' | translate }}
+  </button>
+</div>
