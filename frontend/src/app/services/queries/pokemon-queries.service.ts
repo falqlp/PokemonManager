@@ -20,8 +20,8 @@ export class PokemonQueriesService extends CompleteQuery<PokemonModel> {
     );
   }
 
-  public getStarters(): Observable<PokemonModel[]> {
-    return this.http.get<PokemonModel[]>(this.url + '/starters');
+  public getStarters(playerId: string): Observable<PokemonModel[]> {
+    return this.http.get<PokemonModel[]>(this.url + '/starters/' + playerId);
   }
 
   public createStarters(starters: PokemonModel[]): Observable<void> {

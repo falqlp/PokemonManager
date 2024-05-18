@@ -24,10 +24,13 @@ router.put("/effectiveness", (req: Request, res: Response, next) => {
     next(err);
   }
 });
-router.get("/starters", async (req: Request, res: Response, next) => {
+router.get("/starters/:id", async (req: Request, res: Response, next) => {
   try {
     const gameId = req.headers["game-id"] as string;
-    const starters = await pokemonService.generateStarters(gameId);
+    const starters = await pokemonService.generateStarters(
+      gameId,
+      req.params.id,
+    );
     starters.map((starter) => pokemonMapper.mapStarters(starter));
     res.status(200).json(starters);
   } catch (err) {

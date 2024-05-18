@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { CompleteQuery } from '../../core/complete-query';
 import { Observable } from 'rxjs';
 import { GameModel } from '../../models/game.model';
+import { PlayerModel } from '../../models/player.model';
+import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,14 +19,20 @@ export class GameQueriesService extends CompleteQuery<GameModel> {
     return this.http.get<Date>(this.url + '/time/' + gameId);
   }
 
-  public createWithUser(
-    game: GameModel,
-    userId: string
+  public createWithUsers(
+    players: PlayerModel[],
+    name: string
   ): Observable<GameModel> {
-    return this.http.post<GameModel>(this.url + '/' + userId, game);
+    return this.http.post<GameModel>(this.url + '/' + name, players);
   }
 
-  public initGame(playerId: string): Observable<void> {
-    return this.http.post<void>(this.url + '/init-game', { playerId });
+  public addPlayerToGame(
+    game: GameModel,
+    userId: string
+  ): Observable<TrainerModel> {
+    return this.http.put<TrainerModel>(this.url + '/add-player-to-game', {
+      game,
+      userId,
+    });
   }
 }

@@ -8,7 +8,12 @@ class GameMapper implements IMapper<IGame> {
   constructor(protected trainerMapper: TrainerMapper) {}
 
   public map(dto: IGame): IGame {
-    dto.player = dto.player ? this.trainerMapper.map(dto.player) : undefined;
+    dto.players = dto.players?.map((player) => {
+      if (player.trainer) {
+        player.trainer = this.trainerMapper.map(player.trainer);
+      }
+      return player;
+    });
     return dto;
   }
 }

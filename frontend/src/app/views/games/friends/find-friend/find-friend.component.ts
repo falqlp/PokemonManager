@@ -1,7 +1,7 @@
 import { Component, DestroyRef, input, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserModel } from '../../../../models/user.model';
-import { debounceTime, Observable, switchMap } from 'rxjs';
+import { debounceTime, Observable, switchMap, tap } from 'rxjs';
 import { UserQueriesService } from '../../../../services/queries/user-queries.service';
 import { MatInputModule } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,6 +10,10 @@ import { AsyncPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {
+  NotificationType,
+  NotifierService,
+} from '../../../../services/notifier.service';
 
 @Component({
   selector: 'pm-find-friend',
@@ -37,7 +41,8 @@ export class FindFriendComponent implements OnInit {
 
   constructor(
     private userQueriesService: UserQueriesService,
-    private destroyRef: DestroyRef
+    private destroyRef: DestroyRef,
+    private notifierService: NotifierService
   ) {}
 
   public ngOnInit(): void {
@@ -75,7 +80,13 @@ export class FindFriendComponent implements OnInit {
       this.userQueriesService
         .addFriend(this.autoCompeteForm.value._id, this.user()._id)
         .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe();
+        .subscribe(() => {
+          this.autoCompeteForm.setValue('');
+          this.notifierService.notify({
+            type: NotificationType.Neutral,
+            key: 'INVITATION_SENT',
+          });
+        });
     }
   }
 

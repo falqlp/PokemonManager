@@ -7,7 +7,7 @@ export class GameTestMother {
     const trainer: ITrainer = TrainerTestMother.weakTrainer();
     return {
       _id: "gameId",
-      player: trainer,
+      players: [{ trainer, playingTime: 0, userId: "userId" }],
       actualDate: new Date(),
       name: "Pokémon World",
     } as IGame;

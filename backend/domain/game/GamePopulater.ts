@@ -12,7 +12,7 @@ class GamePopulater extends Populater {
 
   public populate(): PopulateOptions | PopulateOptions[] {
     return {
-      path: "player",
+      path: "players.trainer",
       model: Trainer,
       populate: this.trainerPopulater.populate(),
     };

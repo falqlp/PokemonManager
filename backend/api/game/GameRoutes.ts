@@ -4,13 +4,13 @@ import GameRepository from "../../domain/game/GameRepository";
 import GameService from "../../application/game/GameService";
 import GameMapper from "./GameMapper";
 import { container } from "tsyringe";
+import TrainerMapper from "../trainer/TrainerMapper";
 const gameRepository = container.resolve(GameRepository);
 const gameService = container.resolve(GameService);
 const gameMapper = container.resolve(GameMapper);
+const trainerMapper = container.resolve(TrainerMapper);
 const router = express.Router();
 const completeRouter = new CompleteRouter(gameRepository, gameMapper);
-
-router.use("/", completeRouter.router);
 
 router.get("/time/:id", async (req, res, next) => {
   try {
@@ -21,23 +21,27 @@ router.get("/time/:id", async (req, res, next) => {
   }
 });
 
-router.post("/init-game", async (req, res, next) => {
-  try {
-    const gameId = req.headers["game-id"] as string;
-    await gameService.initGame(gameId, req.body.playerId);
-    res.status(200).json();
-  } catch (error) {
-    next(error);
-  }
-});
-
 router.post("/:userId", async (req, res, next) => {
   try {
-    const obj = await gameService.createWithUser(req.body, req.params.userId);
+    const obj = await gameService.createWithUsers(req.body, req.params.userId);
     res.status(200).json(gameMapper.map(obj));
   } catch (error) {
     next(error);
   }
 });
+
+router.put("/add-player-to-game", async (req, res, next) => {
+  try {
+    const obj = await gameService.addPlayerToGame(
+      req.body.game,
+      req.body.userId,
+    );
+    res.status(200).json(trainerMapper.map(obj));
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.use("/", completeRouter.router);
 
 export default router;

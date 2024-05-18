@@ -1,5 +1,9 @@
 import { Component, DestroyRef, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -9,13 +13,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { GameModel } from '../../../models/game.model';
 import { TrainerModel } from '../../../models/TrainersModels/trainer.model';
 import { GameQueriesService } from '../../../services/queries/game-queries.service';
 import { CacheService } from '../../../services/cache.service';
 import { RouterService } from '../../../services/router.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { map, Observable, startWith, switchMap } from 'rxjs';
+import { map, Observable, startWith, switchMap, tap } from 'rxjs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { UserService } from '../../../services/user.service';
 import { UserModel } from '../../../models/user.model';
@@ -55,11 +58,14 @@ export class AddGameComponent implements OnInit {
     private gameQueriesService: GameQueriesService,
     private cacheService: CacheService,
     private destroyRef: DestroyRef,
-    private userService: UserService
+    private userService: UserService,
+    private dialogRef: MatDialogRef<AddGameComponent>
   ) {}
 
   public ngOnInit(): void {
-    this.friendIdList.push(this.data.friendId);
+    if (this.data) {
+      this.friendIdList.push(this.data.friendId);
+    }
     this.$friends = this.$user.pipe(
       switchMap((user) => {
         return this.friendForm.valueChanges.pipe(
@@ -83,26 +89,25 @@ export class AddGameComponent implements OnInit {
     const players: PlayerModel[] = this.friendIdList.map((userId) => {
       return { userId, playingTime: 0 };
     });
-    players.push({
+    players.unshift({
       userId: this.cacheService.getUserId(),
       trainer: {
         name: this.gameForm.controls.playerName.value,
       } as TrainerModel,
       playingTime: 0,
     });
-    const createdGame = {
-      name: this.gameForm.controls.gameName.value,
-      player: { name: this.gameForm.controls.playerName.value } as TrainerModel,
-    } as GameModel;
     this.gameQueriesService
-      .createWithUser(createdGame, this.cacheService.getUserId())
+      .createWithUsers(players, this.gameForm.controls.gameName.value)
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        switchMap((game) => {
+        tap((game) => {
           this.cacheService.setGameId(game._id);
-          this.cacheService.setTrainerId(game.player._id);
+          const trainerId = game.players.find(
+            (player) => player.userId === this.cacheService.getUserId()
+          ).trainer._id;
+          this.cacheService.setTrainerId(trainerId);
           this.router.navigateByUrl('starters');
-          return this.gameQueriesService.initGame(game.player._id);
+          this.dialogRef.close();
         })
       )
       .subscribe();

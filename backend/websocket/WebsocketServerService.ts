@@ -58,22 +58,26 @@ class WebsocketServerService {
   }
 
   public async updatePlayer(trainerId: string, gameId: string): Promise<void> {
-    const player = (await container.resolve(GameRepository).get(gameId)).player;
-    const clients = this.clients.filter((client) => client.gameId === gameId);
-    if (player._id.toString() === trainerId && clients.length > 0) {
-      clients.forEach((client: WebSocket) => {
-        if (client.readyState === WebSocket.OPEN) {
-          client.send(JSON.stringify({ type: "updatePlayer" }));
-        }
-      });
-    }
+    const clients = this.clients.filter(
+      (client) =>
+        client.gameId === gameId.toString() &&
+        client.trainerId === trainerId.toString(),
+    );
+
+    clients.forEach((client: WebSocket) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify({ type: "updatePlayer" }));
+      }
+    });
   }
 
   public sendMessageToClientInGame(
     gameId: string,
     message: WebsocketMessage,
   ): void {
-    const clients = this.clients.filter((client) => client.gameId === gameId);
+    const clients = this.clients.filter(
+      (client) => client.gameId === gameId.toString(),
+    );
     clients.forEach((client: WebSocket) => {
       if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify(message));
@@ -132,6 +136,7 @@ class WebsocketServerService {
     const message: WebsocketMessage = {
       type: "updateUser",
     };
+    userIds.map((id) => id.toString());
     this.sendMessageToUsers(userIds, message);
   }
 

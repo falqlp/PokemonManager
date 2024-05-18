@@ -1,5 +1,4 @@
-import { IGame } from "../../domain/game/Game";
-import User from "../../domain/user/User";
+import { IGame, IPlayer } from "../../domain/game/Game";
 import GameRepository from "../../domain/game/GameRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import TrainerService from "../trainer/TrainerService";
@@ -7,55 +6,81 @@ import GenerateCalendarService from "../calendarEvent/GenerateCalendarService";
 import WebsocketServerService from "../../websocket/WebsocketServerService";
 import { singleton } from "tsyringe";
 import CompetitionService from "../competition/CompetitionService";
+import { mongoId } from "../../utils/MongoUtils";
+import { ITrainer } from "../../domain/trainer/Trainer";
+import UserRepository from "../../domain/user/UserRepository";
 
-export const NB_GENERATED_TRAINER = 19;
+export const NB_GENERATED_TRAINER = 20;
 
 @singleton()
 class GameService {
   constructor(
-    protected gameRepository: GameRepository,
-    protected trainerRepository: TrainerRepository,
-    protected trainerService: TrainerService,
-    protected generateCalendarService: GenerateCalendarService,
-    protected websocketServerService: WebsocketServerService,
-    protected competitionService: CompetitionService,
+    private gameRepository: GameRepository,
+    private trainerRepository: TrainerRepository,
+    private trainerService: TrainerService,
+    private generateCalendarService: GenerateCalendarService,
+    private websocketServerService: WebsocketServerService,
+    private competitionService: CompetitionService,
+    private userRepository: UserRepository,
   ) {}
 
-  public async createWithUser(dto: IGame, userId: string): Promise<IGame> {
+  public async createWithUsers(
+    players: IPlayer[],
+    name: string,
+  ): Promise<IGame> {
+    const gameId = mongoId();
+    const trainer: ITrainer = { ...players.at(0).trainer, gameId };
+    players.at(0).trainer = await this.trainerService.create(trainer);
     const currentDate = new Date(Date.now());
     const currentYear = currentDate.getUTCFullYear();
-    dto.actualDate = new Date(Date.UTC(currentYear, 0, 1));
-    const player = dto.player;
-    dto.player = undefined;
-    let newGame = await this.gameRepository.create(dto);
-    player.gameId = newGame._id;
-    newGame.player = await this.trainerService.create(player);
-    newGame = await this.gameRepository.update(newGame._id, newGame);
-    User.findByIdAndUpdate(userId, { $push: { games: newGame._id } }).then(); //TODO a refactor
+    const actualDate = new Date(Date.UTC(currentYear, 0, 1));
+    const newGame = await this.gameRepository.create({
+      _id: gameId,
+      players,
+      name,
+      actualDate,
+    });
+    this.userRepository
+      .updateManyUser(
+        { _id: { $in: players.map((player) => player.userId) } },
+        { $push: { games: newGame._id } },
+      )
+      .then();
+    if (newGame.players.length === 1) {
+      setTimeout(() => {
+        this.initGame(newGame).then();
+      }, 500);
+    }
     return newGame;
   }
 
-  public async initGame(gameId: string, playerId: string): Promise<void> {
-    this.websocketServerService.sendMessageToClientInGame(gameId, {
+  public async initGame(game: IGame): Promise<void> {
+    this.websocketServerService.sendMessageToClientInGame(game._id, {
       type: "initGame",
       payload: {
         key: "TRAINER_GENERATION",
       },
     });
-    const game = await this.gameRepository.get(gameId);
-    await this.competitionService.createFriendly(gameId);
+    await this.competitionService.createFriendly(game._id);
     const championship = await this.competitionService.createChampionship(game);
-    await this.trainerRepository.findOneAndUpdate(
-      { _id: playerId },
+    await this.trainerRepository.updateManyTrainer(
+      {
+        _id: {
+          $in: game.players.map((player) => player.trainer._id.toString()),
+        },
+      },
       { $push: { competitions: championship } },
     );
     await this.trainerService.generateTrainerWithPokemon(
       game,
-      NB_GENERATED_TRAINER,
+      NB_GENERATED_TRAINER - game.players.length,
       championship,
     );
-    const trainers = await this.trainerRepository.list({}, { gameId });
-    this.websocketServerService.sendMessageToClientInGame(gameId, {
+    const trainers = await this.trainerRepository.list(
+      {},
+      { gameId: game._id },
+    );
+    this.websocketServerService.sendMessageToClientInGame(game._id, {
       type: "initGame",
       payload: {
         key: "CALENDAR_GENERATION",
@@ -64,12 +89,33 @@ class GameService {
     await this.generateCalendarService.generateChampionship(
       trainers,
       3,
-      gameId,
+      game._id,
       championship,
     );
-    this.websocketServerService.sendMessageToClientInGame(gameId, {
+    this.websocketServerService.sendMessageToClientInGame(game._id, {
       type: "initGameEnd",
     });
+  }
+
+  public async addPlayerToGame(game: IGame, userId: string): Promise<ITrainer> {
+    let initGame = false;
+    if (!game.players.some((player) => !player.trainer)) {
+      initGame = true;
+    }
+    const player = game.players.find(
+      (gamePlayer) => gamePlayer.userId === userId,
+    );
+    player.trainer = await this.trainerService.create({
+      ...player.trainer,
+      gameId: game._id,
+    });
+    await this.gameRepository.update(game._id, game);
+    if (initGame) {
+      setTimeout(() => {
+        this.initGame(game).then();
+      }, 500);
+    }
+    return player.trainer;
   }
 }
 

@@ -1,3 +1,4 @@
+@if (user()) {
 <div class="games-header">
   <button
     [matBadge]="user().friendRequest.length"
@@ -31,7 +32,7 @@
     class="games-header__settings__lang"
     (click)="changeLanguage(lang)"
     mat-menu-item>
-    @if (lang === currentLang){
+    @if (lang === currentLang) {
     <mat-icon>check</mat-icon>
     } @else {
     <mat-icon></mat-icon>
@@ -56,14 +57,18 @@
     </ng-container>
     <ng-container matColumnDef="player">
       <th mat-header-cell *matHeaderCellDef>{{ 'PLAYER' | translate }}</th>
-      <td mat-cell *matCellDef="let element">{{ element.player.name }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ getPlayer(element.players)?.trainer?.name }}
+      </td>
     </ng-container>
     <ng-container matColumnDef="pokemons">
       <th mat-header-cell *matHeaderCellDef>{{ 'POKEMONS' | translate }}</th>
       <td mat-cell *matCellDef="let element">
         <div class="games__table__pokemons">
           <app-display-pokemon-image
-            *ngFor="let pokemon of element.player.pokemons"
+            *ngFor="
+              let pokemon of getPlayer(element.players)?.trainer?.pokemons
+            "
             [pokemon]="pokemon"
             type="icon" />
         </div>
@@ -74,7 +79,7 @@
         {{ 'PLAYING_TIME' | translate }}
       </th>
       <td mat-cell *matCellDef="let element">
-        {{ formatPlayingTime(element.playingTime) }}
+        {{ formatPlayingTime(getPlayer(element.players)?.playingTime) }}
       </td>
     </ng-container>
     <ng-container matColumnDef="delete">
@@ -100,3 +105,4 @@
 <button mat-fab color="warn" (click)="addGame()">
   <mat-icon>add</mat-icon>
 </button>
+}

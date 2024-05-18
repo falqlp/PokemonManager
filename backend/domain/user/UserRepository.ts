@@ -5,6 +5,7 @@ import UserPopulater from "./UserPopulater";
 import { singleton } from "tsyringe";
 import { ListBody } from "../ReadOnlyRepository";
 import WebsocketServerService from "../../websocket/WebsocketServerService";
+import { FilterQuery, UpdateQuery } from "mongoose";
 
 @singleton()
 class UserRepository extends CompleteRepository<IUser> {
@@ -60,6 +61,13 @@ class UserRepository extends CompleteRepository<IUser> {
     dto.friends = dto.friends ?? [];
     this.websocketServerService.updateUsers([_id]);
     return super.update(_id, dto);
+  }
+
+  public async updateManyUser(
+    filter: FilterQuery<IUser>,
+    update: UpdateQuery<IUser>,
+  ): Promise<void> {
+    await this.schema.updateMany(filter, update);
   }
 }
 

@@ -1,7 +1,7 @@
 import { Component, DestroyRef, OnInit } from '@angular/core';
 import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { filter, first } from 'rxjs';
+import { filter, first, switchMap } from 'rxjs';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -48,14 +48,11 @@ export class StartersComponent implements OnInit {
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         filter((value) => !!value),
-        first()
+        switchMap((player) => {
+          this.player = player;
+          return this.pokemonService.getStarters(player._id);
+        })
       )
-      .subscribe((player) => {
-        this.player = player;
-      });
-    this.pokemonService
-      .getStarters()
-      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((starters: PokemonModel[]) => {
         this.starters = starters;
       });

@@ -3,12 +3,23 @@ import { ITrainer } from "../trainer/Trainer";
 import { entitySchema, IEntity } from "../Entity";
 import { MongoId } from "../MongoId";
 
-export interface IGame extends MongoId, IEntity {
-  player: ITrainer;
-  actualDate: Date;
-  name: string;
+export interface IPlayer {
+  userId: string;
+  trainer?: ITrainer;
   playingTime: number;
 }
+
+export interface IGame extends MongoId, IEntity {
+  actualDate: Date;
+  players: IPlayer[];
+  name: string;
+}
+
+const PlayerSchema = new Schema<IPlayer>({
+  trainer: { type: mongoose.Schema.Types.ObjectId, ref: "Trainer" },
+  userId: { type: String, required: true },
+  playingTime: { type: Number },
+});
 
 const GameSchema = new Schema<IGame>({
   ...entitySchema,
@@ -17,8 +28,7 @@ const GameSchema = new Schema<IGame>({
     required: true,
   },
   actualDate: { type: Date, required: true },
-  player: { type: mongoose.Schema.Types.ObjectId, ref: "Trainer" },
-  playingTime: { type: Number },
+  players: [PlayerSchema],
 });
 
 const Game = mongoose.model<IGame>("Game", GameSchema);

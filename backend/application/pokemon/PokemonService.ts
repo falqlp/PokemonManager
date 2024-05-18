@@ -223,12 +223,15 @@ class PokemonService {
     return this.create(egg as IPokemon, gameId);
   }
 
-  public async generateStarters(gameId: string): Promise<IPokemon[]> {
+  public async generateStarters(
+    gameId: string,
+    trainerId: string,
+  ): Promise<IPokemon[]> {
     const level = 10;
     const actualDate: Date = (await this.gameRepository.get(gameId)).actualDate;
     const birthday = addYears(actualDate, -1);
     const pokemonBases =
-      await this.pokemonBaseRepository.getStartersBase(gameId);
+      await this.pokemonBaseRepository.getStartersBase(trainerId);
     const starters: IPokemon[] = [];
     for (let base of pokemonBases) {
       const evolution = await this.evolutionRepository.maxEvolution(

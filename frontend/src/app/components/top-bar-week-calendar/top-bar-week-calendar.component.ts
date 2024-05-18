@@ -64,8 +64,6 @@ export class TopBarWeekCalendarComponent implements OnInit {
           .pipe(
             map((res) => {
               this.events = res;
-              this.actualDateString =
-                this.timeService.dateToSimplifyLocalDate(actualDate);
               return actualDate;
             })
           );
@@ -114,6 +112,8 @@ export class TopBarWeekCalendarComponent implements OnInit {
           }`;
           newDate.setUTCDate(newDate.getUTCDate() + 1);
         }
+        this.actualDateString =
+          this.timeService.dateToSimplifyLocalDate(actualDate);
         return week;
       })
     );

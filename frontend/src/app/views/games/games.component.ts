@@ -22,6 +22,8 @@ import { LanguageService } from '../../services/language.service';
 import { FriendsComponent } from './friends/friends.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { UserService } from '../../services/user.service';
+import { PlayerModel } from '../../models/player.model';
+import { AddPlayerToGameComponent } from './add-player-to-game/add-player-to-game.component';
 
 @Component({
   selector: 'pm-games',
@@ -76,6 +78,7 @@ export class GamesComponent implements OnInit {
 
   public ngOnInit(): void {
     this.cacheService.setGameId(undefined);
+    this.cacheService.setTrainerId(undefined);
     this.languageService
       .getLanguage()
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -84,13 +87,18 @@ export class GamesComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((user: UserModel) => {
         this.user.set(user);
+        this.gameSubject.next(user.games);
       });
   }
 
   protected click(game: GameModel): void {
-    this.cacheService.setGameId(game._id);
-    this.cacheService.setTrainerId(game.player._id);
-    this.router.navigateByUrl('home');
+    if (this.getPlayer(game.players)?.trainer) {
+      this.cacheService.setGameId(game._id);
+      this.cacheService.setTrainerId(this.getPlayer(game.players).trainer._id);
+      this.router.navigateByUrl('home');
+    } else {
+      this.dialog.open(AddPlayerToGameComponent, { data: game });
+    }
   }
 
   protected addGame(): void {
@@ -98,8 +106,25 @@ export class GamesComponent implements OnInit {
   }
 
   protected delete(game: GameModel): void {
-    this.gameQueriesService
-      .delete(game._id)
+    game.players = game.players.filter(
+      (player) => player.userId !== this.user()._id
+    );
+    this.user().games = this.user().games.filter(
+      (userGame) => userGame._id !== game._id
+    );
+    if (game.players.length === 0) {
+      this.gameQueriesService
+        .delete(game._id)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe();
+    } else {
+      this.gameQueriesService
+        .update(game, game._id)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe();
+    }
+    this.userQueriesService
+      .update(this.user(), this.user()._id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
   }
@@ -146,5 +171,9 @@ export class GamesComponent implements OnInit {
 
   protected friends(): void {
     this.dialog.open(FriendsComponent);
+  }
+
+  protected getPlayer(players: PlayerModel[]): PlayerModel {
+    return players.find((player) => player.userId === this.user()._id);
   }
 }
