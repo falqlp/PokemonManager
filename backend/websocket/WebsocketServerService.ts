@@ -1,7 +1,6 @@
 import WebSocket, { WebSocketServer } from "ws";
-import GameRepository from "../domain/game/GameRepository";
 import { IPokemon } from "../domain/pokemon/Pokemon";
-import { container, singleton } from "tsyringe";
+import { singleton } from "tsyringe";
 import { Server } from "https";
 import { HandleWebsocketMessageService } from "./HandleWebsocketMessageService";
 

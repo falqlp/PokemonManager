@@ -1,7 +1,7 @@
 import { Component, DestroyRef, input, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserModel } from '../../../../models/user.model';
-import { debounceTime, Observable, switchMap, tap } from 'rxjs';
+import { debounceTime, Observable, switchMap } from 'rxjs';
 import { UserQueriesService } from '../../../../services/queries/user-queries.service';
 import { MatInputModule } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
