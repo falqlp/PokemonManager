@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import type { TrainerModel } from '../models/TrainersModels/trainer.model';
-import { EMPTY, first, map, Observable, switchMap } from 'rxjs';
-import { BehaviorSubject, of, tap } from 'rxjs';
+import { EMPTY, map, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { PcStorageQueriesService } from './queries/pc-storage-queries.service';
 import { CacheService } from './cache.service';
 import { WebsocketEventService } from './websocket-event.service';
