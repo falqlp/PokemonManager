@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import type { TrainerModel } from '../models/TrainersModels/trainer.model';
-import { first, Observable, switchMap } from 'rxjs';
+import { EMPTY, first, map, Observable, switchMap } from 'rxjs';
 import { BehaviorSubject, of, tap } from 'rxjs';
 import { PcStorageQueriesService } from './queries/pc-storage-queries.service';
 import { CacheService } from './cache.service';
@@ -11,15 +11,12 @@ import { TrainerQueriesService } from './queries/trainer-queries.service';
   providedIn: 'root',
 })
 export class PlayerService {
-  private playerSubject = new BehaviorSubject<TrainerModel>(undefined);
-  private trainerId: string;
-
   public maxStat = 0;
 
   private maxStatSubject = new BehaviorSubject<number>(this.maxStat);
   public maxStat$ = this.maxStatSubject.asObservable();
 
-  public player$ = this.playerSubject.asObservable();
+  public player$: Observable<TrainerModel>;
 
   public constructor(
     private pcStorageService: PcStorageQueriesService,
@@ -27,48 +24,30 @@ export class PlayerService {
     private websocketEventService: WebsocketEventService,
     private trainerQueriesService: TrainerQueriesService
   ) {
-    this.cacheService.$trainerId
-      .pipe(
-        switchMap((trainerId) => {
-          if (trainerId !== 'undefined') {
-            this.trainerId = trainerId;
-          } else {
-            this.trainerId = undefined;
-          }
-          return this.getPlayer();
-        })
-      )
-      .subscribe();
-    this.websocketEventService.updatePlayerEvent$
-      .pipe(
-        switchMap(() => {
-          return this.getPlayer().pipe(first());
-        })
-      )
-      .subscribe();
-  }
-
-  public logout(): void {
-    this.cacheService.setGameId(undefined);
-    this.cacheService.setUserId(undefined);
-  }
-
-  public getPlayer(): Observable<TrainerModel> {
-    if (!this.trainerId) {
-      return of(null).pipe(
-        tap((player) => {
-          this.playerSubject?.next(player);
-        })
-      );
-    }
-    return this.trainerQueriesService.getPlayer(this.trainerId).pipe(
+    this.player$ = this.cacheService.$trainerId.pipe(
+      switchMap((id) => {
+        return this.websocketEventService.updatePlayerEvent$.pipe(
+          map(() => id)
+        );
+      }),
+      switchMap((id) => {
+        if (!id || id === 'undefined') {
+          return EMPTY;
+        }
+        return this.trainerQueriesService.getPlayer(id);
+      }),
       tap((player) => {
         if (player) {
           this.getMaxStat(player);
         }
-        this.playerSubject?.next(player);
       })
     );
+  }
+
+  public logout(): void {
+    this.cacheService.setGameId(undefined);
+    this.cacheService.setTrainerId(undefined);
+    this.cacheService.setUserId(undefined);
   }
 
   public getMaxStat(player: TrainerModel): void {

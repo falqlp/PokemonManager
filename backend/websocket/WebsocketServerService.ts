@@ -104,24 +104,6 @@ class WebsocketServerService {
     this.sendMessageToClientInGame(gameId, message);
   }
 
-  public notifyUser(
-    key: string,
-    userId: string,
-    type?: NotificationType,
-  ): void {
-    const clients = this.clients.filter((client) => client.userId === userId);
-    clients.forEach((client: WebSocket) => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(
-          JSON.stringify({
-            type: "notify",
-            payload: { key, type: type ?? NotificationType.Neutral },
-          }),
-        );
-      }
-    });
-  }
-
   public eggHatched(pokemon: IPokemon): void {
     const message = {
       type: "eggHatched",
@@ -132,6 +114,39 @@ class WebsocketServerService {
       },
     };
     this.sendMessageToClientInGame(pokemon.gameId, message);
+  }
+
+  public notifyUser(
+    key: string,
+    userId: string,
+    type?: NotificationType,
+  ): void {
+    const message: WebsocketMessage = {
+      type: "notify",
+      payload: { key, type: type ?? NotificationType.Neutral },
+    };
+    this.sendMessageToUsers([userId], message);
+  }
+
+  public updateUsers(userIds: string[]): void {
+    const message: WebsocketMessage = {
+      type: "updateUser",
+    };
+    this.sendMessageToUsers(userIds, message);
+  }
+
+  public sendMessageToUsers(
+    userIds: string[],
+    message: WebsocketMessage,
+  ): void {
+    const clients = this.clients.filter((client) =>
+      userIds.includes(client.userId),
+    );
+    clients.forEach((client: WebSocket) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify(message));
+      }
+    });
   }
 
   private handleResponse(message: WebsocketMessage | void): void {

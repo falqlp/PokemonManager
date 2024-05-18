@@ -4,12 +4,14 @@ import HashService from "../../application/user/hash/HashService";
 import UserPopulater from "./UserPopulater";
 import { singleton } from "tsyringe";
 import { ListBody } from "../ReadOnlyRepository";
+import WebsocketServerService from "../../websocket/WebsocketServerService";
 
 @singleton()
 class UserRepository extends CompleteRepository<IUser> {
   constructor(
     protected hashService: HashService,
     userPopulater: UserPopulater,
+    private websocketServerService: WebsocketServerService,
   ) {
     super(User, userPopulater);
   }
@@ -37,12 +39,13 @@ class UserRepository extends CompleteRepository<IUser> {
     return super.list(body);
   }
 
-  public addFriend(userId: string, friendId: string): Promise<IUser> {
-    return this.schema.findByIdAndUpdate(
+  public async addFriend(userId: string, friendId: string): Promise<void> {
+    await this.schema.findByIdAndUpdate(
       userId,
       { $push: { friendRequest: friendId } },
       { new: true },
     );
+    this.websocketServerService.updateUsers([userId, friendId]);
   }
 
   public getByUsername(username: string): Promise<IUser> {
@@ -55,6 +58,7 @@ class UserRepository extends CompleteRepository<IUser> {
     }
     dto.friendRequest = dto.friendRequest ?? [];
     dto.friends = dto.friends ?? [];
+    this.websocketServerService.updateUsers([_id]);
     return super.update(_id, dto);
   }
 }

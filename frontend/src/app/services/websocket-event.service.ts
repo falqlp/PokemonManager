@@ -80,6 +80,10 @@ export class WebsocketEventService {
     .asObservable()
     .pipe(filter((value) => !!value));
 
+  private updateUserEventSubject = new BehaviorSubject<void>(null);
+  public updateUserEvent$: Observable<void> =
+    this.updateUserEventSubject.asObservable();
+
   constructor() {}
 
   public handleMessage = (message: WebSocketModel): void => {
@@ -120,6 +124,10 @@ export class WebsocketEventService {
     this.battleEventSubject.next(payload);
   };
 
+  private updateUserEvent = (): void => {
+    this.updateUserEventSubject.next();
+  };
+
   private eventMap: Record<string, (payload?: any) => void> = {
     updatePlayer: this.updatePlayerEvent,
     connexion: console.log,
@@ -130,5 +138,6 @@ export class WebsocketEventService {
     initGameEnd: this.initGameEndEvent,
     weeklyXp: this.weeklyXpEvent,
     playRound: this.battleEvent,
+    updateUser: this.updateUserEvent,
   };
 }

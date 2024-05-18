@@ -9,6 +9,31 @@
       <mat-label>{{ 'PLAYER_NAME' | translate }}</mat-label>
       <input matInput [formControl]="gameForm.controls.playerName" />
     </mat-form-field>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>{{
+        'INVITE_FRIENDS' | translate
+      }}</mat-expansion-panel-header>
+      <mat-form-field>
+        <mat-label>{{ 'FIND' | translate }}</mat-label>
+        <input matInput [formControl]="friendForm" />
+      </mat-form-field>
+      <div class="add-game__friends">
+        @for (friend of ($friends|async); track friend._id){
+        <div class="add-game__friends__friend">
+          <span>{{ friend.username }}</span>
+          @if (friendIdList.includes(friend._id)){
+          <button mat-flat-button color="warn" (click)="deleteFriend(friend)">
+            {{ 'DELETE' | translate }}
+          </button>
+          } @else {
+          <button mat-flat-button color="accent" (click)="addFriend(friend)">
+            {{ 'INVITE' | translate }}
+          </button>
+          }
+        </div>
+        }
+      </div>
+    </mat-expansion-panel>
   </div>
   <div mat-dialog-actions>
     <button mat-flat-button mat-dialog-close color="accent">

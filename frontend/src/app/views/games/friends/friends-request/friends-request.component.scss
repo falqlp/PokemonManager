@@ -1,8 +1,12 @@
+@import 'flexbox';
+
 .friend-request {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   &__request {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+    @include flexbox(space-between, 1);
+    width: -webkit-fill-available;
     align-items: center;
   }
 }

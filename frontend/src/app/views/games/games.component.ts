@@ -1,9 +1,9 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, signal } from '@angular/core';
 import { UserQueriesService } from '../../services/queries/user-queries.service';
 import { Languages, UserModel } from '../../models/user.model';
 import { NgForOf, NgIf } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
-import { BehaviorSubject, filter, switchMap } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { MatSortModule } from '@angular/material/sort';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LocalDatePipe } from '../../pipes/local-date.pipe';
@@ -21,6 +21,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { LanguageService } from '../../services/language.service';
 import { FriendsComponent } from './friends/friends.component';
 import { MatBadgeModule } from '@angular/material/badge';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'pm-games',
@@ -42,7 +43,7 @@ import { MatBadgeModule } from '@angular/material/badge';
   styleUrls: ['./games.component.scss'],
 })
 export class GamesComponent implements OnInit {
-  protected user: UserModel;
+  protected user = signal<UserModel>(null);
   protected gameSubject = new BehaviorSubject<GameModel[]>(undefined);
   protected $game = this.gameSubject.asObservable();
   protected displayedColumns = [
@@ -62,14 +63,15 @@ export class GamesComponent implements OnInit {
   protected currentLang: string;
 
   constructor(
-    protected userQueriesService: UserQueriesService,
-    protected cacheService: CacheService,
-    protected gameQueriesService: GameQueriesService,
-    protected router: RouterService,
-    protected dialog: MatDialog,
-    protected destroyRef: DestroyRef,
-    protected languageService: LanguageService,
-    protected translateService: TranslateService
+    private userQueriesService: UserQueriesService,
+    private cacheService: CacheService,
+    private gameQueriesService: GameQueriesService,
+    private router: RouterService,
+    private dialog: MatDialog,
+    private destroyRef: DestroyRef,
+    private languageService: LanguageService,
+    private translateService: TranslateService,
+    private userService: UserService
   ) {}
 
   public ngOnInit(): void {
@@ -78,7 +80,11 @@ export class GamesComponent implements OnInit {
       .getLanguage()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((lang) => (this.currentLang = lang));
-    this.update();
+    this.userService.$user
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((user: UserModel) => {
+        this.user.set(user);
+      });
   }
 
   protected click(game: GameModel): void {
@@ -95,24 +101,7 @@ export class GamesComponent implements OnInit {
     this.gameQueriesService
       .delete(game._id)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {
-        this.update();
-      });
-  }
-
-  protected update(): void {
-    this.cacheService.$userId
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-        filter((value) => !!value),
-        switchMap((id) => {
-          return this.userQueriesService.get(id);
-        })
-      )
-      .subscribe((user) => {
-        this.user = user;
-        this.gameSubject.next(user.games);
-      });
+      .subscribe();
   }
 
   protected formatPlayingTime(time: number): string {
@@ -144,9 +133,9 @@ export class GamesComponent implements OnInit {
     this.translateService.use(lang);
     this.currentLang = this.translateService.currentLang;
     this.languageService.setLanguage(this.currentLang);
-    this.user.lang = lang;
+    this.user().lang = lang;
     this.userQueriesService
-      .update(this.user, this.user._id)
+      .update(this.user(), this.user()._id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
   }
@@ -156,12 +145,6 @@ export class GamesComponent implements OnInit {
   }
 
   protected friends(): void {
-    this.dialog
-      .open(FriendsComponent)
-      .afterClosed()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {
-        this.update();
-      });
+    this.dialog.open(FriendsComponent);
   }
 }

@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { UserModel } from '../../../../models/user.model';
 import { AsyncPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
+import { AddGameComponent } from '../../add-game/add-game.component';
 
 @Component({
   selector: 'pm-friends-list',
@@ -21,4 +22,9 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class FriendsListComponent {
   @Input() public user: UserModel;
+  constructor(private dialog: MatDialog) {}
+
+  protected invite(user: UserModel): void {
+    this.dialog.open(AddGameComponent, { data: { friendId: user._id } });
+  }
 }

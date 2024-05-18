@@ -1,0 +1,9 @@
+.add-game__friends {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  &__friend {
+    display: flex;
+    justify-content: space-between;
+  }
+}

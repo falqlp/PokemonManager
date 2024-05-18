@@ -4,6 +4,13 @@
   } @else { @for (friend of user.friends; track friend._id){
   <div class="friends-list__friend">
     <span>{{ friend.username }}</span>
+    <button
+      mat-flat-button
+      mat-dialog-close
+      (click)="invite(friend)"
+      color="accent">
+      {{ 'INVITE' | translate }}
+    </button>
   </div>
   } }
 </div>
