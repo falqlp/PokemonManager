@@ -19,7 +19,7 @@ import { NumberFormatterPipe } from '../../pipes/number-formatter.pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { TopBarWeekCalendarComponent } from '../top-bar-week-calendar/top-bar-week-calendar.component';
+import { TopBarWeekCalendarComponent } from './top-bar-week-calendar/top-bar-week-calendar.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { BadgeDataService } from '../../services/badge.data.service';
 import { SimulationService } from '../../services/simulation.service';
@@ -56,14 +56,14 @@ export class TopBarComponent implements OnInit {
     this.translateService.currentLang ?? this.translateService.defaultLang;
 
   public constructor(
-    protected playerService: PlayerService,
-    protected dialog: MatDialog,
-    protected routerService: RouterService,
-    protected timeService: TimeService,
-    protected destroyRef: DestroyRef,
-    protected sidenavService: SidenavService,
-    protected translateService: TranslateService,
-    protected languageService: LanguageService,
+    private playerService: PlayerService,
+    private dialog: MatDialog,
+    private routerService: RouterService,
+    private timeService: TimeService,
+    private destroyRef: DestroyRef,
+    private sidenavService: SidenavService,
+    private translateService: TranslateService,
+    private languageService: LanguageService,
     protected badgeDataService: BadgeDataService,
     private simulationService: SimulationService
   ) {}
