@@ -34,12 +34,12 @@
         display: flex;
         align-items: center;
         font-size: 12px;
-        gap: 5px;
         background-color: $orange-light;
         border-radius: 5px;
         gap: 10px;
         padding: 5px;
         width: -webkit-fill-available;
+        width: -moz-available;
       }
     }
     &__box {

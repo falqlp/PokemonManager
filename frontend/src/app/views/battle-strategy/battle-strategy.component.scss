@@ -6,6 +6,7 @@
   &__pokemon {
     @include flexbox(space-between, 1);
     width: -webkit-fill-available;
+    width: -moz-available;
     align-items: center;
     display: grid;
     grid-template-columns: 1fr 1.5fr;

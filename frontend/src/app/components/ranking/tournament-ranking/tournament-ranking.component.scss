@@ -18,6 +18,7 @@
       @include flexbox(left, 1, column);
       align-items: normal;
       width: -webkit-fill-available;
+      width: -moz-available;
       gap: 5px;
       &__trainer {
         display: grid;

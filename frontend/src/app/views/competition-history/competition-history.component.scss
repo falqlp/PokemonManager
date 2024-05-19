@@ -3,6 +3,7 @@
 :host {
   @include flexbox(flex-start, 2, column);
   height: -webkit-fill-available;
+  height: -moz-available;
   .competition-history {
     &__filters {
       width: 100%;

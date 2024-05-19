@@ -9,6 +9,7 @@ import { singleton } from "tsyringe";
 import { calculateAge } from "../../utils/DateUtils";
 import GameRepository from "../../domain/game/GameRepository";
 import PokemonService from "../pokemon/PokemonService";
+import { IGame } from "../../domain/game/Game";
 
 export const XP_PER_LEVEL = 100000;
 
@@ -173,13 +174,14 @@ class ExperienceService {
     return { level, exp, variation };
   }
 
-  async xpForOtherTrainer(
-    gameId: string,
-    trainerId: string,
-    actualDate: Date,
-  ): Promise<void> {
+  async xpForOtherTrainer(game: IGame, actualDate: Date): Promise<void> {
     const trainers = await this.trainerRepository.list({
-      custom: { gameId, _id: { $ne: trainerId } },
+      custom: {
+        gameId: game._id,
+        _id: {
+          $not: { $in: game.players.map((player) => player.trainer._id) },
+        },
+      },
     });
     let pokemons: IPokemon[] = [];
     for (const trainer of trainers) {
@@ -197,7 +199,7 @@ class ExperienceService {
         ...trainer.pcStorage.storage.map((st) => st.pokemon),
       ];
     }
-    await this.pokemonService.updateMany(pokemons, gameId);
+    await this.pokemonService.updateMany(pokemons, game._id);
   }
 
   private async updateOtherPokemon(

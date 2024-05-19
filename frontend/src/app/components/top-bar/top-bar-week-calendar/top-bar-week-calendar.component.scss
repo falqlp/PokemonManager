@@ -53,6 +53,7 @@
 
         &__event {
           width: -webkit-fill-available;
+          width: -moz-available;
           text-align: center;
           background-color: $battle-event;
           padding: 5px;

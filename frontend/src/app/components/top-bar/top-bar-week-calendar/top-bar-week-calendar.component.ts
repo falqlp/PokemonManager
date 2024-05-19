@@ -1,5 +1,5 @@
 import { Component, DestroyRef, Input, OnInit } from '@angular/core';
-import { TimeService } from '../../services/time.service';
+import { TimeService } from '../../../services/time.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map, Observable, switchMap, tap } from 'rxjs';
 import {
@@ -13,13 +13,13 @@ import {
 import {
   CalendarEventEvent,
   CalendarEventModel,
-} from '../../models/calendar-event.model';
-import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
-import { TrainerModel } from '../../models/TrainersModels/trainer.model';
+} from '../../../models/calendar-event.model';
+import { CalendarEventQueriesService } from '../../../services/queries/calendar-event-queries.service';
+import { TrainerModel } from '../../../models/TrainersModels/trainer.model';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { BattleStatusComponent } from '../battle-status/battle-status.component';
-import { TrainerNameComponent } from '../trainer-name/trainer-name.component';
-import { PlayerService } from '../../services/player.service';
+import { BattleStatusComponent } from '../../battle-status/battle-status.component';
+import { TrainerNameComponent } from '../../trainer-name/trainer-name.component';
+import { PlayerService } from '../../../services/player.service';
 
 @Component({
   standalone: true,

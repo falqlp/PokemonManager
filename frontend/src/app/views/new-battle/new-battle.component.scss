@@ -12,6 +12,7 @@
         @include flexbox(left, 1, column);
         height: fit-content;
         width: -webkit-fill-available;
+        width: -moz-available;
         gap: 5px;
         overflow: hidden;
         &__pokemon {
@@ -19,6 +20,7 @@
           background-color: rgba(36, 36, 206, 0.5);
           padding: 5px;
           width: -webkit-fill-available;
+          width: -moz-available;
           &--opponent {
             background-color: rgba(178, 35, 35, 0.5);
           }
@@ -29,8 +31,10 @@
         flex: 1;
         overflow: auto;
         width: -webkit-fill-available;
+        width: -moz-available;
         &__separator {
           width: -webkit-fill-available;
+          width: -moz-available;
           margin: 5px 0;
         }
       }

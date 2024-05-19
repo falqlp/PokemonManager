@@ -21,6 +21,7 @@ h3 {
       gap: 5px;
       flex-direction: column;
       width: -webkit-fill-available;
+      width: -moz-available;
       &__pokemon {
         @include flexbox(space-between, 1);
         align-items: center;
