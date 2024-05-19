@@ -43,14 +43,5 @@
     &__time {
       @include flexbox(center, 2);
     }
-    &__continue {
-      display: flex;
-      align-items: center;
-    }
-    &__stop {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
   }
 }

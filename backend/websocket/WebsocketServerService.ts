@@ -3,6 +3,7 @@ import { IPokemon } from "../domain/pokemon/Pokemon";
 import { singleton } from "tsyringe";
 import { Server } from "https";
 import { HandleWebsocketMessageService } from "./HandleWebsocketMessageService";
+import { IGame } from "../domain/game/Game";
 
 export interface WebsocketMessage {
   type: string;
@@ -20,6 +21,7 @@ export interface CustomWebsocket extends WebSocket {
   startTime?: number;
   trainerId?: string;
   userId?: string;
+  askNextDay?: boolean;
 }
 
 @singleton()
@@ -44,7 +46,9 @@ class WebsocketServerService {
         );
       });
       ws.on("close", async () => {
-        await this.handleWebsocketMessageService.deleteRegistrationGame(ws);
+        this.handleResponse(
+          await this.handleWebsocketMessageService.deleteRegistrationGame(ws),
+        );
         this.clients = this.clients.filter((client) => client.id !== ws.id);
       });
       ws.send(
@@ -54,6 +58,13 @@ class WebsocketServerService {
         }),
       );
     });
+    setTimeout(() => {
+      this.reloadAll();
+    }, 2000);
+  }
+
+  private reloadAll(): void {
+    this.sendMessageToClients({ type: "reload" }, this.clients);
   }
 
   public async updatePlayer(trainerId: string, gameId: string): Promise<void> {
@@ -77,6 +88,13 @@ class WebsocketServerService {
     const clients = this.clients.filter(
       (client) => client.gameId === gameId.toString(),
     );
+    this.sendMessageToClients(message, clients);
+  }
+
+  private sendMessageToClients(
+    message: WebsocketMessage,
+    clients: CustomWebsocket[],
+  ): void {
     clients.forEach((client: WebSocket) => {
       if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify(message));
@@ -93,10 +111,10 @@ class WebsocketServerService {
         id: pokemon._id.toString(),
       },
     };
-    this.sendMessageToClientInGame(pokemon.gameId, message);
+    this.sendMessageToTrainers([pokemon.trainerId], message);
   }
 
-  public notify(key: string, type: NotificationType, gameId: string): void {
+  public notify(key: string, type: NotificationType, trainerId: string): void {
     const message = {
       type: "notify",
       payload: {
@@ -104,7 +122,7 @@ class WebsocketServerService {
         type,
       },
     };
-    this.sendMessageToClientInGame(gameId, message);
+    this.sendMessageToTrainers([trainerId], message);
   }
 
   public eggHatched(pokemon: IPokemon): void {
@@ -116,7 +134,7 @@ class WebsocketServerService {
         _id: pokemon._id,
       },
     };
-    this.sendMessageToClientInGame(pokemon.gameId, message);
+    this.sendMessageToTrainers([pokemon.trainerId], message);
   }
 
   public notifyUser(
@@ -135,7 +153,7 @@ class WebsocketServerService {
     const message: WebsocketMessage = {
       type: "updateUser",
     };
-    userIds.map((id) => id.toString());
+    userIds = userIds.map((id) => id.toString());
     this.sendMessageToUsers(userIds, message);
   }
 
@@ -146,11 +164,18 @@ class WebsocketServerService {
     const clients = this.clients.filter((client) =>
       userIds.includes(client.userId),
     );
-    clients.forEach((client: WebSocket) => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify(message));
-      }
-    });
+    this.sendMessageToClients(message, clients);
+  }
+
+  public sendMessageToTrainers(
+    trainersIds: string[],
+    message: WebsocketMessage,
+  ): void {
+    trainersIds = trainersIds.map((trainersId) => trainersId.toString());
+    const clients = this.clients.filter((client) =>
+      trainersIds.includes(client.trainerId),
+    );
+    this.sendMessageToClients(message, clients);
   }
 
   private handleResponse(message: WebsocketMessage | void): void {
@@ -165,8 +190,53 @@ class WebsocketServerService {
           .forEach((client: CustomWebsocket) => {
             client.send(JSON.stringify(message));
           });
+      } else if (message.type === "deleteRegistration" && message.payload) {
+        this.updateSimulateStatus(message.payload);
       }
     }
+  }
+
+  public changeTrainerSimulateDayStatus(
+    trainerId: string,
+    game: IGame,
+    status: boolean,
+  ): void {
+    this.clients
+      .filter((client) => client.trainerId === trainerId.toString())
+      .map((client) => {
+        client.askNextDay = status;
+        return client;
+      });
+    this.updateSimulateStatus(game);
+  }
+
+  public updateSimulateStatus(game: IGame): void {
+    const wantNextDay = this.getNextDayStatus(game);
+    const nbTrainers = game.players.length;
+    this.sendMessageToClientInGame(game._id.toString(), {
+      type: "simulateStatus",
+      payload: { wantNextDay, nbTrainers },
+    });
+  }
+
+  public getNextDayStatus(game: IGame): number {
+    const trainerIds = game.players.map((player) =>
+      player.trainer._id.toString(),
+    );
+    return this.clients.filter(
+      (client) => trainerIds.includes(client.trainerId) && client.askNextDay,
+    ).length;
+  }
+
+  public updateGame(gameId: string): void {
+    this.sendMessageToClientInGame(gameId, { type: "updateGame" });
+  }
+
+  public simulating(gameId: string, value: boolean): void {
+    this.sendMessageToClientInGame(gameId, {
+      type: "simulating",
+      payload: value,
+    });
   }
 }
 

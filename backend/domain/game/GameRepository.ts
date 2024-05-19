@@ -41,12 +41,15 @@ class GameRepository extends CompleteRepository<IGame> {
 
   public async updatePlayingTime(
     gameId: string,
+    trainerId: string,
     sessionTime: number,
-  ): Promise<void> {
+  ): Promise<IGame> {
     if (sessionTime) {
-      await this.schema.findByIdAndUpdate(gameId, {
-        $inc: { playingTime: sessionTime },
-      });
+      const game = await this.get(gameId);
+      game.players.find(
+        (player) => player.trainer._id.toString() === trainerId,
+      ).playingTime += sessionTime;
+      return await this.update(game._id, game);
     }
   }
 }

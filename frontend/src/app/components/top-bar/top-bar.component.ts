@@ -22,7 +22,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TopBarWeekCalendarComponent } from './top-bar-week-calendar/top-bar-week-calendar.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { BadgeDataService } from '../../services/badge.data.service';
-import { SimulationService } from '../../services/simulation.service';
+import { ContinueButtonComponent } from './continue-button/continue-button.component';
+import { WebsocketEventService } from '../../services/websocket-event.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -41,6 +42,7 @@ import { SimulationService } from '../../services/simulation.service';
     MatProgressSpinnerModule,
     TopBarWeekCalendarComponent,
     MatBadgeModule,
+    ContinueButtonComponent,
   ],
 })
 export class TopBarComponent implements OnInit {
@@ -50,7 +52,6 @@ export class TopBarComponent implements OnInit {
   protected date$: Observable<string>;
   protected showWeekCalendar = false;
   protected actualDate: Date;
-  protected simulating = false;
   protected player: TrainerModel;
   protected lang =
     this.translateService.currentLang ?? this.translateService.defaultLang;
@@ -65,7 +66,7 @@ export class TopBarComponent implements OnInit {
     private translateService: TranslateService,
     private languageService: LanguageService,
     protected badgeDataService: BadgeDataService,
-    private simulationService: SimulationService
+    private websocketEventService: WebsocketEventService
   ) {}
 
   public ngOnInit(): void {
@@ -74,6 +75,11 @@ export class TopBarComponent implements OnInit {
         this.player = trainer;
       })
     );
+    this.websocketEventService.simulatingEvent$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((value) => {
+        this.toggleWeekCalendar(value);
+      });
     this.goHomeDisabled$ = this.routerService.goHomeDisabled();
     this.title$ = this.routerService.getTitle();
     this.date$ = this.timeService.getActualDateToString();
@@ -83,14 +89,6 @@ export class TopBarComponent implements OnInit {
       .subscribe((date) => {
         this.actualDate = date;
       });
-    this.simulationService.$simulating
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((simulating) => {
-        this.simulating = simulating;
-        if (!simulating) {
-          this.showWeekCalendar = false;
-        }
-      });
   }
 
   protected openInfo(pokemon: PokemonModel): void {
@@ -99,15 +97,6 @@ export class TopBarComponent implements OnInit {
 
   protected menu(): void {
     this.sidenavService.openSidenav();
-  }
-
-  protected simulateButton(playerId: string): void {
-    if (this.simulating) {
-      this.simulationService.stopSimulation();
-    } else {
-      this.showWeekCalendar = true;
-      this.simulationService.simulate(playerId);
-    }
   }
 
   protected showCalendar(): void {
@@ -133,5 +122,9 @@ export class TopBarComponent implements OnInit {
       default:
         return '';
     }
+  }
+
+  protected toggleWeekCalendar(value: boolean): void {
+    this.showWeekCalendar = value;
   }
 }

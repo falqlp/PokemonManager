@@ -1,0 +1,22 @@
+@if ($simulateStatus|async; as simulateStatus){ @if (!($simulating|async)){
+<button mat-flat-button color="accent" (click)="simulate()">
+  <span class="continue-button--continue">
+    @if (simulationService.askForNextDay){
+    <mat-icon>check</mat-icon>
+    } @if (simulateStatus.nbTrainers !==1) {
+    <span>
+      {{ simulateStatus.wantNextDay }}/{{ simulateStatus.nbTrainers }}
+    </span>
+    }
+    {{ 'CONTINUE' | translate }} <mat-icon>arrow_forward</mat-icon></span
+  >
+</button>
+} @else {
+<button mat-flat-button color="accent" (click)="stopSimulation()">
+  <div class="continue-button--stop">
+    <mat-spinner color="accent" diameter="20"></mat-spinner>
+    <span>{{ 'STOP' | translate }}</span>
+  </div>
+</button>
+
+} }

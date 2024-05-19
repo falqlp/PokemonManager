@@ -1,0 +1,12 @@
+.continue-button {
+  &--continue {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  &--stop {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}

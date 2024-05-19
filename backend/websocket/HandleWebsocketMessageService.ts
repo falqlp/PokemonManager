@@ -3,6 +3,7 @@ import { mongoId } from "../utils/MongoUtils";
 import { CustomWebsocket, WebsocketMessage } from "./WebsocketServerService";
 import GameRepository from "../domain/game/GameRepository";
 import BattleService from "../application/battle/BattleService";
+import { IGame } from "../domain/game/Game";
 
 @singleton()
 export class HandleWebsocketMessageService {
@@ -39,14 +40,21 @@ export class HandleWebsocketMessageService {
     ws.trainerId = payload.trainerId;
   };
 
-  deleteRegistrationGame = async (ws: CustomWebsocket): Promise<void> => {
-    if (ws.gameId) {
-      await this.gameRepository.updatePlayingTime(
+  public deleteRegistrationGame = async (
+    ws: CustomWebsocket,
+  ): Promise<WebsocketMessage> => {
+    let game: IGame;
+    if (ws.gameId && ws.trainerId) {
+      game = await this.gameRepository.updatePlayingTime(
         ws.gameId,
+        ws.trainerId,
         Date.now() - ws.startTime,
       );
-      ws.gameId = undefined;
     }
+    if (ws.gameId) {
+      ws.askNextDay = undefined;
+    }
+    return { type: "deleteRegistration", payload: game };
   };
 
   private deleteRegistrationUser = async (
@@ -59,10 +67,19 @@ export class HandleWebsocketMessageService {
 
   private deleteRegistrationTrainer = async (
     ws: CustomWebsocket,
-  ): Promise<void> => {
+  ): Promise<WebsocketMessage> => {
+    let game: IGame;
+    if (ws.gameId && ws.trainerId) {
+      game = await this.gameRepository.updatePlayingTime(
+        ws.gameId,
+        ws.trainerId,
+        Date.now() - ws.startTime,
+      );
+    }
     if (ws.trainerId) {
       ws.trainerId = undefined;
     }
+    return { type: "deleteRegistration", payload: game };
   };
 
   private playRound = async (

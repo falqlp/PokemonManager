@@ -25,7 +25,7 @@ class TrainerRepository extends CompleteRepository<ITrainer> {
     filter?: FilterQuery<ITrainer>,
     update?: UpdateQuery<ITrainer>,
   ): Promise<void> {
-    this.schema.updateMany(filter, update);
+    await this.schema.updateMany(filter, update);
   }
 
   public async deleteTrainer(dto: ITrainer): Promise<ITrainer> {

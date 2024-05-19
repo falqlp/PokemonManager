@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CompleteQuery } from '../../core/complete-query';
 import { CalendarEventModel } from '../../models/calendar-event.model';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { BattleModel } from '../../models/Battle.model';
 import { TimeService } from '../time.service';
@@ -42,25 +42,21 @@ export class CalendarEventQueriesService extends CompleteQuery<CalendarEventMode
     });
   }
 
-  public simulateDay(
+  public askNextDay(
     trainerId: string,
     date: Date
-  ): Observable<{ date: Date; battle: BattleModel; redirectTo: string }> {
-    return this.http
-      .post<{ date: Date; battle: BattleModel; redirectTo: string }>(
-        this.url + '/simulateDay',
-        {
-          trainerId,
-          date,
-        }
-      )
-      .pipe(
-        tap((res) => {
-          if (!res.battle) {
-            res.date = new Date(res.date);
-            this.timeService.updateDate(res.date);
-          }
-        })
-      );
+  ): Observable<{ battle: BattleModel; redirectTo: string }> {
+    return this.http.put<{ battle: BattleModel; redirectTo: string }>(
+      this.url + '/askNextDay',
+      { trainerId, date }
+    );
+  }
+
+  public deleteAskNextDay(trainerId: string): Observable<void> {
+    return this.http.put<void>(this.url + '/deleteAskNextDay', { trainerId });
+  }
+
+  public updateAskNextDay(): Observable<void> {
+    return this.http.get<void>(this.url + '/updateAskNextDay');
   }
 }

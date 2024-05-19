@@ -11,13 +11,13 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
-  private lang = 'fr';
+  private lang = 'fr-Fr';
   constructor(
     protected cacheService: CacheService,
     protected languageService: LanguageService
   ) {
     this.languageService.getLanguage().subscribe((currentLang) => {
-      this.lang = currentLang.substring(0, 2);
+      this.lang = currentLang;
     });
   }
 

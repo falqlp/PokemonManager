@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, filter, Observable, of, switchMap } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable, of, switchMap } from 'rxjs';
 import { GameQueriesService } from './queries/game-queries.service';
 import { CacheService } from './cache.service';
 import { TranslateService } from '@ngx-translate/core';
+import { WebsocketEventService } from './websocket-event.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,12 +19,18 @@ export class TimeService {
   protected actualDaySubject = new BehaviorSubject(this.actualDate);
 
   public constructor(
-    protected gameQueriesService: GameQueriesService,
-    protected cacheService: CacheService,
-    protected translateService: TranslateService
+    private gameQueriesService: GameQueriesService,
+    private cacheService: CacheService,
+    private translateService: TranslateService,
+    private websocketEventService: WebsocketEventService
   ) {
     this.cacheService.$gameId
       .pipe(
+        switchMap((gameId) => {
+          return this.websocketEventService.updateGameEvent$.pipe(
+            map(() => gameId)
+          );
+        }),
         switchMap((gameId) => {
           if (gameId && gameId !== 'undefined') {
             return this.gameQueriesService.getTime(gameId);

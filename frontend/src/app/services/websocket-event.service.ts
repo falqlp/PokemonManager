@@ -37,6 +37,11 @@ export interface WeeklyXpModel {
   }[];
 }
 
+export interface SimulateStatusModel {
+  wantNextDay: number;
+  nbTrainers: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -84,6 +89,23 @@ export class WebsocketEventService {
   public updateUserEvent$: Observable<void> =
     this.updateUserEventSubject.asObservable();
 
+  private simulateStatusEventSubject = new BehaviorSubject<SimulateStatusModel>(
+    null
+  );
+
+  public simulateStatusEvent$: Observable<SimulateStatusModel> =
+    this.simulateStatusEventSubject.asObservable();
+
+  private simulatingEventSubject = new BehaviorSubject<boolean>(null);
+
+  public simulatingEvent$: Observable<boolean> =
+    this.simulatingEventSubject.asObservable();
+
+  private updateGameEventSubject = new BehaviorSubject<void>(null);
+
+  public updateGameEvent$: Observable<void> =
+    this.updateGameEventSubject.asObservable();
+
   constructor() {}
 
   public handleMessage = (message: WebSocketModel): void => {
@@ -128,6 +150,18 @@ export class WebsocketEventService {
     this.updateUserEventSubject.next();
   };
 
+  private simulateStatusEvent = (payload: SimulateStatusModel): void => {
+    this.simulateStatusEventSubject.next(payload);
+  };
+
+  private simulatingEvent = (payload: boolean): void => {
+    this.simulatingEventSubject.next(payload);
+  };
+
+  private updateGameEvent = (): void => {
+    this.updateGameEventSubject.next();
+  };
+
   private eventMap: Record<string, (payload?: any) => void> = {
     updatePlayer: this.updatePlayerEvent,
     connexion: console.log,
@@ -139,5 +173,9 @@ export class WebsocketEventService {
     weeklyXp: this.weeklyXpEvent,
     playRound: this.battleEvent,
     updateUser: this.updateUserEvent,
+    simulateStatus: this.simulateStatusEvent,
+    reload: () => location.reload(),
+    simulating: this.simulatingEvent,
+    updateGame: this.updateGameEvent,
   };
 }

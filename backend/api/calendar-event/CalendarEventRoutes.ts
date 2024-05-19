@@ -5,9 +5,11 @@ import CalendarEventService from "../../application/calendarEvent/CalendarEventS
 import CalendarEventMapper from "./CalendarEventMapper";
 import BattleInstanceMapper from "../battle-instance/BattleInstanceMapper";
 import { container } from "tsyringe";
+import SimulateDayService from "../../application/calendarEvent/SimulateDayService";
 
 const router = express.Router();
 const calendarEventService = container.resolve(CalendarEventService);
+const simulateDayService = container.resolve(SimulateDayService);
 const mapper = container.resolve(CalendarEventMapper);
 const battleInstanceMapper = container.resolve(BattleInstanceMapper);
 const completeRouter = new CompleteRouter(
@@ -15,7 +17,6 @@ const completeRouter = new CompleteRouter(
   mapper,
 );
 
-router.use("/", completeRouter.router);
 router.post("/battle", async (req, res, next) => {
   try {
     const gameId = req.headers["game-id"] as string;
@@ -47,13 +48,13 @@ router.post("/weekCalendar", async (req, res, next) => {
   }
 });
 
-router.post("/simulateDay", async (req, res, next) => {
+router.put("/askNextDay", async (req, res, next) => {
   try {
     const gameId = req.headers["game-id"] as string;
-    const obj = await calendarEventService.simulateDay(
+    const obj = await simulateDayService.askSimulateDay(
       req.body.trainerId,
-      req.body.date,
       gameId,
+      new Date(req.body.date),
     );
     if (obj.battle) {
       obj.battle = battleInstanceMapper.map(obj.battle);
@@ -63,5 +64,26 @@ router.post("/simulateDay", async (req, res, next) => {
     next(error);
   }
 });
+
+router.put("/deleteAskNextDay", async (req, res, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    await simulateDayService.deleteAskNextDay(req.body.trainerId, gameId);
+    res.status(200).json();
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/updateAskNextDay", async (req, res, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    await simulateDayService.updateAskNextDay(gameId);
+    res.status(200).json();
+  } catch (error) {
+    next(error);
+  }
+});
+router.use("/", completeRouter.router);
 
 export default router;

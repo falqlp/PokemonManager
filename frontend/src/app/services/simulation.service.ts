@@ -3,11 +3,12 @@ import { CalendarEventQueriesService } from './queries/calendar-event-queries.se
 import { BattleModel } from '../models/Battle.model';
 import { DialogButtonsModel } from '../modals/generic-dialog/generic-dialog.models';
 import { GenericDialogComponent } from '../modals/generic-dialog/generic-dialog.component';
-import { BehaviorSubject, first, Observable } from 'rxjs';
+import { BehaviorSubject, first, map, Observable, switchMap, tap } from 'rxjs';
 import { BattleInstanceQueriesService } from './queries/battle-instance-queries.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterService } from './router.service';
 import { TimeService } from './time.service';
+import { PlayerService } from './player.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ import { TimeService } from './time.service';
 export class SimulationService {
   private stopRequest = false;
   private actualDate: Date;
+  public askForNextDay = false;
 
   private simulatingSubject = new BehaviorSubject<boolean>(false);
   public $simulating: Observable<boolean> =
@@ -24,48 +26,70 @@ export class SimulationService {
     private calendarEventQueriesService: CalendarEventQueriesService,
     private battleInstanceQueriesService: BattleInstanceQueriesService,
     private dialog: MatDialog,
-    private router: RouterService,
-    private timeService: TimeService
+    private routerService: RouterService,
+    private timeService: TimeService,
+    private playerService: PlayerService
   ) {
     this.timeService.getActualDate().subscribe((date) => {
       this.actualDate = date;
+      this.askForNextDay = false;
     });
   }
 
-  public simulate(playerId: string): void {
-    this.simulationStarted();
-    this.calendarEventQueriesService
-      .simulateDay(playerId, this.actualDate)
-      .subscribe((res) => {
-        if (res.battle) {
-          this.goToBattle(res.battle);
-          this.simulationStopped();
-        } else if (res.redirectTo) {
-          this.router.navigateByUrl(res.redirectTo);
-          this.simulationStopped();
-        } else {
-          if (this.stopRequest) {
-            this.simulationStopped();
+  public simulate(): void {
+    this.playerService.player$
+      .pipe(
+        switchMap((player) => {
+          return this.timeService.getActualDate().pipe(
+            first(),
+            map((date) => {
+              return { date, playerId: player._id };
+            })
+          );
+        }),
+        switchMap(({ date, playerId }) => {
+          if (this.askForNextDay) {
+            return this.calendarEventQueriesService
+              .deleteAskNextDay(playerId)
+              .pipe(
+                tap(() => {
+                  this.askForNextDay = !this.askForNextDay;
+                })
+              );
           } else {
-            setTimeout(() => {
-              this.simulate(playerId);
-            }, 1000);
+            return this.calendarEventQueriesService
+              .askNextDay(playerId, date)
+              .pipe(
+                tap((res) => {
+                  if (res.battle) {
+                    this.goToBattle(res.battle);
+                  } else if (res.redirectTo) {
+                    this.routerService.navigateByUrl(res.redirectTo);
+                  } else {
+                    this.askForNextDay = !this.askForNextDay;
+                  }
+                })
+              );
           }
-        }
-      });
+        })
+      )
+      .subscribe();
   }
 
   public stopSimulation(): void {
-    this.stopRequest = true;
-  }
-
-  private simulationStopped(): void {
-    this.simulatingSubject.next(false);
-    this.stopRequest = false;
-  }
-
-  private simulationStarted(): void {
-    this.simulatingSubject.next(true);
+    this.playerService.player$
+      .pipe(
+        switchMap((trainer) => {
+          return this.calendarEventQueriesService
+            .deleteAskNextDay(trainer._id)
+            .pipe(
+              tap(() => {
+                this.askForNextDay = !this.askForNextDay;
+              })
+            );
+        })
+      )
+      .subscribe();
   }
 
   protected goToBattle(battle: BattleModel): void {
@@ -78,7 +102,7 @@ export class SimulationService {
           this.battleInstanceQueriesService
             .simulateBattle(battle)
             .subscribe(() => {
-              this.router.navigate(['battle-resume'], {
+              this.routerService.navigate(['battle-resume'], {
                 queryParams: { battle: battle._id },
               });
               this.dialog.closeAll();
@@ -102,7 +126,7 @@ export class SimulationService {
         color: 'accent',
         close: true,
         click: (): void => {
-          this.router.navigate(['pcStorage']);
+          this.routerService.navigate(['pcStorage']);
         },
       },
       {
@@ -122,7 +146,7 @@ export class SimulationService {
         color: 'warn',
         close: true,
         click: (): void => {
-          this.router.navigate(['battle/' + battle._id]);
+          this.routerService.navigate(['battle/' + battle._id]);
         },
       },
     ];
