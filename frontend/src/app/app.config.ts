@@ -54,7 +54,10 @@ export const appConfig: ApplicationConfig = {
         echarts: () => import('echarts'),
       }),
     ]),
-    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: navigator.language === 'fr-FR' ? 'fr-FR' : 'en-EN',
+    },
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
     {
       provide: DateAdapter,

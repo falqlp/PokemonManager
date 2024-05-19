@@ -13,7 +13,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { RouterOutlet } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NoMobileComponent } from './core/components/no-mobile/no-mobile.component';
@@ -21,6 +21,7 @@ import { InitGameService } from './services/init-game.service';
 import { EggHatchedService } from './services/egg-hatched.service';
 import { NewMoveLearnedService } from './services/new-move-learned.service';
 import { WeeklyXpService } from './services/weekly-xp.service';
+import { LanguageService } from './services/language.service';
 
 @Component({
   selector: 'app-root',
@@ -46,6 +47,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     private sidenavService: SidenavService,
     private destroyRef: DestroyRef,
     private elementRef: ElementRef,
+    private languageService: LanguageService,
+    private translateService: TranslateService,
     initGameService: InitGameService,
     eggHatchedService: EggHatchedService,
     newMoveLearnedService: NewMoveLearnedService,
@@ -58,6 +61,10 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   public ngOnInit(): void {
+    this.languageService
+      .getLanguage()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((lang) => this.translateService.use(lang));
     this.websocketService.connect();
   }
 
