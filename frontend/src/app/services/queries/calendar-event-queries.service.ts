@@ -45,11 +45,16 @@ export class CalendarEventQueriesService extends CompleteQuery<CalendarEventMode
   public askNextDay(
     trainerId: string,
     date: Date
-  ): Observable<{ battle: BattleModel; redirectTo: string }> {
-    return this.http.put<{ battle: BattleModel; redirectTo: string }>(
-      this.url + '/askNextDay',
-      { trainerId, date }
-    );
+  ): Observable<{
+    battle: BattleModel;
+    redirectTo: string;
+    isMultiplayerBattle: boolean;
+  }> {
+    return this.http.put<{
+      battle: BattleModel;
+      redirectTo: string;
+      isMultiplayerBattle: boolean;
+    }>(this.url + '/askNextDay', { trainerId, date });
   }
 
   public deleteAskNextDay(trainerId: string): Observable<void> {

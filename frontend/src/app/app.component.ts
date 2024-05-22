@@ -22,6 +22,7 @@ import { EggHatchedService } from './services/egg-hatched.service';
 import { NewMoveLearnedService } from './services/new-move-learned.service';
 import { WeeklyXpService } from './services/weekly-xp.service';
 import { LanguageService } from './services/language.service';
+import { RouterService } from './services/router.service';
 
 @Component({
   selector: 'app-root',
@@ -52,12 +53,14 @@ export class AppComponent implements OnInit, AfterViewInit {
     initGameService: InitGameService,
     eggHatchedService: EggHatchedService,
     newMoveLearnedService: NewMoveLearnedService,
-    weeklyXpService: WeeklyXpService
+    weeklyXpService: WeeklyXpService,
+    routerService: RouterService
   ) {
     initGameService.init();
     eggHatchedService.init();
     newMoveLearnedService.init();
     weeklyXpService.init();
+    routerService.init();
   }
 
   public ngOnInit(): void {

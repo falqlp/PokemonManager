@@ -5,8 +5,8 @@ import MoveRepository from "../../domain/move/MoveRepository";
 import { IMoveLearning } from "../../domain/moveLearning/MoveLearning";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import { IMove } from "../../domain/move/Move";
-import WebsocketServerService from "../../websocket/WebsocketServerService";
 import { singleton } from "tsyringe";
+import WebsocketUtils from "../../websocket/WebsocketUtils";
 
 @singleton()
 export default class MoveLearningService {
@@ -14,7 +14,7 @@ export default class MoveLearningService {
     protected moveLearningRepository: MoveLearningRepository,
     protected moveRepository: MoveRepository,
     protected evolutionRepository: EvolutionRepository,
-    protected websocketServerService: WebsocketServerService,
+    protected websocketUtils: WebsocketUtils,
   ) {}
 
   public newMoveLearned(pokemon: IPokemon): void {
@@ -30,7 +30,7 @@ export default class MoveLearningService {
             }
           }
           if (damagedMove) {
-            this.websocketServerService.notifyNewMoveLearned(pokemon);
+            this.websocketUtils.notifyNewMoveLearned(pokemon);
           }
         }
       });

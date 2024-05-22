@@ -4,7 +4,7 @@ import { IUser } from "../../domain/user/User";
 import { MailService } from "../mail/MailService";
 import HashService from "./hash/HashService";
 import { mongoId } from "../../utils/MongoUtils";
-import WebsocketServerService from "../../websocket/WebsocketServerService";
+import WebsocketUtils from "../../websocket/WebsocketUtils";
 
 @singleton()
 export class UserService {
@@ -12,7 +12,7 @@ export class UserService {
     private userRepository: UserRepository,
     private mailService: MailService,
     private hashService: HashService,
-    private websocketServerService: WebsocketServerService,
+    private websocketUtils: WebsocketUtils,
   ) {}
 
   public async create(user: IUser): Promise<IUser> {
@@ -35,7 +35,7 @@ export class UserService {
   }
 
   public addFriend(userId: string, friendId: string): Promise<void> {
-    this.websocketServerService.notifyUser("NEW_FRIEND_REQUEST", userId);
+    this.websocketUtils.notifyUser("NEW_FRIEND_REQUEST", userId);
     return this.userRepository.addFriend(userId, friendId);
   }
 }

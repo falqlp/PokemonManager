@@ -14,6 +14,8 @@ import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
 import { IMove } from "../../domain/move/Move";
 import { BattleDataService } from "./BattleDataService";
 import BattleInstanceRepository from "../../domain/battleInstance/BattleInstanceRepository";
+import GameRepository from "../../domain/game/GameRepository";
+import BattleWebsocketService from "../../websocket/BattleWebsocketService";
 
 @singleton()
 class BattleService {
@@ -21,6 +23,8 @@ class BattleService {
     private battleCalcService: BattleCalcService,
     private battleDataService: BattleDataService,
     private battleInstanceRepository: BattleInstanceRepository,
+    private battleWebsocketService: BattleWebsocketService,
+    private gameRepository: GameRepository,
   ) {}
 
   public simulateBattle(battle: IBattleInstance): IBattleInstance {
@@ -281,11 +285,8 @@ class BattleService {
     return battleOrder;
   }
 
-  public async playNextRound(
-    battleId: string,
-    init?: boolean,
-  ): Promise<IBattleState> {
-    const battleState = this.battleDataService.get(battleId);
+  public async playNextRound(battleId: string, init?: boolean): Promise<void> {
+    const battleState = this.battleDataService.getBattleState(battleId);
     let newBattleState: IBattleState;
     if (!init && battleState) {
       newBattleState = this.simulateBattleRound(
@@ -296,7 +297,8 @@ class BattleService {
     } else {
       const battle = await this.battleInstanceRepository.get(battleId);
       newBattleState =
-        this.battleDataService.get(battleId) ?? this.initBattle(battle);
+        this.battleDataService.getBattleState(battleId) ??
+        this.initBattle(battle);
       if (battle.winner) {
         if (battle.winner === "player") {
           newBattleState.opponent.defeat = true;
@@ -313,9 +315,116 @@ class BattleService {
       await this.battleInstanceRepository.update(battleId, battle);
       this.battleDataService.delete(battleId);
     } else {
-      this.battleDataService.set(battleId, newBattleState);
+      this.battleDataService.setBattleState(battleId, newBattleState);
     }
-    return newBattleState;
+    this.battleWebsocketService.playRound(newBattleState);
+  }
+
+  public async initTrainer(
+    trainerId: string,
+    battleId: string,
+    gameId: string,
+  ): Promise<void> {
+    this.battleWebsocketService.addInitBattleStatus(trainerId);
+    const playerIds = await this.getPlayerIds(battleId, gameId);
+    if (this.battleWebsocketService.getInitBattleReady(playerIds)) {
+      await this.playNextRound(battleId, true);
+      this.battleWebsocketService.deleteInitBattleStatus(playerIds);
+    }
+  }
+
+  public async askNextRound(
+    trainerId: string,
+    battleId: string,
+    gameId: string,
+  ): Promise<void> {
+    this.battleWebsocketService.addAskNextRound([trainerId], true);
+    const playerIds = await this.getPlayerIds(battleId, gameId);
+    if (this.battleWebsocketService.getNextRoundStatus(playerIds)) {
+      await this.playNextRound(battleId);
+      this.battleWebsocketService.resetNextRoundStatus(playerIds);
+    }
+    this.battleWebsocketService.updateNextRoundStatus(playerIds);
+  }
+
+  public async deleteAskNextRound(
+    trainerId: string,
+    battleId: string,
+    gameId: string,
+  ): Promise<void> {
+    const playerIds = await this.getPlayerIds(battleId, gameId);
+    this.battleWebsocketService.addAskNextRound([trainerId], false);
+    this.battleWebsocketService.updateNextRoundStatus(playerIds);
+  }
+
+  public async deleteAskNextRoundLoop(
+    trainerId: string,
+    battleId: string,
+    gameId: string,
+  ): Promise<void> {
+    const playerIds = await this.getPlayerIds(battleId, gameId);
+    this.battleWebsocketService.addAskNextRoundLoop([trainerId], false);
+    this.battleWebsocketService.updateNextRoundStatus(playerIds);
+  }
+
+  public async askNextRoundLoop(
+    trainerId: string,
+    battleId: string,
+    gameId: string,
+  ): Promise<void> {
+    this.battleWebsocketService.addAskNextRoundLoop([trainerId], true);
+    const playerIds = await this.getPlayerIds(battleId, gameId);
+    if (this.battleWebsocketService.getNextRoundStatus(playerIds)) {
+      if (this.battleWebsocketService.getNextRoundLoopStatus(playerIds)) {
+        await this.nextRoundLoop(battleId, playerIds, gameId);
+      } else {
+        await this.playNextRound(battleId);
+        this.battleWebsocketService.resetNextRoundStatus(playerIds);
+      }
+    }
+    this.battleWebsocketService.updateNextRoundStatus(playerIds);
+  }
+
+  private async nextRoundLoop(
+    battleId: string,
+    playerIds: string[],
+    gameId: string,
+  ): Promise<void> {
+    this.battleWebsocketService.setLoopMode(playerIds);
+    this.battleWebsocketService.updateNextRoundStatus(playerIds);
+    await this.playNextRound(battleId);
+    const interval = setInterval(async () => {
+      if (!this.battleWebsocketService.getNextRoundLoopStatus(playerIds)) {
+        clearInterval(interval);
+        await this.resetNextRoundStatus(battleId, gameId);
+      } else {
+        await this.playNextRound(battleId);
+      }
+    }, 4000);
+  }
+
+  public async resetNextRoundStatus(
+    battleId: string,
+    gameId: string,
+  ): Promise<void> {
+    const playerIds = await this.getPlayerIds(battleId, gameId);
+    this.battleWebsocketService.resetNextRoundStatus(playerIds);
+    this.battleWebsocketService.updateNextRoundStatus(playerIds);
+  }
+
+  private async getPlayerIds(
+    battleId: string,
+    gameId: string,
+  ): Promise<string[]> {
+    const battle = await this.battleInstanceRepository.get(battleId);
+    const game = await this.gameRepository.get(gameId);
+    return game.players
+      .map((player) => player.trainer._id.toString())
+      .filter(
+        (id) =>
+          id === battle.player._id.toString() ||
+          id === battle.opponent._id.toString(),
+      );
   }
 }
 export default BattleService;

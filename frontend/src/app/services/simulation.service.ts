@@ -62,7 +62,7 @@ export class SimulationService {
               .pipe(
                 tap((res) => {
                   if (res.battle) {
-                    this.goToBattle(res.battle);
+                    this.goToBattle(res.battle, res.isMultiplayerBattle);
                   } else if (res.redirectTo) {
                     this.routerService.navigateByUrl(res.redirectTo);
                   } else {
@@ -92,7 +92,10 @@ export class SimulationService {
       .subscribe();
   }
 
-  protected goToBattle(battle: BattleModel): void {
+  protected goToBattle(
+    battle: BattleModel,
+    isMultiplayerBattle: boolean
+  ): void {
     const lambdaButtons: DialogButtonsModel[] = [
       {
         label: 'YES',
@@ -132,6 +135,7 @@ export class SimulationService {
       {
         label: 'SIMULATE',
         color: 'accent',
+        disabled: isMultiplayerBattle,
         click: (): void => {
           this.dialog.open(GenericDialogComponent, {
             data: {

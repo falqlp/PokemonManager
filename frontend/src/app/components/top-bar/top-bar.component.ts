@@ -80,8 +80,8 @@ export class TopBarComponent implements OnInit {
       .subscribe((value) => {
         this.toggleWeekCalendar(value);
       });
-    this.goHomeDisabled$ = this.routerService.goHomeDisabled();
-    this.title$ = this.routerService.getTitle();
+    this.goHomeDisabled$ = this.routerService.$navigationDisabled;
+    this.title$ = this.routerService.$title;
     this.date$ = this.timeService.getActualDateToString();
     this.timeService
       .getActualDate()

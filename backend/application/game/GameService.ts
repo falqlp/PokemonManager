@@ -3,12 +3,12 @@ import GameRepository from "../../domain/game/GameRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import TrainerService from "../trainer/TrainerService";
 import GenerateCalendarService from "../calendarEvent/GenerateCalendarService";
-import WebsocketServerService from "../../websocket/WebsocketServerService";
 import { singleton } from "tsyringe";
 import CompetitionService from "../competition/CompetitionService";
 import { mongoId } from "../../utils/MongoUtils";
 import { ITrainer } from "../../domain/trainer/Trainer";
 import UserRepository from "../../domain/user/UserRepository";
+import WebsocketUtils from "../../websocket/WebsocketUtils";
 
 export const NB_GENERATED_TRAINER = 20;
 
@@ -19,9 +19,9 @@ class GameService {
     private trainerRepository: TrainerRepository,
     private trainerService: TrainerService,
     private generateCalendarService: GenerateCalendarService,
-    private websocketServerService: WebsocketServerService,
     private competitionService: CompetitionService,
     private userRepository: UserRepository,
+    private websocketUtils: WebsocketUtils,
   ) {}
 
   public async createWithUsers(
@@ -55,7 +55,7 @@ class GameService {
   }
 
   public async initGame(game: IGame): Promise<void> {
-    this.websocketServerService.sendMessageToClientInGame(game._id, {
+    this.websocketUtils.sendMessageToClientInGame(game._id, {
       type: "initGame",
       payload: {
         key: "TRAINER_GENERATION",
@@ -80,7 +80,7 @@ class GameService {
       {},
       { gameId: game._id },
     );
-    this.websocketServerService.sendMessageToClientInGame(game._id, {
+    this.websocketUtils.sendMessageToClientInGame(game._id, {
       type: "initGame",
       payload: {
         key: "CALENDAR_GENERATION",
@@ -92,7 +92,7 @@ class GameService {
       game._id,
       championship,
     );
-    this.websocketServerService.sendMessageToClientInGame(game._id, {
+    this.websocketUtils.sendMessageToClientInGame(game._id, {
       type: "initGameEnd",
     });
   }

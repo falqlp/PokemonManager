@@ -12,20 +12,22 @@ import {
   BattleTrainerModel,
 } from './battle.model';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { NgClass } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatCardModule } from '@angular/material/card';
 import { PlayerService } from '../../services/player.service';
-import { combineLatest } from 'rxjs';
+import { combineLatest, filter, first, switchMap } from 'rxjs';
 import { TrainerNameComponent } from '../../components/trainer-name/trainer-name.component';
 import { BattleSceneComponent } from './components/battle-scene/battle-scene.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { WebsocketEventService } from '../../services/websocket-event.service';
 import { RouterService } from '../../services/router.service';
-import { WebsocketService } from '../../services/websocket.service';
+import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @Component({
   selector: 'pm-new-battle',
@@ -40,6 +42,9 @@ import { WebsocketService } from '../../services/websocket.service';
     TrainerNameComponent,
     BattleSceneComponent,
     MatTooltipModule,
+    MatProgressSpinnerModule,
+    MatBadgeModule,
+    AsyncPipe,
   ],
   templateUrl: './new-battle.component.html',
   styleUrl: './new-battle.component.scss',
@@ -53,28 +58,43 @@ export class NewBattleComponent implements OnInit {
   protected battleMessage: string[][] = [];
   protected round = 0;
   protected roundMessage: string[] = [];
-  protected loopMode = false;
   protected battleLoop: number;
   private playerId: string; // id dans le battleInstance
   protected defeat = false;
+  protected askNextRound = false;
+  protected askNextRoundLoop = false;
 
   constructor(
-    protected translateService: TranslateService,
-    protected destroyRef: DestroyRef,
-    protected playerService: PlayerService,
-    protected router: RouterService,
+    private translateService: TranslateService,
+    private destroyRef: DestroyRef,
+    private playerService: PlayerService,
+    private router: RouterService,
     protected websocketEventService: WebsocketEventService,
-    protected websocketService: WebsocketService
+    private battleInstanceQueriesService: BattleInstanceQueriesService
   ) {}
 
   public ngOnInit(): void {
-    this.next(true);
+    this.playerService.player$
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        filter((player) => !!player),
+        first(),
+        switchMap((player) => {
+          return this.battleInstanceQueriesService.initTrainer(
+            player._id,
+            this.id
+          );
+        })
+      )
+      .subscribe();
     combineLatest([
       this.playerService.player$,
       this.websocketEventService.battleEvent$,
     ])
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(([player, battle]) => {
+        this.askNextRound = false;
+        this.askNextRoundLoop = false;
         if (!battle) {
           this.router.navigate(['battle-resume'], {
             queryParams: { battle: this.id },
@@ -158,24 +178,48 @@ export class NewBattleComponent implements OnInit {
     });
   }
 
-  protected next(init?: boolean): void {
-    this.websocketService.playRound(this.id, init);
+  protected next(): void {
+    this.askNextRound = true;
+    this.playerService.player$
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        filter((player) => !!player),
+        first(),
+        switchMap((player) => {
+          return this.battleInstanceQueriesService.askNextRound(
+            player._id,
+            this.id
+          );
+        })
+      )
+      .subscribe();
   }
 
   protected pause(): void {
-    this.loopMode = false;
-    clearInterval(this.battleLoop);
+    this.battleInstanceQueriesService
+      .resetNextRound(this.id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe();
   }
 
   protected loop(): void {
-    this.loopMode = true;
-    this.next();
-    this.battleLoop = setInterval(() => {
-      this.next();
-    }, 4000);
+    this.askNextRoundLoop = true;
+    this.playerService.player$
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        filter((player) => !!player),
+        first(),
+        switchMap((player) => {
+          return this.battleInstanceQueriesService.askNextRoundLoop(
+            player._id,
+            this.id
+          );
+        })
+      )
+      .subscribe();
   }
 
-  public onDefeat(): void {
+  protected onDefeat(): void {
     this.defeat = true;
     clearInterval(this.battleLoop);
     setTimeout(() => {
@@ -183,5 +227,39 @@ export class NewBattleComponent implements OnInit {
         queryParams: { battle: this.id },
       });
     }, 3000);
+  }
+
+  protected deleteAskNextRound(): void {
+    this.askNextRound = false;
+    this.playerService.player$
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        filter((player) => !!player),
+        first(),
+        switchMap((player) => {
+          return this.battleInstanceQueriesService.deleteAskNextRound(
+            player._id,
+            this.id
+          );
+        })
+      )
+      .subscribe();
+  }
+
+  protected deleteAskNextRoundLoop(): void {
+    this.askNextRoundLoop = false;
+    this.playerService.player$
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        filter((player) => !!player),
+        first(),
+        switchMap((player) => {
+          return this.battleInstanceQueriesService.deleteAskNextRoundLoop(
+            player._id,
+            this.id
+          );
+        })
+      )
+      .subscribe();
   }
 }

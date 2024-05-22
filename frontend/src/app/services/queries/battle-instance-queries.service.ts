@@ -4,10 +4,6 @@ import { Observable } from 'rxjs';
 import { BattleModel } from '../../models/Battle.model';
 import { CompleteQuery } from '../../core/complete-query';
 import { RankingModel, SerieRankingModel } from '../../models/ranking.model';
-import {
-  BattlePokemonModel,
-  BattleTrainerModel,
-} from '../../views/new-battle/battle.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,18 +12,6 @@ export class BattleInstanceQueriesService extends CompleteQuery<BattleModel> {
   public static readonly url = 'api/battleInstance';
   public constructor(protected override http: HttpClient) {
     super(BattleInstanceQueriesService.url, http);
-  }
-
-  public setWinner(
-    battleId: string,
-    looserId: string,
-    playerId: string
-  ): Observable<BattleModel> {
-    const battle = {
-      _id: battleId,
-      winner: looserId === playerId ? 'opponent' : 'player',
-    } as BattleModel;
-    return this.update(battle, battle._id);
   }
 
   public getRanking(competitionId: string): Observable<RankingModel[]> {
@@ -57,15 +41,53 @@ export class BattleInstanceQueriesService extends CompleteQuery<BattleModel> {
     });
   }
 
-  public initBattle(battleId: string): Observable<{
-    player: BattleTrainerModel;
-    opponent: BattleTrainerModel;
-    battleOrder: BattlePokemonModel[];
-  }> {
-    return this.http.get<{
-      player: BattleTrainerModel;
-      opponent: BattleTrainerModel;
-      battleOrder: BattlePokemonModel[];
-    }>(`${this.url}/init-battle/${battleId}`);
+  public initTrainer(trainerId: string, battleId: string): Observable<void> {
+    return this.http.post<void>(`${this.url}/init-trainer`, {
+      trainerId,
+      battleId,
+    });
+  }
+
+  public askNextRound(trainerId: string, battleId: string): Observable<void> {
+    return this.http.post<void>(`${this.url}/ask-next-round`, {
+      trainerId,
+      battleId,
+    });
+  }
+
+  public askNextRoundLoop(
+    trainerId: string,
+    battleId: string
+  ): Observable<void> {
+    return this.http.post<void>(`${this.url}/ask-next-round-loop`, {
+      trainerId,
+      battleId,
+    });
+  }
+
+  public deleteAskNextRound(
+    trainerId: string,
+    battleId: string
+  ): Observable<void> {
+    return this.http.post<void>(`${this.url}/delete-ask-next-round`, {
+      trainerId,
+      battleId,
+    });
+  }
+
+  public deleteAskNextRoundLoop(
+    trainerId: string,
+    battleId: string
+  ): Observable<void> {
+    return this.http.post<void>(`${this.url}/delete-ask-next-round-loop`, {
+      trainerId,
+      battleId,
+    });
+  }
+
+  public resetNextRound(battleId: string): Observable<void> {
+    return this.http.post<void>(`${this.url}/reset-next-round-status`, {
+      battleId,
+    });
   }
 }

@@ -12,11 +12,8 @@ import { Observable, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { PlayerService } from '../../../services/player.service';
 import { CalendarEventQueriesService } from '../../../services/queries/calendar-event-queries.service';
-import { TimeService } from '../../../services/time.service';
-import { RouterService } from '../../../services/router.service';
-import { BattleInstanceQueriesService } from '../../../services/queries/battle-instance-queries.service';
-import { MatDialog } from '@angular/material/dialog';
 import { SimulationService } from '../../../services/simulation.service';
+import { RouterService } from '../../../services/router.service';
 
 @Component({
   selector: 'pm-continue-button',
@@ -40,11 +37,8 @@ export class ContinueButtonComponent implements OnInit {
     private websocketEventService: WebsocketEventService,
     private playerService: PlayerService,
     private calendarEventQueriesService: CalendarEventQueriesService,
-    private timeService: TimeService,
-    private routerService: RouterService,
-    private battleInstanceQueriesService: BattleInstanceQueriesService,
-    private dialog: MatDialog,
-    protected simulationService: SimulationService
+    protected simulationService: SimulationService,
+    protected routerService: RouterService
   ) {}
 
   public ngOnInit(): void {

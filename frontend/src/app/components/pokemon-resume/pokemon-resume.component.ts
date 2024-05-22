@@ -59,6 +59,6 @@ export class PokemonResumeComponent implements AfterViewInit {
   }
 
   protected editNickname(): void {
-    this.dialog.open(ChangeNicknameComponent, { data: this.pokemon });
+    this.dialog.open(ChangeNicknameComponent, { data: this.pokemon() });
   }
 }

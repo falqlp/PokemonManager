@@ -20,10 +20,10 @@ import { ITrainingCamp } from "../../domain/trainer/trainingCamp/TrainingCamp";
 import { Gender } from "../../domain/Gender";
 import { IGame } from "../../domain/game/Game";
 import { addYears } from "../../utils/DateUtils";
-import WebsocketServerService from "../../websocket/WebsocketServerService";
 import { PcStorageService } from "./pcStorage/PcStorageService";
 import { XP_PER_LEVEL } from "../experience/ExperienceService";
 import { mongoId } from "../../utils/MongoUtils";
+import WebsocketUtils from "../../websocket/WebsocketUtils";
 
 @singleton()
 class TrainerService {
@@ -40,7 +40,7 @@ class TrainerService {
     protected trainingCampRepository: TrainingCampRepository,
     protected nurseryRepository: NurseryRepository,
     protected pcStorageRepository: PcStorageRepository,
-    protected websocketServerService: WebsocketServerService,
+    protected websocketUtils: WebsocketUtils,
   ) {}
 
   public async addPokemonForTrainer(
@@ -210,7 +210,7 @@ class TrainerService {
       await this.pcStorageService.update(trainer.pcStorage);
     }
     setTimeout(async () => {
-      await this.websocketServerService.updatePlayer(
+      await this.websocketUtils.updatePlayer(
         trainer._id.toString(),
         trainer.gameId,
       );

@@ -1,6 +1,7 @@
 <img class="battle__scene__background" src="assets/battleback/City.png" />
+@if (opponent()?.pokemons && player()?.pokemons) {
 <div class="battle__scene__opponent">
-  @for (opponentPokemon of opponent().pokemons; track opponentPokemon._id){
+  @for (opponentPokemon of opponent().pokemons; track opponentPokemon._id) {
   <div
     class="battle__scene__opponent__pokemon"
     [ngClass]="
@@ -57,7 +58,7 @@
   }
 </div>
 <div class="battle__scene__player">
-  @for (playerPokemon of player().pokemons; track playerPokemon._id){
+  @for (playerPokemon of player().pokemons; track playerPokemon._id) {
   <div
     class="battle__scene__player__pokemon"
     [ngClass]="'battle__scene__player__pokemon--' + player().pokemons.length">
@@ -110,3 +111,8 @@
   </div>
   }
 </div>
+} @else {
+<div class="waiting">
+  <span>{{ 'WAITING_FOR_OPPONENT' | translate }}</span>
+</div>
+}

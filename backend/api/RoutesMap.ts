@@ -4,7 +4,6 @@ import pokemonRoutes from "./pokemon/PokemonRoute";
 import trainerRoutes from "./trainer/TrainerRoute";
 import moveRoute from "./move/MoveRoute";
 import battleInstanceRoutes from "./battle-instance/BattleInstanceRoute";
-import battleRoutes from "./battle/BattleRoute";
 import moveLearningRoutes from "./moveLearning/MoveLearningRoutes";
 import pcStorageRoutes from "./pcStorage/PcStorageRoute";
 import calendarEventRoutes from "./calendar-event/CalendarEventRoutes";
@@ -25,7 +24,6 @@ export const RoutesMap: Record<string, Router> = {
   login: loginRoutes,
   move: moveRoute,
   battleInstance: battleInstanceRoutes,
-  battle: battleRoutes,
   moveLearning: moveLearningRoutes,
   pcStorage: pcStorageRoutes,
   "calendar-event": calendarEventRoutes,

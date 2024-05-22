@@ -144,8 +144,8 @@ export class PcStorageComponent implements OnInit {
         this.secondSelected,
       ];
       this.rearrangePokemons(this.playerTeam);
+      this.update();
     }
-    this.update();
   }
 
   protected findAndSwapFirstSelected(): void {
@@ -209,11 +209,13 @@ export class PcStorageComponent implements OnInit {
 
   protected canSwitchPokemon(): boolean {
     return (
-      this.playerTeam[1].pokemon !== undefined ||
-      (!this.playerTeam[0].firstSelected &&
-        !this.playerTeam[0].secondSelected) ||
-      (this.playerTeam[0].firstSelected && !!this.secondSelected) ||
-      (this.playerTeam[0].secondSelected && !!this.firstSelected)
+      (this.playerTeam[1].pokemon !== undefined ||
+        (!this.playerTeam[0].firstSelected &&
+          !this.playerTeam[0].secondSelected) ||
+        (this.playerTeam[0].firstSelected && !!this.secondSelected) ||
+        (this.playerTeam[0].secondSelected && !!this.firstSelected)) &&
+      !!this.firstSelected &&
+      !!this.secondSelected
     );
   }
 

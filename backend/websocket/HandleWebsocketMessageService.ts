@@ -1,15 +1,16 @@
 import { singleton } from "tsyringe";
-import { mongoId } from "../utils/MongoUtils";
-import { CustomWebsocket, WebsocketMessage } from "./WebsocketServerService";
 import GameRepository from "../domain/game/GameRepository";
-import BattleService from "../application/battle/BattleService";
 import { IGame } from "../domain/game/Game";
+import WebsocketDataService, {
+  CustomWebsocket,
+  WebsocketMessage,
+} from "./WebsocketDataService";
 
 @singleton()
 export class HandleWebsocketMessageService {
   constructor(
     private gameRepository: GameRepository,
-    private battleService: BattleService,
+    private websocketDataService: WebsocketDataService,
   ) {}
 
   async handleMessage(
@@ -26,18 +27,20 @@ export class HandleWebsocketMessageService {
   private registerGame = (ws: CustomWebsocket, payload: any): void => {
     const gameId = payload.gameId;
     const trainerId = payload.trainerId;
-    ws.id = mongoId().toString();
     ws.gameId = gameId;
     ws.startTime = Date.now();
     ws.trainerId = trainerId;
+    this.websocketDataService.update(ws);
   };
 
   private registerUser = (ws: CustomWebsocket, payload: any): void => {
     ws.userId = payload.userId;
+    this.websocketDataService.update(ws);
   };
 
   private registerTrainer = (ws: CustomWebsocket, payload: any): void => {
     ws.trainerId = payload.trainerId;
+    this.websocketDataService.update(ws);
   };
 
   public deleteRegistrationGame = async (
@@ -54,6 +57,8 @@ export class HandleWebsocketMessageService {
     if (ws.gameId) {
       ws.askNextDay = undefined;
     }
+    this.websocketDataService.update(ws);
+
     return { type: "deleteRegistration", payload: game };
   };
 
@@ -62,6 +67,7 @@ export class HandleWebsocketMessageService {
   ): Promise<void> => {
     if (ws.userId) {
       ws.userId = undefined;
+      this.websocketDataService.update(ws);
     }
   };
 
@@ -79,18 +85,9 @@ export class HandleWebsocketMessageService {
     if (ws.trainerId) {
       ws.trainerId = undefined;
     }
-    return { type: "deleteRegistration", payload: game };
-  };
+    this.websocketDataService.update(ws);
 
-  private playRound = async (
-    ws: CustomWebsocket,
-    payload: any,
-  ): Promise<WebsocketMessage> => {
-    const res = await this.battleService.playNextRound(
-      payload.battleId,
-      payload.init,
-    );
-    return { type: "playRound", payload: res };
+    return { type: "deleteRegistration", payload: game };
   };
 
   private messageHandleMap: Record<
@@ -106,6 +103,5 @@ export class HandleWebsocketMessageService {
     deleteRegistrationUser: this.deleteRegistrationUser,
     registerTrainer: this.registerTrainer,
     deleteRegistrationTrainer: this.deleteRegistrationTrainer,
-    playRound: this.playRound,
   };
 }

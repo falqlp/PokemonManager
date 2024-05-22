@@ -6,10 +6,12 @@ import { container } from "tsyringe";
 import { BattleInstanceService } from "../../application/battleInstance/BattleInstanceService";
 import PokemonMapper from "../pokemon/PokemonMapper";
 import { IBattlePokemon } from "../../application/battle/BattleInterfaces";
+import BattleService from "../../application/battle/BattleService";
 
 const battleInstanceService = container.resolve<BattleInstanceService>(
   BattleInstanceService,
 );
+const battleService = container.resolve(BattleService);
 const pokemonMapper = container.resolve(PokemonMapper);
 const battleMapper = container.resolve(BattleInstanceMapper);
 const router = express.Router();
@@ -80,6 +82,86 @@ router.get("/init-battle/:id", async (req, res, next) => {
       });
     }
     res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/init-trainer", async (req, res, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    await battleService.initTrainer(
+      req.body.trainerId,
+      req.body.battleId,
+      gameId,
+    );
+    res.status(200).json();
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/ask-next-round", async (req, res, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    await battleService.askNextRound(
+      req.body.trainerId,
+      req.body.battleId,
+      gameId,
+    );
+    res.status(200).json();
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/ask-next-round-loop", async (req, res, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    await battleService.askNextRoundLoop(
+      req.body.trainerId,
+      req.body.battleId,
+      gameId,
+    );
+    res.status(200).json();
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/delete-ask-next-round", async (req, res, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    await battleService.deleteAskNextRound(
+      req.body.trainerId,
+      req.body.battleId,
+      gameId,
+    );
+    res.status(200).json();
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/delete-ask-next-round-loop", async (req, res, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    await battleService.deleteAskNextRoundLoop(
+      req.body.trainerId,
+      req.body.battleId,
+      gameId,
+    );
+    res.status(200).json();
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/reset-next-round-status", async (req, res, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    await battleService.resetNextRoundStatus(req.body.battleId, gameId);
+    res.status(200).json();
   } catch (error) {
     next(error);
   }

@@ -10,30 +10,57 @@
         [trainer]="opponent" />
     </h3>
     <div class="battle__right-part__actions">
-      @if(!loopMode){
+      @if(!((websocketEventService.updateBattleStatusEvent$ | async)
+      .loopMode)){ @if (!askNextRound){
       <button
         [matTooltip]="'NEXT_ROUND' | translate"
+        matBadge="&#8288;"
+        matBadgeSize="small"
+        [matBadgeHidden]="
+          !(websocketEventService.updateBattleStatusEvent$ | async).nextRound
+        "
         [disabled]="defeat"
         color="warn"
         mat-icon-button
         (click)="next()">
         <mat-icon>play_arrow</mat-icon>
       </button>
-      } @if(loopMode){
-      <button
-        [matTooltip]="'AUTOMATIC_NEXT_ROUND' | translate"
-        mat-icon-button
-        (click)="pause()">
-        <mat-icon>pause</mat-icon>
-      </button>
       } @else {
+      <mat-spinner
+        class="mat-spinner"
+        [matTooltip]="'WAITING_FOR_OPPONENT' | translate"
+        (click)="deleteAskNextRound()"
+        diameter="20" />
+      } } @if((websocketEventService.updateBattleStatusEvent$ | async)
+      .loopMode){
       <button
         [matTooltip]="'PAUSE' | translate"
         mat-icon-button
-        (click)="loop()">
+        [disabled]="defeat"
+        (click)="pause()">
+        <mat-icon>pause</mat-icon>
+      </button>
+      } @else { @if(!askNextRoundLoop) {
+      <button
+        (click)="loop()"
+        [matTooltip]="'AUTOMATIC_NEXT_ROUND' | translate"
+        matBadge="&#8288;"
+        matBadgeSize="small"
+        [matBadgeHidden]="
+          !(websocketEventService.updateBattleStatusEvent$ | async)
+            .nextRoundLoop
+        "
+        [disabled]="defeat"
+        mat-icon-button>
         <mat-icon>repeat</mat-icon>
       </button>
-      }
+      } @else {
+      <mat-spinner
+        class="mat-spinner"
+        [matTooltip]="'WAITING_FOR_OPPONENT' | translate"
+        (click)="deleteAskNextRoundLoop()"
+        diameter="20" />
+      } }
     </div>
   </div>
   <div class="battle__right-part__move-order">

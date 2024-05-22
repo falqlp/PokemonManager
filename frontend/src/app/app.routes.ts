@@ -38,7 +38,7 @@ export const routes: Routes = [
   {
     path: 'battle/:id',
     component: NewBattleComponent,
-    data: { goHomeDisabled: true, title: 'BATTLE' },
+    data: { navigationDisabled: true, title: 'BATTLE' },
     canActivate: [GameGuard],
   },
   {
@@ -97,7 +97,7 @@ export const routes: Routes = [
   {
     path: 'starters',
     component: StartersComponent,
-    data: { title: 'STARTERS' },
+    data: { navigationDisabled: true, title: 'STARTERS' },
     canActivate: [GameGuard],
   },
   {

@@ -6,12 +6,12 @@ import { INursery } from "../../domain/trainer/nursery/Nursery";
 import PokemonBaseService from "./pokemonBase/PokemonBaseService";
 import PokemonBaseRepository from "../../domain/pokemon/pokemonBase/PokemonBaseRepository";
 import GameRepository from "../../domain/game/GameRepository";
-import WebsocketServerService from "../../websocket/WebsocketServerService";
 import { singleton } from "tsyringe";
 import MoveLearningService from "../moveLearning/MoveLearningService";
 import { Gender } from "../../domain/Gender";
 import { addYears } from "../../utils/DateUtils";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
+import WebsocketUtils from "../../websocket/WebsocketUtils";
 
 @singleton()
 class PokemonService {
@@ -22,7 +22,7 @@ class PokemonService {
     private pokemonBaseService: PokemonBaseService,
     private pokemonBaseRepository: PokemonBaseRepository,
     private gameRepository: GameRepository,
-    private websocketServerService: WebsocketServerService,
+    private websocketUtils: WebsocketUtils,
     private moveLearningService: MoveLearningService,
     private evolutionRepository: EvolutionRepository,
   ) {}
@@ -39,7 +39,7 @@ class PokemonService {
       );
       pokemon.hatchingDate = null;
     }
-    await this.websocketServerService.updatePlayer(
+    await this.websocketUtils.updatePlayer(
       pokemon.trainerId ?? oldPokemon.trainerId,
       pokemon.gameId,
     );
@@ -184,7 +184,7 @@ class PokemonService {
     newPokemon.gameId = gameId;
     const createdPokemon = await this.pokemonRepository.create(newPokemon);
     if (createdPokemon.trainerId) {
-      await this.websocketServerService.updatePlayer(
+      await this.websocketUtils.updatePlayer(
         newPokemon.trainerId,
         newPokemon.gameId,
       );
@@ -204,7 +204,7 @@ class PokemonService {
       { gameId },
     );
     hatched.forEach((egg) => {
-      this.websocketServerService.eggHatched(egg);
+      this.websocketUtils.eggHatched(egg);
     });
   }
 

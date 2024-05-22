@@ -1,7 +1,4 @@
 import { singleton } from "tsyringe";
-import WebsocketServerService, {
-  NotificationType,
-} from "../../websocket/WebsocketServerService";
 import GameRepository from "../../domain/game/GameRepository";
 import {
   CalendarEventEvent,
@@ -28,11 +25,16 @@ import { ICompetitionHistory } from "../../domain/competiton/competitionHistory/
 import { CompetitionType } from "../../domain/competiton/Competition";
 import CompetitionRepository from "../../domain/competiton/CompetitionRepository";
 import CompetitionHistoryRepository from "../../domain/competiton/competitionHistory/CompetitionHistoryRepository";
+import { NotificationType } from "../../websocket/WebsocketDataService";
+import SimulateDayWebsocketService from "../../websocket/SimulateDayWebsocketService";
+import WebsocketUtils from "../../websocket/WebsocketUtils";
+import PokemonService from "../pokemon/PokemonService";
 
 @singleton()
 export default class SimulateDayService {
   constructor(
-    private websocketServerService: WebsocketServerService,
+    private simulateDayWebsocketService: SimulateDayWebsocketService,
+    private websocketUtils: WebsocketUtils,
     private gameRepository: GameRepository,
     private calendarEventRepository: CalendarEventRepository,
     private trainerRepository: TrainerRepository,
@@ -49,26 +51,31 @@ export default class SimulateDayService {
     private generateCalendarService: GenerateCalendarService,
     private competitionRepository: CompetitionRepository,
     private competitionHistoryRepository: CompetitionHistoryRepository,
+    private pokemonService: PokemonService,
   ) {}
 
   public async askSimulateDay(
     trainerId: string,
     gameId: string,
     date: Date,
-  ): Promise<{ battle: IBattleInstance; redirectTo: string }> {
+  ): Promise<{
+    battle: IBattleInstance;
+    redirectTo: string;
+    isMultiplayerBattle: boolean;
+  }> {
     const res = await this.canSimulate(trainerId, gameId, date);
     if (!res.battle && !res.redirectTo) {
       const game = await this.gameRepository.get(gameId);
-      this.websocketServerService.changeTrainerSimulateDayStatus(
+      this.simulateDayWebsocketService.changeTrainerSimulateDayStatus(
         trainerId,
         game,
         true,
       );
       if (
         game.players.length ===
-        this.websocketServerService.getNextDayStatus(game)
+        this.simulateDayWebsocketService.getNextDayStatus(game)
       ) {
-        this.websocketServerService.simulating(gameId, true);
+        this.simulateDayWebsocketService.simulating(gameId, true);
         await this.startSimulation(game, date);
       }
     }
@@ -79,13 +86,13 @@ export default class SimulateDayService {
     const intervalId = setInterval(async () => {
       if (
         game.players.length !==
-          this.websocketServerService.getNextDayStatus(game) ||
+          this.simulateDayWebsocketService.getNextDayStatus(game) ||
         !(await this.canBeSimulated(game, date))
       ) {
         clearInterval(intervalId);
-        this.websocketServerService.simulating(game._id, false);
+        this.simulateDayWebsocketService.simulating(game._id, false);
         game.players.forEach((player) => {
-          this.websocketServerService.changeTrainerSimulateDayStatus(
+          this.simulateDayWebsocketService.changeTrainerSimulateDayStatus(
             player.trainer._id,
             game,
             false,
@@ -117,7 +124,7 @@ export default class SimulateDayService {
     gameId: string,
   ): Promise<void> {
     const game = await this.gameRepository.get(gameId);
-    this.websocketServerService.changeTrainerSimulateDayStatus(
+    this.simulateDayWebsocketService.changeTrainerSimulateDayStatus(
       trainerId,
       game,
       false,
@@ -127,7 +134,7 @@ export default class SimulateDayService {
   public async updateAskNextDay(gameId: string): Promise<void> {
     if (gameId !== "undefined") {
       const game = await this.gameRepository.get(gameId);
-      this.websocketServerService.updateSimulateStatus(game);
+      this.simulateDayWebsocketService.updateSimulateStatus(game);
     }
   }
 
@@ -135,11 +142,20 @@ export default class SimulateDayService {
     trainerId: string,
     gameId: string,
     date: Date,
-  ): Promise<{ battle: IBattleInstance; redirectTo: string }> {
+  ): Promise<{
+    battle: IBattleInstance;
+    redirectTo: string;
+    isMultiplayerBattle: boolean;
+  }> {
     let redirectTo: string = null;
+    let isMultiplayerBattle: boolean = false;
     const events = await this.calendarEventRepository.list({
       custom: { trainers: trainerId, date },
     });
+    const game = await this.gameRepository.get(gameId);
+    const trainerIds = game.players.map((player) =>
+      player.trainer._id.toString(),
+    );
     const battle = events.find(
       (event) =>
         event.type === CalendarEventEvent.BATTLE && !event.event.winner,
@@ -153,8 +169,15 @@ export default class SimulateDayService {
         gameId,
         redirectTo,
       );
+    } else {
+      if (
+        trainerIds.includes(battle.player._id.toString()) &&
+        trainerIds.includes(battle.opponent._id.toString())
+      ) {
+        isMultiplayerBattle = true;
+      }
     }
-    return { battle, redirectTo };
+    return { battle, redirectTo, isMultiplayerBattle };
   }
 
   public async nurseryEvents(
@@ -186,7 +209,7 @@ export default class SimulateDayService {
       ) {
         date.setUTCDate(date.getUTCDate() - 1);
         redirectTo = "nursery";
-        this.websocketServerService.notify(
+        this.websocketUtils.notify(
           "SELECT_VALID_NUMBER_OF_EGGS",
           NotificationType.Neutral,
           trainer._id,
@@ -224,19 +247,17 @@ export default class SimulateDayService {
           player.trainer._id,
         );
         res.trainer = this.trainerMapper.map(res.trainer);
-        this.websocketServerService.sendMessageToTrainers(
-          [player.trainer._id],
-          {
-            type: "weeklyXp",
-            payload: res,
-          },
-        );
+        this.websocketUtils.sendMessageToTrainers([player.trainer._id], {
+          type: "weeklyXp",
+          payload: res,
+        });
       }
     }
     if (date.getMonth() === 0 && date.getDate() === 1) {
       await this.newSeason(game);
     }
-    this.websocketServerService.updateGame(game._id.toString());
+    await this.pokemonService.isHatched(date, game._id);
+    this.websocketUtils.updateGame(game._id.toString());
     return date;
   }
 

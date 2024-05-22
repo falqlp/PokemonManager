@@ -5,7 +5,7 @@ import {
   NavigationStart,
   Router,
 } from '@angular/router';
-import { BehaviorSubject, combineLatest, filter, map, Observable } from 'rxjs';
+import { BehaviorSubject, filter, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,56 +13,36 @@ import { BehaviorSubject, combineLatest, filter, map, Observable } from 'rxjs';
 export class RouterService extends Router {
   protected lastUrl: string;
   protected titleSubject = new BehaviorSubject<string>('');
-  constructor(
-    protected activatedRoute: ActivatedRoute,
-    protected router: Router
-  ) {
+  private navigationDisabledSubject = new BehaviorSubject<boolean>(false);
+  public $navigationDisabled: Observable<boolean> =
+    this.navigationDisabledSubject.asObservable();
+
+  public $title = this.titleSubject.asObservable();
+
+  constructor(protected activatedRoute: ActivatedRoute) {
     super();
     this.init();
-  }
-
-  public goHomeDisabled(): Observable<boolean> {
-    return this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd),
-      map(() => {
-        let route = this.activatedRoute;
-        while (route.firstChild) {
-          route = route.firstChild;
-        }
-        return route.snapshot.data['goHomeDisabled'];
-      })
-    );
-  }
-
-  public getTitle(): Observable<string> {
-    return combineLatest([
-      this.router.events.pipe(
-        filter((event) => event instanceof NavigationEnd),
-        map(() => {
-          let route = this.activatedRoute;
-          while (route.firstChild) {
-            route = route.firstChild;
-          }
-          return route.snapshot.data['title'];
-        })
-      ),
-      this.titleSubject.asObservable(),
-    ]).pipe(
-      map(([routeTitle, subjectTitle]) => {
-        return routeTitle ?? subjectTitle;
-      })
-    );
   }
 
   public setTitle(title: string): void {
     this.titleSubject.next(title);
   }
 
-  protected init(): void {
-    this.router.events
+  public init(): void {
+    this.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        const routeData: any = this.config.find(
+          (config) =>
+            config.path === (event as NavigationEnd).url.replace('/', '')
+        ).data;
+        this.setTitle(routeData.title);
+        this.navigationDisabledSubject.next(routeData.navigationDisabled);
+      });
+    this.events
       .pipe(filter((event) => event instanceof NavigationStart))
       .subscribe(() => {
-        this.lastUrl = this.router.url;
+        this.lastUrl = this.url;
       });
   }
 

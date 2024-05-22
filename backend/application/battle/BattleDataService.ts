@@ -3,14 +3,23 @@ import { IBattleState } from "./BattleInterfaces";
 
 @singleton()
 export class BattleDataService {
-  private battleMap: Map<string, IBattleState> = new Map();
+  private battleMap: Map<
+    string,
+    { battleState: IBattleState; interval?: number }
+  > = new Map();
 
-  public get(key: string): IBattleState {
-    return this.battleMap.get(key);
+  public getBattleState(key: string): IBattleState {
+    if (!this.battleMap.has(key)) {
+      return undefined;
+    }
+    return this.battleMap.get(key).battleState;
   }
 
-  public set(key: string, battleState: IBattleState): void {
-    this.battleMap.set(key, battleState);
+  public setBattleState(key: string, battleState: IBattleState): void {
+    if (!this.battleMap.has(key)) {
+      this.battleMap.set(key, { battleState });
+    }
+    this.battleMap.get(key).battleState = battleState;
   }
 
   public delete(key: string): void {

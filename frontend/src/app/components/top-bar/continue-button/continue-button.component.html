@@ -1,5 +1,9 @@
 @if ($simulateStatus|async; as simulateStatus){ @if (!($simulating|async)){
-<button mat-flat-button color="accent" (click)="simulate()">
+<button
+  mat-flat-button
+  color="accent"
+  [disabled]="routerService.$navigationDisabled | async"
+  (click)="simulate()">
   <span class="continue-button--continue">
     @if (simulationService.askForNextDay){
     <mat-icon>check</mat-icon>

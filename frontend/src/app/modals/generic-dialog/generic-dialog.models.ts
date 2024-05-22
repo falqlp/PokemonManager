@@ -5,4 +5,5 @@ export interface DialogButtonsModel {
   color: ThemePalette;
   click?: () => void;
   close?: boolean;
+  disabled?: boolean;
 }

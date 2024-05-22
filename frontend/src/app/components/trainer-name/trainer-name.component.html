@@ -1,1 +1,1 @@
-{{ trainer().class | translate }} {{ trainer().name }}
+{{ trainer()?.class ?? '' | translate }} {{ trainer()?.name }}

@@ -4,7 +4,7 @@
   calendar event</button
 >}
 <div class="home">
-  @if (player().competitions.length > 0) {
+  @if (player()?.competitions.length > 0) {
   <div class="home__rankings">
     <h3>{{ 'RANKINGS' | translate }}</h3>
     <mat-tab-group>

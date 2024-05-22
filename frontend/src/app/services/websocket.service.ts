@@ -60,6 +60,27 @@ export class WebsocketService {
           if (lastUrl && lastUrl !== '/') {
             this.routerService.navigateByUrl(lastUrl);
           }
+          this.cacheService.$gameId.subscribe((id) => {
+            if (id) {
+              this.registerToGame(id);
+            } else {
+              this.deleteRegistrationToGame();
+            }
+          });
+          this.cacheService.$userId.subscribe((userId) => {
+            if (userId) {
+              this.registerUser(userId);
+            } else {
+              this.deleteRegistrationUser();
+            }
+          });
+          this.cacheService.$trainerId.subscribe((trainerId) => {
+            if (trainerId) {
+              this.registerTrainer(trainerId);
+            } else {
+              this.deleteRegistrationTrainer();
+            }
+          });
         },
       },
     };
@@ -78,27 +99,6 @@ export class WebsocketService {
       .subscribe((message) =>
         this.websocketEventService.handleMessage(message)
       );
-    this.cacheService.$gameId.subscribe((id) => {
-      if (id) {
-        this.registerToGame(id);
-      } else {
-        this.deleteRegistrationToGame();
-      }
-    });
-    this.cacheService.$userId.subscribe((userId) => {
-      if (userId) {
-        this.registerUser(userId);
-      } else {
-        this.deleteRegistrationUser();
-      }
-    });
-    this.cacheService.$trainerId.subscribe((trainerId) => {
-      if (trainerId) {
-        this.registerTrainer(trainerId);
-      } else {
-        this.deleteRegistrationTrainer();
-      }
-    });
   }
 
   public registerToGame(gameId: string): void {
