@@ -21,8 +21,7 @@
       class="top-bar-week-calendar__calendar__day"
       *ngFor="let day of data$ | async; let i = index"
       [ngClass]="{
-        'top-bar-week-calendar__calendar__day--actual':
-          day.split('-')[0] === actualDateString
+        'top-bar-week-calendar__calendar__day--actual': i === 1
       }">
       <label class="top-bar-week-calendar__calendar__day__date">
         {{

@@ -8,7 +8,7 @@ import {
   SimulateStatusModel,
   WebsocketEventService,
 } from '../../../services/websocket-event.service';
-import { Observable, switchMap } from 'rxjs';
+import { filter, Observable, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { PlayerService } from '../../../services/player.service';
 import { CalendarEventQueriesService } from '../../../services/queries/calendar-event-queries.service';
@@ -45,6 +45,7 @@ export class ContinueButtonComponent implements OnInit {
     this.playerService.player$
       .pipe(
         takeUntilDestroyed(this.destroyRef),
+        filter((value) => !!value),
         switchMap(() => {
           return this.calendarEventQueriesService.updateAskNextDay();
         })

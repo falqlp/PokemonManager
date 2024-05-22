@@ -3,7 +3,7 @@ import { UserQueriesService } from '../../services/queries/user-queries.service'
 import { Languages, UserModel } from '../../models/user.model';
 import { NgForOf, NgIf } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, first } from 'rxjs';
 import { MatSortModule } from '@angular/material/sort';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LocalDatePipe } from '../../pipes/local-date.pipe';
@@ -24,6 +24,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { UserService } from '../../services/user.service';
 import { PlayerModel } from '../../models/player.model';
 import { AddPlayerToGameComponent } from './add-player-to-game/add-player-to-game.component';
+import { NewsComponent } from '../../modals/news/news.component';
 
 @Component({
   selector: 'pm-games',
@@ -88,6 +89,13 @@ export class GamesComponent implements OnInit {
       .subscribe((user: UserModel) => {
         this.user.set(user);
         this.gameSubject.next(user.games);
+      });
+    this.userService.$user
+      .pipe(takeUntilDestroyed(this.destroyRef), first())
+      .subscribe((user) => {
+        if (!user.hasReadNews) {
+          this.dialog.open(NewsComponent);
+        }
       });
   }
 

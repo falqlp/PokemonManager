@@ -4,6 +4,7 @@ import { PokemonBaseModel } from '../models/PokemonModels/pokemonBase.model';
 import { TrainerModel } from '../models/TrainersModels/trainer.model';
 import { WebSocketModel } from './websocket.service';
 import { BattleStateModel } from '../views/new-battle/battle.model';
+import { RouterService } from './router.service';
 
 export interface NotificationModel {
   key: string;
@@ -120,7 +121,7 @@ export class WebsocketEventService {
   public updateBattleStatusEvent$: Observable<BattleStatus> =
     this.updateBattleStatusEventSubject.asObservable();
 
-  constructor() {}
+  constructor(private router: RouterService) {}
 
   public handleMessage = (message: WebSocketModel): void => {
     this.eventMap[message.type](message.payload);
@@ -192,7 +193,7 @@ export class WebsocketEventService {
     playRound: this.battleEvent,
     updateUser: this.updateUserEvent,
     simulateStatus: this.simulateStatusEvent,
-    reload: () => location.reload(),
+    reload: () => this.router.navigateByUrl('login'),
     simulating: this.simulatingEvent,
     updateGame: this.updateGameEvent,
     updateBattleStatus: this.updateBattleStatusEvent,

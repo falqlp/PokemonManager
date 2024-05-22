@@ -11,7 +11,7 @@ import { singleton } from "tsyringe";
 export default class WebsocketUtils {
   constructor(private websocketDataService: WebsocketDataService) {}
 
-  reloadAll(): void {
+  public reloadAll(): void {
     this.sendMessageToClients(
       { type: "reload" },
       this.websocketDataService.getClients(),

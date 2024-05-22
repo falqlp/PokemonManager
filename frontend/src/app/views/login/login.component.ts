@@ -45,6 +45,9 @@ export class LoginComponent implements OnInit {
 
   public ngOnInit(): void {
     localStorage.clear();
+    this.cacheService.setUserId(undefined);
+    this.cacheService.setTrainerId(undefined);
+    this.cacheService.setGameId(undefined);
   }
 
   public login(): void {

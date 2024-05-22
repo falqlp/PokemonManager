@@ -15,4 +15,5 @@ export interface UserModel {
   lang: Languages;
   friends: UserModel[];
   friendRequest: UserModel[];
+  hasReadNews?: boolean;
 }

@@ -43,7 +43,6 @@ export class TopBarWeekCalendarComponent implements OnInit {
   protected data$: Observable<string[]>;
   protected events: CalendarEventModel[][];
   protected version = 0;
-  protected actualDateString: string;
   protected dayToNextBattle: string;
   protected nextBattle: CalendarEventModel;
 
@@ -112,8 +111,6 @@ export class TopBarWeekCalendarComponent implements OnInit {
           }`;
           newDate.setUTCDate(newDate.getUTCDate() + 1);
         }
-        this.actualDateString =
-          this.timeService.dateToSimplifyLocalDate(actualDate);
         return week;
       })
     );

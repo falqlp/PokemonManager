@@ -49,9 +49,12 @@ class WebsocketServerService {
         }),
       );
     });
-    setTimeout(() => {
-      this.websocketUtils.reloadAll();
-    }, 0);
+    setTimeout(
+      () => {
+        this.websocketUtils.reloadAll();
+      },
+      process.env.MONGODB_LOCAL === "1" ? 0 : 2000,
+    );
   }
 
   private handleResponse(message: WebsocketMessage | void): void {

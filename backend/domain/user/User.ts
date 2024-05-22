@@ -13,6 +13,7 @@ export interface IUser extends MongoId, IEntity {
   lang: string;
   friendRequest: IUser[];
   friends: IUser[];
+  hasReadNews?: boolean;
 }
 
 const userSchema = new Schema<IUser>({
@@ -26,6 +27,7 @@ const userSchema = new Schema<IUser>({
   subscribeToNewsletter: { type: Boolean },
   friendRequest: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  hasReadNews: { type: Boolean },
 });
 
 const User = mongoose.model<IUser>("User", userSchema);
