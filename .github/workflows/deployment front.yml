@@ -30,7 +30,7 @@ jobs:
         run: npm run build
         working-directory: ./frontend
       - name: Move staticwebapp.config.json
-        run: mv ./frontend/src/staticwebapp.config.json ./frontend/dist/pokemon-manager/staticwebapp.config.json
+        run: mv ./frontend/src/staticwebapp.config.json ./frontend/dist/pokemon-manager/browser/staticwebapp.config.json
       - name: Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
