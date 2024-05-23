@@ -35,6 +35,7 @@ class CalendarEventRepository extends CompleteRepository<ICalendarEvent> {
     const deleteBattleIds = res.map((val) => val.event as unknown as string);
     await Battle.deleteMany({
       _id: { $in: deleteBattleIds },
+      winner: { $exists: false },
     });
     const deleteEventIds = res.map((value) => value._id);
     await this.schema.deleteMany({ _id: { $in: deleteEventIds } });
