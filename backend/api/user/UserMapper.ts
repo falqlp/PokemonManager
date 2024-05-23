@@ -10,6 +10,8 @@ class UserMapper implements IMapper<IUser> {
   public map(dto: IUser): IUser {
     dto.games?.map((value) => this.gameMapper.map(value));
     dto.password = undefined;
+    dto.friends = dto.friends ?? [];
+    dto.friendRequest = dto.friendRequest ?? [];
     return dto;
   }
 }

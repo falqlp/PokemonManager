@@ -57,8 +57,6 @@ class UserRepository extends CompleteRepository<IUser> {
     if (dto.password) {
       dto.password = await this.hashService.hashPassword(dto.password);
     }
-    dto.friendRequest = dto.friendRequest ?? [];
-    dto.friends = dto.friends ?? [];
     this.websocketUtils.updateUsers([_id]);
     return super.update(_id, dto);
   }
