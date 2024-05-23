@@ -109,20 +109,24 @@ class GameService {
     if (!game.players.some((player) => !player.trainer)) {
       initGame = true;
     }
-    const player = game.players.find(
+    const index = game.players.findIndex(
       (gamePlayer) => gamePlayer.userId === userId,
     );
-    player.trainer = await this.trainerService.create({
-      ...player.trainer,
-      gameId: game._id,
-    });
+    if (index !== -1) {
+      game.players[index].trainer = await this.trainerService.create({
+        ...game.players[index].trainer,
+        gameId: game._id,
+      });
+    } else {
+      throw new Error("Player not found");
+    }
     await this.gameRepository.update(game._id, game);
     if (initGame) {
       setTimeout(() => {
         this.initGame(game).then();
       }, 500);
     }
-    return player.trainer;
+    return game.players[index].trainer;
   }
 }
 
