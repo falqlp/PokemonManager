@@ -98,7 +98,8 @@ class PokemonService {
     } else {
       newPokemon = await this.createPokemon(pokemon, gameId, actualDate);
     }
-    newPokemon.shiny = this.pokemonUtilsService.generateShiny();
+    newPokemon.shiny =
+      pokemon.shiny ?? this.pokemonUtilsService.generateShiny();
     return this.savePokemon(newPokemon, gameId);
   }
 
