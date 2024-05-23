@@ -236,7 +236,7 @@ class TrainerService {
     if (!trainer.pcStorage) {
       trainer.pcStorage = await this.pcStorageRepository.create({
         gameId,
-        maxSize: 0,
+        maxSize: 4,
         storage: [],
       });
     }

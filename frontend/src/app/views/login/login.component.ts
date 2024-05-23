@@ -16,6 +16,12 @@ import { MatInputModule } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { ForgottenPasswordComponent } from '../../modals/forgotten-password/forgotten-password.component';
+import { catchError } from 'rxjs/operators';
+import { EMPTY } from 'rxjs';
+import {
+  NotificationType,
+  NotifierService,
+} from '../../services/notifier.service';
 
 @Component({
   selector: 'app-login',
@@ -36,11 +42,12 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    protected authService: AuthService,
-    protected router: RouterService,
-    protected destroyRef: DestroyRef,
-    protected cacheService: CacheService,
-    protected dialog: MatDialog
+    private authService: AuthService,
+    private router: RouterService,
+    private destroyRef: DestroyRef,
+    private cacheService: CacheService,
+    private dialog: MatDialog,
+    private notifierService: NotifierService
   ) {}
 
   public ngOnInit(): void {
@@ -57,10 +64,20 @@ export class LoginComponent implements OnInit {
           username: this.loginForm.controls.username.value,
           password: this.loginForm.controls.password.value,
         })
-        .pipe(takeUntilDestroyed(this.destroyRef))
+        .pipe(
+          takeUntilDestroyed(this.destroyRef),
+          catchError(() => {
+            this.notifierService.notify({
+              type: NotificationType.Error,
+              key: 'WRONG_USERNAME_OR_PASSWORD',
+            });
+            return EMPTY;
+          })
+        )
         .subscribe((response) => {
           if (response) {
             this.cacheService.setUserId(response._id);
+            this.cacheService.setConnexionDate();
             this.router.navigateByUrl('games');
           }
         });

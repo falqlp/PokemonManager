@@ -23,6 +23,8 @@ import { NewMoveLearnedService } from './services/new-move-learned.service';
 import { WeeklyXpService } from './services/weekly-xp.service';
 import { LanguageService } from './services/language.service';
 import { RouterService } from './services/router.service';
+import { UserService } from './services/user.service';
+import { CacheService } from './services/cache.service';
 
 @Component({
   selector: 'app-root',
@@ -54,7 +56,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     eggHatchedService: EggHatchedService,
     newMoveLearnedService: NewMoveLearnedService,
     weeklyXpService: WeeklyXpService,
-    routerService: RouterService
+    private routerService: RouterService,
+    private userService: UserService,
+    private cacheService: CacheService
   ) {
     initGameService.init();
     eggHatchedService.init();
@@ -64,6 +68,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   public ngOnInit(): void {
+    this.userService.$user
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((user) => {
+        if (user && this.cacheService.needNewlogin()) {
+          this.routerService.navigateByUrl('login');
+        }
+      });
     this.languageService
       .getLanguage()
       .pipe(takeUntilDestroyed(this.destroyRef))

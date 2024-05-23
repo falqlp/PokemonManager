@@ -26,6 +26,23 @@ export class CacheService {
     this.setTrainerId(trainerId);
   }
 
+  public setConnexionDate(): void {
+    localStorage.setItem('connexionDate', new Date(Date.now()).toString());
+  }
+
+  public needNewlogin(): boolean {
+    const connexionDate = localStorage.getItem('connexionDate');
+    if (!connexionDate || connexionDate === 'undefined') {
+      return true;
+    }
+    const currentDate = new Date(Date.now());
+    const lastConnexionDate = new Date(connexionDate);
+    const diffInDays = Math.floor(
+      (currentDate.getTime() - lastConnexionDate.getTime()) / (1000 * 3600 * 24)
+    );
+    return diffInDays > 4;
+  }
+
   public setUserId(id: string): void {
     localStorage.setItem('userId', id);
     this.userIdSubject.next(id === 'undefined' ? undefined : id);
