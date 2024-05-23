@@ -35,4 +35,8 @@ export class GameQueriesService extends CompleteQuery<GameModel> {
       userId,
     });
   }
+
+  public initIfNot(gameId: string): Observable<void> {
+    return this.http.get<void>(this.url + '/init-if-not/' + gameId);
+  }
 }

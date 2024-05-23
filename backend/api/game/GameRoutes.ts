@@ -42,6 +42,15 @@ router.put("/add-player-to-game", async (req, res, next) => {
   }
 });
 
+router.get("/init-if-not/:id", async (req, res, next) => {
+  try {
+    await gameService.initIfNot(req.params.id);
+    res.status(200).json();
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.use("/", completeRouter.router);
 
 export default router;

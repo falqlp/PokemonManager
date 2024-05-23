@@ -1,4 +1,4 @@
-import { IGame, IPlayer } from "../../domain/game/Game";
+import game, { IGame, IPlayer } from "../../domain/game/Game";
 import GameRepository from "../../domain/game/GameRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import TrainerService from "../trainer/TrainerService";
@@ -9,6 +9,8 @@ import { mongoId } from "../../utils/MongoUtils";
 import { ITrainer } from "../../domain/trainer/Trainer";
 import UserRepository from "../../domain/user/UserRepository";
 import WebsocketUtils from "../../websocket/WebsocketUtils";
+import { Error } from "mongoose";
+import user from "../../domain/user/User";
 
 export const NB_GENERATED_TRAINER = 20;
 
@@ -95,6 +97,14 @@ class GameService {
     this.websocketUtils.sendMessageToClientInGame(game._id, {
       type: "initGameEnd",
     });
+  }
+
+  public async initIfNot(gameId: string): Promise<void> {
+    const trainers = await this.trainerRepository.list({ custom: { gameId } });
+    if (trainers.length !== NB_GENERATED_TRAINER) {
+      const game = await this.gameRepository.get(gameId);
+      await this.initGame(game);
+    }
   }
 
   public async addPlayerToGame(game: IGame, userId: string): Promise<ITrainer> {

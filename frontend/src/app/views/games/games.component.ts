@@ -106,6 +106,10 @@ export class GamesComponent implements OnInit {
       this.router.navigateByUrl('home');
     } else {
       this.dialog.open(AddPlayerToGameComponent, { data: game });
+      this.gameQueriesService
+        .initIfNot(game._id)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe();
     }
   }
 

@@ -47,9 +47,10 @@ class GameRepository extends CompleteRepository<IGame> {
     if (sessionTime) {
       const game = await this.get(gameId);
       if (game.players) {
-        game.players.find(
+        const player = game.players.find(
           (player) => player.trainer?._id.toString() === trainerId,
-        ).playingTime += sessionTime;
+        );
+        player.playingTime += sessionTime;
       }
       return await this.update(game._id, game);
     }
