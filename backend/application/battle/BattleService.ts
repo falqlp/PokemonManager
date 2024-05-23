@@ -56,7 +56,7 @@ class BattleService {
       battle._id.toString(),
     );
     const battleOrder = this.initBattleOrder(player, opponent);
-    return { player, opponent, battleOrder };
+    return { player, opponent, battleOrder, _id: battle._id.toString() };
   }
 
   private initBattleOrder(
@@ -296,9 +296,7 @@ class BattleService {
       );
     } else {
       const battle = await this.battleInstanceRepository.get(battleId);
-      newBattleState =
-        this.battleDataService.getBattleState(battleId) ??
-        this.initBattle(battle);
+      newBattleState = this.initBattle(battle);
       if (battle.winner) {
         if (battle.winner === "player") {
           newBattleState.opponent.defeat = true;
@@ -315,6 +313,7 @@ class BattleService {
       await this.battleInstanceRepository.update(battleId, battle);
       this.battleDataService.delete(battleId);
     } else {
+      newBattleState._id = battleId;
       this.battleDataService.setBattleState(battleId, newBattleState);
     }
     this.battleWebsocketService.playRound(newBattleState);

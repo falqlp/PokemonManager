@@ -89,7 +89,9 @@ export class NewBattleComponent implements OnInit {
       .subscribe();
     combineLatest([
       this.playerService.player$,
-      this.websocketEventService.battleEvent$,
+      this.websocketEventService.battleEvent$.pipe(
+        filter((battle) => battle._id === this.id)
+      ),
     ])
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(([player, battle]) => {

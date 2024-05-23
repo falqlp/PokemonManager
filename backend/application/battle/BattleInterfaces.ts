@@ -35,6 +35,7 @@ export interface IBattleTrainer {
 }
 
 export interface IBattleState {
+  _id?: string;
   player: IBattleTrainer;
   opponent: IBattleTrainer;
   battleOrder: IBattlePokemon[];

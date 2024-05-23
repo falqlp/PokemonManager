@@ -23,4 +23,5 @@ export interface BattleStateModel {
   opponent: BattleTrainerModel;
   battleOrder: BattlePokemonModel[];
   damage: DamageModel;
+  _id?: string;
 }
