@@ -153,9 +153,9 @@ export default class SimulateDayService {
       custom: { trainers: trainerId, date },
     });
     const game = await this.gameRepository.get(gameId);
-    const trainerIds = game.players.map((player) =>
-      player.trainer._id.toString(),
-    );
+    const trainerIds = game.players
+      .filter((player) => !!player.trainer)
+      .map((player) => player.trainer._id.toString());
     const battle = events.find(
       (event) =>
         event.type === CalendarEventEvent.BATTLE && !event.event.winner,
