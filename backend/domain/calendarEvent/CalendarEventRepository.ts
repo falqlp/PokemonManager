@@ -3,6 +3,7 @@ import CalendarEvent, { ICalendarEvent } from "./CalendarEvent";
 import { singleton } from "tsyringe";
 import CalendarEventPopulater from "./CalendarEventPopulater";
 import Battle from "../battleInstance/Battle";
+import { addDays } from "../../utils/DateUtils";
 
 @singleton()
 class CalendarEventRepository extends CompleteRepository<ICalendarEvent> {
@@ -30,7 +31,7 @@ class CalendarEventRepository extends CompleteRepository<ICalendarEvent> {
   ): Promise<void> {
     const res: ICalendarEvent[] = await this.schema.find({
       event: { $in: battleIds },
-      date: { $gt: date },
+      date: { $gt: addDays(date, 1) },
     });
     const deleteBattleIds = res.map((val) => val.event as unknown as string);
     await Battle.deleteMany({
