@@ -61,7 +61,10 @@ class GameService {
       },
     });
     await this.competitionService.createFriendly(game._id);
-    const championship = await this.competitionService.createChampionship(game);
+    const championship = await this.competitionService.createChampionship(
+      game,
+      3,
+    );
     await this.trainerRepository.updateManyTrainer(
       {
         _id: {

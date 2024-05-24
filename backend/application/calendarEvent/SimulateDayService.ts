@@ -290,7 +290,10 @@ export default class SimulateDayService {
     for (const trainer of noPokemonTrainers) {
       await this.trainerRepository.deleteTrainer(trainer);
     }
-    const championship = await this.competitionService.createChampionship(game);
+    const championship = await this.competitionService.createChampionship(
+      game,
+      3,
+    );
     const trainers = await this.trainerRepository.list(
       {},
       { gameId: game._id },

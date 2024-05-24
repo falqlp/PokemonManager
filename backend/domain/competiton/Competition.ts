@@ -30,15 +30,20 @@ export interface IGroupsCompetition extends BaseCompetition {
   groups: ITrainer[][];
   division: number;
 }
+export interface IChampionshipCompetition extends BaseCompetition {
+  type: CompetitionType.CHAMPIONSHIP;
+  division: number;
+}
 
 interface BasicCompetition extends BaseCompetition {
-  type: CompetitionType.CHAMPIONSHIP | CompetitionType.FRIENDLY;
+  type: CompetitionType.FRIENDLY;
 }
 
 export type ICompetition =
   | ITournamentCompetition
   | BasicCompetition
-  | IGroupsCompetition;
+  | IGroupsCompetition
+  | IChampionshipCompetition;
 
 const CompetitionSchema = new Schema<ICompetition>({
   name: { type: String, required: true },

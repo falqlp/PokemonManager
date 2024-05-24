@@ -31,7 +31,10 @@ export default class CompetitionService {
     });
   }
 
-  public async createChampionship(game: IGame): Promise<ICompetition> {
+  public async createChampionship(
+    game: IGame,
+    division: number,
+  ): Promise<ICompetition> {
     const startDate = new Date(game.actualDate);
     const endDate = new Date(game.actualDate);
     startDate.setUTCDate(startDate.getUTCDate() + 1);
@@ -42,6 +45,7 @@ export default class CompetitionService {
       type: CompetitionType.CHAMPIONSHIP,
       endDate,
       startDate,
+      division,
     });
   }
 
