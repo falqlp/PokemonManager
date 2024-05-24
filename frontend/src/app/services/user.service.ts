@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CacheService } from './cache.service';
 import { UserQueriesService } from './queries/user-queries.service';
-import { EMPTY, map, Observable, switchMap } from 'rxjs';
-import { UserModel } from '../models/user.model';
+import { EMPTY, map, Observable, switchMap, tap } from 'rxjs';
+import { Languages, UserModel } from '../models/user.model';
 import { WebsocketEventService } from './websocket-event.service';
+import { LanguageService } from './language.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,8 @@ export class UserService {
   constructor(
     private cacheService: CacheService,
     private userQueriesService: UserQueriesService,
-    private websocketEventService: WebsocketEventService
+    private websocketEventService: WebsocketEventService,
+    private languageService: LanguageService
   ) {
     this.$user = this.cacheService.$userId.pipe(
       switchMap((id) => {
@@ -24,6 +26,13 @@ export class UserService {
           return EMPTY;
         }
         return this.userQueriesService.get(id);
+      }),
+      tap((user) => {
+        this.languageService.setLanguage(
+          user.lang === Languages.FR || user.lang.toString() === 'fr'
+            ? Languages.FR
+            : Languages.EN
+        );
       })
     );
   }
