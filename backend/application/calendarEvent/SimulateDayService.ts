@@ -247,6 +247,7 @@ export default class SimulateDayService {
           player.trainer._id,
         );
         res.trainer = this.trainerMapper.map(res.trainer);
+        console.log(player.trainer._id.toString());
         this.websocketUtils.sendMessageToTrainers([player.trainer._id], {
           type: "weeklyXp",
           payload: res,
