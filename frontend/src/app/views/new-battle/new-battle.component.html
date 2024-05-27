@@ -10,16 +10,13 @@
         [trainer]="opponent" />
     </h3>
     <div class="battle__right-part__actions">
-      @if(!((websocketEventService.updateBattleStatusEvent$ | async)
-      .loopMode)){ @if (!askNextRound){
+      @if(!((updateBattleStatusEvent$ | async) .loopMode)){ @if (!askNextRound){
       <button
         [matTooltip]="'NEXT_ROUND' | translate"
         matBadge="&#8288;"
         matBadgeSize="small"
-        [matBadgeHidden]="
-          !(websocketEventService.updateBattleStatusEvent$ | async).nextRound
-        "
-        [disabled]="defeat"
+        [matBadgeHidden]="!(updateBattleStatusEvent$ | async).nextRound"
+        [disabled]="defeat || disableButtons"
         color="warn"
         mat-icon-button
         (click)="next()">
@@ -31,12 +28,11 @@
         [matTooltip]="'WAITING_FOR_OPPONENT' | translate"
         (click)="deleteAskNextRound()"
         diameter="20" />
-      } } @if((websocketEventService.updateBattleStatusEvent$ | async)
-      .loopMode){
+      } } @if((updateBattleStatusEvent$ | async) .loopMode){
       <button
         [matTooltip]="'PAUSE' | translate"
         mat-icon-button
-        [disabled]="defeat"
+        [disabled]="defeat || disableButtons"
         (click)="pause()">
         <mat-icon>pause</mat-icon>
       </button>
@@ -46,11 +42,8 @@
         [matTooltip]="'AUTOMATIC_NEXT_ROUND' | translate"
         matBadge="&#8288;"
         matBadgeSize="small"
-        [matBadgeHidden]="
-          !(websocketEventService.updateBattleStatusEvent$ | async)
-            .nextRoundLoop
-        "
-        [disabled]="defeat"
+        [matBadgeHidden]="!(updateBattleStatusEvent$ | async).nextRoundLoop"
+        [disabled]="defeat || disableButtons"
         mat-icon-button>
         <mat-icon>repeat</mat-icon>
       </button>

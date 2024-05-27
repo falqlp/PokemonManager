@@ -19,11 +19,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatCardModule } from '@angular/material/card';
 import { PlayerService } from '../../services/player.service';
-import { combineLatest, filter, first, switchMap } from 'rxjs';
+import {
+  combineLatest,
+  filter,
+  first,
+  Observable,
+  startWith,
+  switchMap,
+} from 'rxjs';
 import { TrainerNameComponent } from '../../components/trainer-name/trainer-name.component';
 import { BattleSceneComponent } from './components/battle-scene/battle-scene.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { WebsocketEventService } from '../../services/websocket-event.service';
+import {
+  BattleStatus,
+  WebsocketEventService,
+} from '../../services/websocket-event.service';
 import { RouterService } from '../../services/router.service';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -59,21 +69,31 @@ export class NewBattleComponent implements OnInit {
   protected round = 0;
   protected roundMessage: string[] = [];
   protected battleLoop: number;
-  private playerId: string; // id dans le battleInstance
   protected defeat = false;
   protected askNextRound = false;
   protected askNextRoundLoop = false;
+  protected disableButtons = false;
+  protected updateBattleStatusEvent$: Observable<BattleStatus>;
 
   constructor(
     private translateService: TranslateService,
     private destroyRef: DestroyRef,
     private playerService: PlayerService,
     private router: RouterService,
-    protected websocketEventService: WebsocketEventService,
+    private websocketEventService: WebsocketEventService,
     private battleInstanceQueriesService: BattleInstanceQueriesService
   ) {}
 
   public ngOnInit(): void {
+    this.updateBattleStatusEvent$ =
+      this.websocketEventService.updateBattleStatusEvent$.pipe(
+        startWith({
+          nextRound: false,
+          nextRoundLoop: false,
+          loopMode: false,
+        })
+      );
+    this.updateBattleStatusEvent$.subscribe(console.log);
     this.playerService.player$
       .pipe(
         takeUntilDestroyed(this.destroyRef),
@@ -102,7 +122,6 @@ export class NewBattleComponent implements OnInit {
             queryParams: { battle: this.id },
           });
         } else {
-          this.playerId = battle.player._id;
           if (player._id === battle.opponent._id) {
             this.opponent = battle.player;
             this.player = battle.opponent;
@@ -182,6 +201,7 @@ export class NewBattleComponent implements OnInit {
 
   protected next(): void {
     this.askNextRound = true;
+    this.disableButtons = true;
     this.playerService.player$
       .pipe(
         takeUntilDestroyed(this.destroyRef),
@@ -194,17 +214,23 @@ export class NewBattleComponent implements OnInit {
           );
         })
       )
-      .subscribe();
+      .subscribe(() => {
+        this.activateButtons();
+      });
   }
 
   protected pause(): void {
+    this.disableButtons = true;
     this.battleInstanceQueriesService
       .resetNextRound(this.id)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe();
+      .subscribe(() => {
+        this.activateButtons();
+      });
   }
 
   protected loop(): void {
+    this.disableButtons = true;
     this.askNextRoundLoop = true;
     this.playerService.player$
       .pipe(
@@ -218,7 +244,9 @@ export class NewBattleComponent implements OnInit {
           );
         })
       )
-      .subscribe();
+      .subscribe(() => {
+        this.activateButtons();
+      });
   }
 
   protected onDefeat(): void {
@@ -232,6 +260,7 @@ export class NewBattleComponent implements OnInit {
   }
 
   protected deleteAskNextRound(): void {
+    this.disableButtons = true;
     this.askNextRound = false;
     this.playerService.player$
       .pipe(
@@ -245,10 +274,13 @@ export class NewBattleComponent implements OnInit {
           );
         })
       )
-      .subscribe();
+      .subscribe(() => {
+        this.activateButtons();
+      });
   }
 
   protected deleteAskNextRoundLoop(): void {
+    this.disableButtons = true;
     this.askNextRoundLoop = false;
     this.playerService.player$
       .pipe(
@@ -262,6 +294,14 @@ export class NewBattleComponent implements OnInit {
           );
         })
       )
-      .subscribe();
+      .subscribe(() => {
+        this.activateButtons();
+      });
+  }
+
+  private activateButtons(): void {
+    setTimeout(() => {
+      this.disableButtons = false;
+    }, 500);
   }
 }

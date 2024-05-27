@@ -65,14 +65,16 @@ export default class BattleWebsocketService {
   }
 
   public resetNextRoundStatus(trainerIds: string[]): void {
-    this.websocketDataService
-      .getClients((client) => trainerIds.includes(client.trainerId))
-      .map((client) => {
-        client.askNextRound = false;
-        client.askNextRoundLoop = false;
-        client.loopMode = false;
-        return client;
-      });
+    this.websocketDataService.set(
+      this.websocketDataService
+        .getClients((client) => trainerIds.includes(client.trainerId))
+        .map((client) => {
+          client.askNextRound = false;
+          client.askNextRoundLoop = false;
+          client.loopMode = false;
+          return client;
+        }),
+    );
   }
 
   public setLoopMode(trainerIds: string[]): void {

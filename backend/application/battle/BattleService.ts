@@ -288,6 +288,7 @@ class BattleService {
   public async playNextRound(battleId: string, init?: boolean): Promise<void> {
     const battleState = this.battleDataService.getBattleState(battleId);
     let newBattleState: IBattleState;
+    let defeat = false;
     if (!init && battleState) {
       newBattleState = this.simulateBattleRound(
         battleState.player,
@@ -306,17 +307,24 @@ class BattleService {
       }
     }
     if (newBattleState.player.defeat || newBattleState.opponent.defeat) {
+      defeat = true;
       const battle = {
         _id: battleId,
         winner: newBattleState.player.defeat ? "opponent" : "player",
       } as IBattleInstance;
       await this.battleInstanceRepository.update(battleId, battle);
-      this.battleDataService.delete(battleId);
     } else {
-      newBattleState._id = battleId;
       this.battleDataService.setBattleState(battleId, newBattleState);
     }
+    newBattleState._id = battleId;
     this.battleWebsocketService.playRound(newBattleState);
+    if (defeat) {
+      this.battleDataService.delete(battleId);
+      this.battleWebsocketService.resetNextRoundStatus([
+        newBattleState.player._id,
+        newBattleState.opponent._id,
+      ]);
+    }
   }
 
   public async initTrainer(
