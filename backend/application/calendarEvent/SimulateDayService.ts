@@ -63,9 +63,12 @@ export default class SimulateDayService {
     redirectTo: string;
     isMultiplayerBattle: boolean;
   }> {
+    const game = await this.gameRepository.get(gameId);
+    if (game.actualDate.toString() !== date.toString()) {
+      throw new Error("Bad date");
+    }
     const res = await this.canSimulate(trainerId, gameId, date);
     if (!res.battle && !res.redirectTo) {
-      const game = await this.gameRepository.get(gameId);
       this.simulateDayWebsocketService.changeTrainerSimulateDayStatus(
         trainerId,
         game,
@@ -247,7 +250,6 @@ export default class SimulateDayService {
           player.trainer._id,
         );
         res.trainer = this.trainerMapper.map(res.trainer);
-        console.log(player.trainer._id.toString());
         this.websocketUtils.sendMessageToTrainers([player.trainer._id], {
           type: "weeklyXp",
           payload: res,

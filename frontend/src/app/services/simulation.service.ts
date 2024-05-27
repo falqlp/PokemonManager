@@ -47,6 +47,7 @@ export class SimulationService {
             })
           );
         }),
+        first(),
         switchMap(({ date, playerId }) => {
           if (this.askForNextDay) {
             return this.calendarEventQueriesService
@@ -80,16 +81,13 @@ export class SimulationService {
     this.playerService.player$
       .pipe(
         switchMap((trainer) => {
-          return this.calendarEventQueriesService
-            .deleteAskNextDay(trainer._id)
-            .pipe(
-              tap(() => {
-                this.askForNextDay = !this.askForNextDay;
-              })
-            );
-        })
+          return this.calendarEventQueriesService.deleteAskNextDay(trainer._id);
+        }),
+        first()
       )
-      .subscribe();
+      .subscribe(() => {
+        this.askForNextDay = false;
+      });
   }
 
   protected goToBattle(
