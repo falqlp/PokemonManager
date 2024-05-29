@@ -1,4 +1,4 @@
-import { isPowerOfTwo } from "../../utils/NumberUtils";
+import { isPowerOfTwo } from "./NumberUtils";
 
 describe("isPowerOfTwo", () => {
   test("will return false for non power of two numbers", () => {

@@ -1,5 +1,5 @@
-import EffectivenessService from "../../../application/pokemon/EffectivenessService";
-import { PokemonType } from "../../../models/Types/Types";
+import EffectivenessService from "./EffectivenessService";
+import { PokemonType } from "../../models/Types/Types";
 import { container } from "tsyringe";
 
 describe("EffectivenessService", () => {

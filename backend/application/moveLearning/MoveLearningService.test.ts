@@ -1,5 +1,5 @@
-import MoveLearningService from "../../../application/moveLearning/MoveLearningService";
-import { IMoveLearning } from "../../../domain/moveLearning/MoveLearning";
+import MoveLearningService from "./MoveLearningService";
+import { IMoveLearning } from "../../domain/moveLearning/MoveLearning";
 import { container } from "tsyringe";
 
 describe("MoveLearningService", () => {

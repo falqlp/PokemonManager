@@ -3,7 +3,7 @@ import {
   normalRandom,
   sample,
   shuffleArray,
-} from "../../utils/RandomUtils";
+} from "./RandomUtils";
 describe("normalRandom function", () => {
   test("should return a random value without parameters", () => {
     const value = normalRandom();

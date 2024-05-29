@@ -3,7 +3,7 @@ import {
   isSevenDaysApart,
   addYears,
   calculateAge,
-} from "../../utils/DateUtils";
+} from "./DateUtils";
 
 describe("isSevenDaysApart function", () => {
   it("returns true if two dates are seven days apart", () => {

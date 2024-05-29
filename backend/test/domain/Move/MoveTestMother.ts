@@ -7,7 +7,7 @@ export class MoveTestMother {
       id: 1,
       name: "Tackle",
       type: PokemonType.NORMAL,
-      category: "Physical",
+      category: "physical",
       accuracy: 100,
       power: 40,
       animation: {
@@ -29,7 +29,7 @@ export class MoveTestMother {
       id: 2,
       name: "Hyper Beam",
       type: PokemonType.NORMAL,
-      category: "Special",
+      category: "special",
       accuracy: 90,
       power: 150,
       effect: "Recharge",

@@ -1,7 +1,7 @@
 import { container } from "tsyringe";
-import TournamentService from "../../../application/competition/tournament/TournamentService";
+import TournamentService from "./TournamentService";
 import { ITrainer } from "../../../domain/trainer/Trainer";
-import { TrainerTestMother } from "../../api/Trainer/TrainerTestMother";
+import { TrainerTestMother } from "../../../test/domain/Trainer/TrainerTestMother";
 
 describe("TournamentService", () => {
   let tournamentService: TournamentService;

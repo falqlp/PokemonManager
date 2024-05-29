@@ -70,4 +70,15 @@ export class StatsTestMother {
       spe: 206,
     } as IPokemonStats;
   }
+
+  static basicStats(): IPokemonStats {
+    return {
+      hp: 50,
+      atk: 50,
+      def: 50,
+      spAtk: 50,
+      spDef: 50,
+      spe: 50,
+    };
+  }
 }

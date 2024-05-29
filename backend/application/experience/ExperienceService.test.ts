@@ -1,6 +1,6 @@
-import ExperienceService from "../../../application/experience/ExperienceService";
-import { IPokemon } from "../../../domain/pokemon/Pokemon";
-import { PokemonTestMother } from "../pokemon/PokemonTestMother";
+import ExperienceService from "./ExperienceService";
+import { IPokemon } from "../../domain/pokemon/Pokemon";
+import { PokemonTestMother } from "../../test/domain/pokemon/PokemonTestMother";
 import { container } from "tsyringe";
 
 describe("ExperienceService", () => {
