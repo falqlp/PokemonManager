@@ -23,7 +23,7 @@ class BattleService {
     private battleCalcService: BattleCalcService,
     private battleDataService: BattleDataService,
     private battleInstanceRepository: BattleInstanceRepository,
-    public battleWebsocketService: BattleWebsocketService,
+    private battleWebsocketService: BattleWebsocketService,
     private gameRepository: GameRepository,
   ) {}
 
@@ -272,7 +272,7 @@ class BattleService {
     return { damage, maxDamagedPokemon };
   }
 
-  private updatePostBattleStates(
+  public updatePostBattleStates(
     player: IBattleTrainer,
     opponent: IBattleTrainer,
     battleOrder: IBattlePokemon[],
@@ -403,7 +403,7 @@ class BattleService {
     this.battleWebsocketService.updateNextRoundStatus(playerIds);
   }
 
-  private async nextRoundLoop(
+  public async nextRoundLoop(
     battleId: string,
     playerIds: string[],
     gameId: string,

@@ -13,6 +13,7 @@ import { PokemonType } from "../../models/Types/Types";
 import { IBattlePokemon, IBattleTrainer } from "./BattleInterfaces";
 import BattlePokemonTestMother from "../../test/domain/battle/BattlePokemonTestMother";
 import BattleTrainerTestMother from "../../test/domain/battle/BattleTrainerTestMother";
+import BattleWebsocketService from "../../websocket/BattleWebsocketService";
 
 jest.mock("../../utils/RandomUtils", () => ({
   ...jest.requireActual("../../utils/RandomUtils"),
@@ -26,9 +27,13 @@ const mockedGetRandomValue = getRandomValue as jest.MockedFunction<
 describe("BattleService", () => {
   let battleService: BattleService;
   let battleMock: IBattleInstance;
+  let battleWebsocketService: BattleWebsocketService;
 
   beforeEach(() => {
+    jest.clearAllMocks();
+    jest.restoreAllMocks();
     battleService = container.resolve(BattleService);
+    battleWebsocketService = container.resolve(BattleWebsocketService);
 
     battleMock = BattleTestMother.getBattleInstance();
   });
@@ -461,17 +466,14 @@ describe("BattleService", () => {
     });
 
     it("should add trainer init battle status", () => {
-      const spy = jest.spyOn(
-        battleService.battleWebsocketService,
-        "addInitBattleStatus",
-      );
+      const spy = jest.spyOn(battleWebsocketService, "addInitBattleStatus");
       battleService.initTrainer(trainerId, battleId, gameId);
       expect(spy).toHaveBeenCalledWith(trainerId);
     });
 
     it("should check if the battle is ready", async () => {
       const spyGetInitBattleReady = jest.spyOn(
-        battleService.battleWebsocketService,
+        battleWebsocketService,
         "getInitBattleReady",
       );
       await battleService.initTrainer(trainerId, battleId, gameId);
@@ -481,7 +483,7 @@ describe("BattleService", () => {
     it("should play next round if the battle is ready", async () => {
       const spy = jest.spyOn(battleService, "playNextRound");
       jest
-        .spyOn(battleService.battleWebsocketService, "getInitBattleReady")
+        .spyOn(battleWebsocketService, "getInitBattleReady")
         .mockReturnValueOnce(true);
       await battleService.initTrainer(trainerId, battleId, gameId);
       expect(spy).toHaveBeenCalledWith(battleId, true);
@@ -490,7 +492,7 @@ describe("BattleService", () => {
     it("should not play next round if the battle is not ready", async () => {
       const spy = jest.spyOn(battleService, "playNextRound");
       jest
-        .spyOn(battleService.battleWebsocketService, "getInitBattleReady")
+        .spyOn(battleWebsocketService, "getInitBattleReady")
         .mockReturnValueOnce(false);
       await battleService.initTrainer(trainerId, battleId, gameId);
       expect(spy).not.toHaveBeenCalled();
@@ -513,17 +515,14 @@ describe("BattleService", () => {
     });
 
     it("should addAskNextRound", () => {
-      const spy = jest.spyOn(
-        battleService.battleWebsocketService,
-        "addAskNextRound",
-      );
+      const spy = jest.spyOn(battleWebsocketService, "addAskNextRound");
       battleService.askNextRound(trainerId, battleId, gameId);
       expect(spy).toHaveBeenCalledWith([trainerId], true);
     });
 
     it("should check if the battle is ready", async () => {
       const spyGetInitBattleReady = jest.spyOn(
-        battleService.battleWebsocketService,
+        battleWebsocketService,
         "getNextRoundStatus",
       );
       await battleService.askNextRound(trainerId, battleId, gameId);
@@ -533,7 +532,7 @@ describe("BattleService", () => {
     it("should play next round if the battle is ready", async () => {
       const spy = jest.spyOn(battleService, "playNextRound");
       jest
-        .spyOn(battleService.battleWebsocketService, "getNextRoundStatus")
+        .spyOn(battleWebsocketService, "getNextRoundStatus")
         .mockReturnValueOnce(true);
       await battleService.askNextRound(trainerId, battleId, gameId);
       expect(spy).toHaveBeenCalledWith(battleId);
@@ -542,10 +541,131 @@ describe("BattleService", () => {
     it("should not play next round if the battle is not ready", async () => {
       const spy = jest.spyOn(battleService, "playNextRound");
       jest
-        .spyOn(battleService.battleWebsocketService, "getNextRoundStatus")
+        .spyOn(battleWebsocketService, "getNextRoundStatus")
         .mockReturnValueOnce(false);
       await battleService.askNextRound(trainerId, battleId, gameId);
       expect(spy).not.toHaveBeenCalled();
+    });
+  });
+  describe("BattleService updatePostBattleStates method", () => {
+    let player: IBattleTrainer;
+    let opponent: IBattleTrainer;
+    let battleOrder: IBattlePokemon[];
+    let maxDamagedPokemon: IBattlePokemon;
+
+    beforeEach(() => {
+      player = BattleTrainerTestMother.withCustomOptions({
+        _id: "trainer1",
+        name: "Ash",
+        class: "champion",
+        pokemons: [
+          BattlePokemonTestMother.withCustomOptions({ currentHp: 50 }),
+          BattlePokemonTestMother.withCustomOptions({ currentHp: 60 }),
+        ],
+        defeat: false,
+      });
+      opponent = BattleTrainerTestMother.withCustomOptions({
+        _id: "trainer2",
+        name: "Brock",
+        class: "gym leader",
+        pokemons: [
+          BattlePokemonTestMother.withCustomOptions({ currentHp: 40 }),
+          BattlePokemonTestMother.withCustomOptions({ currentHp: 0 }),
+        ],
+        defeat: false,
+      });
+      battleOrder = [
+        BattlePokemonTestMother.withCustomOptions({ currentHp: 100 }),
+        BattlePokemonTestMother.withCustomOptions({ currentHp: 90 }),
+      ];
+      maxDamagedPokemon = BattlePokemonTestMother.withCustomOptions({
+        currentHp: 20,
+      });
+    });
+
+    it("should update battleOrder after a round", () => {
+      const updatedBattleOrder = battleService.updatePostBattleStates(
+        player,
+        opponent,
+        battleOrder,
+        maxDamagedPokemon,
+      );
+      expect(updatedBattleOrder.length).toBeLessThanOrEqual(5);
+      expect(updatedBattleOrder).not.toContainEqual(maxDamagedPokemon);
+    });
+
+    it("should set player defeat to true if all player pokemons have zero hp", () => {
+      player.pokemons.forEach((p) => (p.currentHp = 0));
+      battleService.updatePostBattleStates(
+        player,
+        opponent,
+        battleOrder,
+        maxDamagedPokemon,
+      );
+      expect(player.defeat).toBe(true);
+    });
+
+    it("should set opponent defeat to true if all opponent pokemons have zero hp", () => {
+      opponent.pokemons.forEach((p) => (p.currentHp = 0));
+      battleService.updatePostBattleStates(
+        player,
+        opponent,
+        battleOrder,
+        maxDamagedPokemon,
+      );
+      expect(opponent.defeat).toBe(true);
+    });
+  });
+  describe("BattleService nextRoundLoop method", () => {
+    let battleId: string;
+    let playerIds: string[];
+    let gameId: string;
+
+    beforeEach(() => {
+      jest.clearAllMocks();
+      battleId = "battle1";
+      playerIds = ["player1", "player2"];
+      gameId = "game1";
+      jest.spyOn(battleService, "playNextRound").mockResolvedValue();
+      jest.spyOn(battleService, "resetNextRoundStatus").mockResolvedValue();
+    });
+
+    it("should call playNextRound in intervals if loop mode is enabled", async () => {
+      jest
+        .spyOn(battleWebsocketService, "getNextRoundLoopStatus")
+        .mockReturnValue(true);
+
+      const playNextRoundSpy = jest.spyOn(battleService, "playNextRound");
+
+      await battleService.nextRoundLoop(battleId, playerIds, gameId);
+
+      expect(playNextRoundSpy).toHaveBeenCalled();
+    });
+  });
+  describe("BattleService resetNextRoundStatus method", () => {
+    let battleId: string;
+    let gameId: string;
+    let playerIds: string[];
+
+    beforeEach(() => {
+      jest.clearAllMocks();
+      jest.resetAllMocks();
+      battleId = "battle1";
+      gameId = "game1";
+      playerIds = ["player1", "player2"];
+      jest.spyOn(battleService, "getPlayerIds").mockResolvedValue(playerIds);
+    });
+
+    it("should call resetNextRoundStatus on battleWebsocketService", async () => {
+      const spy = jest.spyOn(battleWebsocketService, "resetNextRoundStatus");
+      await battleService.resetNextRoundStatus(battleId, gameId);
+      expect(spy).toHaveBeenCalledWith(playerIds);
+    });
+
+    it("should call updateNextRoundStatus on battleWebsocketService", async () => {
+      const spy = jest.spyOn(battleWebsocketService, "updateNextRoundStatus");
+      await battleService.resetNextRoundStatus(battleId, gameId);
+      expect(spy).toHaveBeenCalledWith(playerIds);
     });
   });
 });
