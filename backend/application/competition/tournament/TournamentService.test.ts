@@ -2,12 +2,22 @@ import { container } from "tsyringe";
 import TournamentService from "./TournamentService";
 import { ITrainer } from "../../../domain/trainer/Trainer";
 import { TrainerTestMother } from "../../../test/domain/Trainer/TrainerTestMother";
+import { ITournament } from "../../../domain/competiton/tournament/Tournament";
+import TournamentTestMother from "../../../test/domain/competition/tournament/TournamentTestMother";
 
 describe("TournamentService", () => {
   let tournamentService: TournamentService;
+  let trainers: ITrainer[];
+  let tournament: ITournament;
 
   beforeEach(() => {
     tournamentService = container.resolve(TournamentService);
+    trainers = [
+      TrainerTestMother.weakTrainer(),
+      TrainerTestMother.strongTrainer(),
+    ];
+
+    tournament = TournamentTestMother.getTournament();
   });
 
   describe("generateTournamentPairs", () => {
@@ -37,6 +47,23 @@ describe("TournamentService", () => {
       expect(() => tournamentService.generateTournamentPairs(trainers)).toThrow(
         "La taille du tournoi doit être une puissance de 2.",
       );
+    });
+  });
+  describe("TournamentService.addTournamentStep", () => {
+    it("should successfully add a new tournament step", async () => {
+      await tournamentService.addTournamentStep(trainers, tournament);
+      expect(tournament.tournamentSteps.length).toBe(1);
+    });
+
+    it("should throw an error when maximum steps already added", async () => {
+      await tournamentService.addTournamentStep(trainers, tournament);
+      await tournamentService.addTournamentStep(trainers, tournament);
+      try {
+        await tournamentService.addTournamentStep(trainers, tournament);
+        fail("expect exception to be thrown");
+      } catch (error) {
+        expect(error).toBe("Max step");
+      }
     });
   });
 });
