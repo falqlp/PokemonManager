@@ -1,7 +1,7 @@
 import { Component, DestroyRef, Input, OnInit } from '@angular/core';
 import { TimeService } from '../../../services/time.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { map, Observable, switchMap, tap } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs';
 import {
   AsyncPipe,
   NgClass,
@@ -40,7 +40,7 @@ import { PlayerService } from '../../../services/player.service';
 })
 export class TopBarWeekCalendarComponent implements OnInit {
   @Input() public player: TrainerModel;
-  protected data$: Observable<string[]>;
+  protected week: string[];
   protected events: CalendarEventModel[][];
   protected version = 0;
   protected dayToNextBattle: string;
@@ -55,52 +55,55 @@ export class TopBarWeekCalendarComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.data$ = this.timeService.getActualDate().pipe(
-      takeUntilDestroyed(this.destroyRef),
-      switchMap((actualDate) => {
-        return this.calendarEventQueriesService
-          .getWeekCalendar(this.player._id, actualDate)
-          .pipe(
-            map((res) => {
-              this.events = res;
-              return actualDate;
+    this.timeService
+      .getActualDate()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        switchMap((actualDate) => {
+          return this.calendarEventQueriesService
+            .getWeekCalendar(this.player._id, actualDate)
+            .pipe(
+              map((res) => {
+                this.events = res;
+                return actualDate;
+              })
+            );
+        }),
+        switchMap((actualDate) => {
+          return this.calendarEventQueriesService
+            .list({
+              custom: {
+                trainers: {
+                  $in: this.player._id,
+                },
+                date: {
+                  $gte: new Date(actualDate),
+                },
+                type: CalendarEventEvent.BATTLE,
+              },
+              limit: 2,
+              sort: {
+                date: 1,
+              },
             })
-          );
-      }),
-      switchMap((actualDate) => {
-        return this.calendarEventQueriesService
-          .list({
-            custom: {
-              trainers: {
-                $in: this.player._id,
-              },
-              date: {
-                $gte: new Date(actualDate),
-              },
-              type: CalendarEventEvent.BATTLE,
-            },
-            limit: 2,
-            sort: {
-              date: 1,
-            },
-          })
-          .pipe(
-            map((result) => {
-              return result[0]?.event.winner ? result[1] : result[0];
-            }),
-            tap((nextBattle) => {
-              if (nextBattle) {
-                this.dayToNextBattle = this.getDayToNextBattle(
-                  new Date(nextBattle.date),
-                  new Date(actualDate)
-                );
-              }
-              this.nextBattle = nextBattle;
-            }),
-            map(() => actualDate)
-          );
-      }),
-      map((actualDate) => {
+            .pipe(
+              map((result) => {
+                return result[0]?.event.winner ? result[1] : result[0];
+              }),
+              tap((nextBattle) => {
+                if (nextBattle) {
+                  this.dayToNextBattle = this.getDayToNextBattle(
+                    new Date(nextBattle.date),
+                    new Date(actualDate)
+                  );
+                }
+                this.nextBattle = nextBattle;
+              }),
+              map(() => actualDate)
+            );
+        })
+      )
+      .subscribe((actualDate) => {
         this.version += 1;
         const week: string[] = [];
         const newDate = new Date(actualDate);
@@ -111,9 +114,8 @@ export class TopBarWeekCalendarComponent implements OnInit {
           }`;
           newDate.setUTCDate(newDate.getUTCDate() + 1);
         }
-        return week;
-      })
-    );
+        this.week = week;
+      });
   }
 
   protected getDayToNextBattle(battleDate: Date, actualDate: Date): string {

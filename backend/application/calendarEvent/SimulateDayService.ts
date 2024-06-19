@@ -80,7 +80,7 @@ export default class SimulateDayService {
         this.simulateDayWebsocketService.getNextDayStatus(game)
       ) {
         this.simulateDayWebsocketService.simulating(gameId, true);
-        await this.startSimulation(game, date);
+        this.startSimulation(game, date).then();
       }
     }
     return res;
@@ -92,8 +92,8 @@ export default class SimulateDayService {
         this.simulateDayWebsocketService.getNextDayStatus(game) &&
       (await this.canBeSimulated(game, date))
     ) {
-      await delay(1000);
       date = await this.simulateDay(game, date);
+      await delay(1000);
     }
     this.simulateDayWebsocketService.simulating(game._id, false);
     game.players.forEach((player) => {

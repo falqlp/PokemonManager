@@ -19,7 +19,7 @@
   <div class="top-bar-week-calendar__calendar">
     <div
       class="top-bar-week-calendar__calendar__day"
-      *ngFor="let day of data$ | async; let i = index"
+      *ngFor="let day of week; let i = index"
       [ngClass]="{
         'top-bar-week-calendar__calendar__day--actual': i === 1
       }">

@@ -9,18 +9,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { RouterService } from './router.service';
 import { TimeService } from './time.service';
 import { PlayerService } from './player.service';
+import { WebsocketEventService } from './websocket-event.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SimulationService {
-  private stopRequest = false;
-  private actualDate: Date;
   public askForNextDay = false;
-
-  private simulatingSubject = new BehaviorSubject<boolean>(false);
-  public $simulating: Observable<boolean> =
-    this.simulatingSubject.asObservable();
 
   constructor(
     private calendarEventQueriesService: CalendarEventQueriesService,
@@ -30,8 +25,7 @@ export class SimulationService {
     private timeService: TimeService,
     private playerService: PlayerService
   ) {
-    this.timeService.getActualDate().subscribe((date) => {
-      this.actualDate = date;
+    this.timeService.getActualDate().subscribe(() => {
       this.askForNextDay = false;
     });
   }
