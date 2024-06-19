@@ -24,13 +24,13 @@ import { mongoId } from "../../../utils/MongoUtils";
 @singleton()
 export default class TournamentService {
   constructor(
-    protected tournamentRepository: TournamentRepository,
-    protected generateCalendarService: GenerateCalendarService,
-    protected calendarEventRepository: CalendarEventRepository,
-    protected battleInstanceRepository: BattleInstanceRepository,
-    protected battleSerieRepository: BattleSerieRepository,
-    protected battleInstanceService: BattleInstanceService,
-    protected trainerRepository: TrainerRepository,
+    public tournamentRepository: TournamentRepository,
+    public generateCalendarService: GenerateCalendarService,
+    public calendarEventRepository: CalendarEventRepository,
+    public battleInstanceRepository: BattleInstanceRepository,
+    public battleSerieRepository: BattleSerieRepository,
+    public battleInstanceService: BattleInstanceService,
+    public trainerRepository: TrainerRepository,
   ) {}
 
   public async createTournament(
@@ -61,7 +61,7 @@ export default class TournamentService {
     return this.tournamentRepository.create(tournament);
   }
 
-  private async generateTournamentStep(
+  public async generateTournamentStep(
     trainers: ITrainer[],
     startDate: Date,
     gameId: string,

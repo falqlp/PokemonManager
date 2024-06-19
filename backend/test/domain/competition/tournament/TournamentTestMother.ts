@@ -1,9 +1,10 @@
 import { ITournament } from "../../../../domain/competiton/tournament/Tournament";
+import TournamentStepTestMother from "./TournamentStepTestMother";
 
 export default class TournamentTestMother {
   public static getTournament(): ITournament {
     return {
-      tournamentSteps: [],
+      tournamentSteps: [TournamentStepTestMother.getTournamentStep()],
       nbStep: 3,
       competitionId: "competitionId",
       gameId: "gameId",
