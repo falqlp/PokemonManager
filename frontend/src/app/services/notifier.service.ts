@@ -21,6 +21,7 @@ export class NotifierService {
     private translateService: TranslateService,
     private websocketEventService: WebsocketEventService
   ) {
+    this.notify = this.notify.bind(this);
     this.websocketEventService.notifyEvent$.subscribe(this.notify);
   }
 

@@ -29,6 +29,7 @@ import { NotificationType } from "../../websocket/WebsocketDataService";
 import SimulateDayWebsocketService from "../../websocket/SimulateDayWebsocketService";
 import WebsocketUtils from "../../websocket/WebsocketUtils";
 import PokemonService from "../pokemon/PokemonService";
+import { delay } from "../../utils/Utils";
 
 @singleton()
 export default class SimulateDayService {
@@ -86,25 +87,22 @@ export default class SimulateDayService {
   }
 
   private async startSimulation(game: IGame, date: Date): Promise<void> {
-    const intervalId = setInterval(async () => {
-      if (
-        game.players.length !==
-          this.simulateDayWebsocketService.getNextDayStatus(game) ||
-        !(await this.canBeSimulated(game, date))
-      ) {
-        clearInterval(intervalId);
-        this.simulateDayWebsocketService.simulating(game._id, false);
-        game.players.forEach((player) => {
-          this.simulateDayWebsocketService.changeTrainerSimulateDayStatus(
-            player.trainer._id,
-            game,
-            false,
-          );
-        });
-        return;
-      }
+    while (
+      game.players.length ===
+        this.simulateDayWebsocketService.getNextDayStatus(game) &&
+      (await this.canBeSimulated(game, date))
+    ) {
+      await delay(1000);
       date = await this.simulateDay(game, date);
-    }, 1000);
+    }
+    this.simulateDayWebsocketService.simulating(game._id, false);
+    game.players.forEach((player) => {
+      this.simulateDayWebsocketService.changeTrainerSimulateDayStatus(
+        player.trainer._id,
+        game,
+        false,
+      );
+    });
   }
 
   private async canBeSimulated(game: IGame, date: Date): Promise<boolean> {

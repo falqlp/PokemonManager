@@ -26,6 +26,7 @@ export default class SimulateDayWebsocketService {
       .getClients((client) => client.trainerId === trainerId.toString())
       .map((client) => {
         client.askNextDay = status;
+        this.websocketDataService.update(client);
         return client;
       });
     this.updateSimulateStatus(game);
