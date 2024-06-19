@@ -64,12 +64,11 @@ export class TopBarWeekCalendarComponent implements OnInit {
             .getWeekCalendar(this.player._id, actualDate)
             .pipe(
               map((res) => {
-                this.events = res;
-                return actualDate;
+                return { actualDate, events: res };
               })
             );
         }),
-        switchMap((actualDate) => {
+        switchMap(({ actualDate, events }) => {
           return this.calendarEventQueriesService
             .list({
               custom: {
@@ -99,11 +98,16 @@ export class TopBarWeekCalendarComponent implements OnInit {
                 }
                 this.nextBattle = nextBattle;
               }),
-              map(() => actualDate)
+              map(() => {
+                return {
+                  actualDate,
+                  events,
+                };
+              })
             );
         })
       )
-      .subscribe((actualDate) => {
+      .subscribe(({ actualDate, events }) => {
         this.version += 1;
         const week: string[] = [];
         const newDate = new Date(actualDate);
@@ -115,6 +119,7 @@ export class TopBarWeekCalendarComponent implements OnInit {
           newDate.setUTCDate(newDate.getUTCDate() + 1);
         }
         this.week = week;
+        this.events = events;
       });
   }
 
