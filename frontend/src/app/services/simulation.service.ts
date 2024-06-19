@@ -3,13 +3,12 @@ import { CalendarEventQueriesService } from './queries/calendar-event-queries.se
 import { BattleModel } from '../models/Battle.model';
 import { DialogButtonsModel } from '../modals/generic-dialog/generic-dialog.models';
 import { GenericDialogComponent } from '../modals/generic-dialog/generic-dialog.component';
-import { BehaviorSubject, first, map, Observable, switchMap, tap } from 'rxjs';
+import { first, map, switchMap, tap } from 'rxjs';
 import { BattleInstanceQueriesService } from './queries/battle-instance-queries.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterService } from './router.service';
 import { TimeService } from './time.service';
 import { PlayerService } from './player.service';
-import { WebsocketEventService } from './websocket-event.service';
 
 @Injectable({
   providedIn: 'root',
