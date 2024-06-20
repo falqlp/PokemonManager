@@ -1,5 +1,5 @@
 import { AnyObject } from "mongoose";
-import { convertStringsToDateInObject } from "../../utils/DateConverter";
+import { convertStringsToDateInObject } from "./DateConverter";
 
 describe("convertStringsToDateInObject function", () => {
   it("should convert date strings to Date objects in a given object", () => {

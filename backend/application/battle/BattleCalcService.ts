@@ -131,8 +131,8 @@ export const TYPE_EFFECTIVENESS: { [key: string]: { [key: string]: number } } =
     },
   };
 
-const STAB_MODIFIER = 1.5;
-const MIN_ROLL = 0.85;
+export const STAB_MODIFIER = 1.5;
+export const MIN_ROLL = 0.85;
 
 @singleton()
 class BattleCalcService {
@@ -144,7 +144,7 @@ class BattleCalcService {
     if (attPokemon.currentHp === 0 || move === undefined) {
       return;
     }
-    const missed = this.moveOnTarget(move);
+    const missed = this.isMissed(move);
     const effectiveness = this.calcEffectiveness(move, defPokemon);
     const criticalHit =
       effectiveness === 0 || missed ? 1 : this.criticalHit(attPokemon);
@@ -243,7 +243,7 @@ class BattleCalcService {
     );
   }
 
-  moveOnTarget(move: IMove): boolean {
+  isMissed(move: IMove): boolean {
     if (!move.accuracy) {
       return true;
     }

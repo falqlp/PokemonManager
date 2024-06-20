@@ -17,7 +17,6 @@ export interface IDamage {
   move: IMove;
 }
 export interface IBattlePokemon extends IPokemon {
-  moves: IMove[];
   dailyForm: number;
   currentHp: number;
   cumulatedSpeed: number;

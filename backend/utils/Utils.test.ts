@@ -1,4 +1,4 @@
-import { delay } from "../../utils/Utils";
+import { delay } from "./Utils";
 
 describe("delay", () => {
   beforeEach(() => {

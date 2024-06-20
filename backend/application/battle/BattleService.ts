@@ -86,17 +86,21 @@ class BattleService {
     return moveOrder;
   }
 
-  private mapBattleTrainer(
-    trainer: ITrainer,
-    battleId: string,
-  ): IBattleTrainer {
-    trainer = { ...(trainer as any)._doc };
+  public mapBattleTrainer(trainer: ITrainer, battleId: string): IBattleTrainer {
+    if ((trainer as any)._doc) {
+      trainer = { ...(trainer as any)._doc };
+    }
     const battlePokemons = trainer.pokemons
       .filter((value) => value.level > 0)
       .map((pokemon) => {
-        const battlePokemon: IBattlePokemon = {
-          ...(pokemon as any)._doc,
-        } as IBattlePokemon;
+        let battlePokemon: IBattlePokemon;
+        if ((pokemon as any)._doc) {
+          battlePokemon = {
+            ...(pokemon as any)._doc,
+          } as IBattlePokemon;
+        } else {
+          battlePokemon = pokemon as IBattlePokemon;
+        }
         battlePokemon.dailyForm = this.getDailyForm(
           battlePokemon._id,
           battleId,
@@ -121,7 +125,7 @@ class BattleService {
     } as IBattleTrainer;
   }
 
-  private getDailyForm(battleId: string, pokemonId: string): number {
+  public getDailyForm(battleId: string, pokemonId: string): number {
     const randomValue = getRandomValue(battleId + pokemonId);
 
     if (randomValue < 0.5) {
@@ -137,7 +141,7 @@ class BattleService {
     }
   }
 
-  private setDailyForm(dailyForm: number, stats: IPokemonStats): IPokemonStats {
+  public setDailyForm(dailyForm: number, stats: IPokemonStats): IPokemonStats {
     const newStats: { [key: string]: number } = stats as unknown as {
       [key: string]: number;
     };
@@ -180,7 +184,7 @@ class BattleService {
     return { player, opponent, battleOrder, damage };
   }
 
-  private selectMove(moves: IMove[], strategy: number[]): IMove {
+  public selectMove(moves: IMove[], strategy: number[]): IMove {
     if (
       !strategy ||
       strategy.length === 0 ||
@@ -201,39 +205,46 @@ class BattleService {
     return moves[0];
   }
 
-  private getMaxDamagedPokemon(
+  public getMaxDamagedPokemon(
     pokemons: IBattlePokemon[],
     move: IMove,
     selectedPokemon: IBattlePokemon,
   ): IBattlePokemon {
-    return pokemons
-      .filter((pokemon) => pokemon.currentHp > 0)
-      .reduce((prev, current) => {
-        return this.battleCalcService.estimator(selectedPokemon, prev, move) >
-          this.battleCalcService.estimator(selectedPokemon, current, move)
-          ? prev
-          : current;
-      });
+    const remainingPokemons = pokemons.filter(
+      (pokemon) => pokemon.currentHp > 0,
+    );
+    if (remainingPokemons.length === 0) {
+      throw new Error("No remaining pokemons");
+    }
+    return remainingPokemons.reduce((prev, current) => {
+      return this.battleCalcService.estimator(selectedPokemon, prev, move) >
+        this.battleCalcService.estimator(selectedPokemon, current, move)
+        ? prev
+        : current;
+    });
   }
 
-  private resetPokemonStates(pokemons: IBattlePokemon[]): void {
+  public resetPokemonStates(pokemons: IBattlePokemon[]): void {
     pokemons.forEach((pokemon) => {
       pokemon.animation = undefined;
       pokemon.moving = false;
     });
   }
 
-  private findAttackingPokemon(
+  public findAttackingPokemon(
     trainers: IBattleTrainer[],
     battleOrder: IBattlePokemon[],
   ): IBattlePokemon {
+    if (!battleOrder[0]) {
+      return;
+    }
     const { trainerId, _id } = battleOrder[0];
     return trainers
       .find((trainer) => trainer._id.toString() === trainerId.toString())
       ?.pokemons.find((pokemon) => pokemon._id.toString() === _id.toString());
   }
 
-  private conductBattleRound(
+  public conductBattleRound(
     attPokemon: IBattlePokemon,
     opponents: IBattlePokemon[],
     selectedMove: IMove,
@@ -261,7 +272,7 @@ class BattleService {
     return { damage, maxDamagedPokemon };
   }
 
-  private updatePostBattleStates(
+  public updatePostBattleStates(
     player: IBattleTrainer,
     opponent: IBattleTrainer,
     battleOrder: IBattlePokemon[],
@@ -392,7 +403,7 @@ class BattleService {
     this.battleWebsocketService.updateNextRoundStatus(playerIds);
   }
 
-  private async nextRoundLoop(
+  public async nextRoundLoop(
     battleId: string,
     playerIds: string[],
     gameId: string,
@@ -419,7 +430,7 @@ class BattleService {
     this.battleWebsocketService.updateNextRoundStatus(playerIds);
   }
 
-  private async getPlayerIds(
+  public async getPlayerIds(
     battleId: string,
     gameId: string,
   ): Promise<string[]> {

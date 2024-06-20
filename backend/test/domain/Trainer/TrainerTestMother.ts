@@ -8,10 +8,12 @@ export class TrainerTestMother {
   static weakTrainer(): ITrainer {
     return {
       name: "Ash Ketchum",
-      pokemons: [PokemonTestMother.generateBulbasaur()],
+      _id: "Ash Ketchum",
+      pokemons: [PokemonTestMother.generateBulbasaur("Ash Ketchum")],
       pcStorage: PcStorageTestMother.basicPcStorage(),
       trainingCamp: TrainingCampTestMother.basicTrainingCamp(),
       nursery: NurseryTestMother.basicNursery(),
+      competitions: [],
     } as ITrainer;
   }
 
@@ -25,10 +27,11 @@ export class TrainerTestMother {
 
   static strongTrainer(): ITrainer {
     return this.withCustomOptions({
+      _id: "red",
       name: "red",
       pokemons: [
-        PokemonTestMother.generateArticuno(),
-        PokemonTestMother.generateBulbasaur(),
+        PokemonTestMother.generateArticuno("red"),
+        PokemonTestMother.generateBulbasaur("red"),
       ],
       pcStorage: PcStorageTestMother.filledPcStorage(),
       trainingCamp: TrainingCampTestMother.advencedTrainingCamp(),

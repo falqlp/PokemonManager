@@ -3,10 +3,12 @@ import { ITrainer } from "../trainer/Trainer";
 import { MongoId } from "../MongoId";
 import { ICompetition } from "../competiton/Competition";
 
+export type IWinner = "opponent" | "player";
+
 export interface IBattleInstance extends MongoId {
   player: ITrainer;
   opponent: ITrainer;
-  winner?: string;
+  winner?: IWinner;
   gameId: string;
   competition: ICompetition;
 }
