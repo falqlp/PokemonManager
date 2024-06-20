@@ -12,6 +12,7 @@ import { ITrainer } from "../../domain/trainer/Trainer";
 import { addDays } from "../../utils/DateUtils";
 import { mongoId } from "../../utils/MongoUtils";
 import GenerateCalendarService from "../calendarEvent/GenerateCalendarService";
+import { splitArray } from "../../utils/ArrayUtils";
 
 @singleton()
 export default class CompetitionService {
@@ -121,7 +122,7 @@ export default class CompetitionService {
     }
   }
 
-  private async createGroupsCompetition(
+  public async createGroupsCompetition(
     gameId: string,
     name: string,
     trainers: ITrainer[],
@@ -129,7 +130,7 @@ export default class CompetitionService {
     startDate: Date,
     endDate: Date,
   ): Promise<void> {
-    const groups = this.splitArray(trainers);
+    const groups = splitArray(trainers);
     const competition = await this.competitionRepository.create({
       gameId,
       groups,
@@ -150,25 +151,5 @@ export default class CompetitionService {
       gameId,
       competition,
     );
-  }
-
-  private splitArray<T>(inputArray: T[]): T[][] {
-    const array1: T[] = [];
-    const array2: T[] = [];
-
-    inputArray.forEach((element, index) => {
-      const position = Math.floor(index / 3);
-      const phase = index % 3;
-
-      if (position % 2 === 0 && phase !== 2) {
-        array1.push(element);
-      } else if (position % 2 !== 0 && phase === 2) {
-        array1.push(element);
-      } else {
-        array2.push(element);
-      }
-    });
-
-    return [array1, array2];
   }
 }

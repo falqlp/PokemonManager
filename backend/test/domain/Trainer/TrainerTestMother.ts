@@ -13,6 +13,7 @@ export class TrainerTestMother {
       pcStorage: PcStorageTestMother.basicPcStorage(),
       trainingCamp: TrainingCampTestMother.basicTrainingCamp(),
       nursery: NurseryTestMother.basicNursery(),
+      competitions: [],
     } as ITrainer;
   }
 
