@@ -3,13 +3,15 @@ import { IPokemonBase } from "../../../domain/pokemon/pokemonBase/PokemonBase";
 import PokemonBaseRepository from "../../../domain/pokemon/pokemonBase/PokemonBaseRepository";
 import { singleton } from "tsyringe";
 
+export const RANDOM_TYPE_RATE = 0.1;
+
 @singleton()
 class PokemonBaseService {
   constructor(protected pokemonBaseRepository: PokemonBaseRepository) {}
 
   public async generateEggBase(wishlist: IWishList): Promise<IPokemonBase> {
     let query = this.getDefaultQuery();
-    if (Math.random() >= 0.3) {
+    if (Math.random() >= RANDOM_TYPE_RATE) {
       const choosenType = this.chooseTypeBasedOnWishlist(wishlist);
       query = this.getTypeBasedQuery(choosenType);
     }
@@ -45,9 +47,11 @@ class PokemonBaseService {
 
   public chooseTypeBasedOnWishlist(wishlist: IWishList): string {
     const filteredTypes = Object.entries(
-      (
-        wishlist.typeRepartition as unknown as { toObject: () => any }
-      ).toObject(),
+      (wishlist.typeRepartition as unknown as { toObject: () => any }).toObject
+        ? (
+            wishlist.typeRepartition as unknown as { toObject: () => any }
+          ).toObject()
+        : wishlist.typeRepartition,
     ).filter(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ([type, percentage]) => percentage !== null && (percentage as number) > 0,
