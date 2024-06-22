@@ -67,7 +67,7 @@ class PokemonService {
   ): IPokemon {
     pokemon.ev = pokemon.ev ?? oldPokemon.ev;
     pokemon.iv = pokemon.iv ?? oldPokemon.iv;
-    pokemon.strategy = pokemon.strategy ?? oldPokemon.strategy ?? [];
+    pokemon.strategy = pokemon.strategy ?? oldPokemon.strategy;
     pokemon.basePokemon = pokemon.basePokemon ?? oldPokemon.basePokemon;
     pokemon.nature = pokemon.nature ?? oldPokemon.nature ?? PokemonNature.HARDY;
     pokemon.stats = this.pokemonUtilsService.updateStats(pokemon);
@@ -94,20 +94,20 @@ class PokemonService {
     let newPokemon: IPokemon;
     const actualDate = (await this.gameRepository.get(gameId)).actualDate;
     if (pokemon.level === 0) {
-      newPokemon = await this.createEgg(pokemon, gameId, actualDate);
+      newPokemon = this.createEgg(pokemon, gameId, actualDate);
     } else {
-      newPokemon = await this.createPokemon(pokemon, gameId, actualDate);
+      newPokemon = this.createPokemon(pokemon, gameId, actualDate);
     }
     newPokemon.shiny =
       pokemon.shiny ?? this.pokemonUtilsService.generateShiny();
     return this.savePokemon(newPokemon, gameId);
   }
 
-  public async createPokemon(
+  public createPokemon(
     pokemon: IPokemon,
     gameId: string,
     actualDate: Date,
-  ): Promise<IPokemon> {
+  ): IPokemon {
     pokemon.gameId = gameId;
 
     if (pokemon.nickname === "") {
@@ -166,12 +166,12 @@ class PokemonService {
     return pokemon;
   }
 
-  public async createEgg(
+  public createEgg(
     pokemon: IPokemon,
     gameId: string,
     actualDate: Date,
-  ): Promise<IPokemon> {
-    pokemon = await this.createPokemon(pokemon, gameId, actualDate);
+  ): IPokemon {
+    pokemon = this.createPokemon(pokemon, gameId, actualDate);
     pokemon.hatchingDate = pokemon.birthday;
     pokemon.hatchingDate.setMonth(pokemon.birthday.getUTCMonth() + 3);
     pokemon.birthday = undefined;
@@ -276,7 +276,7 @@ class PokemonService {
   ): Promise<IPokemon[]> {
     const actualDate = (await this.gameRepository.get(gameId)).actualDate;
     for (const pokemon of pokemons) {
-      await this.createPokemon(pokemon, gameId, actualDate);
+      this.createPokemon(pokemon, gameId, actualDate);
     }
     return await this.pokemonRepository.insertMany(pokemons);
   }

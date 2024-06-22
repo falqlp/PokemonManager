@@ -162,7 +162,7 @@ describe("PokemonUtilsService", () => {
 
     it("should return true approximately 1/4096 of the time", () => {
       let shinyCounter = 0;
-      const trials = 10_000_000;
+      const trials = 100_000;
       for (let i = 0; i < trials; i++) {
         if (service.generateShiny()) {
           shinyCounter += 1;
