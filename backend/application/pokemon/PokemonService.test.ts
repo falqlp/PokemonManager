@@ -337,7 +337,7 @@ describe("PokemonService", () => {
       const basePokemon = PokemonTestMother.generateBulbasaur();
       const newPokemon: IPokemon = {
         ...basePokemon,
-        birthday: new Date("2023-01-01T02:00:00"),
+        birthday: new Date(Date.UTC(2023, 0, 0)),
       };
       const gameId = "gameId";
       const actualDate = new Date();
@@ -351,7 +351,7 @@ describe("PokemonService", () => {
         gameId,
         actualDate,
       );
-      expect(eggPokemon.hatchingDate).toEqual(new Date("2023-04-01"));
+      expect(eggPokemon.hatchingDate).toEqual(new Date(Date.UTC(2023, 3, 0)));
       expect(eggPokemon.birthday).toBeUndefined();
     });
   });

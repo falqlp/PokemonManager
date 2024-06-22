@@ -173,7 +173,7 @@ class PokemonService {
   ): IPokemon {
     pokemon = this.createPokemon(pokemon, gameId, actualDate);
     pokemon.hatchingDate = pokemon.birthday;
-    pokemon.hatchingDate.setMonth(pokemon.birthday.getUTCMonth() + 3);
+    pokemon.hatchingDate.setUTCMonth(pokemon.birthday.getUTCMonth() + 3);
     pokemon.birthday = undefined;
     return pokemon;
   }
