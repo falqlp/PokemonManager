@@ -1,10 +1,6 @@
 :host {
-  display: flex;
-  justify-content: center;
+  display: contents;
   position: relative;
-  .icon {
-    height: 40px;
-  }
   .display-pokemon-image {
     cursor: pointer;
   }
@@ -15,5 +11,14 @@
     height: auto;
     position: absolute;
     color: #cbcb4c;
+  }
+  .max-width {
+    width: 100%;
+  }
+  .max-height {
+    height: 100%;
+  }
+  .icon {
+    height: 40px;
   }
 }

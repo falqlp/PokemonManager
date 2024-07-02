@@ -7,13 +7,10 @@
   flex-direction: column;
   gap: 20px;
   .starters {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    width: 75%;
-    justify-content: center;
+    width: calc(100% - 40px);
     &__starter {
-      @include flexbox(center, 2, column);
+      background-color: $background-color2;
+      border-radius: 8px;
       align-items: normal;
       cursor: pointer;
       border: 5px solid $background-color2;

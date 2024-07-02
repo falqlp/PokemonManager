@@ -1,7 +1,11 @@
 <img
   #img
   class="display-pokemon-image"
-  [ngClass]="{ icon: type === 'icon' }"
+  [ngClass]="{
+    icon: type === 'icon',
+    'max-height': maxHeight,
+    'max-width': !maxHeight
+  }"
   draggable="false"
   [src]="imageUrl"
   (load)="loadImg()"

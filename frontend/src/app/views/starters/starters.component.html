@@ -1,19 +1,21 @@
 @if (starters && player) {
 <span>{{ 'SELECT_3_STARTERS' | translate }} {{ selected.length }}/3</span>
-<div class="starters">
+<mat-grid-list class="starters" cols="3" rowHeight="40%" gutterSize="20px">
   @for (starter of starters; track starter.basePokemon.id) {
-  <div
-    class="starters__starter"
+  <mat-grid-tile
+    colspan="1"
+    rowspan="1"
     mat-ripple
+    class="starters__starter"
     [ngClass]="findPokemon(starter) ? 'starters__starter--selected' : ''"
     (click)="selectPokemon(starter)">
     <app-display-pokemon-image
       [pokemon]="starter"
       [disabledClick]="true"
       type="max-size" />
-  </div>
+  </mat-grid-tile>
   }
-</div>
+</mat-grid-list>
 <button
   mat-flat-button
   color="warn"

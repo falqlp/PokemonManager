@@ -33,9 +33,13 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
   protected fontSize: number;
 
   protected basePokemon: PokemonBaseModel;
+  protected maxHeight: boolean;
 
   protected imageUrl: string;
-  constructor(private routerService: RouterService) {}
+  constructor(
+    private routerService: RouterService,
+    protected elementRef: ElementRef
+  ) {}
 
   public ngOnInit(): void {
     this.updateImageUrl();
@@ -89,6 +93,13 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
 
   public loadImg(): void {
     this.fontSize = this.img.nativeElement.height * 0.2;
+    const hwRatioImg =
+      this.elementRef.nativeElement.children[0].naturalHeight /
+      this.elementRef.nativeElement.children[0].naturalWidth;
+    const hwRatioImgDiv =
+      this.elementRef.nativeElement.parentElement.clientHeight /
+      this.elementRef.nativeElement.parentElement.clientWidth;
+    this.maxHeight = hwRatioImg > hwRatioImgDiv;
   }
 
   protected click(): void {

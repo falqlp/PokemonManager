@@ -4,6 +4,7 @@ import {
   HTTP_INTERCEPTORS,
   HttpClient,
   provideHttpClient,
+  withInterceptorsFromDi,
 } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
@@ -39,7 +40,7 @@ export const provideTranslation = (): any => ({
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
     importProvidersFrom([
       TranslateModule.forRoot(provideTranslation()),
       MatDialogModule,

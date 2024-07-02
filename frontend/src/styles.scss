@@ -11,6 +11,25 @@
 
 @include mat.core();
 
+$typography-config: mat.m2-define-typography-config(
+  $font-family: 'Roboto',
+  $button: mat.m2-define-typography-level(16px, 32px, 400),
+  $overline: null,
+  $headline-1:
+    mat.m2-define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  $headline-2:
+    mat.m2-define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  $headline-3:
+    mat.m2-define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+  $headline-4: mat.m2-define-typography-level(34px, 40px, 400),
+  $headline-5: mat.m2-define-typography-level(24px, 32px, 400),
+  $subtitle-1: mat.m2-define-typography-level(24px, 32px, 400),
+  $subtitle-2: mat.m2-define-typography-level(22px, 32px, 400),
+  $body-1: mat.m2-define-typography-level(18px, 32px, 400),
+  $body-2: mat.m2-define-typography-level(18px, 32px, 400),
+  $caption: mat.m2-define-typography-level(24px, 32px, 400),
+);
+
 $pokemon-manager-primary: mat.m2-define-palette($primary-palette);
 $pokemon-manager-accent: mat.m2-define-palette(mat.$m2-gray-palette);
 
@@ -26,6 +45,7 @@ $pokemon-manager-theme: mat.m2-define-dark-theme(
       accent: $pokemon-manager-accent,
       warn: $pokemon-manager-warn,
     ),
+    typography: $typography-config,
   )
 );
 

@@ -15,6 +15,7 @@ import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgClass } from '@angular/common';
 import { MatRippleModule } from '@angular/material/core';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 
 @Component({
   selector: 'pm-starters',
@@ -26,6 +27,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatCheckboxModule,
     NgClass,
     MatRippleModule,
+    MatGridList,
+    MatGridTile,
   ],
   templateUrl: './starters.component.html',
   styleUrl: './starters.component.scss',
