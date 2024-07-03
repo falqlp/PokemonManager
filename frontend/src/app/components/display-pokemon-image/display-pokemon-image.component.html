@@ -3,8 +3,8 @@
   class="display-pokemon-image"
   [ngClass]="{
     icon: type === 'icon',
-    'max-height': maxHeight,
-    'max-width': !maxHeight
+    'max-height': maxHeight(),
+    'max-width': !maxHeight()
   }"
   draggable="false"
   [src]="imageUrl"
