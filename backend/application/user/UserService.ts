@@ -34,8 +34,8 @@ export class UserService {
     });
   }
 
-  public addFriend(userId: string, friendId: string): Promise<void> {
+  public async addFriend(userId: string, friendId: string): Promise<void> {
     this.websocketUtils.notifyUser("NEW_FRIEND_REQUEST", userId);
-    return this.userRepository.addFriend(userId, friendId);
+    await this.userRepository.addFriend(userId, friendId);
   }
 }

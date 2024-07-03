@@ -4,7 +4,7 @@ import PcStorageRepository from "../../domain/trainer/pcStorage/PcStorageReposit
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import TrainerClassRepository from "../../domain/trainer/trainerClass/TrainerClassRepository";
 import { ITrainer } from "../../domain/trainer/Trainer";
-import { RangeModel } from "../RangeModel";
+import { RangeModel } from "../../models/RangeModel";
 import PokemonUtilsService from "../pokemon/PokemonUtilsService";
 import PokemonBaseService from "../pokemon/pokemonBase/PokemonBaseService";
 import MoveLearningService from "../moveLearning/MoveLearningService";

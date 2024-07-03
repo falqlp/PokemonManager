@@ -389,11 +389,11 @@ describe("PokemonService", () => {
 
     it("should save the pokemon without updating the trainer if trainerId is not present", async () => {
       newPokemon = {
-        ...PokemonTestMother.generateBulbasaur(),
+        ...newPokemon,
         trainerId: undefined,
       };
       jest.spyOn(pokemonRepository, "create").mockResolvedValue({
-        ...PokemonTestMother.generateBulbasaur(),
+        ...newPokemon,
         trainerId: undefined,
       });
       const gameId = "gameId";

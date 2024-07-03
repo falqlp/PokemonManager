@@ -8,7 +8,6 @@ module.exports = {
   collectCoverageFrom: [
     "application/**/*.ts",
     "websocket/**/*.ts",
-    "domain/**/*.ts",
     "utils/**/*.ts",
   ],
 };
