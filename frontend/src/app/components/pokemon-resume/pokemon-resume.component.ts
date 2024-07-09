@@ -20,6 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgClass } from '@angular/common';
 import { PokemonResumeInfosComponent } from './pokemon-resume-infos/pokemon-resume-infos.component';
 import { PokemonStatsRadarComponent } from '../pokemon-stats-radar/pokemon-stats-radar.component';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-pokemon-resume',
@@ -36,6 +37,8 @@ import { PokemonStatsRadarComponent } from '../pokemon-stats-radar/pokemon-stats
     NgClass,
     PokemonResumeInfosComponent,
     PokemonStatsRadarComponent,
+    MatGridList,
+    MatGridTile,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

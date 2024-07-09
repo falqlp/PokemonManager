@@ -26,9 +26,7 @@ import { RouterService } from '../../services/router.service';
   styleUrls: ['./display-pokemon-image.component.scss'],
   imports: [TranslateModule, NgClass, MatIconModule, NgIf],
 })
-export class DisplayPokemonImageComponent
-  implements OnInit, OnChanges, AfterViewInit, OnDestroy
-{
+export class DisplayPokemonImageComponent implements OnInit, OnChanges {
   @ViewChild('img') protected img: ElementRef;
   @Input() public pokemon: PokemonModel | PokemonBaseModel;
   @Input() public type: DisplayType;
@@ -36,7 +34,6 @@ export class DisplayPokemonImageComponent
   @Input() public shiny = false;
   public disabledClick = input<boolean>(false);
   protected fontSize: number;
-  private resizeObserver: ResizeObserver;
 
   protected basePokemon: PokemonBaseModel;
   protected maxHeight = signal<boolean>(false);
@@ -51,21 +48,10 @@ export class DisplayPokemonImageComponent
     this.updateImageUrl();
   }
 
-  public ngAfterViewInit(): void {
-    this.resizeObserver = new ResizeObserver(() => {
-      this.loadImg();
-    });
-    this.resizeObserver.observe(this.elementRef.nativeElement.parentElement);
-  }
-
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['pokemon']) {
       this.updateImageUrl();
     }
-  }
-
-  public ngOnDestroy(): void {
-    this.resizeObserver.disconnect();
   }
 
   protected updateImageUrl(): void {

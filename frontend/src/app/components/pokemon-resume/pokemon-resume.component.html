@@ -10,10 +10,9 @@
 
   <div class="pokemon-resume__content">
     <div class="pokemon-resume__content__main-infos">
-      <app-display-pokemon-image
-        class="pokemon-resume__content__main-infos__image"
-        [pokemon]="pokemon()"
-        type="max-size" />
+      <div class="pokemon-resume__content__main-infos__image">
+        <app-display-pokemon-image [pokemon]="pokemon()" type="max-size" />
+      </div>
       <div class="pokemon-resume__content__main-infos__types">
         <pm-display-type [types]="pokemon().basePokemon.types" />
       </div>

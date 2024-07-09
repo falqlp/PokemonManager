@@ -17,7 +17,9 @@
       flex-direction: column;
       padding: 0;
       &--image {
-        overflow: auto;
+        display: flex;
+        justify-content: center;
+        height: 240px;
       }
       &--level {
         display: flex;
