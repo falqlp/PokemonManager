@@ -7,8 +7,6 @@ import {
   ViewChild,
   ElementRef,
   input,
-  AfterViewInit,
-  OnDestroy,
   signal,
 } from '@angular/core';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
