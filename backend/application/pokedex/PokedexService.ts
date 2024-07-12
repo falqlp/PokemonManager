@@ -9,7 +9,7 @@ import { singleton } from "tsyringe";
 @singleton()
 export class PokedexService {
   constructor(
-    protected pokemonBaseService: PokemonBaseRepository,
+    protected pokemonBaseRepository: PokemonBaseRepository,
     protected moveLearningService: MoveLearningService,
     protected moveService: MoveRepository,
     protected evolutionRepository: EvolutionRepository,
@@ -20,7 +20,7 @@ export class PokedexService {
     const evolutionOf = await this.getEvolutionOf(pokemonId);
     const movesLearned = await this.getMovesLearned(pokemonId);
     const pokemonBase: IPokemonBase =
-      await this.pokemonBaseService.getPokemonBaseById(pokemonId);
+      await this.pokemonBaseRepository.getPokemonBaseById(pokemonId);
     return {
       evolutions,
       evolutionOf,
@@ -29,15 +29,13 @@ export class PokedexService {
     };
   }
 
-  protected async getEvolutions(
-    pokemonId: number,
-  ): Promise<IPokedexEvolution[]> {
+  public async getEvolutions(pokemonId: number): Promise<IPokedexEvolution[]> {
     const evolutions: IPokedexEvolution[] = [];
     const hasEvolutions =
       await this.evolutionRepository.hasEvolution(pokemonId);
     for (const evolution of hasEvolutions) {
       evolutions.push({
-        pokemon: await this.pokemonBaseService.getPokemonBaseById(
+        pokemon: await this.pokemonBaseRepository.getPokemonBaseById(
           evolution.evolveTo,
         ),
         evolutionMethod: evolution.evolutionMethod,
@@ -48,7 +46,7 @@ export class PokedexService {
       );
       for (const evolution2 of hasEvolutions2) {
         evolutions.push({
-          pokemon: await this.pokemonBaseService.getPokemonBaseById(
+          pokemon: await this.pokemonBaseRepository.getPokemonBaseById(
             evolution2.evolveTo,
           ),
           evolutionMethod: evolution2.evolutionMethod,
@@ -59,14 +57,12 @@ export class PokedexService {
     return evolutions;
   }
 
-  protected async getEvolutionOf(
-    pokemonId: number,
-  ): Promise<IPokedexEvolution[]> {
+  public async getEvolutionOf(pokemonId: number): Promise<IPokedexEvolution[]> {
     const evolutionOf: IPokedexEvolution[] = [];
     const isEvolution = await this.evolutionRepository.isEvolution(pokemonId);
     if (isEvolution) {
       evolutionOf.push({
-        pokemon: await this.pokemonBaseService.getPokemonBaseById(
+        pokemon: await this.pokemonBaseRepository.getPokemonBaseById(
           isEvolution.pokemonId,
         ),
         evolutionMethod: isEvolution.evolutionMethod,
@@ -77,7 +73,7 @@ export class PokedexService {
       );
       if (isEvolution2) {
         evolutionOf.unshift({
-          pokemon: await this.pokemonBaseService.getPokemonBaseById(
+          pokemon: await this.pokemonBaseRepository.getPokemonBaseById(
             isEvolution2.pokemonId,
           ),
           evolutionMethod: isEvolution2.evolutionMethod,
@@ -88,7 +84,7 @@ export class PokedexService {
     return evolutionOf;
   }
 
-  protected async getMovesLearned(
+  public async getMovesLearned(
     pokemonId: number,
   ): Promise<IPokedexMoveLearned[]> {
     const movesLearning =
