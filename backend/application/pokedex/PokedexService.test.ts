@@ -9,6 +9,7 @@ import MoveRepository from "../../domain/move/MoveRepository";
 import { IMove } from "../../domain/move/Move";
 import { MoveTestMother } from "../../test/domain/Move/MoveTestMother";
 import { IMoveLearning } from "../../domain/moveLearning/MoveLearning";
+import { IPokedexMoveLearned } from "./Pokedex";
 
 describe("PokedexService", () => {
   let pokemonBaseRepository: PokemonBaseRepository;
@@ -23,6 +24,9 @@ describe("PokedexService", () => {
     moveService = container.resolve(MoveRepository);
     evolutionRepository = container.resolve(EvolutionRepository);
     pokedexService = container.resolve(PokedexService);
+    jest.clearAllMocks();
+    jest.restoreAllMocks();
+    jest.resetAllMocks();
   });
 
   describe("getPokemonDetails", () => {
@@ -32,18 +36,18 @@ describe("PokedexService", () => {
     it("Should return the pokemon details with evolutions, evolutionOf, pokemonBase and movesLearned", async () => {
       jest
         .spyOn(pokemonBaseRepository, "getPokemonBaseById")
-        .mockImplementation((id) =>
+        .mockImplementation(() =>
           Promise.resolve(PokemonBaseTestMother.generateBulbasaurBase()),
         );
       jest
         .spyOn(evolutionRepository, "hasEvolution")
-        .mockImplementation((id) => Promise.resolve([]));
+        .mockImplementation(() => Promise.resolve([]));
       jest
         .spyOn(evolutionRepository, "isEvolution")
-        .mockImplementation((id) => Promise.resolve(null));
+        .mockImplementation(() => Promise.resolve(null));
       jest
         .spyOn(moveLearningService, "getMovesOfAllEvolutions")
-        .mockImplementation((id) => Promise.resolve([]));
+        .mockImplementation(() => Promise.resolve([]));
 
       const pokemonId = 1;
       const result = await pokedexService.getPokemonDetails(pokemonId);
@@ -81,10 +85,10 @@ describe("PokedexService", () => {
 
       jest
         .spyOn(evolutionRepository, "hasEvolution")
-        .mockImplementation((id) => Promise.resolve([evolution]));
+        .mockImplementation(() => Promise.resolve([evolution]));
       jest
         .spyOn(pokemonBaseRepository, "getPokemonBaseById")
-        .mockImplementation((id) => Promise.resolve(pokemonBase));
+        .mockImplementation(() => Promise.resolve(pokemonBase));
 
       const result = await pokedexService.getEvolutions(pokemonId);
 
@@ -119,10 +123,10 @@ describe("PokedexService", () => {
 
       jest
         .spyOn(evolutionRepository, "isEvolution")
-        .mockImplementation((id) => Promise.resolve(evolution));
+        .mockImplementation(() => Promise.resolve(evolution));
       jest
         .spyOn(pokemonBaseRepository, "getPokemonBaseById")
-        .mockImplementation((id) => Promise.resolve(pokemonBase));
+        .mockImplementation(() => Promise.resolve(pokemonBase));
 
       const result = await pokedexService.getEvolutionOf(pokemonId);
 
@@ -151,25 +155,20 @@ describe("PokedexService", () => {
       const pokemonId = 1;
 
       const moveLearning: IMoveLearning = {
-        moveId: 1,
+        moveId: "1",
         levelLearnAt: 5,
         learnMethod: "level-up",
+        pokemonId: 1,
       };
 
-      const move: IMove = {
-        id: 1,
-        power: 10,
-        category: "physical",
-        name: "Tackle",
-        type: "Normal",
-      };
+      const move: IMove = MoveTestMother.basicMove();
 
       jest
         .spyOn(moveLearningService, "getMovesOfAllEvolutions")
-        .mockImplementation((id, level) => Promise.resolve([moveLearning]));
+        .mockImplementation(() => Promise.resolve([moveLearning]));
       jest
         .spyOn(moveService, "get")
-        .mockImplementation((id) => Promise.resolve(move));
+        .mockImplementation(() => Promise.resolve(move));
 
       const result = await pokedexService.getMovesLearned(pokemonId);
 
@@ -197,7 +196,9 @@ describe("PokedexService", () => {
         pokemonId,
       };
 
-      const move: IMove = MoveTestMother.basicMove();
+      const move: IMove = MoveTestMother.withCustomOptions({
+        power: undefined,
+      });
 
       jest
         .spyOn(moveLearningService, "getMovesOfAllEvolutions")
