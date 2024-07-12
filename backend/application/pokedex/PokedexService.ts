@@ -31,9 +31,8 @@ export class PokedexService {
 
   public async getEvolutions(pokemonId: number): Promise<IPokedexEvolution[]> {
     const evolutions: IPokedexEvolution[] = [];
-    const hasEvolutions = await this.evolutionRepository.hasEvolution(
-      pokemonId,
-    );
+    const hasEvolutions =
+      await this.evolutionRepository.hasEvolution(pokemonId);
     for (const evolution of hasEvolutions) {
       evolutions.push({
         pokemon: await this.pokemonBaseRepository.getPokemonBaseById(
