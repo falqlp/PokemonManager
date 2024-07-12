@@ -7,10 +7,6 @@ export abstract class CompleteQuery<T> extends ReadonlyQuery<T> {
     super(url, http);
   }
 
-  public create(newObject: T): Observable<T> {
-    return this.http.post<T>(this.url, newObject);
-  }
-
   public update(updateObject: T, _id: string): Observable<T> {
     return this.http.put<T>(`${this.url}/${_id}`, updateObject);
   }

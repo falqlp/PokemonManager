@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { CompleteQuery } from '../../core/complete-query';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../../models/user.model';
 import { Observable } from 'rxjs';
+import { ReadonlyQuery } from '../../core/readonly-query';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserQueriesService extends CompleteQuery<UserModel> {
+export class UserQueriesService extends ReadonlyQuery<UserModel> {
   public static readonly url = 'api/user';
   public constructor(protected override http: HttpClient) {
     super(UserQueriesService.url, http);
@@ -26,5 +26,9 @@ export class UserQueriesService extends CompleteQuery<UserModel> {
       userId,
       friendId,
     });
+  }
+
+  public create(newObject: UserModel): Observable<UserModel> {
+    return this.http.post<UserModel>(this.url, newObject);
   }
 }

@@ -266,54 +266,16 @@ export class NurseryWishlistFormComponent implements OnInit {
     const click = (): void => {
       this.nursery.step = 'FIRST_SELECTION';
       this.nursery.wishList = this.form.getRawValue() as WishListModel;
-      this.nurseryQueriesService
-        .update(this.nursery, this.nursery._id)
+      this.playerService.player$
         .pipe(
-          first(),
-          takeUntilDestroyed(this.destroyRef),
-          switchMap(() => {
-            return this.playerService.player$.pipe(first());
-          }),
-          switchMap((player) => {
-            return this.timeService.getActualDate().pipe(
-              first(),
-              map((actualDate) => {
-                const newdate = new Date(actualDate);
-                newdate.setUTCMonth(newdate.getUTCMonth() + 1);
-                const firstEventDate = new Date(newdate);
-                const secondEventDate = new Date(newdate);
-                const thirdEventDate = new Date(newdate);
-                secondEventDate.setUTCDate(secondEventDate.getUTCDate() + 7);
-                thirdEventDate.setUTCDate(thirdEventDate.getUTCDate() + 14);
-                const calendarEvents: CalendarEventModel[] = [
-                  {
-                    type: CalendarEventEvent.GENERATE_NURSERY_EGGS,
-                    date: firstEventDate,
-                    trainers: [player],
-                  },
-                  {
-                    type: CalendarEventEvent.NURSERY_FIRST_SELECTION_DEADLINE,
-                    date: secondEventDate,
-                    trainers: [player],
-                  },
-                  {
-                    type: CalendarEventEvent.NURSERY_LAST_SELECTION_DEADLINE,
-                    date: thirdEventDate,
-                    trainers: [player],
-                  },
-                ];
-
-                return calendarEvents;
-              })
-            );
-          }),
-          switchMap((calendarEvents) => {
-            return forkJoin(
-              calendarEvents.map((event) =>
-                this.calendarEventQueriesService.create(event)
-              )
-            );
-          })
+          switchMap((player) =>
+            this.nurseryQueriesService.setNurseryWishlist(
+              this.form.getRawValue() as WishListModel,
+              this.nursery._id,
+              player._id
+            )
+          ),
+          takeUntilDestroyed(this.destroyRef)
         )
         .subscribe();
     };

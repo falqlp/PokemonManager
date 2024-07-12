@@ -70,9 +70,7 @@ export class HomeComponent implements OnInit {
   }
 
   protected createPokemon(pokemon: PokemonModel): void {
-    this.pokemonService
-      .create(pokemon)
-      .subscribe((newpokemon) => console.log(newpokemon));
+    console.log(pokemon);
   }
 
   protected goToCreateCalendarEvent(): void {
