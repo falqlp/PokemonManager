@@ -4,7 +4,10 @@ import { MongoId } from "../domain/MongoId";
 import { IMapper } from "../domain/IMapper";
 
 class CompleteRouter<T extends MongoId> extends ReadOnlyRouter<T> {
-  constructor(protected service: CompleteRepository<T>, mapper: IMapper<T>) {
+  constructor(
+    protected service: CompleteRepository<T>,
+    mapper: IMapper<T>,
+  ) {
     super(service, mapper);
     this.initCompleteRouter();
   }

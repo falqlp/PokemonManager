@@ -100,6 +100,7 @@ export class PokemonResumeModifyMovesComponent implements OnInit {
     this.pokemon.moves = this.selectedMoves;
     this.pokemonQueriesService
       .update(this.pokemon, this.pokemon._id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => this.save.emit());
   }
 

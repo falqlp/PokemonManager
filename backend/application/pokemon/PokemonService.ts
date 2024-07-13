@@ -280,6 +280,18 @@ class PokemonService {
     }
     return await this.pokemonRepository.insertMany(pokemons);
   }
+
+  public async changeNickname(
+    pokemonId: string,
+    nickname: string,
+    gameId: string,
+  ): Promise<void> {
+    const pokemon = await this.pokemonRepository.get(pokemonId, { gameId });
+    if (pokemon) {
+      pokemon.nickname = nickname;
+      await this.update(pokemonId, pokemon);
+    }
+  }
 }
 
 export default PokemonService;

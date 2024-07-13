@@ -21,6 +21,15 @@ router.get("/time/:id", async (req, res, next) => {
   }
 });
 
+router.post("/delete-game", async (req, res, next) => {
+  try {
+    await gameService.deleteGameForUser(req.body.gameId, req.body.userId);
+    res.status(200);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post("/:userId", async (req, res, next) => {
   try {
     const obj = await gameService.createWithUsers(req.body, req.params.userId);

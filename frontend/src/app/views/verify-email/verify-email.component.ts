@@ -26,7 +26,7 @@ export class VerifyEmailComponent implements OnInit {
 
   public ngOnInit(): void {
     this.userQueriesService
-      .update({ verified: true, _id: this.id } as UserModel, this.id)
+      .verify(this.id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         this.notifierService.notify({

@@ -115,25 +115,8 @@ export class GamesComponent implements OnInit {
   }
 
   protected delete(game: GameModel): void {
-    game.players = game.players.filter(
-      (player) => player.userId !== this.user()._id
-    );
-    this.user().games = this.user().games.filter(
-      (userGame) => userGame._id !== game._id
-    );
-    if (game.players.length === 0) {
-      this.gameQueriesService
-        .delete(game._id)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe();
-    } else {
-      this.gameQueriesService
-        .update(game, game._id)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe();
-    }
-    this.userQueriesService
-      .update(this.user(), this.user()._id)
+    this.gameQueriesService
+      .deleteGame(game._id, this.user()._id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
   }
@@ -167,9 +150,8 @@ export class GamesComponent implements OnInit {
     this.translateService.use(lang);
     this.currentLang = this.translateService.currentLang;
     this.languageService.setLanguage(this.currentLang);
-    this.user().lang = lang;
     this.userQueriesService
-      .update(this.user(), this.user()._id)
+      .changeLanguage(this.user()._id, lang)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
   }

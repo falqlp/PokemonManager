@@ -26,6 +26,13 @@ export class GameQueriesService extends CompleteQuery<GameModel> {
     return this.http.post<GameModel>(this.url + '/' + name, players);
   }
 
+  public deleteGame(gameId: string, userId: string): Observable<GameModel> {
+    return this.http.post<GameModel>(this.url + '/delete-game', {
+      gameId,
+      userId,
+    });
+  }
+
   public addPlayerToGame(
     game: GameModel,
     userId: string

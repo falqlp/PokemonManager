@@ -21,6 +21,55 @@ export class UserQueriesService extends ReadonlyQuery<UserModel> {
     return this.http.put<boolean>(this.url + '/is-username-used', { username });
   }
 
+  public changeLanguage(userId: string, lang: string): Observable<boolean> {
+    return this.http.put<boolean>(this.url + '/change-language', {
+      userId,
+      lang,
+    });
+  }
+
+  public verify(userId: string): Observable<boolean> {
+    return this.http.put<boolean>(this.url + '/verify', {
+      userId,
+    });
+  }
+
+  public acceptFriendRequest(
+    userId: string,
+    friendId: string
+  ): Observable<boolean> {
+    return this.http.put<boolean>(this.url + '/accept-friend-request', {
+      userId,
+      friendId,
+    });
+  }
+
+  public deleteFriendRequest(
+    userId: string,
+    friendId: string
+  ): Observable<boolean> {
+    return this.http.put<boolean>(this.url + '/delete-friend-request', {
+      userId,
+      friendId,
+    });
+  }
+
+  public changePassword(
+    password: string,
+    passwordRequestId: string
+  ): Observable<boolean> {
+    return this.http.put<boolean>(this.url + '/delete-friend-request', {
+      password,
+      passwordRequestId,
+    });
+  }
+
+  public readNews(userId: string): Observable<boolean> {
+    return this.http.put<boolean>(this.url + '/read-news', {
+      userId,
+    });
+  }
+
   public addFriend(userId: string, friendId: string): Observable<boolean> {
     return this.http.put<boolean>(this.url + '/add-friend', {
       userId,

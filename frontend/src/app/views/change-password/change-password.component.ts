@@ -1,7 +1,5 @@
-import { Component, DestroyRef, Input, OnInit } from '@angular/core';
-import { PasswordRequestQueriesService } from '../../services/queries/password-request-queries.service';
+import { Component, DestroyRef, Input } from '@angular/core';
 import { UserQueriesService } from '../../services/queries/user-queries.service';
-import { PasswordRequestModel } from '../../models/password-request.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormControl,
@@ -16,12 +14,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
-import { UserModel } from '../../models/user.model';
 import {
   NotificationType,
   NotifierService,
 } from '../../services/notifier.service';
 import { RouterService } from '../../services/router.service';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'pm-change-password',
@@ -38,9 +37,8 @@ import { RouterService } from '../../services/router.service';
   templateUrl: './change-password.component.html',
   styleUrl: './change-password.component.scss',
 })
-export class ChangePasswordComponent implements OnInit {
+export class ChangePasswordComponent {
   @Input('id') public id: string;
-  protected passwordRequest: PasswordRequestModel;
   protected changePasswordForm = new FormGroup(
     {
       password: new FormControl<string>('', Validators.required),
@@ -50,7 +48,6 @@ export class ChangePasswordComponent implements OnInit {
   );
 
   constructor(
-    protected passwordRequestQueriesService: PasswordRequestQueriesService,
     protected userQueriesService: UserQueriesService,
     protected destroyRef: DestroyRef,
     protected customValidatorService: CustomValidatorService,
@@ -58,33 +55,22 @@ export class ChangePasswordComponent implements OnInit {
     protected routerService: RouterService
   ) {}
 
-  public ngOnInit(): void {
-    this.passwordRequestQueriesService
-      .getPasswordRequest(this.id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((passwordRequest) => {
-        this.passwordRequest = passwordRequest;
-      });
-  }
-
   public submit(): void {
-    if (new Date(this.passwordRequest.expirationDate).getTime() > Date.now()) {
-      this.userQueriesService
-        .update(
-          {
-            password: this.changePasswordForm.controls.password.value,
-          } as UserModel,
-          this.passwordRequest.user._id
-        )
-        .subscribe(() => {
-          this.notifierService.notify({
-            key: 'PASSWORD_SUCCESSFULLY_MODIFIED',
-            type: NotificationType.Success,
-          });
-          this.routerService.navigateByUrl('login');
+    this.userQueriesService
+      .changePassword(this.changePasswordForm.controls.password.value, this.id)
+      .pipe(
+        catchError((err) => {
+          this.notifierService.notify({ key: 'LINK_EXPIRED' });
+          return of(err);
+        }),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe(() => {
+        this.notifierService.notify({
+          key: 'PASSWORD_SUCCESSFULLY_MODIFIED',
+          type: NotificationType.Success,
         });
-    } else {
-      this.notifierService.notify({ key: 'LINK_EXPIRED' });
-    }
+        this.routerService.navigateByUrl('login');
+      });
   }
 }

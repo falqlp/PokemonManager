@@ -48,16 +48,6 @@ router.post("/starters", async (req: Request, res: Response, next) => {
     next(err);
   }
 });
-router.post("/", async (req: Request, res: Response, next) => {
-  try {
-    const gameId = req.headers["game-id"] as string;
-    res
-      .status(200)
-      .json(pokemonMapper.map(await pokemonService.create(req.body, gameId)));
-  } catch (err) {
-    next(err);
-  }
-});
 router.put("/:id", async (req: Request, res: Response, next) => {
   req.body.gameId = req.headers["game-id"] as string;
   try {
@@ -66,6 +56,29 @@ router.put("/:id", async (req: Request, res: Response, next) => {
       .json(
         pokemonMapper.map(await pokemonService.update(req.params.id, req.body)),
       );
+  } catch (err) {
+    next(err);
+  }
+});
+router.put("/changeNickname", async (req: Request, res: Response, next) => {
+  const gameId = req.headers["game-id"] as string;
+  try {
+    await pokemonService.changeNickname(
+      req.body.pokemonId,
+      req.params.nickname,
+      gameId,
+    );
+    res.status(200);
+  } catch (err) {
+    next(err);
+  }
+});
+router.post("/", async (req: Request, res: Response, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    res
+      .status(200)
+      .json(pokemonMapper.map(await pokemonService.create(req.body, gameId)));
   } catch (err) {
     next(err);
   }

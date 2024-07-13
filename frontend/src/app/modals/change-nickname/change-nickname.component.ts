@@ -37,12 +37,12 @@ export class ChangeNicknameComponent implements OnInit {
   }
 
   protected click(): void {
-    this.data.nickname =
+    const nickname =
       this.form.controls.nickname.value === ''
         ? null
         : this.form.controls.nickname.value;
     this.pokemonQueriesService
-      .update(this.data, this.data._id)
+      .changeNickname(this.data._id, nickname)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
   }
