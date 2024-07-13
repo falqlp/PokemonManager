@@ -22,13 +22,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { GenericDialogComponent } from '../../../modals/generic-dialog/generic-dialog.component';
 import { DialogButtonsModel } from '../../../modals/generic-dialog/generic-dialog.models';
 import { CalendarEventQueriesService } from '../../../services/queries/calendar-event-queries.service';
-import { first, forkJoin, map, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { PlayerService } from '../../../services/player.service';
 import { TimeService } from '../../../services/time.service';
-import {
-  CalendarEventEvent,
-  CalendarEventModel,
-} from '../../../models/calendar-event.model';
 
 @Component({
   selector: 'pm-nursery-wishlist-form',

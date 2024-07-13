@@ -1,6 +1,5 @@
 import { Component, DestroyRef, Input, OnInit } from '@angular/core';
 import { UserQueriesService } from '../../services/queries/user-queries.service';
-import { UserModel } from '../../models/user.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   NotificationType,
