@@ -12,6 +12,7 @@ import { Gender } from "../../domain/Gender";
 import { addYears } from "../../utils/DateUtils";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import WebsocketUtils from "../../websocket/WebsocketUtils";
+import { IMove } from "../../domain/move/Move";
 
 @singleton()
 class PokemonService {
@@ -290,6 +291,29 @@ class PokemonService {
     if (pokemon) {
       pokemon.nickname = nickname;
       await this.update(pokemonId, pokemon);
+    }
+  }
+
+  public async modifyMoves(
+    pokemonId: string,
+    movesId: string[],
+    trainerId: string,
+    gameId: string,
+  ): Promise<void> {
+    const pokemon = await this.pokemonRepository.get(pokemonId, { gameId });
+    if (pokemon && pokemon.trainerId.toString() === trainerId) {
+      const allMoves = await this.moveLearningService.getMovesOfAllEvolutions(
+        pokemon.basePokemon.id,
+        pokemon.level,
+      );
+      if (
+        movesId.every((id) =>
+          allMoves.find((moveLearn) => moveLearn.moveId.toString() === id),
+        )
+      ) {
+        pokemon.moves = movesId as unknown as IMove[];
+        await this.update(pokemonId, pokemon);
+      }
     }
   }
 }

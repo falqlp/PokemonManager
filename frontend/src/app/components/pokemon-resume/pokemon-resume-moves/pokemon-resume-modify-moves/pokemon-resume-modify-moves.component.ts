@@ -2,6 +2,7 @@ import {
   Component,
   DestroyRef,
   EventEmitter,
+  inject,
   Input,
   OnInit,
   Output,
@@ -24,6 +25,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { PokemonQueriesService } from '../../../../services/queries/pokemon-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { PlayerService } from '../../../../services/player.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'pm-pokemon-resume-modify-moves',
@@ -42,6 +45,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrls: ['./pokemon-resume-modify-moves.component.scss'],
 })
 export class PokemonResumeModifyMovesComponent implements OnInit {
+  private playerService: PlayerService = inject(PlayerService);
   @Input() public pokemon: PokemonModel;
   @Output() public save = new EventEmitter<void>();
   protected selectedMoves: MoveModel[];
@@ -98,9 +102,17 @@ export class PokemonResumeModifyMovesComponent implements OnInit {
 
   protected submit(): void {
     this.pokemon.moves = this.selectedMoves;
-    this.pokemonQueriesService
-      .update(this.pokemon, this.pokemon._id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
+    this.playerService.player$
+      .pipe(
+        switchMap((player) =>
+          this.pokemonQueriesService.modifyMoves(
+            this.pokemon._id,
+            this.selectedMoves.map((move) => move._id),
+            player._id
+          )
+        ),
+        takeUntilDestroyed(this.destroyRef)
+      )
       .subscribe(() => this.save.emit());
   }
 

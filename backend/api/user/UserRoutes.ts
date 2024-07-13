@@ -18,7 +18,7 @@ router.post("/", async (req, res, next) => {
   try {
     const obj = await service.create(req.body);
     res.status(200).json(obj);
-  } catch (error: unknown) {
+  } catch (error: any) {
     if (error.message === "Bad email") {
       res.status(400).json({ message: "EMAIL_ALREADY_USED" });
     } else {

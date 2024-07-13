@@ -18,6 +18,7 @@ import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import PokemonBaseRepository from "../../domain/pokemon/pokemonBase/PokemonBaseRepository";
 import { MoveTestMother } from "../../test/domain/Move/MoveTestMother";
 import { StatsTestMother } from "../../test/domain/Stats/StatsTestMother";
+import { IMove } from "../../domain/move/Move";
 
 describe("PokemonService", () => {
   let service: PokemonService;
@@ -26,6 +27,7 @@ describe("PokemonService", () => {
   let pokemonRepository: PokemonRepository;
   let trainerRepository: TrainerRepository;
   let websocketUtils: WebsocketUtils;
+  let moveLearningService: MoveLearningService;
 
   beforeEach(() => {
     service = container.resolve(PokemonService);
@@ -34,6 +36,7 @@ describe("PokemonService", () => {
     trainerRepository = container.resolve(TrainerRepository);
     websocketUtils = container.resolve(WebsocketUtils);
     pokemonRepository = container.resolve(PokemonRepository);
+    moveLearningService = container.resolve(MoveLearningService);
     jest.clearAllMocks();
     jest.resetAllMocks();
     jest.restoreAllMocks();
@@ -716,6 +719,144 @@ describe("PokemonService", () => {
         pokemonsToUpdate,
       );
       expect(updatedPokemons).toEqual(pokemons);
+    });
+  });
+  describe("changeNickname", () => {
+    let getPokemonSpy: jest.SpyInstance;
+    beforeEach(() => {
+      getPokemonSpy = jest.spyOn(pokemonRepository, "get");
+    });
+    it("should change the nickname of a pokemon", async () => {
+      const pokemonId = "pokemonId";
+      const nickname = "NewNickname";
+      const gameId = "gameId";
+      const pokemon: IPokemon = {
+        _id: pokemonId,
+        gameId,
+        nickname: "OldNickname",
+      } as IPokemon;
+
+      getPokemonSpy.mockResolvedValue(pokemon);
+      const updateSpy = jest
+        .spyOn(service, "update")
+        .mockResolvedValue(pokemon);
+
+      await service.changeNickname(pokemonId, nickname, gameId);
+
+      expect(getPokemonSpy).toHaveBeenCalledWith(pokemonId, {
+        gameId,
+      });
+      expect(pokemon.nickname).toBe(nickname);
+      expect(updateSpy).toHaveBeenCalledWith(pokemonId, pokemon);
+    });
+
+    it("should not change the nickname if pokemon is not found", async () => {
+      const pokemonId = "pokemonId";
+      const nickname = "NewNickname";
+      const gameId = "gameId";
+
+      getPokemonSpy.mockResolvedValue(null);
+      const updateSpy = jest.spyOn(service, "update");
+
+      await service.changeNickname(pokemonId, nickname, gameId);
+
+      expect(getPokemonSpy).toHaveBeenCalledWith(pokemonId, { gameId });
+      expect(updateSpy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("modifyMoves", () => {
+    let getPokemonSpy: jest.SpyInstance;
+    let getAllMoveOfAllEvolutionSpy: jest.SpyInstance;
+    beforeEach(() => {
+      getPokemonSpy = jest.spyOn(pokemonRepository, "get");
+      getAllMoveOfAllEvolutionSpy = jest.spyOn(
+        moveLearningService,
+        "getMovesOfAllEvolutions",
+      );
+    });
+    it("should modify the moves of a pokemon if the trainerId matches and all moves are learnable", async () => {
+      const pokemonId = "pokemonId";
+      const trainerId = "trainerId";
+      const gameId = "gameId";
+      const movesId = ["move1", "move2"];
+      const pokemon: IPokemon = {
+        _id: pokemonId,
+        gameId,
+        trainerId,
+        basePokemon: { id: 1 },
+        level: 10,
+        moves: [],
+      } as IPokemon;
+
+      const allMovesLearnings = [
+        { moveId: "move1" },
+        { moveId: "move2" },
+      ] as any;
+
+      getPokemonSpy.mockResolvedValue(pokemon);
+      getAllMoveOfAllEvolutionSpy.mockResolvedValue(allMovesLearnings);
+      jest.spyOn(service, "update").mockResolvedValue(pokemon);
+
+      await service.modifyMoves(pokemonId, movesId, trainerId, gameId);
+
+      expect(getPokemonSpy).toHaveBeenCalledWith(pokemonId, { gameId });
+      expect(getAllMoveOfAllEvolutionSpy).toHaveBeenCalledWith(1, 10);
+      expect(pokemon.moves).toEqual(movesId as unknown as IMove[]);
+      expect(service.update).toHaveBeenCalledWith(pokemonId, pokemon);
+    });
+
+    it("should not modify the moves if the trainerId does not match", async () => {
+      const pokemonId = "pokemonId";
+      const trainerId = "trainerId";
+      const gameId = "gameId";
+      const movesId = ["move1", "move2"];
+      const pokemon: IPokemon = {
+        _id: pokemonId,
+        gameId,
+        trainerId: "differentTrainerId",
+        basePokemon: { id: 1 },
+        level: 10,
+        moves: [],
+      } as IPokemon;
+
+      getPokemonSpy.mockResolvedValue(pokemon);
+
+      const updateSpy = jest.spyOn(service, "update");
+
+      await service.modifyMoves(pokemonId, movesId, trainerId, gameId);
+
+      expect(getPokemonSpy).toHaveBeenCalledWith(pokemonId, { gameId });
+      expect(getAllMoveOfAllEvolutionSpy).not.toHaveBeenCalled();
+      expect(updateSpy).not.toHaveBeenCalled();
+    });
+
+    it("should not modify the moves if not all moves are learnable", async () => {
+      const pokemonId = "pokemonId";
+      const trainerId = "trainerId";
+      const gameId = "gameId";
+      const movesId = ["move1", "move2"];
+      const pokemon: IPokemon = {
+        _id: pokemonId,
+        gameId,
+        trainerId,
+        basePokemon: { id: 1 },
+        level: 10,
+        moves: [],
+      } as IPokemon;
+
+      const allMovesLearnings = [{ moveId: "move1" }] as any; // only one move is learnable
+
+      getPokemonSpy.mockResolvedValue(pokemon);
+      getAllMoveOfAllEvolutionSpy.mockResolvedValue(allMovesLearnings);
+
+      const updateSpy = jest.spyOn(service, "update");
+
+      await service.modifyMoves(pokemonId, movesId, trainerId, gameId);
+
+      expect(getPokemonSpy).toHaveBeenCalledWith(pokemonId, { gameId });
+      expect(getAllMoveOfAllEvolutionSpy).toHaveBeenCalledWith(1, 10);
+      expect(updateSpy).not.toHaveBeenCalled();
     });
   });
 });

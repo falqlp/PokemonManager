@@ -29,9 +29,21 @@ export class PokemonQueriesService extends CompleteQuery<PokemonModel> {
   }
 
   public changeNickname(pokemonId: string, nickname: string): Observable<void> {
-    return this.http.post<void>(this.url + '/changeNickname', {
+    return this.http.put<void>(this.url + '/changeNickname', {
       pokemonId,
       nickname,
+    });
+  }
+
+  public modifyMoves(
+    pokemonId: string,
+    movesId: string[],
+    trainerId: string
+  ): Observable<void> {
+    return this.http.put<void>(this.url + '/changeNickname', {
+      pokemonId,
+      movesId,
+      trainerId,
     });
   }
 }

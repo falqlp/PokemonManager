@@ -65,7 +65,21 @@ router.put("/changeNickname", async (req: Request, res: Response, next) => {
   try {
     await pokemonService.changeNickname(
       req.body.pokemonId,
-      req.params.nickname,
+      req.body.nickname,
+      gameId,
+    );
+    res.status(200);
+  } catch (err) {
+    next(err);
+  }
+});
+router.put("/modify-moves", async (req: Request, res: Response, next) => {
+  const gameId = req.headers["game-id"] as string;
+  try {
+    await pokemonService.modifyMoves(
+      req.body.pokemonId,
+      req.body.movesId,
+      req.body.trainerId,
       gameId,
     );
     res.status(200);
