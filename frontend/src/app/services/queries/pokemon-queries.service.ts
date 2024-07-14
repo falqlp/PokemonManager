@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import type { PokemonModel } from '../../models/PokemonModels/pokemon.model';
-import { CompleteQuery } from '../../core/complete-query';
 import { Observable } from 'rxjs';
+import { ReadonlyQuery } from '../../core/readonly-query';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PokemonQueriesService extends CompleteQuery<PokemonModel> {
+export class PokemonQueriesService extends ReadonlyQuery<PokemonModel> {
   public static readonly url = 'api/pokemon';
   constructor(protected override http: HttpClient) {
     super(PokemonQueriesService.url, http);
@@ -69,5 +69,9 @@ export class PokemonQueriesService extends CompleteQuery<PokemonModel> {
     return this.http.put<void>(this.url + '/evolve', {
       pokemonId,
     });
+  }
+
+  public release(pokemonId: string): Observable<void> {
+    return this.http.delete<void>(this.url + '/release/' + pokemonId);
   }
 }

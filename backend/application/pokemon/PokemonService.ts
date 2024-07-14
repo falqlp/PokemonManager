@@ -358,6 +358,16 @@ class PokemonService {
       await this.update(pokemonId, pokemon);
     }
   }
+
+  public async releasePokemon(
+    pokemonId: string,
+    gameId: string,
+  ): Promise<void> {
+    const pokemon = await this.pokemonRepository.get(pokemonId, { gameId });
+    if (pokemon?.level === 0) {
+      await this.pokemonRepository.delete(pokemonId);
+    }
+  }
 }
 
 export default PokemonService;

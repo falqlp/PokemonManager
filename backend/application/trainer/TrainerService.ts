@@ -1,9 +1,9 @@
-import { IPokemon } from "../../domain/pokemon/Pokemon";
+import pokemon, { IPokemon } from "../../domain/pokemon/Pokemon";
 import PokemonRepository from "../../domain/pokemon/PokemonRepository";
 import PcStorageRepository from "../../domain/trainer/pcStorage/PcStorageRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import TrainerClassRepository from "../../domain/trainer/trainerClass/TrainerClassRepository";
-import { ITrainer } from "../../domain/trainer/Trainer";
+import trainer, { ITrainer } from "../../domain/trainer/Trainer";
 import { RangeModel } from "../../models/RangeModel";
 import PokemonUtilsService from "../pokemon/PokemonUtilsService";
 import PokemonBaseService from "../pokemon/pokemonBase/PokemonBaseService";
@@ -316,6 +316,51 @@ class TrainerService {
     await this.nurseryRepository.insertMany(nurseries);
     await this.trainingCampRepository.insertMany(trainingCamps);
     return await this.trainerRepository.insertMany(trainers);
+  }
+
+  public async updatePcPosition(
+    trainerId: string,
+    teamPositionsId: string[],
+    pcPositionIds: string[],
+    gameId: string,
+  ): Promise<void> {
+    const trainer = await this.trainerRepository.get(trainerId, { gameId });
+    if (trainer) {
+      const teamPokemons = await this.pokemonRepository.list(
+        {
+          ids: teamPositionsId,
+        },
+        { gameId },
+      );
+      if (
+        teamPokemons.every(
+          (pokemon) => pokemon.trainerId.toString() === trainerId,
+        )
+      ) {
+        trainer.pokemons = teamPokemons;
+      }
+      const pcPokemons = await this.pokemonRepository.list(
+        {
+          ids: teamPositionsId,
+        },
+        { gameId },
+      );
+      if (
+        pcPokemons.every(
+          (pokemon) => pokemon.trainerId.toString() === trainerId,
+        )
+      ) {
+        trainer.pcStorage.storage = pcPositionIds
+          .map((id, index) => ({
+            pokemon: pcPokemons.find(
+              (pokemon) => pokemon._id.toString() === id,
+            ),
+            position: index,
+          }))
+          .filter((storage) => !!storage.pokemon);
+      }
+      await this.update(trainer);
+    }
   }
 }
 

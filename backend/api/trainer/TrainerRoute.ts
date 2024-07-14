@@ -1,15 +1,15 @@
 import express from "express";
-import CompleteRouter from "../CompleteRouter";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import TrainerMapper from "./TrainerMapper";
 import { container } from "tsyringe";
 import TrainerService from "../../application/trainer/TrainerService";
+import ReadOnlyRouter from "../ReadOnlyRouter";
 
 const router = express.Router();
 const service = container.resolve(TrainerService);
 const mapper = container.resolve(TrainerMapper);
 const repository = container.resolve(TrainerRepository);
-const completeRouter = new CompleteRouter(
+const readOnlyRouter = new ReadOnlyRouter(
   repository,
   container.resolve(TrainerMapper),
 );
@@ -23,15 +23,21 @@ router.get("/player/:id", async (req, res, next) => {
   }
 });
 
-router.put("/:id", async (req, res, next) => {
+router.put("/update-pc-positions", async (req, res, next) => {
   try {
-    const obj = await service.update(req.body);
-    res.status(200).json(mapper.map(obj));
+    const gameId = req.headers["game-id"] as string;
+    await service.updatePcPosition(
+      req.body.trainerId,
+      req.body.teamPositions,
+      req.body.pcPositions,
+      gameId,
+    );
+    res.status(200).json();
   } catch (error) {
     next(error);
   }
 });
 
-router.use("/", completeRouter.router);
+router.use("/", readOnlyRouter.router);
 
 export default router;

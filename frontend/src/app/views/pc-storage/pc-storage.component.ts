@@ -220,25 +220,6 @@ export class PcStorageComponent implements OnInit {
   }
 
   protected update(): void {
-    this.updatePc();
-    this.updateTrainer();
-  }
-
-  protected updatePc(): void {
-    const newStorage: StorageModel[] = [];
-    this.storageArray.forEach((storage, position) => {
-      if (storage.pokemon) {
-        newStorage.push({ pokemon: storage.pokemon, position });
-      }
-    });
-    this.pcStorage.storage = newStorage;
-    this.pcStorageQueriesService
-      .update(this.pcStorage, this.pcStorage._id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe();
-  }
-
-  protected updateTrainer(): void {
     const newPokemons: PokemonModel[] = [];
     this.playerTeam.forEach((storage) => {
       if (storage.pokemon) {
@@ -246,8 +227,19 @@ export class PcStorageComponent implements OnInit {
       }
     });
     this.player.pokemons = newPokemons;
+    const newStorage: StorageModel[] = [];
+    this.storageArray.forEach((storage, position) => {
+      if (storage.pokemon) {
+        newStorage.push({ pokemon: storage.pokemon, position });
+      }
+    });
+    this.pcStorage.storage = newStorage;
     this.trainerService
-      .update(this.player, this.player._id)
+      .updatePcPosition(
+        this.player._id,
+        this.playerTeam.map((storage) => storage.pokemon._id),
+        this.storageArray.map((storage) => storage.pokemon._id)
+      )
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
   }

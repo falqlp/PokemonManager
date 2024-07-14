@@ -42,7 +42,7 @@ export class ExpGainComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.xpData = { trainer: this.data.oldTrainer };
+    this.xpData = { trainer: this.data.oldPlayer };
     setTimeout(() => {
       this.xpData = this.data;
     }, 1000);

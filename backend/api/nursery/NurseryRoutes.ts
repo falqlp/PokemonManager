@@ -1,14 +1,14 @@
 import express from "express";
-import CompleteRouter from "../CompleteRouter";
 import NurseryRepository from "../../domain/trainer/nursery/NurseryRepository";
 import NurseryMapper from "./NurseryMapper";
 import { container } from "tsyringe";
 import NurseryService from "../../application/trainer/nursery/NurseryService";
+import ReadOnlyRouter from "../ReadOnlyRouter";
 
 const router = express.Router();
 const service = container.resolve(NurseryService);
 const repository = container.resolve(NurseryRepository);
-const completeRouter = new CompleteRouter(
+const readOnlyRouter = new ReadOnlyRouter(
   repository,
   container.resolve(NurseryMapper),
 );
@@ -42,6 +42,6 @@ router.put("/saveNurseryWishlist", async (req, res, next) => {
   }
 });
 
-router.use("/", completeRouter.router);
+router.use("/", readOnlyRouter.router);
 
 export default router;

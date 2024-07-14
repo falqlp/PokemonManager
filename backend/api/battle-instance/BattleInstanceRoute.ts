@@ -1,5 +1,4 @@
 import express from "express";
-import CompleteRouter from "../CompleteRouter";
 import BattleInstanceRepository from "../../domain/battleInstance/BattleInstanceRepository";
 import BattleInstanceMapper from "./BattleInstanceMapper";
 import { container } from "tsyringe";
@@ -7,6 +6,7 @@ import { BattleInstanceService } from "../../application/battleInstance/BattleIn
 import PokemonMapper from "../pokemon/PokemonMapper";
 import { IBattlePokemon } from "../../application/battle/BattleInterfaces";
 import BattleService from "../../application/battle/BattleService";
+import ReadOnlyRouter from "../ReadOnlyRouter";
 
 const battleInstanceService = container.resolve<BattleInstanceService>(
   BattleInstanceService,
@@ -15,7 +15,7 @@ const battleService = container.resolve(BattleService);
 const pokemonMapper = container.resolve(PokemonMapper);
 const battleMapper = container.resolve(BattleInstanceMapper);
 const router = express.Router();
-const completeRouter = new CompleteRouter(
+const readOnlyRouter = new ReadOnlyRouter(
   container.resolve(BattleInstanceRepository),
   container.resolve(BattleInstanceMapper),
 );
@@ -176,6 +176,6 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
-router.use("/", completeRouter.router);
+router.use("/", readOnlyRouter.router);
 
 export default router;

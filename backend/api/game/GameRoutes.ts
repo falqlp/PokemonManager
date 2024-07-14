@@ -1,16 +1,16 @@
 import express from "express";
-import CompleteRouter from "../CompleteRouter";
 import GameRepository from "../../domain/game/GameRepository";
 import GameService from "../../application/game/GameService";
 import GameMapper from "./GameMapper";
 import { container } from "tsyringe";
 import TrainerMapper from "../trainer/TrainerMapper";
+import ReadOnlyRouter from "../ReadOnlyRouter";
 const gameRepository = container.resolve(GameRepository);
 const gameService = container.resolve(GameService);
 const gameMapper = container.resolve(GameMapper);
 const trainerMapper = container.resolve(TrainerMapper);
 const router = express.Router();
-const completeRouter = new CompleteRouter(gameRepository, gameMapper);
+const readOnlyRouter = new ReadOnlyRouter(gameRepository, gameMapper);
 
 router.get("/time/:id", async (req, res, next) => {
   try {
@@ -60,6 +60,6 @@ router.get("/init-if-not/:id", async (req, res, next) => {
   }
 });
 
-router.use("/", completeRouter.router);
+router.use("/", readOnlyRouter.router);
 
 export default router;

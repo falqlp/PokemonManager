@@ -93,7 +93,6 @@ export class NewBattleComponent implements OnInit {
           loopMode: false,
         })
       );
-    this.updateBattleStatusEvent$.subscribe(console.log);
     this.playerService.player$
       .pipe(
         takeUntilDestroyed(this.destroyRef),

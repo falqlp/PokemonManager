@@ -29,7 +29,7 @@ export interface InitGameModel {
 }
 
 export interface WeeklyXpModel {
-  oldTrainer?: TrainerModel;
+  oldPlayer?: TrainerModel;
   trainer: TrainerModel;
   xpAndLevelGain?: { xp: number; level: number }[];
   evolutions?: {

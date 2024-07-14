@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import type { TrainerModel } from '../../models/TrainersModels/trainer.model';
-import { CompleteQuery } from '../../core/complete-query';
 import { Observable } from 'rxjs';
+import { ReadonlyQuery } from '../../core/readonly-query';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TrainerQueriesService extends CompleteQuery<TrainerModel> {
+export class TrainerQueriesService extends ReadonlyQuery<TrainerModel> {
   public static readonly url = 'api/trainer';
   public constructor(protected override http: HttpClient) {
     super(TrainerQueriesService.url, http);
@@ -15,5 +15,17 @@ export class TrainerQueriesService extends CompleteQuery<TrainerModel> {
 
   public getPlayer(trainerId: string): Observable<TrainerModel> {
     return this.http.get<TrainerModel>(this.url + '/player/' + trainerId);
+  }
+
+  public updatePcPosition(
+    trainerId: string,
+    teamPositions: string[],
+    pcPositions: string[]
+  ): Observable<void> {
+    return this.http.put<void>(this.url + '/update-pc-positions', {
+      trainerId,
+      teamPositions,
+      pcPositions,
+    });
   }
 }

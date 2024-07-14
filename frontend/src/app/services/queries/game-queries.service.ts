@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CompleteQuery } from '../../core/complete-query';
 import { Observable } from 'rxjs';
 import { GameModel } from '../../models/game.model';
 import { PlayerModel } from '../../models/player.model';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
+import { ReadonlyQuery } from '../../core/readonly-query';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GameQueriesService extends CompleteQuery<GameModel> {
+export class GameQueriesService extends ReadonlyQuery<GameModel> {
   public static readonly url = 'api/game';
   public constructor(protected override http: HttpClient) {
     super(GameQueriesService.url, http);
