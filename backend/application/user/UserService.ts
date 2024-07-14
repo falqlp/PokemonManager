@@ -63,7 +63,7 @@ export class UserService {
   ): Promise<void> {
     const user = await this.userRepository.get(userId);
     const friend = await this.userRepository.get(friendId);
-    const hasFriendRequest = !!user.friendRequest.find(
+    const hasFriendRequest = !!user?.friendRequest.find(
       (friendRequest) => friendRequest._id.toString() === friendId.toString(),
     );
     if (user && friend && hasFriendRequest) {
@@ -84,7 +84,7 @@ export class UserService {
   ): Promise<void> {
     const user = await this.userRepository.get(userId);
     const friend = await this.userRepository.get(friendId);
-    const hasFriendRequest = !!user.friendRequest.find(
+    const hasFriendRequest = !!user?.friendRequest.find(
       (friendRequest) => friendRequest._id.toString() === friendId.toString(),
     );
     if (user && friend && hasFriendRequest) {
