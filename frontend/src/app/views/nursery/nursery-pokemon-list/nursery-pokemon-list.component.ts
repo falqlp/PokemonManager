@@ -34,7 +34,7 @@ export class NurseryPokemonListComponent {
 
   protected release(egg: PokemonModel): void {
     this.pokemonQueriesService
-      .delete(egg._id)
+      .release(egg._id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         this.nursery.eggs = this.nursery.eggs.filter(

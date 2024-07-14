@@ -56,7 +56,7 @@ export class EvolutionComponent implements OnInit {
       });
       this.pokemon.basePokemon = this.data.evolution.evolution;
       this.pokemonQueriesService
-        .update(this.pokemon, this.pokemon._id)
+        .evolve(this.pokemon._id)
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe();
     }, 5000);

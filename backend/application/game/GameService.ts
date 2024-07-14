@@ -131,6 +131,28 @@ class GameService {
     }
     return game.players[index].trainer;
   }
+
+  public async deleteGameForUser(
+    gameId: string,
+    userId: string,
+  ): Promise<void> {
+    const user = await this.userRepository.get(userId);
+    const game = await this.gameRepository.get(gameId);
+    if (user && game) {
+      game.players = game.players.filter(
+        (player) => player.userId.toString() !== userId,
+      );
+      user.games = user.games.filter(
+        (userGame) => userGame._id.toString() !== gameId,
+      );
+      if (game.players.length === 0) {
+        await this.gameRepository.delete(gameId);
+      } else {
+        await this.gameRepository.update(gameId, game);
+      }
+      await this.userRepository.update(userId, user);
+    }
+  }
 }
 
 export default GameService;

@@ -1,6 +1,5 @@
 import { Component, DestroyRef, Input, OnInit } from '@angular/core';
 import { UserQueriesService } from '../../services/queries/user-queries.service';
-import { UserModel } from '../../models/user.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   NotificationType,
@@ -26,7 +25,7 @@ export class VerifyEmailComponent implements OnInit {
 
   public ngOnInit(): void {
     this.userQueriesService
-      .update({ verified: true, _id: this.id } as UserModel, this.id)
+      .verify(this.id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         this.notifierService.notify({

@@ -44,19 +44,19 @@ export class EggHatchedComponent {
       level: 1,
       _id: this.data._id,
     } as unknown as PokemonModel;
+    this.hatchEgg();
     this.dialog.open(ChangeNicknameComponent, { data: pokemon });
   }
 
   protected close(): void {
-    const pokemon = {
-      pokemonBase: this.data.pokemonBase,
-      level: 1,
-      _id: this.data._id,
-    } as unknown as PokemonModel;
+    this.hatchEgg();
+    this.dialogRef.close();
+  }
+
+  private hatchEgg(): void {
     this.pokemonQueriesService
-      .update(pokemon, pokemon._id)
+      .hatchEgg(this.data._id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
-    this.dialogRef.close();
   }
 }

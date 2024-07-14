@@ -7,12 +7,15 @@ import BattleInstanceRepository from "../../domain/battleInstance/BattleInstance
 import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
 import { singleton } from "tsyringe";
 import { ICompetition } from "../../domain/competiton/Competition";
+import GameRepository from "../../domain/game/GameRepository";
+import { addDays } from "../../utils/DateUtils";
 
 @singleton()
 class CalendarEventService {
   constructor(
     private battleInstanceRepository: BattleInstanceRepository,
     private calendarEventRepository: CalendarEventRepository,
+    private gameRepository: GameRepository,
   ) {}
 
   public async createBattleEvent(
@@ -63,6 +66,39 @@ class CalendarEventService {
       ].push(event);
     });
     return week;
+  }
+
+  public async createNurseryEvent(
+    gameId: string,
+    trainer: ITrainer,
+  ): Promise<void> {
+    const actualDate = (await this.gameRepository.get(gameId))?.actualDate;
+    const newdate = new Date(actualDate);
+    newdate.setUTCMonth(newdate.getUTCMonth() + 1);
+    const firstEventDate = new Date(newdate);
+    const secondEventDate = addDays(firstEventDate, 7);
+    const thirdEventDate = addDays(secondEventDate, 14);
+    const calendarEvents: ICalendarEvent[] = [
+      {
+        type: CalendarEventEvent.GENERATE_NURSERY_EGGS,
+        date: firstEventDate,
+        trainers: [trainer],
+        gameId,
+      },
+      {
+        type: CalendarEventEvent.NURSERY_FIRST_SELECTION_DEADLINE,
+        date: secondEventDate,
+        trainers: [trainer],
+        gameId,
+      },
+      {
+        type: CalendarEventEvent.NURSERY_LAST_SELECTION_DEADLINE,
+        date: thirdEventDate,
+        trainers: [trainer],
+        gameId,
+      },
+    ];
+    await this.calendarEventRepository.insertMany(calendarEvents);
   }
 }
 

@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CompleteQuery } from '../../core/complete-query';
 import { CalendarEventModel } from '../../models/calendar-event.model';
 import { Observable } from 'rxjs';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { BattleModel } from '../../models/Battle.model';
 import { TimeService } from '../time.service';
 import { CompetitionModel } from '../../models/competition.model';
+import { ReadonlyQuery } from '../../core/readonly-query';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CalendarEventQueriesService extends CompleteQuery<CalendarEventModel> {
+export class CalendarEventQueriesService extends ReadonlyQuery<CalendarEventModel> {
   public static readonly url = 'api/calendar-event';
   public constructor(
     protected override http: HttpClient,

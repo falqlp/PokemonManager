@@ -12,6 +12,7 @@ import { Gender } from "../../domain/Gender";
 import { addYears } from "../../utils/DateUtils";
 import EvolutionRepository from "../../domain/evolution/EvolutionRepository";
 import WebsocketUtils from "../../websocket/WebsocketUtils";
+import { IMove } from "../../domain/move/Move";
 
 @singleton()
 class PokemonService {
@@ -279,6 +280,93 @@ class PokemonService {
       this.createPokemon(pokemon, gameId, actualDate);
     }
     return await this.pokemonRepository.insertMany(pokemons);
+  }
+
+  public async changeNickname(
+    pokemonId: string,
+    nickname: string,
+    gameId: string,
+  ): Promise<void> {
+    const pokemon = await this.pokemonRepository.get(pokemonId, { gameId });
+    if (pokemon) {
+      pokemon.nickname = nickname;
+      await this.update(pokemonId, pokemon);
+    }
+  }
+
+  public async modifyMoves(
+    pokemonId: string,
+    movesId: string[],
+    trainerId: string,
+    gameId: string,
+  ): Promise<void> {
+    const pokemon = await this.pokemonRepository.get(pokemonId, { gameId });
+    if (pokemon && pokemon.trainerId.toString() === trainerId) {
+      const allMoves = await this.moveLearningService.getMovesOfAllEvolutions(
+        pokemon.basePokemon.id,
+        pokemon.level,
+      );
+      if (
+        movesId.every((id) =>
+          allMoves.find((moveLearn) => moveLearn.moveId.toString() === id),
+        )
+      ) {
+        pokemon.moves = movesId as unknown as IMove[];
+        await this.update(pokemonId, pokemon);
+      }
+    }
+  }
+
+  public async modifyMoveStrategy(
+    pokemonId: string,
+    strategy: number[],
+    trainerId: string,
+    gameId: string,
+  ): Promise<void> {
+    const pokemon = await this.pokemonRepository.get(pokemonId, { gameId });
+    if (pokemon?.trainerId.toString() === trainerId) {
+      pokemon.strategy = strategy;
+      await this.update(pokemonId, pokemon);
+    }
+  }
+
+  public async hatchEgg(eggId: string, gameId: string): Promise<void> {
+    const pokemon = await this.pokemonRepository.get(eggId, { gameId });
+    const game = await this.gameRepository.get(gameId);
+    if (
+      game &&
+      pokemon?.hatchingDate === game.actualDate &&
+      pokemon.level === 0
+    ) {
+      pokemon.level = 1;
+      pokemon.hatchingDate = null;
+      await this.update(eggId, pokemon);
+    }
+  }
+
+  public async evolve(pokemonId: string, gameId: string): Promise<void> {
+    const pokemon = await this.pokemonRepository.get(pokemonId, { gameId });
+    if (pokemon) {
+      const evolution = await this.evolutionRepository.evolve(
+        pokemon.basePokemon.id,
+        pokemon.level,
+        "LEVEL-UP",
+      );
+      if (evolution) {
+        pokemon.basePokemon = evolution;
+      }
+      await this.update(pokemonId, pokemon);
+    }
+  }
+
+  public async releasePokemon(
+    pokemonId: string,
+    gameId: string,
+  ): Promise<void> {
+    const pokemon = await this.pokemonRepository.get(pokemonId, { gameId });
+    if (pokemon?.level === 0) {
+      await this.pokemonRepository.delete(pokemonId);
+    }
   }
 }
 

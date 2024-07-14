@@ -1,18 +1,18 @@
 import express from "express";
-import CompleteRouter from "../CompleteRouter";
 import CalendarEventRepository from "../../domain/calendarEvent/CalendarEventRepository";
 import CalendarEventService from "../../application/calendarEvent/CalendarEventService";
 import CalendarEventMapper from "./CalendarEventMapper";
 import BattleInstanceMapper from "../battle-instance/BattleInstanceMapper";
 import { container } from "tsyringe";
 import SimulateDayService from "../../application/calendarEvent/SimulateDayService";
+import ReadOnlyRouter from "../ReadOnlyRouter";
 
 const router = express.Router();
 const calendarEventService = container.resolve(CalendarEventService);
 const simulateDayService = container.resolve(SimulateDayService);
 const mapper = container.resolve(CalendarEventMapper);
 const battleInstanceMapper = container.resolve(BattleInstanceMapper);
-const completeRouter = new CompleteRouter(
+const readOnlyRouter = new ReadOnlyRouter(
   container.resolve(CalendarEventRepository),
   mapper,
 );
@@ -84,6 +84,6 @@ router.get("/updateAskNextDay", async (req, res, next) => {
     next(error);
   }
 });
-router.use("/", completeRouter.router);
+router.use("/", readOnlyRouter.router);
 
 export default router;

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -13,10 +13,6 @@ import { ProgressBarComponent } from '../../components/progress-bar/progress-bar
 import { GenericDialogComponent } from '../generic-dialog/generic-dialog.component';
 import { DialogButtonsModel } from '../generic-dialog/generic-dialog.models';
 import { EvolutionComponent } from '../evolution/evolution.component';
-import { PlayerService } from '../../services/player.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { filter, first } from 'rxjs';
-import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { WeeklyXpModel } from '../../services/websocket-event.service';
 
 @Component({
@@ -42,29 +38,14 @@ export class ExpGainComponent implements OnInit {
     public data: WeeklyXpModel,
     protected dialog: MatDialog,
     protected dialogRef: MatDialogRef<ExpGainComponent>,
-    protected translateService: TranslateService,
-    protected playerService: PlayerService,
-    protected destroyRef: DestroyRef,
-    protected trainerQueriesService: TrainerQueriesService
+    protected translateService: TranslateService
   ) {}
 
   public ngOnInit(): void {
-    this.playerService.player$
-      .pipe(
-        filter((trainer) => !!trainer),
-        first(),
-        takeUntilDestroyed(this.destroyRef)
-      )
-      .subscribe((player) => {
-        this.xpData = { trainer: player };
-        setTimeout(() => {
-          this.xpData = this.data;
-          this.trainerQueriesService
-            .update(this.data.trainer, this.data.trainer._id)
-            .pipe(takeUntilDestroyed(this.destroyRef))
-            .subscribe();
-        }, 1000);
-      });
+    this.xpData = { trainer: this.data.oldPlayer };
+    setTimeout(() => {
+      this.xpData = this.data;
+    }, 1000);
   }
 
   protected close(): void {

@@ -317,6 +317,51 @@ class TrainerService {
     await this.trainingCampRepository.insertMany(trainingCamps);
     return await this.trainerRepository.insertMany(trainers);
   }
+
+  public async updatePcPosition(
+    trainerId: string,
+    teamPositionsId: string[],
+    pcPositionIds: string[],
+    gameId: string,
+  ): Promise<void> {
+    const trainer = await this.trainerRepository.get(trainerId, { gameId });
+    if (trainer) {
+      const teamPokemons = await this.pokemonRepository.list(
+        {
+          ids: teamPositionsId,
+        },
+        { gameId },
+      );
+      if (
+        teamPokemons.every(
+          (pokemon) => pokemon.trainerId.toString() === trainerId,
+        )
+      ) {
+        trainer.pokemons = teamPokemons;
+      }
+      const pcPokemons = await this.pokemonRepository.list(
+        {
+          ids: teamPositionsId,
+        },
+        { gameId },
+      );
+      if (
+        pcPokemons.every(
+          (pokemon) => pokemon.trainerId.toString() === trainerId,
+        )
+      ) {
+        trainer.pcStorage.storage = pcPositionIds
+          .map((id, index) => ({
+            pokemon: pcPokemons.find(
+              (pokemon) => pokemon._id.toString() === id,
+            ),
+            position: index,
+          }))
+          .filter((storage) => !!storage.pokemon);
+      }
+      await this.update(trainer);
+    }
+  }
 }
 
 export default TrainerService;

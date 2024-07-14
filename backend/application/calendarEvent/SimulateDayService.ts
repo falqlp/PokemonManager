@@ -244,13 +244,19 @@ export default class SimulateDayService {
     if (date.getDay() === 1) {
       await this.experienceService.xpForOtherTrainer(game, date);
       for (const player of game.players) {
+        let oldPlayer: ITrainer = await this.trainerRepository.get(
+          player.trainer._id,
+          { gameId: game._id },
+        );
         const res = await this.experienceService.weeklyXpGain(
           player.trainer._id,
         );
+        oldPlayer = this.trainerMapper.map(oldPlayer);
         res.trainer = this.trainerMapper.map(res.trainer);
+        const weeklyXp = { ...res, oldPlayer };
         this.websocketUtils.sendMessageToTrainers([player.trainer._id], {
           type: "weeklyXp",
-          payload: res,
+          payload: weeklyXp,
         });
       }
     }

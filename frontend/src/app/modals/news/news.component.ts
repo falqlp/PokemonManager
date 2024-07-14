@@ -25,11 +25,11 @@ export class NewsComponent implements OnInit {
     this.userService.$user
       .pipe(
         first(),
-        takeUntilDestroyed(this.destroyRef),
         switchMap((player) => {
           player.hasReadNews = true;
-          return this.userQueriesService.update(player, player._id);
-        })
+          return this.userQueriesService.readNews(player._id);
+        }),
+        takeUntilDestroyed(this.destroyRef)
       )
       .subscribe();
   }

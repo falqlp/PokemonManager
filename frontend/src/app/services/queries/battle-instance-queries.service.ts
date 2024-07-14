@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BattleModel } from '../../models/Battle.model';
-import { CompleteQuery } from '../../core/complete-query';
 import { RankingModel, SerieRankingModel } from '../../models/ranking.model';
+import { ReadonlyQuery } from '../../core/readonly-query';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BattleInstanceQueriesService extends CompleteQuery<BattleModel> {
+export class BattleInstanceQueriesService extends ReadonlyQuery<BattleModel> {
   public static readonly url = 'api/battleInstance';
   public constructor(protected override http: HttpClient) {
     super(BattleInstanceQueriesService.url, http);

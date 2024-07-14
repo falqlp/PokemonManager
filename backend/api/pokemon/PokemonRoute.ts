@@ -1,17 +1,17 @@
 import express, { Request, Response } from "express";
-import CompleteRouter from "../CompleteRouter";
 import PokemonRepository from "../../domain/pokemon/PokemonRepository";
 import EffectivenessService from "../../application/pokemon/EffectivenessService";
 import PokemonService from "../../application/pokemon/PokemonService";
 import PokemonMapper from "./PokemonMapper";
 import { container } from "tsyringe";
 import { IPokemon } from "../../domain/pokemon/Pokemon";
+import ReadOnlyRouter from "../ReadOnlyRouter";
 const effectivenessService = container.resolve(EffectivenessService);
 const pokemonService = container.resolve(PokemonService);
 const pokemonMapper = container.resolve(PokemonMapper);
 
 const router = express.Router();
-const completeRouter = new CompleteRouter(
+const readOnlyRouter = new ReadOnlyRouter(
   container.resolve(PokemonRepository),
   pokemonMapper,
 );
@@ -48,28 +48,74 @@ router.post("/starters", async (req: Request, res: Response, next) => {
     next(err);
   }
 });
-router.post("/", async (req: Request, res: Response, next) => {
+router.put("/changeNickname", async (req: Request, res: Response, next) => {
+  const gameId = req.headers["game-id"] as string;
+  try {
+    await pokemonService.changeNickname(
+      req.body.pokemonId,
+      req.body.nickname,
+      gameId,
+    );
+    res.status(200).json();
+  } catch (err) {
+    next(err);
+  }
+});
+router.put("/modify-moves", async (req: Request, res: Response, next) => {
+  const gameId = req.headers["game-id"] as string;
+  try {
+    await pokemonService.modifyMoves(
+      req.body.pokemonId,
+      req.body.movesId,
+      req.body.trainerId,
+      gameId,
+    );
+    res.status(200).json();
+  } catch (err) {
+    next(err);
+  }
+});
+router.put("/modify-strategy", async (req: Request, res: Response, next) => {
+  const gameId = req.headers["game-id"] as string;
+  try {
+    await pokemonService.modifyMoves(
+      req.body.pokemonId,
+      req.body.strategy,
+      req.body.trainerId,
+      gameId,
+    );
+    res.status(200).json();
+  } catch (err) {
+    next(err);
+  }
+});
+router.put("/hatch-egg", async (req: Request, res: Response, next) => {
+  const gameId = req.headers["game-id"] as string;
+  try {
+    await pokemonService.hatchEgg(req.body.pokemonId, gameId);
+    res.status(200).json();
+  } catch (err) {
+    next(err);
+  }
+});
+router.put("/evolve", async (req: Request, res: Response, next) => {
+  const gameId = req.headers["game-id"] as string;
+  try {
+    await pokemonService.evolve(req.body.pokemonId, gameId);
+    res.status(200).json();
+  } catch (err) {
+    next(err);
+  }
+});
+router.delete("/release/:id", async (req: Request, res: Response, next) => {
   try {
     const gameId = req.headers["game-id"] as string;
-    res
-      .status(200)
-      .json(pokemonMapper.map(await pokemonService.create(req.body, gameId)));
+    await pokemonService.releasePokemon(req.params.id, gameId);
+    res.status(200).json();
   } catch (err) {
     next(err);
   }
 });
-router.put("/:id", async (req: Request, res: Response, next) => {
-  req.body.gameId = req.headers["game-id"] as string;
-  try {
-    res
-      .status(200)
-      .json(
-        pokemonMapper.map(await pokemonService.update(req.params.id, req.body)),
-      );
-  } catch (err) {
-    next(err);
-  }
-});
-router.use("/", completeRouter.router);
+router.use("/", readOnlyRouter.router);
 
 export default router;

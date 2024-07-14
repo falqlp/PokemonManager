@@ -1,15 +1,15 @@
 import express from "express";
-import CompleteRouter from "../CompleteRouter";
 import TrainingCampRepository from "../../domain/trainer/trainingCamp/TrainingCampRepository";
 import TrainingCampMapper from "./TrainingCampMapper";
 import { container } from "tsyringe";
+import ReadOnlyRouter from "../ReadOnlyRouter";
 
 const router = express.Router();
-const completeRouter = new CompleteRouter(
+const readOnlyRouter = new ReadOnlyRouter(
   container.resolve(TrainingCampRepository),
   container.resolve(TrainingCampMapper),
 );
 
-router.use("/", completeRouter.router);
+router.use("/", readOnlyRouter.router);
 
 export default router;

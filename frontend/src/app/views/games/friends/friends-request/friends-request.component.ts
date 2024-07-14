@@ -22,27 +22,15 @@ export class FriendsRequestComponent {
   ) {}
 
   protected add(user: UserModel): void {
-    this.user.friendRequest = this.user.friendRequest.filter(
-      (friend) => friend._id !== user._id
-    );
-    this.user.friends.push(user);
-    user.friends.push(this.user._id as unknown as UserModel);
     this.userQueriesService
-      .update(this.user, this.user._id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe();
-    this.userQueriesService
-      .update(user, user._id)
+      .acceptFriendRequest(this.user._id, user._id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
   }
 
   protected delete(user: UserModel): void {
-    this.user.friendRequest = this.user.friendRequest.filter(
-      (friend) => friend._id !== user._id
-    );
     this.userQueriesService
-      .update(this.user, this.user._id)
+      .deleteFriendRequest(this.user._id, user._id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
   }
