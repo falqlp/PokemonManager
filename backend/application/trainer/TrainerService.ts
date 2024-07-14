@@ -1,9 +1,9 @@
-import pokemon, { IPokemon } from "../../domain/pokemon/Pokemon";
+import { IPokemon } from "../../domain/pokemon/Pokemon";
 import PokemonRepository from "../../domain/pokemon/PokemonRepository";
 import PcStorageRepository from "../../domain/trainer/pcStorage/PcStorageRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import TrainerClassRepository from "../../domain/trainer/trainerClass/TrainerClassRepository";
-import trainer, { ITrainer } from "../../domain/trainer/Trainer";
+import { ITrainer } from "../../domain/trainer/Trainer";
 import { RangeModel } from "../../models/RangeModel";
 import PokemonUtilsService from "../pokemon/PokemonUtilsService";
 import PokemonBaseService from "../pokemon/pokemonBase/PokemonBaseService";

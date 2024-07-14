@@ -1,4 +1,4 @@
-import pokemon, { IPokemon, PokemonNature } from "../../domain/pokemon/Pokemon";
+import { IPokemon, PokemonNature } from "../../domain/pokemon/Pokemon";
 import PokemonRepository from "../../domain/pokemon/PokemonRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import PokemonUtilsService from "./PokemonUtilsService";
