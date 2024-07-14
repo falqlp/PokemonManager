@@ -24,7 +24,7 @@ router.get("/time/:id", async (req, res, next) => {
 router.post("/delete-game", async (req, res, next) => {
   try {
     await gameService.deleteGameForUser(req.body.gameId, req.body.userId);
-    res.status(200);
+    res.status(200).json();
   } catch (error) {
     next(error);
   }

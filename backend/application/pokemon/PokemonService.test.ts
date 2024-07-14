@@ -859,4 +859,160 @@ describe("PokemonService", () => {
       expect(updateSpy).not.toHaveBeenCalled();
     });
   });
+  describe("modifyMoveStrategy", () => {
+    let getPokemonSpy: jest.SpyInstance;
+
+    beforeEach(() => {
+      getPokemonSpy = jest.spyOn(pokemonRepository, "get");
+    });
+    it("should modify the strategy of a pokemon if the trainerId matches", async () => {
+      const pokemonId = "pokemonId";
+      const strategy = [1, 2, 3];
+      const gameId = "gameId";
+      const trainerId = "trainerId";
+      const pokemon: IPokemon = {
+        _id: pokemonId,
+        gameId,
+        trainerId,
+        strategy: [],
+      } as IPokemon;
+
+      getPokemonSpy.mockResolvedValue(pokemon);
+      jest.spyOn(service, "update").mockResolvedValue(pokemon);
+
+      await service.modifyMoveStrategy(pokemonId, strategy, trainerId, gameId);
+
+      expect(getPokemonSpy).toHaveBeenCalledWith(pokemonId, { gameId });
+      expect(pokemon.strategy).toEqual(strategy);
+      expect(service.update).toHaveBeenCalledWith(pokemonId, pokemon);
+    });
+
+    it("should not modify the strategy if the trainerId does not match", async () => {
+      const pokemonId = "pokemonId";
+      const strategy = [1, 2, 3];
+      const gameId = "gameId";
+      const trainerId = "trainerId";
+      const pokemon: IPokemon = {
+        _id: pokemonId,
+        gameId,
+        trainerId: "differentTrainerId",
+        strategy: [],
+      } as IPokemon;
+      jest.spyOn(service, "update");
+
+      getPokemonSpy.mockResolvedValue(pokemon);
+
+      await service.modifyMoveStrategy(pokemonId, strategy, trainerId, gameId);
+
+      expect(getPokemonSpy).toHaveBeenCalledWith(pokemonId, { gameId });
+      expect(pokemon.strategy).not.toEqual(strategy);
+      expect(service.update).not.toHaveBeenCalled();
+    });
+
+    it("should not modify the strategy if the pokemon is not found", async () => {
+      const pokemonId = "pokemonId";
+      const strategy = [1, 2, 3];
+      const gameId = "gameId";
+      const trainerId = "trainerId";
+
+      getPokemonSpy.mockResolvedValue(null);
+      jest.spyOn(service, "update");
+
+      await service.modifyMoveStrategy(pokemonId, strategy, trainerId, gameId);
+
+      expect(getPokemonSpy).toHaveBeenCalledWith(pokemonId, { gameId });
+      expect(service.update).not.toHaveBeenCalled();
+    });
+  });
+  describe("hatchEgg", () => {
+    let getPokemonSpy: jest.SpyInstance;
+    let getGameSpy: jest.SpyInstance;
+
+    beforeEach(() => {
+      getPokemonSpy = jest.spyOn(pokemonRepository, "get");
+      getGameSpy = jest.spyOn(gameRepository, "get");
+    });
+    it("should hatch the egg if the conditions are met", async () => {
+      const eggId = "eggId";
+      const gameId = "gameId";
+      const actualDate = new Date();
+      const pokemon: IPokemon = {
+        _id: eggId,
+        gameId,
+        hatchingDate: actualDate,
+        level: 0,
+      } as IPokemon;
+      const game: IGame = { _id: gameId, actualDate } as IGame;
+
+      getPokemonSpy.mockResolvedValue(pokemon);
+      getGameSpy.mockResolvedValue(game);
+      jest.spyOn(service, "update").mockResolvedValue(pokemon);
+
+      await service.hatchEgg(eggId, gameId);
+
+      expect(getPokemonSpy).toHaveBeenCalledWith(eggId, { gameId });
+      expect(getGameSpy).toHaveBeenCalledWith(gameId);
+      expect(pokemon.level).toBe(1);
+      expect(pokemon.hatchingDate).toBeNull();
+      expect(service.update).toHaveBeenCalledWith(eggId, pokemon);
+    });
+
+    it("should not hatch the egg if the game is not found", async () => {
+      const eggId = "eggId";
+      const gameId = "gameId";
+      const pokemon: IPokemon = {
+        _id: eggId,
+        gameId,
+        hatchingDate: new Date(),
+        level: 0,
+      } as IPokemon;
+      jest.spyOn(service, "update");
+      getPokemonSpy.mockResolvedValue(pokemon);
+      getGameSpy.mockResolvedValue(null);
+
+      await service.hatchEgg(eggId, gameId);
+
+      expect(getPokemonSpy).toHaveBeenCalledWith(eggId, { gameId });
+      expect(getGameSpy).toHaveBeenCalledWith(gameId);
+      expect(service.update).not.toHaveBeenCalled();
+    });
+
+    it("should not hatch the egg if the pokemon is not found", async () => {
+      const eggId = "eggId";
+      const gameId = "gameId";
+      const actualDate = new Date();
+      const game: IGame = { _id: gameId, actualDate } as IGame;
+      jest.spyOn(service, "update");
+      getPokemonSpy.mockResolvedValue(null);
+      getGameSpy.mockResolvedValue(game);
+
+      await service.hatchEgg(eggId, gameId);
+
+      expect(getPokemonSpy).toHaveBeenCalledWith(eggId, { gameId });
+      expect(getGameSpy).toHaveBeenCalledWith(gameId);
+      expect(service.update).not.toHaveBeenCalled();
+    });
+
+    it("should not hatch the egg if the conditions are not met", async () => {
+      const eggId = "eggId";
+      const gameId = "gameId";
+      const actualDate = new Date();
+      const pokemon: IPokemon = {
+        _id: eggId,
+        gameId,
+        hatchingDate: new Date(actualDate.getTime() - 1), // Different date
+        level: 0,
+      } as IPokemon;
+      const game: IGame = { _id: gameId, actualDate } as IGame;
+      jest.spyOn(service, "update");
+      getPokemonSpy.mockResolvedValue(pokemon);
+      getGameSpy.mockResolvedValue(game);
+
+      await service.hatchEgg(eggId, gameId);
+
+      expect(getPokemonSpy).toHaveBeenCalledWith(eggId, { gameId });
+      expect(getGameSpy).toHaveBeenCalledWith(gameId);
+      expect(service.update).not.toHaveBeenCalled();
+    });
+  });
 });

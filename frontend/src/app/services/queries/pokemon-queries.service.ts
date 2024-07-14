@@ -40,10 +40,34 @@ export class PokemonQueriesService extends CompleteQuery<PokemonModel> {
     movesId: string[],
     trainerId: string
   ): Observable<void> {
-    return this.http.put<void>(this.url + '/changeNickname', {
+    return this.http.put<void>(this.url + '/modify-moves', {
       pokemonId,
       movesId,
       trainerId,
+    });
+  }
+
+  public modifyStrategy(
+    pokemonId: string,
+    strategy: number[],
+    trainerId: string
+  ): Observable<void> {
+    return this.http.put<void>(this.url + '/modify-strategy', {
+      pokemonId,
+      strategy,
+      trainerId,
+    });
+  }
+
+  public hatchEgg(pokemonId: string): Observable<void> {
+    return this.http.put<void>(this.url + '/hatch-egg', {
+      pokemonId,
+    });
+  }
+
+  public evolve(pokemonId: string): Observable<void> {
+    return this.http.put<void>(this.url + '/evolve', {
+      pokemonId,
     });
   }
 }

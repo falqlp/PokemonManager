@@ -28,6 +28,20 @@ router.post("/setNurseryWishlist", async (req, res, next) => {
   }
 });
 
+router.put("/saveNurseryWishlist", async (req, res, next) => {
+  try {
+    const gameId = req.headers["game-id"] as string;
+    await service.saveNurseryWishlist(
+      req.body.nurseryId,
+      req.body.wishlist,
+      gameId,
+    );
+    res.status(200).json();
+  } catch (error: unknown) {
+    next(error);
+  }
+});
+
 router.use("/", completeRouter.router);
 
 export default router;

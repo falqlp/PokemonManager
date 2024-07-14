@@ -80,12 +80,10 @@ export class BattleStrategyComponent implements OnInit {
 
   protected save(index: number): void {
     this.pokemonQueriesService
-      .update(
-        {
-          ...this.player.pokemons[index],
-          strategy: this.form.controls.at(index).getRawValue(),
-        },
-        this.player.pokemons[index]._id
+      .modifyStrategy(
+        this.player.pokemons[index]._id,
+        this.form.controls.at(index).getRawValue(),
+        this.player._id
       )
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {

@@ -253,7 +253,10 @@ export class NurseryWishlistFormComponent implements OnInit {
   protected save(): void {
     this.nursery.wishList = this.form.getRawValue() as WishListModel;
     this.nurseryQueriesService
-      .update(this.nursery, this.nursery._id)
+      .saveNurseryWishlist(
+        this.form.getRawValue() as WishListModel,
+        this.nursery._id
+      )
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
   }

@@ -1,4 +1,4 @@
-import { IPokemon, PokemonNature } from "../../domain/pokemon/Pokemon";
+import pokemon, { IPokemon, PokemonNature } from "../../domain/pokemon/Pokemon";
 import PokemonRepository from "../../domain/pokemon/PokemonRepository";
 import TrainerRepository from "../../domain/trainer/TrainerRepository";
 import PokemonUtilsService from "./PokemonUtilsService";
@@ -314,6 +314,48 @@ class PokemonService {
         pokemon.moves = movesId as unknown as IMove[];
         await this.update(pokemonId, pokemon);
       }
+    }
+  }
+
+  public async modifyMoveStrategy(
+    pokemonId: string,
+    strategy: number[],
+    trainerId: string,
+    gameId: string,
+  ): Promise<void> {
+    const pokemon = await this.pokemonRepository.get(pokemonId, { gameId });
+    if (pokemon?.trainerId.toString() === trainerId) {
+      pokemon.strategy = strategy;
+      await this.update(pokemonId, pokemon);
+    }
+  }
+
+  public async hatchEgg(eggId: string, gameId: string): Promise<void> {
+    const pokemon = await this.pokemonRepository.get(eggId, { gameId });
+    const game = await this.gameRepository.get(gameId);
+    if (
+      game &&
+      pokemon?.hatchingDate === game.actualDate &&
+      pokemon.level === 0
+    ) {
+      pokemon.level = 1;
+      pokemon.hatchingDate = null;
+      await this.update(eggId, pokemon);
+    }
+  }
+
+  public async evolve(pokemonId: string, gameId: string): Promise<void> {
+    const pokemon = await this.pokemonRepository.get(pokemonId, { gameId });
+    if (pokemon) {
+      const evolution = await this.evolutionRepository.evolve(
+        pokemon.basePokemon.id,
+        pokemon.level,
+        "LEVEL-UP",
+      );
+      if (evolution) {
+        pokemon.basePokemon = evolution;
+      }
+      await this.update(pokemonId, pokemon);
     }
   }
 }

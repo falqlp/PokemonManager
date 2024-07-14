@@ -68,7 +68,7 @@ router.put("/changeNickname", async (req: Request, res: Response, next) => {
       req.body.nickname,
       gameId,
     );
-    res.status(200);
+    res.status(200).json();
   } catch (err) {
     next(err);
   }
@@ -82,7 +82,39 @@ router.put("/modify-moves", async (req: Request, res: Response, next) => {
       req.body.trainerId,
       gameId,
     );
-    res.status(200);
+    res.status(200).json();
+  } catch (err) {
+    next(err);
+  }
+});
+router.put("/modify-strategy", async (req: Request, res: Response, next) => {
+  const gameId = req.headers["game-id"] as string;
+  try {
+    await pokemonService.modifyMoves(
+      req.body.pokemonId,
+      req.body.strategy,
+      req.body.trainerId,
+      gameId,
+    );
+    res.status(200).json();
+  } catch (err) {
+    next(err);
+  }
+});
+router.put("/hatch-egg", async (req: Request, res: Response, next) => {
+  const gameId = req.headers["game-id"] as string;
+  try {
+    await pokemonService.hatchEgg(req.body.pokemonId, gameId);
+    res.status(200).json();
+  } catch (err) {
+    next(err);
+  }
+});
+router.put("/evolve", async (req: Request, res: Response, next) => {
+  const gameId = req.headers["game-id"] as string;
+  try {
+    await pokemonService.evolve(req.body.pokemonId, gameId);
+    res.status(200).json();
   } catch (err) {
     next(err);
   }

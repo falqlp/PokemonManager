@@ -34,15 +34,29 @@ export default class NurseryService {
     gameId: string,
     trainerId: string,
   ): Promise<void> {
-    const nursery = await this.nurseryRepository.get(nurseryId);
-    const trainer = await this.trainerRepository.get(trainerId);
+    const nursery = await this.nurseryRepository.get(nurseryId, { gameId });
+    const trainer = await this.trainerRepository.get(trainerId, { gameId });
     if (trainer?.nursery?._id === nurseryId && nursery?.step === "WISHLIST") {
       nursery.step = "FIRST_SELECTION";
       nursery.wishList = wishlist;
       await this.nurseryRepository.update(nurseryId, nursery);
       await this.calendarEventService.createNurseryEvent(gameId, trainer);
     } else {
-      throw new Error("Unauthozized");
+      throw new Error("Unauthorized");
+    }
+  }
+
+  public async saveNurseryWishlist(
+    nurseryId: string,
+    wishlist: IWishList,
+    gameId: string,
+  ): Promise<void> {
+    const nursery = await this.nurseryRepository.get(nurseryId, { gameId });
+    if (nursery) {
+      nursery.wishList = wishlist;
+      await this.nurseryRepository.update(nurseryId, nursery);
+    } else {
+      throw new Error("Unauthorized");
     }
   }
 }

@@ -25,4 +25,14 @@ export class NurseryQueriesService extends CompleteQuery<NurseryModel> {
       trainerId,
     });
   }
+
+  public saveNurseryWishlist(
+    wishlist: WishListModel,
+    nurseryId: string
+  ): Observable<UserModel> {
+    return this.http.put<UserModel>(this.url, {
+      wishlist,
+      nurseryId,
+    });
+  }
 }
