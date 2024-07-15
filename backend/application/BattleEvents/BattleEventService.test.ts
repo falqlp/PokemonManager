@@ -51,6 +51,7 @@ describe("BattleEventsService", () => {
       );
       getBattleDateSpy.mockResolvedValue(date);
       battleInstanceRepositoryGetSpy.mockResolvedValue({
+        gameId: "gameId",
         competition: CompetitionTestMother.withCustomOptions({
           _id: competitionId,
         }),
