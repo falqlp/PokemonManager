@@ -32,6 +32,7 @@ describe("BattleEventsService", () => {
     it("should insert damage and participation events with correct data", async () => {
       const battleId = "battleId";
       const date = new Date();
+      const gameId = "gameId";
       const competitionId = "competitionId";
       const damageEvents: IDamageEvent[] = [
         DamageEventTestMother.basicDamage(),
@@ -51,7 +52,7 @@ describe("BattleEventsService", () => {
       );
       getBattleDateSpy.mockResolvedValue(date);
       battleInstanceRepositoryGetSpy.mockResolvedValue({
-        gameId: "gameId",
+        gameId,
         competition: CompetitionTestMother.withCustomOptions({
           _id: competitionId,
         }),
@@ -70,14 +71,26 @@ describe("BattleEventsService", () => {
       expect(getBattleDateSpy).toHaveBeenCalledWith(battleId);
       expect(battleInstanceRepositoryGetSpy).toHaveBeenCalledWith(battleId);
       expect(damageEventRepository.insertMany).toHaveBeenCalledWith([
-        { ...damageEvents[0], battleId, competitionId, date },
-        { ...damageEvents[1], battleId, competitionId, date },
+        { ...damageEvents[0], battleId, competitionId, date, gameId },
+        { ...damageEvents[1], battleId, competitionId, date, gameId },
       ]);
       expect(
         battleParticipationEventRepository.insertMany,
       ).toHaveBeenCalledWith([
-        { ...battleParticipationEvents[0], battleId, competitionId, date },
-        { ...battleParticipationEvents[1], battleId, competitionId, date },
+        {
+          ...battleParticipationEvents[0],
+          battleId,
+          competitionId,
+          date,
+          gameId,
+        },
+        {
+          ...battleParticipationEvents[1],
+          battleId,
+          competitionId,
+          date,
+          gameId,
+        },
       ]);
     });
   });
