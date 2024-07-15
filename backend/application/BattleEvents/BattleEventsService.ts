@@ -21,14 +21,16 @@ export class BattleEventsService {
     battleParticipationEvents: IBattleParticipationEvent[],
   ): Promise<void> {
     const date = await this.calendarEventRepository.getBattleDate(battleId);
-    const competitionId = (await this.battleInstanceRepository.get(battleId))
-      .competition._id;
+    const battle = await this.battleInstanceRepository.get(battleId);
+    const competitionId = battle.competition._id.toString();
+    const gameId = battle.gameId.toString();
     damageEvents = damageEvents.map((event) => {
       return {
         ...event,
         battleId,
         competitionId,
         date,
+        gameId,
       };
     });
     battleParticipationEvents = battleParticipationEvents.map((event) => {
@@ -37,6 +39,7 @@ export class BattleEventsService {
         battleId,
         competitionId,
         date,
+        gameId,
       };
     });
     await this.damageEventRepository.insertMany(damageEvents);

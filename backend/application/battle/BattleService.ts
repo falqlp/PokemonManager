@@ -75,16 +75,20 @@ class BattleService {
       battleOrder,
       _id: battle._id.toString(),
     });
-    this.battleDataService.getBattleParticipationEvents(battle._id).push({
-      battleId: battle._id,
-      trainerId: player._id,
-      pokemonIds: player.pokemons.map((pokemon) => pokemon._id),
-    });
-    this.battleDataService.getBattleParticipationEvents(battle._id).push({
-      battleId: battle._id,
-      trainerId: opponent._id,
-      pokemonIds: opponent.pokemons.map((pokemon) => pokemon._id),
-    });
+    this.battleDataService
+      .getBattleParticipationEvents(battle._id.toString())
+      .push({
+        battleId: battle._id.toString(),
+        trainerId: player._id.toString(),
+        pokemonIds: player.pokemons.map((pokemon) => pokemon._id.toString()),
+      });
+    this.battleDataService
+      .getBattleParticipationEvents(battle._id.toString())
+      .push({
+        battleId: battle._id.toString(),
+        trainerId: opponent._id.toString(),
+        pokemonIds: opponent.pokemons.map((pokemon) => pokemon._id.toString()),
+      });
     return { player, opponent, battleOrder, _id: battle._id.toString() };
   }
 
