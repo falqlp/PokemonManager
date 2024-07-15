@@ -16,6 +16,7 @@ import { BattleDataService } from "./BattleDataService";
 import BattleInstanceRepository from "../../domain/battleInstance/BattleInstanceRepository";
 import GameRepository from "../../domain/game/GameRepository";
 import BattleWebsocketService from "../../websocket/BattleWebsocketService";
+import { BattleEventsService } from "../BattleEvents/BattleEventsService";
 
 @singleton()
 class BattleService {
@@ -25,9 +26,12 @@ class BattleService {
     private battleInstanceRepository: BattleInstanceRepository,
     private battleWebsocketService: BattleWebsocketService,
     private gameRepository: GameRepository,
+    private battleEventsService: BattleEventsService,
   ) {}
 
-  public simulateBattle(battle: IBattleInstance): IBattleInstance {
+  public async simulateBattle(
+    battle: IBattleInstance,
+  ): Promise<IBattleInstance> {
     const res = this.initBattle(battle);
     let trainerA = res.player;
     let trainerB = res.opponent;
@@ -37,6 +41,7 @@ class BattleService {
         { ...trainerA },
         { ...trainerB },
         [...moveOrder],
+        battle._id.toString(),
       );
       trainerA = player;
       trainerB = opponent;
@@ -45,6 +50,14 @@ class BattleService {
         break;
       }
     }
+    await this.battleEventsService.insertBattleEventsData(
+      battle._id.toString(),
+      this.battleDataService.getDamageEvents(battle._id.toString()),
+      this.battleDataService.getBattleParticipationEvents(
+        battle._id.toString(),
+      ),
+    );
+    this.battleDataService.delete(battle._id.toString());
     battle.winner = trainerA.defeat ? "opponent" : "player";
     return battle;
   }
@@ -56,6 +69,22 @@ class BattleService {
       battle._id.toString(),
     );
     const battleOrder = this.initBattleOrder(player, opponent);
+    this.battleDataService.setBattleState(battle._id.toString(), {
+      player,
+      opponent,
+      battleOrder,
+      _id: battle._id.toString(),
+    });
+    this.battleDataService.getBattleParticipationEvents(battle._id).push({
+      battleId: battle._id,
+      trainerId: player._id,
+      pokemonIds: player.pokemons.map((pokemon) => pokemon._id),
+    });
+    this.battleDataService.getBattleParticipationEvents(battle._id).push({
+      battleId: battle._id,
+      trainerId: opponent._id,
+      pokemonIds: opponent.pokemons.map((pokemon) => pokemon._id),
+    });
     return { player, opponent, battleOrder, _id: battle._id.toString() };
   }
 
@@ -155,6 +184,7 @@ class BattleService {
     player: IBattleTrainer,
     opponent: IBattleTrainer,
     battleOrder: IBattlePokemon[],
+    battleId: string,
   ): IBattleState {
     this.resetPokemonStates(player.pokemons);
     this.resetPokemonStates(opponent.pokemons);
@@ -180,6 +210,19 @@ class BattleService {
       battleOrder,
       maxDamagedPokemon,
     );
+    this.battleDataService.getDamageEvents(battleId).push({
+      battleId,
+      pokemonId: attPokemon._id,
+      trainerId: attPokemon.trainerId,
+      onPokemonId: maxDamagedPokemon._id,
+      onTrainerId: maxDamagedPokemon.trainerId,
+      value: damage.damage,
+      ko: maxDamagedPokemon.currentHp === 0,
+      critical: damage.critical,
+      missed: damage.missed,
+      moveId: damage.move._id,
+      effectiveness: damage.effectiveness,
+    });
 
     return { player, opponent, battleOrder, damage };
   }
@@ -305,6 +348,7 @@ class BattleService {
         battleState.player,
         battleState.opponent,
         battleState.battleOrder,
+        battleId,
       );
     } else {
       const battle = await this.battleInstanceRepository.get(battleId);
@@ -330,6 +374,11 @@ class BattleService {
     newBattleState._id = battleId;
     this.battleWebsocketService.playRound(newBattleState);
     if (defeat) {
+      await this.battleEventsService.insertBattleEventsData(
+        battleId,
+        this.battleDataService.getDamageEvents(battleId),
+        this.battleDataService.getBattleParticipationEvents(battleId),
+      );
       this.battleDataService.delete(battleId);
       this.battleWebsocketService.resetNextRoundStatus([
         newBattleState.player._id,

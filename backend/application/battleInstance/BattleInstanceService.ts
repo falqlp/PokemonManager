@@ -198,7 +198,10 @@ export class BattleInstanceService {
 
   public async simulateBattle(battleId: string): Promise<void> {
     const battle = await this.battleInstanceRepository.get(battleId);
-    await this.update(battleId, this.battleService.simulateBattle(battle));
+    await this.update(
+      battleId,
+      await this.battleService.simulateBattle(battle),
+    );
   }
 
   public async initBattle(

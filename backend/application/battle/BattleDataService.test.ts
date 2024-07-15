@@ -33,6 +33,19 @@ describe("BattleDataService", () => {
       expect(service.getBattleState(key)).toBe(mockBattleState);
     });
   });
+  describe("getDamageEvents", () => {
+    it("should return [] if no state for the key", () => {
+      expect(service.getDamageEvents("non-existing-key")).toStrictEqual([]);
+    });
+  });
+
+  describe("getBattleParticipationEvents", () => {
+    it("should return [] if no state for the key", () => {
+      expect(
+        service.getBattleParticipationEvents("non-existing-key"),
+      ).toStrictEqual([]);
+    });
+  });
 
   // Testing the setBattleState Method
   describe("setBattleState", () => {

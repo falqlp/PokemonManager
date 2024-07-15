@@ -1,11 +1,19 @@
 import { singleton } from "tsyringe";
 import { IBattleState } from "./BattleInterfaces";
+import { IDamageEvent } from "../../domain/battleevents/damageevent/DamageEvent";
+import { IBattleParticipationEvent } from "../../domain/battleevents/battleparticipationevent/BattleParticipationEvent";
 
 @singleton()
 export class BattleDataService {
   private battleMap: Map<
     string,
-    { battleState: IBattleState; interval?: number }
+    {
+      battleState: IBattleState;
+      battleStats: {
+        damageEvents: IDamageEvent[];
+        battleParticipationEvents: IBattleParticipationEvent[];
+      };
+    }
   > = new Map();
 
   public getBattleState(key: string): IBattleState {
@@ -15,9 +23,28 @@ export class BattleDataService {
     return this.battleMap.get(key).battleState;
   }
 
+  public getDamageEvents(key: string): IDamageEvent[] {
+    if (!this.battleMap.has(key)) {
+      return [];
+    }
+    return this.battleMap.get(key).battleStats.damageEvents;
+  }
+
+  public getBattleParticipationEvents(
+    key: string,
+  ): IBattleParticipationEvent[] {
+    if (!this.battleMap.has(key)) {
+      return [];
+    }
+    return this.battleMap.get(key).battleStats.battleParticipationEvents;
+  }
+
   public setBattleState(key: string, battleState: IBattleState): void {
     if (!this.battleMap.has(key)) {
-      this.battleMap.set(key, { battleState });
+      this.battleMap.set(key, {
+        battleState,
+        battleStats: { battleParticipationEvents: [], damageEvents: [] },
+      });
     }
     this.battleMap.get(key).battleState = battleState;
   }

@@ -14,6 +14,8 @@ import { IBattlePokemon, IBattleTrainer } from "./BattleInterfaces";
 import BattlePokemonTestMother from "../../test/domain/battle/BattlePokemonTestMother";
 import BattleTrainerTestMother from "../../test/domain/battle/BattleTrainerTestMother";
 import BattleWebsocketService from "../../websocket/BattleWebsocketService";
+import { BattleDataService } from "./BattleDataService";
+import { BattleEventsService } from "../BattleEvents/BattleEventsService";
 
 jest.mock("../../utils/RandomUtils", () => ({
   ...jest.requireActual("../../utils/RandomUtils"),
@@ -28,22 +30,31 @@ describe("BattleService", () => {
   let battleService: BattleService;
   let battleMock: IBattleInstance;
   let battleWebsocketService: BattleWebsocketService;
+  let battleDataService: BattleDataService;
+  let battleEventsService: BattleEventsService;
 
   beforeEach(() => {
     jest.clearAllMocks();
     jest.restoreAllMocks();
     battleService = container.resolve(BattleService);
     battleWebsocketService = container.resolve(BattleWebsocketService);
+    battleDataService = container.resolve(BattleDataService);
+    battleEventsService = container.resolve(BattleEventsService);
 
     battleMock = BattleTestMother.getBattleInstance();
   });
 
   describe("simulateBattle method", () => {
-    it("should correctly simulate a battle scenario", () => {
-      const result = battleService.simulateBattle(battleMock);
+    it("should correctly simulate a battle scenario", async () => {
+      jest
+        .spyOn(battleEventsService, "insertBattleEventsData")
+        .mockResolvedValue();
+      jest.spyOn(battleDataService, "delete");
+      const result = await battleService.simulateBattle(battleMock);
       expect(result).toBeDefined();
       expect(result.winner).toBeDefined();
       expect(result.winner).toMatch(/^(opponent|player)$/);
+      expect(battleDataService.delete).toHaveBeenCalledWith(battleMock._id);
     });
   });
 
