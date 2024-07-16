@@ -8,7 +8,6 @@ import { convertStringsToDateInObject } from "./utils/DateConverter";
 import { container } from "tsyringe";
 import { NotificationType } from "./websocket/WebsocketDataService";
 import WebsocketUtils from "./websocket/WebsocketUtils";
-import DamageEventRepository from "./domain/battleevents/damageevent/DamageEventRepository";
 
 dotenv.config();
 
@@ -51,10 +50,6 @@ app.use((req, res, next) => {
 for (const routesKey in RoutesMap) {
   app.use(`/api/${routesKey}`, RoutesMap[routesKey]);
 }
-container
-  .resolve(DamageEventRepository)
-  .getTotalKoByPokemon("66843882267fef1365b1365c")
-  .then(console.log);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
