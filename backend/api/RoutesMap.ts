@@ -16,6 +16,7 @@ import passwordRequestRoutes from "./passwordRequest/PasswordRequestRoutes";
 import mailRoutes from "./mail/MailRoutes";
 import competitionHistoryRoutes from "./competitionHistory/CompetitionHistoryRoutes";
 import { Router } from "express";
+import battleEventRoutes from "./battle-event/BattleEventRoutes";
 
 export const RoutesMap: Record<string, Router> = {
   pokemonBase: pokemonBaseRoutes,
@@ -35,4 +36,5 @@ export const RoutesMap: Record<string, Router> = {
   "password-request": passwordRequestRoutes,
   email: mailRoutes,
   "competition-history": competitionHistoryRoutes,
+  "battle-events": battleEventRoutes,
 };

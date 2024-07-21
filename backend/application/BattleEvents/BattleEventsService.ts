@@ -11,6 +11,8 @@ import {
 } from "../../domain/battleevents/BattleEventQueriesUtilService";
 import { SortOrder } from "mongoose";
 import PokemonRepository from "../../domain/pokemon/PokemonRepository";
+import TrainerRepository from "../../domain/trainer/TrainerRepository";
+import ColorService from "../color/ColorService";
 
 export enum BattleEventQueryType {
   TOTAL_DAMAGE = "TOTAL_DAMAGE",
@@ -28,6 +30,8 @@ export class BattleEventsService {
     private damageEventRepository: DamageEventRepository,
     private battleParticipationEventRepository: BattleParticipationEventRepository,
     private pokemonRepository: PokemonRepository,
+    private trainerRepository: TrainerRepository,
+    private colorService: ColorService,
   ) {}
 
   public async insertBattleEventsData(
@@ -39,6 +43,7 @@ export class BattleEventsService {
     const battle = await this.battleInstanceRepository.get(battleId);
     const competitionId = battle.competition._id.toString();
     const gameId = battle.gameId.toString();
+    const division = battle.competition.division;
     damageEvents = damageEvents.map((event) => {
       return {
         ...event,
@@ -46,6 +51,7 @@ export class BattleEventsService {
         competitionId,
         date,
         gameId,
+        division,
       };
     });
     battleParticipationEvents = battleParticipationEvents.map((event) => {
@@ -55,6 +61,7 @@ export class BattleEventsService {
         competitionId,
         date,
         gameId,
+        division,
       };
     });
     await this.damageEventRepository.insertMany(damageEvents);
@@ -95,8 +102,8 @@ export class BattleEventsService {
   }
 
   public async getBattleEventStats(
-    type: BattleEventQueryType,
     gameId: string,
+    type: BattleEventQueryType,
     isRelative: boolean,
     query?: IDamageEventQuery,
     sort?: SortOrder,
@@ -108,11 +115,24 @@ export class BattleEventsService {
     const pokemons = await this.pokemonRepository.list({
       ids: res.map((stats) => stats._id),
     });
+    const trainers = await this.trainerRepository.list({
+      ids: pokemons.map((pokemon) => pokemon.trainerId.toString()),
+    });
     const result = res.map((el, index) => {
+      const trainer = trainers.find(
+        (trainer) =>
+          trainer._id.toString() === pokemons[index].trainerId.toString(),
+      );
       return {
         value: el.value,
         _id: el._id,
         pokemon: pokemons[index],
+        trainer: {
+          name: trainer.name,
+          class: trainer.class,
+          _id: trainer._id,
+          color: this.colorService.getColorForTrainer(trainer._id.toString()),
+        },
       };
     });
     if (
@@ -149,9 +169,9 @@ export class BattleEventsService {
       })
       .sort((a, b) => {
         if (sort === -1) {
-          return a.value - b.value;
+          return b.value - a.value;
         }
-        return b.value - a.value;
+        return a.value - b.value;
       });
     return res;
   }

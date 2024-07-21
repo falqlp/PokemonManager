@@ -1,0 +1,8 @@
+<mat-paginator
+  [length]="totalElements()"
+  [pageIndex]="pageIndex()"
+  [pageSize]="20"
+  [showFirstLastButtons]="true"
+  (page)="matPaginatorEvent.set($event)"
+  [pageSizeOptions]="[5, 10, 15, 20]"></mat-paginator>
+<div echarts [options]="options()" style="height: 100%; width: 100%"></div>

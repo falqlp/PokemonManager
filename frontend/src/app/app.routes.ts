@@ -17,6 +17,7 @@ import { BattleStrategyComponent } from './views/battle-strategy/battle-strategy
 import { VerifyEmailComponent } from './views/verify-email/verify-email.component';
 import { ChangePasswordComponent } from './views/change-password/change-password.component';
 import { CompetitionHistoryComponent } from './views/competition-history/competition-history.component';
+import { BattleEventsStatsComponent } from './views/battle-events-stats/battle-events-stats.component';
 
 export const routes: Routes = [
   { path: '404Error', component: ErrorComponent },
@@ -104,6 +105,12 @@ export const routes: Routes = [
     path: 'history',
     component: CompetitionHistoryComponent,
     data: { title: 'HISTORY' },
+    canActivate: [GameGuard],
+  },
+  {
+    path: 'battle-event-stats',
+    component: BattleEventsStatsComponent,
+    data: { title: 'BATTLE_EVENT_STATS' },
     canActivate: [GameGuard],
   },
   { path: '**', redirectTo: 'home' },

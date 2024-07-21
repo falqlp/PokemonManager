@@ -20,6 +20,9 @@ import {
 import { SortOrder } from "mongoose";
 import PokemonRepository from "../../domain/pokemon/PokemonRepository";
 import { PokemonTestMother } from "../../test/domain/pokemon/PokemonTestMother";
+import TrainerRepository from "../../domain/trainer/TrainerRepository";
+import { TrainerTestMother } from "../../test/domain/Trainer/TrainerTestMother";
+import ColorService from "../color/ColorService";
 
 describe("BattleEventsService", () => {
   let service: BattleEventsService;
@@ -28,6 +31,8 @@ describe("BattleEventsService", () => {
   let damageEventRepository: DamageEventRepository;
   let battleParticipationEventRepository: BattleParticipationEventRepository;
   let pokemonRepository: PokemonRepository;
+  let trainerRepository: TrainerRepository;
+  let colorService: ColorService;
 
   beforeEach(() => {
     service = container.resolve(BattleEventsService);
@@ -38,6 +43,8 @@ describe("BattleEventsService", () => {
       BattleParticipationEventRepository,
     );
     pokemonRepository = container.resolve(PokemonRepository);
+    trainerRepository = container.resolve(TrainerRepository);
+    colorService = container.resolve(ColorService);
     jest.restoreAllMocks();
     jest.resetAllMocks();
     jest.clearAllMocks();
@@ -113,15 +120,17 @@ describe("BattleEventsService", () => {
     it("should calculate relative results correctly", async () => {
       const gameId = "gameId";
       const query: IDamageEventQuery = {};
-      const sort: SortOrder = 1;
+      const sort: SortOrder = -1;
       const res: IStatsByPokemon[] = [
         { _id: "pokemon1", value: 100 },
         { _id: "pokemon2", value: 100 },
+        { _id: "pokemon3", value: 200 },
       ];
 
       const participationEvents = [
         { _id: "pokemon1", value: 4 },
         { _id: "pokemon2", value: 2 },
+        { _id: "pokemon3", value: 2 },
       ];
       jest
         .spyOn(battleParticipationEventRepository, "getPaticipation")
@@ -133,6 +142,7 @@ describe("BattleEventsService", () => {
         battleParticipationEventRepository.getPaticipation,
       ).toHaveBeenCalledWith(gameId, query, sort);
       expect(result).toEqual([
+        { _id: "pokemon3", value: 100 },
         { _id: "pokemon2", value: 50 },
         { _id: "pokemon1", value: 25 },
       ]);
@@ -148,23 +158,27 @@ describe("BattleEventsService", () => {
       const sort: SortOrder = 1;
       const id1 = "pokemon1";
       const id2 = "pokemon2";
+      const trainerId = "trainerId";
+      const trainer = [TrainerTestMother.withCustomOptions({ _id: trainerId })];
       const res: IStatsByPokemon[] = [
         { _id: id1, value: 100 },
         { _id: id2, value: 200 },
       ];
       const pokemons = [
-        PokemonTestMother.withCustomOptions({ _id: id1 }),
-        PokemonTestMother.withCustomOptions({ _id: id2 }),
+        PokemonTestMother.withCustomOptions({ _id: id1, trainerId }),
+        PokemonTestMother.withCustomOptions({ _id: id2, trainerId }),
       ];
 
       jest
         .spyOn(service, "getBattleEventQuery")
         .mockReturnValue(() => Promise.resolve(res));
       jest.spyOn(pokemonRepository, "list").mockResolvedValue(pokemons);
+      jest.spyOn(trainerRepository, "list").mockResolvedValue(trainer);
+      jest.spyOn(colorService, "getColorForTrainer").mockReturnValue("color");
 
       const result = await service.getBattleEventStats(
-        type,
         gameId,
+        type,
         isRelative,
         query,
         sort,
@@ -175,8 +189,28 @@ describe("BattleEventsService", () => {
         ids: res.map((stats) => stats._id),
       });
       expect(result).toEqual([
-        { value: 100, _id: id1, pokemon: pokemons[0] },
-        { value: 200, _id: id2, pokemon: pokemons[1] },
+        {
+          value: 100,
+          _id: id1,
+          pokemon: pokemons[0],
+          trainer: {
+            _id: trainerId,
+            class: trainer[0].class,
+            color: "color",
+            name: trainer[0].name,
+          },
+        },
+        {
+          value: 200,
+          _id: id2,
+          pokemon: pokemons[1],
+          trainer: {
+            _id: trainerId,
+            class: trainer[0].class,
+            color: "color",
+            name: trainer[0].name,
+          },
+        },
       ]);
     });
 
@@ -186,22 +220,28 @@ describe("BattleEventsService", () => {
       const isRelative = false;
       const query: IDamageEventQuery = {};
       const sort: SortOrder = 1;
+      const trainerId = "trainerId";
       const res: IStatsByPokemon[] = [
         { _id: "pokemon1", value: 100 },
         { _id: "pokemon2", value: 200 },
       ];
       const pokemons = [
-        PokemonTestMother.generateArticuno(),
-        PokemonTestMother.generateBulbasaur(),
+        PokemonTestMother.withCustomOptions({ trainerId }),
+        PokemonTestMother.withCustomOptions({ trainerId }),
       ];
 
       jest
         .spyOn(service, "getBattleEventQuery")
         .mockReturnValue(() => Promise.resolve(res));
       jest.spyOn(pokemonRepository, "list").mockResolvedValue(pokemons);
+      jest
+        .spyOn(trainerRepository, "list")
+        .mockResolvedValue([
+          TrainerTestMother.withCustomOptions({ _id: trainerId }),
+        ]);
 
       await expect(
-        service.getBattleEventStats(type, gameId, isRelative, query, sort),
+        service.getBattleEventStats(gameId, type, isRelative, query, sort),
       ).rejects.toThrow("Pokemons does not match");
     });
   });

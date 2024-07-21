@@ -81,6 +81,11 @@ export class SidenavComponent {
       name: 'Game info',
       navs: [
         {
+          link: 'battle-event-stats',
+          label: 'BATTLE_EVENT_STATS',
+          icon: 'query_stats',
+        },
+        {
           link: 'history',
           label: 'HISTORY',
           icon: 'history',

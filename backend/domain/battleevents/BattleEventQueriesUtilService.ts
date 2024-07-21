@@ -6,11 +6,18 @@ export interface IDamageEventQuery {
   competitionId?: string;
   period?: PeriodModel;
   trainerId?: string;
+  division?: number;
 }
 export interface IStatsByPokemon {
   _id: string;
   value: number;
   pokemon?: IPokemon;
+  trainer?: {
+    name: string;
+    class: string;
+    _id: string;
+    color: string;
+  };
 }
 
 @singleton()
@@ -23,6 +30,9 @@ export default class BattleEventQueriesUtilService {
     }
     if (query?.trainerId) {
       matchStage.trainerId = query.trainerId;
+    }
+    if (query?.division) {
+      matchStage.division = query.division;
     }
     if (query?.period) {
       matchStage.date = {

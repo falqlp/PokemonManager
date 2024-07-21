@@ -1,0 +1,65 @@
+@import 'colors';
+
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  gap: 10px;
+  .battle-events-stats {
+    &__selection {
+      flex: 0.5;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      &__indicator {
+        display: flex;
+        padding: 0 15px 15px;
+        flex-direction: column;
+        background-color: $background-color3;
+        border-radius: 8px;
+        align-items: center;
+        &__inputs {
+          display: flex;
+          width: 100%;
+          gap: 15px;
+          align-items: center;
+          ::ng-deep {
+            .mat-mdc-form-field-subscript-wrapper {
+              display: none;
+            }
+          }
+        }
+      }
+      &__context {
+        display: flex;
+        flex-direction: column;
+        padding: 0 15px 15px;
+        background-color: $background-color3;
+        border-radius: 8px;
+        h3 {
+          position: relative;
+          text-align: center;
+        }
+        &__clear {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        &__period {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          ::ng-deep {
+            .mat-mdc-form-field-subscript-wrapper {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+    &__graph {
+      flex: 1;
+    }
+  }
+}
