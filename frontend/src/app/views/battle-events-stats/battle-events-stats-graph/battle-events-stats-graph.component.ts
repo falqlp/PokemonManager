@@ -20,11 +20,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { NumberFormatterPipe } from '../../../pipes/number-formatter.pipe';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatProgressBar } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'pm-battle-events-stats-graph',
   standalone: true,
-  imports: [NgxEchartsDirective, MatPaginator],
+  imports: [NgxEchartsDirective, MatPaginator, MatProgressBar],
   templateUrl: './battle-events-stats-graph.component.html',
   styleUrl: './battle-events-stats-graph.component.scss',
   providers: [NumberFormatterPipe],
@@ -47,6 +48,7 @@ export class BattleEventsStatsGraphComponent {
   public sort? = input<SortOrder>(-1);
   protected totalElements = signal<number>(0);
   protected pageIndex = signal(0);
+  protected isloading = true;
   protected matPaginatorEvent = signal<PageEvent>({
     length: 0,
     pageIndex: 0,
@@ -124,6 +126,7 @@ export class BattleEventsStatsGraphComponent {
   private stats = signal<StatsByPokemonModel[]>([]);
   constructor() {
     effect(() => {
+      this.isloading = true;
       this.matPaginatorEvent();
       this.battleEventsQueriesService
         .getBattleEventStats(
@@ -141,6 +144,7 @@ export class BattleEventsStatsGraphComponent {
           const end =
             (this.matPaginatorEvent()?.pageIndex + 1) *
             this.matPaginatorEvent()?.pageSize;
+          this.isloading = false;
           this.stats.set(data.slice(start, end));
         });
     });
