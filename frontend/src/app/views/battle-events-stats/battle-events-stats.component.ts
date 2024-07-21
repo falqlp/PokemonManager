@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CompetitionModel } from '../../models/competition.model';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { PlayerService } from '../../services/player.service';
-import { filter, map, Observable, startWith, switchMap } from 'rxjs';
+import { filter, map, Observable, switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   BattleEventQueryType,
