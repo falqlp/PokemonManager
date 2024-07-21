@@ -251,6 +251,7 @@ export default class SimulateDayService {
         const res = await this.experienceService.weeklyXpGain(
           player.trainer._id,
         );
+        await this.trainerService.update(res.trainer);
         oldPlayer = this.trainerMapper.map(oldPlayer);
         res.trainer = this.trainerMapper.map(res.trainer);
         const weeklyXp = { ...res, oldPlayer };
@@ -278,7 +279,7 @@ export default class SimulateDayService {
       },
     });
     for (const value of battles) {
-      value.event = this.battleService.simulateBattle(value.event);
+      value.event = await this.battleService.simulateBattle(value.event);
       await this.battleInstanceService.update(value.event._id, value.event);
     }
   }

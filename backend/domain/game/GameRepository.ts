@@ -13,6 +13,8 @@ import GamePopulater from "./GamePopulater";
 import Competition from "../competiton/Competition";
 import Tournament from "../competiton/tournament/Tournament";
 import CompetitionHistory from "../competiton/competitionHistory/CompetitionHistory";
+import DamageEvent from "../battleevents/damageevent/DamageEvent";
+import BattleParticipationEvent from "../battleevents/battleparticipationevent/BattleParticipationEvent";
 
 @singleton()
 class GameRepository extends CompleteRepository<IGame> {
@@ -33,6 +35,8 @@ class GameRepository extends CompleteRepository<IGame> {
       await Competition.deleteMany({ gameId: _id });
       await Tournament.deleteMany({ gameId: _id });
       await CompetitionHistory.deleteMany({ gameId: _id });
+      await DamageEvent.deleteMany({ gameId: _id });
+      await BattleParticipationEvent.deleteMany({ gameId: _id });
     } catch (error) {
       return Promise.reject(error);
     }

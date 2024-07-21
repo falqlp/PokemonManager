@@ -2,11 +2,11 @@ import PokemonBase, { IPokemonBase } from "./PokemonBase";
 import ReadOnlyRepository from "../../ReadOnlyRepository";
 import { sample } from "../../../utils/RandomUtils";
 import { singleton } from "tsyringe";
-import PokemonBasePopulater from "./PokemonBasePopulater";
+import { EmptyPopulater } from "../../EmptyPopulater";
 
 @singleton()
 class PokemonBaseRepository extends ReadOnlyRepository<IPokemonBase> {
-  constructor(populater: PokemonBasePopulater) {
+  constructor(populater: EmptyPopulater) {
     super(PokemonBase, populater);
   }
 

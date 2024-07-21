@@ -88,4 +88,10 @@
   .mat-badge-active {
     font-size: 14px !important;
   }
+  .mat-mdc-paginator-container {
+    justify-content: space-between !important;
+  }
+  .mat-mdc-paginator-page-size {
+    align-items: center !important;
+  }
 }

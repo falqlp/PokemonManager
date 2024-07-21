@@ -7,6 +7,13 @@ export type Effectiveness =
   | "EFFECTIVE"
   | "SUPER_EFFECTIVE";
 
+export interface IBattlePokemon extends IPokemon {
+  dailyForm: number;
+  currentHp: number;
+  cumulatedSpeed: number;
+  animation: string;
+  moving: boolean;
+}
 export interface IDamage {
   damage: number;
   critical: boolean;
@@ -15,13 +22,6 @@ export interface IDamage {
   attPokemon: IBattlePokemon;
   defPokemon: IBattlePokemon;
   move: IMove;
-}
-export interface IBattlePokemon extends IPokemon {
-  dailyForm: number;
-  currentHp: number;
-  cumulatedSpeed: number;
-  animation: string;
-  moving: boolean;
 }
 
 export interface IBattleTrainer {

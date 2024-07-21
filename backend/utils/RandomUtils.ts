@@ -43,9 +43,13 @@ export function shuffleArray(array: any[]): void {
   }
 }
 
-export function getRandomFromArray<T>(array: T[]): T {
+export function getRandomFromArray<T>(array: T[], seed?: string): T {
   if (array.length === 0) {
     throw new Error("Array must not be empty");
+  }
+  if (seed) {
+    const rng = seedrandom(seed ?? "");
+    return array[Math.floor(rng() * array.length)];
   }
   return array[Math.floor(Math.random() * array.length)];
 }

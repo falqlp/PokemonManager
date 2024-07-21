@@ -1,0 +1,153 @@
+<div class="battle-events-stats__selection">
+  <div class="battle-events-stats__selection__indicator">
+    <h3>{{ 'INDICATOR_SELECTION' | translate }}</h3>
+    <div class="battle-events-stats__selection__indicator__inputs">
+      <mat-form-field>
+        <mat-label>{{ 'INDICATOR' | translate }}</mat-label>
+        <mat-select
+          [formControl]="queryForm.controls.indicator.controls.indicator">
+          @for (indicator of indicators; track indicator) {
+          <mat-option [value]="indicator">{{
+            formatIndicator(indicator)
+          }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-slide-toggle
+        [formControl]="queryForm.controls.indicator.controls.isRelative"
+        >{{ 'RELATIVE_TO_BATTLE_PLAYED' | translate }}
+      </mat-slide-toggle>
+    </div>
+  </div>
+  <div class="battle-events-stats__selection__context">
+    <h3>
+      {{ 'CONTEXT_SELECTION' | translate }}
+      <button
+        class="battle-events-stats__selection__context__clear"
+        mat-icon-button
+        (click)="clearAll()"
+        [matTooltip]="'CLEAR_ALL' | translate">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </h3>
+    <mat-form-field>
+      <mat-label>{{ 'DIVISION' | translate }}</mat-label>
+      <mat-select [formControl]="queryForm.controls.context.controls.division">
+        @for (division of divisions; track division) {
+        <mat-option [value]="division">{{ division }}</mat-option>
+        }
+      </mat-select>
+      <button
+        (click)="
+          clearControl($event, queryForm.controls.context.controls.division)
+        "
+        mat-icon-button
+        matSuffix
+        [disabled]="
+          queryForm.controls.context.controls.division.value === null
+        ">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'COMPETITION' | translate }}</mat-label>
+      <mat-select
+        [formControl]="queryForm.controls.context.controls.competition">
+        @for (competition of competitions(); track competition._id) {
+        <mat-option [value]="competition"
+          >{{ competition.name | translate }}
+        </mat-option>
+        }
+      </mat-select>
+      <button
+        (click)="
+          clearControl($event, queryForm.controls.context.controls.competition)
+        "
+        mat-icon-button
+        matSuffix
+        [disabled]="
+          queryForm.controls.context.controls.competition.value === null
+        ">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'TRAINERS' | translate }}</mat-label>
+      <mat-select
+        multiple
+        [formControl]="queryForm.controls.context.controls.trainers"
+        >@for (trainer of trainers(); track trainer._id) {
+        <mat-option [value]="trainer">
+          {{ trainer.class | translate }} {{ trainer.name | translate }}
+        </mat-option>
+        }
+      </mat-select>
+      <button
+        (click)="
+          clearControl($event, queryForm.controls.context.controls.trainers)
+        "
+        mat-icon-button
+        matSuffix
+        [disabled]="queryForm.controls.context.controls.trainers.value === []">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <div class="battle-events-stats__selection__context__period">
+      <mat-label>{{ 'PERIOD' | translate }}:</mat-label>
+      <mat-button-toggle-group
+        [formControl]="queryForm.controls.context.controls.period">
+        <mat-button-toggle
+          (click)="customPeriodChange(false)"
+          [value]="periods()[0]"
+          >{{ 'LAST_SEVEN_DAYS' | translate }}
+        </mat-button-toggle>
+        <mat-button-toggle [value]="periods()[1]">{{
+          'LAST_MONTH' | translate
+        }}</mat-button-toggle>
+        <mat-button-toggle
+          (click)="customPeriodChange(false)"
+          [value]="periods()[2]"
+          >{{ 'LAST_THREE_MONTH' | translate }}
+        </mat-button-toggle>
+        <mat-button-toggle
+          (click)="customPeriodChange(false)"
+          [value]="periods()[3]"
+          >{{ 'LAST_SIX_MONTH' | translate }}
+        </mat-button-toggle>
+        <mat-button-toggle (click)="customPeriodChange(true)">{{
+          'CUSTOM' | translate
+        }}</mat-button-toggle>
+        <mat-button-toggle
+          [disabled]="queryForm.controls.context.controls.period.value === null"
+          (click)="
+            clearControl(
+              $event,
+              queryForm.controls.context.controls.period,
+              true
+            )
+          ">
+          <mat-icon>close</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+      @if (isCustomPeriod()) {
+      <mat-form-field>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate (dateChange)="onDateRangeChange($event, false)" />
+          <input matEndDate (dateChange)="onDateRangeChange($event, true)" />
+        </mat-date-range-input>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker
+          #picker
+          [startAt]="actualDate"></mat-date-range-picker>
+      </mat-form-field>
+      }
+    </div>
+  </div>
+</div>
+<pm-battle-events-stats-graph
+  class="battle-events-stats__graph"
+  [type]="queryForm.controls.indicator.controls.indicator.value"
+  [isRelative]="queryForm.controls.indicator.controls.isRelative.value"
+  [query]="query | async" />

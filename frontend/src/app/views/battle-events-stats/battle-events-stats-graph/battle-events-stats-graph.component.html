@@ -1,0 +1,12 @@
+<mat-paginator
+  [length]="totalElements()"
+  [pageIndex]="pageIndex()"
+  [pageSize]="20"
+  [showFirstLastButtons]="true"
+  (page)="pageChange($event)"
+  [pageSizeOptions]="pageSizeOption"></mat-paginator>
+@if (isloading){
+<mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+} @else {
+<div echarts [options]="options()" style="height: 100%; width: 100%"></div>
+}
