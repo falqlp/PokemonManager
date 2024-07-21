@@ -73,27 +73,22 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>{{ 'TRAINERS' | translate }}</mat-label>
-      <input
-        type="text"
-        matInput
-        [formControl]="queryForm.controls.context.controls.trainer"
-        [matAutocomplete]="auto" />
-      <mat-autocomplete
-        #auto="matAutocomplete"
-        [displayWith]="displayTrainer.bind(this)"
-        >@for (trainer of filteredTrainerOptions | async; track trainer._id) {
+      <mat-select
+        multiple
+        [formControl]="queryForm.controls.context.controls.trainers"
+        >@for (trainer of trainers(); track trainer._id) {
         <mat-option [value]="trainer">
           {{ trainer.class | translate }} {{ trainer.name | translate }}
         </mat-option>
         }
-      </mat-autocomplete>
+      </mat-select>
       <button
         (click)="
-          clearControl($event, queryForm.controls.context.controls.trainer)
+          clearControl($event, queryForm.controls.context.controls.trainers)
         "
         mat-icon-button
         matSuffix
-        [disabled]="queryForm.controls.context.controls.trainer.value === null">
+        [disabled]="queryForm.controls.context.controls.trainers.value === []">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>

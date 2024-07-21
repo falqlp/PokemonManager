@@ -47,8 +47,11 @@ export function getRandomFromArray<T>(array: T[], seed?: string): T {
   if (array.length === 0) {
     throw new Error("Array must not be empty");
   }
-  const rng = seedrandom(seed ?? "");
-  return array[Math.floor(rng() * array.length)];
+  if (seed) {
+    const rng = seedrandom(seed ?? "");
+    return array[Math.floor(rng() * array.length)];
+  }
+  return array[Math.floor(Math.random() * array.length)];
 }
 
 export function getRandomValue(seed: string): number {

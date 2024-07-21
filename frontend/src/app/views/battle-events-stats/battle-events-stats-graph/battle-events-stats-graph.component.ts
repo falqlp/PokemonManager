@@ -41,6 +41,7 @@ export class BattleEventsStatsGraphComponent {
     inject(NumberFormatterPipe);
 
   private readonly destroyRef: DestroyRef = inject(DestroyRef);
+  protected readonly pageSizeOption = [5, 10, 15, 20, 50, 100];
 
   public type = input.required<BattleEventQueryType>();
   public isRelative = input.required<boolean>();
@@ -123,11 +124,16 @@ export class BattleEventsStatsGraphComponent {
     };
   });
 
-  private stats = signal<StatsByPokemonModel[]>([]);
+  private stats = computed<StatsByPokemonModel[]>(() => {
+    const start = this.pageIndex() * this.matPaginatorEvent()?.pageSize;
+    const end = (this.pageIndex() + 1) * this.matPaginatorEvent()?.pageSize;
+    return this.data().slice(start, end);
+  });
+
+  private data = signal<StatsByPokemonModel[]>([]);
   constructor() {
     effect(() => {
       this.isloading = true;
-      this.matPaginatorEvent();
       this.battleEventsQueriesService
         .getBattleEventStats(
           this.type(),
@@ -137,15 +143,10 @@ export class BattleEventsStatsGraphComponent {
         )
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((data) => {
-          this.totalElements.set(data.length);
-          const start =
-            this.matPaginatorEvent()?.pageIndex *
-            this.matPaginatorEvent()?.pageSize;
-          const end =
-            (this.matPaginatorEvent()?.pageIndex + 1) *
-            this.matPaginatorEvent()?.pageSize;
           this.isloading = false;
-          this.stats.set(data.slice(start, end));
+          this.totalElements.set(data.length);
+          this.pageIndex.set(0);
+          this.data.set(data);
         });
     });
   }
@@ -211,4 +212,9 @@ export class BattleEventsStatsGraphComponent {
     });
     return seriesData;
   });
+
+  protected pageChange(event: PageEvent): void {
+    this.matPaginatorEvent.set(event);
+    this.pageIndex.set(event.pageIndex);
+  }
 }

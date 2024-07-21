@@ -3,8 +3,8 @@
   [pageIndex]="pageIndex()"
   [pageSize]="20"
   [showFirstLastButtons]="true"
-  (page)="matPaginatorEvent.set($event)"
-  [pageSizeOptions]="[5, 10, 15, 20]"></mat-paginator>
+  (page)="pageChange($event)"
+  [pageSizeOptions]="pageSizeOption"></mat-paginator>
 @if (isloading){
 <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
 } @else {

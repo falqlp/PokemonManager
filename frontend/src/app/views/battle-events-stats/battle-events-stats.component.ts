@@ -105,7 +105,7 @@ export class BattleEventsStatsComponent implements OnInit {
     context: new FormGroup({
       division: new FormControl<number>(null),
       competition: new FormControl<CompetitionModel>(null),
-      trainer: new FormControl<TrainerModel>(null),
+      trainers: new FormControl<TrainerModel[]>([]),
       period: new FormControl<PeriodModel>(null),
     }),
     indicator: new FormGroup({
@@ -116,9 +116,8 @@ export class BattleEventsStatsComponent implements OnInit {
     }),
   });
 
-  protected filteredTrainerOptions: Observable<TrainerModel[]>;
-
   public ngOnInit(): void {
+    this.queryForm.controls.context.valueChanges.subscribe(console.info);
     this.timeService.getActualDate().subscribe((date) => {
       this.actualDate = date;
       const periods: PeriodModel[] = [];
@@ -140,11 +139,6 @@ export class BattleEventsStatsComponent implements OnInit {
       });
     this.trainerQueriesService.list().subscribe((result) => {
       this.trainers.set(result);
-      this.filteredTrainerOptions =
-        this.queryForm.controls.context.controls.trainer.valueChanges.pipe(
-          startWith(''),
-          map((value) => this.filter(value as string))
-        );
     });
     this.queryForm.controls.context.controls.division.valueChanges
       .pipe(
@@ -173,43 +167,11 @@ export class BattleEventsStatsComponent implements OnInit {
       map((value) => {
         return {
           period: value.period,
-          trainerId: value.trainer?._id,
+          trainerIds: value.trainers.map((trainer) => trainer._id),
           competitionId: value.competition?._id,
         };
       })
     );
-  }
-
-  protected displayTrainer(trainer: TrainerModel): string {
-    if (trainer) {
-      if (trainer.class) {
-        return (
-          this.translateService.instant(trainer.class) +
-          ' ' +
-          this.translateService.instant(trainer.name)
-        );
-      }
-      return this.translateService.instant(trainer.name);
-    }
-    return '';
-  }
-
-  private filter(value: string): TrainerModel[] {
-    if (typeof value === 'string') {
-      const filterValue = value.toLowerCase();
-      return this.trainers().filter(
-        (option) =>
-          this.translateService
-            .instant(option.name)
-            .toLowerCase()
-            .startsWith(filterValue) ||
-          this.translateService
-            .instant(option.class)
-            .toLowerCase()
-            .startsWith(filterValue)
-      );
-    }
-    return [];
   }
 
   protected clearControl(
@@ -218,7 +180,11 @@ export class BattleEventsStatsComponent implements OnInit {
     setCustomFalse?: boolean
   ): void {
     event.stopPropagation();
-    control.setValue(null);
+    if (Array.isArray(control.value)) {
+      control.setValue([]);
+    } else {
+      control.setValue(null);
+    }
     if (setCustomFalse) {
       this.isCustomPeriod.set(false);
     }
@@ -248,7 +214,7 @@ export class BattleEventsStatsComponent implements OnInit {
   protected clearAll(): void {
     this.queryForm.controls.context.setValue({
       period: null,
-      trainer: null,
+      trainers: [],
       competition: null,
       division: null,
     });

@@ -16,7 +16,8 @@ export interface PeriodModel {
 export interface DamageEventQueryModel {
   competitionId?: string;
   period?: PeriodModel;
-  trainerId?: string;
+  trainerIds?: string[];
+  division?: number;
 }
 
 export type SortOrder = -1 | 1;

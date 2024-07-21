@@ -5,8 +5,8 @@ import { IPokemon } from "../pokemon/Pokemon";
 export interface IDamageEventQuery {
   competitionId?: string;
   period?: PeriodModel;
-  trainerId?: string;
   division?: number;
+  trainerIds?: string[];
 }
 export interface IStatsByPokemon {
   _id: string;
@@ -28,8 +28,8 @@ export default class BattleEventQueriesUtilService {
     if (query?.competitionId) {
       matchStage.competitionId = query.competitionId;
     }
-    if (query?.trainerId) {
-      matchStage.trainerId = query.trainerId;
+    if (query?.trainerIds.length !== 0) {
+      matchStage.trainerId = { $in: query.trainerIds };
     }
     if (query?.division) {
       matchStage.division = query.division;
