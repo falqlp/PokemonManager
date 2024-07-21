@@ -49,16 +49,6 @@
         }
       </div>
       <div class="battle-strategy__pokemon__move-form__actions">
-        <button
-          [disabled]="
-            form.controls.at(i).errors ||
-            compareArray(form.controls.at(i).getRawValue(), pokemon.strategy)
-          "
-          mat-flat-button
-          (click)="save(i)"
-          color="warn">
-          {{ 'SAVE' | translate }}
-        </button>
         <button mat-flat-button (click)="modifyMove(pokemon)" color="warn">
           {{ 'CHANGE_MOVES' | translate }}
         </button>

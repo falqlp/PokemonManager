@@ -48,13 +48,14 @@ export class PokemonQueriesService extends ReadonlyQuery<PokemonModel> {
   }
 
   public modifyStrategy(
-    pokemonId: string,
-    strategy: number[],
+    strategies: {
+      pokemonId: string;
+      strategy: number[];
+    }[],
     trainerId: string
   ): Observable<void> {
     return this.http.put<void>(this.url + '/modify-strategy', {
-      pokemonId,
-      strategy,
+      strategies,
       trainerId,
     });
   }

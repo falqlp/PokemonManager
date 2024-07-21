@@ -318,15 +318,25 @@ class PokemonService {
   }
 
   public async modifyMoveStrategy(
-    pokemonId: string,
-    strategy: number[],
+    strategies: {
+      pokemonId: string;
+      strategy: number[];
+    }[],
     trainerId: string,
     gameId: string,
   ): Promise<void> {
-    const pokemon = await this.pokemonRepository.get(pokemonId, { gameId });
-    if (pokemon?.trainerId.toString() === trainerId) {
-      pokemon.strategy = strategy;
-      await this.update(pokemonId, pokemon);
+    let pokemons = await this.pokemonRepository.list(
+      { ids: strategies.map((strategy) => strategy.pokemonId) },
+      { gameId },
+    );
+    if (
+      pokemons?.every((pokemon) => pokemon.trainerId.toString() === trainerId)
+    ) {
+      pokemons = pokemons.map((pokemon, index) => {
+        pokemon.strategy = strategies[index].strategy;
+        return pokemon;
+      });
+      await this.updateMany(pokemons, gameId);
     }
   }
 

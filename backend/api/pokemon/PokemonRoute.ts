@@ -78,9 +78,8 @@ router.put("/modify-moves", async (req: Request, res: Response, next) => {
 router.put("/modify-strategy", async (req: Request, res: Response, next) => {
   const gameId = req.headers["game-id"] as string;
   try {
-    await pokemonService.modifyMoves(
-      req.body.pokemonId,
-      req.body.strategy,
+    await pokemonService.modifyMoveStrategy(
+      req.body.strategies,
       req.body.trainerId,
       gameId,
     );

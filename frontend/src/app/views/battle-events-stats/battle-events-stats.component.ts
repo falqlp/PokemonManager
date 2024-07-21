@@ -117,7 +117,6 @@ export class BattleEventsStatsComponent implements OnInit {
   });
 
   public ngOnInit(): void {
-    this.queryForm.controls.context.valueChanges.subscribe(console.info);
     this.timeService.getActualDate().subscribe((date) => {
       this.actualDate = date;
       const periods: PeriodModel[] = [];

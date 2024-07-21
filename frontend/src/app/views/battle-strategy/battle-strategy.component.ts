@@ -24,7 +24,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { ModifyMoveModalComponent } from '../../modals/modify-move-modal/modify-move-modal.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { filter } from 'rxjs';
+import { debounceTime, filter, Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'pm-battle-strategy',
@@ -76,22 +76,25 @@ export class BattleStrategyComponent implements OnInit {
         });
         this.player = player;
       });
+    this.form.valueChanges
+      .pipe(
+        debounceTime(1000),
+        switchMap(() => this.save()),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe(() => this.save());
   }
 
-  protected save(index: number): void {
-    this.pokemonQueriesService
-      .modifyStrategy(
-        this.player.pokemons[index]._id,
-        this.form.controls.at(index).getRawValue(),
-        this.player._id
-      )
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {
-        this.notifierService.notify({
-          key: 'MODIFICATIONS_SAVED',
-          type: NotificationType.Success,
-        });
-      });
+  private save(): Observable<void> {
+    return this.pokemonQueriesService.modifyStrategy(
+      this.form.value.map((strategy, index) => {
+        return {
+          strategy,
+          pokemonId: this.player.pokemons[index]._id,
+        };
+      }),
+      this.player._id
+    );
   }
 
   protected modifyMove(pokemon: PokemonModel): void {
