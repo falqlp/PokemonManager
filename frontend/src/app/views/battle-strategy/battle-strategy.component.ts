@@ -16,10 +16,7 @@ import {
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
-import {
-  NotificationType,
-  NotifierService,
-} from '../../services/notifier.service';
+import { NotifierService } from '../../services/notifier.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { ModifyMoveModalComponent } from '../../modals/modify-move-modal/modify-move-modal.component';
