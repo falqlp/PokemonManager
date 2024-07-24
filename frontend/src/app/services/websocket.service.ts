@@ -88,17 +88,26 @@ export class WebsocketService {
 
   public connect(): void {
     this.websocket = webSocket(this.getWebSocketConfig());
-    this.websocket
-      .pipe(
+    this.websocketEventService.handleWebsocket(
+      this.websocket.pipe(
         retry({ delay: 1000 }),
         catchError((err) => {
           console.error('Caught error:', err);
           return EMPTY;
         })
       )
-      .subscribe((message) =>
-        this.websocketEventService.handleMessage(message)
-      );
+    );
+    // this.websocket
+    //   .pipe(
+    //     retry({ delay: 1000 }),
+    //     catchError((err) => {
+    //       console.error('Caught error:', err);
+    //       return EMPTY;
+    //     })
+    //   )
+    //   .subscribe((message) =>
+    //     this.websocketEventService.handleMessage(message)
+    //   );
   }
 
   public registerToGame(gameId: string): void {

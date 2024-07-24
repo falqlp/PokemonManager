@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, filter, Observable } from 'rxjs';
+import { filter, map, merge, Observable, of } from 'rxjs';
 import { PokemonBaseModel } from '../models/PokemonModels/pokemonBase.model';
 import { TrainerModel } from '../models/TrainersModels/trainer.model';
-import { WebSocketModel } from './websocket.service';
 import { BattleStateModel } from '../views/new-battle/battle.model';
-import { RouterService } from './router.service';
+import { WebSocketModel } from './websocket.service';
 
 export interface NotificationModel {
   key: string;
@@ -53,150 +52,57 @@ export interface BattleStatus {
   providedIn: 'root',
 })
 export class WebsocketEventService {
-  private notifyEventSubject = new BehaviorSubject<NotificationModel>(null);
-  public notifyEvent$: Observable<NotificationModel> = this.notifyEventSubject
-    .asObservable()
-    .pipe(filter((value) => !!value));
-
-  private updatePlayerEventSubject = new BehaviorSubject<void>(undefined);
-  public updatePlayerEvent$: Observable<void> =
-    this.updatePlayerEventSubject.asObservable();
-
-  private notifyNewMoveLearnedEventSubject =
-    new BehaviorSubject<NotificationNewMoveLearnedModel>(null);
-
+  public notifyEvent$: Observable<NotificationModel> = of();
+  public updatePlayerEvent$: Observable<void> = of();
   public notifyNewMoveLearnedEvent$: Observable<NotificationNewMoveLearnedModel> =
-    this.notifyNewMoveLearnedEventSubject
-      .asObservable()
-      .pipe(filter((value) => !!value));
+    of();
 
-  private eggHatchedEventSubject = new BehaviorSubject<EggHatchedModel>(null);
-  public eggHatchedEvent$: Observable<EggHatchedModel> =
-    this.eggHatchedEventSubject.asObservable().pipe(filter((value) => !!value));
+  public eggHatchedEvent$: Observable<EggHatchedModel> = of();
+  public initGameEvent$: Observable<InitGameModel> = of();
+  public initGameEndEvent$: Observable<void> = of();
+  public weeklyXpEvent$: Observable<WeeklyXpModel> = of();
+  public battleEvent$: Observable<BattleStateModel> = of();
+  public updateUserEvent$: Observable<void> = of(null);
+  public simulateStatusEvent$: Observable<SimulateStatusModel> = of({
+    wantNextDay: 0,
+    nbTrainers: 0,
+  });
 
-  private initGameEventSubject = new BehaviorSubject<InitGameModel>(null);
-  public initGameEvent$: Observable<InitGameModel> =
-    this.initGameEventSubject.asObservable();
-
-  private initGameEndEventSubject = new BehaviorSubject<void>(undefined);
-  public initGameEndEvent$: Observable<void> =
-    this.initGameEndEventSubject.asObservable();
-
-  private weeklyXpEventSubject = new BehaviorSubject<WeeklyXpModel>(null);
-  public weeklyXpEvent$: Observable<WeeklyXpModel> = this.weeklyXpEventSubject
-    .asObservable()
-    .pipe(filter((value) => !!value));
-
-  private battleEventSubject = new BehaviorSubject<BattleStateModel>(null);
-  public battleEvent$: Observable<BattleStateModel> = this.battleEventSubject
-    .asObservable()
-    .pipe(filter((value) => !!value));
-
-  private updateUserEventSubject = new BehaviorSubject<void>(null);
-  public updateUserEvent$: Observable<void> =
-    this.updateUserEventSubject.asObservable();
-
-  private simulateStatusEventSubject = new BehaviorSubject<SimulateStatusModel>(
-    { wantNextDay: 0, nbTrainers: 0 }
-  );
-
-  public simulateStatusEvent$: Observable<SimulateStatusModel> =
-    this.simulateStatusEventSubject.asObservable();
-
-  private simulatingEventSubject = new BehaviorSubject<boolean>(null);
-
-  public simulatingEvent$: Observable<boolean> =
-    this.simulatingEventSubject.asObservable();
-
-  private updateGameEventSubject = new BehaviorSubject<void>(null);
-
-  public updateGameEvent$: Observable<void> =
-    this.updateGameEventSubject.asObservable();
-
-  private updateBattleStatusEventSubject = new BehaviorSubject<BattleStatus>({
+  public simulatingEvent$: Observable<boolean> = of(null);
+  public updateGameEvent$: Observable<void> = of();
+  public updateBattleStatusEvent$: Observable<BattleStatus> = of({
     nextRound: false,
     nextRoundLoop: false,
     loopMode: false,
   });
 
-  public updateBattleStatusEvent$: Observable<BattleStatus> =
-    this.updateBattleStatusEventSubject.asObservable();
-
-  constructor(private router: RouterService) {}
-
-  public handleMessage = (message: WebSocketModel): void => {
-    this.eventMap[message.type](message.payload);
+  private eventMap: Record<string, Observable<any>> = {
+    updatePlayer: this.updateUserEvent$,
+    // connexion: console.log,
+    notifyNewMoveLearned: this.notifyNewMoveLearnedEvent$,
+    notify: this.notifyEvent$,
+    eggHatched: this.eggHatchedEvent$,
+    initGame: this.initGameEvent$,
+    initGameEnd: this.initGameEndEvent$,
+    weeklyXp: this.weeklyXpEvent$,
+    playRound: this.battleEvent$,
+    updateUser: this.updateUserEvent$,
+    simulateStatus: this.simulateStatusEvent$,
+    // reload: () => this.router.navigateByUrl('login'),
+    simulating: this.simulatingEvent$,
+    updateGame: this.updateGameEvent$,
+    updateBattleStatus: this.updateBattleStatusEvent$,
   };
 
-  private notifyEvent = (notification: NotificationModel): void => {
-    this.notifyEventSubject.next(notification);
-  };
-
-  private updatePlayerEvent = (): void => {
-    this.updatePlayerEventSubject.next();
-  };
-
-  private notifyNewMoveLearnedEvent = (
-    payload: NotificationNewMoveLearnedModel
-  ): void => {
-    this.notifyNewMoveLearnedEventSubject.next(payload);
-  };
-
-  private eggHatchedEvent = (payload: EggHatchedModel): void => {
-    this.eggHatchedEventSubject.next(payload);
-  };
-
-  private initGameEvent = (payload: InitGameModel): void => {
-    this.initGameEventSubject.next(payload);
-  };
-
-  private initGameEndEvent = (): void => {
-    this.initGameEndEventSubject.next();
-  };
-
-  private weeklyXpEvent = (payload: WeeklyXpModel): void => {
-    this.weeklyXpEventSubject.next(payload);
-  };
-
-  private battleEvent = (payload: BattleStateModel): void => {
-    this.battleEventSubject.next(payload);
-  };
-
-  private updateUserEvent = (): void => {
-    this.updateUserEventSubject.next();
-  };
-
-  private simulateStatusEvent = (payload: SimulateStatusModel): void => {
-    this.simulateStatusEventSubject.next(payload);
-  };
-
-  private simulatingEvent = (payload: boolean): void => {
-    this.simulatingEventSubject.next(payload);
-  };
-
-  private updateGameEvent = (): void => {
-    this.updateGameEventSubject.next();
-  };
-
-  private updateBattleStatusEvent = (payload: BattleStatus): void => {
-    this.updateBattleStatusEventSubject.next(payload);
-  };
-
-  private eventMap: Record<string, (payload?: any) => void> = {
-    updatePlayer: this.updatePlayerEvent,
-    connexion: console.log,
-    notifyNewMoveLearned: this.notifyNewMoveLearnedEvent,
-    notify: this.notifyEvent,
-    eggHatched: this.eggHatchedEvent,
-    initGame: this.initGameEvent,
-    initGameEnd: this.initGameEndEvent,
-    weeklyXp: this.weeklyXpEvent,
-    playRound: this.battleEvent,
-    updateUser: this.updateUserEvent,
-    simulateStatus: this.simulateStatusEvent,
-    reload: () => this.router.navigateByUrl('login'),
-    simulating: this.simulatingEvent,
-    updateGame: this.updateGameEvent,
-    updateBattleStatus: this.updateBattleStatusEvent,
-  };
+  public handleWebsocket(websocketEvent: Observable<WebSocketModel>): void {
+    Object.keys(this.eventMap).forEach((key: string) => {
+      this.eventMap[key] = merge(
+        websocketEvent.pipe(
+          filter((message) => message.type === key),
+          map((message) => message.payload)
+        ),
+        this.eventMap[key]
+      );
+    });
+  }
 }

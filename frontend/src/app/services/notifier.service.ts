@@ -5,6 +5,7 @@ import {
   NotificationModel,
   WebsocketEventService,
 } from './websocket-event.service';
+import { filter } from 'rxjs';
 
 export enum NotificationType {
   Neutral = 'Neutral',
@@ -22,7 +23,9 @@ export class NotifierService {
     private websocketEventService: WebsocketEventService
   ) {
     this.notify = this.notify.bind(this);
-    this.websocketEventService.notifyEvent$.subscribe(this.notify);
+    this.websocketEventService.notifyEvent$
+      .pipe(filter((value) => !!value))
+      .subscribe(this.notify);
   }
 
   public notify(notification: NotificationModel): void {

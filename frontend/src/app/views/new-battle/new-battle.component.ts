@@ -109,7 +109,7 @@ export class NewBattleComponent implements OnInit {
     combineLatest([
       this.playerService.player$,
       this.websocketEventService.battleEvent$.pipe(
-        filter((battle) => battle._id === this.id)
+        filter((battle) => !!battle && battle._id === this.id)
       ),
     ])
       .pipe(takeUntilDestroyed(this.destroyRef))

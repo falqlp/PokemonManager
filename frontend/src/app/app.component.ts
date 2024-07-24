@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('drawer') public drawer: MatDrawer;
   protected isMobile = false;
   constructor(
-    private websocketService: WebsocketService,
+    websocketService: WebsocketService,
     private sidenavService: SidenavService,
     private destroyRef: DestroyRef,
     private elementRef: ElementRef,
@@ -60,6 +60,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     private userService: UserService,
     private cacheService: CacheService
   ) {
+    websocketService.connect();
     initGameService.init();
     eggHatchedService.init();
     newMoveLearnedService.init();
@@ -79,7 +80,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       .getLanguage()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((lang) => this.translateService.use(lang));
-    this.websocketService.connect();
   }
 
   public ngAfterViewInit(): void {

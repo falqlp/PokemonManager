@@ -3,6 +3,7 @@ import { WebsocketEventService } from './websocket-event.service';
 import { BadgeDataService } from './badge.data.service';
 import { NotifierService } from './notifier.service';
 import { TranslateService } from '@ngx-translate/core';
+import { filter } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +17,9 @@ export class NewMoveLearnedService {
   ) {}
 
   public init(): void {
-    this.websocketEventService.notifyNewMoveLearnedEvent$.subscribe(
-      (payload) => {
+    this.websocketEventService.notifyNewMoveLearnedEvent$
+      .pipe(filter((value) => !!value))
+      .subscribe((payload) => {
         this.badgeDataService.pokemon.push(payload.id);
         this.badgeDataService.sidenav.push('PC-STORAGE');
         this.notifierService.notify({
@@ -25,7 +27,6 @@ export class NewMoveLearnedService {
             pokemon: this.translateService.instant(payload.pokemonName),
           }),
         });
-      }
-    );
+      });
   }
 }
