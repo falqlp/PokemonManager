@@ -1,4 +1,4 @@
-@import 'flexbox';
+@import '../../../styles/flexbox';
 
 .battle-strategy {
   @include flexbox(left, 2, column);

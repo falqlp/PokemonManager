@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RouterService } from './router.service';
 import { TimeService } from './time.service';
 import { PlayerService } from './player.service';
+import { BattleStrategyModalComponent } from '../modals/battle-strategy-modal/battle-strategy-modal.component';
 
 @Injectable({
   providedIn: 'root',
@@ -146,12 +147,13 @@ export class SimulationService {
       },
     ];
     this.dialog.afterAllClosed.pipe(first()).subscribe(() => {
-      this.dialog.open(GenericDialogComponent, {
-        data: {
-          buttons,
-          message: 'SURE_GO_TO_BATTLE',
-        },
-      });
+      this.dialog.open(BattleStrategyModalComponent);
+      // this.dialog.open(GenericDialogComponent, {
+      //   data: {
+      //     buttons,
+      //     message: 'SURE_GO_TO_BATTLE',
+      //   },
+      // });
     });
   }
 }
