@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { DynamicCellBaseDirective } from '../../dynamic-cell-base.directive';
 import { CalendarEventModel } from '../../../../models/calendar-event.model';
 import { AsyncPipe } from '@angular/common';
@@ -16,7 +16,9 @@ import { TrainerNameComponent } from '../../../trainer-name/trainer-name.compone
   styleUrl: './table-display-battle.component.scss',
 })
 export class TableDisplayBattleComponent extends DynamicCellBaseDirective<CalendarEventModel> {
-  constructor(protected playerService: PlayerService) {
+  protected playerService = inject(PlayerService);
+
+  constructor() {
     super();
   }
 

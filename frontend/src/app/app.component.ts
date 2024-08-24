@@ -5,6 +5,7 @@ import {
   ElementRef,
   OnInit,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { WebsocketService } from './services/websocket.service';
 import { SidenavService } from './components/sidenav/sidenav.service';
@@ -43,23 +44,25 @@ import { CacheService } from './services/cache.service';
   ],
 })
 export class AppComponent implements OnInit, AfterViewInit {
+  private websocketService = inject(WebsocketService);
+  private sidenavService = inject(SidenavService);
+  private destroyRef = inject(DestroyRef);
+  private elementRef = inject(ElementRef);
+  private languageService = inject(LanguageService);
+  private translateService = inject(TranslateService);
+  private routerService = inject(RouterService);
+  private userService = inject(UserService);
+  private cacheService = inject(CacheService);
+
   @ViewChild('drawer') public drawer: MatDrawer;
   protected isMobile = false;
-  constructor(
-    private websocketService: WebsocketService,
-    private sidenavService: SidenavService,
-    private destroyRef: DestroyRef,
-    private elementRef: ElementRef,
-    private languageService: LanguageService,
-    private translateService: TranslateService,
-    initGameService: InitGameService,
-    eggHatchedService: EggHatchedService,
-    newMoveLearnedService: NewMoveLearnedService,
-    weeklyXpService: WeeklyXpService,
-    private routerService: RouterService,
-    private userService: UserService,
-    private cacheService: CacheService
-  ) {
+  constructor() {
+    const initGameService = inject(InitGameService);
+    const eggHatchedService = inject(EggHatchedService);
+    const newMoveLearnedService = inject(NewMoveLearnedService);
+    const weeklyXpService = inject(WeeklyXpService);
+    const routerService = this.routerService;
+
     initGameService.init();
     eggHatchedService.init();
     newMoveLearnedService.init();

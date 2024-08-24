@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import type { TrainerModel } from '../models/TrainersModels/trainer.model';
 import { map, Observable, of, switchMap } from 'rxjs';
 import { BehaviorSubject, tap } from 'rxjs';
@@ -11,6 +11,11 @@ import { TrainerQueriesService } from './queries/trainer-queries.service';
   providedIn: 'root',
 })
 export class PlayerService {
+  private pcStorageService = inject(PcStorageQueriesService);
+  private cacheService = inject(CacheService);
+  private websocketEventService = inject(WebsocketEventService);
+  private trainerQueriesService = inject(TrainerQueriesService);
+
   public maxStat = 0;
 
   private maxStatSubject = new BehaviorSubject<number>(this.maxStat);
@@ -18,12 +23,7 @@ export class PlayerService {
 
   public player$: Observable<TrainerModel>;
 
-  public constructor(
-    private pcStorageService: PcStorageQueriesService,
-    private cacheService: CacheService,
-    private websocketEventService: WebsocketEventService,
-    private trainerQueriesService: TrainerQueriesService
-  ) {
+  public constructor() {
     this.player$ = this.cacheService.$trainerId.pipe(
       switchMap((id) => {
         return this.websocketEventService.updatePlayerEvent$.pipe(

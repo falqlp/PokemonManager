@@ -1,9 +1,8 @@
-import { Component, DestroyRef, Inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { AsyncPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -23,21 +22,13 @@ import { DisplayPokemonImageComponent } from '../../components/display-pokemon-i
   styleUrls: ['./evolution.component.scss'],
 })
 export class EvolutionComponent implements OnInit {
+  data = inject(MAT_DIALOG_DATA);
+  protected pokemonQueriesService = inject(PokemonQueriesService);
+  protected translateService = inject(TranslateService);
+  protected destroyRef = inject(DestroyRef);
+
   protected pokemon: PokemonModel;
   protected message: string;
-  public constructor(
-    @Inject(MAT_DIALOG_DATA)
-    public data: {
-      evolution: {
-        pokemonId: string;
-        evolution: PokemonBaseModel;
-        name: string;
-      };
-    },
-    protected pokemonQueriesService: PokemonQueriesService,
-    protected translateService: TranslateService,
-    protected destroyRef: DestroyRef
-  ) {}
 
   public ngOnInit(): void {
     this.pokemonQueriesService

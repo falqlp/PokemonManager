@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule } from '@ngx-translate/core';
@@ -11,10 +11,10 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './init-game.component.scss',
 })
 export class InitGameComponent implements OnInit {
+  protected dialog = inject(MatDialog);
+
   protected loading = '';
   public key = '';
-
-  constructor(protected dialog: MatDialog) {}
 
   public ngOnInit(): void {
     this.startLoadingAnimation();

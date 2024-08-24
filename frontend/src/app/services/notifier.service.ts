@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import {
@@ -16,11 +16,11 @@ export enum NotificationType {
   providedIn: 'root',
 })
 export class NotifierService {
-  constructor(
-    private snackBar: MatSnackBar,
-    private translateService: TranslateService,
-    private websocketEventService: WebsocketEventService
-  ) {
+  private snackBar = inject(MatSnackBar);
+  private translateService = inject(TranslateService);
+  private websocketEventService = inject(WebsocketEventService);
+
+  constructor() {
     this.notify = this.notify.bind(this);
     this.websocketEventService.notifyEvent$.subscribe(this.notify);
   }

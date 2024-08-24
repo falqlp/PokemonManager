@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { MatTableModule } from '@angular/material/table';
 
@@ -23,6 +23,8 @@ import {
   ],
 })
 export class TrainersComponent {
+  protected trainerService = inject(TrainerQueriesService);
+
   protected conf: TableConfModel = {
     columns: [
       {
@@ -65,6 +67,4 @@ export class TrainersComponent {
       },
     ],
   };
-
-  public constructor(protected trainerService: TrainerQueriesService) {}
 }

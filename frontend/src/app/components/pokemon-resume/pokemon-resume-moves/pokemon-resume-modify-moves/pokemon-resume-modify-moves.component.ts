@@ -43,6 +43,10 @@ import { switchMap } from 'rxjs';
   styleUrls: ['./pokemon-resume-modify-moves.component.scss'],
 })
 export class PokemonResumeModifyMovesComponent implements OnInit {
+  protected moveLearningQueriesService = inject(MoveLearningQueriesService);
+  protected pokemonQueriesService = inject(PokemonQueriesService);
+  protected destroyRef = inject(DestroyRef);
+
   private playerService: PlayerService = inject(PlayerService);
   @Input() public pokemon: PokemonModel;
   @Output() public save = new EventEmitter<void>();
@@ -52,12 +56,6 @@ export class PokemonResumeModifyMovesComponent implements OnInit {
       FormGroup<{ move: FormControl<MoveModel>; checked: FormControl<boolean> }>
     >;
   }>;
-
-  public constructor(
-    protected moveLearningQueriesService: MoveLearningQueriesService,
-    protected pokemonQueriesService: PokemonQueriesService,
-    protected destroyRef: DestroyRef
-  ) {}
 
   public ngOnInit(): void {
     this.init();

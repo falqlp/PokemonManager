@@ -8,6 +8,7 @@ import {
   ElementRef,
   input,
   signal,
+  inject,
 } from '@angular/core';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { DisplayType } from './display-pokemon-image.model';
@@ -25,6 +26,9 @@ import { RouterService } from '../../services/router.service';
   imports: [TranslateModule, NgClass, MatIconModule],
 })
 export class DisplayPokemonImageComponent implements OnInit, OnChanges {
+  private routerService = inject(RouterService);
+  protected elementRef = inject(ElementRef);
+
   @ViewChild('img') protected img: ElementRef;
   @Input() public pokemon: PokemonModel | PokemonBaseModel;
   @Input() public type: DisplayType;
@@ -37,10 +41,6 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
   protected maxHeight = signal<boolean>(false);
 
   protected imageUrl: string;
-  constructor(
-    private routerService: RouterService,
-    protected elementRef: ElementRef
-  ) {}
 
   public ngOnInit(): void {
     this.updateImageUrl();

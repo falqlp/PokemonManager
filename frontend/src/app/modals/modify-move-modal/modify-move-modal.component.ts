@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -15,11 +15,9 @@ import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
   styleUrl: './modify-move-modal.component.scss',
 })
 export class ModifyMoveModalComponent {
-  constructor(
-    @Inject(MAT_DIALOG_DATA)
-    public data: PokemonModel,
-    protected dialogRef: MatDialogRef<ModifyMoveModalComponent>
-  ) {}
+  data = inject<PokemonModel>(MAT_DIALOG_DATA);
+  protected dialogRef =
+    inject<MatDialogRef<ModifyMoveModalComponent>>(MatDialogRef);
 
   protected close(): void {
     this.dialogRef.close();

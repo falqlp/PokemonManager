@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PokemonStatsComponent } from '../pokemon-stats/pokemon-stats.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { PlayerService } from '../../services/player.service';
@@ -13,11 +13,12 @@ import { NgStyle } from '@angular/common';
   styleUrl: './simple-display-stats.component.scss',
 })
 export class SimpleDisplayStatsComponent extends PokemonStatsComponent {
+  protected colorService = inject(ColorService);
+
   protected colorStats: Record<string, string> = {};
-  constructor(
-    playerService: PlayerService,
-    protected colorService: ColorService
-  ) {
+  constructor() {
+    const playerService = inject(PlayerService);
+
     super(playerService);
   }
 

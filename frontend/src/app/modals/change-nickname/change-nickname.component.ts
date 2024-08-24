@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
@@ -22,13 +22,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrls: ['./change-nickname.component.scss'],
 })
 export class ChangeNicknameComponent implements OnInit {
+  data = inject<PokemonModel>(MAT_DIALOG_DATA);
+  protected pokemonQueriesService = inject(PokemonQueriesService);
+  protected destroyRef = inject(DestroyRef);
+
   protected form: FormGroup<{ nickname: FormControl<string> }>;
-  constructor(
-    @Inject(MAT_DIALOG_DATA)
-    public data: PokemonModel,
-    protected pokemonQueriesService: PokemonQueriesService,
-    protected destroyRef: DestroyRef
-  ) {}
 
   public ngOnInit(): void {
     this.form = new FormGroup({

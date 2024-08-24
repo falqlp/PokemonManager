@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Inject, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import * as echarts from 'echarts';
 import { PieDataModel } from './pie.model';
@@ -13,6 +13,9 @@ import { EChartsOption } from 'echarts';
   styleUrls: ['./pie.component.scss'],
 })
 export class PieComponent implements AfterViewInit {
+  protected document = inject<Document>(DOCUMENT);
+  protected translateService = inject(TranslateService);
+
   protected _data: PieDataModel[];
   protected chart: echarts.ECharts;
 
@@ -27,11 +30,6 @@ export class PieComponent implements AfterViewInit {
   public get data(): PieDataModel[] {
     return this._data;
   }
-
-  constructor(
-    @Inject(DOCUMENT) protected document: Document,
-    protected translateService: TranslateService
-  ) {}
 
   public ngAfterViewInit(): void {
     const chartDom = this.document.getElementById('main');

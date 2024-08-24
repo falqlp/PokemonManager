@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BattleModel } from '../../models/Battle.model';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
@@ -28,15 +28,13 @@ import { MatButtonModule } from '@angular/material/button';
   ],
 })
 export class BattleResumeComponent implements OnInit {
-  protected battle: BattleModel;
+  protected route = inject(ActivatedRoute);
+  protected router = inject(RouterService);
+  protected battleQueries = inject(BattleInstanceQueriesService);
+  protected trainerQueriesService = inject(TrainerQueriesService);
+  protected destroyRef = inject(DestroyRef);
 
-  public constructor(
-    protected route: ActivatedRoute,
-    protected router: RouterService,
-    protected battleQueries: BattleInstanceQueriesService,
-    protected trainerQueriesService: TrainerQueriesService,
-    protected destroyRef: DestroyRef
-  ) {}
+  protected battle: BattleModel;
 
   public ngOnInit(): void {
     this.route.queryParams

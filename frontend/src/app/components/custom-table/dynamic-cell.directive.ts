@@ -5,6 +5,7 @@ import {
   OnInit,
   Type,
   ViewContainerRef,
+  inject,
 } from '@angular/core';
 import { TableDisplayTextComponent } from './components/table-display-text/table-display-text.component';
 import { DynamicCellBaseDirective } from './dynamic-cell-base.directive';
@@ -19,6 +20,8 @@ import { TableDisplayBattleComponent } from './components/table-display-battle/t
   standalone: true,
 })
 export class DynamicCellDirective<T> implements OnInit {
+  viewContainerRef = inject(ViewContainerRef);
+
   @Input() public componentType: string;
   @Input() public data: T;
 
@@ -30,8 +33,6 @@ export class DynamicCellDirective<T> implements OnInit {
     displayPokemonTypes: TableDisplayTypesComponent,
     displayBattle: TableDisplayBattleComponent,
   };
-
-  constructor(public viewContainerRef: ViewContainerRef) {}
 
   public ngOnInit(): void {
     if (this.componentType) {

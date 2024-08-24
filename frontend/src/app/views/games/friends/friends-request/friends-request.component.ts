@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input } from '@angular/core';
+import { Component, DestroyRef, Input, inject } from '@angular/core';
 import { UserModel } from '../../../../models/user.model';
 import { AsyncPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,11 +15,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './friends-request.component.scss',
 })
 export class FriendsRequestComponent {
+  private userQueriesService = inject(UserQueriesService);
+  private destroyRef = inject(DestroyRef);
+
   @Input() public user: UserModel;
-  constructor(
-    private userQueriesService: UserQueriesService,
-    private destroyRef: DestroyRef
-  ) {}
 
   protected add(user: UserModel): void {
     this.userQueriesService

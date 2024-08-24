@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { PlayerService } from '../../services/player.service';
@@ -26,13 +26,12 @@ import { TimeService } from '../../services/time.service';
   styleUrls: ['./nursery.component.scss'],
 })
 export class NurseryComponent implements OnInit {
+  protected playerService = inject(PlayerService);
+  protected nurseryQueriesService = inject(NurseryQueriesService);
+  protected destroyRef = inject(DestroyRef);
+  protected timeService = inject(TimeService);
+
   protected nursery: NurseryModel;
-  constructor(
-    protected playerService: PlayerService,
-    protected nurseryQueriesService: NurseryQueriesService,
-    protected destroyRef: DestroyRef,
-    protected timeService: TimeService
-  ) {}
 
   public ngOnInit(): void {
     this.timeService

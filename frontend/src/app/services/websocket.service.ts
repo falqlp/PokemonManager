@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   webSocket,
   WebSocketSubject,
@@ -21,16 +21,14 @@ export interface WebSocketModel {
   providedIn: 'root',
 })
 export class WebsocketService {
+  private notifierService = inject(NotifierService);
+  private cacheService = inject(CacheService);
+  private routerService = inject(RouterService);
+  private websocketEventService = inject(WebsocketEventService);
+
   private websocket: WebSocketSubject<WebSocketModel>;
   protected isConected = false;
   protected readonly url = environment.wsUrl;
-
-  constructor(
-    private notifierService: NotifierService,
-    private cacheService: CacheService,
-    private routerService: RouterService,
-    private websocketEventService: WebsocketEventService
-  ) {}
 
   private getWebSocketConfig(): WebSocketSubjectConfig<WebSocketModel> {
     return {

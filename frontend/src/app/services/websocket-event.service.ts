@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, filter, Observable } from 'rxjs';
 import { PokemonBaseModel } from '../models/PokemonModels/pokemonBase.model';
 import { TrainerModel } from '../models/TrainersModels/trainer.model';
@@ -53,6 +53,8 @@ export interface BattleStatus {
   providedIn: 'root',
 })
 export class WebsocketEventService {
+  private router = inject(RouterService);
+
   private notifyEventSubject = new BehaviorSubject<NotificationModel>(null);
   public notifyEvent$: Observable<NotificationModel> = this.notifyEventSubject
     .asObservable()
@@ -121,8 +123,6 @@ export class WebsocketEventService {
 
   public updateBattleStatusEvent$: Observable<BattleStatus> =
     this.updateBattleStatusEventSubject.asObservable();
-
-  constructor(private router: RouterService) {}
 
   public handleMessage = (message: WebSocketModel): void => {
     this.eventMap[message.type](message.payload);

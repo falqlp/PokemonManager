@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input } from '@angular/core';
+import { Component, DestroyRef, Input, inject } from '@angular/core';
 import { DisplayPokemonImageComponent } from '../../../components/display-pokemon-image/display-pokemon-image.component';
 import { NurseryModel } from '../../../models/nursery.model';
 import { NgClass } from '@angular/common';
@@ -23,12 +23,10 @@ import { DisplayTypeComponent } from '../../../components/display-type/display-t
   styleUrls: ['./nursery-pokemon-list.component.scss'],
 })
 export class NurseryPokemonListComponent {
-  @Input() public nursery: NurseryModel;
+  protected pokemonQueriesService = inject(PokemonQueriesService);
+  protected destroyRef = inject(DestroyRef);
 
-  constructor(
-    protected pokemonQueriesService: PokemonQueriesService,
-    protected destroyRef: DestroyRef
-  ) {}
+  @Input() public nursery: NurseryModel;
 
   protected release(egg: PokemonModel): void {
     this.pokemonQueriesService

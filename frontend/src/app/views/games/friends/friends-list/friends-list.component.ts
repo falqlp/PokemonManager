@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { UserModel } from '../../../../models/user.model';
 import { AsyncPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,8 +21,9 @@ import { AddGameComponent } from '../../add-game/add-game.component';
   styleUrl: './friends-list.component.scss',
 })
 export class FriendsListComponent {
+  private dialog = inject(MatDialog);
+
   @Input() public user: UserModel;
-  constructor(private dialog: MatDialog) {}
 
   protected invite(user: UserModel): void {
     this.dialog.open(AddGameComponent, { data: { friendId: user._id } });

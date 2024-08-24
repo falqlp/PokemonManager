@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CustomTableComponent } from '../../components/custom-table/custom-table.component';
 import { CalendarEventQueriesService } from '../../services/queries/calendar-event-queries.service';
 import { CalendarEventEvent } from '../../models/calendar-event.model';
@@ -18,10 +18,8 @@ import {
   styleUrl: './events.component.scss',
 })
 export class EventsComponent implements OnInit {
-  public constructor(
-    protected calendarEventQueriesService: CalendarEventQueriesService,
-    protected playerService: PlayerService
-  ) {}
+  protected calendarEventQueriesService = inject(CalendarEventQueriesService);
+  protected playerService = inject(PlayerService);
 
   protected specificQuery: Observable<Record<string, unknown>>;
 

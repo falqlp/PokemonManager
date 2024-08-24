@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { WebsocketEventService } from './websocket-event.service';
 import { BadgeDataService } from './badge.data.service';
 import { NotifierService } from './notifier.service';
@@ -8,12 +8,10 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root',
 })
 export class NewMoveLearnedService {
-  constructor(
-    private websocketEventService: WebsocketEventService,
-    private badgeDataService: BadgeDataService,
-    private notifierService: NotifierService,
-    private translateService: TranslateService
-  ) {}
+  private websocketEventService = inject(WebsocketEventService);
+  private badgeDataService = inject(BadgeDataService);
+  private notifierService = inject(NotifierService);
+  private translateService = inject(TranslateService);
 
   public init(): void {
     this.websocketEventService.notifyNewMoveLearnedEvent$.subscribe(

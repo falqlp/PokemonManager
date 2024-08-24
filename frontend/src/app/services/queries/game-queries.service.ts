@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GameModel } from '../../models/game.model';
 import { PlayerModel } from '../../models/player.model';
@@ -10,9 +10,14 @@ import { ReadonlyQuery } from '../../core/readonly-query';
   providedIn: 'root',
 })
 export class GameQueriesService extends ReadonlyQuery<GameModel> {
+  protected override http: HttpClient;
+
   public static readonly url = 'api/game';
-  public constructor(protected override http: HttpClient) {
+  public constructor() {
+    const http = inject(HttpClient);
+
     super(GameQueriesService.url, http);
+    this.http = http;
   }
 
   public getTime(gameId: string): Observable<Date> {

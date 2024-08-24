@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ReadonlyQuery } from '../../core/readonly-query';
 import { MoveModel } from '../../models/move.model';
@@ -7,8 +7,13 @@ import { MoveModel } from '../../models/move.model';
   providedIn: 'root',
 })
 export class MoveQueriesService extends ReadonlyQuery<MoveModel> {
+  protected override http: HttpClient;
+
   public static readonly url = 'api/move';
-  public constructor(protected override http: HttpClient) {
+  public constructor() {
+    const http = inject(HttpClient);
+
     super(MoveQueriesService.url, http);
+    this.http = http;
   }
 }

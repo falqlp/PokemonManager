@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, OnInit, signal, inject } from '@angular/core';
 import { UserQueriesService } from '../../services/queries/user-queries.service';
 import { Languages, UserModel } from '../../models/user.model';
 
@@ -44,6 +44,16 @@ import { NewsComponent } from '../../modals/news/news.component';
   styleUrls: ['./games.component.scss'],
 })
 export class GamesComponent implements OnInit {
+  private userQueriesService = inject(UserQueriesService);
+  private cacheService = inject(CacheService);
+  private gameQueriesService = inject(GameQueriesService);
+  private router = inject(RouterService);
+  private dialog = inject(MatDialog);
+  private destroyRef = inject(DestroyRef);
+  private languageService = inject(LanguageService);
+  private translateService = inject(TranslateService);
+  private userService = inject(UserService);
+
   protected user = signal<UserModel>(null);
   protected gameSubject = new BehaviorSubject<GameModel[]>(undefined);
   protected $game = this.gameSubject.asObservable();
@@ -62,18 +72,6 @@ export class GamesComponent implements OnInit {
   };
 
   protected currentLang: string;
-
-  constructor(
-    private userQueriesService: UserQueriesService,
-    private cacheService: CacheService,
-    private gameQueriesService: GameQueriesService,
-    private router: RouterService,
-    private dialog: MatDialog,
-    private destroyRef: DestroyRef,
-    private languageService: LanguageService,
-    private translateService: TranslateService,
-    private userService: UserService
-  ) {}
 
   public ngOnInit(): void {
     this.cacheService.setGameId(undefined);

@@ -7,10 +7,8 @@ import { CacheService } from '../../services/cache.service';
   providedIn: 'root',
 })
 class PermissionsService {
-  constructor(
-    protected router: RouterService,
-    protected cacheService: CacheService
-  ) {}
+  protected router = inject(RouterService);
+  protected cacheService = inject(CacheService);
 
   gameGuard(): boolean {
     const gameId = this.cacheService.getGameId();

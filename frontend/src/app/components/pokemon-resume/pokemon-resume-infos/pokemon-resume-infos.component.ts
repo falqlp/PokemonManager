@@ -5,6 +5,7 @@ import {
   input,
   OnInit,
   signal,
+  inject,
 } from '@angular/core';
 import { PokemonModel } from '../../../models/PokemonModels/pokemon.model';
 import { LocalDatePipe } from '../../../pipes/local-date.pipe';
@@ -20,14 +21,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './pokemon-resume-infos.component.scss',
 })
 export class PokemonResumeInfosComponent implements OnInit {
+  private timeService = inject(TimeService);
+  private destroyRef = inject(DestroyRef);
+
   public pokemon = input<PokemonModel>();
   protected age = computed(() => this.calculateAge(this.actualDate()));
   protected actualDate = signal<Date>(null);
-
-  constructor(
-    private timeService: TimeService,
-    private destroyRef: DestroyRef
-  ) {}
 
   protected calculateAge(actualDate: Date): number {
     const birthday: Date = new Date(this.pokemon().birthday);

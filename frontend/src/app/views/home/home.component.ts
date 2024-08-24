@@ -1,4 +1,4 @@
-import { OnInit, signal } from '@angular/core';
+import { OnInit, signal, inject } from '@angular/core';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PokemonFormComponent } from 'src/app/modals/pokemon-form/pokemon-form.component';
@@ -43,14 +43,12 @@ import { GroupsRankingComponent } from '../../components/ranking/groups-ranking/
   ],
 })
 export class HomeComponent implements OnInit {
+  protected dialog = inject(MatDialog);
+  protected playerService = inject(PlayerService);
+  protected pokemonService = inject(PokemonQueriesService);
+
   protected player = signal<TrainerModel>(null);
   protected readonly environment = environment;
-
-  constructor(
-    protected dialog: MatDialog,
-    protected playerService: PlayerService,
-    protected pokemonService: PokemonQueriesService
-  ) {}
 
   public ngOnInit(): void {
     this.playerService.player$

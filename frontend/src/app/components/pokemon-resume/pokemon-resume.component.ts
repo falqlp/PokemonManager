@@ -5,6 +5,7 @@ import {
   ElementRef,
   input,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import Swiper from 'swiper';
@@ -43,11 +44,11 @@ import { MatGridList, MatGridTile } from '@angular/material/grid-list';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PokemonResumeComponent implements AfterViewInit {
+  protected dialog = inject(MatDialog);
+
   @ViewChild('swiperContainer') protected swiperContainer: ElementRef;
   protected swiper = Swiper;
   public pokemon = input<PokemonModel>();
-
-  constructor(protected dialog: MatDialog) {}
 
   public ngAfterViewInit(): void {
     const swiperOption: SwiperOptions = {

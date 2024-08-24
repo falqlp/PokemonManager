@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import type { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { Observable } from 'rxjs';
 import { ReadonlyQuery } from '../../core/readonly-query';
@@ -8,9 +8,14 @@ import { ReadonlyQuery } from '../../core/readonly-query';
   providedIn: 'root',
 })
 export class TrainerQueriesService extends ReadonlyQuery<TrainerModel> {
+  protected override http: HttpClient;
+
   public static readonly url = 'api/trainer';
-  public constructor(protected override http: HttpClient) {
+  public constructor() {
+    const http = inject(HttpClient);
+
     super(TrainerQueriesService.url, http);
+    this.http = http;
   }
 
   public getPlayer(trainerId: string): Observable<TrainerModel> {

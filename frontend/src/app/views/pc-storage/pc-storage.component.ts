@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { PcStorageQueriesService } from '../../services/queries/pc-storage-queries.service';
 import { PlayerService } from '../../services/player.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
@@ -36,19 +36,18 @@ import { MatIconModule } from '@angular/material/icon';
   ],
 })
 export class PcStorageComponent implements OnInit {
+  protected pcStorageQueriesService = inject(PcStorageQueriesService);
+  protected playerService = inject(PlayerService);
+  protected trainerService = inject(TrainerQueriesService);
+  protected destroyRef = inject(DestroyRef);
+  protected badgeDataService = inject(BadgeDataService);
+
   protected player: TrainerModel;
   protected pcStorage: PcStorageModel;
   protected storageArray: StorageArrayModel[] = [];
   protected playerTeam: StorageArrayModel[] = [];
   protected firstSelected: PokemonModel;
   protected secondSelected: PokemonModel;
-  public constructor(
-    protected pcStorageQueriesService: PcStorageQueriesService,
-    protected playerService: PlayerService,
-    protected trainerService: TrainerQueriesService,
-    protected destroyRef: DestroyRef,
-    protected badgeDataService: BadgeDataService
-  ) {}
 
   public ngOnInit(): void {
     this.playerService.player$

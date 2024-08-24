@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
@@ -8,8 +8,9 @@ import { PasswordRequestModel } from '../../models/password-request.model';
   providedIn: 'root',
 })
 export class PasswordRequestQueriesService {
+  protected http = inject(HttpClient);
+
   private readonly url = 'api/password-request';
-  constructor(protected http: HttpClient) {}
 
   public createPasswordRequest(
     email: string,

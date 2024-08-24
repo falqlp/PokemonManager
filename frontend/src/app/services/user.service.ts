@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { CacheService } from './cache.service';
 import { UserQueriesService } from './queries/user-queries.service';
 import { EMPTY, map, Observable, switchMap, tap } from 'rxjs';
@@ -10,13 +10,13 @@ import { LanguageService } from './language.service';
   providedIn: 'root',
 })
 export class UserService {
+  private cacheService = inject(CacheService);
+  private userQueriesService = inject(UserQueriesService);
+  private websocketEventService = inject(WebsocketEventService);
+  private languageService = inject(LanguageService);
+
   public $user: Observable<UserModel>;
-  constructor(
-    private cacheService: CacheService,
-    private userQueriesService: UserQueriesService,
-    private websocketEventService: WebsocketEventService,
-    private languageService: LanguageService
-  ) {
+  constructor() {
     this.$user = this.cacheService.$userId.pipe(
       switchMap((id) => {
         return this.websocketEventService.updateUserEvent$.pipe(map(() => id));

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import {
@@ -47,6 +47,16 @@ import { TrainerNameComponent } from '../../components/trainer-name/trainer-name
   styleUrls: ['./add-calendar-event.component.scss'],
 })
 export class AddCalendarEventComponent implements OnInit {
+  protected trainerQueriesService = inject(TrainerQueriesService);
+  protected customValidatorService = inject(CustomValidatorService);
+  protected timeService = inject(TimeService);
+  protected dialogRef =
+    inject<MatDialogRef<AddCalendarEventComponent>>(MatDialogRef);
+
+  protected calendarEventQueriesService = inject(CalendarEventQueriesService);
+  protected competitionQueriesService = inject(CompetitionQueriesService);
+  protected destroyRef = inject(DestroyRef);
+
   protected trainers: TrainerModel[];
   protected competitions: CompetitionModel[];
   protected calendarEventForm = new FormGroup({
@@ -59,16 +69,6 @@ export class AddCalendarEventComponent implements OnInit {
 
   protected currentDate$: Observable<Date>;
   protected maxDate: Date;
-
-  public constructor(
-    protected trainerQueriesService: TrainerQueriesService,
-    protected customValidatorService: CustomValidatorService,
-    protected timeService: TimeService,
-    protected dialogRef: MatDialogRef<AddCalendarEventComponent>,
-    protected calendarEventQueriesService: CalendarEventQueriesService,
-    protected competitionQueriesService: CompetitionQueriesService,
-    protected destroyRef: DestroyRef
-  ) {}
 
   public ngOnInit(): void {
     this.trainerQueriesService

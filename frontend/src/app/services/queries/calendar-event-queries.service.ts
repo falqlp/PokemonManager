@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { CalendarEventModel } from '../../models/calendar-event.model';
 import { Observable } from 'rxjs';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
@@ -12,12 +12,15 @@ import { ReadonlyQuery } from '../../core/readonly-query';
   providedIn: 'root',
 })
 export class CalendarEventQueriesService extends ReadonlyQuery<CalendarEventModel> {
+  protected override http: HttpClient;
+  protected timeService = inject(TimeService);
+
   public static readonly url = 'api/calendar-event';
-  public constructor(
-    protected override http: HttpClient,
-    protected timeService: TimeService
-  ) {
+  public constructor() {
+    const http = inject(HttpClient);
+
     super(CalendarEventQueriesService.url, http);
+    this.http = http;
   }
 
   public createBattleEvent(

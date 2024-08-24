@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { NurseryModel, WishListModel } from '../../models/nursery.model';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../../models/user.model';
@@ -9,9 +9,14 @@ import { ReadonlyQuery } from '../../core/readonly-query';
   providedIn: 'root',
 })
 export class NurseryQueriesService extends ReadonlyQuery<NurseryModel> {
+  protected override http: HttpClient;
+
   public static readonly url = 'api/nursery';
-  public constructor(protected override http: HttpClient) {
+  public constructor() {
+    const http = inject(HttpClient);
+
     super(NurseryQueriesService.url, http);
+    this.http = http;
   }
 
   public setNurseryWishlist(

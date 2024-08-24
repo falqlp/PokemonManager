@@ -7,15 +7,15 @@ import {
 import { Observable } from 'rxjs';
 import { LanguageService } from '../services/language.service';
 import { CacheService } from '../services/cache.service';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
+  protected cacheService = inject(CacheService);
+  protected languageService = inject(LanguageService);
+
   private lang = 'fr-Fr';
-  constructor(
-    protected cacheService: CacheService,
-    protected languageService: LanguageService
-  ) {
+  constructor() {
     this.languageService.getLanguage().subscribe((currentLang) => {
       this.lang = currentLang;
     });

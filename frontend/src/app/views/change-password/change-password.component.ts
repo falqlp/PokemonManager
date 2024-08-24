@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input } from '@angular/core';
+import { Component, DestroyRef, Input, inject } from '@angular/core';
 import { UserQueriesService } from '../../services/queries/user-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -38,6 +38,12 @@ import { of } from 'rxjs';
   styleUrl: './change-password.component.scss',
 })
 export class ChangePasswordComponent {
+  protected userQueriesService = inject(UserQueriesService);
+  protected destroyRef = inject(DestroyRef);
+  protected customValidatorService = inject(CustomValidatorService);
+  protected notifierService = inject(NotifierService);
+  protected routerService = inject(RouterService);
+
   @Input('id') public id: string;
   protected changePasswordForm = new FormGroup(
     {
@@ -46,14 +52,6 @@ export class ChangePasswordComponent {
     },
     { validators: this.customValidatorService.checkPasswordsValidator() }
   );
-
-  constructor(
-    protected userQueriesService: UserQueriesService,
-    protected destroyRef: DestroyRef,
-    protected customValidatorService: CustomValidatorService,
-    protected notifierService: NotifierService,
-    protected routerService: RouterService
-  ) {}
 
   public submit(): void {
     this.userQueriesService

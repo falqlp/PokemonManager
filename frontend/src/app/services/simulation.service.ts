@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { CalendarEventQueriesService } from './queries/calendar-event-queries.service';
 import { BattleModel } from '../models/Battle.model';
 import { first, map, switchMap, tap } from 'rxjs';
@@ -12,15 +12,15 @@ import { BattleStrategyModalComponent } from '../modals/battle-strategy-modal/ba
   providedIn: 'root',
 })
 export class SimulationService {
+  private calendarEventQueriesService = inject(CalendarEventQueriesService);
+  private dialog = inject(MatDialog);
+  private routerService = inject(RouterService);
+  private timeService = inject(TimeService);
+  private playerService = inject(PlayerService);
+
   public askForNextDay = false;
 
-  constructor(
-    private calendarEventQueriesService: CalendarEventQueriesService,
-    private dialog: MatDialog,
-    private routerService: RouterService,
-    private timeService: TimeService,
-    private playerService: PlayerService
-  ) {
+  constructor() {
     this.timeService.getActualDate().subscribe(() => {
       this.askForNextDay = false;
     });

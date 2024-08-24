@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TranslateModule } from '@ngx-translate/core';
 import { FindFriendComponent } from './find-friend/find-friend.component';
@@ -22,11 +22,10 @@ import { UserService } from '../../../services/user.service';
   styleUrl: './friends.component.scss',
 })
 export class FriendsComponent implements OnInit {
+  private userService = inject(UserService);
+  private destroyRef = inject(DestroyRef);
+
   protected user: UserModel;
-  constructor(
-    private userService: UserService,
-    private destroyRef: DestroyRef
-  ) {}
 
   public ngOnInit(): void {
     this.userService.$user

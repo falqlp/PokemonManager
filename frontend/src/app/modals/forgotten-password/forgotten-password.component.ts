@@ -1,4 +1,4 @@
-import { Component, DestroyRef } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -30,6 +30,18 @@ import { NotifierService } from '../../services/notifier.service';
   styleUrl: './forgotten-password.component.scss',
 })
 export class ForgottenPasswordComponent {
+  protected customValidatorService = inject(CustomValidatorService);
+  protected dialogRef =
+    inject<MatDialogRef<ForgottenPasswordComponent>>(MatDialogRef);
+
+  protected passwordRequestQueriesService = inject(
+    PasswordRequestQueriesService
+  );
+
+  protected destroyRef = inject(DestroyRef);
+  protected translateService = inject(TranslateService);
+  protected notifierService = inject(NotifierService);
+
   protected form = new FormGroup({
     email: new FormControl<string>('', [
       Validators.required,
@@ -37,15 +49,6 @@ export class ForgottenPasswordComponent {
     ]),
     username: new FormControl<string>('', Validators.required),
   });
-
-  constructor(
-    protected customValidatorService: CustomValidatorService,
-    protected dialogRef: MatDialogRef<ForgottenPasswordComponent>,
-    protected passwordRequestQueriesService: PasswordRequestQueriesService,
-    protected destroyRef: DestroyRef,
-    protected translateService: TranslateService,
-    protected notifierService: NotifierService
-  ) {}
 
   protected submit(): void {
     this.passwordRequestQueriesService

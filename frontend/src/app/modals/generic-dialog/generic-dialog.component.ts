@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { DialogButtonsModel } from './generic-dialog.models';
 import {
   MAT_DIALOG_DATA,
@@ -16,15 +16,9 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./generic-dialog.component.scss'],
 })
 export class GenericDialogComponent {
-  constructor(
-    @Inject(MAT_DIALOG_DATA)
-    public data: {
-      title: string;
-      message: string;
-      buttons: DialogButtonsModel[];
-    },
-    protected dialogRef: MatDialogRef<GenericDialogComponent>
-  ) {}
+  data = inject(MAT_DIALOG_DATA);
+  protected dialogRef =
+    inject<MatDialogRef<GenericDialogComponent>>(MatDialogRef);
 
   protected click(button: DialogButtonsModel): void {
     if (button.click) {

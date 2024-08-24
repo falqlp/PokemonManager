@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
@@ -38,6 +38,14 @@ import { GroupsRankingComponent } from '../../components/ranking/groups-ranking/
   styleUrl: './competition-history.component.scss',
 })
 export class CompetitionHistoryComponent implements OnInit {
+  private timeService = inject(TimeService);
+  private destroyRef = inject(DestroyRef);
+  private competitionHistoryQueriesService = inject(
+    CompetitionHistoryQueriesService
+  );
+
+  private cacheService = inject(CacheService);
+
   protected competitionHistoryForm = new FormGroup({
     year: new FormControl<number>(null, [
       Validators.required,
@@ -47,13 +55,6 @@ export class CompetitionHistoryComponent implements OnInit {
   });
 
   protected competitionHistory: CompetitionHistoryModel[];
-
-  constructor(
-    private timeService: TimeService,
-    private destroyRef: DestroyRef,
-    private competitionHistoryQueriesService: CompetitionHistoryQueriesService,
-    private cacheService: CacheService
-  ) {}
 
   public ngOnInit(): void {
     this.timeService

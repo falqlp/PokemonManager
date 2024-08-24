@@ -1,4 +1,4 @@
-import { Component, DestroyRef, input, OnInit } from '@angular/core';
+import { Component, DestroyRef, input, OnInit, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserModel } from '../../../../models/user.model';
 import { debounceTime, Observable, switchMap } from 'rxjs';
@@ -31,6 +31,10 @@ import {
   styleUrl: './find-friend.component.scss',
 })
 export class FindFriendComponent implements OnInit {
+  private userQueriesService = inject(UserQueriesService);
+  private destroyRef = inject(DestroyRef);
+  private notifierService = inject(NotifierService);
+
   protected autoCompeteForm = new FormControl<UserModel | string>(
     null,
     Validators.required
@@ -38,12 +42,6 @@ export class FindFriendComponent implements OnInit {
 
   protected $users: Observable<UserModel[]>;
   public user = input<UserModel>();
-
-  constructor(
-    private userQueriesService: UserQueriesService,
-    private destroyRef: DestroyRef,
-    private notifierService: NotifierService
-  ) {}
 
   public ngOnInit(): void {
     this.$users = this.autoCompeteForm.valueChanges.pipe(

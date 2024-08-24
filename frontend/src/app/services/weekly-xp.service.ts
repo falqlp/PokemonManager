@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { WebsocketEventService } from './websocket-event.service';
 import { ExpGainComponent } from '../modals/exp-gain/exp-gain.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,11 +8,9 @@ import { SimulationService } from './simulation.service';
   providedIn: 'root',
 })
 export class WeeklyXpService {
-  constructor(
-    private websocketEventService: WebsocketEventService,
-    private dialog: MatDialog,
-    private simulationService: SimulationService
-  ) {}
+  private websocketEventService = inject(WebsocketEventService);
+  private dialog = inject(MatDialog);
+  private simulationService = inject(SimulationService);
 
   public init(): void {
     this.websocketEventService.weeklyXpEvent$.subscribe((payload) => {

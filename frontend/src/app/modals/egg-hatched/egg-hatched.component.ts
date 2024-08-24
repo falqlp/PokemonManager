@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
@@ -22,16 +22,14 @@ import { EggHatchedModel } from '../../services/websocket-event.service';
   styleUrls: ['./egg-hatched.component.scss'],
 })
 export class EggHatchedComponent {
+  data = inject<EggHatchedModel>(MAT_DIALOG_DATA);
+  protected pokemonQueriesService = inject(PokemonQueriesService);
+  protected dialog = inject(MatDialog);
+  protected destroyRef = inject(DestroyRef);
+  protected dialogRef = inject<MatDialogRef<EggHatchedComponent>>(MatDialogRef);
+
   protected message: string;
   protected cracksNumber = 0;
-  constructor(
-    @Inject(MAT_DIALOG_DATA)
-    public data: EggHatchedModel,
-    protected pokemonQueriesService: PokemonQueriesService,
-    protected dialog: MatDialog,
-    protected destroyRef: DestroyRef,
-    protected dialogRef: MatDialogRef<EggHatchedComponent>
-  ) {}
 
   protected addCracked(): void {
     this.cracksNumber += 1;

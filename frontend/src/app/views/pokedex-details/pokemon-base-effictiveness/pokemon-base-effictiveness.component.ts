@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { PokemonBaseModel } from '../../../models/PokemonModels/pokemonBase.model';
 import { PokemonQueriesService } from '../../../services/queries/pokemon-queries.service';
 import { NgClass } from '@angular/common';
@@ -13,10 +13,10 @@ import { DisplayTypeComponent } from '../../../components/display-type/display-t
   styleUrl: './pokemon-base-effictiveness.component.scss',
 })
 export class PokemonBaseEffictivenessComponent implements OnInit {
+  protected pokemonQueriesService = inject(PokemonQueriesService);
+
   @Input() pokemonBase: PokemonBaseModel;
   public effectiveness: Record<string, number>;
-
-  constructor(protected pokemonQueriesService: PokemonQueriesService) {}
 
   public ngOnInit(): void {
     this.pokemonQueriesService

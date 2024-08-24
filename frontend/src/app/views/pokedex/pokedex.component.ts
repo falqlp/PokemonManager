@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CustomTableComponent } from '../../components/custom-table/custom-table.component';
 import { PokemonBaseQueriesService } from '../../services/queries/pokemon-base-queries.service';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
@@ -16,6 +16,9 @@ import {
   styleUrls: ['./pokedex.component.scss'],
 })
 export class PokedexComponent {
+  protected pokemonBaseQueriesService = inject(PokemonBaseQueriesService);
+  protected routerService = inject(RouterService);
+
   protected conf: TableConfModel = {
     defaultSort: { column: 'id', direction: 'asc' },
     columns: [
@@ -165,11 +168,6 @@ export class PokedexComponent {
       },
     ],
   };
-
-  constructor(
-    protected pokemonBaseQueriesService: PokemonBaseQueriesService,
-    protected routerService: RouterService
-  ) {}
 
   public onRowClick(event: PokemonBaseModel): void {
     this.routerService.navigateByUrl('pokedex-details/' + event.id);

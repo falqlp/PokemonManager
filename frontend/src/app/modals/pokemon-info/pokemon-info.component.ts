@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import { NgClass } from '@angular/common';
@@ -26,5 +26,5 @@ import { DisplayTypeComponent } from '../../components/display-type/display-type
   ],
 })
 export class PokemonInfoComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: PokemonModel) {}
+  data = inject<PokemonModel>(MAT_DIALOG_DATA);
 }

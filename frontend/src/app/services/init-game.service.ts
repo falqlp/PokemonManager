@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { WebsocketEventService } from './websocket-event.service';
 import { AddGameComponent } from '../views/games/add-game/add-game.component';
 import { InitGameComponent } from '../modals/init-game/init-game.component';
@@ -10,11 +10,9 @@ import { filter } from 'rxjs';
   providedIn: 'root',
 })
 export class InitGameService {
-  constructor(
-    private websocketEventService: WebsocketEventService,
-    private dialog: MatDialog,
-    private translateService: TranslateService
-  ) {}
+  private websocketEventService = inject(WebsocketEventService);
+  private dialog = inject(MatDialog);
+  private translateService = inject(TranslateService);
 
   public init(): void {
     this.websocketEventService.initGameEvent$

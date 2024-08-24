@@ -1,4 +1,4 @@
-import { Component, DestroyRef, input, OnInit } from '@angular/core';
+import { Component, DestroyRef, input, OnInit, inject } from '@angular/core';
 import { PlayerService } from '../../services/player.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -39,13 +39,12 @@ import { filter } from 'rxjs';
   styleUrl: './battle-strategy.component.scss',
 })
 export class BattleStrategyComponent implements OnInit {
+  protected playerService = inject(PlayerService);
+  protected destroyRef = inject(DestroyRef);
+  protected dialog = inject(MatDialog);
+
   protected player: TrainerModel;
   public form = input.required<FormArray<FormArray<FormControl<number>>>>();
-  constructor(
-    protected playerService: PlayerService,
-    protected destroyRef: DestroyRef,
-    protected dialog: MatDialog
-  ) {}
 
   public ngOnInit(): void {
     this.playerService.player$

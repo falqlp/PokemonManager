@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
@@ -15,11 +15,9 @@ import { first, switchMap } from 'rxjs';
   styleUrl: './news.component.scss',
 })
 export class NewsComponent implements OnInit {
-  constructor(
-    private userService: UserService,
-    private destroyRef: DestroyRef,
-    private userQueriesService: UserQueriesService
-  ) {}
+  private userService = inject(UserService);
+  private destroyRef = inject(DestroyRef);
+  private userQueriesService = inject(UserQueriesService);
 
   public ngOnInit(): void {
     this.userService.$user

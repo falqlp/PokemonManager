@@ -1,4 +1,4 @@
-import { Component, DestroyRef, input, OnInit } from '@angular/core';
+import { Component, DestroyRef, input, OnInit, inject } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { TranslateModule } from '@ngx-translate/core';
 import { TimeService } from '../../services/time.service';
@@ -23,18 +23,16 @@ import { PlayerService } from '../../services/player.service';
   styleUrl: './ranking.component.scss',
 })
 export class RankingComponent implements OnInit {
+  private timeService = inject(TimeService);
+  private battleInstanceQueriesService = inject(BattleInstanceQueriesService);
+  private playerService = inject(PlayerService);
+  private destroyRef = inject(DestroyRef);
+
   public competition = input<CompetitionModel>();
   public competitionHistory = input<CompetitionHistoryModel>();
   protected playerId: string;
 
   protected ranking$: Observable<RankingModel[]>;
-
-  constructor(
-    private timeService: TimeService,
-    private battleInstanceQueriesService: BattleInstanceQueriesService,
-    private playerService: PlayerService,
-    private destroyRef: DestroyRef
-  ) {}
 
   public ngOnInit(): void {
     if (this.competitionHistory()) {

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter, first, switchMap } from 'rxjs';
@@ -34,17 +34,16 @@ import { MatGridList, MatGridTile } from '@angular/material/grid-list';
   styleUrl: './starters.component.scss',
 })
 export class StartersComponent implements OnInit {
+  protected pokemonService = inject(PokemonQueriesService);
+  protected destroyRef = inject(DestroyRef);
+  protected matDialog = inject(MatDialog);
+  protected playerService = inject(PlayerService);
+  protected router = inject(RouterService);
+  protected translateService = inject(TranslateService);
+
   protected starters: PokemonModel[];
   protected player: TrainerModel;
   protected selected: PokemonModel[] = [];
-  constructor(
-    protected pokemonService: PokemonQueriesService,
-    protected destroyRef: DestroyRef,
-    protected matDialog: MatDialog,
-    protected playerService: PlayerService,
-    protected router: RouterService,
-    protected translateService: TranslateService
-  ) {}
 
   public ngOnInit(): void {
     this.playerService.player$

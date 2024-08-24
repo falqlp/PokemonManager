@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input, OnInit } from '@angular/core';
+import { Component, DestroyRef, Input, OnInit, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatInputModule } from '@angular/material/input';
@@ -43,6 +43,14 @@ import { TimeService } from '../../../services/time.service';
   styleUrls: ['./nursery-wishlist-form.component.scss'],
 })
 export class NurseryWishlistFormComponent implements OnInit {
+  protected colorService = inject(ColorService);
+  protected nurseryQueriesService = inject(NurseryQueriesService);
+  protected destroyRef = inject(DestroyRef);
+  protected matDialog = inject(MatDialog);
+  protected calendarEventQueriesService = inject(CalendarEventQueriesService);
+  protected playerService = inject(PlayerService);
+  protected timeService = inject(TimeService);
+
   @Input() public nursery: NurseryModel;
 
   protected readonly typeNames: string[] = [
@@ -73,16 +81,6 @@ export class NurseryWishlistFormComponent implements OnInit {
 
   protected pieData: PieDataModel[] = [];
   protected pieColors: string[] = [];
-
-  constructor(
-    protected colorService: ColorService,
-    protected nurseryQueriesService: NurseryQueriesService,
-    protected destroyRef: DestroyRef,
-    protected matDialog: MatDialog,
-    protected calendarEventQueriesService: CalendarEventQueriesService,
-    protected playerService: PlayerService,
-    protected timeService: TimeService
-  ) {}
 
   public ngOnInit(): void {
     this.initForm();

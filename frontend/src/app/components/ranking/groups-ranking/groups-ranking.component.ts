@@ -1,4 +1,4 @@
-import { Component, DestroyRef, input, OnInit } from '@angular/core';
+import { Component, DestroyRef, input, OnInit, inject } from '@angular/core';
 import {
   CompetitionModel,
   CompetitionType,
@@ -22,17 +22,16 @@ import { CompetitionHistoryModel } from '../../../models/competition-history.mod
   styleUrl: './groups-ranking.component.scss',
 })
 export class GroupsRankingComponent implements OnInit {
+  private timeService = inject(TimeService);
+  private destroyRef = inject(DestroyRef);
+  private battleInstanceQueriesService = inject(BattleInstanceQueriesService);
+  private playerService = inject(PlayerService);
+
   public competition = input<CompetitionModel>();
   public competitionHistory = input<CompetitionHistoryModel>();
   protected rankings: Observable<RankingModel[]>[] = [];
   protected selectedIndex = 0;
   protected playerId: string;
-  constructor(
-    private timeService: TimeService,
-    private destroyRef: DestroyRef,
-    private battleInstanceQueriesService: BattleInstanceQueriesService,
-    private playerService: PlayerService
-  ) {}
 
   public ngOnInit(): void {
     if (this.competition()) {

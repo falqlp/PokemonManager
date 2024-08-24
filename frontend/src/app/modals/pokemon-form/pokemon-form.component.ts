@@ -1,4 +1,4 @@
-import { DestroyRef, OnInit } from '@angular/core';
+import { DestroyRef, OnInit, inject } from '@angular/core';
 import { Component } from '@angular/core';
 import {
   FormGroup,
@@ -46,6 +46,16 @@ import { MatButtonModule } from '@angular/material/button';
   ],
 })
 export class PokemonFormComponent implements OnInit {
+  protected customValidatorService = inject(CustomValidatorService);
+  protected dialogRef =
+    inject<MatDialogRef<PokemonFormComponent>>(MatDialogRef);
+
+  protected pokemonBaseService = inject(PokemonBaseQueriesService);
+  protected trainerService = inject(TrainerQueriesService);
+  protected translateService = inject(TranslateService);
+  protected moveLearningService = inject(MoveLearningQueriesService);
+  protected destroyRef = inject(DestroyRef);
+
   protected pokemonForm = new FormGroup({
     basePokemon: new FormControl<PokemonBaseModel>(null, Validators.required),
     nickname: new FormControl<string>(null),
@@ -66,16 +76,6 @@ export class PokemonFormComponent implements OnInit {
   protected pokemons: PokemonBaseModel[];
   protected filteredPokemons: Observable<PokemonBaseModel[]>;
   protected moves: MoveModel[];
-
-  public constructor(
-    protected customValidatorService: CustomValidatorService,
-    protected dialogRef: MatDialogRef<PokemonFormComponent>,
-    protected pokemonBaseService: PokemonBaseQueriesService,
-    protected trainerService: TrainerQueriesService,
-    protected translateService: TranslateService,
-    protected moveLearningService: MoveLearningQueriesService,
-    protected destroyRef: DestroyRef
-  ) {}
 
   public ngOnInit(): void {
     this.getData();

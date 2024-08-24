@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import type { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { Observable } from 'rxjs';
 import { ReadonlyQuery } from '../../core/readonly-query';
@@ -8,9 +8,14 @@ import { ReadonlyQuery } from '../../core/readonly-query';
   providedIn: 'root',
 })
 export class PokemonQueriesService extends ReadonlyQuery<PokemonModel> {
+  protected override http: HttpClient;
+
   public static readonly url = 'api/pokemon';
-  constructor(protected override http: HttpClient) {
+  constructor() {
+    const http = inject(HttpClient);
+
     super(PokemonQueriesService.url, http);
+    this.http = http;
   }
 
   public getEffectiveness(types: string[]): Observable<Record<string, number>> {

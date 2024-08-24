@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -30,15 +30,12 @@ import { WeeklyXpModel } from '../../services/websocket-event.service';
   styleUrls: ['./exp-gain.component.scss'],
 })
 export class ExpGainComponent implements OnInit {
-  protected xpData: WeeklyXpModel;
+  data = inject<WeeklyXpModel>(MAT_DIALOG_DATA);
+  protected dialog = inject(MatDialog);
+  protected dialogRef = inject<MatDialogRef<ExpGainComponent>>(MatDialogRef);
+  protected translateService = inject(TranslateService);
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA)
-    public data: WeeklyXpModel,
-    protected dialog: MatDialog,
-    protected dialogRef: MatDialogRef<ExpGainComponent>,
-    protected translateService: TranslateService
-  ) {}
+  protected xpData: WeeklyXpModel;
 
   public ngOnInit(): void {
     this.xpData = { trainer: this.data.oldPlayer };

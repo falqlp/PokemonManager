@@ -1,4 +1,4 @@
-import { Component, DestroyRef } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -49,6 +49,14 @@ import { Languages } from '../../models/user.model';
   styleUrl: './add-user.component.scss',
 })
 export class AddUserComponent {
+  protected userQueriesService = inject(UserQueriesService);
+  protected customValidatorService = inject(CustomValidatorService);
+  protected notifierService = inject(NotifierService);
+  protected translateService = inject(TranslateService);
+  protected dialogRef = inject<MatDialogRef<AddUserComponent>>(MatDialogRef);
+  protected destroyRef = inject(DestroyRef);
+  protected dialog = inject(MatDialog);
+
   protected addUserForm = new FormGroup<AddUserForm>(
     {
       username: new FormControl<string>('', {
@@ -68,16 +76,6 @@ export class AddUserComponent {
     },
     { validators: this.customValidatorService.checkPasswordsValidator() }
   );
-
-  constructor(
-    protected userQueriesService: UserQueriesService,
-    protected customValidatorService: CustomValidatorService,
-    protected notifierService: NotifierService,
-    protected translateService: TranslateService,
-    protected dialogRef: MatDialogRef<AddUserComponent>,
-    protected destroyRef: DestroyRef,
-    protected dialog: MatDialog
-  ) {}
 
   protected addUser(): void {
     const addUser = this.addUserForm.getRawValue();

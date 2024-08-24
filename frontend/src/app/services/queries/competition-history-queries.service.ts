@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { CompetitionHistoryModel } from '../../models/competition-history.model';
 import { ReadonlyQuery } from '../../core/readonly-query';
 
@@ -7,8 +7,13 @@ import { ReadonlyQuery } from '../../core/readonly-query';
   providedIn: 'root',
 })
 export class CompetitionHistoryQueriesService extends ReadonlyQuery<CompetitionHistoryModel> {
+  protected override http: HttpClient;
+
   public static readonly url = 'api/competition-history';
-  constructor(protected override http: HttpClient) {
+  constructor() {
+    const http = inject(HttpClient);
+
     super(CompetitionHistoryQueriesService.url, http);
+    this.http = http;
   }
 }

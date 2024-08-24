@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -11,6 +11,8 @@ import { BehaviorSubject, filter, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RouterService extends Router {
+  protected activatedRoute = inject(ActivatedRoute);
+
   protected lastUrl: string;
   protected titleSubject = new BehaviorSubject<string>('');
   private navigationDisabledSubject = new BehaviorSubject<boolean>(false);
@@ -19,7 +21,7 @@ export class RouterService extends Router {
 
   public $title = this.titleSubject.asObservable();
 
-  constructor(protected activatedRoute: ActivatedRoute) {
+  constructor() {
     super();
     this.init();
   }

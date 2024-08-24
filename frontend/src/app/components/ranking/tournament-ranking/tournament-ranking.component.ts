@@ -1,4 +1,4 @@
-import { Component, DestroyRef, input, OnInit } from '@angular/core';
+import { Component, DestroyRef, input, OnInit, inject } from '@angular/core';
 import { BattleInstanceQueriesService } from '../../../services/queries/battle-instance-queries.service';
 import {
   CompetitionModel,
@@ -30,6 +30,11 @@ import { switchMap } from 'rxjs';
   styleUrl: './tournament-ranking.component.scss',
 })
 export class TournamentRankingComponent implements OnInit {
+  protected battleInstanceQueriesService = inject(BattleInstanceQueriesService);
+  protected playerService = inject(PlayerService);
+  protected destroyRef = inject(DestroyRef);
+  private timeService = inject(TimeService);
+
   private readonly tournamentStepValues = [
     'FINAL',
     'SEMI-FINAL',
@@ -45,13 +50,6 @@ export class TournamentRankingComponent implements OnInit {
   protected tournamentStepValue: { index: number; label: string }[] = [];
   protected playerId: string;
   protected step: number;
-
-  constructor(
-    protected battleInstanceQueriesService: BattleInstanceQueriesService,
-    protected playerService: PlayerService,
-    protected destroyRef: DestroyRef,
-    private timeService: TimeService
-  ) {}
 
   public ngOnInit(): void {
     if (this.competitionHistory()) {

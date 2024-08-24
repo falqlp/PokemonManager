@@ -1,5 +1,5 @@
 import type { OnInit } from '@angular/core';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { ColorService } from '../../services/color.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgClass } from '@angular/common';
@@ -12,6 +12,8 @@ import { NgClass } from '@angular/common';
   imports: [TranslateModule, NgClass],
 })
 export class ProgressBarComponent implements OnInit {
+  protected colorService = inject(ColorService);
+
   @Input() public style = 'level';
   @Input() public displayHp = true;
   @Input()
@@ -49,8 +51,6 @@ export class ProgressBarComponent implements OnInit {
   protected _currentProgress: number;
   protected progress: number;
   protected rgb: string;
-
-  public constructor(protected colorService: ColorService) {}
 
   public ngOnInit(): void {
     this.updateProgress();

@@ -1,4 +1,4 @@
-import { DestroyRef, OnInit } from '@angular/core';
+import { DestroyRef, OnInit, inject } from '@angular/core';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import type { Observable } from 'rxjs';
@@ -44,6 +44,17 @@ import { WebsocketEventService } from '../../services/websocket-event.service';
   ],
 })
 export class TopBarComponent implements OnInit {
+  private playerService = inject(PlayerService);
+  private dialog = inject(MatDialog);
+  private routerService = inject(RouterService);
+  private timeService = inject(TimeService);
+  private destroyRef = inject(DestroyRef);
+  private sidenavService = inject(SidenavService);
+  private translateService = inject(TranslateService);
+  private languageService = inject(LanguageService);
+  protected badgeDataService = inject(BadgeDataService);
+  private websocketEventService = inject(WebsocketEventService);
+
   protected player$: Observable<TrainerModel>;
   protected goHomeDisabled$: Observable<boolean>;
   protected title$: Observable<string>;
@@ -53,19 +64,6 @@ export class TopBarComponent implements OnInit {
   protected player: TrainerModel;
   protected lang =
     this.translateService.currentLang ?? this.translateService.defaultLang;
-
-  public constructor(
-    private playerService: PlayerService,
-    private dialog: MatDialog,
-    private routerService: RouterService,
-    private timeService: TimeService,
-    private destroyRef: DestroyRef,
-    private sidenavService: SidenavService,
-    private translateService: TranslateService,
-    private languageService: LanguageService,
-    protected badgeDataService: BadgeDataService,
-    private websocketEventService: WebsocketEventService
-  ) {}
 
   public ngOnInit(): void {
     this.player$ = this.playerService.player$.pipe(

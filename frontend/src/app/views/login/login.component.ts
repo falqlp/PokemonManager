@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import {
   FormGroup,
   Validators,
@@ -36,19 +36,17 @@ import {
   ],
 })
 export class LoginComponent implements OnInit {
+  private authService = inject(AuthService);
+  private router = inject(RouterService);
+  private destroyRef = inject(DestroyRef);
+  private cacheService = inject(CacheService);
+  private dialog = inject(MatDialog);
+  private notifierService = inject(NotifierService);
+
   loginForm = new FormGroup<LoginForm>({
     username: new FormControl<string>('', Validators.required),
     password: new FormControl<string>('', Validators.required),
   });
-
-  constructor(
-    private authService: AuthService,
-    private router: RouterService,
-    private destroyRef: DestroyRef,
-    private cacheService: CacheService,
-    private dialog: MatDialog,
-    private notifierService: NotifierService
-  ) {}
 
   public ngOnInit(): void {
     localStorage.clear();

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -31,17 +31,17 @@ import { GameQueriesService } from '../../../services/queries/game-queries.servi
   styleUrl: './add-player-to-game.component.scss',
 })
 export class AddPlayerToGameComponent {
+  data = inject<GameModel>(MAT_DIALOG_DATA);
+  private gameQueriesService = inject(GameQueriesService);
+  private destroyRef = inject(DestroyRef);
+  private userService = inject(UserService);
+  private routerService = inject(RouterService);
+  private dialogRef =
+    inject<MatDialogRef<AddPlayerToGameComponent>>(MatDialogRef);
+
+  private cacheService = inject(CacheService);
+
   protected trainerNameForm = new FormControl<string>('', Validators.required);
-  constructor(
-    @Inject(MAT_DIALOG_DATA)
-    public data: GameModel,
-    private gameQueriesService: GameQueriesService,
-    private destroyRef: DestroyRef,
-    private userService: UserService,
-    private routerService: RouterService,
-    private dialogRef: MatDialogRef<AddPlayerToGameComponent>,
-    private cacheService: CacheService
-  ) {}
 
   protected submit(): void {
     this.userService.$user

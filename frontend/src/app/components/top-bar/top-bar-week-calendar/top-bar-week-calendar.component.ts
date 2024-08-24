@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input, OnInit } from '@angular/core';
+import { Component, DestroyRef, Input, OnInit, inject } from '@angular/core';
 import { TimeService } from '../../../services/time.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map, switchMap, tap } from 'rxjs';
@@ -28,20 +28,18 @@ import { PlayerService } from '../../../services/player.service';
   ],
 })
 export class TopBarWeekCalendarComponent implements OnInit {
+  protected timeService = inject(TimeService);
+  protected calendarEventQueriesService = inject(CalendarEventQueriesService);
+  protected destroyRef = inject(DestroyRef);
+  protected playerService = inject(PlayerService);
+  protected translateService = inject(TranslateService);
+
   @Input() public player: TrainerModel;
   protected week: string[];
   protected events: CalendarEventModel[][];
   protected version = 0;
   protected dayToNextBattle: string;
   protected nextBattle: CalendarEventModel;
-
-  public constructor(
-    protected timeService: TimeService,
-    protected calendarEventQueriesService: CalendarEventQueriesService,
-    protected destroyRef: DestroyRef,
-    protected playerService: PlayerService,
-    protected translateService: TranslateService
-  ) {}
 
   public ngOnInit(): void {
     this.timeService

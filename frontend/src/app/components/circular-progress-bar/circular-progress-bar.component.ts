@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { ColorService } from '../../services/color.service';
 
 @Component({
@@ -9,13 +9,14 @@ import { ColorService } from '../../services/color.service';
   imports: [],
 })
 export class CircularProgressBarComponent implements OnInit {
+  protected colorService = inject(ColorService);
+
   @Input() public currentProgress: number;
   @Input() public min = 0;
   @Input() public max = 100;
   protected progress: number;
   protected svg: { x: number; y: number };
   protected rgb: string;
-  public constructor(protected colorService: ColorService) {}
 
   public ngOnInit(): void {
     this.updateProgress();

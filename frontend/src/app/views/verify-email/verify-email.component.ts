@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input, OnInit } from '@angular/core';
+import { Component, DestroyRef, Input, OnInit, inject } from '@angular/core';
 import { UserQueriesService } from '../../services/queries/user-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -15,13 +15,12 @@ import { RouterService } from '../../services/router.service';
   styleUrl: './verify-email.component.scss',
 })
 export class VerifyEmailComponent implements OnInit {
+  protected userQueriesService = inject(UserQueriesService);
+  protected destroyRef = inject(DestroyRef);
+  protected notifierService = inject(NotifierService);
+  protected routerService = inject(RouterService);
+
   @Input('id') public id: string;
-  constructor(
-    protected userQueriesService: UserQueriesService,
-    protected destroyRef: DestroyRef,
-    protected notifierService: NotifierService,
-    protected routerService: RouterService
-  ) {}
 
   public ngOnInit(): void {
     this.userQueriesService

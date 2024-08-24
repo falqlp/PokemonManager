@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -41,6 +41,14 @@ import { PlayerModel } from '../../../models/player.model';
   styleUrls: ['./add-game.component.scss'],
 })
 export class AddGameComponent implements OnInit {
+  data = inject(MAT_DIALOG_DATA);
+  private router = inject(RouterService);
+  private gameQueriesService = inject(GameQueriesService);
+  private cacheService = inject(CacheService);
+  private destroyRef = inject(DestroyRef);
+  private userService = inject(UserService);
+  private dialogRef = inject<MatDialogRef<AddGameComponent>>(MatDialogRef);
+
   protected gameForm = new FormGroup({
     gameName: new FormControl<string>(undefined, Validators.required),
     playerName: new FormControl<string>(undefined, Validators.required),
@@ -50,17 +58,6 @@ export class AddGameComponent implements OnInit {
   protected $user: Observable<UserModel> = this.userService.$user;
   protected $friends: Observable<UserModel[]>;
   protected friendIdList: string[] = [];
-
-  constructor(
-    @Inject(MAT_DIALOG_DATA)
-    public data: { friendId: string },
-    private router: RouterService,
-    private gameQueriesService: GameQueriesService,
-    private cacheService: CacheService,
-    private destroyRef: DestroyRef,
-    private userService: UserService,
-    private dialogRef: MatDialogRef<AddGameComponent>
-  ) {}
 
   public ngOnInit(): void {
     if (this.data) {

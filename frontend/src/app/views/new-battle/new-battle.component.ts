@@ -5,6 +5,7 @@ import {
   Input,
   OnInit,
   ViewChild,
+  inject,
 } from '@angular/core';
 import {
   BattlePokemonModel,
@@ -60,6 +61,13 @@ import { MatBadgeModule } from '@angular/material/badge';
   styleUrl: './new-battle.component.scss',
 })
 export class NewBattleComponent implements OnInit {
+  private translateService = inject(TranslateService);
+  private destroyRef = inject(DestroyRef);
+  private playerService = inject(PlayerService);
+  private router = inject(RouterService);
+  private websocketEventService = inject(WebsocketEventService);
+  private battleInstanceQueriesService = inject(BattleInstanceQueriesService);
+
   @ViewChild('messages') public messageDiv: ElementRef;
   @Input('id') id: string;
   protected player: BattleTrainerModel;
@@ -74,15 +82,6 @@ export class NewBattleComponent implements OnInit {
   protected askNextRoundLoop = false;
   protected disableButtons = false;
   protected updateBattleStatusEvent$: Observable<BattleStatus>;
-
-  constructor(
-    private translateService: TranslateService,
-    private destroyRef: DestroyRef,
-    private playerService: PlayerService,
-    private router: RouterService,
-    private websocketEventService: WebsocketEventService,
-    private battleInstanceQueriesService: BattleInstanceQueriesService
-  ) {}
 
   public ngOnInit(): void {
     this.updateBattleStatusEvent$ =

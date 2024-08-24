@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,17 +29,15 @@ import { RouterService } from '../../../services/router.service';
   styleUrl: './continue-button.component.scss',
 })
 export class ContinueButtonComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
+  private websocketEventService = inject(WebsocketEventService);
+  private playerService = inject(PlayerService);
+  private calendarEventQueriesService = inject(CalendarEventQueriesService);
+  protected simulationService = inject(SimulationService);
+  protected routerService = inject(RouterService);
+
   protected $simulateStatus: Observable<SimulateStatusModel>;
   protected $simulating: Observable<boolean>;
-
-  constructor(
-    private destroyRef: DestroyRef,
-    private websocketEventService: WebsocketEventService,
-    private playerService: PlayerService,
-    private calendarEventQueriesService: CalendarEventQueriesService,
-    protected simulationService: SimulationService,
-    protected routerService: RouterService
-  ) {}
 
   public ngOnInit(): void {
     this.playerService.player$

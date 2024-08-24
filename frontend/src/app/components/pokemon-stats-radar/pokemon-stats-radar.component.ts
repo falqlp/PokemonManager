@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, inject } from '@angular/core';
 import { NgxEchartsDirective } from 'ngx-echarts';
 import { EChartsOption } from 'echarts';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,6 +14,10 @@ import { ColorService } from '../../services/color.service';
   styleUrl: './pokemon-stats-radar.component.scss',
 })
 export class PokemonStatsRadarComponent {
+  protected translateService = inject(TranslateService);
+  protected playerService = inject(PlayerService);
+  protected colorService = inject(ColorService);
+
   public pokemon = input<PokemonModel>();
   protected option = computed<EChartsOption>(() => {
     return {
@@ -81,10 +85,4 @@ export class PokemonStatsRadarComponent {
       ],
     };
   });
-
-  constructor(
-    protected translateService: TranslateService,
-    protected playerService: PlayerService,
-    protected colorService: ColorService
-  ) {}
 }

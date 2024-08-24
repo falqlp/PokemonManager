@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class CacheService {
+  protected router = inject(Router);
+
   protected userIdSubject = new BehaviorSubject<string>(undefined);
   public $userId = this.userIdSubject.asObservable();
   protected gameIdSubject = new BehaviorSubject<string>(undefined);
@@ -13,7 +15,7 @@ export class CacheService {
   protected trainerIdSubject = new BehaviorSubject<string>(undefined);
   public $trainerId = this.trainerIdSubject.asObservable();
 
-  constructor(protected router: Router) {
+  constructor() {
     this.init();
   }
 

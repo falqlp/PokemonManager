@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BattleModel } from '../../models/Battle.model';
@@ -9,9 +9,14 @@ import { ReadonlyQuery } from '../../core/readonly-query';
   providedIn: 'root',
 })
 export class BattleInstanceQueriesService extends ReadonlyQuery<BattleModel> {
+  protected override http: HttpClient;
+
   public static readonly url = 'api/battleInstance';
-  public constructor(protected override http: HttpClient) {
+  public constructor() {
+    const http = inject(HttpClient);
+
     super(BattleInstanceQueriesService.url, http);
+    this.http = http;
   }
 
   public getRanking(competitionId: string): Observable<RankingModel[]> {

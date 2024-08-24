@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { MatIconModule } from '@angular/material/icon';
@@ -37,13 +37,11 @@ export interface NavGroupModel {
   styleUrls: ['./sidenav.component.scss'],
 })
 export class SidenavComponent {
-  constructor(
-    protected routerService: RouterService,
-    protected sidenavService: SidenavService,
-    protected playerService: PlayerService,
-    protected badgeDataService: BadgeDataService,
-    protected dialog: MatDialog
-  ) {}
+  protected routerService = inject(RouterService);
+  protected sidenavService = inject(SidenavService);
+  protected playerService = inject(PlayerService);
+  protected badgeDataService = inject(BadgeDataService);
+  protected dialog = inject(MatDialog);
 
   protected navs: NavGroupModel[] = [
     {

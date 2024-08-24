@@ -1,4 +1,11 @@
-import { Component, DestroyRef, Input, OnChanges, OnInit } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  Input,
+  OnChanges,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { NgClass } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
@@ -39,17 +46,15 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrls: ['./pokedex-details.component.scss'],
 })
 export class PokedexDetailsComponent implements OnInit, OnChanges {
+  protected pokedexQueriesService = inject(PokedexQueriesService);
+  protected routerService = inject(RouterService);
+  protected destroyRef = inject(DestroyRef);
+
   @Input('id') public pokemonId: number;
   protected pokemonBase: PokemonBaseModel;
   protected evolutions: PokedexEvolutionModel[];
   protected evolutionOf: PokedexEvolutionModel[];
   protected movesLearned: PokedexMoveLearnedModel[];
-
-  constructor(
-    protected pokedexQueriesService: PokedexQueriesService,
-    protected routerService: RouterService,
-    protected destroyRef: DestroyRef
-  ) {}
 
   public ngOnInit(): void {
     this.refresh();

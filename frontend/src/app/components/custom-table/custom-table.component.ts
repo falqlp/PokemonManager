@@ -7,6 +7,7 @@ import {
   OnInit,
   Output,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { BehaviorSubject, debounceTime, startWith, switchMap } from 'rxjs';
 import { MatSortModule, Sort } from '@angular/material/sort';
@@ -47,6 +48,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   styleUrls: ['./custom-table.component.scss'],
 })
 export class CustomTableComponent<T> implements AfterViewInit, OnInit {
+  protected destroyRef = inject(DestroyRef);
+
   @Input({ required: true }) public queryService: ReadonlyQuery<T>;
   @Input({ required: true }) public conf: TableConfModel;
   @Input() public specificQuery: Record<string, unknown>;
@@ -59,7 +62,6 @@ export class CustomTableComponent<T> implements AfterViewInit, OnInit {
   protected query: QueryModel = { sort: {}, custom: {} };
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(protected destroyRef: DestroyRef) {}
 
   public ngOnInit(): void {
     this.query.custom = this.specificQuery ?? {};

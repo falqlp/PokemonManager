@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import {
   POKEMON_NATURES,
   PokemonModel,
@@ -16,6 +16,8 @@ import { NgClass } from '@angular/common';
   imports: [ProgressBarComponent, TranslateModule, NgClass],
 })
 export class PokemonStatsComponent implements OnInit {
+  protected playerService = inject(PlayerService);
+
   @Input()
   public set pokemon(value: PokemonModel) {
     this._pokemon = value;
@@ -35,8 +37,6 @@ export class PokemonStatsComponent implements OnInit {
 
   protected _pokemon: PokemonModel;
   protected max = 0;
-
-  public constructor(protected playerService: PlayerService) {}
 
   public ngOnInit(): void {
     this.max = this.playerService.maxStat;
