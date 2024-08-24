@@ -88,9 +88,6 @@ export class BattleEventsStatsComponent implements OnInit {
     TrainerQueriesService
   );
 
-  private readonly translateService: TranslateService =
-    inject(TranslateService);
-
   private readonly timeService: TimeService = inject(TimeService);
   protected readonly indicators = Object.values(BattleEventQueryType);
 
@@ -204,10 +201,6 @@ export class BattleEventsStatsComponent implements OnInit {
       period = { ...period, startDate: event.value };
     }
     this.queryForm.controls.context.controls.period.setValue(period);
-  }
-
-  protected formatIndicator(key: BattleEventQueryType): string {
-    return this.translateService.instant(key);
   }
 
   protected clearAll(): void {

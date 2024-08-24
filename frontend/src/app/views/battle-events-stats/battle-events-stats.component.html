@@ -8,7 +8,7 @@
           [formControl]="queryForm.controls.indicator.controls.indicator">
           @for (indicator of indicators; track indicator) {
           <mat-option [value]="indicator">{{
-            formatIndicator(indicator)
+            indicator | translate
           }}</mat-option>
           }
         </mat-select>

@@ -330,10 +330,35 @@ class PokemonService {
       { gameId },
     );
     if (
+      pokemons.length !== 0 &&
       pokemons?.every((pokemon) => pokemon.trainerId.toString() === trainerId)
     ) {
       pokemons = pokemons.map((pokemon, index) => {
         pokemon.strategy = strategies[index].strategy;
+        return pokemon;
+      });
+      await this.updateMany(pokemons, gameId);
+    }
+  }
+
+  public async modifyBattleMoveStrategy(
+    strategies: {
+      pokemonId: string;
+      strategy: number[];
+    }[],
+    trainerId: string,
+    gameId: string,
+  ): Promise<void> {
+    let pokemons = await this.pokemonRepository.list(
+      { ids: strategies.map((strategy) => strategy.pokemonId) },
+      { gameId },
+    );
+    if (
+      pokemons.length !== 0 &&
+      pokemons?.every((pokemon) => pokemon.trainerId.toString() === trainerId)
+    ) {
+      pokemons = pokemons.map((pokemon, index) => {
+        pokemon.battleStrategy = strategies[index].strategy;
         return pokemon;
       });
       await this.updateMany(pokemons, gameId);

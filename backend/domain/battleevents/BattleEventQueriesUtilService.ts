@@ -22,23 +22,32 @@ export interface IStatsByPokemon {
 
 @singleton()
 export default class BattleEventQueriesUtilService {
-  getMatchStage(gameId: string, query?: IDamageEventQuery): any {
-    const matchStage: any = { gameId };
-
-    if (query?.competitionId) {
-      matchStage.competitionId = query.competitionId;
-    }
-    if (query?.trainerIds.length !== 0) {
-      matchStage.trainerId = { $in: query.trainerIds };
-    }
-    if (query?.division) {
-      matchStage.division = query.division;
-    }
-    if (query?.period) {
-      matchStage.date = {
-        $gte: query.period.startDate,
-        $lt: query.period.endDate,
-      };
+  public getMatchStage(
+    gameId: string,
+    query?: IDamageEventQuery,
+    on?: boolean,
+  ): Record<string, unknown> {
+    const matchStage: Record<string, unknown> = { gameId };
+    if (query) {
+      if (query.competitionId) {
+        matchStage.competitionId = query.competitionId;
+      }
+      if (query.trainerIds && query.trainerIds.length !== 0) {
+        if (on) {
+          matchStage.onTrainerId = { $in: query.trainerIds };
+        } else {
+          matchStage.trainerId = { $in: query.trainerIds };
+        }
+      }
+      if (query.division) {
+        matchStage.division = query.division;
+      }
+      if (query.period) {
+        matchStage.date = {
+          $gte: query.period.startDate,
+          $lt: query.period.endDate,
+        };
+      }
     }
     return matchStage;
   }

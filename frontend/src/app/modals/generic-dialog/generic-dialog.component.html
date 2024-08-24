@@ -6,7 +6,7 @@
     *ngFor="let button of data.buttons"
     [color]="button.color"
     [disabled]="button.disabled"
-    (click)="click(button.click, button.close)">
+    (click)="click(button)">
     {{ button.label | translate }}
   </button>
 </div>

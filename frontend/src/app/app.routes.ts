@@ -13,7 +13,6 @@ import { PokedexComponent } from './views/pokedex/pokedex.component';
 import { EventsComponent } from './views/events/events.component';
 import { StartersComponent } from './views/starters/starters.component';
 import { NewBattleComponent } from './views/new-battle/new-battle.component';
-import { BattleStrategyComponent } from './components/battle-strategy/battle-strategy.component';
 import { VerifyEmailComponent } from './views/verify-email/verify-email.component';
 import { ChangePasswordComponent } from './views/change-password/change-password.component';
 import { CompetitionHistoryComponent } from './views/competition-history/competition-history.component';

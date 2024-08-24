@@ -27,12 +27,12 @@ export class GenericDialogComponent {
     protected dialogRef: MatDialogRef<GenericDialogComponent>
   ) {}
 
-  protected click(callback: () => void, close: boolean): void {
-    if (callback) {
-      callback();
+  protected click(button: DialogButtonsModel): void {
+    if (button.click) {
+      button.click();
     }
-    if (close) {
-      this.dialogRef.close();
+    if (button.close) {
+      this.dialogRef.close(button.label);
     }
   }
 }
