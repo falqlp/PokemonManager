@@ -1,0 +1,37 @@
+@import '../../../../styles/flexbox';
+@import '../../../../styles/colors';
+
+.battle-resume {
+  display: grid;
+  grid-template-columns: repeat(3, 33.333333%);
+  grid-template-rows: calc(100vh - 82px);
+  &__opponent,
+  &__player {
+    flex: 1;
+    @include flexbox(flex-start, 2, column);
+    align-items: center;
+    margin: 10px;
+    &__pokemon {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 33%);
+      height: 100%;
+      overflow: auto;
+    }
+  }
+  &__center {
+    flex: 1;
+    @include flexbox(flex-start, 2, column);
+    align-items: center;
+    margin: 10px;
+  }
+}
+.pokemon-image {
+  height: 100%;
+}
+.winner {
+  background-color: $green-good-color;
+}
+.looser {
+  background-color: $red-bad-color;
+}

@@ -53,10 +53,10 @@ export class RouterService extends Router {
     return this.events
       .pipe(filter((event) => event instanceof RouteConfigLoadEnd))
       .pipe(
-        map(
-          (event) =>
-            (event as RouteConfigLoadEnd).route.data['topBar'] !== false
-        )
+        map((event) => {
+          const data = (event as RouteConfigLoadEnd).route.data;
+          return data['topBar'] !== false || data['title'] === undefined;
+        })
       );
   }
 }

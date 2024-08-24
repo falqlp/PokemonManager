@@ -1,0 +1,36 @@
+<form [formGroup]="loginForm" (submit)="login()" class="login-form">
+  <div>
+    <mat-form-field>
+      <mat-label>{{ 'USERNAME' | translate }}</mat-label>
+      <input
+        matInput
+        id="username"
+        type="text"
+        name="username"
+        autocomplete="username"
+        [formControl]="loginForm.controls.username" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
+      <input
+        matInput
+        id="password"
+        type="password"
+        name="password"
+        autocomplete="current-password"
+        [formControl]="loginForm.controls.password" />
+    </mat-form-field>
+    <a class="login-form__forgotten" (click)="forgottenPassword()">{{
+      'FORGOTTEN_PASSWORD' | translate
+    }}</a>
+  </div>
+  <div class="login-form__buttons">
+    <button mat-flat-button [disabled]="loginForm.invalid" type="submit">
+      {{ 'TO_LOGIN' | translate }}
+    </button>
+    <button mat-flat-button color="warn" (click)="createAccount()">
+      {{ 'CREATE_ACCOUNT' | translate }}
+    </button>
+  </div>
+  <img class="login-background" src="../../../../assets/other/login.webp" />
+</form>

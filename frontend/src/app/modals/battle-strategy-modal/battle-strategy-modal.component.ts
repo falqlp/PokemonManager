@@ -21,7 +21,7 @@ import {
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatTab, MatTabGroup } from '@angular/material/tabs';
-import { BattleEventsStatsGraphComponent } from '../../views/battle-events-stats/battle-events-stats-graph/battle-events-stats-graph.component';
+import { BattleEventsStatsGraphComponent } from '../../views/play/battle-events-stats/battle-events-stats-graph/battle-events-stats-graph.component';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/autocomplete';
 import { MatSelect } from '@angular/material/select';

@@ -1,0 +1,8 @@
+@import '../../../../styles/flexbox';
+
+:host {
+  display: block;
+  .trainers {
+    @include flexbox(flex-start, 2);
+  }
+}

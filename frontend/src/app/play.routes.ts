@@ -4,7 +4,7 @@ export const playRoutes: Routes = [
   {
     path: 'nursery',
     loadComponent: () =>
-      import('./views/nursery/nursery.component').then(
+      import('./views/play/nursery/nursery.component').then(
         (m) => m.NurseryComponent
       ),
     data: { title: 'NURSERY' },
@@ -12,7 +12,7 @@ export const playRoutes: Routes = [
   {
     path: 'pokedex',
     loadComponent: () =>
-      import('./views/pokedex/pokedex.component').then(
+      import('./views/play/pokedex/pokedex.component').then(
         (m) => m.PokedexComponent
       ),
     data: { title: 'POKEDEX' },
@@ -20,13 +20,15 @@ export const playRoutes: Routes = [
   {
     path: 'events',
     loadComponent: () =>
-      import('./views/events/events.component').then((m) => m.EventsComponent),
+      import('./views/play/events/events.component').then(
+        (m) => m.EventsComponent
+      ),
     data: { title: 'EVENTS' },
   },
   {
     path: 'starters',
     loadComponent: () =>
-      import('./views/starters/starters.component').then(
+      import('./views/play/starters/starters.component').then(
         (m) => m.StartersComponent
       ),
     data: { navigationDisabled: true, title: 'STARTERS' },
@@ -34,23 +36,23 @@ export const playRoutes: Routes = [
   {
     path: 'history',
     loadComponent: () =>
-      import('./views/competition-history/competition-history.component').then(
-        (m) => m.CompetitionHistoryComponent
-      ),
+      import(
+        './views/play/competition-history/competition-history.component'
+      ).then((m) => m.CompetitionHistoryComponent),
     data: { title: 'HISTORY' },
   },
   {
     path: 'battle-event-stats',
     loadComponent: () =>
-      import('./views/battle-events-stats/battle-events-stats.component').then(
-        (m) => m.BattleEventsStatsComponent
-      ),
+      import(
+        './views/play/battle-events-stats/battle-events-stats.component'
+      ).then((m) => m.BattleEventsStatsComponent),
     data: { title: 'BATTLE_EVENT_STATS' },
   },
   {
     path: 'battle/:id',
     loadComponent: () =>
-      import('./views/new-battle/new-battle.component').then(
+      import('./views/play/new-battle/new-battle.component').then(
         (m) => m.NewBattleComponent
       ),
     data: { navigationDisabled: true, title: 'BATTLE' },
@@ -58,14 +60,14 @@ export const playRoutes: Routes = [
   {
     path: 'pokedex-details/:id',
     loadComponent: () =>
-      import('./views/pokedex-details/pokedex-details.component').then(
+      import('./views/play/pokedex-details/pokedex-details.component').then(
         (m) => m.PokedexDetailsComponent
       ),
   },
   {
     path: 'battle-resume',
     loadComponent: () =>
-      import('./views/battle-resume/battle-resume.component').then(
+      import('./views/play/battle-resume/battle-resume.component').then(
         (m) => m.BattleResumeComponent
       ),
     data: { title: 'BATTLE-RESUME' },
@@ -74,14 +76,14 @@ export const playRoutes: Routes = [
     path: 'battle-strategy',
     loadComponent: () =>
       import(
-        './views/default-battle-strategy/default-battle-strategy.component'
+        './views/play/default-battle-strategy/default-battle-strategy.component'
       ).then((m) => m.DefaultBattleStrategyComponent),
     data: { title: 'BATTLE-STRATEGY' },
   },
   {
     path: 'pcStorage',
     loadComponent: () =>
-      import('./views/pc-storage/pc-storage.component').then(
+      import('./views/play/pc-storage/pc-storage.component').then(
         (m) => m.PcStorageComponent
       ),
     data: { title: 'PC-STORAGE' },
@@ -89,7 +91,7 @@ export const playRoutes: Routes = [
   {
     path: 'trainers',
     loadComponent: () =>
-      import('./views/trainers/trainers.component').then(
+      import('./views/play/trainers/trainers.component').then(
         (m) => m.TrainersComponent
       ),
     data: { title: 'TRAINERS' },
@@ -97,7 +99,7 @@ export const playRoutes: Routes = [
   {
     path: 'home',
     loadComponent: () =>
-      import('./views/home/home.component').then((m) => m.HomeComponent),
+      import('./views/play/home/home.component').then((m) => m.HomeComponent),
     data: { title: 'HOME' },
   },
 ];

@@ -1,6 +1,6 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { WebsocketEventService } from './websocket-event.service';
-import { AddGameComponent } from '../views/games/add-game/add-game.component';
+import { AddGameComponent } from '../views/play/games/add-game/add-game.component';
 import { InitGameComponent } from '../modals/init-game/init-game.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
