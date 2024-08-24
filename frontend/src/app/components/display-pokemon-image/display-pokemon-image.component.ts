@@ -12,7 +12,7 @@ import {
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { DisplayType } from './display-pokemon-image.model';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterService } from '../../services/router.service';
@@ -22,7 +22,7 @@ import { RouterService } from '../../services/router.service';
   selector: 'app-display-pokemon-image',
   templateUrl: './display-pokemon-image.component.html',
   styleUrls: ['./display-pokemon-image.component.scss'],
-  imports: [TranslateModule, NgClass, MatIconModule, NgIf],
+  imports: [TranslateModule, NgClass, MatIconModule],
 })
 export class DisplayPokemonImageComponent implements OnInit, OnChanges {
   @ViewChild('img') protected img: ElementRef;

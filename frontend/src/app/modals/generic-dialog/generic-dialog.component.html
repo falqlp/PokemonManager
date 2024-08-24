@@ -1,12 +1,17 @@
-<h2 mat-dialog-title *ngIf="data.title">{{ data.title | translate }}</h2>
+@if (data.title) {
+<h2 mat-dialog-title>{{ data.title | translate }}</h2>
+}
 <div mat-dialog-content>{{ data.message | translate }}</div>
-<div mat-dialog-actions *ngIf="data.buttons">
+@if (data.buttons) {
+<div mat-dialog-actions>
+  @for (button of data.buttons; track button) {
   <button
     mat-flat-button
-    *ngFor="let button of data.buttons"
     [color]="button.color"
     [disabled]="button.disabled"
     (click)="click(button)">
     {{ button.label | translate }}
   </button>
+  }
 </div>
+}

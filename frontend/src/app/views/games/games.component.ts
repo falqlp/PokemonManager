@@ -1,7 +1,7 @@
 import { Component, DestroyRef, OnInit, signal } from '@angular/core';
 import { UserQueriesService } from '../../services/queries/user-queries.service';
 import { Languages, UserModel } from '../../models/user.model';
-import { NgForOf, NgIf } from '@angular/common';
+
 import { MatTableModule } from '@angular/material/table';
 import { BehaviorSubject, first } from 'rxjs';
 import { MatSortModule } from '@angular/material/sort';
@@ -30,14 +30,12 @@ import { NewsComponent } from '../../modals/news/news.component';
   selector: 'pm-games',
   standalone: true,
   imports: [
-    NgIf,
     MatTableModule,
     MatSortModule,
     TranslateModule,
     LocalDatePipe,
     MatButtonModule,
     DisplayPokemonImageComponent,
-    NgForOf,
     MatIconModule,
     MatMenuModule,
     MatBadgeModule,

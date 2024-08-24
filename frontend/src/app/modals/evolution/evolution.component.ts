@@ -1,6 +1,6 @@
 import { Component, DestroyRef, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
@@ -14,7 +14,6 @@ import { DisplayPokemonImageComponent } from '../../components/display-pokemon-i
   standalone: true,
   imports: [
     MatDialogModule,
-    NgIf,
     MatButtonModule,
     TranslateModule,
     AsyncPipe,

@@ -4,7 +4,7 @@ import { CalendarEventQueriesService } from '../../services/queries/calendar-eve
 import { CalendarEventEvent } from '../../models/calendar-event.model';
 import { PlayerService } from '../../services/player.service';
 import { map, Observable } from 'rxjs';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import {
   TableConfModel,
   TableSearchType,
@@ -13,7 +13,7 @@ import {
 @Component({
   selector: 'pm-events',
   standalone: true,
-  imports: [CustomTableComponent, AsyncPipe, NgIf],
+  imports: [CustomTableComponent, AsyncPipe],
   templateUrl: './events.component.html',
   styleUrl: './events.component.scss',
 })

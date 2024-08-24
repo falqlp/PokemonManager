@@ -17,9 +17,9 @@
   </div>
   }
   <div class="top-bar-week-calendar__calendar">
+    @for (day of week; track day; let i = $index) {
     <div
       class="top-bar-week-calendar__calendar__day"
-      *ngFor="let day of week; let i = index"
       [ngClass]="{
         'top-bar-week-calendar__calendar__day--actual': i === 1
       }">
@@ -28,8 +28,8 @@
           day.split('-')[0].charAt(0).toUpperCase() + day.split('-')[0].slice(1)
         }}</label
       >
+      @for (event of events[i]; track event) {
       <div
-        *ngFor="let event of events[i]"
         class="top-bar-week-calendar__calendar__day__event"
         [ngClass]="{
           'top-bar-week-calendar__calendar__day__event--passed': i === 0,
@@ -38,9 +38,9 @@
             'NURSERY_FIRST_SELECTION_DEADLINE',
             'NURSERY_LAST_SELECTION_DEADLINE'
           ].includes(event.type)
-        }"
-        [ngSwitch]="event.type">
-        <div *ngSwitchCase="'BATTLE'">
+        }">
+        @switch (event.type) { @case ('BATTLE') {
+        <div>
           <span>
             <pm-trainer-name
               [trainer]="
@@ -51,16 +51,22 @@
           /></span>
           <pm-battle-status [battle]="event.event" [playerId]="player._id" />
         </div>
-        <div *ngSwitchCase="'GENERATE_NURSERY_EGGS'">
+        } @case ('GENERATE_NURSERY_EGGS') {
+        <div>
           <span>{{ 'GENERATE_NURSERY_EGGS' | translate }}</span>
         </div>
-        <div *ngSwitchCase="'NURSERY_FIRST_SELECTION_DEADLINE'">
+        } @case ('NURSERY_FIRST_SELECTION_DEADLINE') {
+        <div>
           <span>{{ 'NURSERY_FIRST_SELECTION_DEADLINE' | translate }}</span>
         </div>
-        <div *ngSwitchCase="'NURSERY_LAST_SELECTION_DEADLINE'">
+        } @case ('NURSERY_LAST_SELECTION_DEADLINE') {
+        <div>
           <span>{{ 'NURSERY_LAST_SELECTION_DEADLINE' | translate }}</span>
         </div>
+        } }
       </div>
+      }
     </div>
+    }
   </div>
 </div>

@@ -7,12 +7,11 @@ import {
 } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
-import { NgForOf, NgIf } from '@angular/common';
 
 @Component({
   selector: 'pm-generic-dialog',
   standalone: true,
-  imports: [MatDialogModule, TranslateModule, MatButtonModule, NgIf, NgForOf],
+  imports: [MatDialogModule, TranslateModule, MatButtonModule],
   templateUrl: './generic-dialog.component.html',
   styleUrls: ['./generic-dialog.component.scss'],
 })

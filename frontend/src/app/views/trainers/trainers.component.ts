@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { MatTableModule } from '@angular/material/table';
-import { NgForOf } from '@angular/common';
+
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { MatSortModule } from '@angular/material/sort';
 import { CustomTableComponent } from '../../components/custom-table/custom-table.component';
@@ -17,7 +17,6 @@ import {
   styleUrls: ['./trainers.component.scss'],
   imports: [
     MatTableModule,
-    NgForOf,
     DisplayPokemonImageComponent,
     MatSortModule,
     CustomTableComponent,

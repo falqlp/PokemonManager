@@ -2,14 +2,7 @@ import { Component, DestroyRef, Input, OnInit } from '@angular/core';
 import { TimeService } from '../../../services/time.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map, switchMap, tap } from 'rxjs';
-import {
-  AsyncPipe,
-  NgClass,
-  NgForOf,
-  NgIf,
-  NgSwitch,
-  NgSwitchCase,
-} from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import {
   CalendarEventEvent,
   CalendarEventModel,
@@ -27,13 +20,9 @@ import { PlayerService } from '../../../services/player.service';
   templateUrl: './top-bar-week-calendar.component.html',
   styleUrls: ['./top-bar-week-calendar.component.scss'],
   imports: [
-    NgForOf,
     AsyncPipe,
     NgClass,
     TranslateModule,
-    NgIf,
-    NgSwitch,
-    NgSwitchCase,
     BattleStatusComponent,
     TrainerNameComponent,
   ],

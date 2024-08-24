@@ -13,7 +13,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { AsyncPipe, NgForOf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { CustomValidatorService } from '../../services/custom-validator.service';
@@ -38,7 +38,6 @@ import { TrainerNameComponent } from '../../components/trainer-name/trainer-name
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    NgForOf,
     ReactiveFormsModule,
     MatButtonModule,
     AsyncPipe,

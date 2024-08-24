@@ -22,7 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
-import { AsyncPipe, NgForOf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import {
   MatAutocomplete,
   MatAutocompleteTrigger,
@@ -63,7 +63,6 @@ import { MatTooltip } from '@angular/material/tooltip';
     MatAutocompleteTrigger,
     MatInput,
     MatLabel,
-    NgForOf,
     MatButtonToggleGroup,
     MatButtonToggle,
     MatDateRangeInput,

@@ -1,23 +1,27 @@
-<div *ngFor="let evolution of evolutionOf" class="evolution-tree__evolution">
+@for (evolution of evolutionOf; track evolution) {
+<div class="evolution-tree__evolution">
   <app-display-pokemon-image
     [pokemon]="evolution.pokemon"
     [type]="'thumbnails'" />
   <div class="evolution-tree__evolution__method">
     <mat-icon>arrow_forward</mat-icon>
-    <span *ngIf="evolution.evolutionMethod === 'LEVEL-UP'"
-      >{{ 'LVL' | translate }}: {{ evolution.minLevel }}</span
-    >
+    @if (evolution.evolutionMethod === 'LEVEL-UP') {
+    <span>{{ 'LVL' | translate }}: {{ evolution.minLevel }}</span>
+    }
   </div>
 </div>
+}
 <app-display-pokemon-image [pokemon]="pokemonBase" [type]="'thumbnails'" />
-<div *ngFor="let evolution of evolutions" class="evolution-tree__evolution">
+@for (evolution of evolutions; track evolution) {
+<div class="evolution-tree__evolution">
   <div class="evolution-tree__evolution__method">
     <mat-icon>arrow_forward</mat-icon>
-    <span *ngIf="evolution.evolutionMethod === 'LEVEL-UP'"
-      >{{ 'LVL' | translate }}: {{ evolution.minLevel }}</span
-    >
+    @if (evolution.evolutionMethod === 'LEVEL-UP') {
+    <span>{{ 'LVL' | translate }}: {{ evolution.minLevel }}</span>
+    }
   </div>
   <app-display-pokemon-image
     [pokemon]="evolution.pokemon"
     [type]="'thumbnails'" />
 </div>
+}

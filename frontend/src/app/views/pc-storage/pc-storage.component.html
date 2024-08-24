@@ -1,14 +1,16 @@
 <div class="pc-storage">
-  <div class="pc-storage__team" *ngIf="playerTeam.length > 0">
+  @if (playerTeam.length > 0) {
+  <div class="pc-storage__team">
+    @for (storage of playerTeam; track storage) {
     <div
       class="pc-storage__team__pokemon"
-      *ngFor="let storage of playerTeam"
       [ngClass]="{
         firstSelected: storage.firstSelected,
         secondSelected: storage.secondSelected
       }"
       (click)="setFirstSelected(storage)"
       (contextmenu)="setSecondSelected(storage, $event)">
+      @if (storage.pokemon) {
       <app-display-pokemon-image
         [matBadgeHidden]="
           !badgeDataService.pokemon.includes(storage.pokemon._id)
@@ -17,12 +19,14 @@
         matBadgeColor="warn"
         matBadge="&#8288;"
         matBadgeSize="small"
-        *ngIf="storage.pokemon"
         class="flex"
         [pokemon]="storage.pokemon"
         type="thumbnails" />
+      }
     </div>
+    }
   </div>
+  }
   <div class="pc-storage__main-part">
     <div class="pc-storage__main-part__buttons">
       <button mat-flat-button color="accent" (click)="switchPokemon()">
@@ -33,10 +37,11 @@
         ><span>{{ 'PC_STORAGE_INFO' | translate }}</span>
       </div>
     </div>
-    <div class="pc-storage__main-part__box" *ngIf="pcStorage">
+    @if (pcStorage) {
+    <div class="pc-storage__main-part__box">
+      @for (storage of storageArray; track storage) {
       <div
         class="pc-storage__main-part__box__cell"
-        *ngFor="let storage of storageArray"
         [ngClass]="{
           firstSelected: storage.firstSelected,
           secondSelected: storage.secondSelected,
@@ -44,6 +49,7 @@
         }"
         (click)="!storage.disabled && setFirstSelected(storage)"
         (contextmenu)="!storage.disabled && setSecondSelected(storage, $event)">
+        @if (storage.pokemon) {
         <app-display-pokemon-image
           [matBadgeHidden]="
             !badgeDataService.pokemon.includes(storage.pokemon._id)
@@ -53,27 +59,29 @@
           matBadge="&#8288;"
           matBadgeSize="small"
           class="pc-storage__main-part__box__cell__icon"
-          *ngIf="storage.pokemon; else emptyDiv"
           [pokemon]="storage.pokemon"
           type="icon" />
+        } @else {
+        <div class="empty-div"></div>
+        }
       </div>
+      }
     </div>
+    }
   </div>
   <div class="pc-storage__resumes">
+    @if (firstSelected && firstSelected.level !== 0) {
     <app-pokemon-resume
-      *ngIf="firstSelected && firstSelected.level !== 0; else emptyResume"
       class="pc-storage__resumes__box"
       [pokemon]="firstSelected" />
+    } @else {
+    <div class="empty-resume"></div>
+    } @if (secondSelected && secondSelected.level !== 0) {
     <app-pokemon-resume
-      *ngIf="secondSelected && secondSelected.level !== 0; else emptyResume"
       class="pc-storage__resumes__box"
       [pokemon]="secondSelected" />
+    } @else {
+    <div class="empty-resume"></div>
+    }
   </div>
 </div>
-<ng-template #emptyDiv>
-  <div class="empty-div"></div>
-</ng-template>
-
-<ng-template #emptyResume>
-  <div class="empty-resume"></div>
-</ng-template>

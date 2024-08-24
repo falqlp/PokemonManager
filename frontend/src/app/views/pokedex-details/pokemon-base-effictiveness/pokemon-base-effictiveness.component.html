@@ -1,7 +1,7 @@
-<div *ngIf="effectiveness" class="pokemon-base-effectiveness">
-  <div
-    *ngFor="let type of Object.keys(effectiveness)"
-    class="pokemon-base-effectiveness__type-effectiveness">
+@if (effectiveness) {
+<div class="pokemon-base-effectiveness">
+  @for (type of Object.keys(effectiveness); track type) {
+  <div class="pokemon-base-effectiveness__type-effectiveness">
     <div
       class="pokemon-base-effectiveness__type-effectiveness__type"
       [ngClass]="type">
@@ -19,4 +19,6 @@
       x{{ effectiveness[type] }}
     </div>
   </div>
+  }
 </div>
+}

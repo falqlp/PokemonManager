@@ -1,6 +1,6 @@
 import { Component, DestroyRef, Input, OnChanges, OnInit } from '@angular/core';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { RouterService } from '../../services/router.service';
 import { DisplayTypeComponent } from '../../components/display-type/display-type.component';
@@ -23,13 +23,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   selector: 'pm-pokedex-details',
   standalone: true,
   imports: [
-    NgIf,
     DisplayPokemonImageComponent,
     DisplayTypeComponent,
     ProgressBarComponent,
     TranslateModule,
     PokemonDetailsStatsComponent,
-    NgForOf,
     MatIconModule,
     EvolutionTreeComponent,
     PokedexMovesLearnedComponent,

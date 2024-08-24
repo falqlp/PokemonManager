@@ -1,4 +1,5 @@
-<div *ngIf="battle" class="battle-resume">
+@if (battle) {
+<div class="battle-resume">
   <div
     class="battle-resume__player"
     [ngClass]="battle.winner === 'player' ? 'winner' : 'looser'">
@@ -6,12 +7,14 @@
       <pm-trainer-name [trainer]="battle.player" />
     </h3>
     <div class="battle-resume__player__pokemon">
-      <div *ngFor="let pokemon of battle.player.pokemons">
+      @for (pokemon of battle.player.pokemons; track pokemon) {
+      <div>
         <app-display-pokemon-image
           class="pokemon-image"
           [pokemon]="pokemon"
           [type]="'max-size'" />
       </div>
+      }
     </div>
   </div>
   <div class="battle-resume__center">
@@ -34,12 +37,15 @@
       <pm-trainer-name [trainer]="battle.opponent" />
     </h3>
     <div class="battle-resume__opponent__pokemon">
-      <div *ngFor="let pokemon of battle.opponent.pokemons">
+      @for (pokemon of battle.opponent.pokemons; track pokemon) {
+      <div>
         <app-display-pokemon-image
           class="pokemon-image"
           [pokemon]="pokemon"
           [type]="'max-size'" />
       </div>
+      }
     </div>
   </div>
 </div>
+}

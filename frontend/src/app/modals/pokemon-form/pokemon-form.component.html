@@ -12,11 +12,11 @@
       <mat-autocomplete
         #auto="matAutocomplete"
         [displayWith]="displayPokemon.bind(this)">
-        <mat-option
-          *ngFor="let pokemon of filteredPokemons | async"
-          [value]="pokemon">
+        @for (pokemon of filteredPokemons | async; track pokemon) {
+        <mat-option [value]="pokemon">
           {{ pokemon.name | translate }}
         </mat-option>
+        }
       </mat-autocomplete>
     </mat-form-field>
 
@@ -38,17 +38,19 @@
     <mat-form-field>
       <mat-label>Trainers</mat-label>
       <mat-select [formControl]="pokemonForm.controls.trainerId">
-        <mat-option *ngFor="let trainer of trainers" [value]="trainer._id">
+        @for (trainer of trainers; track trainer) {
+        <mat-option [value]="trainer._id">
           <pm-trainer-name [trainer]="trainer" />
         </mat-option>
+        }
       </mat-select>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Moves</mat-label>
       <mat-select multiple [formControl]="pokemonForm.controls.moves">
+        @for (move of moves; track move) {
         <mat-option
-          *ngFor="let move of moves"
           [value]="move"
           [disabled]="
             pokemonForm.controls.moves.value?.length > 1 &&
@@ -56,15 +58,17 @@
           ">
           {{ move.name | translate }}
         </mat-option>
+        }
       </mat-select>
     </mat-form-field>
     <span>Shiny</span>
     <mat-slide-toggle
       [formControl]="pokemonForm.controls.shiny"></mat-slide-toggle>
     <div>
-      <span *ngFor="let displayedMove of pokemonForm.controls.moves.value">{{
-        displayedMove.name | translate
-      }}</span>
+      @for (displayedMove of pokemonForm.controls.moves.value; track
+      displayedMove) {
+      <span>{{ displayedMove.name | translate }}</span>
+      }
     </div>
   </form>
 </mat-dialog-content>

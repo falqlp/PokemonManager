@@ -1,8 +1,5 @@
-<form
-  *ngIf="form"
-  [formGroup]="form"
-  (submit)="save()"
-  class="nursery-wishlist">
+@if (form) {
+<form [formGroup]="form" (submit)="save()" class="nursery-wishlist">
   <div class="nursery-wishlist__right-part">
     <mat-form-field class="nursery-wishlist__right-part__input">
       <mat-label>{{ 'NUMBER_OF_WISHED_POKEMON' | translate }}</mat-label>
@@ -14,10 +11,10 @@
         [formControl]="form.controls.quantity" />
     </mat-form-field>
     <div class="nursery-wishlist__right-part__forms">
+      @for (type of typeNames; track type) {
       <div
         class="nursery-wishlist__right-part__forms__form"
-        [ngClass]="type.toUpperCase()"
-        *ngFor="let type of typeNames">
+        [ngClass]="type.toUpperCase()">
         <img
           class="icon-type"
           [src]="'assets/types/simple/' + type.toUpperCase() + '.png'"
@@ -32,6 +29,7 @@
           <input matSliderThumb [formControl]="getFormControl(type)" />
         </mat-slider>
       </div>
+      }
     </div>
     <div class="nursery-wishlist__right-part__buttons">
       <button
@@ -57,3 +55,4 @@
     [data]="pieData"
     [colors]="pieColors"></pm-pie>
 </form>
+}

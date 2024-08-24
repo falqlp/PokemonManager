@@ -11,11 +11,12 @@
   (load)="loadImg()"
   (click)="!disabledClick() && type !== 'icon' && type !== 'back' && click()"
   alt="{{ basePokemon?.name ?? 'EGG' | translate }} {{ type }}" />
+@if (shiny) {
 <mat-icon
-  *ngIf="shiny"
   class="shiny"
   [style.font-size.px]="fontSize"
   [style.padding.px]="fontSize / 5"
   [inline]="true"
   >star</mat-icon
 >
+}

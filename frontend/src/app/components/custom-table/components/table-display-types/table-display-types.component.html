@@ -1,7 +1,8 @@
 <div>
+  @for (type of data; track type) {
   <img
-    *ngFor="let type of data"
     [src]="'assets/types/displayText/' + type + '.png'"
     [alt]="type"
     class="type-displayText" />
+  }
 </div>

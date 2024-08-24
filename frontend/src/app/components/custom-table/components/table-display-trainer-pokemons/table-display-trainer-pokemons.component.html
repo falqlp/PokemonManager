@@ -1,4 +1,3 @@
-<app-display-pokemon-image
-  *ngFor="let pokemon of data.pokemons"
-  [pokemon]="pokemon"
-  type="icon" />
+@for (pokemon of data.pokemons; track pokemon) {
+<app-display-pokemon-image [pokemon]="pokemon" type="icon" />
+}

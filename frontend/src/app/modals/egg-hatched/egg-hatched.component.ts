@@ -7,7 +7,7 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgIf } from '@angular/common';
+
 import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { ChangeNicknameComponent } from '../change-nickname/change-nickname.component';
@@ -17,7 +17,7 @@ import { EggHatchedModel } from '../../services/websocket-event.service';
 @Component({
   selector: 'pm-egg-hatched',
   standalone: true,
-  imports: [MatButtonModule, MatDialogModule, TranslateModule, NgIf],
+  imports: [MatButtonModule, MatDialogModule, TranslateModule],
   templateUrl: './egg-hatched.component.html',
   styleUrls: ['./egg-hatched.component.scss'],
 })

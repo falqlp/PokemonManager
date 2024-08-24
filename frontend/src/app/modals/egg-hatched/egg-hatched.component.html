@@ -1,6 +1,8 @@
-<div mat-dialog-content *ngIf="data">
+@if (data) {
+<div mat-dialog-content>
   <div class="egg-hatched">
-    <div *ngIf="cracksNumber < 6; else pokemon">
+    @if (cracksNumber < 6) {
+    <div>
       <img
         class="egg-hatched__img"
         src="assets/pokemons/Front/000.png"
@@ -11,6 +13,14 @@
         [alt]="'EGG' | translate"
         (click)="addCracked()" />
     </div>
+    } @else {
+    <img
+      class="egg-hatched__img__pokemon"
+      src="assets/pokemons/{{ data.shiny ? 'Front shiny' : 'Front' }}/{{
+        data.pokemonBase.name
+      }}.png"
+      [alt]="data.pokemonBase.name" />
+    }
     <ng-template #pokemon>
       <img
         class="egg-hatched__img__pokemon"
@@ -20,14 +30,17 @@
         [alt]="data.pokemonBase.name" />
     </ng-template>
   </div>
-  <div class="egg-hatched__message" *ngIf="cracksNumber > 5">
+  @if (cracksNumber > 5) {
+  <div class="egg-hatched__message">
     {{
       'CONGRAT_EGG_HATCHED'
         | translate : { pokemonName: data.pokemonBase.name | translate }
     }}
   </div>
+  }
 </div>
-<div *ngIf="cracksNumber > 5" mat-dialog-actions>
+} @if (cracksNumber > 5) {
+<div mat-dialog-actions>
   <button mat-flat-button color="warn" (click)="changeNickname()">
     {{ 'CHANGE_NICKNAME' | translate }}
   </button>
@@ -35,3 +48,4 @@
     {{ 'CLOSE' | translate }}
   </button>
 </div>
+}

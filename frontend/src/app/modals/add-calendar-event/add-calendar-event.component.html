@@ -17,8 +17,8 @@
     <mat-form-field>
       <mat-label>trainers</mat-label>
       <mat-select [formControl]="calendarEventForm.controls.trainers" multiple>
+        @for (trainer of trainers; track trainer) {
         <mat-option
-          *ngFor="let trainer of trainers"
           [value]="trainer"
           [disabled]="
             calendarEventForm.controls.trainers.value?.length > 1 &&
@@ -26,6 +26,7 @@
           ">
           <pm-trainer-name [trainer]="trainer" />
         </mat-option>
+        }
       </mat-select>
     </mat-form-field>
     <mat-form-field>

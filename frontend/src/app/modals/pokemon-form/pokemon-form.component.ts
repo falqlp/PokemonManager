@@ -21,7 +21,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CustomValidatorService } from '../../services/custom-validator.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { AsyncPipe, NgForOf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { TrainerNameComponent } from '../../components/trainer-name/trainer-name.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -43,7 +43,6 @@ import { MatButtonModule } from '@angular/material/button';
     TrainerNameComponent,
     MatSlideToggleModule,
     MatButtonModule,
-    NgForOf,
   ],
 })
 export class PokemonFormComponent implements OnInit {

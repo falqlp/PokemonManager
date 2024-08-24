@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { DisplayPokemonImageComponent } from '../../../components/display-pokemon-image/display-pokemon-image.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
@@ -9,12 +9,7 @@ import { PokedexEvolutionModel } from '../pokedex-details.model';
 @Component({
   selector: 'pm-evolution-tree',
   standalone: true,
-  imports: [
-    CommonModule,
-    DisplayPokemonImageComponent,
-    MatIconModule,
-    TranslateModule,
-  ],
+  imports: [DisplayPokemonImageComponent, MatIconModule, TranslateModule],
   templateUrl: './evolution-tree.component.html',
   styleUrls: ['./evolution-tree.component.scss'],
 })

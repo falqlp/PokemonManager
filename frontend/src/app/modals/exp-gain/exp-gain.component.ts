@@ -7,7 +7,7 @@ import {
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { ProgressBarComponent } from '../../components/progress-bar/progress-bar.component';
 import { GenericDialogComponent } from '../generic-dialog/generic-dialog.component';
@@ -23,7 +23,6 @@ import { WeeklyXpModel } from '../../services/websocket-event.service';
     MatButtonModule,
     MatDialogModule,
     NgClass,
-    NgIf,
     ProgressBarComponent,
     TranslateModule,
   ],

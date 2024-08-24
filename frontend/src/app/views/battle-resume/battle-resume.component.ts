@@ -10,7 +10,7 @@ import { TrainerNameComponent } from '../../components/trainer-name/trainer-name
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -24,9 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     TranslateModule,
     NgClass,
-    NgForOf,
     MatButtonModule,
-    NgIf,
   ],
 })
 export class BattleResumeComponent implements OnInit {

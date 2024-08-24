@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgForOf } from '@angular/common';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
 import { RouterService } from '../../services/router.service';
@@ -28,7 +28,6 @@ export interface NavGroupModel {
   standalone: true,
   imports: [
     TranslateModule,
-    NgForOf,
     MatIconModule,
     MatRippleModule,
     MatListModule,

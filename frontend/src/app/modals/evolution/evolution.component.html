@@ -1,4 +1,5 @@
-<div mat-dialog-content *ngIf="pokemon">
+@if (pokemon) {
+<div mat-dialog-content>
   <div class="evolution">
     <app-display-pokemon-image
       [pokemon]="pokemon"
@@ -12,6 +13,7 @@
   </div>
   <div class="evolution__message">{{ message }}</div>
 </div>
+}
 <div mat-dialog-actions>
   <button
     [disabled]="pokemon.basePokemon.id !== data.evolution.evolution.id"

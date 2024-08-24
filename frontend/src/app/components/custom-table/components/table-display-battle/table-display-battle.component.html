@@ -1,8 +1,9 @@
-<span *ngIf="data.type === 'BATTLE' && getPlayer() | async as player">
-  <ng-container *ngFor="let trainer of data.trainers">
-    <span *ngIf="trainer._id !== player._id"
-      ><pm-trainer-name [trainer]="trainer" />
-    </span>
-  </ng-container>
+@if (data.type === 'BATTLE' && getPlayer() | async; as player) {
+<span>
+  @for (trainer of data.trainers; track trainer) { @if (trainer._id !==
+  player._id) {
+  <span><pm-trainer-name [trainer]="trainer" /> </span>
+  } }
   <pm-battle-status [battle]="data.event" [playerId]="player._id" />
 </span>
+}

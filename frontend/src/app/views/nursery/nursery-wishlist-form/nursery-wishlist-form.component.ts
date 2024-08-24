@@ -10,7 +10,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { PieComponent } from '../../../components/pie/pie.component';
 import { PieDataModel } from '../../../components/pie/pie.model';
 import { ColorService } from '../../../services/color.service';
@@ -34,12 +34,10 @@ import { TimeService } from '../../../services/time.service';
     TranslateModule,
     MatInputModule,
     ReactiveFormsModule,
-    NgForOf,
     PieComponent,
     NgClass,
     MatSliderModule,
     MatButtonModule,
-    NgIf,
   ],
   templateUrl: './nursery-wishlist-form.component.html',
   styleUrls: ['./nursery-wishlist-form.component.scss'],

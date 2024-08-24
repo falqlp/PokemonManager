@@ -11,11 +11,8 @@
       ' ' +
       svg.y
     "></path>
-  <circle
-    *ngIf="progress >= 100"
-    class="circular-progress-bar__full"
-    r="50"
-    cx="50"
-    cy="50" />
+  @if (progress >= 100) {
+  <circle class="circular-progress-bar__full" r="50" cx="50" cy="50" />
+  }
   <circle class="circular-progress-bar__center" r="33" cx="50" cy="50" />
 </svg>

@@ -11,7 +11,7 @@ import {
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { DisplayPokemonImageComponent } from '../../components/display-pokemon-image/display-pokemon-image.component';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
@@ -26,12 +26,10 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./pc-storage.component.scss'],
   standalone: true,
   imports: [
-    NgForOf,
     NgClass,
     DisplayPokemonImageComponent,
     MatButtonModule,
     TranslateModule,
-    NgIf,
     PokemonResumeComponent,
     MatBadgeModule,
     MatIconModule,

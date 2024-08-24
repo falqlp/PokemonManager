@@ -1,5 +1,8 @@
-<div class="pokemon-resume-moves" *ngIf="!modify; else modifyTemplate">
-  <pm-move *ngFor="let move of pokemon.moves" [move]="move" />
+@if (!modify) {
+<div class="pokemon-resume-moves">
+  @for (move of pokemon.moves; track move) {
+  <pm-move [move]="move" />
+  }
   <button
     mat-flat-button
     [disabled]="!pokemon.basePokemon"
@@ -8,8 +11,6 @@
     {{ 'MODIFY' | translate }}
   </button>
 </div>
-<ng-template #modifyTemplate>
-  <pm-pokemon-resume-modify-moves
-    [pokemon]="pokemon"
-    (save)="modify = !modify" />
-</ng-template>
+} @else {
+<pm-pokemon-resume-modify-moves [pokemon]="pokemon" (save)="modify = !modify" />
+}

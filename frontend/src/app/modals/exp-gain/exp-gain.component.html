@@ -1,45 +1,46 @@
-<div mat-dialog-content class="exp-gain" *ngIf="xpData">
+@if (xpData) {
+<div mat-dialog-content class="exp-gain">
   @for (pokemon of xpData.trainer.pokemons; track pokemon._id; let i=$index){
   <div class="exp-gain__pokemon">
-    <ng-container *ngIf="pokemon.level !== 0">
-      <app-display-pokemon-image
-        class="thumbnails_05"
-        [pokemon]="pokemon"
-        type="thumbnails" />
-      <div class="exp-gain__pokemon__infos">
-        <div>
-          <span
-            >{{
-              pokemon.nickname ??
-                (pokemon.basePokemon?.name | translate) ??
-                ('EGG' | translate)
-            }}
-            {{ 'LVL' | translate }}: {{ pokemon.level }}</span
-          >
-          <span
-            *ngIf="
-              xpData.xpAndLevelGain && xpData.xpAndLevelGain[i].level !== 0
-            "
-            class="exp-gain__pokemon__infos__level"
-            [ngClass]="{
-              'exp-gain__pokemon__infos__level--decrese':
-                xpData.xpAndLevelGain[i]?.level < 0,
-              'exp-gain__pokemon__infos__level--increse':
-                xpData.xpAndLevelGain[i]?.level > 0
-            }"
-            >{{
+    @if (pokemon.level !== 0) {
+    <app-display-pokemon-image
+      class="thumbnails_05"
+      [pokemon]="pokemon"
+      type="thumbnails" />
+    <div class="exp-gain__pokemon__infos">
+      <div>
+        <span
+          >{{
+            pokemon.nickname ??
+              (pokemon.basePokemon?.name | translate) ??
+              ('EGG' | translate)
+          }}
+          {{ 'LVL' | translate }}: {{ pokemon.level }}</span
+        >
+        @if ( xpData.xpAndLevelGain && xpData.xpAndLevelGain[i].level !== 0 ) {
+        <span
+          class="exp-gain__pokemon__infos__level"
+          [ngClass]="{
+            'exp-gain__pokemon__infos__level--decrese':
+              xpData.xpAndLevelGain[i]?.level < 0,
+            'exp-gain__pokemon__infos__level--increse':
               xpData.xpAndLevelGain[i]?.level > 0
-                ? '+' + xpData.xpAndLevelGain[i]?.level
-                : xpData.xpAndLevelGain[i]?.level
-            }}</span
-          >
-        </div>
-        <progress-bar [currentProgress]="pokemon.exp" [max]="100000" />
+          }"
+          >{{
+            xpData.xpAndLevelGain[i]?.level > 0
+              ? '+' + xpData.xpAndLevelGain[i]?.level
+              : xpData.xpAndLevelGain[i]?.level
+          }}</span
+        >
+        }
       </div>
-    </ng-container>
+      <progress-bar [currentProgress]="pokemon.exp" [max]="100000" />
+    </div>
+    }
   </div>
   }
 </div>
+}
 <div mat-dialog-actions>
   <button mat-flat-button [disabled]="!xpData.xpAndLevelGain" (click)="close()">
     {{ 'CLOSE' | translate }}

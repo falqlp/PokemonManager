@@ -1,4 +1,5 @@
-<div class="nursery__top-content" *ngIf="nursery">
+@if (nursery) {
+<div class="nursery__top-content">
   <div class="nursery__top-content__infos">
     <div class="nursery__top-content__infos__image">
       <img
@@ -10,6 +11,6 @@
   </div>
   <pm-nursery-wishlist-form [nursery]="nursery" />
 </div>
-<pm-nursery-pokemon-list
-  *ngIf="nursery?.step !== 'WISHLIST'"
-  [nursery]="nursery" />
+} @if (nursery?.step !== 'WISHLIST') {
+<pm-nursery-pokemon-list [nursery]="nursery" />
+}

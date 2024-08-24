@@ -6,78 +6,63 @@
   (matSortChange)="sort($event)"
   mat-table
   [dataSource]="dataSource">
-  <ng-container
-    *ngFor="let column of conf.columns; let i = index"
-    [matColumnDef]="column.name">
+  @for (column of conf.columns; track column; let i = $index) {
+  <ng-container [matColumnDef]="column.name">
     <th *matHeaderCellDef>
-      <ng-container *ngIf="column.sort; else notSortable">
-        <div mat-sort-header>
-          <ng-container
-            pmDynamicCell
-            [componentType]="column.header.component"
-            [data]="column.header.data">
-          </ng-container>
-        </div>
-      </ng-container>
-      <ng-template #notSortable>
+      @if (column.sort) {
+      <div mat-sort-header>
         <ng-container
           pmDynamicCell
           [componentType]="column.header.component"
           [data]="column.header.data">
         </ng-container>
-      </ng-template>
+      </div>
+      } @else {
+      <ng-container
+        pmDynamicCell
+        [componentType]="column.header.component"
+        [data]="column.header.data">
+      </ng-container>
+      }
     </th>
     <ng-container [matColumnDef]="column.name + 'Input'">
       <th mat-header-cell *matHeaderCellDef>
-        <mat-form-field *ngIf="column.search">
-          <mat-select
-            multiple
-            *ngIf="column.search.type === 'multi-select'"
-            [formControl]="formInput.controls[i]"
-            ><mat-option
-              *ngFor="let value of column.search.values"
-              [value]="value"
-              >{{ value | translate }}</mat-option
-            >
+        @if (column.search) {
+        <mat-form-field>
+          @if (column.search.type === 'multi-select') {
+          <mat-select multiple [formControl]="formInput.controls[i]"
+            >@for (value of column.search.values; track value) {
+            <mat-option [value]="value">{{ value | translate }}</mat-option>
+            }
           </mat-select>
-          <mat-select
-            *ngIf="column.search.type === 'select'"
-            [formControl]="formInput.controls[i]"
-            ><mat-option
-              *ngFor="let value of column.search.values"
-              [value]="value"
-              >{{ value | translate }}</mat-option
-            >
+          } @if (column.search.type === 'select') {
+          <mat-select [formControl]="formInput.controls[i]"
+            >@for (value of column.search.values; track value) {
+            <mat-option [value]="value">{{ value | translate }}</mat-option>
+            }
           </mat-select>
-          <ng-container *ngIf="column.search.type === 'dateRange'">
-            <mat-date-range-input [rangePicker]="picker">
-              <input
-                (dateChange)="
-                  onDateRangeChange(formInput.controls[i], 0, $event)
-                "
-                matStartDate />
-              <input
-                (dateChange)="
-                  onDateRangeChange(formInput.controls[i], 1, $event)
-                "
-                matEndDate />
-            </mat-date-range-input>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker"></mat-datepicker-toggle>
-            <mat-date-range-picker #picker></mat-date-range-picker>
-          </ng-container>
-
+          } @if (column.search.type === 'dateRange') {
+          <mat-date-range-input [rangePicker]="picker">
+            <input
+              (dateChange)="onDateRangeChange(formInput.controls[i], 0, $event)"
+              matStartDate />
+            <input
+              (dateChange)="onDateRangeChange(formInput.controls[i], 1, $event)"
+              matEndDate />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+          } @if ( column.search.type !== 'select' && column.search.type !==
+          'multi-select' && column.search.type !== 'dateRange' ) {
           <input
-            *ngIf="
-              column.search.type !== 'select' &&
-              column.search.type !== 'multi-select' &&
-              column.search.type !== 'dateRange'
-            "
             matInput
             [type]="column.search.type"
-            [formControl]="formInput.controls[i]"
-        /></mat-form-field>
+            [formControl]="formInput.controls[i]" />
+          }</mat-form-field
+        >
+        }
       </th>
     </ng-container>
     <td mat-cell *matCellDef="let element">
@@ -87,6 +72,7 @@
         [data]="getData(element, column.content.data)" />
     </td>
   </ng-container>
+  }
   <tr mat-header-row *matHeaderRowDef="mapColumnName()"></tr>
   <tr mat-header-row *matHeaderRowDef="mapColumnInput()"></tr>
   <tr

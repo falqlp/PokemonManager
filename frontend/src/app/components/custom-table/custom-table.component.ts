@@ -11,7 +11,7 @@ import {
 import { BehaviorSubject, debounceTime, startWith, switchMap } from 'rxjs';
 import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { NgForOf, NgIf } from '@angular/common';
+
 import { TranslateModule } from '@ngx-translate/core';
 import { DynamicCellDirective } from './dynamic-cell.directive';
 import { QueryModel } from '../../core/query.model';
@@ -34,10 +34,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   imports: [
     MatSortModule,
     MatTableModule,
-    NgForOf,
     TranslateModule,
     DynamicCellDirective,
-    NgIf,
     MatPaginatorModule,
     MatInputModule,
     ReactiveFormsModule,

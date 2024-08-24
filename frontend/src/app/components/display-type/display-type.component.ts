@@ -1,10 +1,10 @@
 import { Component, computed, input } from '@angular/core';
-import { NgClass, NgForOf } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'pm-display-type',
   standalone: true,
-  imports: [NgForOf, NgClass],
+  imports: [NgClass],
   templateUrl: './display-type.component.html',
   styleUrls: ['./display-type.component.scss'],
 })

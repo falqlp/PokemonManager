@@ -1,10 +1,7 @@
 <div class="sidenav">
-  @for (navgroups of navs; track navgroups.name) {
-  <div
-    mat-ripple
-    *ngFor="let nav of navgroups.navs"
-    class="sidenav__nav"
-    (click)="click(nav)">
+  @for (navgroups of navs; track navgroups.name) { @for (nav of navgroups.navs;
+  track nav) {
+  <div mat-ripple class="sidenav__nav" (click)="click(nav)">
     <mat-icon>{{ nav.icon }}</mat-icon>
     <span
       [matBadgeHidden]="!badgeDataService.sidenav.includes(nav.label)"
@@ -14,6 +11,7 @@
       >{{ nav.label | translate }}</span
     >
   </div>
+  }
   <mat-divider></mat-divider>
   }
 </div>

@@ -16,8 +16,10 @@
     ></span
   >
 </div>
-<div *ngIf="nursery?.eggs" class="nursery-pokemon-list__eggs">
-  <div *ngFor="let egg of nursery.eggs" class="nursery-pokemon-list__eggs__egg">
+@if (nursery?.eggs) {
+<div class="nursery-pokemon-list__eggs">
+  @for (egg of nursery.eggs; track egg) {
+  <div class="nursery-pokemon-list__eggs__egg">
     <app-display-pokemon-image [pokemon]="egg" type="thumbnails" />
     @if (egg.basePokemon.types) {
     <pm-display-type [types]="egg.basePokemon.types" />
@@ -27,4 +29,6 @@
       {{ 'RELEASE' | translate }}
     </button>
   </div>
+  }
 </div>
+}

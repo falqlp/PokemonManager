@@ -20,7 +20,7 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { CustomValidatorService } from '../../services/custom-validator.service';
-import { NgIf } from '@angular/common';
+
 import {
   NotificationType,
   NotifierService,
@@ -43,7 +43,6 @@ import { Languages } from '../../models/user.model';
     ReactiveFormsModule,
     TranslateModule,
     MatDialogModule,
-    NgIf,
     MatCheckboxModule,
   ],
   templateUrl: './add-user.component.html',

@@ -10,7 +10,7 @@ import {
 import { PokemonModel } from '../../../../models/PokemonModels/pokemon.model';
 import { MoveLearningQueriesService } from '../../../../services/queries/move-learning-queries.service';
 import { MoveModel } from '../../../../models/move.model';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   AbstractControl,
   FormArray,
@@ -32,12 +32,10 @@ import { switchMap } from 'rxjs';
   selector: 'pm-pokemon-resume-modify-moves',
   standalone: true,
   imports: [
-    NgForOf,
     MatCheckboxModule,
     ReactiveFormsModule,
     TranslateModule,
     NgClass,
-    NgIf,
     MatSlideToggleModule,
     MatButtonModule,
   ],

@@ -1,7 +1,7 @@
 import { Component, DestroyRef, Input } from '@angular/core';
 import { DisplayPokemonImageComponent } from '../../../components/display-pokemon-image/display-pokemon-image.component';
 import { NurseryModel } from '../../../models/nursery.model';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { PokemonModel } from '../../../models/PokemonModels/pokemon.model';
@@ -17,8 +17,6 @@ import { DisplayTypeComponent } from '../../../components/display-type/display-t
     NgClass,
     TranslateModule,
     MatButtonModule,
-    NgForOf,
-    NgIf,
     DisplayTypeComponent,
   ],
   templateUrl: './nursery-pokemon-list.component.html',

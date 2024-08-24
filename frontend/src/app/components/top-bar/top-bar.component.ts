@@ -17,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { DisplayPokemonImageComponent } from '../display-pokemon-image/display-pokemon-image.component';
 import { NumberFormatterPipe } from '../../pipes/number-formatter.pipe';
 import { MatButtonModule } from '@angular/material/button';
-import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TopBarWeekCalendarComponent } from './top-bar-week-calendar/top-bar-week-calendar.component';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -35,8 +35,6 @@ import { WebsocketEventService } from '../../services/websocket-event.service';
     DisplayPokemonImageComponent,
     NumberFormatterPipe,
     MatButtonModule,
-    NgIf,
-    NgForOf,
     AsyncPipe,
     TranslateModule,
     MatProgressSpinnerModule,

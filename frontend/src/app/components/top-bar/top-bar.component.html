@@ -1,4 +1,5 @@
-<div *ngIf="player$ | async as player">
+@if (player$ | async; as player) {
+<div>
   <div class="top-bar">
     <div class="top-bar__left-content">
       <button
@@ -23,19 +24,21 @@
         <span>$</span>
       </div>
       <div class="top-bar__left-content__pokemons">
+        @for (pokemon of player.pokemons; track pokemon) {
         <app-display-pokemon-image
-          *ngFor="let pokemon of player.pokemons"
           class="clickable-icon"
           [pokemon]="pokemon"
           type="icon"
           (click)="openInfo(pokemon)" />
+        }
       </div>
     </div>
     {{ title$ | async | translate }}
-    <div class="top-bar__right-content" *ngIf="date$ | async as date">
+    @if (date$ | async; as date) {
+    <div class="top-bar__right-content">
+      @if (lang) {
       <button
         mat-flat-button
-        *ngIf="lang"
         (click)="changeLanguage(lang === 'fr-FR' ? 'en-EN' : 'fr-FR')">
         <img
           [alt]="lang"
@@ -43,14 +46,18 @@
             'https://flagsapi.com/' + getLangFlag(lang) + '/flat/32.png'
           " />
       </button>
+      }
       <button mat-flat-button (click)="showCalendar()">
         {{ date }} <mat-icon>calendar_today</mat-icon>
       </button>
       <pm-continue-button />
     </div>
+    }
   </div>
+  @if (showWeekCalendar) {
   <app-top-bar-week-calendar
-    *ngIf="showWeekCalendar"
     [player]="player"
     (click)="showCalendar()"></app-top-bar-week-calendar>
+  }
 </div>
+}

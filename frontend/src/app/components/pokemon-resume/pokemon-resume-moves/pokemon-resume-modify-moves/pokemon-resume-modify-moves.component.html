@@ -1,7 +1,8 @@
-<form class="test" *ngIf="moveForm" [formGroup]="moveForm" (submit)="submit()">
+@if (moveForm) {
+<form class="test" [formGroup]="moveForm" (submit)="submit()">
   <div class="pokemon-resume-modify-moves">
+    @for (moveControl of moveForm.controls.moves.controls; track moveControl) {
     <div
-      *ngFor="let moveControl of moveForm.controls.moves.controls"
       class="pokemon-resume-modify-moves__move"
       (click)="
         changeValue(
@@ -9,9 +10,9 @@
             moveControl.controls.checked
         )
       ">
-      <div
-        *ngIf="selectedMoves.length > 1 && !moveControl.controls.checked.value"
-        class="pokemon-resume-modify-moves__move--disabled"></div>
+      @if (selectedMoves.length > 1 && !moveControl.controls.checked.value) {
+      <div class="pokemon-resume-modify-moves__move--disabled"></div>
+      }
       <div class="pokemon-resume-modify-moves__move__top">
         <mat-slide-toggle [checked]="moveControl.controls.checked.value" />
         <img
@@ -39,6 +40,7 @@
         </div>
       </div>
     </div>
+    }
   </div>
   <button
     mat-flat-button
@@ -49,3 +51,4 @@
     {{ 'SAVE' | translate }}
   </button>
 </form>
+}
