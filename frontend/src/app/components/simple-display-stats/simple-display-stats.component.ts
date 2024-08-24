@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { PokemonStatsComponent } from '../pokemon-stats/pokemon-stats.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { PlayerService } from '../../services/player.service';
 import { ColorService } from '../../services/color.service';
 import { NgStyle } from '@angular/common';
 
@@ -16,11 +15,6 @@ export class SimpleDisplayStatsComponent extends PokemonStatsComponent {
   protected colorService = inject(ColorService);
 
   protected colorStats: Record<string, string> = {};
-  constructor() {
-    const playerService = inject(PlayerService);
-
-    super(playerService);
-  }
 
   override ngOnInit(): void {
     super.ngOnInit();
