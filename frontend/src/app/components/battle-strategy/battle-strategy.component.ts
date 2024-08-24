@@ -15,12 +15,11 @@ import {
 } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
-import { PokemonQueriesService } from '../../services/queries/pokemon-queries.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { ModifyMoveModalComponent } from '../../modals/modify-move-modal/modify-move-modal.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { debounceTime, filter, Observable, switchMap } from 'rxjs';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'pm-battle-strategy',

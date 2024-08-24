@@ -18,7 +18,7 @@ import {
 } from '@angular/material/form-field';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { CompetitionQueriesService } from '../../services/queries/competition-queries.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
