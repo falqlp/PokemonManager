@@ -966,7 +966,7 @@ describe("PokemonService", () => {
       listPokemonSpy.mockResolvedValue([pokemon]);
       jest.spyOn(service, "updateMany").mockResolvedValue([pokemon]);
 
-      await service.modifyMoveStrategy(
+      await service.modifyBattleMoveStrategy(
         [{ pokemonId, strategy }],
         trainerId,
         gameId,
@@ -976,7 +976,7 @@ describe("PokemonService", () => {
         { ids: [pokemonId] },
         { gameId },
       );
-      expect(pokemon.strategy).toEqual(strategy);
+      expect(pokemon.battleStrategy).toEqual(strategy);
       expect(service.updateMany).toHaveBeenCalledWith([pokemon], gameId);
     });
 
@@ -995,7 +995,7 @@ describe("PokemonService", () => {
 
       listPokemonSpy.mockResolvedValue([pokemon]);
 
-      await service.modifyMoveStrategy(
+      await service.modifyBattleMoveStrategy(
         [{ pokemonId, strategy }],
         trainerId,
         gameId,
@@ -1005,7 +1005,7 @@ describe("PokemonService", () => {
         { ids: [pokemonId] },
         { gameId },
       );
-      expect(pokemon.strategy).not.toEqual(strategy);
+      expect(pokemon.battleStrategy).not.toEqual(strategy);
       expect(service.updateMany).not.toHaveBeenCalled();
     });
 
@@ -1018,7 +1018,7 @@ describe("PokemonService", () => {
       listPokemonSpy.mockResolvedValue([]);
       jest.spyOn(service, "updateMany");
 
-      await service.modifyMoveStrategy(
+      await service.modifyBattleMoveStrategy(
         [{ pokemonId, strategy }],
         trainerId,
         gameId,
