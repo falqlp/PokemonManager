@@ -2,10 +2,10 @@ import {
   Component,
   DestroyRef,
   ElementRef,
+  inject,
   Input,
   OnInit,
   ViewChild,
-  inject,
 } from '@angular/core';
 import {
   BattlePokemonModel,
@@ -116,7 +116,7 @@ export class NewBattleComponent implements OnInit {
         this.askNextRound = false;
         this.askNextRoundLoop = false;
         if (!battle) {
-          this.router.navigate(['battle-resume'], {
+          this.router.navigate(['play', 'battle-resume'], {
             queryParams: { battle: this.id },
           });
         } else {
@@ -251,7 +251,7 @@ export class NewBattleComponent implements OnInit {
     this.defeat = true;
     clearInterval(this.battleLoop);
     setTimeout(() => {
-      this.router.navigate(['battle-resume'], {
+      this.router.navigate(['play', 'battle-resume'], {
         queryParams: { battle: this.id },
       });
     }, 3000);

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit, signal, inject } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { UserQueriesService } from '../../services/queries/user-queries.service';
 import { Languages, UserModel } from '../../models/user.model';
 
@@ -99,7 +99,7 @@ export class GamesComponent implements OnInit {
     if (this.getPlayer(game.players)?.trainer) {
       this.cacheService.setGameId(game._id);
       this.cacheService.setTrainerId(this.getPlayer(game.players).trainer._id);
-      this.router.navigateByUrl('home');
+      this.router.navigateByUrl('play/home');
     } else {
       this.dialog.open(AddPlayerToGameComponent, { data: game });
     }

@@ -1,4 +1,4 @@
-@if (player$ | async; as player) {
+@if ((topBar$ | async) && (player$ | async); as player) {
 <div>
   <div class="top-bar">
     <div class="top-bar__left-content">

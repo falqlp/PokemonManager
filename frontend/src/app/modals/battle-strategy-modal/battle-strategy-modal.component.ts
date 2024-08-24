@@ -130,12 +130,12 @@ export class BattleStrategyModalComponent implements OnInit {
     this.save()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() =>
-        this.routerService.navigate(['battle/' + this.data.battle._id])
+        this.routerService.navigate(['play', 'battle', this.data.battle._id])
       );
   }
 
   protected goToPc(): void {
-    this.routerService.navigate(['pcStorage']);
+    this.routerService.navigate(['play', 'pcStorage']);
   }
 
   protected simulate(): void {
@@ -170,7 +170,7 @@ export class BattleStrategyModalComponent implements OnInit {
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe(() => {
-        this.routerService.navigate(['battle-resume'], {
+        this.routerService.navigate(['play', 'battle-resume'], {
           queryParams: { battle: this.data.battle._id },
         });
         this.dialog.closeAll();

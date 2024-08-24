@@ -170,6 +170,6 @@ export class PokedexComponent {
   };
 
   public onRowClick(event: PokemonBaseModel): void {
-    this.routerService.navigateByUrl('pokedex-details/' + event.id);
+    this.routerService.navigateByUrl('play/pokedex-details/' + event.id);
   }
 }

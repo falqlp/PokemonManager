@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -103,7 +103,7 @@ export class AddGameComponent implements OnInit {
             (player) => player.userId === this.cacheService.getUserId()
           ).trainer._id;
           this.cacheService.setTrainerId(trainerId);
-          this.router.navigateByUrl('starters');
+          this.router.navigateByUrl('play/starters');
           this.dialogRef.close();
         })
       )

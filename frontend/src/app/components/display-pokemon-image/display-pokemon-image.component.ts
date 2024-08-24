@@ -1,14 +1,14 @@
 import {
   Component,
+  ElementRef,
+  inject,
   Input,
-  OnInit,
+  input,
   OnChanges,
+  OnInit,
+  signal,
   SimpleChanges,
   ViewChild,
-  ElementRef,
-  input,
-  signal,
-  inject,
 } from '@angular/core';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { DisplayType } from './display-pokemon-image.model';
@@ -106,7 +106,7 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
   protected click(): void {
     if (!('level' in this.pokemon && this.pokemon.level === 0)) {
       this.routerService.navigateByUrl(
-        'pokedex-details/' + this.basePokemon.id
+        'play/pokedex-details/' + this.basePokemon.id
       );
     }
   }

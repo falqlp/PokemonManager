@@ -63,7 +63,7 @@ export class AddPlayerToGameComponent {
       .subscribe((trainer) => {
         this.cacheService.setTrainerId(trainer._id);
         this.dialogRef.close();
-        this.routerService.navigateByUrl('starters');
+        this.routerService.navigateByUrl('play/starters');
       });
   }
 }

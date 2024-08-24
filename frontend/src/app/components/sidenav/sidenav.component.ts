@@ -48,7 +48,7 @@ export class SidenavComponent {
       name: 'Home',
       navs: [
         {
-          link: 'home',
+          link: 'play/home',
           label: 'HOME',
           icon: 'home',
         },
@@ -58,12 +58,12 @@ export class SidenavComponent {
       name: 'Trainer relative',
       navs: [
         {
-          link: 'battle-strategy',
+          link: 'play/battle-strategy',
           label: 'BATTLE-STRATEGY',
           icon: 'military_tech',
         },
         {
-          link: 'pcStorage',
+          link: 'play/pcStorage',
           label: 'PC-STORAGE',
           icon: 'computer',
         },
@@ -78,22 +78,22 @@ export class SidenavComponent {
       name: 'Game info',
       navs: [
         {
-          link: 'battle-event-stats',
+          link: 'play/battle-event-stats',
           label: 'BATTLE_EVENT_STATS',
           icon: 'query_stats',
         },
         {
-          link: 'history',
+          link: 'play/history',
           label: 'HISTORY',
           icon: 'history',
         },
         {
-          link: 'trainers',
+          link: 'play/trainers',
           label: 'TRAINERS',
           icon: 'groups',
         },
         {
-          link: 'pokedex',
+          link: 'play/pokedex',
           label: 'POKEDEX',
           icon: 'devices',
         },

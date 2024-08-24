@@ -1,11 +1,11 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import {
   ActivatedRoute,
-  NavigationEnd,
   NavigationStart,
+  RouteConfigLoadEnd,
   Router,
 } from '@angular/router';
-import { BehaviorSubject, filter, Observable } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -32,14 +32,11 @@ export class RouterService extends Router {
 
   public init(): void {
     this.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
+      .pipe(filter((event) => event instanceof RouteConfigLoadEnd))
       .subscribe((event) => {
-        const routeData: any = this.config.find(
-          (config) =>
-            config.path === (event as NavigationEnd).url.replace('/', '')
-        ).data;
-        this.setTitle(routeData.title);
-        this.navigationDisabledSubject.next(routeData.navigationDisabled);
+        const routeData = (event as RouteConfigLoadEnd).route.data;
+        this.setTitle(routeData['title']);
+        this.navigationDisabledSubject.next(routeData['navigationDisabled']);
       });
     this.events
       .pipe(filter((event) => event instanceof NavigationStart))
@@ -50,5 +47,16 @@ export class RouterService extends Router {
 
   public getLastUrl(): string {
     return this.lastUrl;
+  }
+
+  public topBar(): Observable<boolean> {
+    return this.events
+      .pipe(filter((event) => event instanceof RouteConfigLoadEnd))
+      .pipe(
+        map(
+          (event) =>
+            (event as RouteConfigLoadEnd).route.data['topBar'] !== false
+        )
+      );
   }
 }

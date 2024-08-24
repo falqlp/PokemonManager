@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { CalendarEventQueriesService } from './queries/calendar-event-queries.service';
 import { BattleModel } from '../models/Battle.model';
 import { first, map, switchMap, tap } from 'rxjs';
@@ -55,7 +55,7 @@ export class SimulationService {
                   if (res.battle) {
                     this.goToBattle(res.battle, res.isMultiplayerBattle);
                   } else if (res.redirectTo) {
-                    this.routerService.navigateByUrl(res.redirectTo);
+                    this.routerService.navigateByUrl('play/' + res.redirectTo);
                   } else {
                     this.askForNextDay = !this.askForNextDay;
                   }

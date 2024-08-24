@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BattleModel } from '../../models/Battle.model';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
@@ -63,6 +63,6 @@ export class BattleResumeComponent implements OnInit {
   }
 
   protected backHome(): void {
-    this.router.navigate(['home']);
+    this.router.navigate(['play', 'home']);
   }
 }
