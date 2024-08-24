@@ -1,0 +1,22 @@
+.battle-strategy-modal {
+  height: 75vh;
+  min-width: 60vw;
+  &__stats {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 16px);
+    margin-top: 15px;
+    &__inputs {
+      display: flex;
+      gap: 15px;
+    }
+    &__graph {
+      flex: 1;
+    }
+  }
+  ::ng-deep {
+    .mat-mdc-tab-body-wrapper {
+      height: calc(100% - 50px);
+    }
+  }
+}

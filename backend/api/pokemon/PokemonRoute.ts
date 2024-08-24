@@ -88,6 +88,22 @@ router.put("/modify-strategy", async (req: Request, res: Response, next) => {
     next(err);
   }
 });
+router.put(
+  "/modify-battle-strategy",
+  async (req: Request, res: Response, next) => {
+    const gameId = req.headers["game-id"] as string;
+    try {
+      await pokemonService.modifyBattleMoveStrategy(
+        req.body.strategies,
+        req.body.trainerId,
+        gameId,
+      );
+      res.status(200).json();
+    } catch (err) {
+      next(err);
+    }
+  },
+);
 router.put("/hatch-egg", async (req: Request, res: Response, next) => {
   const gameId = req.headers["game-id"] as string;
   try {

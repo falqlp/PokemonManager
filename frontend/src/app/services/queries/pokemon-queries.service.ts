@@ -60,6 +60,19 @@ export class PokemonQueriesService extends ReadonlyQuery<PokemonModel> {
     });
   }
 
+  public modifyBattleStrategy(
+    strategies: {
+      pokemonId: string;
+      strategy: number[];
+    }[],
+    trainerId: string
+  ): Observable<void> {
+    return this.http.put<void>(this.url + '/modify-battle-strategy', {
+      strategies,
+      trainerId,
+    });
+  }
+
   public hatchEgg(pokemonId: string): Observable<void> {
     return this.http.put<void>(this.url + '/hatch-egg', {
       pokemonId,

@@ -1,0 +1,49 @@
+<mat-tab-group mat-dialog-content class="battle-strategy-modal">
+  <mat-tab [label]="'BATTLE-STRATEGY' | translate">
+    <pm-battle-strategy [form]="strategyForms" />
+  </mat-tab>
+  <mat-tab [label]="'BATTLE_EVENT_STATS' | translate">
+    @defer (on viewport) {
+    <div class="battle-strategy-modal__stats">
+      <div class="battle-strategy-modal__stats__inputs">
+        <mat-form-field>
+          <mat-label>{{ 'INDICATOR' | translate }}</mat-label>
+          <mat-select [formControl]="statsQueryForm.controls.indicator">
+            @for (indicator of indicators; track indicator) {
+            <mat-option [value]="indicator"
+              >{{ indicator | translate }}
+            </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-slide-toggle [formControl]="statsQueryForm.controls.isRelative"
+          >{{ 'RELATIVE_TO_BATTLE_PLAYED' | translate }}
+        </mat-slide-toggle>
+      </div>
+      <pm-battle-events-stats-graph
+        class="battle-strategy-modal__stats__graph"
+        [isRelative]="statsQueryForm.controls.isRelative.value"
+        [type]="statsQueryForm.controls.indicator.value"
+        [query]="query" />
+    </div>
+    } @placeholder {
+    <pm-spinner />
+    }
+  </mat-tab>
+</mat-tab-group>
+<div mat-dialog-actions>
+  <button mat-flat-button mat-dialog-close>{{ 'CANCEL' | translate }}</button>
+  <button mat-flat-button mat-dialog-close color="accent" (click)="goToPc()">
+    {{ 'GO_TO_PC' | translate }}
+  </button>
+  <button
+    mat-flat-button
+    (click)="simulate()"
+    [disabled]="data.isMultiplayerBattle"
+    color="accent">
+    {{ 'SIMULATE' | translate }}
+  </button>
+  <button mat-flat-button mat-dialog-close color="warn" (click)="goToBattle()">
+    {{ 'GO_TO_BATTLE' | translate }}
+  </button>
+</div>

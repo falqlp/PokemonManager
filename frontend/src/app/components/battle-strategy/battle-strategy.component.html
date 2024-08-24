@@ -18,7 +18,7 @@
         <div class="battle-strategy__pokemon__move-form__moves__move">
           <pm-move [move]="move" />
           <mat-button-toggle-group
-            [formControl]="form.controls.at(i).controls.at(j)">
+            [formControl]="form().controls.at(i).controls.at(j)">
             <mat-button-toggle
               [checked]="pokemon.strategy.at(j) === 3"
               [value]="3"

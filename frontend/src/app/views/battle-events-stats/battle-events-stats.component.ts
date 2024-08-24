@@ -18,7 +18,7 @@ import {
 } from '@angular/material/form-field';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { CompetitionQueriesService } from '../../services/queries/competition-queries.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TrainerQueriesService } from '../../services/queries/trainer-queries.service';
@@ -87,9 +87,6 @@ export class BattleEventsStatsComponent implements OnInit {
   private readonly trainerQueriesService: TrainerQueriesService = inject(
     TrainerQueriesService
   );
-
-  private readonly translateService: TranslateService =
-    inject(TranslateService);
 
   private readonly timeService: TimeService = inject(TimeService);
   protected readonly indicators = Object.values(BattleEventQueryType);
@@ -204,10 +201,6 @@ export class BattleEventsStatsComponent implements OnInit {
       period = { ...period, startDate: event.value };
     }
     this.queryForm.controls.context.controls.period.setValue(period);
-  }
-
-  protected formatIndicator(key: BattleEventQueryType): string {
-    return this.translateService.instant(key);
   }
 
   protected clearAll(): void {

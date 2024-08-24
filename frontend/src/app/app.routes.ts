@@ -13,11 +13,11 @@ import { PokedexComponent } from './views/pokedex/pokedex.component';
 import { EventsComponent } from './views/events/events.component';
 import { StartersComponent } from './views/starters/starters.component';
 import { NewBattleComponent } from './views/new-battle/new-battle.component';
-import { BattleStrategyComponent } from './views/battle-strategy/battle-strategy.component';
 import { VerifyEmailComponent } from './views/verify-email/verify-email.component';
 import { ChangePasswordComponent } from './views/change-password/change-password.component';
 import { CompetitionHistoryComponent } from './views/competition-history/competition-history.component';
 import { BattleEventsStatsComponent } from './views/battle-events-stats/battle-events-stats.component';
+import { DefaultBattleStrategyComponent } from './views/default-battle-strategy/default-battle-strategy.component';
 
 export const routes: Routes = [
   { path: '404Error', component: ErrorComponent },
@@ -55,7 +55,7 @@ export const routes: Routes = [
   },
   {
     path: 'battle-strategy',
-    component: BattleStrategyComponent,
+    component: DefaultBattleStrategyComponent,
     data: { title: 'BATTLE-STRATEGY' },
     canActivate: [GameGuard],
   },

@@ -860,10 +860,10 @@ describe("PokemonService", () => {
     });
   });
   describe("modifyMoveStrategy", () => {
-    let getPokemonSpy: jest.SpyInstance;
+    let listPokemonSpy: jest.SpyInstance;
 
     beforeEach(() => {
-      getPokemonSpy = jest.spyOn(pokemonRepository, "get");
+      listPokemonSpy = jest.spyOn(pokemonRepository, "list");
     });
     it("should modify the strategy of a pokemon if the trainerId matches", async () => {
       const pokemonId = "pokemonId";
@@ -877,14 +877,21 @@ describe("PokemonService", () => {
         strategy: [],
       } as IPokemon;
 
-      getPokemonSpy.mockResolvedValue(pokemon);
-      jest.spyOn(service, "update").mockResolvedValue(pokemon);
+      listPokemonSpy.mockResolvedValue([pokemon]);
+      jest.spyOn(service, "updateMany").mockResolvedValue([pokemon]);
 
-      await service.modifyMoveStrategy(pokemonId, strategy, trainerId, gameId);
+      await service.modifyMoveStrategy(
+        [{ pokemonId, strategy }],
+        trainerId,
+        gameId,
+      );
 
-      expect(getPokemonSpy).toHaveBeenCalledWith(pokemonId, { gameId });
+      expect(listPokemonSpy).toHaveBeenCalledWith(
+        { ids: [pokemonId] },
+        { gameId },
+      );
       expect(pokemon.strategy).toEqual(strategy);
-      expect(service.update).toHaveBeenCalledWith(pokemonId, pokemon);
+      expect(service.updateMany).toHaveBeenCalledWith([pokemon], gameId);
     });
 
     it("should not modify the strategy if the trainerId does not match", async () => {
@@ -898,15 +905,22 @@ describe("PokemonService", () => {
         trainerId: "differentTrainerId",
         strategy: [],
       } as IPokemon;
-      jest.spyOn(service, "update");
+      jest.spyOn(service, "updateMany");
 
-      getPokemonSpy.mockResolvedValue(pokemon);
+      listPokemonSpy.mockResolvedValue([pokemon]);
 
-      await service.modifyMoveStrategy(pokemonId, strategy, trainerId, gameId);
+      await service.modifyMoveStrategy(
+        [{ pokemonId, strategy }],
+        trainerId,
+        gameId,
+      );
 
-      expect(getPokemonSpy).toHaveBeenCalledWith(pokemonId, { gameId });
+      expect(listPokemonSpy).toHaveBeenCalledWith(
+        { ids: [pokemonId] },
+        { gameId },
+      );
       expect(pokemon.strategy).not.toEqual(strategy);
-      expect(service.update).not.toHaveBeenCalled();
+      expect(service.updateMany).not.toHaveBeenCalled();
     });
 
     it("should not modify the strategy if the pokemon is not found", async () => {
@@ -915,13 +929,106 @@ describe("PokemonService", () => {
       const gameId = "gameId";
       const trainerId = "trainerId";
 
-      getPokemonSpy.mockResolvedValue(null);
-      jest.spyOn(service, "update");
+      listPokemonSpy.mockResolvedValue([]);
+      jest.spyOn(service, "updateMany");
 
-      await service.modifyMoveStrategy(pokemonId, strategy, trainerId, gameId);
+      await service.modifyMoveStrategy(
+        [{ pokemonId, strategy }],
+        trainerId,
+        gameId,
+      );
 
-      expect(getPokemonSpy).toHaveBeenCalledWith(pokemonId, { gameId });
-      expect(service.update).not.toHaveBeenCalled();
+      expect(listPokemonSpy).toHaveBeenCalledWith(
+        { ids: [pokemonId] },
+        { gameId },
+      );
+      expect(service.updateMany).not.toHaveBeenCalled();
+    });
+  });
+  describe("modifyBattleMoveStrategy", () => {
+    let listPokemonSpy: jest.SpyInstance;
+
+    beforeEach(() => {
+      listPokemonSpy = jest.spyOn(pokemonRepository, "list");
+    });
+    it("should modify the strategy of a pokemon if the trainerId matches", async () => {
+      const pokemonId = "pokemonId";
+      const strategy = [1, 2, 3];
+      const gameId = "gameId";
+      const trainerId = "trainerId";
+      const pokemon: IPokemon = {
+        _id: pokemonId,
+        gameId,
+        trainerId,
+        strategy: [],
+      } as IPokemon;
+
+      listPokemonSpy.mockResolvedValue([pokemon]);
+      jest.spyOn(service, "updateMany").mockResolvedValue([pokemon]);
+
+      await service.modifyBattleMoveStrategy(
+        [{ pokemonId, strategy }],
+        trainerId,
+        gameId,
+      );
+
+      expect(listPokemonSpy).toHaveBeenCalledWith(
+        { ids: [pokemonId] },
+        { gameId },
+      );
+      expect(pokemon.battleStrategy).toEqual(strategy);
+      expect(service.updateMany).toHaveBeenCalledWith([pokemon], gameId);
+    });
+
+    it("should not modify the strategy if the trainerId does not match", async () => {
+      const pokemonId = "pokemonId";
+      const strategy = [1, 2, 3];
+      const gameId = "gameId";
+      const trainerId = "trainerId";
+      const pokemon: IPokemon = {
+        _id: pokemonId,
+        gameId,
+        trainerId: "differentTrainerId",
+        strategy: [],
+      } as IPokemon;
+      jest.spyOn(service, "updateMany");
+
+      listPokemonSpy.mockResolvedValue([pokemon]);
+
+      await service.modifyBattleMoveStrategy(
+        [{ pokemonId, strategy }],
+        trainerId,
+        gameId,
+      );
+
+      expect(listPokemonSpy).toHaveBeenCalledWith(
+        { ids: [pokemonId] },
+        { gameId },
+      );
+      expect(pokemon.battleStrategy).not.toEqual(strategy);
+      expect(service.updateMany).not.toHaveBeenCalled();
+    });
+
+    it("should not modify the strategy if the pokemon is not found", async () => {
+      const pokemonId = "pokemonId";
+      const strategy = [1, 2, 3];
+      const gameId = "gameId";
+      const trainerId = "trainerId";
+
+      listPokemonSpy.mockResolvedValue([]);
+      jest.spyOn(service, "updateMany");
+
+      await service.modifyBattleMoveStrategy(
+        [{ pokemonId, strategy }],
+        trainerId,
+        gameId,
+      );
+
+      expect(listPokemonSpy).toHaveBeenCalledWith(
+        { ids: [pokemonId] },
+        { gameId },
+      );
+      expect(service.updateMany).not.toHaveBeenCalled();
     });
   });
   describe("hatchEgg", () => {

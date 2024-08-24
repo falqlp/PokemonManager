@@ -198,7 +198,10 @@ class BattleService {
       battleOrder,
     );
     attPokemon.moving = true;
-    const selectedMove = this.selectMove(attPokemon.moves, attPokemon.strategy);
+    const selectedMove = this.selectMove(
+      attPokemon.moves,
+      attPokemon.battleStrategy ?? attPokemon.strategy,
+    );
 
     const { damage, maxDamagedPokemon } = this.conductBattleRound(
       attPokemon,

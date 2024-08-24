@@ -39,7 +39,9 @@ export default class DamageEventRepository extends CompleteRepository<IDamageEve
   ): Promise<IStatsByPokemon[]> {
     return this.schema
       .aggregate<IStatsByPokemon>()
-      .match(this.battleEventQueriesUtilService.getMatchStage(gameId, query))
+      .match(
+        this.battleEventQueriesUtilService.getMatchStage(gameId, query, true),
+      )
       .group({
         _id: "$onPokemonId",
         value: { $sum: "$value" },
@@ -71,7 +73,9 @@ export default class DamageEventRepository extends CompleteRepository<IDamageEve
   ): Promise<IStatsByPokemon[]> {
     return this.schema
       .aggregate<IStatsByPokemon>()
-      .match(this.battleEventQueriesUtilService.getMatchStage(gameId, query))
+      .match(
+        this.battleEventQueriesUtilService.getMatchStage(gameId, query, true),
+      )
       .group({
         _id: "$onPokemonId",
         value: {

@@ -53,6 +53,7 @@ export interface IPokemon extends MongoId {
   shiny: boolean;
   nature: PokemonNature;
   strategy: number[];
+  battleStrategy?: number[];
   gender: Gender;
 }
 
@@ -77,6 +78,7 @@ const pokemonSchema = new Schema<IPokemon>({
   shiny: { type: Boolean },
   nature: { type: String, required: true },
   strategy: [{ type: Number }],
+  battleStrategy: [{ type: Number }],
   gender: { type: String, required: true },
 });
 

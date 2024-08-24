@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { CalendarEventQueriesService } from './queries/calendar-event-queries.service';
 import { BattleModel } from '../models/Battle.model';
-import { DialogButtonsModel } from '../modals/generic-dialog/generic-dialog.models';
-import { GenericDialogComponent } from '../modals/generic-dialog/generic-dialog.component';
 import { first, map, switchMap, tap } from 'rxjs';
-import { BattleInstanceQueriesService } from './queries/battle-instance-queries.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterService } from './router.service';
 import { TimeService } from './time.service';
 import { PlayerService } from './player.service';
+import { BattleStrategyModalComponent } from '../modals/battle-strategy-modal/battle-strategy-modal.component';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +16,6 @@ export class SimulationService {
 
   constructor(
     private calendarEventQueriesService: CalendarEventQueriesService,
-    private battleInstanceQueriesService: BattleInstanceQueriesService,
     private dialog: MatDialog,
     private routerService: RouterService,
     private timeService: TimeService,
@@ -87,70 +84,9 @@ export class SimulationService {
     battle: BattleModel,
     isMultiplayerBattle: boolean
   ): void {
-    const lambdaButtons: DialogButtonsModel[] = [
-      {
-        label: 'YES',
-        color: 'warn',
-        close: true,
-        click: (): void => {
-          this.battleInstanceQueriesService
-            .simulateBattle(battle)
-            .subscribe(() => {
-              this.routerService.navigate(['battle-resume'], {
-                queryParams: { battle: battle._id },
-              });
-              this.dialog.closeAll();
-            });
-        },
-      },
-      {
-        label: 'NO',
-        color: 'primary',
-        close: true,
-      },
-    ];
-    const buttons: DialogButtonsModel[] = [
-      {
-        label: 'CANCEL',
-        color: undefined,
-        close: true,
-      },
-      {
-        label: 'GO_TO_PC',
-        color: 'accent',
-        close: true,
-        click: (): void => {
-          this.routerService.navigate(['pcStorage']);
-        },
-      },
-      {
-        label: 'SIMULATE',
-        color: 'accent',
-        disabled: isMultiplayerBattle,
-        click: (): void => {
-          this.dialog.open(GenericDialogComponent, {
-            data: {
-              buttons: lambdaButtons,
-              message: 'SURE_SIMULATE',
-            },
-          });
-        },
-      },
-      {
-        label: 'GO_TO_BATTLE',
-        color: 'warn',
-        close: true,
-        click: (): void => {
-          this.routerService.navigate(['battle/' + battle._id]);
-        },
-      },
-    ];
     this.dialog.afterAllClosed.pipe(first()).subscribe(() => {
-      this.dialog.open(GenericDialogComponent, {
-        data: {
-          buttons,
-          message: 'SURE_GO_TO_BATTLE',
-        },
+      this.dialog.open(BattleStrategyModalComponent, {
+        data: { battle, isMultiplayerBattle },
       });
     });
   }
