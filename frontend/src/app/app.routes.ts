@@ -46,5 +46,12 @@ export const routes: Routes = [
     children: playRoutes,
     canActivateChild: [GameGuard],
   },
+  {
+    path: '',
+    loadComponent: () =>
+      import('./views/main/main-page/main-page.component').then(
+        (m) => m.MainPageComponent
+      ),
+  },
   { path: '**', redirectTo: 'home' },
 ];

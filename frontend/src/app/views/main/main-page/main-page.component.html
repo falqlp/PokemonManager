@@ -1,0 +1,15 @@
+<div class="main-page__top">
+  <h1 class="main-page__top__title">Pokemon Manager</h1>
+  <p>{{ 'PM_DESC' | translate }}</p>
+  <button
+    class="main-page__top__play-button"
+    routerLink="login"
+    mat-flat-button
+    color="warn">
+    {{ 'PLAY' | translate }}
+  </button>
+</div>
+<div class="main-page__news">
+  <h1 class="main-page__news__article">News</h1>
+  <pm-news-v1-1 class="main-page__news__article" />
+</div>

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
@@ -6,15 +6,21 @@ import { UserService } from '../../services/user.service';
 import { UserQueriesService } from '../../services/queries/user-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { first, switchMap } from 'rxjs';
+import { NewsV11Component } from '../../components/news/news-v1-1/news-v1-1.component';
 
 @Component({
-  selector: 'pm-news',
+  selector: 'pm-news-dialog',
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule, TranslateModule],
-  templateUrl: './news.component.html',
-  styleUrl: './news.component.scss',
+  imports: [
+    MatDialogModule,
+    MatButtonModule,
+    TranslateModule,
+    NewsV11Component,
+  ],
+  templateUrl: './news-dialog.component.html',
+  styleUrl: './news-dialog.component.scss',
 })
-export class NewsComponent implements OnInit {
+export class NewsDialogComponent implements OnInit {
   private userService = inject(UserService);
   private destroyRef = inject(DestroyRef);
   private userQueriesService = inject(UserQueriesService);

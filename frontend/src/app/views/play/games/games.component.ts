@@ -24,7 +24,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { UserService } from '../../../services/user.service';
 import { PlayerModel } from '../../../models/player.model';
 import { AddPlayerToGameComponent } from './add-player-to-game/add-player-to-game.component';
-import { NewsComponent } from '../../../modals/news/news.component';
+import { NewsDialogComponent } from '../../../modals/news-dialog/news-dialog.component';
 
 @Component({
   selector: 'pm-games',
@@ -90,7 +90,7 @@ export class GamesComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef), first())
       .subscribe((user) => {
         if (!user.hasReadNews) {
-          this.dialog.open(NewsComponent);
+          this.dialog.open(NewsDialogComponent);
         }
       });
   }

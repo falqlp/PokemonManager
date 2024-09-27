@@ -19,13 +19,6 @@
       flex-direction: column;
       gap: 10px;
     }
-    .login-background {
-      top: 0;
-      left: 0;
-      position: absolute;
-      width: 100vw;
-      z-index: -500;
-    }
   }
 }
 ::ng-deep {

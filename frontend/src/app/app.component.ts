@@ -3,9 +3,9 @@ import {
   Component,
   DestroyRef,
   ElementRef,
+  inject,
   OnInit,
   ViewChild,
-  inject,
 } from '@angular/core';
 import { WebsocketService } from './services/websocket.service';
 import { SidenavService } from './components/sidenav/sidenav.service';
@@ -26,6 +26,7 @@ import { LanguageService } from './services/language.service';
 import { RouterService } from './services/router.service';
 import { UserService } from './services/user.service';
 import { CacheService } from './services/cache.service';
+import { AsyncPipe, NgClass, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -41,6 +42,9 @@ import { CacheService } from './services/cache.service';
     MatIconModule,
     MatButtonModule,
     NoMobileComponent,
+    AsyncPipe,
+    NgClass,
+    NgOptimizedImage,
   ],
 })
 export class AppComponent implements OnInit, AfterViewInit {
@@ -50,12 +54,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   private elementRef = inject(ElementRef);
   private languageService = inject(LanguageService);
   private translateService = inject(TranslateService);
-  private routerService = inject(RouterService);
+  protected routerService = inject(RouterService);
   private userService = inject(UserService);
   private cacheService = inject(CacheService);
 
   @ViewChild('drawer') public drawer: MatDrawer;
   protected isMobile = false;
+  protected topBar$ = this.routerService.topBar();
   constructor() {
     const initGameService = inject(InitGameService);
     const eggHatchedService = inject(EggHatchedService);

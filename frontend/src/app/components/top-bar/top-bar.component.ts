@@ -43,6 +43,7 @@ import { WebsocketEventService } from '../../services/websocket-event.service';
   ],
 })
 export class TopBarComponent implements OnInit {
+  protected badgeDataService = inject(BadgeDataService);
   private playerService = inject(PlayerService);
   private dialog = inject(MatDialog);
   private routerService = inject(RouterService);
@@ -51,7 +52,6 @@ export class TopBarComponent implements OnInit {
   private sidenavService = inject(SidenavService);
   private translateService = inject(TranslateService);
   private languageService = inject(LanguageService);
-  protected badgeDataService = inject(BadgeDataService);
   private websocketEventService = inject(WebsocketEventService);
 
   protected player$: Observable<TrainerModel>;

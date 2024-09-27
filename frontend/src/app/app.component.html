@@ -1,15 +1,21 @@
-@if (isMobile){
-<pm-no-mobile (show)="isMobile = false" />
-} @else {
-<mat-drawer-container>
+<mat-drawer-container style="min-height: 100%">
   <mat-drawer #drawer>
     <pm-sidenav></pm-sidenav>
   </mat-drawer>
   <mat-drawer-content>
+    @let topBar = topBar$ | async; @if (topBar) {
     <app-top-bar></app-top-bar>
-    <div class="content">
+    } @else {
+    <img
+      class="background"
+      src="../../../../assets/other/login.webp"
+      alt="background" />
+    } @if (isMobile && topBar) {
+    <pm-no-mobile (show)="isMobile = false" />
+    } @else {
+    <div [ngClass]="topBar ? 'content' : 'other'">
       <router-outlet></router-outlet>
     </div>
+    }
   </mat-drawer-content>
 </mat-drawer-container>
-}
