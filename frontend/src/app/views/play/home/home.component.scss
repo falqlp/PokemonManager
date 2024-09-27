@@ -1,0 +1,44 @@
+@import '../../../../styles/flexbox';
+
+h3 {
+  margin: 10px;
+}
+.home {
+  display: flex;
+  gap: 10px;
+  &__rankings {
+    @include flexbox(left, 2, column);
+    width: fit-content;
+    align-items: center;
+  }
+  &__team {
+    @include flexbox(center, 2, column);
+    align-items: center;
+    height: fit-content;
+    flex: 1;
+    &__pokemons {
+      display: flex;
+      gap: 5px;
+      flex-direction: column;
+      width: -webkit-fill-available;
+      width: -moz-available;
+      &__pokemon {
+        @include flexbox(space-between, 1);
+        align-items: center;
+        gap: 5px;
+        display: grid;
+        grid-template-columns: 1fr 1.5fr 1fr;
+        grid-template-rows: auto;
+        &__main-info {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+        &__moves {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}

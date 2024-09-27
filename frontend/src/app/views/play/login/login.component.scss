@@ -1,0 +1,28 @@
+@import '../../../../styles/flexbox';
+
+:host {
+  display: flex;
+  justify-content: center;
+  .login-form {
+    @include flexbox(left, 2, column);
+    align-items: stretch;
+    flex: 0.25;
+    gap: 15px;
+    &__forgotten {
+      text-decoration: underline;
+      cursor: pointer;
+      padding-left: 5px;
+      color: #673ab7;
+    }
+    &__buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}
+::ng-deep {
+  .content {
+    height: calc(100vh - 30px) !important;
+  }
+}

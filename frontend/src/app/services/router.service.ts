@@ -1,18 +1,11 @@
-import { Injectable, inject } from '@angular/core';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  NavigationStart,
-  Router,
-} from '@angular/router';
-import { BehaviorSubject, filter, Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { NavigationStart, RouteConfigLoadEnd, Router } from '@angular/router';
+import { BehaviorSubject, filter, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RouterService extends Router {
-  protected activatedRoute = inject(ActivatedRoute);
-
   protected lastUrl: string;
   protected titleSubject = new BehaviorSubject<string>('');
   private navigationDisabledSubject = new BehaviorSubject<boolean>(false);
@@ -20,6 +13,15 @@ export class RouterService extends Router {
     this.navigationDisabledSubject.asObservable();
 
   public $title = this.titleSubject.asObservable();
+
+  private readonly routeData$ = this.events.pipe(
+    filter((event) => event instanceof RouteConfigLoadEnd),
+
+    map((event) => {
+      return (event as RouteConfigLoadEnd).route.data;
+    }),
+    filter((data) => !!data)
+  );
 
   constructor() {
     super();
@@ -31,16 +33,10 @@ export class RouterService extends Router {
   }
 
   public init(): void {
-    this.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event) => {
-        const routeData: any = this.config.find(
-          (config) =>
-            config.path === (event as NavigationEnd).url.replace('/', '')
-        ).data;
-        this.setTitle(routeData.title);
-        this.navigationDisabledSubject.next(routeData.navigationDisabled);
-      });
+    this.routeData$.subscribe((data) => {
+      this.setTitle(data['title']);
+      this.navigationDisabledSubject.next(data['navigationDisabled']);
+    });
     this.events
       .pipe(filter((event) => event instanceof NavigationStart))
       .subscribe(() => {
@@ -50,5 +46,15 @@ export class RouterService extends Router {
 
   public getLastUrl(): string {
     return this.lastUrl;
+  }
+
+  public topBar(): Observable<boolean> {
+    return this.routeData$.pipe(
+      map((data) => {
+        return (
+          data && (data['topBar'] !== false || data['title'] === undefined)
+        );
+      })
+    );
   }
 }

@@ -1,4 +1,4 @@
-import { BattlePokemonModel } from '../views/new-battle/battle.model';
+import { BattlePokemonModel } from '../views/play/new-battle/battle.model';
 import { MoveModel } from './move.model';
 
 export type Effectiveness =

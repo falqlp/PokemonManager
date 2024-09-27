@@ -1,7 +1,7 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ReadonlyQuery } from '../../core/readonly-query';
 import { HttpClient } from '@angular/common/http';
-import { PokedexDetailsModel } from '../../views/pokedex-details/pokedex-details.model';
+import { PokedexDetailsModel } from '../../views/play/pokedex-details/pokedex-details.model';
 
 @Injectable({
   providedIn: 'root',

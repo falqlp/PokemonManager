@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { TranslateModule } from '@ngx-translate/core';
-import { BattleTrainerModel } from '../../views/new-battle/battle.model';
+import { BattleTrainerModel } from '../../views/play/new-battle/battle.model';
 import { RankingBaseModel } from '../../models/ranking.model';
 
 @Component({

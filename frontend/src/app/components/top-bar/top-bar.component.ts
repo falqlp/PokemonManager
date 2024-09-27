@@ -1,14 +1,13 @@
-import { DestroyRef, OnInit, inject } from '@angular/core';
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import type { Observable } from 'rxjs';
+import { first, tap } from 'rxjs';
 import { PokemonInfoComponent } from 'src/app/modals/pokemon-info/pokemon-info.component';
 import type { PokemonModel } from 'src/app/models/PokemonModels/pokemon.model';
 import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { RouterService } from '../../services/router.service';
 import { TimeService } from '../../services/time.service';
-import { first, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SidenavService } from '../sidenav/sidenav.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -44,6 +43,7 @@ import { WebsocketEventService } from '../../services/websocket-event.service';
   ],
 })
 export class TopBarComponent implements OnInit {
+  protected badgeDataService = inject(BadgeDataService);
   private playerService = inject(PlayerService);
   private dialog = inject(MatDialog);
   private routerService = inject(RouterService);
@@ -52,7 +52,6 @@ export class TopBarComponent implements OnInit {
   private sidenavService = inject(SidenavService);
   private translateService = inject(TranslateService);
   private languageService = inject(LanguageService);
-  protected badgeDataService = inject(BadgeDataService);
   private websocketEventService = inject(WebsocketEventService);
 
   protected player$: Observable<TrainerModel>;
@@ -61,6 +60,7 @@ export class TopBarComponent implements OnInit {
   protected date$: Observable<string>;
   protected showWeekCalendar = false;
   protected actualDate: Date;
+  protected topBar$ = this.routerService.topBar();
   protected player: TrainerModel;
   protected lang =
     this.translateService.currentLang ?? this.translateService.defaultLang;

@@ -13,7 +13,7 @@ class PermissionsService {
   gameGuard(): boolean {
     const gameId = this.cacheService.getGameId();
     const trainerId = this.cacheService.getTrainerId();
-    if (gameId === 'null' || trainerId === 'null') {
+    if (gameId === 'null' || (trainerId === 'null' && !gameId) || !trainerId) {
       this.router.navigateByUrl('/games');
       return false;
     }
@@ -22,7 +22,7 @@ class PermissionsService {
 
   authGuard(): boolean {
     const userId = this.cacheService.getUserId();
-    if (userId === 'null') {
+    if (userId === 'null' || !userId) {
       this.router.navigateByUrl('/login');
       return false;
     }

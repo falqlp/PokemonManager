@@ -1,0 +1,14 @@
+@import '../../../../../styles/flexbox';
+
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  .pokedex-moves-learned {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    flex: 1 1 33%;
+  }
+}

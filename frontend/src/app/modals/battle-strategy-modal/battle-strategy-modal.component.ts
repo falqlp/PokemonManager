@@ -21,7 +21,7 @@ import {
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatTab, MatTabGroup } from '@angular/material/tabs';
-import { BattleEventsStatsGraphComponent } from '../../views/battle-events-stats/battle-events-stats-graph/battle-events-stats-graph.component';
+import { BattleEventsStatsGraphComponent } from '../../views/play/battle-events-stats/battle-events-stats-graph/battle-events-stats-graph.component';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/autocomplete';
 import { MatSelect } from '@angular/material/select';
@@ -130,12 +130,12 @@ export class BattleStrategyModalComponent implements OnInit {
     this.save()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() =>
-        this.routerService.navigate(['battle/' + this.data.battle._id])
+        this.routerService.navigate(['play', 'battle', this.data.battle._id])
       );
   }
 
   protected goToPc(): void {
-    this.routerService.navigate(['pcStorage']);
+    this.routerService.navigate(['play', 'pcStorage']);
   }
 
   protected simulate(): void {
@@ -170,7 +170,7 @@ export class BattleStrategyModalComponent implements OnInit {
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe(() => {
-        this.routerService.navigate(['battle-resume'], {
+        this.routerService.navigate(['play', 'battle-resume'], {
           queryParams: { battle: this.data.battle._id },
         });
         this.dialog.closeAll();

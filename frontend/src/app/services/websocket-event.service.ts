@@ -1,9 +1,9 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, filter, Observable } from 'rxjs';
 import { PokemonBaseModel } from '../models/PokemonModels/pokemonBase.model';
 import { TrainerModel } from '../models/TrainersModels/trainer.model';
 import { WebSocketModel } from './websocket.service';
-import { BattleStateModel } from '../views/new-battle/battle.model';
+import { BattleStateModel } from '../views/play/new-battle/battle.model';
 import { RouterService } from './router.service';
 
 export interface NotificationModel {

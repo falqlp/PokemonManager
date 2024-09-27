@@ -1,0 +1,13 @@
+@import '../../../../../../styles/flexbox';
+
+.friends-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  &__friend {
+    @include flexbox(space-between, 1);
+    width: -webkit-fill-available;
+    width: -moz-available;
+    align-items: center;
+  }
+}
