@@ -42,7 +42,7 @@ jobs:
       - name: Connect to VM and Deploy
         run: rsync -ah --progress ./backend/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.DEPLOY_PATH }}
 
-#
-#      - name: Execute bundle.js on VM
-#        run: ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'screen -dm sudo node ${{ secrets.DEPLOY_PATH }}bundle.js'
+      - name: Restart VM
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "sudo reboot"
 
