@@ -14,9 +14,9 @@ import { NgClass } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-battle-resume',
-  templateUrl: './battle-resume.component.html',
-  styleUrls: ['./battle-resume.component.scss'],
+  selector: 'app-battle-summary',
+  templateUrl: './battle-summary.component.html',
+  styleUrls: ['./battle-summary.component.scss'],
   standalone: true,
   imports: [
     TrainerNameComponent,
@@ -27,7 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
   ],
 })
-export class BattleResumeComponent implements OnInit {
+export class BattleSummaryComponent implements OnInit {
   protected route = inject(ActivatedRoute);
   protected router = inject(RouterService);
   protected battleQueries = inject(BattleInstanceQueriesService);

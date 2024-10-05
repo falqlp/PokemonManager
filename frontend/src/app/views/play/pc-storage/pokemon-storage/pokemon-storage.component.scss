@@ -1,0 +1,63 @@
+@use 'flexbox';
+
+.pokemon-storage {
+  display: flex;
+  gap: 15px;
+  &__team {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    &__storage {
+      @include flexbox.flexbox(left, 1, column);
+      gap: 10px;
+    }
+  }
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    &__storage {
+      position: relative;
+      &__placeholder {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      &__storage {
+        @include flexbox.flexbox(left, 1);
+        width: calc(116px * 6 + 5 * 10px);
+        height: calc(116px * 6 + 5 * 10px);
+        justify-content: left;
+
+        &__zone {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          width: 100%;
+          justify-content: left;
+        }
+      }
+    }
+  }
+  &__main__storage__storage__pokemon,
+  &__team__storage__pokemon {
+    @include flexbox.flexbox(center, 2);
+    ::ng-deep .display-pokemon-image {
+      cursor: move !important;
+    }
+  }
+  &__main__title,
+  &__team__title {
+    @include flexbox.flexbox(center, 1);
+  }
+}
+
+.first-selected {
+  background-color: #e62829;
+}
+
+.second-selected {
+  background-color: lightgray;
+}
