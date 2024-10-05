@@ -3,9 +3,9 @@ import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
+  inject,
   input,
   ViewChild,
-  inject,
 } from '@angular/core';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import Swiper from 'swiper';
@@ -16,39 +16,39 @@ import { MatIconModule } from '@angular/material/icon';
 import { DisplayPokemonImageComponent } from '../display-pokemon-image/display-pokemon-image.component';
 import { DisplayTypeComponent } from '../display-type/display-type.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
-import { PokemonResumeMovesComponent } from './pokemon-resume-moves/pokemon-resume-moves.component';
+import { PokemonSummaryMovesComponent } from './pokemon-resume-moves/pokemon-summary-moves.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgClass } from '@angular/common';
-import { PokemonResumeInfosComponent } from './pokemon-resume-infos/pokemon-resume-infos.component';
+import { PokemonSummaryInfosComponent } from './pokemon-resume-infos/pokemon-summary-infos.component';
 import { PokemonStatsRadarComponent } from '../pokemon-stats-radar/pokemon-stats-radar.component';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-pokemon-resume',
-  templateUrl: './pokemon-resume.component.html',
-  styleUrls: ['./pokemon-resume.component.scss'],
+  templateUrl: './pokemon-summary.component.html',
+  styleUrls: ['./pokemon-summary.component.scss'],
   standalone: true,
   imports: [
     MatIconModule,
     DisplayPokemonImageComponent,
     DisplayTypeComponent,
     ProgressBarComponent,
-    PokemonResumeMovesComponent,
+    PokemonSummaryMovesComponent,
     TranslateModule,
     NgClass,
-    PokemonResumeInfosComponent,
+    PokemonSummaryInfosComponent,
     PokemonStatsRadarComponent,
     MatGridList,
     MatGridTile,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class PokemonResumeComponent implements AfterViewInit {
+export class PokemonSummaryComponent implements AfterViewInit {
   protected dialog = inject(MatDialog);
 
   @ViewChild('swiperContainer') protected swiperContainer: ElementRef;
   protected swiper = Swiper;
-  public pokemon = input<PokemonModel>();
+  public pokemon = input.required<PokemonModel>();
 
   public ngAfterViewInit(): void {
     const swiperOption: SwiperOptions = {

@@ -1,7 +1,7 @@
 @import '../../../../styles/flexbox';
 @import '../../../../styles/colors';
 
-.battle-resume {
+.battle-summary {
   display: grid;
   grid-template-columns: repeat(3, 33.333333%);
   grid-template-rows: calc(100vh - 82px);

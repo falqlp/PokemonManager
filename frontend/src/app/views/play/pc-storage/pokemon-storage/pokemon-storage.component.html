@@ -1,0 +1,98 @@
+<div cdkDropListGroup class="pokemon-storage">
+  <div class="pokemon-storage__team">
+    <label class="pokemon-storage__team__title"
+      >{{ 'TEAM' | translate }}: {{ teamStorage.length }} /
+      {{ maxTeamSize }}</label
+    >
+    <div
+      cdkDropList
+      cdkDropListOrientation="vertical"
+      class="pokemon-storage__team__storage"
+      [cdkDropListData]="teamStorage"
+      [cdkDropListEnterPredicate]="teamPredicate"
+      (cdkDropListDropped)="drop($event)">
+      @for (pokemon of teamStorage; track pokemon) {
+      <div
+        class="pokemon-storage__team__storage__pokemon"
+        [ngClass]="{
+          'first-selected': firstSelected?._id === pokemon._id,
+          'second-selected': secondSelected?._id === pokemon._id
+        }"
+        cdkDrag
+        [cdkDragDisabled]="teamStorage.length === 1">
+        <app-display-pokemon-image
+          class="pokemon-storage__team__storage__pokemon__image"
+          (click)="onContextMenu($event, pokemon)"
+          (contextmenu)="onContextMenu($event, pokemon)"
+          [pokemon]="pokemon"
+          [matBadgeHidden]="!badgeDataService.pokemon.includes(pokemon._id)"
+          [disabledClick]="true"
+          matBadgeColor="warn"
+          matBadge="&#8288;"
+          matBadgeSize="small" />
+      </div>
+      }
+    </div>
+  </div>
+  <div class="pokemon-storage__main">
+    <label class="pokemon-storage__main__title"
+      >{{ 'PC-STORAGE' | translate }}: {{ mainStorage.length }} /
+      {{ pcMaxSize }}</label
+    >
+    <div class="pokemon-storage__main__storage">
+      @if (!mainStorage.length) {
+      <div class="pokemon-storage__main__storage__placeholder">
+        {{ 'YOU_CAN_DROP_POKEMON_HERE' | translate }}
+      </div>
+      }
+      <div
+        cdkDropList
+        cdkDropListOrientation="mixed"
+        class="pokemon-storage__main__storage__storage"
+        [cdkDropListData]="mainStorage"
+        [cdkDropListEnterPredicate]="mainPredicate"
+        (cdkDropListDropped)="drop($event)">
+        <div
+          class="pokemon-storage__main__storage__storage__zone"
+          [ngStyle]="{ width: mainStorage.length ? '100%' : 0 }">
+          @for (pokemon of mainStorage; track pokemon;let i = $index) {
+          <div
+            class="pokemon-storage__main__storage__storage__pokemon"
+            [ngClass]="{
+              'first-selected': firstSelected?._id === pokemon._id,
+              'second-selected': secondSelected?._id === pokemon._id
+            }"
+            cdkDrag
+            [cdkDragDisabled]="i >= pcMaxSize">
+            <app-display-pokemon-image
+              class="pokemon-storage__main__storage__storage__pokemon__image"
+              (click)="onContextMenu($event, pokemon)"
+              (contextmenu)="onContextMenu($event, pokemon)"
+              [pokemon]="pokemon"
+              [matBadgeHidden]="!badgeDataService.pokemon.includes(pokemon._id)"
+              [disabledClick]="true"
+              matBadgeColor="warn"
+              matBadge="&#8288;"
+              matBadgeSize="small" />
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  style="visibility: hidden; position: fixed"
+  [style.left]="contextMenuPosition.x"
+  [style.top]="contextMenuPosition.y"
+  [matMenuTriggerFor]="contextMenu"></div>
+<mat-menu #contextMenu="matMenu">
+  <ng-template matMenuContent let-pokemon="pokemon">
+    <button (click)="selectFirst(pokemon)" mat-menu-item>
+      {{ 'SUMMARY' | translate }}
+    </button>
+    <button (click)="selectSecond(pokemon)" mat-menu-item>
+      {{ 'COMPARE' | translate }}
+    </button></ng-template
+  ></mat-menu
+>

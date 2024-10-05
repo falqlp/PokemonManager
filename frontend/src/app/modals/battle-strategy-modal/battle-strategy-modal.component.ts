@@ -170,7 +170,7 @@ export class BattleStrategyModalComponent implements OnInit {
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe(() => {
-        this.routerService.navigate(['play', 'battle-resume'], {
+        this.routerService.navigate(['play', 'battle-summary'], {
           queryParams: { battle: this.data.battle._id },
         });
         this.dialog.closeAll();

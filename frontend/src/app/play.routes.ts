@@ -65,12 +65,12 @@ export const playRoutes: Routes = [
       ),
   },
   {
-    path: 'battle-resume',
+    path: 'battle-summary',
     loadComponent: () =>
-      import('./views/play/battle-resume/battle-resume.component').then(
-        (m) => m.BattleResumeComponent
+      import('./views/play/battle-summary/battle-summary.component').then(
+        (m) => m.BattleSummaryComponent
       ),
-    data: { title: 'BATTLE-RESUME' },
+    data: { title: 'BATTLE-SUMMARY' },
   },
   {
     path: 'battle-strategy',

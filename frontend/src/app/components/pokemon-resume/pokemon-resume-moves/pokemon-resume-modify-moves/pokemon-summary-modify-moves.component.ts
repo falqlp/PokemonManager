@@ -39,10 +39,10 @@ import { switchMap } from 'rxjs';
     MatSlideToggleModule,
     MatButtonModule,
   ],
-  templateUrl: './pokemon-resume-modify-moves.component.html',
-  styleUrls: ['./pokemon-resume-modify-moves.component.scss'],
+  templateUrl: './pokemon-summary-modify-moves.component.html',
+  styleUrls: ['./pokemon-summary-modify-moves.component.scss'],
 })
-export class PokemonResumeModifyMovesComponent implements OnInit {
+export class PokemonSummaryModifyMovesComponent implements OnInit {
   protected moveLearningQueriesService = inject(MoveLearningQueriesService);
   protected pokemonQueriesService = inject(PokemonQueriesService);
   protected destroyRef = inject(DestroyRef);

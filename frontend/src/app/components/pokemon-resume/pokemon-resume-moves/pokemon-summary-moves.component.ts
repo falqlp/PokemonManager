@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { PokemonModel } from '../../../models/PokemonModels/pokemon.model';
 import { MatButtonModule } from '@angular/material/button';
-import { PokemonResumeModifyMovesComponent } from './pokemon-resume-modify-moves/pokemon-resume-modify-moves.component';
+import { PokemonSummaryModifyMovesComponent } from './pokemon-resume-modify-moves/pokemon-summary-modify-moves.component';
 
 import { MoveComponent } from '../../move/move.component';
 
@@ -12,13 +12,13 @@ import { MoveComponent } from '../../move/move.component';
   imports: [
     TranslateModule,
     MatButtonModule,
-    PokemonResumeModifyMovesComponent,
+    PokemonSummaryModifyMovesComponent,
     MoveComponent,
   ],
-  templateUrl: './pokemon-resume-moves.component.html',
-  styleUrls: ['./pokemon-resume-moves.component.scss'],
+  templateUrl: './pokemon-summary-moves.component.html',
+  styleUrls: ['./pokemon-summary-moves.component.scss'],
 })
-export class PokemonResumeMovesComponent {
+export class PokemonSummaryMovesComponent {
   @Input()
   set pokemon(value: PokemonModel) {
     this._pokemon = value;

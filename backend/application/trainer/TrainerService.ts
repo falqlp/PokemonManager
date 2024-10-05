@@ -341,7 +341,7 @@ class TrainerService {
       }
       const pcPokemons = await this.pokemonRepository.list(
         {
-          ids: teamPositionsId,
+          ids: pcPositionIds,
         },
         { gameId },
       );
