@@ -15,7 +15,10 @@ export default class TournamentRepository extends CompleteRepository<ITournament
   ): Promise<ITournament[]> {
     const tournamentsAggregation = this.schema
       .aggregate<ITournament>()
-      .match({ tournamentSteps: { $exists: true, $ne: [] }, gameId })
+      .match({
+        tournamentSteps: { $exists: true, $ne: [] },
+        gameId: gameId.toString(),
+      })
       .addFields({
         lastStep: { $arrayElemAt: ["$tournamentSteps", -1] },
       })

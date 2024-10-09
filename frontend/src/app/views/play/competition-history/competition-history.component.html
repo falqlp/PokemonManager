@@ -25,6 +25,14 @@
   </div>
   <div class="competition-history__filters__competition">
     <mat-form-field>
+      <mat-label>{{ 'DIVISION' | translate }}</mat-label>
+      <mat-select [formControl]="competitionHistoryForm.controls.division">
+        @for (division of divisions;track division){
+        <mat-option [value]="division">{{ division }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
       <mat-label>{{ 'COMPETITION' | translate }}</mat-label>
       <mat-select [formControl]="competitionHistoryForm.controls.competition">
         @for (competition of competitionHistory;track competition._id){
@@ -36,19 +44,17 @@
     </mat-form-field>
   </div>
 </div>
-@if (competitionHistoryForm.controls.competition.value?.type ===
-'CHAMPIONSHIP'){
+@let competition = competitionHistoryForm.controls.competition.valueChanges |
+async; @if (competition?.type === 'CHAMPIONSHIP'){
 <pm-ranking
   class="competition-history__ranking"
-  [competitionHistory]="competitionHistoryForm.controls.competition.value" />
-} @else if (competitionHistoryForm.controls.competition.value?.type ===
-'TOURNAMENT'){
+  [competitionHistory]="competition" />
+} @else if (competition?.type === 'TOURNAMENT'){
 <pm-tournament-ranking
   class="competition-history__ranking"
   [full]="true"
-  [competitionHistory]="competitionHistoryForm.controls.competition.value" />
-} @else if (competitionHistoryForm.controls.competition.value?.type ===
-'GROUPS'){
+  [competitionHistory]="competition" />
+} @else if (competition?.type === 'GROUPS'){
 <pm-groups-ranking
   class="competition-history__ranking"
   [competitionHistory]="competitionHistoryForm.controls.competition.value" />

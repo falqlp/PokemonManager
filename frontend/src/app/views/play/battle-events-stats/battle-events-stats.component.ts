@@ -162,6 +162,7 @@ export class BattleEventsStatsComponent implements OnInit {
       map((value) => {
         return {
           period: value.period,
+          division: value.division,
           trainerIds: value.trainers.map((trainer) => trainer._id),
           competitionId: value.competition?._id,
         };

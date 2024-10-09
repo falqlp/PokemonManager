@@ -13,7 +13,7 @@ const readOnlyRouter = new ReadOnlyRouter(
   container.resolve(NurseryMapper),
 );
 
-router.post("/setNurseryWishlist", async (req, res, next) => {
+router.post("/set-nursery-wishlist", async (req, res, next) => {
   try {
     const gameId = req.headers["game-id"] as string;
     await service.setNurseryWishlist(
@@ -28,7 +28,7 @@ router.post("/setNurseryWishlist", async (req, res, next) => {
   }
 });
 
-router.put("/saveNurseryWishlist", async (req, res, next) => {
+router.put("/save-nursery-wishlist", async (req, res, next) => {
   try {
     const gameId = req.headers["game-id"] as string;
     await service.saveNurseryWishlist(

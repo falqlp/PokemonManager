@@ -1,4 +1,11 @@
-import { Component, DestroyRef, input, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  effect,
+  inject,
+  input,
+  OnInit,
+} from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { TranslateModule } from '@ngx-translate/core';
 import { TimeService } from '../../services/time.service';
@@ -34,23 +41,28 @@ export class RankingComponent implements OnInit {
 
   protected ranking$: Observable<RankingModel[]>;
 
+  constructor() {
+    effect(() => {
+      if (this.competitionHistory()) {
+        const competitionHistory = this.competitionHistory();
+        if ('ranking' in competitionHistory) {
+          this.ranking$ = of(competitionHistory.ranking);
+        }
+      } else {
+        if (this.competition().type === CompetitionType.CHAMPIONSHIP) {
+          this.ranking$ = this.timeService.getActualDate().pipe(
+            switchMap(() => {
+              return this.battleInstanceQueriesService.getRanking(
+                this.competition()._id
+              );
+            })
+          );
+        }
+      }
+    });
+  }
+
   public ngOnInit(): void {
-    if (this.competitionHistory()) {
-      const competitionHistory = this.competitionHistory();
-      if ('ranking' in competitionHistory) {
-        this.ranking$ = of(competitionHistory.ranking);
-      }
-    } else {
-      if (this.competition().type === CompetitionType.CHAMPIONSHIP) {
-        this.ranking$ = this.timeService.getActualDate().pipe(
-          switchMap(() => {
-            return this.battleInstanceQueriesService.getRanking(
-              this.competition()._id
-            );
-          })
-        );
-      }
-    }
     this.playerService.player$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((player) => {
