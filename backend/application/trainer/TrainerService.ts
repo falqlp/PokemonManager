@@ -24,6 +24,7 @@ import { PcStorageService } from "./pcStorage/PcStorageService";
 import { XP_PER_LEVEL } from "../experience/ExperienceService";
 import { mongoId } from "../../utils/MongoUtils";
 import WebsocketUtils from "../../websocket/WebsocketUtils";
+import { DIVISION_POKEMON_RANGE_RECORD, NB_DIVISION } from "../game/GameConst";
 
 @singleton()
 class TrainerService {
@@ -88,6 +89,7 @@ class TrainerService {
         class: nameAndClass.class,
         competitions: championship ? [championship] : [],
         pokemons: [],
+        division: championship.division,
       } as ITrainer;
       trainers.push(trainer);
     }
@@ -179,7 +181,8 @@ class TrainerService {
     game: IGame,
     nbGeneratedTrainer: number,
     championship?: ICompetition,
-  ): Promise<void> {
+    ranges?: { levelRange: RangeModel; quantityRange: RangeModel },
+  ): Promise<ITrainer[]> {
     const generatedTrainers = await this.generateTrainers(
       game._id.toString(),
       nbGeneratedTrainer,
@@ -188,11 +191,26 @@ class TrainerService {
     const res = await this.generateTrainersPokemons(
       game,
       generatedTrainers,
-      { max: 4, min: 2 },
-      { max: 13, min: 8 },
+      ranges?.quantityRange ?? { max: 4, min: 2 },
+      ranges?.levelRange ?? { max: 13, min: 8 },
     );
     await this.pokemonService.createPokemons(res.pokemons, game._id);
-    await this.createMany(res.trainers);
+    return await this.createMany(res.trainers);
+  }
+
+  public async generateTrainerWithPokemonByDivision(
+    game: IGame,
+    nbGeneratedTrainerByDivision: number[],
+    championships: ICompetition[],
+  ): Promise<void> {
+    for (let i = 0; i < championships.length; i++) {
+      await this.generateTrainerWithPokemon(
+        game,
+        nbGeneratedTrainerByDivision[i],
+        championships[i],
+        DIVISION_POKEMON_RANGE_RECORD[championships[i].division],
+      );
+    }
   }
 
   public async update(trainer: ITrainer): Promise<ITrainer> {
@@ -361,6 +379,16 @@ class TrainerService {
       }
       await this.update(trainer);
     }
+  }
+
+  public getTrainersByDivision(trainers: ITrainer[]): ITrainer[][] {
+    const trainersByDivision: ITrainer[][] = [];
+    for (let i = 1; i <= NB_DIVISION; i++) {
+      trainersByDivision.push(
+        trainers.filter((trainer) => trainer.division === i),
+      );
+    }
+    return trainersByDivision;
   }
 }
 

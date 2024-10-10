@@ -36,6 +36,20 @@ class TrainerRepository extends CompleteRepository<ITrainer> {
     Pokemon.updateMany({ trainerId: dto._id }, { $unset: { trainerId: "" } });
     return super.delete(dto._id);
   }
+
+  public async relegate(ids: string[], gameId: string): Promise<void> {
+    await this.schema.updateMany(
+      { _id: { $in: ids }, gameId },
+      { $inc: { division: 1 } },
+    );
+  }
+
+  public async promote(ids: string[], gameId: string): Promise<void> {
+    await this.schema.updateMany(
+      { _id: { $in: ids }, gameId },
+      { $inc: { division: -1 } },
+    );
+  }
 }
 
 export default TrainerRepository;

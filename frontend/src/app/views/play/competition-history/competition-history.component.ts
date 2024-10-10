@@ -13,12 +13,13 @@ import { CompetitionHistoryModel } from '../../../models/competition-history.mod
 import { TimeService } from '../../../services/time.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CompetitionHistoryQueriesService } from '../../../services/queries/competition-history-queries.service';
-import { filter, startWith, switchMap } from 'rxjs';
+import { combineLatestWith, filter, startWith, switchMap } from 'rxjs';
 import { RankingComponent } from '../../../components/ranking/ranking.component';
 import { TournamentRankingComponent } from '../../../components/ranking/tournament-ranking/tournament-ranking.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CacheService } from '../../../services/cache.service';
 import { GroupsRankingComponent } from '../../../components/ranking/groups-ranking/groups-ranking.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'pm-competition-history',
@@ -33,6 +34,7 @@ import { GroupsRankingComponent } from '../../../components/ranking/groups-ranki
     TournamentRankingComponent,
     TranslateModule,
     GroupsRankingComponent,
+    AsyncPipe,
   ],
   templateUrl: './competition-history.component.html',
   styleUrl: './competition-history.component.scss',
@@ -44,6 +46,8 @@ export class CompetitionHistoryComponent implements OnInit {
     CompetitionHistoryQueriesService
   );
 
+  protected readonly divisions = [1, 2, 3];
+
   private cacheService = inject(CacheService);
 
   protected competitionHistoryForm = new FormGroup({
@@ -51,6 +55,7 @@ export class CompetitionHistoryComponent implements OnInit {
       Validators.required,
       Validators.min(2023),
     ]),
+    division: new FormControl<number>(1),
     competition: new FormControl<CompetitionHistoryModel>(null),
   });
 
@@ -60,22 +65,32 @@ export class CompetitionHistoryComponent implements OnInit {
     this.timeService
       .getActualDate()
       .pipe(
-        takeUntilDestroyed(this.destroyRef),
         filter((value) => !!value),
         switchMap((date) => {
           this.competitionHistoryForm.controls.year.setValue(
             date.getFullYear() - 1
           );
           return this.competitionHistoryForm.controls.year.valueChanges.pipe(
-            startWith(this.competitionHistoryForm.controls.year.value)
+            startWith(this.competitionHistoryForm.controls.year.value),
+            combineLatestWith(
+              this.competitionHistoryForm.controls.division.valueChanges.pipe(
+                startWith(this.competitionHistoryForm.controls.division.value)
+              )
+            )
           );
         }),
-        switchMap((value) => {
+        switchMap(([year, division]) => {
           this.competitionHistoryForm.controls.competition.setValue(undefined);
           return this.competitionHistoryQueriesService.list({
-            custom: { season: value, gameId: this.cacheService.getGameId() },
+            custom: {
+              season: year,
+              $or: [{ division }, { division: { $exists: false } }],
+
+              gameId: this.cacheService.getGameId(),
+            },
           });
-        })
+        }),
+        takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((competition) => {
         this.competitionHistory = competition;

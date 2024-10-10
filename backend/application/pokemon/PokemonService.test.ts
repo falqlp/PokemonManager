@@ -1107,7 +1107,7 @@ describe("PokemonService", () => {
       const pokemon: IPokemon = {
         _id: eggId,
         gameId,
-        hatchingDate: new Date(actualDate.getTime() - 1), // Different date
+        hatchingDate: new Date(actualDate.getTime() + 1), // Different date
         level: 0,
       } as IPokemon;
       const game: IGame = { _id: gameId, actualDate } as IGame;

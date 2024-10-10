@@ -105,7 +105,7 @@ export default class CompetitionService {
         "PLAYOFF",
         qualifiedTrainers,
         addDays(actualDate, 14),
-        3,
+        championship.division,
       );
       const groupsTrainerIds = ranking.slice(8, 21).map((value) => value._id);
       const groupsTrainers = await this.trainerRepository.list({
@@ -115,7 +115,7 @@ export default class CompetitionService {
         gameId,
         "RELEGATION_GROUPS",
         groupsTrainers,
-        3,
+        championship.division,
         addDays(actualDate, 7),
         addDays(actualDate, 49),
       );

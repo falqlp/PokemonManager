@@ -13,6 +13,7 @@ export class TrainerTestMother {
       pcStorage: PcStorageTestMother.basicPcStorage(),
       trainingCamp: TrainingCampTestMother.basicTrainingCamp(),
       nursery: NurseryTestMother.basicNursery(),
+      division: 3,
       competitions: [],
     } as ITrainer;
   }
@@ -33,6 +34,7 @@ export class TrainerTestMother {
         PokemonTestMother.generateArticuno("red"),
         PokemonTestMother.generateBulbasaur("red"),
       ],
+      division: 1,
       pcStorage: PcStorageTestMother.filledPcStorage(),
       trainingCamp: TrainingCampTestMother.advencedTrainingCamp(),
     });

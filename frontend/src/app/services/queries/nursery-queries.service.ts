@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { NurseryModel, WishListModel } from '../../models/nursery.model';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../../models/user.model';
@@ -24,7 +24,7 @@ export class NurseryQueriesService extends ReadonlyQuery<NurseryModel> {
     nurseryId: string,
     trainerId: string
   ): Observable<UserModel> {
-    return this.http.post<UserModel>(this.url, {
+    return this.http.post<UserModel>(this.url + '/set-nursery-wishlist', {
       wishlist,
       nurseryId,
       trainerId,
@@ -35,7 +35,7 @@ export class NurseryQueriesService extends ReadonlyQuery<NurseryModel> {
     wishlist: WishListModel,
     nurseryId: string
   ): Observable<UserModel> {
-    return this.http.put<UserModel>(this.url, {
+    return this.http.put<UserModel>(this.url + '/save-nursery-wishlist', {
       wishlist,
       nurseryId,
     });

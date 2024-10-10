@@ -68,7 +68,7 @@ export class SidenavComponent {
           icon: 'computer',
         },
         {
-          link: 'nursery',
+          link: 'play/nursery',
           label: 'NURSERY',
           icon: 'egg',
         },

@@ -36,7 +36,10 @@ export default class NurseryService {
   ): Promise<void> {
     const nursery = await this.nurseryRepository.get(nurseryId, { gameId });
     const trainer = await this.trainerRepository.get(trainerId, { gameId });
-    if (trainer?.nursery?._id === nurseryId && nursery?.step === "WISHLIST") {
+    if (
+      trainer?.nursery?._id.toString() === nurseryId &&
+      nursery?.step === "WISHLIST"
+    ) {
       nursery.step = "FIRST_SELECTION";
       nursery.wishList = wishlist;
       await this.nurseryRepository.update(nurseryId, nursery);

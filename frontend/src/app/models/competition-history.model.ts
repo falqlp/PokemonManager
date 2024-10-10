@@ -7,6 +7,7 @@ interface BaseCompetitionHistory {
   type: CompetitionType;
   gameId: string;
   name: string;
+  division: number;
 }
 
 export interface TournamentCompetitionHistoryModel

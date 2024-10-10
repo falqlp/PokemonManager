@@ -17,7 +17,7 @@ class UserRepository extends CompleteRepository<IUser> {
     super(User, userPopulater);
   }
 
-  public get(
+  public async get(
     _id: string,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     options?: {
@@ -25,7 +25,9 @@ class UserRepository extends CompleteRepository<IUser> {
       map?: (entity: IUser) => IUser | Promise<IUser>;
     },
   ): Promise<IUser> {
-    return super.get(_id);
+    const user = await super.get(_id);
+    user.password = undefined;
+    return user;
   }
 
   public async list(
