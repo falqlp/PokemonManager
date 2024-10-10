@@ -86,7 +86,7 @@ export class NewSeasonService {
     );
   }
 
-  private async archiveCurrentCompetition(
+  public async archiveCurrentCompetition(
     game: IGame,
   ): Promise<ICompetitionHistory[]> {
     const year = game.actualDate.getUTCFullYear() - 1;
@@ -140,7 +140,7 @@ export class NewSeasonService {
     return savedCompetitionHistoryArray;
   }
 
-  private async computePromotionAndRelegation(
+  public async computePromotionAndRelegation(
     competitionHistoryArray: ICompetitionHistory[],
     gameId: string,
   ): Promise<void> {
@@ -156,7 +156,7 @@ export class NewSeasonService {
     await this.computePromotion(tournamentCompetition, gameId);
   }
 
-  private async computePromotion(
+  public async computePromotion(
     tournamentCompetitionHistories: ITournamentCompetitionHistory[],
     gameId: string,
   ): Promise<void> {
@@ -177,7 +177,7 @@ export class NewSeasonService {
     await this.trainerRepository.promote(promotedTrainerIds, gameId);
   }
 
-  private async computeRelegation(
+  public async computeRelegation(
     groupsCompetitionHistories: IGroupsCompetitionHistory[],
     gameId: string,
   ): Promise<void> {
