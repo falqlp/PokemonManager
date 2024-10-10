@@ -65,15 +65,6 @@ export class NewSeasonService {
       nbTrainersToGenerateByDivision,
       championships,
     );
-
-    // await this.trainerService.generateTrainerWithPokemon(
-    //   game,
-    //   noPokemonTrainers.length,
-    // );
-    // const championship = await this.competitionService.createChampionship(
-    //   game,
-    //   3,
-    // );
     const trainers = await this.trainerRepository.list(
       {},
       { gameId: game._id },

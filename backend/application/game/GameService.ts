@@ -82,11 +82,6 @@ class GameService {
       }
     }
 
-    // const championship = await this.competitionService.createChampionship(
-    //   game,
-    //   3,
-    // );
-
     await this.trainerRepository.updateManyTrainer(
       {
         _id: {
@@ -113,11 +108,6 @@ class GameService {
     const trainersByDivision: ITrainer[][] =
       this.trainerService.getTrainersByDivision(trainers);
 
-    // await this.trainerService.generateTrainerWithPokemon(
-    //   game,
-    //   NB_GENERATED_TRAINER_BY_DIVISION - game.players.length,
-    //   championship,
-    // );
     this.websocketUtils.sendMessageToClientInGame(game._id, {
       type: "initGame",
       payload: {
@@ -130,12 +120,6 @@ class GameService {
       game._id,
       championships,
     );
-    // await this.generateCalendarService.generateChampionship(
-    //   trainers,
-    //   3,
-    //   game._id,
-    //   championship,
-    // );
     this.websocketUtils.sendMessageToClientInGame(game._id, {
       type: "initGameEnd",
     });
