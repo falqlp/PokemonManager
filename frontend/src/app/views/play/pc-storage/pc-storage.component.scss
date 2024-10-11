@@ -1,76 +1,15 @@
-@import '../../../../styles/colors';
-@import '../../../../styles/flexbox';
+@import 'colors';
+@import 'flexbox';
 
 .pc-storage {
   display: flex;
   gap: 20px;
   height: calc(100vh - 92px);
-  &__team {
-    background-color: $background-color1;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    min-width: 130px;
-    &__pokemon {
-      background-color: $background-color2;
-      border: $background-color2 2px solid;
-      border-radius: 4px;
-      padding: 10px;
-      margin: 10px;
-      height: 0px;
-      flex: 1;
-    }
-  }
-
-  &__main-part {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    &__buttons {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      &__info {
-        display: flex;
-        align-items: center;
-        font-size: 12px;
-        background-color: $orange-light;
-        border-radius: 5px;
-        gap: 10px;
-        padding: 5px;
-        width: -webkit-fill-available;
-        width: -moz-available;
-      }
-    }
-    &__box {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: repeat(6, 1fr);
-      height: fit-content;
-      background-color: $background-color1;
-      border-radius: 8px;
-
-      &__cell {
-        background-color: $background-color2;
-        border: $background-color2 2px solid;
-        display: flex;
-        border-radius: 4px;
-        padding: 10px;
-        margin: 10px;
-        min-height: 60px;
-        min-width: 60px;
-
-        &__icon {
-          width: 100%;
-        }
-      }
-    }
-  }
   &__resumes {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: calc(100% - 875px);
+    width: calc(100% - 940px);
     &__box {
       flex: 1;
       height: 0;
@@ -78,35 +17,7 @@
     }
   }
 }
-
-.flex {
-  display: flex;
-  height: 100%;
-}
-.empty-div {
-  min-height: 60px;
-  min-width: 60px;
-}
 .empty-resume {
   flex: 1;
   min-width: 300px;
-}
-
-.firstSelected {
-  border-color: red;
-}
-
-.secondSelected {
-  border-color: lightgray;
-}
-
-.disabled {
-  cursor: not-allowed;
-  background-image: repeating-linear-gradient(
-    -45deg,
-    #6d6971,
-    #6d6971 5px,
-    rgba(0, 0, 0, 0.2) 5px,
-    rgba(0, 0, 0, 0.2) 10px
-  );
 }
