@@ -19,6 +19,23 @@ class GenerateCalendarService {
     protected calendarEventRepository: CalendarEventRepository,
   ) {}
 
+  public async generateChampionships(
+    trainersByDivision: ITrainer[][],
+    nbFaceEachOther: number,
+    gameId: string,
+    championships: ICompetition[],
+  ): Promise<void> {
+    for (const championship of championships) {
+      const index = championships.indexOf(championship);
+      await this.generateChampionship(
+        trainersByDivision[index],
+        nbFaceEachOther,
+        gameId,
+        championship,
+      );
+    }
+  }
+
   public async generateChampionship(
     trainers: ITrainer[],
     nbFaceEachOther: number,

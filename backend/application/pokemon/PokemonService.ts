@@ -370,7 +370,7 @@ class PokemonService {
     const game = await this.gameRepository.get(gameId);
     if (
       game &&
-      pokemon?.hatchingDate === game.actualDate &&
+      pokemon?.hatchingDate <= game.actualDate &&
       pokemon.level === 0
     ) {
       pokemon.level = 1;

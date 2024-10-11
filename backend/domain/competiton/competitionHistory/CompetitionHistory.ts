@@ -12,7 +12,7 @@ interface BaseCompetitionHistory extends MongoId {
   type: CompetitionType;
   gameId: string;
   name: string;
-  division?: number;
+  division: number;
 }
 
 export interface ITournamentCompetitionHistory extends BaseCompetitionHistory {
@@ -40,7 +40,6 @@ const RankingBaseSchemaBase = {
   wins: { type: Number, required: true },
   class: { type: String },
   _id: { type: String, required: true },
-  division: { type: Number },
 };
 const RankingBaseSchema = new Schema<IRankingBase>(RankingBaseSchemaBase);
 const SerieRankingSchema = new Schema<ISerieRanking>({
@@ -60,6 +59,7 @@ const CompetitionHistorySchema = new Schema<ICompetitionHistory>({
   season: { type: Number, required: true },
   gameId: { type: String, required: true },
   name: { type: String, required: true },
+  division: { type: Number, required: true },
   ranking: {
     type: [TrainerRankingSchema],
     required: function (): boolean {

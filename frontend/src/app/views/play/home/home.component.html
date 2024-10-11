@@ -9,7 +9,14 @@
     <h3>{{ 'RANKINGS' | translate }}</h3>
     <mat-tab-group>
       @for (competition of player().competitions; track competition._id) {
-      <mat-tab [label]="competition.name | translate">
+      <mat-tab
+        [label]="
+          (competition.name | translate) +
+          ' ' +
+          ('DIVISION' | translate) +
+          ' ' +
+          competition.division
+        ">
         @switch (competition.type){ @case ('TOURNAMENT'){
         <pm-tournament-ranking [competition]="competition" />
         } @case ('GROUPS'){

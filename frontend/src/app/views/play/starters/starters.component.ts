@@ -86,7 +86,7 @@ export class StartersComponent implements OnInit {
         .createStarters(this.selected)
         .pipe(first())
         .subscribe(() => {
-          this.router.navigateByUrl('home');
+          this.router.navigateByUrl('play/home');
         });
     };
     const buttons: DialogButtonsModel[] = [

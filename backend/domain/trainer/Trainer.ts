@@ -17,6 +17,7 @@ export interface ITrainer extends MongoId {
   berries: number;
   monney: number;
   competitions: ICompetition[];
+  division?: number;
 }
 
 const trainerSchema = new Schema<ITrainer>({
@@ -38,6 +39,7 @@ const trainerSchema = new Schema<ITrainer>({
   class: { type: String },
   berries: { type: Number, required: true },
   monney: { type: Number, required: true },
+  division: { type: Number },
 });
 
 const Trainer = mongoose.model<ITrainer>("Trainer", trainerSchema);

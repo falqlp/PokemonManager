@@ -1,4 +1,4 @@
-@import '../../../../styles/flexbox';
+@import 'flexbox';
 
 :host {
   @include flexbox(flex-start, 2, column);
@@ -33,6 +33,9 @@
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
         }
+      }
+      &__competition {
+        gap: 10px;
       }
     }
     &__ranking {

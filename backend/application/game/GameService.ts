@@ -9,7 +9,12 @@ import { mongoId } from "../../utils/MongoUtils";
 import { ITrainer } from "../../domain/trainer/Trainer";
 import UserRepository from "../../domain/user/UserRepository";
 import WebsocketUtils from "../../websocket/WebsocketUtils";
-export const NB_GENERATED_TRAINER = 20;
+import { ICompetition } from "../../domain/competiton/Competition";
+import {
+  NB_DIVISION,
+  NB_GENERATED_TRAINER_BY_DIVISION,
+  START_DIVISION,
+} from "./GameConst";
 
 @singleton()
 class GameService {
@@ -61,38 +66,59 @@ class GameService {
       },
     });
     await this.competitionService.createFriendly(game._id);
-    const championship = await this.competitionService.createChampionship(
-      game,
-      3,
-    );
+
+    const championships: ICompetition[] = [];
+    const nbGeneratedTrainerByDivision: number[] = [];
+    for (let i = 1; i <= NB_DIVISION; i++) {
+      championships.push(
+        await this.competitionService.createChampionship(game, i),
+      );
+      if (i === START_DIVISION) {
+        nbGeneratedTrainerByDivision.push(
+          NB_GENERATED_TRAINER_BY_DIVISION - game.players.length,
+        );
+      } else {
+        nbGeneratedTrainerByDivision.push(NB_GENERATED_TRAINER_BY_DIVISION);
+      }
+    }
+
     await this.trainerRepository.updateManyTrainer(
       {
         _id: {
           $in: game.players.map((player) => player.trainer._id.toString()),
         },
       },
-      { $push: { competitions: championship } },
+      {
+        $push: { competitions: championships[START_DIVISION - 1] },
+        division: START_DIVISION,
+      },
     );
-    await this.trainerService.generateTrainerWithPokemon(
+
+    await this.trainerService.generateTrainerWithPokemonByDivision(
       game,
-      NB_GENERATED_TRAINER - game.players.length,
-      championship,
+      nbGeneratedTrainerByDivision,
+      championships,
     );
+
     const trainers = await this.trainerRepository.list(
       {},
       { gameId: game._id },
     );
+
+    const trainersByDivision: ITrainer[][] =
+      this.trainerService.getTrainersByDivision(trainers);
+
     this.websocketUtils.sendMessageToClientInGame(game._id, {
       type: "initGame",
       payload: {
         key: "CALENDAR_GENERATION",
       },
     });
-    await this.generateCalendarService.generateChampionship(
-      trainers,
+    await this.generateCalendarService.generateChampionships(
+      trainersByDivision,
       3,
       game._id,
-      championship,
+      championships,
     );
     this.websocketUtils.sendMessageToClientInGame(game._id, {
       type: "initGameEnd",
@@ -101,7 +127,7 @@ class GameService {
 
   public async initIfNot(gameId: string): Promise<void> {
     const trainers = await this.trainerRepository.list({ custom: { gameId } });
-    if (trainers.length !== NB_GENERATED_TRAINER) {
+    if (trainers.length !== NB_GENERATED_TRAINER_BY_DIVISION * NB_DIVISION) {
       const game = await this.gameRepository.get(gameId);
       await this.initGame(game);
     }
