@@ -7,6 +7,10 @@ export type Effectiveness =
   | 'EFFECTIVE'
   | 'SUPER_EFFECTIVE';
 
+export enum BattleDamageInfo {
+  RELOAD = 'RELOAD',
+}
+
 export interface DamageModel {
   damage: number;
   critical: boolean;
@@ -15,4 +19,5 @@ export interface DamageModel {
   attPokemon: BattlePokemonModel;
   defPokemon: BattlePokemonModel;
   move: MoveModel;
+  info?: BattleDamageInfo;
 }

@@ -6,6 +6,13 @@ export interface IAnimation {
   opponent?: string;
   player?: string;
 }
+export enum SideEffect {
+  DRAIN = "Drain",
+  RELOAD = "Reload",
+}
+
+export type ISideEffect = Record<SideEffect, number>;
+
 export interface IMove extends MongoId {
   id: number;
   name: string;
@@ -13,9 +20,17 @@ export interface IMove extends MongoId {
   category: string;
   accuracy: number;
   power?: number;
-  effect?: string;
   animation: IAnimation;
+  sideEffect?: ISideEffect;
 }
+
+const sideEffectSchema = new Schema<ISideEffect>(
+  {
+    [SideEffect.DRAIN]: { type: Number },
+    [SideEffect.RELOAD]: { type: Number },
+  },
+  { _id: false },
+);
 
 const moveSchema = new Schema<IMove>({
   id: {
@@ -43,9 +58,7 @@ const moveSchema = new Schema<IMove>({
   power: {
     type: Number,
   },
-  effect: {
-    type: String,
-  },
+  sideEffect: sideEffectSchema,
   animation: { opponent: { type: String }, player: { type: String } },
 });
 

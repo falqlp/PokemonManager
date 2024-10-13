@@ -32,7 +32,6 @@ export class MoveTestMother {
       category: "special",
       accuracy: 90,
       power: 150,
-      effect: "Recharge",
       animation: {
         opponent: "",
         player: "",

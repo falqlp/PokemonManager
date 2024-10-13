@@ -11,6 +11,7 @@ import {
   BattlePokemonModel,
   BattleStateModel,
   BattleTrainerModel,
+  SIDE_EFFECT_LOG,
 } from './battle.model';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AsyncPipe, NgClass } from '@angular/common';
@@ -39,6 +40,8 @@ import { RouterService } from '../../../services/router.service';
 import { BattleInstanceQueriesService } from '../../../services/queries/battle-instance-queries.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatBadgeModule } from '@angular/material/badge';
+import { BattleDamageInfo, DamageModel } from '../../../models/damage.model';
+import { SideEffect } from '../../../models/move.model';
 
 @Component({
   selector: 'pm-new-battle',
@@ -142,18 +145,45 @@ export class NewBattleComponent implements OnInit {
     const isPlayerMoving = damage.attPokemon.trainerId === this.player._id;
     this.roundMessage = [];
     this.pushMessage('ROUND_X', { round: this.round });
-    this.pushMessage(
-      isPlayerMoving ? 'MOVE_TO_OPPONENT_POKEMON' : 'MOVE_TO_PLAYER_POKEMON',
-      {
+    if (damage.info !== BattleDamageInfo.RELOAD) {
+      this.pushMessage(
+        isPlayerMoving ? 'MOVE_TO_OPPONENT_POKEMON' : 'MOVE_TO_PLAYER_POKEMON',
+        {
+          attPokemon:
+            damage.attPokemon.nickname ??
+            this.translateService.instant(damage.attPokemon.basePokemon.name),
+          move: this.translateService.instant(damage.move.name),
+          defPokemon:
+            damage.defPokemon.nickname ??
+            this.translateService.instant(damage.defPokemon.basePokemon.name),
+        }
+      );
+      this.logDamageEffectivness(damage);
+      if (res.damage.move.sideEffect) {
+        this.logSideEffectMessage(res.damage, isPlayerMoving);
+      }
+      if (damage.defPokemon.currentHp === 0) {
+        this.pushMessage(
+          isPlayerMoving ? 'OPPONENT_POKEMON_KO' : 'PLAYER_POKEMON_KO',
+          {
+            pokemon:
+              damage.defPokemon.nickname ??
+              this.translateService.instant(damage.defPokemon.basePokemon.name),
+          }
+        );
+      }
+    } else {
+      this.pushMessage('RELOADING_POKEMON', {
         attPokemon:
           damage.attPokemon.nickname ??
           this.translateService.instant(damage.attPokemon.basePokemon.name),
-        move: this.translateService.instant(damage.move.name),
-        defPokemon:
-          damage.defPokemon.nickname ??
-          this.translateService.instant(damage.defPokemon.basePokemon.name),
-      }
-    );
+      });
+    }
+    this.battleMessage.push(this.roundMessage);
+    this.scrollToBottom();
+  }
+
+  private logDamageEffectivness(damage: DamageModel): void {
     if (damage.missed) {
       this.pushMessage('MISSED!');
     } else {
@@ -172,18 +202,28 @@ export class NewBattleComponent implements OnInit {
         });
       }
     }
-    if (damage.defPokemon.currentHp === 0) {
-      this.pushMessage(
-        isPlayerMoving ? 'OPPONENT_POKEMON_KO' : 'PLAYER_POKEMON_KO',
-        {
-          pokemon:
+  }
+
+  private logSideEffectMessage(
+    damage: DamageModel,
+    isPlayerMoving: boolean
+  ): void {
+    Object.keys(damage.move.sideEffect).forEach((effect) => {
+      const message = SIDE_EFFECT_LOG[effect as SideEffect](
+        damage.move.sideEffect[effect as SideEffect],
+        isPlayerMoving
+      );
+      if (message) {
+        this.pushMessage(message, {
+          attPokemon:
+            damage.attPokemon.nickname ??
+            this.translateService.instant(damage.attPokemon.basePokemon.name),
+          defPokemon:
             damage.defPokemon.nickname ??
             this.translateService.instant(damage.defPokemon.basePokemon.name),
-        }
-      );
-    }
-    this.battleMessage.push(this.roundMessage);
-    this.scrollToBottom();
+        });
+      }
+    });
   }
 
   private pushMessage(key: string, translateParams?: any): void {

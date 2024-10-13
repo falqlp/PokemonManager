@@ -11,6 +11,7 @@ export default class BattlePokemonTestMother {
       cumulatedSpeed: 0,
       animation: "",
       moving: false,
+      reload: 0,
     };
   }
 

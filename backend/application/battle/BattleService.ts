@@ -1,4 +1,5 @@
 import {
+  BattleDamageInfo,
   IBattlePokemon,
   IBattleState,
   IBattleTrainer,
@@ -11,22 +12,24 @@ import { DefaultMove } from "./BattleConst";
 import { singleton } from "tsyringe";
 import { getRandomFromArray, getRandomValue } from "../../utils/RandomUtils";
 import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
-import { IMove } from "../../domain/move/Move";
+import { IMove, SideEffect } from "../../domain/move/Move";
 import { BattleDataService } from "./BattleDataService";
 import BattleInstanceRepository from "../../domain/battleInstance/BattleInstanceRepository";
 import GameRepository from "../../domain/game/GameRepository";
 import BattleWebsocketService from "../../websocket/BattleWebsocketService";
 import { BattleEventsService } from "../BattleEvents/BattleEventsService";
+import BattleSideEffectService from "./BattleSideEffectService";
 
 @singleton()
 class BattleService {
   constructor(
-    private battleCalcService: BattleCalcService,
-    private battleDataService: BattleDataService,
-    private battleInstanceRepository: BattleInstanceRepository,
-    private battleWebsocketService: BattleWebsocketService,
-    private gameRepository: GameRepository,
-    private battleEventsService: BattleEventsService,
+    private readonly battleCalcService: BattleCalcService,
+    private readonly battleDataService: BattleDataService,
+    private readonly battleInstanceRepository: BattleInstanceRepository,
+    private readonly battleWebsocketService: BattleWebsocketService,
+    private readonly gameRepository: GameRepository,
+    private readonly battleEventsService: BattleEventsService,
+    private readonly battleSideEffectService: BattleSideEffectService,
   ) {}
 
   public async simulateBattle(
@@ -144,6 +147,7 @@ class BattleService {
         );
         battlePokemon.cumulatedSpeed = battlePokemon.stats.spe;
         battlePokemon.currentHp = battlePokemon.stats.hp;
+        battlePokemon.reload = 0;
         if (battlePokemon.moves.length === 0) {
           battlePokemon.moves.push(DefaultMove);
         }
@@ -202,34 +206,50 @@ class BattleService {
       attPokemon.moves,
       attPokemon.battleStrategy ?? attPokemon.strategy,
     );
+    let damage: IDamage;
+    if (attPokemon.reload === 0) {
+      const res = this.conductBattleRound(
+        attPokemon,
+        player._id.toString() === attPokemon.trainerId.toString()
+          ? opponent.pokemons
+          : player.pokemons,
+        selectedMove,
+      );
+      damage = res.damage;
+      const maxDamagedPokemon = res.maxDamagedPokemon;
 
-    const { damage, maxDamagedPokemon } = this.conductBattleRound(
-      attPokemon,
-      player._id.toString() === attPokemon.trainerId.toString()
-        ? opponent.pokemons
-        : player.pokemons,
-      selectedMove,
-    );
-
-    battleOrder = this.updatePostBattleStates(
-      player,
-      opponent,
-      battleOrder,
-      maxDamagedPokemon,
-    );
-    this.battleDataService.getDamageEvents(battleId).push({
-      battleId,
-      pokemonId: attPokemon._id,
-      trainerId: attPokemon.trainerId,
-      onPokemonId: maxDamagedPokemon._id,
-      onTrainerId: maxDamagedPokemon.trainerId,
-      value: damage.damage,
-      ko: maxDamagedPokemon.currentHp === 0,
-      critical: damage.critical,
-      missed: damage.missed,
-      moveId: damage.move._id,
-      effectiveness: damage.effectiveness,
-    });
+      battleOrder = this.updatePostBattleStates(
+        player,
+        opponent,
+        battleOrder,
+        maxDamagedPokemon,
+      );
+      this.battleDataService.getDamageEvents(battleId).push({
+        battleId,
+        pokemonId: attPokemon._id,
+        trainerId: attPokemon.trainerId,
+        onPokemonId: maxDamagedPokemon._id,
+        onTrainerId: maxDamagedPokemon.trainerId,
+        value: damage.damage,
+        ko: maxDamagedPokemon.currentHp === 0,
+        critical: damage.critical,
+        missed: damage.missed,
+        moveId: damage.move._id,
+        effectiveness: damage.effectiveness,
+      });
+    } else {
+      attPokemon.reload -= 1;
+      damage = {
+        damage: 0,
+        defPokemon: null,
+        attPokemon,
+        critical: false,
+        info: BattleDamageInfo.RELOAD,
+        move: null,
+        missed: true,
+        effectiveness: "IMMUNE",
+      };
+    }
 
     return { player, opponent, battleOrder, damage };
   }
@@ -317,6 +337,20 @@ class BattleService {
         maxDamagedPokemon,
         damage,
       );
+      if (selectedMove.sideEffect) {
+        Object.keys((selectedMove.sideEffect as any)._doc).forEach(
+          (sideEffect) => {
+            this.battleSideEffectService.SIDE_EFFECT_MAP[
+              sideEffect as SideEffect
+            ](
+              selectedMove.sideEffect[sideEffect as SideEffect],
+              attPokemon,
+              maxDamagedPokemon,
+              damage,
+            );
+          },
+        );
+      }
     }
 
     return { damage, maxDamagedPokemon };
@@ -328,6 +362,14 @@ class BattleService {
     battleOrder: IBattlePokemon[],
     maxDamagedPokemon: IBattlePokemon,
   ): IBattlePokemon[] {
+    const koPokemonIds: string[] = [
+      player.pokemons
+        .filter((pokemon) => pokemon.currentHp === 0)
+        .map((pokemon) => pokemon._id.toString()),
+      opponent.pokemons
+        .filter((pokemon) => pokemon.currentHp === 0)
+        .map((pokemon) => pokemon._id.toString()),
+    ].flat();
     battleOrder.shift();
     battleOrder = this.initBattleOrder(
       player,
@@ -335,7 +377,8 @@ class BattleService {
       battleOrder.filter(
         (pokemon) =>
           maxDamagedPokemon.currentHp > 0 ||
-          pokemon._id.toString() !== maxDamagedPokemon._id.toString(),
+          pokemon._id.toString() !== maxDamagedPokemon._id.toString() ||
+          !koPokemonIds.includes(pokemon._id.toString()),
       ),
     );
 
