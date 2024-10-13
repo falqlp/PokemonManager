@@ -26,10 +26,7 @@ export interface BattleStateModel {
   damage: DamageModel;
   _id?: string;
 }
-export type SideEffectLambda = (
-  value: number,
-  isPlayerMoving: boolean
-) => string;
+export type SideEffectLambda = (value: number) => string;
 export const SIDE_EFFECT_LOG: Record<SideEffect, SideEffectLambda> = {
   [SideEffect.DRAIN]: (value: number): string => {
     return value > 0 ? 'DRAINED_ENERGY' : 'BACKLASH_INJURY';

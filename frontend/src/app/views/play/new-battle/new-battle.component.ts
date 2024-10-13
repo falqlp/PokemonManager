@@ -160,7 +160,7 @@ export class NewBattleComponent implements OnInit {
       );
       this.logDamageEffectivness(damage);
       if (res.damage.move.sideEffect) {
-        this.logSideEffectMessage(res.damage, isPlayerMoving);
+        this.logSideEffectMessage(res.damage);
       }
       if (damage.defPokemon.currentHp === 0) {
         this.pushMessage(
@@ -204,14 +204,10 @@ export class NewBattleComponent implements OnInit {
     }
   }
 
-  private logSideEffectMessage(
-    damage: DamageModel,
-    isPlayerMoving: boolean
-  ): void {
+  private logSideEffectMessage(damage: DamageModel): void {
     Object.keys(damage.move.sideEffect).forEach((effect) => {
       const message = SIDE_EFFECT_LOG[effect as SideEffect](
-        damage.move.sideEffect[effect as SideEffect],
-        isPlayerMoving
+        damage.move.sideEffect[effect as SideEffect]
       );
       if (message) {
         this.pushMessage(message, {
