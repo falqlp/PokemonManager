@@ -64,10 +64,10 @@ export class BattleEventsService {
         division,
       };
     });
-    await this.damageEventRepository.insertMany(damageEvents);
-    await this.battleParticipationEventRepository.insertMany(
-      battleParticipationEvents,
-    );
+    this.damageEventRepository.insertMany(damageEvents).then();
+    this.battleParticipationEventRepository
+      .insertMany(battleParticipationEvents)
+      .then();
   }
 
   public getBattleEventQuery(

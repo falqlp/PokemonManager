@@ -16,9 +16,9 @@
   "author": "Popole",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/body-parser": "^1.19.2",
     "@types/express": "^4.17.17",
-    "@types/bcryptjs": "^2.4.6",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.5.9",
     "@types/nodemailer": "^6.4.14",
@@ -45,6 +45,7 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "kafkajs": "^2.2.4",
     "mongodb": "^6.9.0",
     "mongoose": "^8.7.1",
     "nodemailer": "^6.9.15",
