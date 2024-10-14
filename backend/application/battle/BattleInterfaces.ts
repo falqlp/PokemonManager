@@ -13,6 +13,11 @@ export interface IBattlePokemon extends IPokemon {
   cumulatedSpeed: number;
   animation: string;
   moving: boolean;
+  reload: number;
+}
+
+export enum BattleDamageInfo {
+  RELOAD = "RELOAD",
 }
 export interface IDamage {
   damage: number;
@@ -22,6 +27,7 @@ export interface IDamage {
   attPokemon: IBattlePokemon;
   defPokemon: IBattlePokemon;
   move: IMove;
+  info?: BattleDamageInfo;
 }
 
 export interface IBattleTrainer {

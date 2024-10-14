@@ -94,4 +94,8 @@
   .mat-mdc-paginator-page-size {
     align-items: center !important;
   }
+  .mdc-tooltip__surface.mat-mdc-tooltip-surface {
+    max-width: 500px;
+    line-height: 24px;
+  }
 }

@@ -1,6 +1,6 @@
 import { PokemonModel } from '../../../models/PokemonModels/pokemon.model';
 import { DamageModel } from '../../../models/damage.model';
-import { MoveModel } from '../../../models/move.model';
+import { MoveModel, SideEffect } from '../../../models/move.model';
 
 export interface BattlePokemonModel extends PokemonModel {
   currentHp: number;
@@ -8,6 +8,7 @@ export interface BattlePokemonModel extends PokemonModel {
   moves: MoveModel[];
   animation?: string;
   moving: boolean;
+  reload: number;
 }
 
 export interface BattleTrainerModel {
@@ -25,3 +26,12 @@ export interface BattleStateModel {
   damage: DamageModel;
   _id?: string;
 }
+export type SideEffectLambda = (value: number) => string;
+export const SIDE_EFFECT_LOG: Record<SideEffect, SideEffectLambda> = {
+  [SideEffect.DRAIN]: (value: number): string => {
+    return value > 0 ? 'DRAINED_ENERGY' : 'BACKLASH_INJURY';
+  },
+  [SideEffect.RELOAD]: (): string => {
+    return undefined;
+  },
+};

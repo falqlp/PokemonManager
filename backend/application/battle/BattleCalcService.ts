@@ -237,10 +237,14 @@ class BattleCalcService {
   }
 
   damageOnPokemon(pokemon: IBattlePokemon, damage: IDamage): number {
-    return Math.max(
-      0,
-      Math.round((pokemon.currentHp - (damage ? damage.damage : 0)) * 10) / 10,
+    if (!damage) {
+      return pokemon.currentHp;
+    }
+    damage.damage = Math.min(
+      pokemon.currentHp,
+      Math.round(damage.damage * 10) / 10,
     );
+    return Math.round((pokemon.currentHp - damage.damage) * 10) / 10;
   }
 
   isMissed(move: IMove): boolean {
