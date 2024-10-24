@@ -2,7 +2,7 @@ module.exports = {
   env: {
     node: true,
   },
-  ignorePatterns: ["dist/", "migration.service.js"],
+  ignorePatterns: ["**/dist/", "**/**.js"],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
