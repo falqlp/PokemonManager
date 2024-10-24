@@ -1,8 +1,0 @@
-services:
-  nginx:
-    build: .
-    network_mode: "host"
-    ports:
-      - "${NGINX_PORT}:${NGINX_PORT}"
-    env_file:
-      - .env
