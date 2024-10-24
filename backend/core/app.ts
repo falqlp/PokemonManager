@@ -8,7 +8,6 @@ import { convertStringsToDateInObject } from "./utils/DateConverter";
 import { container } from "tsyringe";
 import { NotificationType } from "./websocket/WebsocketDataService";
 import WebsocketUtils from "./websocket/WebsocketUtils";
-import { Kafka } from "kafkajs";
 
 dotenv.config();
 
@@ -66,26 +65,26 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 });
 
 // Configuration de Kafka
-const kafka = new Kafka({
-  clientId: "express-app",
-  brokers: ["localhost:9092"], // Remplace par l'adresse de ton serveur Kafka
-});
-
-// Créer un producteur Kafka
-const producer = kafka.producer();
-
-// Démarrer le producteur Kafka
-const startProducer = async (): Promise<void> => {
-  await producer.connect();
-  console.log("Kafka Producer connected");
-  for (let i = 0; i < 10; i++) {
-    await producer.send({
-      topic: "test-topic",
-      messages: [{ value: `Message ${i}` }],
-    });
-  }
-};
-
-startProducer().catch(console.error);
+// const kafka = new Kafka({
+//   clientId: "express-app",
+//   brokers: ["localhost:9092"], // Remplace par l'adresse de ton serveur Kafka
+// });
+//
+// // Créer un producteur Kafka
+// const producer = kafka.producer();
+//
+// // Démarrer le producteur Kafka
+// const startProducer = async (): Promise<void> => {
+//   await producer.connect();
+//   console.log("Kafka Producer connected");
+//   for (let i = 0; i < 10; i++) {
+//     await producer.send({
+//       topic: "test-topic",
+//       messages: [{ value: `Message ${i}` }],
+//     });
+//   }
+// };
+//
+// startProducer().catch(console.error);
 
 export default app;
