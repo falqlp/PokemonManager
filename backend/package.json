@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "backend",
-  "main": "core/app.ts",
+  "main": "core-express/app.ts",
   "scripts": {
     "start": "tsc && node dist/server.js",
     "dev": "tsc-watch --onSuccess \"node dist/server.js\"",
