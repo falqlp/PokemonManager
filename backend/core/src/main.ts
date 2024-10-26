@@ -29,8 +29,8 @@ async function bootstrap() {
     methods: 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
   });
 
-  const port = process.env.PORT || 3001;
-  app.setGlobalPrefix('api'); // Précisez un préfixe global si besoin
+  const port = process.env.PORT || 3000;
+  app.setGlobalPrefix('api');
 
   await app.listen(port);
   console.log(`Application is running on: ${await app.getUrl()}`);

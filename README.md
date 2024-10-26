@@ -27,13 +27,13 @@ npm install (only the first time to install dependencies)
 npm start
 `
 
-To launch backend (in a terminal in backend directory): 
+To launch backend (in a terminal in backend/core directory): 
 
 `
 npm install (only the first time to install dependencies)
 `
 
 `
-npm run dev
+npm run start
 `
 
