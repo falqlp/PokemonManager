@@ -63,7 +63,7 @@ jobs:
       - name: Install dependencies
         run: cd backend/core && npm ci
       - name: Run tests with coverage
-        run: cd backend/core && npm test:cov
+        run: cd backend/core && npm test -- --coverage
         env:
           CI: true
       - name: Upload coverage reports to Codecov
