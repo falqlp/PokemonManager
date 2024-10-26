@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BattleModel } from '../../models/Battle.model';
@@ -11,7 +11,7 @@ import { ReadonlyQuery } from '../../core/readonly-query';
 export class BattleInstanceQueriesService extends ReadonlyQuery<BattleModel> {
   protected override http: HttpClient;
 
-  public static readonly url = 'api/battleInstance';
+  public static readonly url = 'api/battle-instance';
   public constructor() {
     const http = inject(HttpClient);
 

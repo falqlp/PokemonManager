@@ -1,0 +1,43 @@
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import * as fs from 'fs';
+
+async function bootstrap() {
+  const sslOptions = {
+    keyPath:
+      '/etc/letsencrypt/live/pokemon-manager.francecentral.cloudapp.azure.com/privkey.pem',
+    certPath:
+      '/etc/letsencrypt/live/pokemon-manager.francecentral.cloudapp.azure.com/fullchain.pem',
+  };
+
+  const httpsOptions =
+    fs.existsSync(sslOptions.keyPath) && fs.existsSync(sslOptions.certPath)
+      ? {
+          key: fs.readFileSync(sslOptions.keyPath),
+          cert: fs.readFileSync(sslOptions.certPath),
+        }
+      : undefined;
+
+  const app = httpsOptions
+    ? await NestFactory.create(AppModule, { httpsOptions })
+    : await NestFactory.create(AppModule);
+
+  app.enableCors({
+    origin: process.env.FRONT_URL,
+    allowedHeaders:
+      'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization, Game-Id, lang',
+    methods: 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+  });
+
+  const port = process.env.PORT || 3001;
+  app.setGlobalPrefix('api'); // Précisez un préfixe global si besoin
+
+  await app.listen(port);
+  console.log(`Application is running on: ${await app.getUrl()}`);
+
+  // Initialisez le serveur WebSocket après le démarrage de l'application
+  // const httpServer = app.getHttpServer();
+  // const websocketGateway = app.get(WebsocketGateway);
+  // websocketGateway.server.attach(httpServer);
+}
+bootstrap();

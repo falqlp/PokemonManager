@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ReadonlyQuery } from '../../core/readonly-query';
 import { PokemonBaseModel } from '../../models/PokemonModels/pokemonBase.model';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class PokemonBaseQueriesService extends ReadonlyQuery<PokemonBaseModel> {
   protected override http: HttpClient;
 
-  public static readonly url = 'api/pokemonBase';
+  public static readonly url = 'api/pokemon-base';
 
   constructor() {
     const http = inject(HttpClient);
