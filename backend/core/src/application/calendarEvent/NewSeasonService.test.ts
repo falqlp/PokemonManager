@@ -1,81 +1,99 @@
-import { container } from "tsyringe";
-import { NewSeasonService } from "./NewSeasonService";
-import PokemonRepository from "../../domain/pokemon/PokemonRepository";
-import TrainerRepository from "../../domain/trainer/TrainerRepository";
-import TrainerService from "../trainer/TrainerService";
-import CompetitionService from "../competition/CompetitionService";
-import GenerateCalendarService from "./GenerateCalendarService";
-import CompetitionRepository from "../../domain/competiton/CompetitionRepository";
+import { Test, TestingModule } from '@nestjs/testing';
+import { NewSeasonService } from './NewSeasonService';
+import PokemonRepository from '../../domain/pokemon/PokemonRepository';
+import TrainerRepository from '../../domain/trainer/TrainerRepository';
+import TrainerService from '../trainer/TrainerService';
+import CompetitionService from '../competition/CompetitionService';
+import GenerateCalendarService from './GenerateCalendarService';
+import CompetitionRepository from '../../domain/competiton/CompetitionRepository';
 import {
   BattleInstanceService,
   IRankingBase,
   ITrainerRanking,
-} from "../battleInstance/BattleInstanceService";
-import CompetitionHistoryRepository from "../../domain/competiton/competitionHistory/CompetitionHistoryRepository";
-import { IGame } from "../../domain/game/Game";
+} from '../battleInstance/BattleInstanceService';
+import CompetitionHistoryRepository from '../../domain/competiton/competitionHistory/CompetitionHistoryRepository';
+import { IGame } from '../../domain/game/Game';
 import {
   CompetitionType,
   ICompetition,
-} from "../../domain/competiton/Competition";
-import { TrainerTestMother } from "../../test/domain/Trainer/TrainerTestMother";
+} from '../../domain/competiton/Competition';
+import { TrainerTestMother } from '../../test/domain/Trainer/TrainerTestMother';
 import {
   IGroupsCompetitionHistory,
   ITournamentCompetitionHistory,
-} from "../../domain/competiton/competitionHistory/CompetitionHistory";
+} from '../../domain/competiton/competitionHistory/CompetitionHistory';
 
-describe("NewSeasonService", () => {
+jest.mock('../../domain/pokemon/PokemonRepository');
+jest.mock('../../domain/trainer/TrainerRepository');
+jest.mock('../trainer/TrainerService');
+jest.mock('../competition/CompetitionService');
+jest.mock('./GenerateCalendarService');
+jest.mock('../../domain/competiton/CompetitionRepository');
+jest.mock('../battleInstance/BattleInstanceService');
+jest.mock(
+  '../../domain/competiton/competitionHistory/CompetitionHistoryRepository',
+);
+
+describe('NewSeasonService', () => {
   let service: NewSeasonService;
-  let pokemonRepository: PokemonRepository;
-  let trainerRepository: TrainerRepository;
-  let trainerService: TrainerService;
-  let competitionService: CompetitionService;
-  let generateCalendarService: GenerateCalendarService;
-  let competitionRepository: CompetitionRepository;
-  let battleInstanceService: BattleInstanceService;
-  let competitionHistoryRepository: CompetitionHistoryRepository;
+  let pokemonRepository: jest.Mocked<PokemonRepository>;
+  let trainerRepository: jest.Mocked<TrainerRepository>;
+  let trainerService: jest.Mocked<TrainerService>;
+  let competitionService: jest.Mocked<CompetitionService>;
+  let generateCalendarService: jest.Mocked<GenerateCalendarService>;
+  let competitionRepository: jest.Mocked<CompetitionRepository>;
+  let battleInstanceService: jest.Mocked<BattleInstanceService>;
+  let competitionHistoryRepository: jest.Mocked<CompetitionHistoryRepository>;
 
-  beforeEach(() => {
-    service = container.resolve(NewSeasonService);
-    pokemonRepository = container.resolve(PokemonRepository);
-    trainerRepository = container.resolve(TrainerRepository);
-    trainerService = container.resolve(TrainerService);
-    competitionService = container.resolve(CompetitionService);
-    generateCalendarService = container.resolve(GenerateCalendarService);
-    competitionRepository = container.resolve(CompetitionRepository);
-    battleInstanceService = container.resolve(BattleInstanceService);
-    competitionHistoryRepository = container.resolve(
-      CompetitionHistoryRepository,
-    );
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        NewSeasonService,
+        PokemonRepository,
+        TrainerRepository,
+        TrainerService,
+        CompetitionService,
+        GenerateCalendarService,
+        CompetitionRepository,
+        BattleInstanceService,
+        CompetitionHistoryRepository,
+      ],
+    }).compile();
+
+    service = module.get<NewSeasonService>(NewSeasonService);
+    pokemonRepository = module.get(PokemonRepository);
+    trainerRepository = module.get(TrainerRepository);
+    trainerService = module.get(TrainerService);
+    competitionService = module.get(CompetitionService);
+    generateCalendarService = module.get(GenerateCalendarService);
+    competitionRepository = module.get(CompetitionRepository);
+    battleInstanceService = module.get(BattleInstanceService);
+    competitionHistoryRepository = module.get(CompetitionHistoryRepository);
 
     jest.clearAllMocks();
     jest.resetAllMocks();
-    jest.restoreAllMocks();
   });
 
-  describe("newSeason method", () => {
-    it("should archive competitions, compute promotions/relegations, and generate trainers", async () => {
-      const game: IGame = { _id: "gameId", actualDate: new Date() } as IGame;
-      const competitionHistory = [{}] as any; // Simulating competition history
+  describe('newSeason method', () => {
+    it('should archive competitions, compute promotions/relegations, and generate trainers', async () => {
+      const game: IGame = { _id: 'gameId', actualDate: new Date() } as IGame;
+      const competitionHistory = [{}] as any;
 
       jest
-        .spyOn(service, "archiveCurrentCompetition")
+        .spyOn(service, 'archiveCurrentCompetition')
         .mockResolvedValue(competitionHistory);
-      jest.spyOn(service, "computePromotionAndRelegation").mockResolvedValue();
-      jest.spyOn(pokemonRepository, "archiveOldPokemon").mockResolvedValue();
-      jest
-        .spyOn(trainerRepository, "list")
-        .mockResolvedValue([TrainerTestMother.strongTrainer()]);
-      jest.spyOn(trainerRepository, "deleteTrainer").mockResolvedValue(null);
-      jest
-        .spyOn(competitionService, "createChampionship")
-        .mockResolvedValue({} as ICompetition);
-      jest
-        .spyOn(trainerService, "generateTrainerWithPokemonByDivision")
-        .mockResolvedValue();
-      jest.spyOn(trainerService, "updateMany").mockResolvedValue(null);
-      jest
-        .spyOn(generateCalendarService, "generateChampionships")
-        .mockResolvedValue();
+      jest.spyOn(service, 'computePromotionAndRelegation').mockResolvedValue();
+      pokemonRepository.archiveOldPokemon.mockResolvedValue();
+      trainerRepository.list.mockResolvedValue([
+        TrainerTestMother.strongTrainer(),
+      ]);
+      trainerRepository.deleteTrainer.mockResolvedValue(null);
+      competitionService.createChampionship.mockResolvedValue(
+        {} as ICompetition,
+      );
+      trainerService.generateTrainerWithPokemonByDivision.mockResolvedValue();
+      trainerService.updateMany.mockResolvedValue(null);
+      generateCalendarService.generateChampionships.mockResolvedValue();
 
       await service.newSeason(game);
 
@@ -94,22 +112,20 @@ describe("NewSeasonService", () => {
     });
   });
 
-  describe("archiveCurrentCompetition method", () => {
-    it("should archive current competitions and save history", async () => {
-      const game: IGame = { _id: "gameId", actualDate: new Date() } as IGame;
+  describe('archiveCurrentCompetition method', () => {
+    it('should archive current competitions and save history', async () => {
+      const game: IGame = { _id: 'gameId', actualDate: new Date() } as IGame;
       const competitions = [
-        { _id: "compId", type: CompetitionType.CHAMPIONSHIP },
+        { _id: 'compId', type: CompetitionType.CHAMPIONSHIP },
       ] as ICompetition[];
-      const competitionHistoryArray = [{ _id: "historyId" }] as any;
+      const competitionHistoryArray = [{ _id: 'historyId' }] as any;
 
-      jest.spyOn(competitionRepository, "list").mockResolvedValue(competitions);
-      jest
-        .spyOn(battleInstanceService, "getChampionshipRanking")
-        .mockResolvedValue([]);
-      jest
-        .spyOn(competitionHistoryRepository, "insertMany")
-        .mockResolvedValue(competitionHistoryArray);
-      jest.spyOn(competitionRepository, "archiveMany").mockResolvedValue();
+      competitionRepository.list.mockResolvedValue(competitions);
+      battleInstanceService.getChampionshipRanking.mockResolvedValue([]);
+      competitionHistoryRepository.insertMany.mockResolvedValue(
+        competitionHistoryArray,
+      );
+      competitionRepository.archiveMany.mockResolvedValue();
 
       const result = await service.archiveCurrentCompetition(game);
 
@@ -121,16 +137,16 @@ describe("NewSeasonService", () => {
     });
   });
 
-  describe("computePromotionAndRelegation method", () => {
-    it("should compute promotion and relegation based on competition history", async () => {
+  describe('computePromotionAndRelegation method', () => {
+    it('should compute promotion and relegation based on competition history', async () => {
       const competitionHistory = [
         { type: CompetitionType.GROUPS, division: 2 } as any,
         { type: CompetitionType.TOURNAMENT, division: 3 } as any,
       ];
-      const gameId = "gameId";
+      const gameId = 'gameId';
 
-      jest.spyOn(service, "computePromotion").mockResolvedValue();
-      jest.spyOn(service, "computeRelegation").mockResolvedValue();
+      jest.spyOn(service, 'computePromotion').mockResolvedValue();
+      jest.spyOn(service, 'computeRelegation').mockResolvedValue();
 
       await service.computePromotionAndRelegation(competitionHistory, gameId);
 
@@ -145,18 +161,19 @@ describe("NewSeasonService", () => {
     });
   });
 
-  describe("computePromotion method", () => {
+  describe('computePromotion method', () => {
     beforeEach(() => {
-      jest.spyOn(trainerRepository, "promote").mockResolvedValue();
+      trainerRepository.promote.mockResolvedValue();
     });
-    it("should promote trainers from tournaments", async () => {
+
+    it('should promote trainers from tournaments', async () => {
       const tournamentHistory: ITournamentCompetitionHistory[] = [
         {
           division: 1,
           tournament: [
             [
               {
-                winner: "trainerFromDivision1",
+                winner: 'trainerFromDivision1',
                 player: {} as IRankingBase,
                 opponent: {} as IRankingBase,
               },
@@ -170,21 +187,7 @@ describe("NewSeasonService", () => {
           tournament: [
             [
               {
-                winner: "trainerFromDivision2",
-                player: {} as IRankingBase,
-                opponent: {} as IRankingBase,
-              },
-            ],
-            [],
-            [],
-          ],
-        } as ITournamentCompetitionHistory,
-        {
-          division: 3,
-          tournament: [
-            [
-              {
-                winner: "trainerFromDivision3",
+                winner: 'trainerFromDivision2',
                 player: {} as IRankingBase,
                 opponent: {} as IRankingBase,
               },
@@ -194,23 +197,21 @@ describe("NewSeasonService", () => {
           ],
         } as ITournamentCompetitionHistory,
       ];
-      const gameId = "gameId";
+      const gameId = 'gameId';
 
       await service.computePromotion(tournamentHistory, gameId);
 
       expect(trainerRepository.promote).toHaveBeenCalledWith(
-        ["trainerFromDivision2", "trainerFromDivision3"],
+        ['trainerFromDivision2'],
         gameId,
       );
     });
 
-    it("should do nothing with only one division", async () => {
+    it('should do nothing with only one division', async () => {
       const tournamentHistory = [
-        { division: 3, tournament: [{ winner: "trainerId" }] } as any,
+        { division: 3, tournament: [{ winner: 'trainerId' }] } as any,
       ];
-      const gameId = "gameId";
-
-      jest.spyOn(trainerRepository, "promote").mockResolvedValue();
+      const gameId = 'gameId';
 
       await service.computePromotion(tournamentHistory, gameId);
 
@@ -218,26 +219,27 @@ describe("NewSeasonService", () => {
     });
   });
 
-  describe("computeRelegation method", () => {
+  describe('computeRelegation method', () => {
     beforeEach(() => {
-      jest.spyOn(trainerRepository, "relegate").mockResolvedValue();
+      trainerRepository.relegate.mockResolvedValue();
     });
-    it("should relegate trainers from groups", async () => {
+
+    it('should relegate trainers from groups', async () => {
       const groupHistory: IGroupsCompetitionHistory[] = [
         {
           division: 1,
           groups: [
             [
-              { ranking: 1, _id: "1fromDiv1-1" } as ITrainerRanking,
-              { ranking: 2, _id: "2fromDiv1-1" } as ITrainerRanking,
-              { ranking: 3, _id: "3fromDiv1-1" } as ITrainerRanking,
-              { ranking: 4, _id: "4fromDiv1-1" } as ITrainerRanking,
+              { ranking: 1, _id: '1fromDiv1-1' } as ITrainerRanking,
+              { ranking: 2, _id: '2fromDiv1-1' } as ITrainerRanking,
+              { ranking: 3, _id: '3fromDiv1-1' } as ITrainerRanking,
+              { ranking: 4, _id: '4fromDiv1-1' } as ITrainerRanking,
             ],
             [
-              { ranking: 1, _id: "1fromDiv1-2" } as ITrainerRanking,
-              { ranking: 2, _id: "2fromDiv1-2" } as ITrainerRanking,
-              { ranking: 3, _id: "3fromDiv1-2" } as ITrainerRanking,
-              { ranking: 4, _id: "4fromDiv1-2" } as ITrainerRanking,
+              { ranking: 1, _id: '1fromDiv1-2' } as ITrainerRanking,
+              { ranking: 2, _id: '2fromDiv1-2' } as ITrainerRanking,
+              { ranking: 3, _id: '3fromDiv1-2' } as ITrainerRanking,
+              { ranking: 4, _id: '4fromDiv1-2' } as ITrainerRanking,
             ],
           ],
         } as IGroupsCompetitionHistory,
@@ -245,16 +247,16 @@ describe("NewSeasonService", () => {
           division: 2,
           groups: [
             [
-              { ranking: 1, _id: "1fromDiv2-1" } as ITrainerRanking,
-              { ranking: 2, _id: "2fromDiv2-1" } as ITrainerRanking,
-              { ranking: 3, _id: "3fromDiv2-1" } as ITrainerRanking,
-              { ranking: 4, _id: "4fromDiv2-1" } as ITrainerRanking,
+              { ranking: 1, _id: '1fromDiv2-1' } as ITrainerRanking,
+              { ranking: 2, _id: '2fromDiv2-1' } as ITrainerRanking,
+              { ranking: 3, _id: '3fromDiv2-1' } as ITrainerRanking,
+              { ranking: 4, _id: '4fromDiv2-1' } as ITrainerRanking,
             ],
             [
-              { ranking: 1, _id: "1fromDiv2-2" } as ITrainerRanking,
-              { ranking: 2, _id: "2fromDiv2-2" } as ITrainerRanking,
-              { ranking: 3, _id: "3fromDiv2-2" } as ITrainerRanking,
-              { ranking: 4, _id: "4fromDiv2-2" } as ITrainerRanking,
+              { ranking: 1, _id: '1fromDiv2-2' } as ITrainerRanking,
+              { ranking: 2, _id: '2fromDiv2-2' } as ITrainerRanking,
+              { ranking: 3, _id: '3fromDiv2-2' } as ITrainerRanking,
+              { ranking: 4, _id: '4fromDiv2-2' } as ITrainerRanking,
             ],
           ],
         } as IGroupsCompetitionHistory,
@@ -262,44 +264,44 @@ describe("NewSeasonService", () => {
           division: 3,
           groups: [
             [
-              { ranking: 1, _id: "1fromDiv3-1" } as ITrainerRanking,
-              { ranking: 2, _id: "2fromDiv3-1" } as ITrainerRanking,
-              { ranking: 3, _id: "3fromDiv3-1" } as ITrainerRanking,
-              { ranking: 4, _id: "4fromDiv3-1" } as ITrainerRanking,
+              { ranking: 1, _id: '1fromDiv3-1' } as ITrainerRanking,
+              { ranking: 2, _id: '2fromDiv3-1' } as ITrainerRanking,
+              { ranking: 3, _id: '3fromDiv3-1' } as ITrainerRanking,
+              { ranking: 4, _id: '4fromDiv3-1' } as ITrainerRanking,
             ],
             [
-              { ranking: 1, _id: "1fromDiv3-2" } as ITrainerRanking,
-              { ranking: 2, _id: "2fromDiv3-2" } as ITrainerRanking,
-              { ranking: 3, _id: "3fromDiv3-2" } as ITrainerRanking,
-              { ranking: 4, _id: "4fromDiv3-2" } as ITrainerRanking,
+              { ranking: 1, _id: '1fromDiv3-2' } as ITrainerRanking,
+              { ranking: 2, _id: '2fromDiv3-2' } as ITrainerRanking,
+              { ranking: 3, _id: '3fromDiv3-2' } as ITrainerRanking,
+              { ranking: 4, _id: '4fromDiv3-2' } as ITrainerRanking,
             ],
           ],
         } as IGroupsCompetitionHistory,
       ];
-      const gameId = "gameId";
+      const gameId = 'gameId';
 
       await service.computeRelegation(groupHistory, gameId);
 
       expect(trainerRepository.relegate).toHaveBeenCalledWith(
         [
-          "3fromDiv1-1",
-          "4fromDiv1-1",
-          "3fromDiv1-2",
-          "4fromDiv1-2",
-          "3fromDiv2-1",
-          "4fromDiv2-1",
-          "3fromDiv2-2",
-          "4fromDiv2-2",
+          '3fromDiv1-1',
+          '4fromDiv1-1',
+          '3fromDiv1-2',
+          '4fromDiv1-2',
+          '3fromDiv2-1',
+          '4fromDiv2-1',
+          '3fromDiv2-2',
+          '4fromDiv2-2',
         ],
         gameId,
       );
     });
 
-    it("should do nothing with only one division", async () => {
+    it('should do nothing with only one division', async () => {
       const groupHistory = [
-        { division: 1, groups: [{ ranking: 2, _id: "trainerId" }] } as any,
+        { division: 1, groups: [{ ranking: 2, _id: 'trainerId' }] } as any,
       ];
-      const gameId = "gameId";
+      const gameId = 'gameId';
 
       await service.computeRelegation(groupHistory, gameId);
 

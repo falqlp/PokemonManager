@@ -1,6 +1,6 @@
-import { delay } from "./Utils";
+import { delay } from './Utils';
 
-describe("delay", () => {
+describe('delay', () => {
   beforeEach(() => {
     jest.useFakeTimers();
   });
@@ -10,7 +10,7 @@ describe("delay", () => {
     jest.useRealTimers();
   });
 
-  it("should delay execution", async () => {
+  it('should delay execution', async () => {
     const fn = jest.fn();
     delay(1000).then(fn);
 

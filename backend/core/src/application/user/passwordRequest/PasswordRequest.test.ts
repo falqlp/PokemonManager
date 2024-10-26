@@ -1,42 +1,65 @@
-import { container } from "tsyringe";
-import { PasswordRequestService } from "./PasswordRequestService";
-import { PasswordRequestRepository } from "../../../domain/user/passwordRequest/PasswordRequestRepository";
-import UserRepository from "../../../domain/user/UserRepository";
-import { MailService } from "../../mail/MailService";
-import { IUser } from "../../../domain/user/User";
+import { Test, TestingModule } from '@nestjs/testing';
+import { PasswordRequestService } from './PasswordRequestService';
+import { PasswordRequestRepository } from '../../../domain/user/passwordRequest/PasswordRequestRepository';
+import UserRepository from '../../../domain/user/UserRepository';
+import { MailService } from '../../mail/MailService';
+import { IUser } from '../../../domain/user/User';
 
-describe("PasswordRequestService", () => {
+describe('PasswordRequestService', () => {
   let passwordRequestService: PasswordRequestService;
-  let userRepository: UserRepository;
-  let passwordRequestRepository: PasswordRequestRepository;
-  let mailService: MailService;
+  let userRepository: jest.Mocked<UserRepository>;
+  let passwordRequestRepository: jest.Mocked<PasswordRequestRepository>;
+  let mailService: jest.Mocked<MailService>;
 
-  beforeEach(() => {
-    passwordRequestService = container.resolve(PasswordRequestService);
-    userRepository = container.resolve(UserRepository);
-    passwordRequestRepository = container.resolve(PasswordRequestRepository);
-    mailService = container.resolve(MailService);
-    jest.restoreAllMocks();
-    jest.resetAllMocks();
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        PasswordRequestService,
+        {
+          provide: UserRepository,
+          useValue: {
+            list: jest.fn(),
+          },
+        },
+        {
+          provide: PasswordRequestRepository,
+          useValue: {
+            create: jest.fn(),
+          },
+        },
+        {
+          provide: MailService,
+          useValue: {
+            sendModifyPassword: jest.fn(),
+          },
+        },
+      ],
+    }).compile();
+
+    passwordRequestService = module.get<PasswordRequestService>(
+      PasswordRequestService,
+    );
+    userRepository = module.get(UserRepository);
+    passwordRequestRepository = module.get(PasswordRequestRepository);
+    mailService = module.get(MailService);
+
     jest.clearAllMocks();
   });
 
-  describe("createPasswordRequest", () => {
-    it("should create a password request and send an email if user exists", async () => {
-      const username = "testuser";
-      const email = "test@example.com";
-      const lang = "en";
-      const user: IUser = { _id: "userId", username, email } as IUser;
+  describe('createPasswordRequest', () => {
+    it('should create a password request and send an email if user exists', async () => {
+      const username = 'testuser';
+      const email = 'test@example.com';
+      const lang = 'en';
+      const user: IUser = { _id: 'userId', username, email } as IUser;
       const passwordRequest = {
-        _id: "requestId",
+        _id: 'requestId',
         user,
         expirationDate: new Date(),
       };
-      jest.spyOn(userRepository, "list").mockResolvedValue([user]);
-      jest
-        .spyOn(passwordRequestRepository, "create")
-        .mockResolvedValue(passwordRequest);
-      jest.spyOn(mailService, "sendModifyPassword").mockReturnValue();
+      userRepository.list.mockResolvedValue([user]);
+      passwordRequestRepository.create.mockResolvedValue(passwordRequest);
+      mailService.sendModifyPassword.mockReturnValue();
 
       await passwordRequestService.createPasswordRequest(username, email, lang);
 
@@ -56,21 +79,19 @@ describe("PasswordRequestService", () => {
       );
     });
 
-    it("should not create a password request if user does not exist", async () => {
-      const username = "testuser";
-      const email = "test@example.com";
-      const lang = "en";
-      jest.spyOn(userRepository, "list").mockResolvedValue([]);
-      jest.spyOn(passwordRequestRepository, "create");
-      jest.spyOn(mailService, "sendModifyPassword");
+    it('should not create a password request if user does not exist', async () => {
+      const username = 'testuser';
+      const email = 'test@example.com';
+      const lang = 'en';
+      userRepository.list.mockResolvedValue([]);
 
       await passwordRequestService.createPasswordRequest(username, email, lang);
 
       expect(userRepository.list).toHaveBeenCalledWith({
         custom: { username, email },
       });
-      expect(passwordRequestRepository.create).toHaveBeenCalledTimes(0);
-      expect(mailService.sendModifyPassword).toHaveBeenCalledTimes(0);
+      expect(passwordRequestRepository.create).not.toHaveBeenCalled();
+      expect(mailService.sendModifyPassword).not.toHaveBeenCalled();
     });
   });
 });

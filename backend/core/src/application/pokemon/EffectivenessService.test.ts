@@ -1,15 +1,19 @@
-import EffectivenessService from "./EffectivenessService";
-import { PokemonType } from "../../models/Types/Types";
-import { container } from "tsyringe";
+import { Test, TestingModule } from '@nestjs/testing';
+import EffectivenessService from './EffectivenessService';
+import { PokemonType } from '../../models/Types/Types';
 
-describe("EffectivenessService", () => {
+describe('EffectivenessService', () => {
   let service: EffectivenessService;
 
-  beforeAll(() => {
-    service = container.resolve(EffectivenessService);
+  beforeAll(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [EffectivenessService],
+    }).compile();
+
+    service = module.get<EffectivenessService>(EffectivenessService);
   });
 
-  it("should correctly calculate water effectiveness", () => {
+  it('should correctly calculate water effectiveness', () => {
     const types = [PokemonType.WATER];
     const effectiveness = service.calculateEffectiveness(types);
     expect(effectiveness.FIRE).toBe(0.5);
@@ -31,7 +35,7 @@ describe("EffectivenessService", () => {
     expect(effectiveness.FAIRY).toBe(1);
   });
 
-  it("should correctly calculate ground effectiveness", () => {
+  it('should correctly calculate ground effectiveness', () => {
     const types = [PokemonType.GROUND];
     const effectiveness = service.calculateEffectiveness(types);
     expect(effectiveness.FIRE).toBe(1);

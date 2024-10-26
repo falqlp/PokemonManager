@@ -1,15 +1,25 @@
-import PokemonBaseService from "./PokemonBaseService";
-import { container } from "tsyringe";
-import { IWishList } from "../../../domain/trainer/nursery/Nursery";
-import PokemonBaseRepository from "../../../domain/pokemon/pokemonBase/PokemonBaseRepository";
-import { PokemonBaseTestMother } from "../../../test/domain/PokemonBase/PokemonBaseTestMother";
+import PokemonBaseService from './PokemonBaseService';
+import { IWishList } from '../../../domain/trainer/nursery/Nursery';
+import PokemonBaseRepository from '../../../domain/pokemon/pokemonBase/PokemonBaseRepository';
+import { PokemonBaseTestMother } from '../../../test/domain/PokemonBase/PokemonBaseTestMother';
+import { Test, TestingModule } from '@nestjs/testing';
 import SpyInstance = jest.SpyInstance;
 
-describe("PokemonBaseService", () => {
+jest.mock('../../../domain/pokemon/pokemonBase/PokemonBaseRepository');
+
+describe('PokemonBaseService', () => {
   let service: PokemonBaseService;
+  let pokemonBaseRepository: PokemonBaseRepository;
   let wishlist: IWishList;
-  beforeEach(() => {
-    service = container.resolve(PokemonBaseService);
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [PokemonBaseService, PokemonBaseRepository],
+    }).compile();
+    service = module.get<PokemonBaseService>(PokemonBaseService);
+    pokemonBaseRepository = module.get<PokemonBaseRepository>(
+      PokemonBaseRepository,
+    );
     wishlist = {
       typeRepartition: {
         bug: 50,
@@ -35,8 +45,8 @@ describe("PokemonBaseService", () => {
     };
   });
 
-  describe("chooseTypeBasedOnWishlist method", () => {
-    it("should return the type on wishlist with its repartition", () => {
+  describe('chooseTypeBasedOnWishlist method', () => {
+    it('should return the type on wishlist with its repartition', () => {
       const results: Record<string, number> = {
         bug: 0,
         dark: 0,
@@ -67,7 +77,8 @@ describe("PokemonBaseService", () => {
       expect(results.bug).toBeGreaterThanOrEqual(4000);
       expect(results.bug).toBeLessThan(6000);
     });
-    it("should return null if no valid type is found", () => {
+
+    it('should return null if no valid type is found', () => {
       wishlist = {
         typeRepartition: {
           bug: 0,
@@ -96,58 +107,63 @@ describe("PokemonBaseService", () => {
       expect(result).toBeNull();
     });
   });
-  describe("getDefaultQuery method", () => {
-    it("should be defined", () => {
-      const defaultQuery = service.getDefaultQuery();
 
+  describe('getDefaultQuery method', () => {
+    it('should be defined', () => {
+      const defaultQuery = service.getDefaultQuery();
       expect(defaultQuery).toBeDefined();
     });
   });
-  describe("getBaseGenerationQuery method", () => {
-    it("should be defined", () => {
-      const baseGenerationQuery = service.getBaseGenerationQuery();
 
+  describe('getBaseGenerationQuery method', () => {
+    it('should be defined', () => {
+      const baseGenerationQuery = service.getBaseGenerationQuery();
       expect(baseGenerationQuery).toBeDefined();
     });
   });
-  describe("getTypeBasedQuery method", () => {
-    it("should be defined", () => {
-      const typeBasedQuery = service.getTypeBasedQuery("type");
 
+  describe('getTypeBasedQuery method', () => {
+    it('should be defined', () => {
+      const typeBasedQuery = service.getTypeBasedQuery('type');
       expect(typeBasedQuery).toBeDefined();
     });
   });
-  describe("generateEggBase method", () => {
+
+  describe('generateEggBase method', () => {
     let listSpy: SpyInstance;
+
     beforeEach(() => {
       jest.clearAllMocks();
       jest.resetAllMocks();
       listSpy = jest
-        .spyOn(container.resolve(PokemonBaseRepository), "list")
+        .spyOn(pokemonBaseRepository, 'list')
         .mockResolvedValue([
           PokemonBaseTestMother.generateArticunoBase(),
           PokemonBaseTestMother.generateBulbasaurBase(),
         ]);
     });
-    it("should call to repository to get a pokemon base", async () => {
+
+    it('should call to repository to get a pokemon base', async () => {
       await service.generateEggBase(wishlist);
       expect(listSpy).toHaveBeenCalled();
     });
-    it("should use type based on wishlist 90% of the time", async () => {
-      jest.spyOn(Math, "random").mockReturnValue(0.5);
+
+    it('should use type based on wishlist 90% of the time', async () => {
+      jest.spyOn(Math, 'random').mockReturnValue(0.5);
       const chooseTypeBasedOnWishlistSpy = jest.spyOn(
         service,
-        "chooseTypeBasedOnWishlist",
+        'chooseTypeBasedOnWishlist',
       );
       await service.generateEggBase(wishlist);
       expect(chooseTypeBasedOnWishlistSpy).toHaveBeenCalledTimes(1);
       expect(listSpy).toHaveBeenCalled();
     });
-    it("should use random type 10% of the time", async () => {
-      jest.spyOn(Math, "random").mockReturnValue(0.01);
+
+    it('should use random type 10% of the time', async () => {
+      jest.spyOn(Math, 'random').mockReturnValue(0.01);
       const chooseTypeBasedOnWishlistSpy = jest.spyOn(
         service,
-        "chooseTypeBasedOnWishlist",
+        'chooseTypeBasedOnWishlist',
       );
       await service.generateEggBase(wishlist);
       expect(chooseTypeBasedOnWishlistSpy).toHaveBeenCalledTimes(0);

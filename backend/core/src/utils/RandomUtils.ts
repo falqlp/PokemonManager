@@ -24,7 +24,6 @@ export function sample<T>(
   sampleSize: number,
   seed?: string,
 ): T[] {
-  console.info(seedrandom);
   const rng = seedrandom(seed ?? '');
   const sampled: T[] = [];
   const docs = [...documents];

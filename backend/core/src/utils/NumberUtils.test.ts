@@ -1,7 +1,7 @@
-import { isPowerOfTwo } from "./NumberUtils";
+import { isPowerOfTwo } from './NumberUtils';
 
-describe("isPowerOfTwo", () => {
-  test("will return false for non power of two numbers", () => {
+describe('isPowerOfTwo', () => {
+  test('will return false for non power of two numbers', () => {
     const numbers = [3, 5, 6, 7, 9, 0, -1, -2];
 
     for (const number of numbers) {
@@ -9,7 +9,7 @@ describe("isPowerOfTwo", () => {
     }
   });
 
-  test("will return true for power of two numbers", () => {
+  test('will return true for power of two numbers', () => {
     const powerOfTwoNumbers = [1, 2, 4, 8, 16, 32];
 
     for (const powerOfTwoNumber of powerOfTwoNumbers) {

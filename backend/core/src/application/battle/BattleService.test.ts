@@ -1,24 +1,36 @@
-import BattleService from "./BattleService";
-import { IBattleInstance } from "../../domain/battleInstance/Battle";
-import { container } from "tsyringe";
-import BattleTestMother from "../../test/domain/battle/BattleTestMother";
-import { TrainerTestMother } from "../../test/domain/Trainer/TrainerTestMother";
-import { ITrainer } from "../../domain/trainer/Trainer";
-import { getRandomValue } from "../../utils/RandomUtils";
-import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
-import { StatsTestMother } from "../../test/domain/Stats/StatsTestMother";
-import { MoveTestMother } from "../../test/domain/Move/MoveTestMother";
-import { IMove } from "../../domain/move/Move";
-import { PokemonType } from "../../models/Types/Types";
-import { IBattlePokemon, IBattleTrainer } from "./BattleInterfaces";
-import BattlePokemonTestMother from "../../test/domain/battle/BattlePokemonTestMother";
-import BattleTrainerTestMother from "../../test/domain/battle/BattleTrainerTestMother";
-import BattleWebsocketService from "../../websocket/BattleWebsocketService";
-import { BattleDataService } from "./BattleDataService";
-import { BattleEventsService } from "../BattleEvents/BattleEventsService";
+import { Test, TestingModule } from '@nestjs/testing';
+import BattleService from './BattleService';
+import { BattleDataService } from './BattleDataService';
+import { BattleEventsService } from '../BattleEvents/BattleEventsService';
+import { IBattleInstance } from '../../domain/battleInstance/Battle';
+import BattleTestMother from '../../test/domain/battle/BattleTestMother';
+import { TrainerTestMother } from '../../test/domain/Trainer/TrainerTestMother';
+import { getRandomValue } from '../../utils/RandomUtils';
+import { ITrainer } from '../../domain/trainer/Trainer';
+import BattleCalcService from './BattleCalcService';
+import BattleInstanceRepository from '../../domain/battleInstance/BattleInstanceRepository';
+import GameRepository from '../../domain/game/GameRepository';
+import BattleSideEffectService from './BattleSideEffectService';
+import BattleWebsocketService from '../../websocket/BattleWebsocketService';
+import CalendarEventRepository from '../../domain/calendarEvent/CalendarEventRepository';
+import DamageEventRepository from '../../domain/battleevents/damageevent/DamageEventRepository';
+import BattleParticipationEventRepository from '../../domain/battleevents/battleparticipationevent/BattleParticipationEventRepository';
+import PokemonRepository from '../../domain/pokemon/PokemonRepository';
+import TrainerRepository from '../../domain/trainer/TrainerRepository';
+import ColorService from '../color/ColorService';
+import { StatsTestMother } from '../../test/domain/Stats/StatsTestMother';
+import { IPokemonStats } from '../../models/PokemonModels/pokemonStats';
+import { IMove } from '../../domain/move/Move';
+import { MoveTestMother } from '../../test/domain/Move/MoveTestMother';
+import { IBattlePokemon, IBattleTrainer } from './BattleInterfaces';
+import BattlePokemonTestMother from '../../test/domain/battle/BattlePokemonTestMother';
+import { PokemonType } from '../../models/Types/Types';
+import BattleTrainerTestMother from '../../test/domain/battle/BattleTrainerTestMother';
 
-jest.mock("../../utils/RandomUtils", () => ({
-  ...jest.requireActual("../../utils/RandomUtils"),
+jest.mock('../../websocket/BattleWebsocketService');
+
+jest.mock('../../utils/RandomUtils', () => ({
+  ...jest.requireActual('../../utils/RandomUtils'),
   getRandomValue: jest.fn(),
 }));
 
@@ -26,30 +38,52 @@ const mockedGetRandomValue = getRandomValue as jest.MockedFunction<
   typeof getRandomValue
 >;
 
-describe("BattleService", () => {
+describe('BattleService', () => {
   let battleService: BattleService;
   let battleMock: IBattleInstance;
-  let battleWebsocketService: BattleWebsocketService;
   let battleDataService: BattleDataService;
   let battleEventsService: BattleEventsService;
+  let battleWebsocketService: BattleWebsocketService;
 
-  beforeEach(() => {
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        BattleService,
+        BattleDataService,
+        BattleEventsService,
+        BattleCalcService,
+        BattleWebsocketService,
+        { provide: BattleInstanceRepository, useValue: {} },
+        { provide: GameRepository, useValue: {} },
+        { provide: BattleSideEffectService, useValue: {} },
+        { provide: CalendarEventRepository, useValue: {} },
+        { provide: DamageEventRepository, useValue: {} },
+        { provide: BattleParticipationEventRepository, useValue: {} },
+        { provide: PokemonRepository, useValue: {} },
+        { provide: TrainerRepository, useValue: {} },
+        { provide: ColorService, useValue: {} },
+      ],
+    }).compile();
+
+    battleService = module.get<BattleService>(BattleService);
+    battleDataService = module.get<BattleDataService>(BattleDataService);
+    battleWebsocketService = module.get<BattleWebsocketService>(
+      BattleWebsocketService,
+    );
+    battleEventsService = module.get<BattleEventsService>(BattleEventsService);
+
     jest.clearAllMocks();
     jest.restoreAllMocks();
-    battleService = container.resolve(BattleService);
-    battleWebsocketService = container.resolve(BattleWebsocketService);
-    battleDataService = container.resolve(BattleDataService);
-    battleEventsService = container.resolve(BattleEventsService);
 
     battleMock = BattleTestMother.getBattleInstance();
   });
 
-  describe("simulateBattle method", () => {
-    it("should correctly simulate a battle scenario", async () => {
+  describe('simulateBattle method', () => {
+    it('should correctly simulate a battle scenario', async () => {
       jest
-        .spyOn(battleEventsService, "insertBattleEventsData")
+        .spyOn(battleEventsService, 'insertBattleEventsData')
         .mockResolvedValue();
-      jest.spyOn(battleDataService, "delete");
+      jest.spyOn(battleDataService, 'delete');
       const result = await battleService.simulateBattle(battleMock);
       expect(result).toBeDefined();
       expect(result.winner).toBeDefined();
@@ -58,84 +92,79 @@ describe("BattleService", () => {
     });
   });
 
-  describe("mapBattleTrainer method", () => {
+  describe('mapBattleTrainer method', () => {
     let trainer: ITrainer;
     let battleId: string;
 
     beforeEach(() => {
       trainer = TrainerTestMother.weakTrainer();
-      battleId = "battleId";
+      battleId = 'battleId';
     });
 
-    it("should return a trainer transformed into an instance of IBattleTrainer", () => {
+    it('should return a trainer transformed into an instance of IBattleTrainer', () => {
       const result = battleService.mapBattleTrainer(trainer, battleId);
       expect(result).toBeDefined();
-      expect(result).toHaveProperty("_id");
-      expect(result._id).toEqual(trainer._id.toString());
-      expect(result).toHaveProperty("name");
-      expect(result.name).toEqual(trainer.name);
-      expect(result).toHaveProperty("class");
-      expect(result.class).toEqual(trainer.class);
+      expect(result).toHaveProperty('_id', trainer._id.toString());
+      expect(result).toHaveProperty('name', trainer.name);
+      expect(result).toHaveProperty('class', trainer.class);
     });
 
-    it("should initialize the defeat property to false", () => {
+    it('should initialize the defeat property to false', () => {
       const result = battleService.mapBattleTrainer(trainer, battleId);
-      expect(result).toHaveProperty("defeat");
-      expect(result.defeat).toEqual(false);
+      expect(result).toHaveProperty('defeat', false);
     });
 
     it("should transform trainer's pokemons to battle pokemons array", () => {
       const result = battleService.mapBattleTrainer(trainer, battleId);
-      expect(result).toHaveProperty("pokemons");
-      expect(result.pokemons).toEqual(trainer.pokemons); // <-- Add your own Pokemon objects assertions. Now, a plain comparison is made.
+      expect(result).toHaveProperty('pokemons', trainer.pokemons);
     });
 
-    it("should filter pokemon with level 0 from battle pokemons array", () => {
+    it('should filter pokemon with level 0 from battle pokemons array', () => {
       const result = battleService.mapBattleTrainer(trainer, battleId);
-      expect(result).toHaveProperty("pokemons");
+      expect(result).toHaveProperty('pokemons');
       expect(result.pokemons.every((pokemon) => pokemon.level > 0)).toEqual(
         true,
       );
     });
   });
 
-  describe("getDailyForm", () => {
+  describe('getDailyForm', () => {
     beforeEach(() => {
       mockedGetRandomValue.mockReset();
     });
 
-    it("should return 0 if getRandomValue < 0.5", () => {
+    it('should return 0 if getRandomValue < 0.5', () => {
       mockedGetRandomValue.mockReturnValue(0.4);
-      const result = battleService.getDailyForm("battle1", "pokemon1");
+      const result = battleService.getDailyForm('battle1', 'pokemon1');
       expect(result).toBe(0);
     });
 
-    it("should return 1 if 0.5 <= getRandomValue < 0.7", () => {
+    it('should return 1 if 0.5 <= getRandomValue < 0.7', () => {
       mockedGetRandomValue.mockReturnValue(0.6);
-      const result = battleService.getDailyForm("battle1", "pokemon1");
+      const result = battleService.getDailyForm('battle1', 'pokemon1');
       expect(result).toBe(1);
     });
 
-    it("should return -1 if 0.7 <= getRandomValue < 0.9", () => {
+    it('should return -1 if 0.7 <= getRandomValue < 0.9', () => {
       mockedGetRandomValue.mockReturnValue(0.8);
-      const result = battleService.getDailyForm("battle1", "pokemon1");
+      const result = battleService.getDailyForm('battle1', 'pokemon1');
       expect(result).toBe(-1);
     });
 
-    it("should return 2 if 0.9 <= getRandomValue < 0.95", () => {
+    it('should return 2 if 0.9 <= getRandomValue < 0.95', () => {
       mockedGetRandomValue.mockReturnValue(0.93);
-      const result = battleService.getDailyForm("battle1", "pokemon1");
+      const result = battleService.getDailyForm('battle1', 'pokemon1');
       expect(result).toBe(2);
     });
 
-    it("should return -2 if getRandomValue >= 0.95", () => {
+    it('should return -2 if getRandomValue >= 0.95', () => {
       mockedGetRandomValue.mockReturnValue(0.96);
-      const result = battleService.getDailyForm("battle1", "pokemon1");
+      const result = battleService.getDailyForm('battle1', 'pokemon1');
       expect(result).toBe(-2);
     });
   });
 
-  describe("setDailyForm method", () => {
+  describe('setDailyForm method', () => {
     let dailyFormValue: number;
     let pokemonStats: {
       [key: string]: number;
@@ -148,7 +177,7 @@ describe("BattleService", () => {
       };
     });
 
-    it("should correctly update pokemon stats based on dailyForm value", () => {
+    it('should correctly update pokemon stats based on dailyForm value', () => {
       const resultStats: {
         [key: string]: number;
       } = battleService.setDailyForm(dailyFormValue, {
@@ -165,7 +194,7 @@ describe("BattleService", () => {
       });
     });
 
-    it("should return the same stats if dailyForm value is 0", () => {
+    it('should return the same stats if dailyForm value is 0', () => {
       dailyFormValue = 0;
       const resultStats: {
         [key: string]: number;
@@ -181,7 +210,7 @@ describe("BattleService", () => {
     });
   });
 
-  describe("BattleService selectMove method", () => {
+  describe('BattleService selectMove method', () => {
     let moves: IMove[];
     let strategy: number[];
 
@@ -190,7 +219,7 @@ describe("BattleService", () => {
       strategy = [0.25, 0.75];
     });
 
-    it("should select a move based on strategy probabilities", () => {
+    it('should select a move based on strategy probabilities', () => {
       const desiredMovesCount = [0, 0];
       const totalRuns = 100000;
 
@@ -205,13 +234,13 @@ describe("BattleService", () => {
       expect(desiredMovesCount[1]).toBeCloseTo(desiredMovesCount[0] * 3, -4);
     });
 
-    it("should select a random move when no strategy is defined", () => {
+    it('should select a random move when no strategy is defined', () => {
       const selectedMove = battleService.selectMove(moves, undefined);
       expect(moves).toContain(selectedMove);
     });
   });
 
-  describe("BattleService getMaxDamagedPokemon method", () => {
+  describe('BattleService getMaxDamagedPokemon method', () => {
     let pokemons: IBattlePokemon[];
     let move: IMove;
 
@@ -239,7 +268,7 @@ describe("BattleService", () => {
       move = MoveTestMother.basicMove();
     });
 
-    it("should return the pokemon which would get most damaged by a provided move", () => {
+    it('should return the pokemon which would get most damaged by a provided move', () => {
       const maxDamagedPokemon = battleService.getMaxDamagedPokemon(
         pokemons,
         move,
@@ -250,7 +279,7 @@ describe("BattleService", () => {
       expect(maxDamagedPokemon.currentHp).toEqual(70);
     });
 
-    it("should return not be null if all pokemons are immune to the move type", () => {
+    it('should return not be null if all pokemons are immune to the move type', () => {
       pokemons.forEach((p) => (p.basePokemon.types = [PokemonType.FLYING]));
       move.type = PokemonType.GROUND;
 
@@ -263,16 +292,16 @@ describe("BattleService", () => {
       expect(maxDamagedPokemon).toBeDefined();
     });
 
-    it("should return throw error if all pokemons have zero as currentHp", () => {
+    it('should return throw error if all pokemons have zero as currentHp', () => {
       pokemons.forEach((p) => (p.currentHp = 0));
 
       expect(() => {
         battleService.getMaxDamagedPokemon(pokemons, move, pokemons[0]);
-      }).toThrowError("No remaining pokemons");
+      }).toThrowError('No remaining pokemons');
     });
   });
 
-  describe("BattleService resetPokemonStates method", () => {
+  describe('BattleService resetPokemonStates method', () => {
     let battlePokemons: IBattlePokemon[];
 
     beforeEach(() => {
@@ -281,20 +310,20 @@ describe("BattleService", () => {
           dailyForm: 1,
           currentHp: 80,
           cumulatedSpeed: 100,
-          animation: "fast",
+          animation: 'fast',
           moving: true,
         }),
         BattlePokemonTestMother.withCustomOptions({
           dailyForm: -1,
           currentHp: 60,
           cumulatedSpeed: 200,
-          animation: "slow",
+          animation: 'slow',
           moving: false,
         }),
       ];
     });
 
-    it("should unset the animation and moving properties of provided pokemons", () => {
+    it('should unset the animation and moving properties of provided pokemons', () => {
       battleService.resetPokemonStates(battlePokemons);
       expect(battlePokemons[0].animation).toBeUndefined();
       expect(battlePokemons[0].moving).toBe(false);
@@ -302,7 +331,7 @@ describe("BattleService", () => {
       expect(battlePokemons[1].moving).toBe(false);
     });
 
-    it("should not affect other properties of provided pokemons", () => {
+    it('should not affect other properties of provided pokemons', () => {
       battleService.resetPokemonStates(battlePokemons);
       expect(battlePokemons[0].dailyForm).toBe(1);
       expect(battlePokemons[0].currentHp).toBe(80);
@@ -313,7 +342,7 @@ describe("BattleService", () => {
     });
   });
 
-  describe("BattleService findAttackingPokemon method", () => {
+  describe('BattleService findAttackingPokemon method', () => {
     let pokemons: IBattlePokemon[];
     let trainers: IBattleTrainer[];
     let battleOrder: IBattlePokemon[];
@@ -322,32 +351,32 @@ describe("BattleService", () => {
       pokemons = [
         BattlePokemonTestMother.withCustomOptions({
           cumulatedSpeed: 80,
-          trainerId: "trainer1",
-          _id: "pokemon0",
+          trainerId: 'trainer1',
+          _id: 'pokemon0',
         }),
         BattlePokemonTestMother.withCustomOptions({
           cumulatedSpeed: 100,
-          trainerId: "trainer1",
-          _id: "pokemon1",
+          trainerId: 'trainer1',
+          _id: 'pokemon1',
         }),
         BattlePokemonTestMother.withCustomOptions({
           cumulatedSpeed: 90,
-          trainerId: "trainer2",
-          _id: "pokemon2",
+          trainerId: 'trainer2',
+          _id: 'pokemon2',
         }),
       ];
       trainers = [
         BattleTrainerTestMother.withCustomOptions({
-          _id: "trainer1",
-          name: "Ash",
-          class: "champion",
+          _id: 'trainer1',
+          name: 'Ash',
+          class: 'champion',
           pokemons: [pokemons[0], pokemons[1]],
           defeat: false,
         }),
         BattleTrainerTestMother.withCustomOptions({
-          _id: "trainer2",
-          name: "Brock",
-          class: "gym leader",
+          _id: 'trainer2',
+          name: 'Brock',
+          class: 'gym leader',
           pokemons: [pokemons[2]],
           defeat: false,
         }),
@@ -365,7 +394,7 @@ describe("BattleService", () => {
       expect(attackingPokemon.cumulatedSpeed).toEqual(100);
     });
 
-    it("should return undefined if there are no pokemon available in the battle order", () => {
+    it('should return undefined if there are no pokemon available in the battle order', () => {
       battleOrder = [];
 
       const attackingPokemon = battleService.findAttackingPokemon(
@@ -378,16 +407,16 @@ describe("BattleService", () => {
     it("should return undefined if there are no pokemon within trainers' pokemons", () => {
       trainers = [
         BattleTrainerTestMother.withCustomOptions({
-          _id: "trainer1",
-          name: "Ash",
-          class: "champion",
+          _id: 'trainer1',
+          name: 'Ash',
+          class: 'champion',
           pokemons: [],
           defeat: false,
         }),
         BattleTrainerTestMother.withCustomOptions({
-          _id: "trainer2",
-          name: "Brock",
-          class: "gym leader",
+          _id: 'trainer2',
+          name: 'Brock',
+          class: 'gym leader',
           pokemons: [],
           defeat: false,
         }),
@@ -400,7 +429,7 @@ describe("BattleService", () => {
       expect(attackingPokemon).toBeUndefined();
     });
   });
-  describe("conductBattleRound method", () => {
+  describe('conductBattleRound method', () => {
     let attPokemon: IBattlePokemon;
     let opponents: IBattlePokemon[];
     let selectedMove: IMove;
@@ -426,7 +455,7 @@ describe("BattleService", () => {
       selectedMove = MoveTestMother.powerfulMove();
     });
 
-    it("should return an object containing damage and maxDamagedPokemon", () => {
+    it('should return an object containing damage and maxDamagedPokemon', () => {
       const { damage, maxDamagedPokemon } = battleService.conductBattleRound(
         attPokemon,
         opponents,
@@ -436,7 +465,7 @@ describe("BattleService", () => {
       expect(maxDamagedPokemon).toBeDefined();
     });
 
-    it("should reduce the hp of maxDamagedPokemon according to the damage inflicted", () => {
+    it('should reduce the hp of maxDamagedPokemon according to the damage inflicted', () => {
       const initialHp = opponents[0]?.currentHp;
       const { damage, maxDamagedPokemon } = battleService.conductBattleRound(
         attPokemon,
@@ -448,7 +477,7 @@ describe("BattleService", () => {
       );
     });
 
-    it("should return null damage if the move missed", () => {
+    it('should return null damage if the move missed', () => {
       selectedMove.accuracy = 0;
       const { damage, maxDamagedPokemon } = battleService.conductBattleRound(
         attPokemon,
@@ -460,7 +489,7 @@ describe("BattleService", () => {
       expect(maxDamagedPokemon).toBeDefined();
     });
   });
-  describe("BattleService initTrainer method", () => {
+  describe('BattleService initTrainer method', () => {
     let trainerId: string;
     let battleId: string;
     let gameId: string;
@@ -468,48 +497,48 @@ describe("BattleService", () => {
 
     beforeEach(() => {
       jest.clearAllMocks();
-      trainerId = "trainer1";
-      battleId = "battle1";
-      gameId = "game1";
-      playerIds = ["player1", "player2"];
-      jest.spyOn(battleService, "getPlayerIds").mockResolvedValue(playerIds);
-      jest.spyOn(battleService, "playNextRound").mockResolvedValue();
+      trainerId = 'trainer1';
+      battleId = 'battle1';
+      gameId = 'game1';
+      playerIds = ['player1', 'player2'];
+      jest.spyOn(battleService, 'getPlayerIds').mockResolvedValue(playerIds);
+      jest.spyOn(battleService, 'playNextRound').mockResolvedValue();
     });
 
-    it("should add trainer init battle status", () => {
-      const spy = jest.spyOn(battleWebsocketService, "addInitBattleStatus");
+    it('should add trainer init battle status', () => {
+      const spy = jest.spyOn(battleWebsocketService, 'addInitBattleStatus');
       battleService.initTrainer(trainerId, battleId, gameId);
       expect(spy).toHaveBeenCalledWith(trainerId);
     });
 
-    it("should check if the battle is ready", async () => {
+    it('should check if the battle is ready', async () => {
       const spyGetInitBattleReady = jest.spyOn(
         battleWebsocketService,
-        "getInitBattleReady",
+        'getInitBattleReady',
       );
       await battleService.initTrainer(trainerId, battleId, gameId);
       expect(spyGetInitBattleReady).toHaveBeenCalledWith(playerIds);
     });
 
-    it("should play next round if the battle is ready", async () => {
-      const spy = jest.spyOn(battleService, "playNextRound");
+    it('should play next round if the battle is ready', async () => {
+      const spy = jest.spyOn(battleService, 'playNextRound');
       jest
-        .spyOn(battleWebsocketService, "getInitBattleReady")
+        .spyOn(battleWebsocketService, 'getInitBattleReady')
         .mockReturnValueOnce(true);
       await battleService.initTrainer(trainerId, battleId, gameId);
       expect(spy).toHaveBeenCalledWith(battleId, true);
     });
 
-    it("should not play next round if the battle is not ready", async () => {
-      const spy = jest.spyOn(battleService, "playNextRound");
+    it('should not play next round if the battle is not ready', async () => {
+      const spy = jest.spyOn(battleService, 'playNextRound');
       jest
-        .spyOn(battleWebsocketService, "getInitBattleReady")
+        .spyOn(battleWebsocketService, 'getInitBattleReady')
         .mockReturnValueOnce(false);
       await battleService.initTrainer(trainerId, battleId, gameId);
       expect(spy).not.toHaveBeenCalled();
     });
   });
-  describe("BattleService askNextRound method", () => {
+  describe('BattleService askNextRound method', () => {
     let trainerId: string;
     let battleId: string;
     let gameId: string;
@@ -517,48 +546,48 @@ describe("BattleService", () => {
 
     beforeEach(() => {
       jest.clearAllMocks();
-      trainerId = "trainer1";
-      battleId = "battle1";
-      gameId = "game1";
-      playerIds = ["player1", "player2"];
-      jest.spyOn(battleService, "getPlayerIds").mockResolvedValue(playerIds);
-      jest.spyOn(battleService, "playNextRound").mockResolvedValue();
+      trainerId = 'trainer1';
+      battleId = 'battle1';
+      gameId = 'game1';
+      playerIds = ['player1', 'player2'];
+      jest.spyOn(battleService, 'getPlayerIds').mockResolvedValue(playerIds);
+      jest.spyOn(battleService, 'playNextRound').mockResolvedValue();
     });
 
-    it("should addAskNextRound", () => {
-      const spy = jest.spyOn(battleWebsocketService, "addAskNextRound");
+    it('should addAskNextRound', () => {
+      const spy = jest.spyOn(battleWebsocketService, 'addAskNextRound');
       battleService.askNextRound(trainerId, battleId, gameId);
       expect(spy).toHaveBeenCalledWith([trainerId], true);
     });
 
-    it("should check if the battle is ready", async () => {
+    it('should check if the battle is ready', async () => {
       const spyGetInitBattleReady = jest.spyOn(
         battleWebsocketService,
-        "getNextRoundStatus",
+        'getNextRoundStatus',
       );
       await battleService.askNextRound(trainerId, battleId, gameId);
       expect(spyGetInitBattleReady).toHaveBeenCalledWith(playerIds);
     });
 
-    it("should play next round if the battle is ready", async () => {
-      const spy = jest.spyOn(battleService, "playNextRound");
+    it('should play next round if the battle is ready', async () => {
+      const spy = jest.spyOn(battleService, 'playNextRound');
       jest
-        .spyOn(battleWebsocketService, "getNextRoundStatus")
+        .spyOn(battleWebsocketService, 'getNextRoundStatus')
         .mockReturnValueOnce(true);
       await battleService.askNextRound(trainerId, battleId, gameId);
       expect(spy).toHaveBeenCalledWith(battleId);
     });
 
-    it("should not play next round if the battle is not ready", async () => {
-      const spy = jest.spyOn(battleService, "playNextRound");
+    it('should not play next round if the battle is not ready', async () => {
+      const spy = jest.spyOn(battleService, 'playNextRound');
       jest
-        .spyOn(battleWebsocketService, "getNextRoundStatus")
+        .spyOn(battleWebsocketService, 'getNextRoundStatus')
         .mockReturnValueOnce(false);
       await battleService.askNextRound(trainerId, battleId, gameId);
       expect(spy).not.toHaveBeenCalled();
     });
   });
-  describe("BattleService updatePostBattleStates method", () => {
+  describe('BattleService updatePostBattleStates method', () => {
     let player: IBattleTrainer;
     let opponent: IBattleTrainer;
     let battleOrder: IBattlePokemon[];
@@ -566,9 +595,9 @@ describe("BattleService", () => {
 
     beforeEach(() => {
       player = BattleTrainerTestMother.withCustomOptions({
-        _id: "trainer1",
-        name: "Ash",
-        class: "champion",
+        _id: 'trainer1',
+        name: 'Ash',
+        class: 'champion',
         pokemons: [
           BattlePokemonTestMother.withCustomOptions({ currentHp: 50 }),
           BattlePokemonTestMother.withCustomOptions({ currentHp: 60 }),
@@ -576,9 +605,9 @@ describe("BattleService", () => {
         defeat: false,
       });
       opponent = BattleTrainerTestMother.withCustomOptions({
-        _id: "trainer2",
-        name: "Brock",
-        class: "gym leader",
+        _id: 'trainer2',
+        name: 'Brock',
+        class: 'gym leader',
         pokemons: [
           BattlePokemonTestMother.withCustomOptions({ currentHp: 40 }),
           BattlePokemonTestMother.withCustomOptions({ currentHp: 0 }),
@@ -594,7 +623,7 @@ describe("BattleService", () => {
       });
     });
 
-    it("should update battleOrder after a round", () => {
+    it('should update battleOrder after a round', () => {
       const updatedBattleOrder = battleService.updatePostBattleStates(
         player,
         opponent,
@@ -605,7 +634,7 @@ describe("BattleService", () => {
       expect(updatedBattleOrder).not.toContainEqual(maxDamagedPokemon);
     });
 
-    it("should set player defeat to true if all player pokemons have zero hp", () => {
+    it('should set player defeat to true if all player pokemons have zero hp', () => {
       player.pokemons.forEach((p) => (p.currentHp = 0));
       battleService.updatePostBattleStates(
         player,
@@ -616,7 +645,7 @@ describe("BattleService", () => {
       expect(player.defeat).toBe(true);
     });
 
-    it("should set opponent defeat to true if all opponent pokemons have zero hp", () => {
+    it('should set opponent defeat to true if all opponent pokemons have zero hp', () => {
       opponent.pokemons.forEach((p) => (p.currentHp = 0));
       battleService.updatePostBattleStates(
         player,
@@ -627,33 +656,33 @@ describe("BattleService", () => {
       expect(opponent.defeat).toBe(true);
     });
   });
-  describe("BattleService nextRoundLoop method", () => {
+  describe('BattleService nextRoundLoop method', () => {
     let battleId: string;
     let playerIds: string[];
     let gameId: string;
 
     beforeEach(() => {
       jest.clearAllMocks();
-      battleId = "battle1";
-      playerIds = ["player1", "player2"];
-      gameId = "game1";
-      jest.spyOn(battleService, "playNextRound").mockResolvedValue();
-      jest.spyOn(battleService, "resetNextRoundStatus").mockResolvedValue();
+      battleId = 'battle1';
+      playerIds = ['player1', 'player2'];
+      gameId = 'game1';
+      jest.spyOn(battleService, 'playNextRound').mockResolvedValue();
+      jest.spyOn(battleService, 'resetNextRoundStatus').mockResolvedValue();
     });
 
-    it("should call playNextRound in intervals if loop mode is enabled", async () => {
+    it('should call playNextRound in intervals if loop mode is enabled', async () => {
       jest
-        .spyOn(battleWebsocketService, "getNextRoundLoopStatus")
+        .spyOn(battleWebsocketService, 'getNextRoundLoopStatus')
         .mockReturnValue(true);
 
-      const playNextRoundSpy = jest.spyOn(battleService, "playNextRound");
+      const playNextRoundSpy = jest.spyOn(battleService, 'playNextRound');
 
       await battleService.nextRoundLoop(battleId, playerIds, gameId);
 
       expect(playNextRoundSpy).toHaveBeenCalled();
     });
   });
-  describe("BattleService resetNextRoundStatus method", () => {
+  describe('BattleService resetNextRoundStatus method', () => {
     let battleId: string;
     let gameId: string;
     let playerIds: string[];
@@ -661,20 +690,20 @@ describe("BattleService", () => {
     beforeEach(() => {
       jest.clearAllMocks();
       jest.resetAllMocks();
-      battleId = "battle1";
-      gameId = "game1";
-      playerIds = ["player1", "player2"];
-      jest.spyOn(battleService, "getPlayerIds").mockResolvedValue(playerIds);
+      battleId = 'battle1';
+      gameId = 'game1';
+      playerIds = ['player1', 'player2'];
+      jest.spyOn(battleService, 'getPlayerIds').mockResolvedValue(playerIds);
     });
 
-    it("should call resetNextRoundStatus on battleWebsocketService", async () => {
-      const spy = jest.spyOn(battleWebsocketService, "resetNextRoundStatus");
+    it('should call resetNextRoundStatus on battleWebsocketService', async () => {
+      const spy = jest.spyOn(battleWebsocketService, 'resetNextRoundStatus');
       await battleService.resetNextRoundStatus(battleId, gameId);
       expect(spy).toHaveBeenCalledWith(playerIds);
     });
 
-    it("should call updateNextRoundStatus on battleWebsocketService", async () => {
-      const spy = jest.spyOn(battleWebsocketService, "updateNextRoundStatus");
+    it('should call updateNextRoundStatus on battleWebsocketService', async () => {
+      const spy = jest.spyOn(battleWebsocketService, 'updateNextRoundStatus');
       await battleService.resetNextRoundStatus(battleId, gameId);
       expect(spy).toHaveBeenCalledWith(playerIds);
     });
