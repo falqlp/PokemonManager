@@ -34,10 +34,5 @@ async function bootstrap() {
 
   await app.listen(port);
   console.log(`Application is running on: ${await app.getUrl()}`);
-
-  // Initialisez le serveur WebSocket après le démarrage de l'application
-  // const httpServer = app.getHttpServer();
-  // const websocketGateway = app.get(WebsocketGateway);
-  // websocketGateway.server.attach(httpServer);
 }
 bootstrap();
