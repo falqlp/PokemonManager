@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MoveModel } from '../../models/move.model';
@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 export class MoveLearningQueriesService {
   protected http = inject(HttpClient);
 
-  public static readonly url = 'api/moveLearning';
+  public static readonly url = 'api/move-learning';
 
   public learnableMove(
     id: number,
