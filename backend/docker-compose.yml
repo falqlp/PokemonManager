@@ -31,8 +31,8 @@ services:
 
   nginx:
     build:
-      context: ./nginx
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./nginx/Dockerfile
     network_mode: "host"
     ports:
       - "${NGINX_PORT}:${NGINX_PORT}"
