@@ -32,8 +32,8 @@ export default [{
         sourceType: "module",
 
         parserOptions: {
-            project: "tsconfig.json",
-            tsconfigRootDir: "/home/popole/projet/PokemonManager/backend/core",
+            project: path.resolve(__dirname, "tsconfig.json"),
+            tsconfigRootDir: __dirname,
         },
     },
 
