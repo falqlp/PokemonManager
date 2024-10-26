@@ -1,10 +1,10 @@
-import mongoose, { Schema } from "mongoose";
-import { IPokemon } from "../pokemon/Pokemon";
-import { IPcStorage } from "./pcStorage/PcStorage";
-import { ITrainingCamp } from "./trainingCamp/TrainingCamp";
-import { INursery } from "./nursery/Nursery";
-import { MongoId } from "../MongoId";
-import { ICompetition } from "../competiton/Competition";
+import mongoose, { Schema } from 'mongoose';
+import { IPokemon } from '../pokemon/Pokemon';
+import { IPcStorage } from './pcStorage/PcStorage';
+import { ITrainingCamp } from './trainingCamp/TrainingCamp';
+import { INursery } from './nursery/Nursery';
+import { MongoId } from '../MongoId';
+import { ICompetition } from '../competiton/Competition';
 
 export interface ITrainer extends MongoId {
   name: string;
@@ -22,19 +22,19 @@ export interface ITrainer extends MongoId {
 
 const trainerSchema = new Schema<ITrainer>({
   name: { type: String, required: true },
-  pokemons: [{ type: Schema.Types.ObjectId, ref: "Pokemon" }],
-  competitions: [{ type: Schema.Types.ObjectId, ref: "Competition" }],
+  pokemons: [{ type: Schema.Types.ObjectId, ref: 'Pokemon' }],
+  competitions: [{ type: Schema.Types.ObjectId, ref: 'Competition' }],
   pcStorage: {
     type: Schema.Types.ObjectId,
-    ref: "PcStorage",
+    ref: 'PcStorage',
     required: true,
   },
   trainingCamp: {
     type: Schema.Types.ObjectId,
-    ref: "TrainingCamp",
+    ref: 'TrainingCamp',
     required: true,
   },
-  nursery: { type: Schema.Types.ObjectId, ref: "Nursery", required: true },
+  nursery: { type: Schema.Types.ObjectId, ref: 'Nursery', required: true },
   gameId: { type: String, required: true },
   class: { type: String },
   berries: { type: Number, required: true },
@@ -42,5 +42,5 @@ const trainerSchema = new Schema<ITrainer>({
   division: { type: Number },
 });
 
-const Trainer = mongoose.model<ITrainer>("Trainer", trainerSchema);
+const Trainer = mongoose.model<ITrainer>('Trainer', trainerSchema);
 export default Trainer;

@@ -1,8 +1,8 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 import {
   battleEventIdentifierSchema,
   IBattleEventIdentifier,
-} from "../BattleEventIdentifier";
+} from '../BattleEventIdentifier';
 
 export interface IBattleParticipationEvent extends IBattleEventIdentifier {
   pokemonIds: string[];
@@ -16,7 +16,7 @@ const battleParticipationEventSchema = new Schema<IBattleParticipationEvent>({
 });
 
 const BattleParticipationEvent = mongoose.model<IBattleParticipationEvent>(
-  "BattleParticipationEvent",
+  'BattleParticipationEvent',
   battleParticipationEventSchema,
 );
 export default BattleParticipationEvent;

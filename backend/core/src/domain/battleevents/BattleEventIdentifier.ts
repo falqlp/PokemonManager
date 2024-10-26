@@ -1,4 +1,4 @@
-import { MongoId } from "../MongoId";
+import { MongoId } from '../MongoId';
 
 export interface IBattleEventIdentifier extends MongoId {
   battleId?: string;

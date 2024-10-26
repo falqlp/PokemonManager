@@ -1,5 +1,5 @@
-import mongoose, { Schema } from "mongoose";
-import { MongoId } from "../../MongoId";
+import mongoose, { Schema } from 'mongoose';
+import { MongoId } from '../../MongoId';
 
 export interface ITrainingCamp extends MongoId {
   level: number;
@@ -12,7 +12,7 @@ const TrainingCampSchema = new Schema<ITrainingCamp>({
 });
 
 const TrainingCamp = mongoose.model<ITrainingCamp>(
-  "TrainingCamp",
+  'TrainingCamp',
   TrainingCampSchema,
 );
 export default TrainingCamp;

@@ -54,7 +54,6 @@ class TrainerService {
     if (trainer.pokemons.length < 6) {
       trainer.pokemons.push(pokemon);
     } else {
-      trainer.pcStorage.maxSize;
       let freeIndex;
       for (let i = 0; i < trainer.pcStorage.maxSize; i++) {
         if (!trainer.pcStorage.storage.find((st) => st.position === i)) {

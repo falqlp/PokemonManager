@@ -1,6 +1,6 @@
-import { MongoId } from "../../MongoId";
-import { IUser } from "../User";
-import mongoose, { Schema } from "mongoose";
+import { MongoId } from '../../MongoId';
+import { IUser } from '../User';
+import mongoose, { Schema } from 'mongoose';
 
 export interface IPasswordRequest extends MongoId {
   expirationDate: Date;
@@ -9,11 +9,11 @@ export interface IPasswordRequest extends MongoId {
 
 const passwordRequestSchema = new Schema<IPasswordRequest>({
   expirationDate: { type: Date, required: true },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 });
 
 const PasswordRequest = mongoose.model<IPasswordRequest>(
-  "PasswordRequest",
+  'PasswordRequest',
   passwordRequestSchema,
 );
 export default PasswordRequest;

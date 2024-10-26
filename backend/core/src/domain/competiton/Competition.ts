@@ -1,13 +1,13 @@
-import mongoose, { Schema } from "mongoose";
-import { MongoId } from "../MongoId";
-import { ITournament } from "./tournament/Tournament";
-import { ITrainer } from "../trainer/Trainer";
+import mongoose, { Schema } from 'mongoose';
+import { MongoId } from '../MongoId';
+import { ITournament } from './tournament/Tournament';
+import { ITrainer } from '../trainer/Trainer';
 
 export enum CompetitionType {
-  CHAMPIONSHIP = "CHAMPIONSHIP",
-  TOURNAMENT = "TOURNAMENT",
-  FRIENDLY = "FRIENDLY",
-  GROUPS = "GROUPS",
+  CHAMPIONSHIP = 'CHAMPIONSHIP',
+  TOURNAMENT = 'TOURNAMENT',
+  FRIENDLY = 'FRIENDLY',
+  GROUPS = 'GROUPS',
 }
 
 interface BaseCompetition extends MongoId {
@@ -54,7 +54,7 @@ const CompetitionSchema = new Schema<ICompetition>({
   division: { type: Number },
   tournament: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Tournament",
+    ref: 'Tournament',
     required: function (): boolean {
       return this.type === CompetitionType.TOURNAMENT;
     },
@@ -63,7 +63,7 @@ const CompetitionSchema = new Schema<ICompetition>({
     [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Trainer",
+        ref: 'Trainer',
         required: function (): boolean {
           return this.type === CompetitionType.GROUPS;
         },
@@ -73,7 +73,7 @@ const CompetitionSchema = new Schema<ICompetition>({
 });
 
 const Competition = mongoose.model<ICompetition>(
-  "Competition",
+  'Competition',
   CompetitionSchema,
 );
 export default Competition;

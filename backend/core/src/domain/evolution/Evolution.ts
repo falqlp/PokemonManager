@@ -1,5 +1,5 @@
-import mongoose, { Schema } from "mongoose";
-import { MongoId } from "../MongoId";
+import mongoose, { Schema } from 'mongoose';
+import { MongoId } from '../MongoId';
 
 export interface IEvolution extends MongoId {
   evolutionMethod: string;
@@ -30,5 +30,5 @@ const evolutionSchema = new Schema<IEvolution>({
   },
 });
 
-const Evolution = mongoose.model<IEvolution>("Evolution", evolutionSchema);
+const Evolution = mongoose.model<IEvolution>('Evolution', evolutionSchema);
 export default Evolution;

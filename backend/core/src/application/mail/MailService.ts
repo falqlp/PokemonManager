@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { createTransport } from 'nodemailer';
 import { MailOptions } from 'nodemailer/lib/smtp-pool';
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+
 import fs from 'fs';
 import path from 'node:path';
 import { IUser } from '../../domain/user/User';

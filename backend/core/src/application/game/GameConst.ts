@@ -1,4 +1,4 @@
-import { RangeModel } from "../../models/RangeModel";
+import { RangeModel } from '../../models/RangeModel';
 
 export const NB_GENERATED_TRAINER_BY_DIVISION = 20;
 export const NB_DIVISION = 3;

@@ -1,15 +1,15 @@
-import { TrainerTestMother } from "../Trainer/TrainerTestMother";
-import { IGame } from "../../../domain/game/Game";
-import { ITrainer } from "../../../domain/trainer/Trainer";
+import { TrainerTestMother } from '../Trainer/TrainerTestMother';
+import { IGame } from '../../../domain/game/Game';
+import { ITrainer } from '../../../domain/trainer/Trainer';
 
 export class GameTestMother {
   static basicGame(): IGame {
     const trainer: ITrainer = TrainerTestMother.weakTrainer();
     return {
-      _id: "gameId",
-      players: [{ trainer, playingTime: 0, userId: "userId" }],
+      _id: 'gameId',
+      players: [{ trainer, playingTime: 0, userId: 'userId' }],
       actualDate: new Date(),
-      name: "Pokémon World",
+      name: 'Pokémon World',
     } as IGame;
   }
 

@@ -1,4 +1,4 @@
-import { INursery, IWishList } from "../../../domain/trainer/nursery/Nursery";
+import { INursery, IWishList } from '../../../domain/trainer/nursery/Nursery';
 
 export class NurseryTestMother {
   static basicWishList(): IWishList {
@@ -31,7 +31,7 @@ export class NurseryTestMother {
     return {
       level: 1,
       wishList: this.basicWishList(),
-      step: "WISHLIST",
+      step: 'WISHLIST',
     } as INursery;
   }
 

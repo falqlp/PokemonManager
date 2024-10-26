@@ -1,5 +1,5 @@
-import { IPokemonBase } from "../../domain/pokemon/pokemonBase/PokemonBase";
-import { IMove } from "../../domain/move/Move";
+import { IPokemonBase } from '../../domain/pokemon/pokemonBase/PokemonBase';
+import { IMove } from '../../domain/move/Move';
 
 export interface IPokedexEvolution {
   pokemon: IPokemonBase;

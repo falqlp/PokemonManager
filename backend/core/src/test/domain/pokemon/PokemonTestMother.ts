@@ -1,8 +1,8 @@
-import { IPokemon, PokemonNature } from "../../../domain/pokemon/Pokemon";
-import { PokemonBaseTestMother } from "../PokemonBase/PokemonBaseTestMother";
-import { StatsTestMother } from "../Stats/StatsTestMother";
-import { MoveTestMother } from "../Move/MoveTestMother";
-import { Gender } from "../../../domain/Gender";
+import { IPokemon, PokemonNature } from '../../../domain/pokemon/Pokemon';
+import { PokemonBaseTestMother } from '../PokemonBase/PokemonBaseTestMother';
+import { StatsTestMother } from '../Stats/StatsTestMother';
+import { MoveTestMother } from '../Move/MoveTestMother';
+import { Gender } from '../../../domain/Gender';
 
 export class PokemonTestMother {
   static generateBulbasaur(trainerId?: string): IPokemon {
@@ -19,14 +19,14 @@ export class PokemonTestMother {
       moves: [MoveTestMother.basicMove(), MoveTestMother.powerfulMove()],
       shiny: false,
       nature: PokemonNature.HARDY,
-      _id: "bulbasur",
-      trainerId: trainerId ?? "trainerId",
-      gameId: "gameId",
+      _id: 'bulbasur',
+      trainerId: trainerId ?? 'trainerId',
+      gameId: 'gameId',
       happiness: 100,
       maxLevel: 100,
       strategy: [],
       gender: Gender.MALE,
-      hiddenPotential: "100-100",
+      hiddenPotential: '100-100',
     };
   }
 
@@ -43,13 +43,13 @@ export class PokemonTestMother {
       basePokemon: PokemonBaseTestMother.generateArticunoBase(),
       level: 100,
       potential: 100,
-      _id: "articuno",
+      _id: 'articuno',
       birthday: new Date(Date.now()),
       ev: StatsTestMother.getEvs(),
       iv: StatsTestMother.getIVs(),
       stats: StatsTestMother.getArticunoStatsLvl100(),
       moves: [MoveTestMother.basicMove(), MoveTestMother.powerfulMove()],
-      trainerId: trainerId ?? "trainerId",
+      trainerId: trainerId ?? 'trainerId',
     });
   }
 }

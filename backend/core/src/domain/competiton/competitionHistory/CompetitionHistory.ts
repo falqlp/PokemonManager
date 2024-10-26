@@ -1,11 +1,11 @@
-import { MongoId } from "../../MongoId";
-import { CompetitionType } from "../Competition";
+import { MongoId } from '../../MongoId';
+import { CompetitionType } from '../Competition';
 import {
   IRankingBase,
   ISerieRanking,
   ITrainerRanking,
-} from "../../../application/battleInstance/BattleInstanceService";
-import mongoose, { Schema } from "mongoose";
+} from '../../../application/battleInstance/BattleInstanceService';
+import mongoose, { Schema } from 'mongoose';
 
 interface BaseCompetitionHistory extends MongoId {
   season: number;
@@ -81,7 +81,7 @@ const CompetitionHistorySchema = new Schema<ICompetitionHistory>({
 });
 
 const CompetitionHistory = mongoose.model<ICompetitionHistory>(
-  "CompetitionHistory",
+  'CompetitionHistory',
   CompetitionHistorySchema,
 );
 export default CompetitionHistory;

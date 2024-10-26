@@ -1,11 +1,11 @@
-import { IPokemon } from "../../domain/pokemon/Pokemon";
-import { IMove } from "../../domain/move/Move";
+import { IPokemon } from '../../domain/pokemon/Pokemon';
+import { IMove } from '../../domain/move/Move';
 
 export type Effectiveness =
-  | "IMMUNE"
-  | "NOT_VERY_EFFECTIVE"
-  | "EFFECTIVE"
-  | "SUPER_EFFECTIVE";
+  | 'IMMUNE'
+  | 'NOT_VERY_EFFECTIVE'
+  | 'EFFECTIVE'
+  | 'SUPER_EFFECTIVE';
 
 export interface IBattlePokemon extends IPokemon {
   dailyForm: number;
@@ -17,7 +17,7 @@ export interface IBattlePokemon extends IPokemon {
 }
 
 export enum BattleDamageInfo {
-  RELOAD = "RELOAD",
+  RELOAD = 'RELOAD',
 }
 export interface IDamage {
   damage: number;

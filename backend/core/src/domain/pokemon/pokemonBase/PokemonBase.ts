@@ -1,9 +1,9 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 import PokemonStats, {
   IPokemonStats,
-} from "../../../models/PokemonModels/pokemonStats";
-import { PokemonType } from "../../../models/Types/Types";
-import { MongoId } from "../../MongoId";
+} from '../../../models/PokemonModels/pokemonStats';
+import { PokemonType } from '../../../models/Types/Types';
+import { MongoId } from '../../MongoId';
 
 export interface IPokemonBase extends MongoId {
   id: number;
@@ -38,7 +38,7 @@ const pokemonBaseSchema = new Schema<IPokemonBase>({
 });
 
 const PokemonBase = mongoose.model<IPokemonBase>(
-  "PokemonBase",
+  'PokemonBase',
   pokemonBaseSchema,
 );
 export default PokemonBase;

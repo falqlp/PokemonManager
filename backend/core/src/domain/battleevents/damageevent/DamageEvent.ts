@@ -1,9 +1,9 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 import {
   battleEventIdentifierSchema,
   IBattleEventIdentifier,
-} from "../BattleEventIdentifier";
-import { Effectiveness } from "../../../application/battle/BattleInterfaces";
+} from '../BattleEventIdentifier';
+import { Effectiveness } from '../../../application/battle/BattleInterfaces';
 
 export interface IDamageEvent extends IBattleEventIdentifier {
   value: number;
@@ -32,7 +32,7 @@ const damageEventSchema = new Schema<IDamageEvent>({
 });
 
 const DamageEvent = mongoose.model<IDamageEvent>(
-  "DamageEvent",
+  'DamageEvent',
   damageEventSchema,
 );
 export default DamageEvent;

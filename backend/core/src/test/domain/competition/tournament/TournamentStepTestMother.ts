@@ -1,4 +1,4 @@
-import { ITournamentStep } from "../../../../domain/competiton/tournament/Tournament";
+import { ITournamentStep } from '../../../../domain/competiton/tournament/Tournament';
 
 export default class TournamentStepTestMother {
   public static getTournamentStep(): ITournamentStep {

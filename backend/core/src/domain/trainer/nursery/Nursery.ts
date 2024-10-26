@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
-import { IPokemon } from "../../pokemon/Pokemon";
-import { MongoId } from "../../MongoId";
+import mongoose, { Schema } from 'mongoose';
+import { IPokemon } from '../../pokemon/Pokemon';
+import { MongoId } from '../../MongoId';
 
 export interface IWishList {
   typeRepartition: {
@@ -47,7 +47,7 @@ const TypeRepartitionSchema = new Schema({
   water: Number,
 });
 
-export type NurserySteps = "WISHLIST" | "FIRST_SELECTION" | "LAST_SELECTION";
+export type NurserySteps = 'WISHLIST' | 'FIRST_SELECTION' | 'LAST_SELECTION';
 
 export interface INursery extends MongoId {
   gameId: string;
@@ -78,9 +78,9 @@ const NurserySchema = new Schema<INursery>({
     required: true,
   },
   wishList: WishListSchema,
-  eggs: [{ type: Schema.Types.ObjectId, ref: "Pokemon" }],
+  eggs: [{ type: Schema.Types.ObjectId, ref: 'Pokemon' }],
   step: String,
 });
 
-const Nursery = mongoose.model<INursery>("Nursery", NurserySchema);
+const Nursery = mongoose.model<INursery>('Nursery', NurserySchema);
 export default Nursery;

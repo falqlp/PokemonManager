@@ -1,35 +1,35 @@
 import {
   CompetitionType,
   ICompetition,
-} from "../../../domain/competiton/Competition";
-import TournamentTestMother from "./tournament/TournamentTestMother";
+} from '../../../domain/competiton/Competition';
+import TournamentTestMother from './tournament/TournamentTestMother';
 
 export default class CompetitionTestMother {
   public static getTournamentCompetition(): ICompetition {
     return {
-      name: "Competition",
+      name: 'Competition',
       type: CompetitionType.TOURNAMENT,
       tournament: TournamentTestMother.getTournament(),
       division: 3,
-      gameId: "gameId",
+      gameId: 'gameId',
     };
   }
 
   public static getChampionshipCompetition(): ICompetition {
     return {
-      _id: "championshipId",
-      name: "Championship",
+      _id: 'championshipId',
+      name: 'Championship',
       type: CompetitionType.CHAMPIONSHIP,
       division: 3,
-      gameId: "gameId",
+      gameId: 'gameId',
     };
   }
 
   public static getFriendlyCompetition(): ICompetition {
     return {
-      name: "Friendly",
+      name: 'Friendly',
       type: CompetitionType.FRIENDLY,
-      gameId: "gameId",
+      gameId: 'gameId',
     };
   }
 

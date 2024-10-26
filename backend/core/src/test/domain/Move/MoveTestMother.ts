@@ -1,18 +1,18 @@
-import { IMove } from "../../../domain/move/Move";
-import { PokemonType } from "../../../models/Types/Types";
+import { IMove } from '../../../domain/move/Move';
+import { PokemonType } from '../../../models/Types/Types';
 
 export class MoveTestMother {
   static basicMove(): IMove {
     return {
       id: 1,
-      name: "Tackle",
+      name: 'Tackle',
       type: PokemonType.NORMAL,
-      category: "physical",
+      category: 'physical',
       accuracy: 100,
       power: 40,
       animation: {
-        opponent: "",
-        player: "",
+        opponent: '',
+        player: '',
       },
     } as IMove;
   }
@@ -27,14 +27,14 @@ export class MoveTestMother {
   static powerfulMove(): IMove {
     return this.withCustomOptions({
       id: 2,
-      name: "Hyper Beam",
+      name: 'Hyper Beam',
       type: PokemonType.NORMAL,
-      category: "special",
+      category: 'special',
       accuracy: 90,
       power: 150,
       animation: {
-        opponent: "",
-        player: "",
+        opponent: '',
+        player: '',
       },
     });
   }

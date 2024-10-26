@@ -1,7 +1,7 @@
-import mongoose, { Schema } from "mongoose";
-import { ITrainer } from "../trainer/Trainer";
-import { entitySchema, IEntity } from "../Entity";
-import { MongoId } from "../MongoId";
+import mongoose, { Schema } from 'mongoose';
+import { ITrainer } from '../trainer/Trainer';
+import { entitySchema, IEntity } from '../Entity';
+import { MongoId } from '../MongoId';
 
 export interface IPlayer {
   userId: string;
@@ -16,7 +16,7 @@ export interface IGame extends MongoId, IEntity {
 }
 
 const PlayerSchema = new Schema<IPlayer>({
-  trainer: { type: mongoose.Schema.Types.ObjectId, ref: "Trainer" },
+  trainer: { type: mongoose.Schema.Types.ObjectId, ref: 'Trainer' },
   userId: { type: String, required: true },
   playingTime: { type: Number },
 });
@@ -31,5 +31,5 @@ const GameSchema = new Schema<IGame>({
   players: [PlayerSchema],
 });
 
-const Game = mongoose.model<IGame>("Game", GameSchema);
+const Game = mongoose.model<IGame>('Game', GameSchema);
 export default Game;

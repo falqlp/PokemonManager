@@ -1,7 +1,7 @@
-import mongoose, { Schema } from "mongoose";
-import { MongoId } from "../../../MongoId";
-import { IBattleInstance } from "../../../battleInstance/Battle";
-import { ITrainer } from "../../../trainer/Trainer";
+import mongoose, { Schema } from 'mongoose';
+import { MongoId } from '../../../MongoId';
+import { IBattleInstance } from '../../../battleInstance/Battle';
+import { ITrainer } from '../../../trainer/Trainer';
 
 export enum SerieTypes {
   BO1 = 1,
@@ -23,24 +23,24 @@ export const battleSerieSchema = new Schema<IBattleSerie>({
   gameId: { type: String, required: true },
   player: {
     type: Schema.Types.ObjectId,
-    ref: "Trainer",
+    ref: 'Trainer',
     required: true,
   },
   opponent: {
     type: Schema.Types.ObjectId,
-    ref: "Trainer",
+    ref: 'Trainer',
     required: true,
   },
   battles: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Battle",
+      ref: 'Battle',
     },
   ],
 });
 
 const BattleSerie = mongoose.model<IBattleSerie>(
-  "BattleSerie",
+  'BattleSerie',
   battleSerieSchema,
 );
 export default BattleSerie;

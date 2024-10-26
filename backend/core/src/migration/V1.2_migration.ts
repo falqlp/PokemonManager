@@ -1,13 +1,13 @@
-import { container } from "tsyringe";
-import MoveRepository from "../domain/move/MoveRepository";
-import axios from "axios";
-import Move from "../domain/move/Move";
+import { container } from 'tsyringe';
+import MoveRepository from '../domain/move/MoveRepository';
+import axios from 'axios';
+import Move from '../domain/move/Move';
 
 export default async function updateMove(): Promise<void> {
   const moves = await container.resolve(MoveRepository).list({});
   for (const move of moves) {
     axios
-      .get("https://pokeapi.co/api/v2/move/" + move.name.toLowerCase())
+      .get('https://pokeapi.co/api/v2/move/' + move.name.toLowerCase())
       .then((response) => {
         const sideEffect: Record<string, number> = {};
         if (response.data.meta?.drain) {

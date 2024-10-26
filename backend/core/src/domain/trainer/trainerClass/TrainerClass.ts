@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
-import { Gender } from "../../Gender";
-import { MongoId } from "../../MongoId";
+import mongoose, { Schema } from 'mongoose';
+import { Gender } from '../../Gender';
+import { MongoId } from '../../MongoId';
 
 export interface ITrainerClass extends MongoId {
   class: string;
@@ -13,7 +13,7 @@ const trainerClassSchema = new Schema<ITrainerClass>({
 });
 
 const TrainerClass = mongoose.model<ITrainerClass>(
-  "trainerClass",
+  'trainerClass',
   trainerClassSchema,
 );
 export default TrainerClass;

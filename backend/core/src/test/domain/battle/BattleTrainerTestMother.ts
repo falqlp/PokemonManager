@@ -1,19 +1,19 @@
-import { IBattleTrainer } from "../../../application/battle/BattleInterfaces";
-import BattlePokemonTestMother from "./BattlePokemonTestMother";
+import { IBattleTrainer } from '../../../application/battle/BattleInterfaces';
+import BattlePokemonTestMother from './BattlePokemonTestMother';
 
 export default class BattleTrainerTestMother {
   public static getBattleTrainer(trainerId?: string): IBattleTrainer {
     return {
-      _id: trainerId ?? "BattleTrainerId",
+      _id: trainerId ?? 'BattleTrainerId',
       defeat: false,
-      class: "",
+      class: '',
       pokemons: [
         BattlePokemonTestMother.getBattlePokemon(
-          trainerId ?? "BattleTrainerId",
+          trainerId ?? 'BattleTrainerId',
         ),
       ],
       isAI: false,
-      name: "BattleTrainer",
+      name: 'BattleTrainer',
     };
   }
 

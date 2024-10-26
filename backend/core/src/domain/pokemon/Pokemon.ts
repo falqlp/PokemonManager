@@ -1,35 +1,35 @@
-import mongoose, { Schema } from "mongoose";
-import { IPokemonStats } from "../../models/PokemonModels/pokemonStats";
-import { IPokemonBase } from "./pokemonBase/PokemonBase";
-import { IMove } from "../move/Move";
-import { MongoId } from "../MongoId";
-import { Gender } from "../Gender";
+import mongoose, { Schema } from 'mongoose';
+import { IPokemonStats } from '../../models/PokemonModels/pokemonStats';
+import { IPokemonBase } from './pokemonBase/PokemonBase';
+import { IMove } from '../move/Move';
+import { MongoId } from '../MongoId';
+import { Gender } from '../Gender';
 export enum PokemonNature {
-  HARDY = "HARDY",
-  LONELY = "LONELY",
-  BRAVE = "BRAVE",
-  ADAMANT = "ADAMANT",
-  NAUGHTY = "NAUGHTY",
-  BOLD = "BOLD",
-  DOCILE = "DOCILE",
-  RELAXED = "RELAXED",
-  IMPISH = "IMPISH",
-  LAX = "LAX",
-  TIMID = "TIMID",
-  HASTY = "HASTY",
-  SERIOUS = "SERIOUS",
-  JOLLY = "JOLLY",
-  NAIVE = "NAIVE",
-  MODEST = "MODEST",
-  MILD = "MILD",
-  QUIET = "QUIET",
-  BASHFUL = "BASHFUL",
-  RASH = "RASH",
-  CALM = "CALM",
-  GENTLE = "GENTLE",
-  SASSY = "SASSY",
-  CAREFUL = "CAREFUL",
-  QUIRKY = "QUIRKY",
+  HARDY = 'HARDY',
+  LONELY = 'LONELY',
+  BRAVE = 'BRAVE',
+  ADAMANT = 'ADAMANT',
+  NAUGHTY = 'NAUGHTY',
+  BOLD = 'BOLD',
+  DOCILE = 'DOCILE',
+  RELAXED = 'RELAXED',
+  IMPISH = 'IMPISH',
+  LAX = 'LAX',
+  TIMID = 'TIMID',
+  HASTY = 'HASTY',
+  SERIOUS = 'SERIOUS',
+  JOLLY = 'JOLLY',
+  NAIVE = 'NAIVE',
+  MODEST = 'MODEST',
+  MILD = 'MILD',
+  QUIET = 'QUIET',
+  BASHFUL = 'BASHFUL',
+  RASH = 'RASH',
+  CALM = 'CALM',
+  GENTLE = 'GENTLE',
+  SASSY = 'SASSY',
+  CAREFUL = 'CAREFUL',
+  QUIRKY = 'QUIRKY',
 }
 
 export interface IPokemon extends MongoId {
@@ -60,10 +60,10 @@ export interface IPokemon extends MongoId {
 const pokemonSchema = new Schema<IPokemon>({
   trainerId: { type: String, required: false },
   nickname: { type: String, required: false },
-  basePokemon: { type: mongoose.Schema.Types.ObjectId, ref: "PokemonBase" },
+  basePokemon: { type: mongoose.Schema.Types.ObjectId, ref: 'PokemonBase' },
   level: { type: Number, required: true },
   exp: { type: Number, required: true },
-  moves: [{ type: mongoose.Schema.Types.ObjectId, ref: "Move" }],
+  moves: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Move' }],
   stats: { type: Schema.Types.Mixed, required: true },
   ev: { type: Schema.Types.Mixed, required: true },
   iv: { type: Schema.Types.Mixed, required: true },
@@ -82,5 +82,5 @@ const pokemonSchema = new Schema<IPokemon>({
   gender: { type: String, required: true },
 });
 
-const Pokemon = mongoose.model<IPokemon>("Pokemon", pokemonSchema);
+const Pokemon = mongoose.model<IPokemon>('Pokemon', pokemonSchema);
 export default Pokemon;

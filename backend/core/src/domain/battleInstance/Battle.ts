@@ -1,9 +1,9 @@
-import mongoose, { Schema } from "mongoose";
-import { ITrainer } from "../trainer/Trainer";
-import { MongoId } from "../MongoId";
-import { ICompetition } from "../competiton/Competition";
+import mongoose, { Schema } from 'mongoose';
+import { ITrainer } from '../trainer/Trainer';
+import { MongoId } from '../MongoId';
+import { ICompetition } from '../competiton/Competition';
 
-export type IWinner = "opponent" | "player";
+export type IWinner = 'opponent' | 'player';
 
 export interface IBattleInstance extends MongoId {
   player: ITrainer;
@@ -16,17 +16,17 @@ export interface IBattleInstance extends MongoId {
 const battleSchema = new Schema<IBattleInstance>({
   player: {
     type: Schema.Types.ObjectId,
-    ref: "Trainer",
+    ref: 'Trainer',
     required: true,
   },
   opponent: {
     type: Schema.Types.ObjectId,
-    ref: "Trainer",
+    ref: 'Trainer',
     required: true,
   },
   competition: {
     type: Schema.Types.ObjectId,
-    ref: "Competition",
+    ref: 'Competition',
     required: true,
   },
   winner: {
@@ -35,5 +35,5 @@ const battleSchema = new Schema<IBattleInstance>({
   gameId: { type: String, required: true },
 });
 
-const Battle = mongoose.model<IBattleInstance>("Battle", battleSchema);
+const Battle = mongoose.model<IBattleInstance>('Battle', battleSchema);
 export default Battle;

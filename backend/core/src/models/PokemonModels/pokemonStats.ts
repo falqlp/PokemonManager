@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 
 export interface IPokemonStats {
   hp: number;
@@ -19,7 +19,7 @@ const pokemonStatsSchema = new Schema<IPokemonStats>({
 });
 
 const PokemonStats = mongoose.model<IPokemonStats>(
-  "PokemonStats",
+  'PokemonStats',
   pokemonStatsSchema,
 );
 export default PokemonStats;

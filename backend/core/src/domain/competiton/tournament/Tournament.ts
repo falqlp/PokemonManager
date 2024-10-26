@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
-import { MongoId } from "../../MongoId";
-import { IBattleSerie } from "./battleSerie/BattleSerie";
+import mongoose, { Schema } from 'mongoose';
+import { MongoId } from '../../MongoId';
+import { IBattleSerie } from './battleSerie/BattleSerie';
 
 export interface ITournamentStep {
   startDate: Date;
@@ -20,7 +20,7 @@ const TournamentStepSchema = new Schema<ITournamentStep>({
   battleSeries: [
     {
       type: Schema.Types.ObjectId,
-      ref: "BattleSerie",
+      ref: 'BattleSerie',
     },
   ],
 });
@@ -32,5 +32,5 @@ const tournamentSchema = new Schema<ITournament>({
   competitionId: { type: String, required: true },
 });
 
-const Tournament = mongoose.model<ITournament>("Tournament", tournamentSchema);
+const Tournament = mongoose.model<ITournament>('Tournament', tournamentSchema);
 export default Tournament;

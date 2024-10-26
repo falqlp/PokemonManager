@@ -1,6 +1,6 @@
-import { IBattlePokemon } from "../../../application/battle/BattleInterfaces";
-import { PokemonTestMother } from "../pokemon/PokemonTestMother";
-import { StatsTestMother } from "../Stats/StatsTestMother";
+import { IBattlePokemon } from '../../../application/battle/BattleInterfaces';
+import { PokemonTestMother } from '../pokemon/PokemonTestMother';
+import { StatsTestMother } from '../Stats/StatsTestMother';
 
 export default class BattlePokemonTestMother {
   public static getBattlePokemon(trainerId?: string): IBattlePokemon {
@@ -9,7 +9,7 @@ export default class BattlePokemonTestMother {
       dailyForm: 0,
       currentHp: StatsTestMother.getBulbasaurStatsLvl100().hp,
       cumulatedSpeed: 0,
-      animation: "",
+      animation: '',
       moving: false,
       reload: 0,
     };

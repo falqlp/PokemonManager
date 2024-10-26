@@ -1,14 +1,14 @@
-import mongoose, { Schema } from "mongoose";
-import { PokemonType } from "../../models/Types/Types";
-import { MongoId } from "../MongoId";
+import mongoose, { Schema } from 'mongoose';
+import { PokemonType } from '../../models/Types/Types';
+import { MongoId } from '../MongoId';
 
 export interface IAnimation {
   opponent?: string;
   player?: string;
 }
 export enum SideEffect {
-  DRAIN = "Drain",
-  RELOAD = "Reload",
+  DRAIN = 'Drain',
+  RELOAD = 'Reload',
 }
 
 export type ISideEffect = Record<SideEffect, number>;
@@ -62,5 +62,5 @@ const moveSchema = new Schema<IMove>({
   animation: { opponent: { type: String }, player: { type: String } },
 });
 
-const Move = mongoose.model<IMove>("Move", moveSchema);
+const Move = mongoose.model<IMove>('Move', moveSchema);
 export default Move;

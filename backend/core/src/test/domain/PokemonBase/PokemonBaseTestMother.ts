@@ -1,12 +1,12 @@
-import { IPokemonBase } from "../../../domain/pokemon/pokemonBase/PokemonBase";
-import { PokemonType } from "../../../models/Types/Types";
-import { StatsTestMother } from "../Stats/StatsTestMother";
+import { IPokemonBase } from '../../../domain/pokemon/pokemonBase/PokemonBase';
+import { PokemonType } from '../../../models/Types/Types';
+import { StatsTestMother } from '../Stats/StatsTestMother';
 
 export class PokemonBaseTestMother {
   static generateBulbasaurBase(): IPokemonBase {
     return {
       id: 1,
-      name: "Bulbasaur",
+      name: 'Bulbasaur',
       types: [PokemonType.GRASS, PokemonType.POISON],
       baseStats: StatsTestMother.getBulbasaurBaseStats(),
       legendary: false,
@@ -29,7 +29,7 @@ export class PokemonBaseTestMother {
   static generateArticunoBase(): IPokemonBase {
     return this.withCustomOptions({
       id: 144,
-      name: "Articuno",
+      name: 'Articuno',
       types: [PokemonType.ICE, PokemonType.FLYING],
       baseStats: StatsTestMother.getArticunoBaseStats(),
       legendary: true,
