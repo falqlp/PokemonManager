@@ -23,11 +23,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: cd backend && npm ci
+        run: cd backend/core && npm ci
       - name: Run linter
-        run: cd backend && npm run lintCheck
+        run: cd backend/core && npm run lint:check
       - name: Run linter
-        run: cd backend && npm run formatCheck
+        run: cd backend/core && npm run format:check
 
   build:
     runs-on: ubuntu-latest
@@ -43,9 +43,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: cd backend && npm ci
+        run: cd backend/core && npm ci
       - name: Compile TypeScript
-        run: cd backend && npm run build
+        run: cd backend/core && npm run build
   test:
 
     runs-on: ubuntu-latest
@@ -61,9 +61,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: cd backend && npm ci
+        run: cd backend/core && npm ci
       - name: Run tests with coverage
-        run: cd backend && npm test -- --coverage
+        run: cd backend/core && npm test:cov
         env:
           CI: true
       - name: Upload coverage reports to Codecov
