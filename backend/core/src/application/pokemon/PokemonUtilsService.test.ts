@@ -4,10 +4,10 @@ import { IPokemonStats } from '../../models/PokemonModels/pokemonStats';
 import { IPokemon } from '../../domain/pokemon/Pokemon';
 import { PokemonTestMother } from '../../test/domain/pokemon/PokemonTestMother';
 import { StatsTestMother } from '../../test/domain/Stats/StatsTestMother';
-import { normalRandom } from '../../utils/RandomUtils';
+import { normalRandom } from 'shared/utils/RandomUtils';
 import { POKEMON_NATURES } from '../../domain/pokemon/pokemonConst';
 
-jest.mock('../../utils/RandomUtils');
+jest.mock('shared/utils/RandomUtils');
 
 describe('PokemonUtilsService', () => {
   let service: PokemonUtilsService;

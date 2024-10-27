@@ -9,10 +9,10 @@ import { BattleInstanceService } from '../battleInstance/BattleInstanceService';
 import TrainerRepository from '../../domain/trainer/TrainerRepository';
 import TournamentService from './tournament/TournamentService';
 import { ITrainer } from '../../domain/trainer/Trainer';
-import { addDays } from '../../utils/DateUtils';
-import { mongoId } from '../../utils/MongoUtils';
+import { addDays } from 'shared/utils/DateUtils';
+import { mongoId } from 'shared/utils/MongoUtils';
 import GenerateCalendarService from '../calendarEvent/GenerateCalendarService';
-import { splitArray } from '../../utils/ArrayUtils';
+import { splitArray } from 'shared/utils/ArrayUtils';
 
 @Injectable()
 export default class CompetitionService {

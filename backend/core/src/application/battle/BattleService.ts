@@ -10,7 +10,7 @@ import { IBattleInstance } from '../../domain/battleInstance/Battle';
 import { ITrainer } from '../../domain/trainer/Trainer';
 import { DefaultMove } from './BattleConst';
 import { Injectable } from '@nestjs/common';
-import { getRandomFromArray, getRandomValue } from '../../utils/RandomUtils';
+import { getRandomFromArray, getRandomValue } from 'shared/utils/RandomUtils';
 import { IPokemonStats } from '../../models/PokemonModels/pokemonStats';
 import { IMove, SideEffect } from '../../domain/move/Move';
 import { BattleDataService } from './BattleDataService';

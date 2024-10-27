@@ -1,6 +1,6 @@
 import PokemonBase, { IPokemonBase } from './PokemonBase';
 import ReadOnlyRepository from '../../ReadOnlyRepository';
-import { sample } from '../../../utils/RandomUtils';
+import { sample } from 'shared/utils/RandomUtils';
 import { Injectable } from '@nestjs/common';
 import { EmptyPopulater } from '../../EmptyPopulater';
 import { InjectModel } from '@nestjs/mongoose';

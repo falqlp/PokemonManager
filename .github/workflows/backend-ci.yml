@@ -22,12 +22,22 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install dependencies
+
+      # Linter pour core
+      - name: Install dependencies for core
         run: cd backend/core && npm ci
-      - name: Run linter
+      - name: Run linter for core
         run: cd backend/core && npm run lint:check
-      - name: Run linter
+      - name: Run format check for core
         run: cd backend/core && npm run format:check
+
+      # Linter pour shared
+      - name: Install dependencies for shared
+        run: cd backend/shared && npm ci
+      - name: Run linter for shared
+        run: cd backend/shared && npm run lint:check
+      - name: Run format check for shared
+        run: cd backend/shared && npm run format:check
 
   build:
     runs-on: ubuntu-latest
@@ -42,12 +52,20 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install dependencies
-        run: cd backend/core && npm ci
-      - name: Compile TypeScript
-        run: cd backend/core && npm run build
-  test:
 
+      # Build pour core
+      - name: Install dependencies for core
+        run: cd backend/core && npm ci
+      - name: Compile TypeScript for core
+        run: cd backend/core && npm run build
+
+      # Build pour shared
+      - name: Install dependencies for shared
+        run: cd backend/shared && npm ci
+      - name: Compile TypeScript for shared
+        run: cd backend/shared && npm run build
+
+  test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -60,17 +78,37 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install dependencies
+
+      # Tests pour core
+      - name: Install dependencies for core
         run: cd backend/core && npm ci
-      - name: Run tests with coverage
+      - name: Run tests with coverage for core
         run: cd backend/core && npm test -- --coverage
         env:
           CI: true
+
+      # Tests pour shared
+      - name: Install dependencies for shared
+        run: cd backend/shared && npm ci
+      - name: Run tests with coverage for shared
+        run: cd backend/shared && npm test -- --coverage
+        env:
+          CI: true
+
+      # Upload des rapports de couverture à Codecov
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/lcov.info
-          flags: unittests
-          name: codecov-umbrella
+          files: backend/core/coverage/lcov.info
+          flags: unittests-core
+          name: codecov-core
+          fail_ci_if_error: true
+      - name: Upload shared coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: backend/shared/coverage/lcov.info
+          flags: unittests-shared
+          name: codecov-shared
           fail_ci_if_error: true

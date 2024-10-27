@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import PokemonService from './PokemonService';
 import { INursery } from '../../domain/trainer/nursery/Nursery';
 import { NurseryTestMother } from '../../test/domain/Nursery/NurseryTestMother';
-import { addYears } from '../../utils/DateUtils';
+import { addYears } from 'shared/utils/DateUtils';
 import { IMove } from '../../domain/move/Move';
 import { IPokemon, PokemonNature } from '../../domain/pokemon/Pokemon';
 import { PokemonTestMother } from '../../test/domain/pokemon/PokemonTestMother';

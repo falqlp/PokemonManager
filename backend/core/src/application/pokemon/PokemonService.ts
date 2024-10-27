@@ -9,7 +9,7 @@ import GameRepository from '../../domain/game/GameRepository';
 import { Injectable } from '@nestjs/common';
 import MoveLearningService from '../moveLearning/MoveLearningService';
 import { Gender } from '../../domain/Gender';
-import { addYears } from '../../utils/DateUtils';
+import { addYears } from 'shared/utils/DateUtils';
 import EvolutionRepository from '../../domain/evolution/EvolutionRepository';
 import WebsocketUtils from '../../websocket/WebsocketUtils';
 import { IMove } from '../../domain/move/Move';

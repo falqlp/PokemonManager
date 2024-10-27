@@ -5,7 +5,7 @@ import { BattleEventsService } from '../BattleEvents/BattleEventsService';
 import { IBattleInstance } from '../../domain/battleInstance/Battle';
 import BattleTestMother from '../../test/domain/battle/BattleTestMother';
 import { TrainerTestMother } from '../../test/domain/Trainer/TrainerTestMother';
-import { getRandomValue } from '../../utils/RandomUtils';
+import { getRandomValue } from 'shared/utils/RandomUtils';
 import { ITrainer } from '../../domain/trainer/Trainer';
 import BattleCalcService from './BattleCalcService';
 import BattleInstanceRepository from '../../domain/battleInstance/BattleInstanceRepository';
@@ -29,8 +29,8 @@ import BattleTrainerTestMother from '../../test/domain/battle/BattleTrainerTestM
 
 jest.mock('../../websocket/BattleWebsocketService');
 
-jest.mock('../../utils/RandomUtils', () => ({
-  ...jest.requireActual('../../utils/RandomUtils'),
+jest.mock('shared/utils/RandomUtils', () => ({
+  ...jest.requireActual('shared/utils/RandomUtils'),
   getRandomValue: jest.fn(),
 }));
 

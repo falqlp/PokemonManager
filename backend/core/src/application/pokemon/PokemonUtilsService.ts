@@ -1,6 +1,6 @@
 import { IPokemonStats } from '../../models/PokemonModels/pokemonStats';
 import { IPokemon, PokemonNature } from '../../domain/pokemon/Pokemon';
-import { getRandomFromArray, normalRandom } from '../../utils/RandomUtils';
+import { getRandomFromArray, normalRandom } from 'shared/utils/RandomUtils';
 import { Injectable } from '@nestjs/common';
 import { POKEMON_NATURES } from '../../domain/pokemon/pokemonConst';
 
