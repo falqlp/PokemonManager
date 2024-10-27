@@ -29,7 +29,7 @@ async function bootstrap() {
     methods: 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
   });
 
-  const port = process.env.PORT || 3000;
+  const port = process.env.CORE_PORT || 3000;
   app.setGlobalPrefix('api');
 
   await app.listen(port);

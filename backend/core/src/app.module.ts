@@ -8,13 +8,15 @@ import { DateConverterMiddleware } from './middleware/date-converter/date-conver
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { WebsocketModule } from './websocket/websocket.module';
+import { join } from 'path';
 
 @Module({
   imports: [
     WebsocketModule,
     ApiModule,
     ConfigModule.forRoot({
-      envFilePath: '../.env',
+      envFilePath: [join(__dirname, '..', '.env'), '../.env'],
+      isGlobal: true,
     }),
     MongooseModule.forRootAsync({
       useFactory: () => ({

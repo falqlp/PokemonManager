@@ -17,6 +17,7 @@ services:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CLUSTER_ID: fAuHroFTTimDPCN8USyEPw
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     volumes:
       - ./kafka/kafka-data:/var/lib/kafka/data
@@ -38,3 +39,20 @@ services:
       - "${NGINX_PORT}:${NGINX_PORT}"
     env_file:
       - .env
+
+  core:
+    build:
+      context: ./core
+      dockerfile: Dockerfile
+    network_mode: "host"
+    ports:
+      - "${CORE_PORT}:${CORE_PORT}"  # Utilisation de la variable CORE_PORT
+    env_file:
+      - .env  # Charger les variables d'environnement depuis .env
+    environment:
+      - CORE_PORT=${CORE_PORT}  # Transmettre le port à l'application
+      - MONGODB_USERNAME=${MONGODB_USERNAME}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+      - MONGODB_LOCAL=${MONGODB_LOCAL}
+      - FRONT_URL=${FRONT_URL}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
