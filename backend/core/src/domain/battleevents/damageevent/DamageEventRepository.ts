@@ -1,7 +1,7 @@
-import CompleteRepository from '../../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import DamageEvent, { IDamageEvent } from './DamageEvent';
 import { Injectable } from '@nestjs/common';
-import { EmptyPopulater } from '../../EmptyPopulater';
+import { EmptyPopulater } from 'shared/common/domain/EmptyPopulater';
 import { Model, SortOrder } from 'mongoose';
 import BattleEventQueriesUtilService, {
   IDamageEventQuery,

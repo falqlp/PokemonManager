@@ -35,7 +35,8 @@ abstract class ReadOnlyRepository<T extends MongoId> {
       }
       return (await this.schema
         .findOne(query as FilterQuery<T>)
-        .populate(this.populater.populate())) as T;
+        .populate(this.populater.populate())
+        .exec()) as T;
     } catch (error) {
       return Promise.reject(error);
     }
@@ -62,7 +63,8 @@ abstract class ReadOnlyRepository<T extends MongoId> {
         .populate(this.populater.populate())
         .sort(body.sort)
         .limit(body.limit)
-        .skip(body.skip);
+        .skip(body.skip)
+        .exec();
       if (body.ids?.length && !body.sort) {
         dtos.sort((a: T, b: T) => {
           return (

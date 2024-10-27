@@ -14,9 +14,9 @@ import BattleInstanceMapper from './BattleInstanceMapper';
 import { IBattlePokemon } from '../../application/battle/BattleInterfaces';
 import BattleInstanceRepository from '../../domain/battleInstance/BattleInstanceRepository';
 import PokemonMapper from '../pokemon/PokemonMapper';
-import { ReadOnlyController } from '../read-only.controller';
 import BattleService from '../../application/battle/BattleService';
 import { IBattleInstance } from '../../domain/battleInstance/Battle';
+import { ReadOnlyController } from 'shared/common/api/read-only.controller';
 
 @Controller('battle-instance')
 export class BattleInstanceController extends ReadOnlyController<IBattleInstance> {

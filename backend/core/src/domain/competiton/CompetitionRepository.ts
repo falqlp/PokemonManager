@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import Competition, { ICompetition } from './Competition';
 import CompetitionPopulater from './CompetitionPopulater';
-import CompleteRepository from '../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import Trainer from '../trainer/Trainer';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';

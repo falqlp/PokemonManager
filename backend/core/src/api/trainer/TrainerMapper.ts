@@ -1,5 +1,5 @@
 import { ITrainer } from '../../domain/trainer/Trainer';
-import { IMapper } from '../../domain/IMapper';
+import { IMapper } from 'shared/common/domain/IMapper';
 import { ITrainingCamp } from '../../domain/trainer/trainingCamp/TrainingCamp';
 import PokemonMapper from '../pokemon/PokemonMapper';
 import { IPcStorage } from '../../domain/trainer/pcStorage/PcStorage';

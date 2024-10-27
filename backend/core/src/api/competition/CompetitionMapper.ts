@@ -1,4 +1,4 @@
-import { IMapper } from '../../domain/IMapper';
+import { IMapper } from 'shared/common/domain/IMapper';
 import { Injectable } from '@nestjs/common';
 import { ICompetition } from '../../domain/competiton/Competition';
 

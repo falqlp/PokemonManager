@@ -1,5 +1,5 @@
 import Battle, { IBattleInstance } from './Battle';
-import CompleteRepository from '../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import { Injectable } from '@nestjs/common';
 import { BattleInstancePopulater } from './BattleInstancePopulater';
 import { InjectModel } from '@nestjs/mongoose';

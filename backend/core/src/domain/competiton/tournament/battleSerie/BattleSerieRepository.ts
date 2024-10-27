@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import BattleSerie, { IBattleSerie } from './BattleSerie';
 import BattleSeriePopulater from './BattleSeriePopulater';
-import CompleteRepository from '../../../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 

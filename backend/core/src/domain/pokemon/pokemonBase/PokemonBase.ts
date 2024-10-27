@@ -3,7 +3,7 @@ import PokemonStats, {
   IPokemonStats,
 } from '../../../models/PokemonModels/pokemonStats';
 import { PokemonType } from '../../../models/Types/Types';
-import { MongoId } from '../../MongoId';
+import { MongoId } from 'shared/common/domain/MongoId';
 
 export interface IPokemonBase extends MongoId {
   id: number;

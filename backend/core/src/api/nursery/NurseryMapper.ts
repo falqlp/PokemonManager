@@ -1,4 +1,4 @@
-import { IMapper } from '../../domain/IMapper';
+import { IMapper } from 'shared/common/domain/IMapper';
 import { INursery } from '../../domain/trainer/nursery/Nursery';
 import PokemonMapper from '../pokemon/PokemonMapper';
 import { Injectable } from '@nestjs/common';

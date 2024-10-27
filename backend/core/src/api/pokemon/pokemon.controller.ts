@@ -14,7 +14,7 @@ import PokemonRepository from '../../domain/pokemon/PokemonRepository';
 import EffectivenessService from '../../application/pokemon/EffectivenessService';
 import PokemonService from '../../application/pokemon/PokemonService';
 import PokemonMapper from './PokemonMapper';
-import { ReadOnlyController } from '../read-only.controller';
+import { ReadOnlyController } from 'shared/common/api/read-only.controller';
 import { IPokemon } from '../../domain/pokemon/Pokemon';
 
 @Controller('pokemon')

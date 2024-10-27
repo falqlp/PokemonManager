@@ -6,7 +6,7 @@ import {
   Put,
 } from '@nestjs/common';
 import MoveLearningService from '../../application/moveLearning/MoveLearningService';
-import { ListBody } from '../../domain/ReadOnlyRepository';
+import { ListBody } from 'shared/common/domain/ReadOnlyRepository';
 
 @Controller('move-learning')
 export class MoveLearningController {

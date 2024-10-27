@@ -1,4 +1,4 @@
-import CompleteRepository from '../../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import PasswordRequest, { IPasswordRequest } from './PasswordRequest';
 import { PasswordRequestPopulater } from './PasswordRequestPopulater';
 import { Injectable } from '@nestjs/common';

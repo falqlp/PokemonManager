@@ -1,6 +1,6 @@
 import MoveLearningRepository from '../../domain/moveLearning/MoveLearningRepository';
 import { IPokemon } from '../../domain/pokemon/Pokemon';
-import { ListBody } from '../../domain/ReadOnlyRepository';
+import { ListBody } from 'shared/common/domain/ReadOnlyRepository';
 import MoveRepository from '../../domain/move/MoveRepository';
 import { IMoveLearning } from '../../domain/moveLearning/MoveLearning';
 import EvolutionRepository from '../../domain/evolution/EvolutionRepository';

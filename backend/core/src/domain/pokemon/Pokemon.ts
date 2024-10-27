@@ -2,8 +2,9 @@ import mongoose, { Schema } from 'mongoose';
 import { IPokemonStats } from '../../models/PokemonModels/pokemonStats';
 import { IPokemonBase } from './pokemonBase/PokemonBase';
 import { IMove } from '../move/Move';
-import { MongoId } from '../MongoId';
+import { MongoId } from 'shared/common/domain/MongoId';
 import { Gender } from '../Gender';
+
 export enum PokemonNature {
   HARDY = 'HARDY',
   LONELY = 'LONELY',

@@ -1,5 +1,5 @@
 import PcStorage, { IPcStorage } from './PcStorage';
-import CompleteRepository from '../../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import PcStoragePopulater from './PcStoragePopulater';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';

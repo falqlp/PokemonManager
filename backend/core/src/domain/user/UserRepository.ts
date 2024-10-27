@@ -1,9 +1,9 @@
-import CompleteRepository from '../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import User, { IUser } from './User';
 import HashService from '../../application/user/hash/HashService';
 import UserPopulater from './UserPopulater';
 import { Injectable } from '@nestjs/common';
-import { ListBody } from '../ReadOnlyRepository';
+import { ListBody } from 'shared/common/domain/ReadOnlyRepository';
 import { FilterQuery, Model, UpdateQuery } from 'mongoose';
 import WebsocketUtils from '../../websocket/WebsocketUtils';
 import { InjectModel } from '@nestjs/mongoose';

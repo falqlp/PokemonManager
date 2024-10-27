@@ -1,6 +1,6 @@
 import Pokemon, { IPokemon } from './Pokemon';
 import Trainer from '../trainer/Trainer';
-import CompleteRepository from '../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import Nursery from '../trainer/nursery/Nursery';
 import { FilterQuery, Model, UpdateQuery } from 'mongoose';
 import { Injectable } from '@nestjs/common';

@@ -1,4 +1,4 @@
-import Populater from '../../Populater';
+import Populater from 'shared/common/domain/Populater';
 import { Injectable } from '@nestjs/common';
 import { Model, PopulateOptions } from 'mongoose';
 import User from '../User';

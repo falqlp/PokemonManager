@@ -9,7 +9,7 @@ import {
 import UserRepository from '../../domain/user/UserRepository';
 import UserMapper from './UserMapper';
 import { UserService } from '../../application/user/UserService';
-import { ReadOnlyController } from '../read-only.controller';
+import { ReadOnlyController } from 'shared/common/api/read-only.controller';
 import { IUser } from '../../domain/user/User';
 
 @Controller('user')

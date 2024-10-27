@@ -1,4 +1,4 @@
-import CompleteRepository from '../../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import Nursery, { INursery } from './Nursery';
 import { Injectable } from '@nestjs/common';
 import NurseryPopulater from './NurseryPopulater';

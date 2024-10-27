@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import { PokemonType } from '../../models/Types/Types';
-import { MongoId } from '../MongoId';
+import { MongoId } from 'shared/common/domain/MongoId';
 
 export interface IAnimation {
   opponent?: string;

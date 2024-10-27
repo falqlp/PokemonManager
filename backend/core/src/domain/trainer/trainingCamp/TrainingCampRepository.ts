@@ -1,4 +1,4 @@
-import CompleteRepository from '../../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import TrainingCamp, { ITrainingCamp } from './TrainingCamp';
 import { Injectable } from '@nestjs/common';
 import TrainingCampPopulater from './TrainingCampPopulater';

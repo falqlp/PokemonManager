@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { MongoId } from '../../MongoId';
+import { MongoId } from 'shared/common/domain/MongoId';
 
 export interface ITrainingCamp extends MongoId {
   level: number;

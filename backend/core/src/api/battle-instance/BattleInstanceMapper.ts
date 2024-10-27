@@ -1,5 +1,5 @@
 import { IBattleInstance } from '../../domain/battleInstance/Battle';
-import { IMapper } from '../../domain/IMapper';
+import { IMapper } from 'shared/common/domain/IMapper';
 import TrainerMapper from '../trainer/TrainerMapper';
 import { Injectable } from '@nestjs/common';
 

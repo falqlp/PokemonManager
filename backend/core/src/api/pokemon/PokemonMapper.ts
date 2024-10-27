@@ -1,5 +1,5 @@
 import { IPokemon } from '../../domain/pokemon/Pokemon';
-import { IMapper } from '../../domain/IMapper';
+import { IMapper } from 'shared/common/domain/IMapper';
 import { IPokemonBase } from '../../domain/pokemon/pokemonBase/PokemonBase';
 import { Injectable } from '@nestjs/common';
 

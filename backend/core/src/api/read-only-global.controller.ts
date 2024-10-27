@@ -9,9 +9,9 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import ReadOnlyRepository from '../domain/ReadOnlyRepository';
-import { MongoId } from '../domain/MongoId';
-import { IMapper } from '../domain/IMapper';
+import ReadOnlyRepository from 'shared/common/domain/ReadOnlyRepository';
+import { MongoId } from 'shared/common/domain/MongoId';
+import { IMapper } from 'shared/common/domain/IMapper';
 
 @Controller()
 export abstract class ReadOnlyGlobalController<T extends MongoId> {

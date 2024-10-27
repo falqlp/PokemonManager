@@ -10,7 +10,7 @@ import {
 import NurseryService from '../../application/trainer/nursery/NurseryService';
 import NurseryRepository from '../../domain/trainer/nursery/NurseryRepository';
 import NurseryMapper from './NurseryMapper';
-import { ReadOnlyController } from '../read-only.controller';
+import { ReadOnlyController } from 'shared/common/api/read-only.controller';
 import { INursery } from '../../domain/trainer/nursery/Nursery';
 
 @Controller('nursery')

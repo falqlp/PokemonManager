@@ -1,4 +1,4 @@
-import { MongoId } from '../../MongoId';
+import { MongoId } from 'shared/common/domain/MongoId';
 import { IUser } from '../User';
 import mongoose, { Schema } from 'mongoose';
 

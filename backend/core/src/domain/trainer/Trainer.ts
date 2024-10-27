@@ -3,7 +3,7 @@ import { IPokemon } from '../pokemon/Pokemon';
 import { IPcStorage } from './pcStorage/PcStorage';
 import { ITrainingCamp } from './trainingCamp/TrainingCamp';
 import { INursery } from './nursery/Nursery';
-import { MongoId } from '../MongoId';
+import { MongoId } from 'shared/common/domain/MongoId';
 import { ICompetition } from '../competiton/Competition';
 
 export interface ITrainer extends MongoId {

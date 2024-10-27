@@ -1,4 +1,4 @@
-import CompleteRepository from '../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import CalendarEvent, { ICalendarEvent } from './CalendarEvent';
 import { Injectable } from '@nestjs/common';
 import CalendarEventPopulater from './CalendarEventPopulater';

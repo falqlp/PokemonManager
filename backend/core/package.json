@@ -86,7 +86,8 @@
       "utils/**/*.ts"
     ],
     "moduleNameMapper": {
-      "^shared/utils/(.*)$": "<rootDir>/../../shared/libs/utils/src/$1"
+      "^shared/utils/(.*)$": "<rootDir>/../../shared/libs/utils/src/$1",
+      "^shared/common/(.*)$": "<rootDir>/../../shared/libs/common/src/$1"
     }
   }
 }
