@@ -9,36 +9,6 @@ on:
       - 'backend/**'
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [ 18.x, 20.x ]
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      # Linter pour core
-      - name: Install dependencies for core
-        run: cd backend/core && npm ci
-      - name: Run linter for core
-        run: cd backend/core && npm run lint:check
-      - name: Run format check for core
-        run: cd backend/core && npm run format:check
-
-      # Linter pour shared
-      - name: Install dependencies for shared
-        run: cd backend/shared && npm ci
-      - name: Run linter for shared
-        run: cd backend/shared && npm run lint:check
-      - name: Run format check for shared
-        run: cd backend/shared && npm run format:check
-
   build:
     runs-on: ubuntu-latest
 
@@ -54,16 +24,45 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       # Build pour core
+      - name: Install dependencies for shared
+        run: cd backend/shared && npm ci
       - name: Install dependencies for core
         run: cd backend/core && npm ci
       - name: Compile TypeScript for core
         run: cd backend/core && npm run build
-
       # Build pour shared
-      - name: Install dependencies for shared
-        run: cd backend/shared && npm ci
       - name: Compile TypeScript for shared
         run: cd backend/shared && npm run build
+
+  lint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 18.x, 20.x ]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Linter pour core
+      - name: Install dependencies for shared
+        run: cd backend/shared && npm ci
+      - name: Install dependencies for core
+        run: cd backend/core && npm ci
+      - name: Run linter for core
+        run: cd backend/core && npm run lint:check
+      - name: Run format check for core
+        run: cd backend/core && npm run format:check
+
+      # Linter pour shared
+      - name: Run linter for shared
+        run: cd backend/shared && npm run lint:check
+      - name: Run format check for shared
+        run: cd backend/shared && npm run format:check
 
   test:
     runs-on: ubuntu-latest
@@ -80,6 +79,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       # Tests pour core
+      - name: Install dependencies for shared
+        run: cd backend/shared && npm ci
       - name: Install dependencies for core
         run: cd backend/core && npm ci
       - name: Run tests with coverage for core
@@ -88,8 +89,6 @@ jobs:
           CI: true
 
       # Tests pour shared
-      - name: Install dependencies for shared
-        run: cd backend/shared && npm ci
       - name: Run tests with coverage for shared
         run: cd backend/shared && npm test -- --coverage
         env:
