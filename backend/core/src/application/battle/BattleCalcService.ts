@@ -1,7 +1,7 @@
-import { IPokemon } from '../../domain/pokemon/Pokemon';
-import { IMove } from '../../domain/move/Move';
 import { Effectiveness, IBattlePokemon, IDamage } from './BattleInterfaces';
 import { Injectable } from '@nestjs/common';
+import { IMove } from 'shared/models/move/mode-model';
+import { IPokemon } from 'shared/models/pokemon/pokemon-models';
 
 export const TYPE_EFFECTIVENESS: { [key: string]: { [key: string]: number } } =
   {

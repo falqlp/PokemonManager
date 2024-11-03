@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
 import CompetitionMapper from './CompetitionMapper';
-import { ReadOnlyController } from '../read-only.controller';
+import { ReadOnlyController } from 'shared/common/api/read-only.controller';
 import CompetitionRepository from '../../domain/competiton/CompetitionRepository';
 import { ICompetition } from '../../domain/competiton/Competition';
 

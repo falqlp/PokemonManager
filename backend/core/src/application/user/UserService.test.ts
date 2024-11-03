@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { mongoId } from '../../utils/MongoUtils';
+import { mongoId } from 'shared/utils/MongoUtils';
 import { IUser } from '../../domain/user/User';
 import UserRepository from '../../domain/user/UserRepository';
 import { MailService } from '../mail/MailService';
@@ -8,7 +8,7 @@ import { PasswordRequestRepository } from '../../domain/user/passwordRequest/Pas
 import HashService from './hash/HashService';
 import WebsocketUtils from '../../websocket/WebsocketUtils';
 
-jest.mock('../../utils/MongoUtils');
+jest.mock('shared/utils/MongoUtils');
 jest.mock('./hash/HashService');
 jest.mock('../../websocket/WebsocketUtils');
 jest.mock('../mail/MailService');

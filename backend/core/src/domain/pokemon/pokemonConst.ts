@@ -1,5 +1,7 @@
-import { IPokemonStats } from '../../models/PokemonModels/pokemonStats';
-import { PokemonNature } from './Pokemon';
+import {
+  IPokemonStats,
+  PokemonNature,
+} from 'shared/models/pokemon/pokemon-models';
 
 export const POKEMON_NATURES: Record<PokemonNature, IPokemonStats> = {
   HARDY: { hp: 0, atk: 0, def: 0, spAtk: 0, spDef: 0, spe: 0 },

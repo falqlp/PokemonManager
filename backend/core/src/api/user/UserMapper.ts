@@ -1,4 +1,4 @@
-import { IMapper } from '../../domain/IMapper';
+import { IMapper } from 'shared/common/domain/IMapper';
 import { IUser } from '../../domain/user/User';
 import GameMapper from '../game/GameMapper';
 import { Injectable } from '@nestjs/common';

@@ -1,7 +1,6 @@
-import { IPokemon } from '../../domain/pokemon/Pokemon';
-import { IMapper } from '../../domain/IMapper';
-import { IPokemonBase } from '../../domain/pokemon/pokemonBase/PokemonBase';
+import { IMapper } from 'shared/common/domain/IMapper';
 import { Injectable } from '@nestjs/common';
+import { IPokemon, IPokemonBase } from 'shared/models/pokemon/pokemon-models';
 
 @Injectable()
 class PokemonMapper implements IMapper<IPokemon> {

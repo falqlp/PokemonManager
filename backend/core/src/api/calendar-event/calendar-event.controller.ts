@@ -12,9 +12,11 @@ import CalendarEventService from '../../application/calendarEvent/CalendarEventS
 import SimulateDayService from '../../application/calendarEvent/SimulateDayService';
 import CalendarEventMapper from './CalendarEventMapper';
 import BattleInstanceMapper from '../battle-instance/BattleInstanceMapper';
-import { ReadOnlyController } from '../read-only.controller';
+import { ReadOnlyController } from 'shared/common/api/read-only.controller';
 import CalendarEventRepository from '../../domain/calendarEvent/CalendarEventRepository';
 import { ICalendarEvent } from '../../domain/calendarEvent/CalendarEvent';
+import { ITrainer } from '../../domain/trainer/Trainer';
+import { ICompetition } from '../../domain/competiton/Competition';
 
 @Controller('calendar-event')
 export class CalendarEventController extends ReadOnlyController<ICalendarEvent> {
@@ -31,8 +33,8 @@ export class CalendarEventController extends ReadOnlyController<ICalendarEvent> 
   @Post('battle')
   async createBattleEvent(
     @Body('date') date: Date,
-    @Body('trainers') trainers: any,
-    @Body('competition') competition: any,
+    @Body('trainers') trainers: ITrainer[],
+    @Body('competition') competition: ICompetition,
     @Headers('game-id') gameId: string,
   ) {
     try {

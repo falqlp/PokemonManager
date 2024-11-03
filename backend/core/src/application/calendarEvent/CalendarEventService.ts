@@ -8,7 +8,7 @@ import CalendarEventRepository from '../../domain/calendarEvent/CalendarEventRep
 import { Injectable } from '@nestjs/common';
 import { ICompetition } from '../../domain/competiton/Competition';
 import GameRepository from '../../domain/game/GameRepository';
-import { addDays } from '../../utils/DateUtils';
+import { addDays } from 'shared/utils/DateUtils';
 
 @Injectable()
 class CalendarEventService {

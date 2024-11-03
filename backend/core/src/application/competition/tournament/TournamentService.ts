@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import TournamentRepository from '../../../domain/competiton/tournament/TournamentRepository';
 import { ITrainer } from '../../../domain/trainer/Trainer';
 import GenerateCalendarService from '../../calendarEvent/GenerateCalendarService';
-import { addDays } from '../../../utils/DateUtils';
+import { addDays } from 'shared/utils/DateUtils';
 import {
   ITournament,
   ITournamentStep,
@@ -18,8 +18,8 @@ import {
 } from '../../../domain/competiton/tournament/battleSerie/BattleSerie';
 import { BattleInstanceService } from '../../battleInstance/BattleInstanceService';
 import TrainerRepository from '../../../domain/trainer/TrainerRepository';
-import { isPowerOfTwo } from '../../../utils/NumberUtils';
-import { mongoId } from '../../../utils/MongoUtils';
+import { isPowerOfTwo } from 'shared/utils/NumberUtils';
+import { mongoId } from 'shared/utils/MongoUtils';
 
 @Injectable()
 export default class TournamentService {

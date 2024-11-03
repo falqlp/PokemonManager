@@ -2,9 +2,9 @@ import WebsocketDataService, {
   NotificationType,
   WebsocketMessage,
 } from './WebsocketDataService';
-import { IPokemon } from '../domain/pokemon/Pokemon';
 import { Socket } from 'socket.io';
 import { Injectable } from '@nestjs/common';
+import { IPokemon } from 'shared/models/pokemon/pokemon-models';
 
 @Injectable()
 export default class WebsocketUtils {

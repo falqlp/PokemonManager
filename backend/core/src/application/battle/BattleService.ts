@@ -10,15 +10,15 @@ import { IBattleInstance } from '../../domain/battleInstance/Battle';
 import { ITrainer } from '../../domain/trainer/Trainer';
 import { DefaultMove } from './BattleConst';
 import { Injectable } from '@nestjs/common';
-import { getRandomFromArray, getRandomValue } from '../../utils/RandomUtils';
-import { IPokemonStats } from '../../models/PokemonModels/pokemonStats';
-import { IMove, SideEffect } from '../../domain/move/Move';
+import { getRandomFromArray, getRandomValue } from 'shared/utils/RandomUtils';
 import { BattleDataService } from './BattleDataService';
 import BattleInstanceRepository from '../../domain/battleInstance/BattleInstanceRepository';
 import GameRepository from '../../domain/game/GameRepository';
 import BattleWebsocketService from '../../websocket/BattleWebsocketService';
 import { BattleEventsService } from '../BattleEvents/BattleEventsService';
 import BattleSideEffectService from './BattleSideEffectService';
+import { IPokemonStats } from 'shared/models/pokemon/pokemon-models';
+import { IMove, SideEffect } from 'shared/models/move/mode-model';
 
 @Injectable()
 class BattleService {

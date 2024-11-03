@@ -8,7 +8,7 @@ import {
 } from '../../../domain/competiton/tournament/Tournament';
 import TournamentTestMother from '../../../test/domain/competition/tournament/TournamentTestMother';
 import { SerieTypes } from '../../../domain/competiton/tournament/battleSerie/BattleSerie';
-import { addDays } from '../../../utils/DateUtils';
+import { addDays } from 'shared/utils/DateUtils';
 import TournamentStepTestMother from '../../../test/domain/competition/tournament/TournamentStepTestMother';
 import TournamentRepository from '../../../domain/competiton/tournament/TournamentRepository';
 import GenerateCalendarService from '../../calendarEvent/GenerateCalendarService';

@@ -1,4 +1,3 @@
-import { IPokemon, PokemonNature } from '../../domain/pokemon/Pokemon';
 import PokemonRepository from '../../domain/pokemon/PokemonRepository';
 import TrainerRepository from '../../domain/trainer/TrainerRepository';
 import PokemonUtilsService from './PokemonUtilsService';
@@ -8,11 +7,12 @@ import PokemonBaseRepository from '../../domain/pokemon/pokemonBase/PokemonBaseR
 import GameRepository from '../../domain/game/GameRepository';
 import { Injectable } from '@nestjs/common';
 import MoveLearningService from '../moveLearning/MoveLearningService';
-import { Gender } from '../../domain/Gender';
-import { addYears } from '../../utils/DateUtils';
+import { addYears } from 'shared/utils/DateUtils';
 import EvolutionRepository from '../../domain/evolution/EvolutionRepository';
 import WebsocketUtils from '../../websocket/WebsocketUtils';
-import { IMove } from '../../domain/move/Move';
+import { IPokemon, PokemonNature } from 'shared/models/pokemon/pokemon-models';
+import { Gender } from 'shared/models/utils/utils-models';
+import { IMove } from 'shared/models/move/mode-model';
 
 @Injectable()
 class PokemonService {

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import BattleSideEffectService from './BattleSideEffectService';
 import { IBattlePokemon, IDamage } from './BattleInterfaces';
-import { SideEffect } from '../../domain/move/Move';
+import { SideEffect } from 'shared/models';
 
 describe('BattleSideEffectService', () => {
   let service: BattleSideEffectService;

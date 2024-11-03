@@ -11,7 +11,7 @@ import {
 import TrainerRepository from '../../domain/trainer/TrainerRepository';
 import TrainerMapper from './TrainerMapper';
 import TrainerService from '../../application/trainer/TrainerService';
-import { ReadOnlyController } from '../read-only.controller';
+import { ReadOnlyController } from 'shared/common/api/read-only.controller';
 import { ITrainer } from '../../domain/trainer/Trainer';
 
 @Controller('trainer')

@@ -5,7 +5,7 @@ import { BattleEventsService } from '../BattleEvents/BattleEventsService';
 import { IBattleInstance } from '../../domain/battleInstance/Battle';
 import BattleTestMother from '../../test/domain/battle/BattleTestMother';
 import { TrainerTestMother } from '../../test/domain/Trainer/TrainerTestMother';
-import { getRandomValue } from '../../utils/RandomUtils';
+import { getRandomValue } from 'shared/utils/RandomUtils';
 import { ITrainer } from '../../domain/trainer/Trainer';
 import BattleCalcService from './BattleCalcService';
 import BattleInstanceRepository from '../../domain/battleInstance/BattleInstanceRepository';
@@ -19,18 +19,16 @@ import PokemonRepository from '../../domain/pokemon/PokemonRepository';
 import TrainerRepository from '../../domain/trainer/TrainerRepository';
 import ColorService from '../color/ColorService';
 import { StatsTestMother } from '../../test/domain/Stats/StatsTestMother';
-import { IPokemonStats } from '../../models/PokemonModels/pokemonStats';
-import { IMove } from '../../domain/move/Move';
 import { MoveTestMother } from '../../test/domain/Move/MoveTestMother';
 import { IBattlePokemon, IBattleTrainer } from './BattleInterfaces';
 import BattlePokemonTestMother from '../../test/domain/battle/BattlePokemonTestMother';
-import { PokemonType } from '../../models/Types/Types';
 import BattleTrainerTestMother from '../../test/domain/battle/BattleTrainerTestMother';
+import { IMove, IPokemonStats, PokemonType } from 'shared/models';
 
 jest.mock('../../websocket/BattleWebsocketService');
 
-jest.mock('../../utils/RandomUtils', () => ({
-  ...jest.requireActual('../../utils/RandomUtils'),
+jest.mock('shared/utils/RandomUtils', () => ({
+  ...jest.requireActual('shared/utils/RandomUtils'),
   getRandomValue: jest.fn(),
 }));
 

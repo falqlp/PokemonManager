@@ -1,4 +1,4 @@
-import Populater from '../../Populater';
+import Populater from 'shared/common/domain/Populater';
 import { Model, PopulateOptions } from 'mongoose';
 import PokemonPopulater from '../../pokemon/PokemonPopulater';
 import { Injectable } from '@nestjs/common';

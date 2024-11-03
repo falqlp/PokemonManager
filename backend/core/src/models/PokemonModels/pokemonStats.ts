@@ -1,13 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-
-export interface IPokemonStats {
-  hp: number;
-  atk: number;
-  def: number;
-  spAtk: number;
-  spDef: number;
-  spe: number;
-}
+import { IPokemonStats } from 'shared/models/pokemon/pokemon-models';
 
 const pokemonStatsSchema = new Schema<IPokemonStats>({
   hp: { type: Number, required: true },

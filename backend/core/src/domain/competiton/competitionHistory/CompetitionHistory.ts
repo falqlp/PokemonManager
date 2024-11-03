@@ -1,4 +1,4 @@
-import { MongoId } from '../../MongoId';
+import { MongoId } from 'shared/common/domain/MongoId';
 import { CompetitionType } from '../Competition';
 import {
   IRankingBase,

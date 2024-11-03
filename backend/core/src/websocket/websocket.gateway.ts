@@ -7,7 +7,7 @@ import {
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import WebsocketDataService, { WebsocketMessage } from './WebsocketDataService';
-import { mongoId } from '../utils/MongoUtils';
+import { mongoId } from 'shared/utils/MongoUtils';
 import { HandleWebsocketMessageService } from './HandleWebsocketMessageService';
 import WebsocketUtils from './WebsocketUtils';
 import SimulateDayWebsocketService from './SimulateDayWebsocketService';

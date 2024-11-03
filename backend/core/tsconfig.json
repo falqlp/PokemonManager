@@ -16,6 +16,26 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "shared/utils": [
+        "../shared/libs/utils/src"
+      ],
+      "shared/utils/*": [
+        "../shared/libs/utils/src/*"
+      ],
+      "shared/common": [
+        "../shared/libs/common/src"
+      ],
+      "shared/common/*": [
+        "../shared/libs/common/src/*"
+      ],
+      "shared/models": [
+        "../shared/libs/models/src"
+      ],
+      "shared/models/*": [
+        "../shared/libs/models/src/*"
+      ]
+    }
   }
 }

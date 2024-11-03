@@ -1,25 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
-import PokemonStats, {
-  IPokemonStats,
-} from '../../../models/PokemonModels/pokemonStats';
-import { PokemonType } from '../../../models/Types/Types';
-import { MongoId } from '../../MongoId';
-
-export interface IPokemonBase extends MongoId {
-  id: number;
-  name: string;
-  types: PokemonType[];
-  baseStats: IPokemonStats;
-  legendary?: boolean;
-  mythical?: boolean;
-  baby?: boolean;
-  genderRate?: number;
-  captureRate: number;
-  baseHappiness: number;
-  base: boolean;
-  ultraBeast?: boolean;
-  paradox?: boolean;
-}
+import PokemonStats from '../../../models/PokemonModels/pokemonStats';
+import { IPokemonBase } from 'shared/models/pokemon/pokemon-models';
 
 const pokemonBaseSchema = new Schema<IPokemonBase>({
   id: { type: Number, required: true },

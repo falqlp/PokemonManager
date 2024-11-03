@@ -1,9 +1,9 @@
-import CompleteRepository from '../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import CalendarEvent, { ICalendarEvent } from './CalendarEvent';
 import { Injectable } from '@nestjs/common';
 import CalendarEventPopulater from './CalendarEventPopulater';
 import Battle from '../battleInstance/Battle';
-import { addDays } from '../../utils/DateUtils';
+import { addDays } from 'shared/utils/DateUtils';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 

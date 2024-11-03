@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { getRandomFromArray } from '../../utils/RandomUtils';
+import { getRandomFromArray } from 'shared/utils/RandomUtils';
 
 export const TRAINER_COLORS = [
   '#dd6b66',

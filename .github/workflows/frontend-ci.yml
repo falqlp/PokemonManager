@@ -2,6 +2,9 @@ name: Frontend CI
 
 on:
   push:
+    branches:
+      - master
+      - prod
     paths:
       - 'frontend/**'
   pull_request:
@@ -14,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 18.x ]
+        node-version: [ 22.x ]
 
     steps:
       - uses: actions/checkout@v2

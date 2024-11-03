@@ -1,15 +1,14 @@
 import TrainerRepository from '../../domain/trainer/TrainerRepository';
-import { IPokemon } from '../../domain/pokemon/Pokemon';
 import { ITrainer } from '../../domain/trainer/Trainer';
-import { IPokemonBase } from '../../domain/pokemon/pokemonBase/PokemonBase';
-import { normalRandom } from '../../utils/RandomUtils';
+import { normalRandom } from 'shared/utils/RandomUtils';
 import EvolutionRepository from '../../domain/evolution/EvolutionRepository';
 import MoveLearningService from '../moveLearning/MoveLearningService';
 import { Injectable } from '@nestjs/common';
-import { calculateAge } from '../../utils/DateUtils';
+import { calculateAge } from 'shared/utils/DateUtils';
 import GameRepository from '../../domain/game/GameRepository';
 import PokemonService from '../pokemon/PokemonService';
 import { IGame } from '../../domain/game/Game';
+import { IPokemon, IPokemonBase } from 'shared/models/pokemon/pokemon-models';
 
 export const XP_PER_LEVEL = 100000;
 

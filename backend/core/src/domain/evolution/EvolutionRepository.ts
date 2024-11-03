@@ -1,9 +1,9 @@
 import Evolution, { IEvolution } from './Evolution';
-import { IPokemonBase } from '../pokemon/pokemonBase/PokemonBase';
 import PokemonBaseRepository from '../pokemon/pokemonBase/PokemonBaseRepository';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { IPokemonBase } from 'shared/models/pokemon/pokemon-models';
 
 @Injectable()
 class EvolutionRepository {

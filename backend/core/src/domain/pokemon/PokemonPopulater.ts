@@ -1,10 +1,12 @@
-import Populater from '../Populater';
+import Populater from 'shared/common/domain/Populater';
 import { Model, PopulateOptions } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import Pokemon, { IPokemon } from './Pokemon';
-import Move, { IMove } from '../move/Move';
-import PokemonBase, { IPokemonBase } from './pokemonBase/PokemonBase';
+import { IPokemon, IPokemonBase } from 'shared/models/pokemon/pokemon-models';
+import Pokemon from './Pokemon';
+import Move from '../move/Move';
+import { IMove } from 'shared/models/move/mode-model';
+import PokemonBase from './pokemonBase/PokemonBase';
 
 @Injectable()
 class PokemonPopulater extends Populater<IPokemon> {

@@ -14,7 +14,7 @@ import { IBattleInstance } from '../../domain/battleInstance/Battle';
 import BattleService from '../battle/BattleService';
 import { BattleInstanceService } from '../battleInstance/BattleInstanceService';
 import { IGame } from '../../domain/game/Game';
-import { addDays } from '../../utils/DateUtils';
+import { addDays } from 'shared/utils/DateUtils';
 import CompetitionService from '../competition/CompetitionService';
 import TournamentService from '../competition/tournament/TournamentService';
 import ExperienceService from '../experience/ExperienceService';
@@ -23,7 +23,7 @@ import { NotificationType } from '../../websocket/WebsocketDataService';
 import SimulateDayWebsocketService from '../../websocket/SimulateDayWebsocketService';
 import WebsocketUtils from '../../websocket/WebsocketUtils';
 import PokemonService from '../pokemon/PokemonService';
-import { delay } from '../../utils/Utils';
+import { delay } from 'shared/utils/Utils';
 import { NewSeasonService } from './NewSeasonService';
 
 @Injectable()

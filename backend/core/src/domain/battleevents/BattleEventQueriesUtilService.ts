@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PeriodModel } from '../../models/PeriodModel';
-import { IPokemon } from '../pokemon/Pokemon';
+import { IPokemon } from 'shared/models/pokemon/pokemon-models';
 
 export interface IDamageEventQuery {
   competitionId?: string;

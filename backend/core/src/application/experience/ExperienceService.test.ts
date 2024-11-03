@@ -1,12 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import ExperienceService from './ExperienceService';
-import { IPokemon } from '../../domain/pokemon/Pokemon';
 import { PokemonTestMother } from '../../test/domain/pokemon/PokemonTestMother';
 import PokemonService from '../pokemon/PokemonService';
 import TrainerRepository from '../../domain/trainer/TrainerRepository';
 import MoveLearningService from '../moveLearning/MoveLearningService';
 import EvolutionRepository from '../../domain/evolution/EvolutionRepository';
 import GameRepository from '../../domain/game/GameRepository';
+import { IPokemon } from 'shared/models';
 
 jest.mock('../pokemon/PokemonService');
 jest.mock('../../domain/trainer/TrainerRepository');

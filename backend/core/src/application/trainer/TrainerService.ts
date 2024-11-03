@@ -1,4 +1,3 @@
-import { IPokemon } from '../../domain/pokemon/Pokemon';
 import PokemonRepository from '../../domain/pokemon/PokemonRepository';
 import PcStorageRepository from '../../domain/trainer/pcStorage/PcStorageRepository';
 import TrainerRepository from '../../domain/trainer/TrainerRepository';
@@ -17,14 +16,15 @@ import { ICompetition } from '../../domain/competiton/Competition';
 import { IPcStorage } from '../../domain/trainer/pcStorage/PcStorage';
 import { INursery } from '../../domain/trainer/nursery/Nursery';
 import { ITrainingCamp } from '../../domain/trainer/trainingCamp/TrainingCamp';
-import { Gender } from '../../domain/Gender';
 import { IGame } from '../../domain/game/Game';
-import { addYears } from '../../utils/DateUtils';
+import { addYears } from 'shared/utils/DateUtils';
 import { PcStorageService } from './pcStorage/PcStorageService';
 import { XP_PER_LEVEL } from '../experience/ExperienceService';
-import { mongoId } from '../../utils/MongoUtils';
+import { mongoId } from 'shared/utils/MongoUtils';
 import WebsocketUtils from '../../websocket/WebsocketUtils';
 import { DIVISION_POKEMON_RANGE_RECORD, NB_DIVISION } from '../game/GameConst';
+import { IPokemon } from 'shared/models/pokemon/pokemon-models';
+import { Gender } from 'shared/models/utils/utils-models';
 
 @Injectable()
 class TrainerService {

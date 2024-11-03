@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import { ITrainer } from '../trainer/Trainer';
-import { MongoId } from '../MongoId';
+import { MongoId } from 'shared/common/domain/MongoId';
 import { ICompetition } from '../competiton/Competition';
 
 export type IWinner = 'opponent' | 'player';

@@ -1,10 +1,10 @@
 import mongoose, { Schema } from 'mongoose';
-import { IPokemon } from '../pokemon/Pokemon';
 import { IPcStorage } from './pcStorage/PcStorage';
 import { ITrainingCamp } from './trainingCamp/TrainingCamp';
 import { INursery } from './nursery/Nursery';
-import { MongoId } from '../MongoId';
+import { MongoId } from 'shared/common/domain/MongoId';
 import { ICompetition } from '../competiton/Competition';
+import { IPokemon } from 'shared/models/pokemon/pokemon-models';
 
 export interface ITrainer extends MongoId {
   name: string;

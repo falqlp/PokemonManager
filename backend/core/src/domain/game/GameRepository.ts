@@ -1,4 +1,4 @@
-import CompleteRepository from '../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import Game, { IGame } from './Game';
 import User from '../user/User';
 import Trainer from '../trainer/Trainer';

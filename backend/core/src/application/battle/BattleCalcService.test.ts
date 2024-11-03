@@ -1,5 +1,4 @@
 import { MoveTestMother } from '../../test/domain/Move/MoveTestMother';
-import { IMove } from '../../domain/move/Move';
 import BattleCalcService, {
   MIN_ROLL,
   STAB_MODIFIER,
@@ -7,10 +6,10 @@ import BattleCalcService, {
 } from './BattleCalcService';
 import { container } from 'tsyringe';
 import { PokemonTestMother } from '../../test/domain/pokemon/PokemonTestMother';
-import { IPokemon } from '../../domain/pokemon/Pokemon';
 import { IBattlePokemon, IDamage } from './BattleInterfaces';
 import BattlePokemonTestMother from '../../test/domain/battle/BattlePokemonTestMother';
 import { Test, TestingModule } from '@nestjs/testing';
+import { IMove, IPokemon } from 'shared/models';
 
 describe('BattleCalcService', () => {
   let serviceUnderTesting: BattleCalcService;

@@ -1,11 +1,11 @@
 import { INursery, IWishList } from '../../../domain/trainer/nursery/Nursery';
-import { IPokemon } from '../../../domain/pokemon/Pokemon';
 import NurseryRepository from '../../../domain/trainer/nursery/NurseryRepository';
 import PokemonService from '../../pokemon/PokemonService';
 import { Injectable } from '@nestjs/common';
 import TrainerRepository from '../../../domain/trainer/TrainerRepository';
 import { Error } from 'mongoose';
 import calendarEventService from '../../calendarEvent/CalendarEventService';
+import { IPokemon } from 'shared/models/pokemon/pokemon-models';
 
 @Injectable()
 export default class NurseryService {

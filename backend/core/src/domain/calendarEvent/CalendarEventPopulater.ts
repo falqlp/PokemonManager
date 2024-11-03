@@ -1,4 +1,4 @@
-import Populater from '../Populater';
+import Populater from 'shared/common/domain/Populater';
 import { Model, PopulateOptions } from 'mongoose';
 import { BattleInstancePopulater } from '../battleInstance/BattleInstancePopulater';
 import TrainerPopulater from '../trainer/TrainerPopulater';

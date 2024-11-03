@@ -1,5 +1,4 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { IMove } from '../../domain/move/Move';
 import { MoveTestMother } from '../../test/domain/Move/MoveTestMother';
 import { IMoveLearning } from '../../domain/moveLearning/MoveLearning';
 import { IPokedexMoveLearned } from './Pokedex';
@@ -10,6 +9,7 @@ import PokemonBaseRepository from '../../domain/pokemon/pokemonBase/PokemonBaseR
 import MoveRepository from '../../domain/move/MoveRepository';
 import EvolutionRepository from '../../domain/evolution/EvolutionRepository';
 import MoveLearningService from '../moveLearning/MoveLearningService';
+import { IMove } from 'shared/models';
 
 jest.mock('../../domain/pokemon/pokemonBase/PokemonBaseRepository');
 jest.mock('../../domain/move/MoveRepository');

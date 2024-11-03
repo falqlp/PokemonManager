@@ -1,28 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { PokemonType } from '../../models/Types/Types';
-import { MongoId } from '../MongoId';
-
-export interface IAnimation {
-  opponent?: string;
-  player?: string;
-}
-export enum SideEffect {
-  DRAIN = 'Drain',
-  RELOAD = 'Reload',
-}
-
-export type ISideEffect = Record<SideEffect, number>;
-
-export interface IMove extends MongoId {
-  id: number;
-  name: string;
-  type: PokemonType;
-  category: string;
-  accuracy: number;
-  power?: number;
-  animation: IAnimation;
-  sideEffect?: ISideEffect;
-}
+import { IMove, ISideEffect, SideEffect } from 'shared/models/move/mode-model';
 
 const sideEffectSchema = new Schema<ISideEffect>(
   {

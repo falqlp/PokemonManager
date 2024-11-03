@@ -12,7 +12,7 @@ import GameRepository from '../../domain/game/GameRepository';
 import GameService from '../../application/game/GameService';
 import GameMapper from './GameMapper';
 import TrainerMapper from '../trainer/TrainerMapper';
-import { ReadOnlyController } from '../read-only.controller';
+import { ReadOnlyController } from 'shared/common/api/read-only.controller';
 import { IGame } from '../../domain/game/Game';
 
 @Controller('game')

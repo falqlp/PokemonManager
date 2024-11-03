@@ -5,7 +5,7 @@ import TrainerService from '../trainer/TrainerService';
 import GenerateCalendarService from '../calendarEvent/GenerateCalendarService';
 import { Injectable } from '@nestjs/common';
 import CompetitionService from '../competition/CompetitionService';
-import { mongoId } from '../../utils/MongoUtils';
+import { mongoId } from 'shared/utils/MongoUtils';
 import { ITrainer } from '../../domain/trainer/Trainer';
 import UserRepository from '../../domain/user/UserRepository';
 import WebsocketUtils from '../../websocket/WebsocketUtils';

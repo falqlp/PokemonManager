@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 import { IGame } from '../game/Game';
-import { entitySchema, IEntity } from '../Entity';
-import { MongoId } from '../MongoId';
+import { entitySchema, IEntity } from 'shared/common/domain/Entity';
+import { MongoId } from 'shared/common/domain/MongoId';
 
 export interface IUser extends MongoId, IEntity {
   username: string;

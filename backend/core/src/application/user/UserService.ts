@@ -3,7 +3,7 @@ import UserRepository from '../../domain/user/UserRepository';
 import { IUser } from '../../domain/user/User';
 import { MailService } from '../mail/MailService';
 import HashService from './hash/HashService';
-import { mongoId } from '../../utils/MongoUtils';
+import { mongoId } from 'shared/utils/MongoUtils';
 import WebsocketUtils from '../../websocket/WebsocketUtils';
 import { PasswordRequestRepository } from '../../domain/user/passwordRequest/PasswordRequestRepository';
 

@@ -1,9 +1,9 @@
-import CompleteRepository from '../../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import BattleParticipationEvent, {
   IBattleParticipationEvent,
 } from './BattleParticipationEvent';
 import { Injectable } from '@nestjs/common';
-import { EmptyPopulater } from '../../EmptyPopulater';
+import { EmptyPopulater } from 'shared/common/domain/EmptyPopulater';
 import { Model, SortOrder } from 'mongoose';
 import BattleEventQueriesUtilService, {
   IDamageEventQuery,

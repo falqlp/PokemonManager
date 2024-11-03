@@ -26,7 +26,8 @@ abstract class CompleteRepository<
           } as unknown as UpdateQuery<T>,
           { new: true },
         )
-        .populate(this.populater.populate())) as T;
+        .populate(this.populater.populate())
+        .exec()) as T;
     } catch (error) {
       return Promise.reject(error);
     }
@@ -88,7 +89,7 @@ abstract class CompleteRepository<
 
   async delete(_id: string): Promise<T> {
     try {
-      return await this.schema.findByIdAndDelete({ _id });
+      return await this.schema.findByIdAndDelete({ _id }).exec();
     } catch (error) {
       return Promise.reject(error);
     }

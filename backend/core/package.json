@@ -84,6 +84,14 @@
       "application/**/*.ts",
       "websocket/**/*.ts",
       "utils/**/*.ts"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^shared/utils/(.*)$": "<rootDir>/../../shared/libs/utils/src/$1",
+      "^shared/utils": "<rootDir>/../../shared/libs/utils/src/$1",
+      "^shared/common/(.*)$": "<rootDir>/../../shared/libs/common/src/$1",
+      "^shared/common": "<rootDir>/../../shared/libs/common/src/$1",
+      "^shared/models/(.*)$": "<rootDir>/../../shared/libs/models/src/$1",
+      "^shared/models": "<rootDir>/../../shared/libs/models/src/$1"
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { IMapper } from '../../domain/IMapper';
+import { IMapper } from 'shared/common/domain/IMapper';
 import { ICompetitionHistory } from '../../domain/competiton/competitionHistory/CompetitionHistory';
 
 const CompetitionHistoryMapper: IMapper<ICompetitionHistory> = {

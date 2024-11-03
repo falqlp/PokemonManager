@@ -1,5 +1,5 @@
 import Trainer, { ITrainer } from './Trainer';
-import CompleteRepository from '../CompleteRepository';
+import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import { FilterQuery, Model, UpdateQuery } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import TrainerPopulater from './TrainerPopulater';

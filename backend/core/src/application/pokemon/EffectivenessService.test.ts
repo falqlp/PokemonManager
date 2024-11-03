@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import EffectivenessService from './EffectivenessService';
-import { PokemonType } from '../../models/Types/Types';
+import { PokemonType } from 'shared/models';
 
 describe('EffectivenessService', () => {
   let service: EffectivenessService;

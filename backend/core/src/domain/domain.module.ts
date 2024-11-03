@@ -12,7 +12,7 @@ import PokemonPopulater from './pokemon/PokemonPopulater';
 import PcStoragePopulater from './trainer/pcStorage/PcStoragePopulater';
 import NurseryPopulater from './trainer/nursery/NurseryPopulater';
 import TrainingCampPopulater from './trainer/trainingCamp/TrainingCampPopulater';
-import { EmptyPopulater } from './EmptyPopulater';
+import { EmptyPopulater } from 'shared/common/domain/EmptyPopulater';
 import BattleEventQueriesUtilService from './battleevents/BattleEventQueriesUtilService';
 import BattleSerieRepository from './competiton/tournament/battleSerie/BattleSerieRepository';
 import GameRepository from './game/GameRepository';

@@ -1,9 +1,8 @@
-import { AnyObject } from 'mongoose';
 import { convertStringsToDateInObject } from './DateConverter';
 
 describe('convertStringsToDateInObject function', () => {
   it('should convert date strings to Date objects in a given object', () => {
-    const inputObject: AnyObject = {
+    const inputObject = {
       name: 'testName',
       createdAt: '2023-01-01T00:00:00.000Z',
       nested: {
@@ -19,7 +18,7 @@ describe('convertStringsToDateInObject function', () => {
   });
 
   it('should leave non-date strings unchanged', () => {
-    const inputObject: AnyObject = {
+    const inputObject = {
       name: 'testName',
       notDate: '2023-01-01',
     };
@@ -31,7 +30,7 @@ describe('convertStringsToDateInObject function', () => {
   });
 
   it('should handle null values correctly', () => {
-    const inputObject: AnyObject = {
+    const inputObject = {
       name: 'testName',
       nullValue: null,
     };
@@ -43,7 +42,7 @@ describe('convertStringsToDateInObject function', () => {
   });
 
   it('should handle non-object values correctly', () => {
-    const inputObject: AnyObject = {
+    const inputObject = {
       name: 'testName',
       numberValue: 12345,
     };

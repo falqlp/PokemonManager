@@ -1,5 +1,5 @@
-import { SideEffect } from '../../domain/move/Move';
 import { IBattlePokemon, IDamage } from './BattleInterfaces';
+import { SideEffect } from 'shared/models/move/mode-model';
 
 type SideEffectLambda = (
   value: number,

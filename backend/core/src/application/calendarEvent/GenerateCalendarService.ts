@@ -3,14 +3,14 @@ import {
   CalendarEventEvent,
   ICalendarEvent,
 } from '../../domain/calendarEvent/CalendarEvent';
-import { getRandomFromArray, shuffleArray } from '../../utils/RandomUtils';
+import { getRandomFromArray, shuffleArray } from 'shared/utils/RandomUtils';
 import { IBattleInstance } from '../../domain/battleInstance/Battle';
 import BattleInstanceRepository from '../../domain/battleInstance/BattleInstanceRepository';
 import CalendarEventRepository from '../../domain/calendarEvent/CalendarEventRepository';
 import { Injectable } from '@nestjs/common';
 import { ICompetition } from '../../domain/competiton/Competition';
-import { addDays, isSevenDaysApart } from '../../utils/DateUtils';
-import { mongoId } from '../../utils/MongoUtils';
+import { addDays, isSevenDaysApart } from 'shared/utils/DateUtils';
+import { mongoId } from 'shared/utils/MongoUtils';
 
 @Injectable()
 class GenerateCalendarService {

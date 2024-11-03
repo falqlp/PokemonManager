@@ -1,6 +1,6 @@
 import { Model, PopulateOptions } from 'mongoose';
 import { Injectable } from '@nestjs/common';
-import Populater from '../../Populater';
+import Populater from 'shared/common/domain/Populater';
 import CompetitionHistory, { ICompetitionHistory } from './CompetitionHistory';
 import { InjectModel } from '@nestjs/mongoose';
 
