@@ -1,11 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import PokemonUtilsService from './PokemonUtilsService';
-import { IPokemonStats } from '../../models/PokemonModels/pokemonStats';
-import { IPokemon } from '../../domain/pokemon/Pokemon';
 import { PokemonTestMother } from '../../test/domain/pokemon/PokemonTestMother';
 import { StatsTestMother } from '../../test/domain/Stats/StatsTestMother';
 import { normalRandom } from 'shared/utils/RandomUtils';
 import { POKEMON_NATURES } from '../../domain/pokemon/pokemonConst';
+import { IPokemon, IPokemonStats } from 'shared/models';
 
 jest.mock('shared/utils/RandomUtils');
 

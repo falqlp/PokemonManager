@@ -19,13 +19,11 @@ import PokemonRepository from '../../domain/pokemon/PokemonRepository';
 import TrainerRepository from '../../domain/trainer/TrainerRepository';
 import ColorService from '../color/ColorService';
 import { StatsTestMother } from '../../test/domain/Stats/StatsTestMother';
-import { IPokemonStats } from '../../models/PokemonModels/pokemonStats';
-import { IMove } from '../../domain/move/Move';
 import { MoveTestMother } from '../../test/domain/Move/MoveTestMother';
 import { IBattlePokemon, IBattleTrainer } from './BattleInterfaces';
 import BattlePokemonTestMother from '../../test/domain/battle/BattlePokemonTestMother';
-import { PokemonType } from '../../models/Types/Types';
 import BattleTrainerTestMother from '../../test/domain/battle/BattleTrainerTestMother';
+import { IMove, IPokemonStats, PokemonType } from 'shared/models';
 
 jest.mock('../../websocket/BattleWebsocketService');
 
