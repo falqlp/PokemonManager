@@ -30,8 +30,6 @@ export class BattleEventsController {
         query,
         sort,
       );
-
-      // Mapper les Pokémon et retourner la réponse JSON
       return obj.map((o) => {
         o.pokemon = this.pokemonMapper.map(o.pokemon);
         return o;
