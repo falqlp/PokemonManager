@@ -1,5 +1,5 @@
-import { IPokemon } from '../../domain/pokemon/Pokemon';
-import { IMove } from '../../domain/move/Move';
+import { IPokemon } from 'shared/models/pokemon/pokemon-models';
+import { IMove } from 'shared/models/move/mode-model';
 
 export type Effectiveness =
   | 'IMMUNE'

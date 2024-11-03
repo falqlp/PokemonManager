@@ -18,17 +18,23 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "utils/utils": [
+      "shared/utils": [
         "libs/utils/src"
       ],
-      "utils/utils/*": [
+      "shared/utils/*": [
         "libs/utils/src/*"
       ],
-      "common/common": [
+      "shared/common": [
         "libs/common/src"
       ],
-      "common/common/*": [
+      "shared/common/*": [
         "libs/common/src/*"
+      ],
+      "shared/models": [
+        "libs/models/src"
+      ],
+      "shared/models/*": [
+        "libs/models/src/*"
       ]
     }
   }

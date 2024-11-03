@@ -1,12 +1,12 @@
 import MoveLearningRepository from '../../domain/moveLearning/MoveLearningRepository';
-import { IPokemon } from '../../domain/pokemon/Pokemon';
 import { ListBody } from 'shared/common/domain/ReadOnlyRepository';
 import MoveRepository from '../../domain/move/MoveRepository';
 import { IMoveLearning } from '../../domain/moveLearning/MoveLearning';
 import EvolutionRepository from '../../domain/evolution/EvolutionRepository';
-import { IMove } from '../../domain/move/Move';
 import { Injectable } from '@nestjs/common';
 import WebsocketUtils from '../../websocket/WebsocketUtils';
+import { IPokemon } from 'shared/models/pokemon/pokemon-models';
+import { IMove } from 'shared/models/move/mode-model';
 
 @Injectable()
 export default class MoveLearningService {

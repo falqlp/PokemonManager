@@ -1,4 +1,4 @@
-import { IPokemonStats } from '../../../models/PokemonModels/pokemonStats';
+import { IPokemonStats } from 'shared/models/pokemon/pokemon-models';
 
 export class StatsTestMother {
   static getEvs(): IPokemonStats {

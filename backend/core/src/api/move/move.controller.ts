@@ -2,7 +2,7 @@ import { Controller } from '@nestjs/common';
 import MoveRepository from '../../domain/move/MoveRepository';
 import MoveMapper from './MoveMapper';
 import { ReadOnlyGlobalController } from '../read-only-global.controller';
-import { IMove } from '../../domain/move/Move';
+import { IMove } from 'shared/models/move/mode-model';
 
 @Controller('move')
 export class MoveController extends ReadOnlyGlobalController<IMove> {

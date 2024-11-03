@@ -1,10 +1,10 @@
 import PokemonBaseRepository from '../../domain/pokemon/pokemonBase/PokemonBaseRepository';
-import { IPokemonBase } from '../../domain/pokemon/pokemonBase/PokemonBase';
 import { IPokedex, IPokedexEvolution, IPokedexMoveLearned } from './Pokedex';
 import MoveRepository from '../../domain/move/MoveRepository';
 import EvolutionRepository from '../../domain/evolution/EvolutionRepository';
 import MoveLearningService from '../moveLearning/MoveLearningService';
 import { Injectable } from '@nestjs/common';
+import { IPokemonBase } from 'shared/models/pokemon/pokemon-models';
 
 @Injectable()
 export class PokedexService {

@@ -1,6 +1,8 @@
-import { IPokemonBase } from '../../../domain/pokemon/pokemonBase/PokemonBase';
-import { PokemonType } from '../../../models/Types/Types';
 import { StatsTestMother } from '../Stats/StatsTestMother';
+import {
+  IPokemonBase,
+  PokemonType,
+} from 'shared/models/pokemon/pokemon-models';
 
 export class PokemonBaseTestMother {
   static generateBulbasaurBase(): IPokemonBase {

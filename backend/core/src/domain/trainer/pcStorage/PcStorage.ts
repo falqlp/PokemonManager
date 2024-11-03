@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
-import { IPokemon } from '../../pokemon/Pokemon';
 import { MongoId } from 'shared/common/domain/MongoId';
+import { IPokemon } from 'shared/models/pokemon/pokemon-models';
 
 export interface IPcStorageStorage {
   pokemon: IPokemon;

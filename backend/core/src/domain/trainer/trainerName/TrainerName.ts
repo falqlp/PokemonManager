@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
-import { Gender } from '../../Gender';
 import { MongoId } from 'shared/common/domain/MongoId';
+import { Gender } from 'shared/models/utils/utils-models';
 
 export interface ITrainerName extends MongoId {
   name: string;

@@ -1,8 +1,8 @@
-import { IPokemon, PokemonNature } from '../../../domain/pokemon/Pokemon';
 import { PokemonBaseTestMother } from '../PokemonBase/PokemonBaseTestMother';
 import { StatsTestMother } from '../Stats/StatsTestMother';
 import { MoveTestMother } from '../Move/MoveTestMother';
-import { Gender } from '../../../domain/Gender';
+import { Gender } from 'shared/models/utils/utils-models';
+import { IPokemon, PokemonNature } from 'shared/models/pokemon/pokemon-models';
 
 export class PokemonTestMother {
   static generateBulbasaur(trainerId?: string): IPokemon {

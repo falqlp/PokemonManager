@@ -15,7 +15,7 @@ import EffectivenessService from '../../application/pokemon/EffectivenessService
 import PokemonService from '../../application/pokemon/PokemonService';
 import PokemonMapper from './PokemonMapper';
 import { ReadOnlyController } from 'shared/common/api/read-only.controller';
-import { IPokemon } from '../../domain/pokemon/Pokemon';
+import { IPokemon } from 'shared/models/pokemon/pokemon-models';
 
 @Controller('pokemon')
 export class PokemonController extends ReadOnlyController<IPokemon> {

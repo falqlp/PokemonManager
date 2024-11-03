@@ -1,6 +1,6 @@
 import { TYPE_EFFECTIVENESS } from '../battle/BattleCalcService';
-import { PokemonType } from '../../models/Types/Types';
 import { Injectable } from '@nestjs/common';
+import { PokemonType } from 'shared/models/pokemon/pokemon-models';
 
 @Injectable()
 class EffectivenessService {

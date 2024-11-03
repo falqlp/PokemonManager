@@ -1,5 +1,5 @@
-import { IMove } from '../../../domain/move/Move';
-import { PokemonType } from '../../../models/Types/Types';
+import { IMove } from 'shared/models/move/mode-model';
+import { PokemonType } from 'shared/models/pokemon/pokemon-models';
 
 export class MoveTestMother {
   static basicMove(): IMove {

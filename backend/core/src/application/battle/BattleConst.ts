@@ -1,5 +1,5 @@
-import { PokemonType } from '../../models/Types/Types';
-import { IMove } from '../../domain/move/Move';
+import { IMove } from 'shared/models/move/mode-model';
+import { PokemonType } from 'shared/models/pokemon/pokemon-models';
 
 export const DefaultMove: IMove = {
   _id: '64b0026d3ca816e9336d9274',

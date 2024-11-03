@@ -1,7 +1,7 @@
 import { IWishList } from '../../../domain/trainer/nursery/Nursery';
-import { IPokemonBase } from '../../../domain/pokemon/pokemonBase/PokemonBase';
 import PokemonBaseRepository from '../../../domain/pokemon/pokemonBase/PokemonBaseRepository';
 import { Injectable } from '@nestjs/common';
+import { IPokemonBase } from 'shared/models/pokemon/pokemon-models';
 
 export const RANDOM_TYPE_RATE = 0.1;
 

@@ -1,8 +1,11 @@
-import { IPokemonStats } from '../../models/PokemonModels/pokemonStats';
-import { IPokemon, PokemonNature } from '../../domain/pokemon/Pokemon';
 import { getRandomFromArray, normalRandom } from 'shared/utils/RandomUtils';
 import { Injectable } from '@nestjs/common';
 import { POKEMON_NATURES } from '../../domain/pokemon/pokemonConst';
+import {
+  IPokemon,
+  IPokemonStats,
+  PokemonNature,
+} from 'shared/models/pokemon/pokemon-models';
 
 @Injectable()
 class PokemonUtilsService {
@@ -25,7 +28,7 @@ class PokemonUtilsService {
       spAtk: Math.floor(Math.random() * 32),
       spDef: Math.floor(Math.random() * 32),
       spe: Math.floor(Math.random() * 32),
-    } as IPokemonStats;
+    };
   }
 
   public initEvs(): IPokemonStats {
@@ -36,7 +39,7 @@ class PokemonUtilsService {
       spAtk: 0,
       spDef: 0,
       spe: 0,
-    } as IPokemonStats;
+    };
   }
 
   public generateHiddenPotential(potential: number): string {
@@ -56,7 +59,7 @@ class PokemonUtilsService {
         spe: 0,
         spAtk: 0,
         spDef: 0,
-      } as IPokemonStats;
+      };
     }
     return {
       hp: this.calcHp(

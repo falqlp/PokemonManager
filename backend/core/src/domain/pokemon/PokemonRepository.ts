@@ -1,4 +1,3 @@
-import Pokemon, { IPokemon } from './Pokemon';
 import Trainer from '../trainer/Trainer';
 import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import Nursery from '../trainer/nursery/Nursery';
@@ -9,6 +8,8 @@ import { IGame } from '../game/Game';
 import { addYears } from 'shared/utils/DateUtils';
 import PcStorage from '../trainer/pcStorage/PcStorage';
 import { InjectModel } from '@nestjs/mongoose';
+import { IPokemon } from 'shared/models/pokemon/pokemon-models';
+import Pokemon from './Pokemon';
 
 @Injectable()
 class PokemonRepository extends CompleteRepository<IPokemon> {
