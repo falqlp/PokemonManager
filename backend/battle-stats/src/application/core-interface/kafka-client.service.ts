@@ -1,6 +1,10 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { Client, ClientKafka, Transport } from '@nestjs/microservices';
-import { NeedReplyTopics } from './core-interface.service';
+
+export enum NeedReplyTopics {
+  PokemonList = 'pokemon.list',
+  TrainerList = 'trainer.list',
+}
 
 @Injectable()
 export class KafkaClientService implements OnModuleInit {

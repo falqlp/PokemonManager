@@ -1,9 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import {
-  CoreInterfaceService,
-  NeedReplyTopics,
-} from './core-interface.service';
-import { KafkaClientService } from './kafka-client.service';
+import { CoreInterfaceService } from './core-interface.service';
+import { KafkaClientService, NeedReplyTopics } from './kafka-client.service';
 import { ClientKafka } from '@nestjs/microservices';
 
 jest.mock('./kafka-client.service');

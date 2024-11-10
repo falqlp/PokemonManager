@@ -31,24 +31,6 @@ import BattleEventQueriesUtilService from './domain/battleevents/battle-event-qu
             : `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.1eldau8.mongodb.net/PokemonManager`,
       }),
     }),
-    // ClientsModule.register([
-    //   {
-    //     name: 'BATTLE_STATS_SERVICE',
-    //     transport: Transport.KAFKA,
-    //     options: {
-    //       client: {
-    //         clientId: 'battle-stats',
-    //         brokers: ['localhost:9092'],
-    //       },
-    //       consumer: {
-    //         groupId: 'battle-stats',
-    //       },
-    //       producer: {
-    //         allowAutoTopicCreation: true,
-    //       },
-    //     },
-    //   },
-    // ]),
     MongooseModule.forFeature(
       mapSchemas([DamageEvent, BattleParticipationEvent]),
     ),

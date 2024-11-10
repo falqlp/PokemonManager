@@ -1,16 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { KafkaClientService } from './kafka-client.service';
+import { KafkaClientService, NeedReplyTopics } from './kafka-client.service';
 import { ListBody, MongoId } from 'shared/common';
 import { IPokemon } from 'shared/models';
 
 export interface BattleStatsTrainer extends MongoId {
   name: string;
   class?: string;
-}
-
-export enum NeedReplyTopics {
-  PokemonList = 'pokemon.list',
-  TrainerList = 'trainer.list',
 }
 
 @Injectable()
