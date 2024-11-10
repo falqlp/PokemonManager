@@ -9,6 +9,7 @@ class TrainerClassRepository {
     @InjectModel(TrainerClass.modelName)
     protected readonly schema: Model<ITrainerClass>,
   ) {}
+
   public generateTrainerName(): Aggregate<
     Array<{ class: string; name: string }>
   > {

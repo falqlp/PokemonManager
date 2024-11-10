@@ -9,7 +9,10 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import ReadOnlyRepository, { ListBody } from '../domain/ReadOnlyRepository';
+import ReadOnlyRepository, {
+  ListBody,
+  TableResult,
+} from '../domain/ReadOnlyRepository';
 import { MongoId } from '../domain/MongoId';
 import { IMapper } from '../domain/IMapper';
 
@@ -21,7 +24,10 @@ export abstract class ReadOnlyController<T extends MongoId> {
   ) {}
 
   @Get(':id')
-  async getOne(@Param('id') id: string, @Headers('game-id') gameId: string) {
+  public async getOne(
+    @Param('id') id: string,
+    @Headers('game-id') gameId: string,
+  ): Promise<T> {
     try {
       const obj = await this.repository.get(id, { gameId });
       return this.mapper.map(obj);
@@ -34,7 +40,10 @@ export abstract class ReadOnlyController<T extends MongoId> {
   }
 
   @Put()
-  async list(@Body() body: ListBody, @Headers('game-id') gameId: string) {
+  public async list(
+    @Body() body: ListBody,
+    @Headers('game-id') gameId: string,
+  ): Promise<T[]> {
     try {
       const obj = await this.repository.list(body, { gameId });
       return obj.map((value) => this.mapper.map(value));
@@ -47,11 +56,11 @@ export abstract class ReadOnlyController<T extends MongoId> {
   }
 
   @Post('query-table')
-  async queryTable(
+  public async queryTable(
     @Body() body: ListBody,
     @Headers('game-id') gameId: string,
     @Headers('lang') lang: string,
-  ) {
+  ): Promise<TableResult<T>> {
     try {
       const obj = await this.repository.queryTable(body, { gameId, lang });
       obj.data = obj.data.map((value) => this.mapper.map(value));

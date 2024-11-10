@@ -12,6 +12,7 @@ export default class CompetitionHistoryPopulater extends Populater<ICompetitionH
   ) {
     super();
   }
+
   public populate(): PopulateOptions | PopulateOptions[] {
     return '' as unknown as PopulateOptions;
   }

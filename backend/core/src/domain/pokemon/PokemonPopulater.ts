@@ -20,6 +20,7 @@ class PokemonPopulater extends Populater<IPokemon> {
   ) {
     super();
   }
+
   public populate(): PopulateOptions | PopulateOptions[] {
     return [
       { path: 'moves', model: this.move },
