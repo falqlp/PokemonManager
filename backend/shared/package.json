@@ -67,7 +67,7 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "utils/**/*.ts",
+      "libs/utils/**/*.ts",
       "!**/*.module.ts"
     ],
     "coverageDirectory": "./coverage",
