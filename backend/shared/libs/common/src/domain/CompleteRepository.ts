@@ -1,5 +1,5 @@
 import ReadOnlyRepository from './ReadOnlyRepository';
-import { Model, UpdateQuery } from 'mongoose';
+import { Model, RootFilterQuery, UpdateQuery } from 'mongoose';
 import { MongoId } from './MongoId';
 import Populater from './Populater';
 
@@ -33,7 +33,7 @@ abstract class CompleteRepository<
     }
   }
 
-  public async updateMany(dtos: T[]): Promise<T[]> {
+  public async updateManyDtos(dtos: T[]): Promise<T[]> {
     try {
       for (const dto of dtos) {
         if ('updateAt' in dto) {
@@ -90,6 +90,25 @@ abstract class CompleteRepository<
   async delete(_id: string): Promise<T> {
     try {
       return await this.schema.findByIdAndDelete({ _id }).exec();
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  public async deleteMany(filter: RootFilterQuery<T>): Promise<unknown> {
+    try {
+      return await this.schema.deleteMany(filter).exec();
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  public async updateMany(
+    filter: RootFilterQuery<T>,
+    update: UpdateQuery<T>,
+  ): Promise<unknown> {
+    try {
+      return await this.schema.updateMany(filter, update).exec();
     } catch (error) {
       return Promise.reject(error);
     }

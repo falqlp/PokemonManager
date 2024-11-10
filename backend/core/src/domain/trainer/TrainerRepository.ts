@@ -3,11 +3,10 @@ import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import { FilterQuery, Model, UpdateQuery } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import TrainerPopulater from './TrainerPopulater';
-import Nursery from './nursery/Nursery';
-import TrainingCamp from './trainingCamp/TrainingCamp';
-import PcStorage from './pcStorage/PcStorage';
-import Pokemon from '../pokemon/Pokemon';
 import { InjectModel } from '@nestjs/mongoose';
+import NurseryRepository from './nursery/NurseryRepository';
+import TrainingCampRepository from './trainingCamp/TrainingCampRepository';
+import PcStorageRepository from './pcStorage/PcStorageRepository';
 
 @Injectable()
 class TrainerRepository extends CompleteRepository<ITrainer> {
@@ -15,6 +14,9 @@ class TrainerRepository extends CompleteRepository<ITrainer> {
     trainerPopulater: TrainerPopulater,
     @InjectModel(Trainer.modelName)
     protected override readonly schema: Model<ITrainer>,
+    private readonly nurseryRepository: NurseryRepository,
+    private readonly trainingCampRepository: TrainingCampRepository,
+    private readonly pcStorageRepository: PcStorageRepository,
   ) {
     super(schema, trainerPopulater);
   }
@@ -31,15 +33,6 @@ class TrainerRepository extends CompleteRepository<ITrainer> {
     update?: UpdateQuery<ITrainer>,
   ): Promise<void> {
     await this.schema.updateMany(filter, update);
-  }
-
-  public async deleteTrainer(dto: ITrainer): Promise<ITrainer> {
-    Nursery.deleteMany({ _id: dto.nursery._id });
-    TrainingCamp.deleteMany({ _id: dto.trainingCamp._id });
-    TrainingCamp.deleteMany({ _id: dto.trainingCamp._id });
-    PcStorage.deleteMany({ _id: dto.pcStorage._id });
-    Pokemon.updateMany({ trainerId: dto._id }, { $unset: { trainerId: '' } });
-    return super.delete(dto._id);
   }
 
   public async relegate(ids: string[], gameId: string): Promise<void> {

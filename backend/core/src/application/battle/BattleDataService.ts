@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { IBattleState } from './BattleInterfaces';
-import { IDamageEvent } from '../../domain/battleevents/damageevent/DamageEvent';
-import { IBattleParticipationEvent } from '../../domain/battleevents/battleparticipationevent/BattleParticipationEvent';
+import { IBattleParticipationEvent, IDamageEvent } from 'shared/models';
 
 @Injectable()
 export class BattleDataService {

@@ -23,7 +23,7 @@ export class UserController extends ReadOnlyController<IUser> {
   }
 
   @Post()
-  async createUser(@Body() body: any) {
+  public async createUser(@Body() body: IUser): Promise<IUser> {
     try {
       return await this.userService.create(body);
     } catch (error: any) {
@@ -42,10 +42,10 @@ export class UserController extends ReadOnlyController<IUser> {
   }
 
   @Put('add-friend')
-  async addFriend(
+  public async addFriend(
     @Body('userId') userId: string,
     @Body('friendId') friendId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.userService.addFriend(userId, friendId);
       return { status: 'success' };
@@ -58,10 +58,10 @@ export class UserController extends ReadOnlyController<IUser> {
   }
 
   @Put('change-language')
-  async changeLanguage(
+  public async changeLanguage(
     @Body('userId') userId: string,
     @Body('lang') lang: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.userService.changeLanguage(userId, lang);
       return { status: 'success' };
@@ -74,7 +74,9 @@ export class UserController extends ReadOnlyController<IUser> {
   }
 
   @Put('verify')
-  async verifyMail(@Body('userId') userId: string) {
+  public async verifyMail(
+    @Body('userId') userId: string,
+  ): Promise<{ status: string }> {
     try {
       await this.userService.verifyMail(userId);
       return { status: 'success' };
@@ -87,10 +89,10 @@ export class UserController extends ReadOnlyController<IUser> {
   }
 
   @Put('accept-friend-request')
-  async acceptFriendRequest(
+  public async acceptFriendRequest(
     @Body('userId') userId: string,
     @Body('friendId') friendId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.userService.acceptFriendRequest(userId, friendId);
       return { status: 'success' };
@@ -103,10 +105,10 @@ export class UserController extends ReadOnlyController<IUser> {
   }
 
   @Put('delete-friend-request')
-  async deleteFriendRequest(
+  public async deleteFriendRequest(
     @Body('userId') userId: string,
     @Body('friendId') friendId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.userService.deleteFriendRequest(userId, friendId);
       return { status: 'success' };
@@ -119,10 +121,10 @@ export class UserController extends ReadOnlyController<IUser> {
   }
 
   @Put('change-password')
-  async changePassword(
+  public async changePassword(
     @Body('password') password: string,
     @Body('passwordRequestId') passwordRequestId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.userService.changePassword(password, passwordRequestId);
       return { status: 'success' };
@@ -135,7 +137,9 @@ export class UserController extends ReadOnlyController<IUser> {
   }
 
   @Put('read-news')
-  async readNews(@Body('userId') userId: string) {
+  public async readNews(
+    @Body('userId') userId: string,
+  ): Promise<{ status: string }> {
     try {
       await this.userService.readNews(userId);
       return { status: 'success' };
@@ -148,7 +152,7 @@ export class UserController extends ReadOnlyController<IUser> {
   }
 
   @Put('is-email-used')
-  async isEmailUsed(@Body('email') email: string) {
+  public async isEmailUsed(@Body('email') email: string): Promise<boolean> {
     try {
       const obj = await this.service.list({ custom: { email } });
       return obj.length > 0;
@@ -161,7 +165,9 @@ export class UserController extends ReadOnlyController<IUser> {
   }
 
   @Put('is-username-used')
-  async isUsernameUsed(@Body('username') username: string) {
+  public async isUsernameUsed(
+    @Body('username') username: string,
+  ): Promise<boolean> {
     try {
       const obj = await this.service.list({ custom: { username } });
       return obj.length > 0;

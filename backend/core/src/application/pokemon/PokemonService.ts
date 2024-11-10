@@ -58,7 +58,7 @@ class PokemonService {
     for (let i = 0; i < pokemons.length; i++) {
       this.updateBase(pokemons.at(i), oldPokemons.at(i), actualDate);
     }
-    return this.pokemonRepository.updateMany(pokemons);
+    return this.pokemonRepository.updateManyDtos(pokemons);
   }
 
   public updateBase(

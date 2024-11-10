@@ -9,7 +9,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import ReadOnlyRepository from '../domain/ReadOnlyRepository';
+import ReadOnlyRepository, { ListBody } from '../domain/ReadOnlyRepository';
 import { MongoId } from '../domain/MongoId';
 import { IMapper } from '../domain/IMapper';
 
@@ -34,7 +34,7 @@ export abstract class ReadOnlyController<T extends MongoId> {
   }
 
   @Put()
-  async list(@Body() body: any, @Headers('game-id') gameId: string) {
+  async list(@Body() body: ListBody, @Headers('game-id') gameId: string) {
     try {
       const obj = await this.repository.list(body, { gameId });
       return obj.map((value) => this.mapper.map(value));
@@ -48,7 +48,7 @@ export abstract class ReadOnlyController<T extends MongoId> {
 
   @Post('query-table')
   async queryTable(
-    @Body() body: any,
+    @Body() body: ListBody,
     @Headers('game-id') gameId: string,
     @Headers('lang') lang: string,
   ) {

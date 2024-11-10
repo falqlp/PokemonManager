@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import MoveLearningService from './MoveLearningService';
 import { IMoveLearning } from '../../domain/moveLearning/MoveLearning';
-import { MoveTestMother } from '../../test/domain/Move/MoveTestMother';
+import { MoveTestMother } from 'shared/models/test/domain/Move/MoveTestMother';
 import MoveRepository from '../../domain/move/MoveRepository';
 import MoveLearningRepository from '../../domain/moveLearning/MoveLearningRepository';
 import EvolutionRepository from '../../domain/evolution/EvolutionRepository';

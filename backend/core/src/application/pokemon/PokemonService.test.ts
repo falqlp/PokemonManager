@@ -1,11 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import PokemonService from './PokemonService';
 import { INursery } from '../../domain/trainer/nursery/Nursery';
-import { NurseryTestMother } from '../../test/domain/Nursery/NurseryTestMother';
 import { addYears } from 'shared/utils/DateUtils';
-import { PokemonTestMother } from '../../test/domain/pokemon/PokemonTestMother';
-import { MoveTestMother } from '../../test/domain/Move/MoveTestMother';
-import { StatsTestMother } from '../../test/domain/Stats/StatsTestMother';
+import { PokemonTestMother } from 'shared/models/test/domain/pokemon/PokemonTestMother';
+import { MoveTestMother } from 'shared/models/test/domain/Move/MoveTestMother';
+import { StatsTestMother } from 'shared/models/test/domain/Stats/StatsTestMother';
 import { IGame } from '../../domain/game/Game';
 import PokemonBaseService from './pokemonBase/PokemonBaseService';
 import PokemonBaseRepository from '../../domain/pokemon/pokemonBase/PokemonBaseRepository';
@@ -17,6 +16,7 @@ import WebsocketUtils from '../../websocket/WebsocketUtils';
 import PokemonRepository from '../../domain/pokemon/PokemonRepository';
 import MoveLearningService from '../moveLearning/MoveLearningService';
 import { Gender, IMove, IPokemon, PokemonNature } from 'shared/models';
+import { NurseryTestMother } from '../../test/domain/Nursery/NurseryTestMother';
 
 jest.mock('./pokemonBase/PokemonBaseService');
 jest.mock('../../domain/pokemon/pokemonBase/PokemonBaseRepository');
@@ -677,7 +677,9 @@ describe('PokemonService', () => {
         .spyOn(gameRepository, 'get')
         .mockResolvedValue({ actualDate: new Date('2023-01-01') } as IGame);
       jest.spyOn(pokemonRepository, 'list').mockResolvedValue(pokemons);
-      jest.spyOn(pokemonRepository, 'updateMany').mockResolvedValue(pokemons);
+      jest
+        .spyOn(pokemonRepository, 'updateManyDtos')
+        .mockResolvedValue(pokemons);
       jest
         .spyOn(service, 'updateBase')
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -704,7 +706,7 @@ describe('PokemonService', () => {
           new Date('2023-01-01'),
         );
       }
-      expect(pokemonRepository.updateMany).toHaveBeenCalledWith(
+      expect(pokemonRepository.updateManyDtos).toHaveBeenCalledWith(
         pokemonsToUpdate,
       );
       expect(updatedPokemons).toEqual(pokemons);

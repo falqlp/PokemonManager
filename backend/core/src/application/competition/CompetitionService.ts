@@ -144,7 +144,7 @@ export default class CompetitionService {
       trainer.competitions.unshift(competition);
       return trainer;
     });
-    await this.trainerRepository.updateMany(trainers);
+    await this.trainerRepository.updateManyDtos(trainers);
     await this.generateCalendarService.generateGroupMatches(
       groups,
       3,

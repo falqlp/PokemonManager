@@ -1,5 +1,5 @@
 import { ITrainer } from '../../../domain/trainer/Trainer';
-import { PokemonTestMother } from '../pokemon/PokemonTestMother';
+import { PokemonTestMother } from 'shared/models/test/domain/pokemon/PokemonTestMother';
 import { PcStorageTestMother } from '../PcStorage/PcStorageTestMother';
 import { TrainingCampTestMother } from '../TrainingCamp/TrainingCampTestMother';
 import { NurseryTestMother } from '../Nursery/NurseryTestMother';

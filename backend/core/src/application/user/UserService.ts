@@ -129,4 +129,8 @@ export class UserService {
       );
     }
   }
+
+  public async deleteGameForUsers(gameId: string): Promise<void> {
+    await this.userRepository.updateMany({}, { $pull: { games: gameId } });
+  }
 }

@@ -13,19 +13,19 @@ import GameRepository from '../../domain/game/GameRepository';
 import BattleSideEffectService from './BattleSideEffectService';
 import BattleWebsocketService from '../../websocket/BattleWebsocketService';
 import CalendarEventRepository from '../../domain/calendarEvent/CalendarEventRepository';
-import DamageEventRepository from '../../domain/battleevents/damageevent/DamageEventRepository';
-import BattleParticipationEventRepository from '../../domain/battleevents/battleparticipationevent/BattleParticipationEventRepository';
 import PokemonRepository from '../../domain/pokemon/PokemonRepository';
 import TrainerRepository from '../../domain/trainer/TrainerRepository';
-import ColorService from '../color/ColorService';
-import { StatsTestMother } from '../../test/domain/Stats/StatsTestMother';
-import { MoveTestMother } from '../../test/domain/Move/MoveTestMother';
+import { StatsTestMother } from 'shared/models/test/domain/Stats/StatsTestMother';
+import { MoveTestMother } from 'shared/models/test/domain/Move/MoveTestMother';
 import { IBattlePokemon, IBattleTrainer } from './BattleInterfaces';
 import BattlePokemonTestMother from '../../test/domain/battle/BattlePokemonTestMother';
 import BattleTrainerTestMother from '../../test/domain/battle/BattleTrainerTestMother';
 import { IMove, IPokemonStats, PokemonType } from 'shared/models';
+import { CoreKafkaClientService } from '../core-kafka-client/core-kafka-client.service';
 
 jest.mock('../../websocket/BattleWebsocketService');
+jest.mock('../core-kafka-client/core-kafka-client.service');
+jest.mock('../../domain/calendarEvent/CalendarEventRepository');
 
 jest.mock('shared/utils/RandomUtils', () => ({
   ...jest.requireActual('shared/utils/RandomUtils'),
@@ -40,8 +40,9 @@ describe('BattleService', () => {
   let battleService: BattleService;
   let battleMock: IBattleInstance;
   let battleDataService: BattleDataService;
-  let battleEventsService: BattleEventsService;
   let battleWebsocketService: BattleWebsocketService;
+  let calendarEventRepository: CalendarEventRepository;
+  let battleEventsService: BattleEventsService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -51,15 +52,13 @@ describe('BattleService', () => {
         BattleEventsService,
         BattleCalcService,
         BattleWebsocketService,
+        CoreKafkaClientService,
+        CalendarEventRepository,
         { provide: BattleInstanceRepository, useValue: {} },
         { provide: GameRepository, useValue: {} },
         { provide: BattleSideEffectService, useValue: {} },
-        { provide: CalendarEventRepository, useValue: {} },
-        { provide: DamageEventRepository, useValue: {} },
-        { provide: BattleParticipationEventRepository, useValue: {} },
         { provide: PokemonRepository, useValue: {} },
         { provide: TrainerRepository, useValue: {} },
-        { provide: ColorService, useValue: {} },
       ],
     }).compile();
 
@@ -68,7 +67,8 @@ describe('BattleService', () => {
     battleWebsocketService = module.get<BattleWebsocketService>(
       BattleWebsocketService,
     );
-    battleEventsService = module.get<BattleEventsService>(BattleEventsService);
+    calendarEventRepository = module.get(CalendarEventRepository);
+    battleEventsService = module.get(BattleEventsService);
 
     jest.clearAllMocks();
     jest.restoreAllMocks();
@@ -78,15 +78,19 @@ describe('BattleService', () => {
 
   describe('simulateBattle method', () => {
     it('should correctly simulate a battle scenario', async () => {
+      jest.spyOn(battleDataService, 'delete');
+      jest
+        .spyOn(calendarEventRepository, 'getBattleDate')
+        .mockResolvedValue(new Date());
       jest
         .spyOn(battleEventsService, 'insertBattleEventsData')
-        .mockResolvedValue();
-      jest.spyOn(battleDataService, 'delete');
+        .mockReturnValue();
       const result = await battleService.simulateBattle(battleMock);
       expect(result).toBeDefined();
       expect(result.winner).toBeDefined();
       expect(result.winner).toMatch(/^(opponent|player)$/);
       expect(battleDataService.delete).toHaveBeenCalledWith(battleMock._id);
+      expect(battleEventsService.insertBattleEventsData).toHaveBeenCalled();
     });
   });
 

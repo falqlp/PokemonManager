@@ -1,11 +1,11 @@
-import { MoveTestMother } from '../../test/domain/Move/MoveTestMother';
+import { MoveTestMother } from 'shared/models/test/domain/Move/MoveTestMother';
 import BattleCalcService, {
   MIN_ROLL,
   STAB_MODIFIER,
   TYPE_EFFECTIVENESS,
 } from './BattleCalcService';
 import { container } from 'tsyringe';
-import { PokemonTestMother } from '../../test/domain/pokemon/PokemonTestMother';
+import { PokemonTestMother } from 'shared/models/test/domain/pokemon/PokemonTestMother';
 import { IBattlePokemon, IDamage } from './BattleInterfaces';
 import BattlePokemonTestMother from '../../test/domain/battle/BattlePokemonTestMother';
 import { Test, TestingModule } from '@nestjs/testing';

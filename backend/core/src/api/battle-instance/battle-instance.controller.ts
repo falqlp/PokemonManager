@@ -9,9 +9,16 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { BattleInstanceService } from '../../application/battleInstance/BattleInstanceService';
+import {
+  BattleInstanceService,
+  ISerieRanking,
+  ITrainerRanking,
+} from '../../application/battleInstance/BattleInstanceService';
 import BattleInstanceMapper from './BattleInstanceMapper';
-import { IBattlePokemon } from '../../application/battle/BattleInterfaces';
+import {
+  IBattlePokemon,
+  IBattleTrainer,
+} from '../../application/battle/BattleInterfaces';
 import BattleInstanceRepository from '../../domain/battleInstance/BattleInstanceRepository';
 import PokemonMapper from '../pokemon/PokemonMapper';
 import BattleService from '../../application/battle/BattleService';
@@ -31,7 +38,9 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
   }
 
   @Get('ranking/:id')
-  async getChampionshipRanking(@Param('id') id: string) {
+  public async getChampionshipRanking(
+    @Param('id') id: string,
+  ): Promise<ITrainerRanking[]> {
     try {
       const obj = await this.battleInstanceService.getChampionshipRanking(id);
       return obj.map((value) => {
@@ -47,7 +56,9 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
   }
 
   @Get('groups-ranking/:id')
-  async getGroupsRanking(@Param('id') id: string) {
+  public async getGroupsRanking(
+    @Param('id') id: string,
+  ): Promise<ITrainerRanking[][]> {
     try {
       const obj = await this.battleInstanceService.getGroupsRanking(id);
       return obj.map((group) =>
@@ -65,7 +76,9 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
   }
 
   @Get('tournament-ranking/:id')
-  async getTournamentRanking(@Param('id') id: string) {
+  public async getTournamentRanking(
+    @Param('id') id: string,
+  ): Promise<{ tournamentRanking: ISerieRanking[][]; step: number }> {
     try {
       return await this.battleInstanceService.getTournamentRanking(id);
     } catch (error) {
@@ -77,7 +90,9 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
   }
 
   @Post('simulateBattle')
-  async simulateBattle(@Body('_id') id: string) {
+  public async simulateBattle(
+    @Body('_id') id: string,
+  ): Promise<{ status: string }> {
     try {
       await this.battleInstanceService.simulateBattle(id);
       return { status: 'success' };
@@ -90,7 +105,9 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
   }
 
   @Get('init-battle/:id')
-  async initBattle(@Param('id') id: string) {
+  public async initBattle(
+    @Param('id') id: string,
+  ): Promise<{ player: IBattleTrainer; opponent: IBattleTrainer }> {
     try {
       const result = await this.battleInstanceService.initBattle(id);
       if (result) {
@@ -111,11 +128,11 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
   }
 
   @Post('init-trainer')
-  async initTrainer(
+  public async initTrainer(
     @Body('trainerId') trainerId: string,
     @Body('battleId') battleId: string,
     @Headers('game-id') gameId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.battleService.initTrainer(trainerId, battleId, gameId);
       return { status: 'success' };
@@ -128,11 +145,11 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
   }
 
   @Post('ask-next-round')
-  async askNextRound(
+  public async askNextRound(
     @Body('trainerId') trainerId: string,
     @Body('battleId') battleId: string,
     @Headers('game-id') gameId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.battleService.askNextRound(trainerId, battleId, gameId);
       return { status: 'success' };
@@ -145,11 +162,11 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
   }
 
   @Post('ask-next-round-loop')
-  async askNextRoundLoop(
+  public async askNextRoundLoop(
     @Body('trainerId') trainerId: string,
     @Body('battleId') battleId: string,
     @Headers('game-id') gameId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.battleService.askNextRoundLoop(trainerId, battleId, gameId);
       return { status: 'success' };
@@ -162,11 +179,11 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
   }
 
   @Post('delete-ask-next-round')
-  async deleteAskNextRound(
+  public async deleteAskNextRound(
     @Body('trainerId') trainerId: string,
     @Body('battleId') battleId: string,
     @Headers('game-id') gameId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.battleService.deleteAskNextRound(trainerId, battleId, gameId);
       return { status: 'success' };
@@ -179,11 +196,11 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
   }
 
   @Post('delete-ask-next-round-loop')
-  async deleteAskNextRoundLoop(
+  public async deleteAskNextRoundLoop(
     @Body('trainerId') trainerId: string,
     @Body('battleId') battleId: string,
     @Headers('game-id') gameId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.battleService.deleteAskNextRoundLoop(
         trainerId,
@@ -200,10 +217,10 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
   }
 
   @Post('reset-next-round-status')
-  async resetNextRoundStatus(
+  public async resetNextRoundStatus(
     @Body('battleId') battleId: string,
     @Headers('game-id') gameId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.battleService.resetNextRoundStatus(battleId, gameId);
       return { status: 'success' };
@@ -216,7 +233,10 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
   }
 
   @Put(':id')
-  async updateBattleInstance(@Param('id') id: string, @Body() body: any) {
+  public async updateBattleInstance(
+    @Param('id') id: string,
+    @Body() body: any,
+  ): Promise<IBattleInstance> {
     try {
       const obj = await this.battleInstanceService.update(id, body);
       return this.mapper.map(obj);

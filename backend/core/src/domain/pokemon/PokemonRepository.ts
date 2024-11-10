@@ -1,6 +1,6 @@
-import Trainer from '../trainer/Trainer';
+import Trainer, { ITrainer } from '../trainer/Trainer';
 import CompleteRepository from 'shared/common/domain/CompleteRepository';
-import Nursery from '../trainer/nursery/Nursery';
+import Nursery, { INursery } from '../trainer/nursery/Nursery';
 import { FilterQuery, Model, UpdateQuery } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import PokemonPopulater from './PokemonPopulater';
@@ -17,16 +17,20 @@ class PokemonRepository extends CompleteRepository<IPokemon> {
     pokemonPopulater: PokemonPopulater,
     @InjectModel(Pokemon.modelName)
     protected override readonly schema: Model<IPokemon>,
+    @InjectModel(Trainer.modelName)
+    private readonly trainerSchema: Model<ITrainer>,
+    @InjectModel(Nursery.modelName)
+    private readonly nurserySchema: Model<INursery>,
   ) {
     super(schema, pokemonPopulater);
   }
 
   public override async delete(_id: string): Promise<IPokemon> {
-    await Trainer.updateMany(
+    await this.trainerSchema.updateMany(
       { pokemons: { $in: [_id] } },
       { $pull: { pokemons: _id } },
     );
-    await Nursery.updateMany(
+    await this.nurserySchema.updateMany(
       { eggs: { $in: [_id] } },
       { $pull: { eggs: _id } },
     );

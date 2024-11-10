@@ -24,12 +24,12 @@ export class NurseryController extends ReadOnlyController<INursery> {
   }
 
   @Post('set-nursery-wishlist')
-  async setNurseryWishlist(
+  public async setNurseryWishlist(
     @Body('nurseryId') nurseryId: string,
     @Body('wishlist') wishlist: any,
     @Body('trainerId') trainerId: string,
     @Headers('game-id') gameId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.nurseryService.setNurseryWishlist(
         nurseryId,
@@ -47,11 +47,11 @@ export class NurseryController extends ReadOnlyController<INursery> {
   }
 
   @Put('save-nursery-wishlist')
-  async saveNurseryWishlist(
+  public async saveNurseryWishlist(
     @Body('nurseryId') nurseryId: string,
     @Body('wishlist') wishlist: any,
     @Headers('game-id') gameId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.nurseryService.saveNurseryWishlist(
         nurseryId,

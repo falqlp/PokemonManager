@@ -13,6 +13,8 @@ import TrainerMapper from './TrainerMapper';
 import TrainerService from '../../application/trainer/TrainerService';
 import { ReadOnlyController } from 'shared/common/api/read-only.controller';
 import { ITrainer } from '../../domain/trainer/Trainer';
+import { MessagePattern, Payload } from '@nestjs/microservices';
+import { ListBody } from 'shared/common';
 
 @Controller('trainer')
 export class TrainerController extends ReadOnlyController<ITrainer> {
@@ -25,7 +27,7 @@ export class TrainerController extends ReadOnlyController<ITrainer> {
   }
 
   @Get('player/:id')
-  async getPlayer(@Param('id') id: string) {
+  public async getPlayer(@Param('id') id: string): Promise<ITrainer> {
     try {
       const obj = await this.service.get(id);
       return this.mapper.mapPlayer(obj);
@@ -38,12 +40,12 @@ export class TrainerController extends ReadOnlyController<ITrainer> {
   }
 
   @Put('update-pc-positions')
-  async updatePcPositions(
+  public async updatePcPositions(
     @Body('trainerId') trainerId: string,
-    @Body('teamPositions') teamPositions: any,
-    @Body('pcPositions') pcPositions: any,
+    @Body('teamPositions') teamPositions: string[],
+    @Body('pcPositions') pcPositions: string[],
     @Headers('game-id') gameId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.trainerService.updatePcPosition(
         trainerId,
@@ -58,5 +60,14 @@ export class TrainerController extends ReadOnlyController<ITrainer> {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
+  }
+
+  @MessagePattern('trainer.list')
+  public async listTrainer(
+    @Payload() data: { body: ListBody; gameId: string },
+  ): Promise<ITrainer[]> {
+    return (await this.repository.list(data.body, { gameId: data.gameId })).map(
+      (obj) => this.mapper.map(obj),
+    );
   }
 }

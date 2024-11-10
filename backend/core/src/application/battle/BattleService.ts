@@ -19,6 +19,7 @@ import { BattleEventsService } from '../BattleEvents/BattleEventsService';
 import BattleSideEffectService from './BattleSideEffectService';
 import { IPokemonStats } from 'shared/models/pokemon/pokemon-models';
 import { IMove, SideEffect } from 'shared/models/move/mode-model';
+import CalendarEventRepository from '../../domain/calendarEvent/CalendarEventRepository';
 
 @Injectable()
 class BattleService {
@@ -30,6 +31,7 @@ class BattleService {
     private readonly gameRepository: GameRepository,
     private readonly battleEventsService: BattleEventsService,
     private readonly battleSideEffectService: BattleSideEffectService,
+    private readonly calendarEventRepository: CalendarEventRepository,
   ) {}
 
   public async simulateBattle(
@@ -53,12 +55,14 @@ class BattleService {
         break;
       }
     }
-    await this.battleEventsService.insertBattleEventsData(
-      battle._id.toString(),
+    const date = await this.calendarEventRepository.getBattleDate(battle._id);
+    this.battleEventsService.insertBattleEventsData(
       this.battleDataService.getDamageEvents(battle._id.toString()),
       this.battleDataService.getBattleParticipationEvents(
         battle._id.toString(),
       ),
+      battle,
+      date,
     );
     this.battleDataService.delete(battle._id.toString());
     battle.winner = trainerA.defeat ? 'opponent' : 'player';
@@ -330,7 +334,7 @@ class BattleService {
       selectedMove,
     );
 
-    if (!damage.missed && damage.effectiveness !== 'IMMUNE') {
+    if (damage && !damage.missed && damage.effectiveness !== 'IMMUNE') {
       attPokemon.animation = selectedMove.animation.player;
       maxDamagedPokemon.animation = selectedMove.animation.opponent;
       maxDamagedPokemon.currentHp = this.battleCalcService.damageOnPokemon(
@@ -424,10 +428,13 @@ class BattleService {
     newBattleState._id = battleId;
     this.battleWebsocketService.playRound(newBattleState);
     if (defeat) {
-      await this.battleEventsService.insertBattleEventsData(
-        battleId,
+      const date = await this.calendarEventRepository.getBattleDate(battleId);
+      const game = await this.battleInstanceRepository.get(battleId);
+      this.battleEventsService.insertBattleEventsData(
         this.battleDataService.getDamageEvents(battleId),
         this.battleDataService.getBattleParticipationEvents(battleId),
+        game,
+        date,
       );
       this.battleDataService.delete(battleId);
       this.battleWebsocketService.resetNextRoundStatus([

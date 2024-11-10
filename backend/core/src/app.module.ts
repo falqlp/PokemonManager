@@ -36,7 +36,7 @@ import { join } from 'path';
   ],
 })
 export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
+  configure(consumer: MiddlewareConsumer): void {
     consumer.apply(DateConverterMiddleware).forRoutes('*');
   }
 }

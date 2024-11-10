@@ -50,7 +50,7 @@ export class NewSeasonService {
       nbTrainersToGenerateByDivision[trainer.division - 1] += 1;
     });
     for (const trainer of noPokemonTrainers) {
-      await this.trainerRepository.deleteTrainer(trainer);
+      await this.trainerService.deleteTrainer(trainer);
     }
 
     const championships: ICompetition[] = [];

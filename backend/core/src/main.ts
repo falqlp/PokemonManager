@@ -1,8 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import * as fs from 'fs';
 
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
   const sslOptions = {
     keyPath:
       '/etc/letsencrypt/live/pokemon-manager.francecentral.cloudapp.azure.com/privkey.pem',
@@ -34,5 +35,20 @@ async function bootstrap() {
 
   await app.listen(port);
   console.log(`Application is running on: ${await app.getUrl()}`);
+
+  const kafkaMicroservice =
+    await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
+      transport: Transport.KAFKA,
+      options: {
+        client: {
+          clientId: 'core',
+          brokers: ['localhost:9092'],
+        },
+        consumer: {
+          groupId: 'core',
+        },
+      },
+    });
+  await kafkaMicroservice.listen();
 }
 bootstrap();

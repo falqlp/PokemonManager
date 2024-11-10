@@ -1,17 +1,20 @@
 # Étape 1 : Utilisation de l'image Node.js 20 pour construire l'application
 FROM node:20 AS builder
 
-# Définir le répertoire de travail
-WORKDIR /app
+WORKDIR /
 
 # Copier les fichiers package.json et package-lock.json
-COPY package*.json ./
+
+# Copier tous les fichiers de l'application et des dossiers partagés
+COPY core/. core/.
+COPY shared/. shared/.
 
 # Installer les dépendances de l'application
+WORKDIR /shared
 RUN npm install
 
-# Copier tous les fichiers de l'application
-COPY . .
+WORKDIR /core
+RUN npm install
 
 # Construire l'application
 RUN npm run build
@@ -19,12 +22,11 @@ RUN npm run build
 # Étape 2 : Utilisation d'une image plus légère pour exécuter l'application
 FROM node:20-alpine
 
-# Définir le répertoire de travail
-WORKDIR /app
+WORKDIR /core
 
 # Copier les dépendances installées et les fichiers construits depuis l'étape précédente
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/dist ./dist
+COPY --from=builder /core/node_modules ./node_modules
+COPY --from=builder /core/dist ./dist
 
 # Définir la variable d'environnement pour le port
 ENV CORE_PORT 3000
@@ -33,4 +35,4 @@ ENV CORE_PORT 3000
 EXPOSE 3000
 
 # Commande pour démarrer l'application
-CMD ["node", "dist/main"]
+CMD ["node", "dist/core/src/main"]

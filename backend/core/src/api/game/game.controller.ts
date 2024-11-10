@@ -14,6 +14,7 @@ import GameMapper from './GameMapper';
 import TrainerMapper from '../trainer/TrainerMapper';
 import { ReadOnlyController } from 'shared/common/api/read-only.controller';
 import { IGame } from '../../domain/game/Game';
+import { ITrainer } from '../../domain/trainer/Trainer';
 
 @Controller('game')
 export class GameController extends ReadOnlyController<IGame> {
@@ -27,7 +28,7 @@ export class GameController extends ReadOnlyController<IGame> {
   }
 
   @Get('time/:id')
-  async getTime(@Param('id') id: string) {
+  public async getTime(@Param('id') id: string): Promise<Date> {
     try {
       const obj = await this.service.get(id);
       return obj.actualDate;
@@ -40,10 +41,10 @@ export class GameController extends ReadOnlyController<IGame> {
   }
 
   @Post('delete-game')
-  async deleteGame(
+  public async deleteGame(
     @Body('gameId') gameId: string,
     @Body('userId') userId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.gameService.deleteGameForUser(gameId, userId);
       return { status: 'success' };
@@ -56,10 +57,10 @@ export class GameController extends ReadOnlyController<IGame> {
   }
 
   @Post(':userId')
-  async createGameWithUsers(
+  public async createGameWithUsers(
     @Body() body: any,
     @Param('userId') userId: string,
-  ) {
+  ): Promise<IGame> {
     try {
       const obj = await this.gameService.createWithUsers(body, userId);
       return this.mapper.map(obj);
@@ -72,10 +73,10 @@ export class GameController extends ReadOnlyController<IGame> {
   }
 
   @Put('add-player-to-game')
-  async addPlayerToGame(
+  public async addPlayerToGame(
     @Body('game') game: IGame,
     @Body('userId') userId: string,
-  ) {
+  ): Promise<ITrainer> {
     try {
       const obj = await this.gameService.addPlayerToGame(game, userId);
       return this.trainerMapper.map(obj);
@@ -88,7 +89,7 @@ export class GameController extends ReadOnlyController<IGame> {
   }
 
   @Get('init-if-not/:id')
-  async initIfNot(@Param('id') id: string) {
+  public async initIfNot(@Param('id') id: string): Promise<{ status: string }> {
     try {
       await this.gameService.initIfNot(id);
       return { status: 'initialized' };

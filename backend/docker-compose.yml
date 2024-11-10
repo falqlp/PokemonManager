@@ -16,19 +16,21 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
-      KAFKA_CLUSTER_ID: fAuHroFTTimDPCN8USyEPw
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     volumes:
       - ./kafka/kafka-data:/var/lib/kafka/data
 
-  kafka-setup:
-    image: confluentinc/cp-kafka:latest
-    depends_on:
-      - kafka
-    entrypoint: ["sh", "-c", "sleep 20 && /create-topics.sh"]
-    volumes:
-      - ./kafka/create-topics.sh:/create-topics.sh
+
+#  kafka-setup:
+#    image: confluentinc/cp-kafka:latest
+#    depends_on:
+#      - kafka
+#    entrypoint: ["sh", "-c", "sleep 20 && /create-topics.sh"]
+#    volumes:
+#      - ./kafka/create-topics.sh:/create-topics.sh
 
   nginx:
     build:
@@ -41,18 +43,37 @@ services:
       - .env
 
   core:
+    depends_on:
+      - kafka
     build:
-      context: ./core
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: core/Dockerfile
     network_mode: "host"
     ports:
-      - "${CORE_PORT}:${CORE_PORT}"  # Utilisation de la variable CORE_PORT
+      - "${CORE_PORT}:${CORE_PORT}"
     env_file:
-      - .env  # Charger les variables d'environnement depuis .env
+      - .env
     environment:
-      - CORE_PORT=${CORE_PORT}  # Transmettre le port à l'application
+      - CORE_PORT=${CORE_PORT}
       - MONGODB_USERNAME=${MONGODB_USERNAME}
       - MONGODB_PASSWORD=${MONGODB_PASSWORD}
       - MONGODB_LOCAL=${MONGODB_LOCAL}
       - FRONT_URL=${FRONT_URL}
       - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+
+  battle-stats:
+    depends_on:
+      - kafka
+    build:
+      context: .
+      dockerfile: battle-stats/Dockerfile
+    network_mode: "host"
+    ports:
+      - "${BATTLE_STATS_PORT}:${BATTLE_STATS_PORT}"
+    env_file:
+      - .env
+    environment:
+      - BATTLE_STATS_PORT=${BATTLE_STATS_PORT}
+      - MONGODB_USERNAME=${MONGODB_USERNAME}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+      - MONGODB_LOCAL=${MONGODB_LOCAL}

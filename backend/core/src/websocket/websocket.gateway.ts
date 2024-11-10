@@ -29,7 +29,7 @@ export class WebsocketGateway
     private simulateDayWebsocketService: SimulateDayWebsocketService,
   ) {}
 
-  afterInit() {
+  afterInit(): void {
     console.log('WebSocket server initialized with Socket.IO');
     setTimeout(
       () => {
@@ -39,12 +39,11 @@ export class WebsocketGateway
     );
   }
 
-  handleConnection(client: Socket) {
-    client.data.id = mongoId(); // Génère un ID unique pour chaque client
-    this.websocketDataService.push(client); // Ajoute le client au service de données
+  handleConnection(client: Socket): void {
+    client.data.id = mongoId();
+    this.websocketDataService.push(client);
     console.log(`Client connected: ${client.id}`);
 
-    // Envoie un message de connexion au client
     client.emit('connexion', {
       type: 'connexion',
       payload: 'Connected with socket.io',
@@ -61,7 +60,7 @@ export class WebsocketGateway
     });
   }
 
-  async handleDisconnect(client: Socket) {
+  async handleDisconnect(client: Socket): Promise<void> {
     console.log(`Client disconnected: ${client.id}`);
     this.websocketDataService.set(
       this.websocketDataService.getClients((c) => c.data.id !== client.data.id),

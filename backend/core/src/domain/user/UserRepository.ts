@@ -4,7 +4,7 @@ import HashService from '../../application/user/hash/HashService';
 import UserPopulater from './UserPopulater';
 import { Injectable } from '@nestjs/common';
 import { ListBody } from 'shared/common/domain/ReadOnlyRepository';
-import { FilterQuery, Model, UpdateQuery } from 'mongoose';
+import { Model } from 'mongoose';
 import WebsocketUtils from '../../websocket/WebsocketUtils';
 import { InjectModel } from '@nestjs/mongoose';
 
@@ -64,13 +64,6 @@ class UserRepository extends CompleteRepository<IUser> {
     }
     this.websocketUtils.updateUsers([_id]);
     return super.update(_id, dto);
-  }
-
-  public async updateManyUser(
-    filter: FilterQuery<IUser>,
-    update: UpdateQuery<IUser>,
-  ): Promise<void> {
-    await this.schema.updateMany(filter, update);
   }
 }
 

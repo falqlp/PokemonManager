@@ -1,6 +1,6 @@
 import { IBattlePokemon } from '../../../application/battle/BattleInterfaces';
-import { PokemonTestMother } from '../pokemon/PokemonTestMother';
-import { StatsTestMother } from '../Stats/StatsTestMother';
+import { PokemonTestMother } from 'shared/models/test/domain/pokemon/PokemonTestMother';
+import { StatsTestMother } from 'shared/models/test/domain/Stats/StatsTestMother';
 
 export default class BattlePokemonTestMother {
   public static getBattlePokemon(trainerId?: string): IBattlePokemon {

@@ -17,6 +17,7 @@ import CalendarEventRepository from '../../domain/calendarEvent/CalendarEventRep
 import { ICalendarEvent } from '../../domain/calendarEvent/CalendarEvent';
 import { ITrainer } from '../../domain/trainer/Trainer';
 import { ICompetition } from '../../domain/competiton/Competition';
+import { IBattleInstance } from '../../domain/battleInstance/Battle';
 
 @Controller('calendar-event')
 export class CalendarEventController extends ReadOnlyController<ICalendarEvent> {
@@ -31,12 +32,12 @@ export class CalendarEventController extends ReadOnlyController<ICalendarEvent> 
   }
 
   @Post('battle')
-  async createBattleEvent(
+  public async createBattleEvent(
     @Body('date') date: Date,
     @Body('trainers') trainers: ITrainer[],
     @Body('competition') competition: ICompetition,
     @Headers('game-id') gameId: string,
-  ) {
+  ): Promise<ICalendarEvent> {
     try {
       const obj = await this.calendarEventService.createBattleEvent(
         date,
@@ -54,11 +55,11 @@ export class CalendarEventController extends ReadOnlyController<ICalendarEvent> 
   }
 
   @Post('weekCalendar')
-  async getWeekCalendar(
+  public async getWeekCalendar(
     @Body('trainerId') trainerId: string,
     @Body('date') date: Date,
     @Headers('game-id') gameId: string,
-  ) {
+  ): Promise<ICalendarEvent[][]> {
     try {
       const obj = await this.calendarEventService.getWeekCalendar(
         trainerId,
@@ -75,11 +76,15 @@ export class CalendarEventController extends ReadOnlyController<ICalendarEvent> 
   }
 
   @Put('askNextDay')
-  async askNextDay(
+  public async askNextDay(
     @Body('trainerId') trainerId: string,
     @Body('date') date: string,
     @Headers('game-id') gameId: string,
-  ) {
+  ): Promise<{
+    battle: IBattleInstance;
+    redirectTo: string;
+    isMultiplayerBattle: boolean;
+  }> {
     try {
       const obj = await this.simulateDayService.askSimulateDay(
         trainerId,
@@ -99,10 +104,10 @@ export class CalendarEventController extends ReadOnlyController<ICalendarEvent> 
   }
 
   @Put('deleteAskNextDay')
-  async deleteAskNextDay(
+  public async deleteAskNextDay(
     @Body('trainerId') trainerId: string,
     @Headers('game-id') gameId: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.simulateDayService.deleteAskNextDay(trainerId, gameId);
       return { status: 'success' };
@@ -115,7 +120,9 @@ export class CalendarEventController extends ReadOnlyController<ICalendarEvent> 
   }
 
   @Get('updateAskNextDay')
-  async updateAskNextDay(@Headers('game-id') gameId: string) {
+  public async updateAskNextDay(
+    @Headers('game-id') gameId: string,
+  ): Promise<{ status: string }> {
     try {
       await this.simulateDayService.updateAskNextDay(gameId);
       return { status: 'success' };

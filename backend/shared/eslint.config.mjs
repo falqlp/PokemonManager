@@ -41,5 +41,14 @@ export default [{
         '@typescript-eslint/interface-name-prefix': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-explicit-any': 'warn',
+        "@typescript-eslint/explicit-function-return-type": "error",
+        "no-console": "warn",
+        "no-use-before-define": "warn",
+        "lines-between-class-members": [
+            "error",
+            "always",
+            { exceptAfterSingleLine: true },
+        ],
+        "@typescript-eslint/no-unused-vars": "error",
     },
 }];
