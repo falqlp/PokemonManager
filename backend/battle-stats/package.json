@@ -72,7 +72,8 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "collectCoverageFrom": [
-      "application/**/*.ts"
+      "application/**/*.ts",
+      "!**/*.module.ts"
     ],
     "moduleNameMapper": {
       "^shared/utils/(.*)$": "<rootDir>/../../shared/libs/utils/src/$1",

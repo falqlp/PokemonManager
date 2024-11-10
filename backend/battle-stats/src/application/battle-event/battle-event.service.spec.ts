@@ -16,14 +16,14 @@ import {
   BattleEventsBattleInstance,
   BattleEventService,
 } from './battle-event.service';
-import { CoreInterfaceService } from '../../core-interface/core-interface.service';
+import { CoreInterfaceService } from '../core-interface/core-interface.service';
 
 jest.mock('../../domain/battleevents/damageevent/DamageEventRepository');
 jest.mock(
   '../../domain/battleevents/battleparticipationevent/BattleParticipationEventRepository',
 );
 jest.mock('../color/color.service');
-jest.mock('../../core-interface/core-interface.service');
+jest.mock('../core-interface/core-interface.service');
 
 describe('BattleEventsService', () => {
   let service: BattleEventService;

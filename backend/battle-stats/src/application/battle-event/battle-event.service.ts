@@ -7,7 +7,7 @@ import {
 import DamageEventRepository from '../../domain/battleevents/damageevent/DamageEventRepository';
 import BattleParticipationEventRepository from '../../domain/battleevents/battleparticipationevent/BattleParticipationEventRepository';
 import ColorService from '../color/color.service';
-import { CoreInterfaceService } from '../../core-interface/core-interface.service';
+import { CoreInterfaceService } from '../core-interface/core-interface.service';
 import { IBattleParticipationEvent, IDamageEvent } from 'shared/models';
 
 export enum BattleEventQueryType {

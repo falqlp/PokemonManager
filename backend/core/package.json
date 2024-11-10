@@ -85,7 +85,7 @@
     "collectCoverageFrom": [
       "application/**/*.ts",
       "websocket/**/*.ts",
-      "utils/**/*.ts"
+      "!**/*.module.ts"
     ],
     "moduleNameMapper": {
       "^shared/utils/(.*)$": "<rootDir>/../../shared/libs/utils/src/$1",

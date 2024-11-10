@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { KafkaClientService } from './core-interface/kafka-client.service';
+import { KafkaClientService } from './application/core-interface/kafka-client.service';
 import { BattleEventsController } from './api/battle-events/battle-events.controller';
 import { BattleEventService } from './application/battle-event/battle-event.service';
-import { CoreInterfaceService } from './core-interface/core-interface.service';
+import { CoreInterfaceService } from './application/core-interface/core-interface.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { DamageEventController } from './api/damage-event/damage-event.controller';
 import { BattleParticipationController } from './api/battle-participation/battle-participation.controller';
