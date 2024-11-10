@@ -68,7 +68,8 @@
     },
     "collectCoverageFrom": [
       "libs/utils/**/*.ts",
-      "!**/*.module.ts"
+      "!**/*.module.ts",
+      "!**/index.ts"
     ],
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",

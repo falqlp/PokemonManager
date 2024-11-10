@@ -8,6 +8,11 @@ export interface BattleStatsTrainer extends MongoId {
   class?: string;
 }
 
+export enum NeedReplyTopics {
+  PokemonList = 'pokemon.list',
+  TrainerList = 'trainer.list',
+}
+
 @Injectable()
 export class CoreInterfaceService {
   constructor(private readonly kafkaClientService: KafkaClientService) {}
@@ -18,7 +23,7 @@ export class CoreInterfaceService {
   ): Promise<IPokemon[]> {
     return this.kafkaClientService
       .getClient()
-      .send<IPokemon[], unknown>('pokemon.list', { body, gameId })
+      .send<IPokemon[], unknown>(NeedReplyTopics.PokemonList, { body, gameId })
       .toPromise();
   }
 
@@ -28,7 +33,10 @@ export class CoreInterfaceService {
   ): Promise<BattleStatsTrainer[]> {
     return this.kafkaClientService
       .getClient()
-      .send<BattleStatsTrainer[], unknown>('trainer.list', { body, gameId })
+      .send<
+        BattleStatsTrainer[],
+        unknown
+      >(NeedReplyTopics.TrainerList, { body, gameId })
       .toPromise();
   }
 }

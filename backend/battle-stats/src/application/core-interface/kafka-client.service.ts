@@ -1,5 +1,6 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { Client, ClientKafka, Transport } from '@nestjs/microservices';
+import { NeedReplyTopics } from './core-interface.service';
 
 @Injectable()
 export class KafkaClientService implements OnModuleInit {
@@ -18,8 +19,9 @@ export class KafkaClientService implements OnModuleInit {
   private readonly client: ClientKafka;
 
   public onModuleInit(): void {
-    this.client.subscribeToResponseOf('pokemon.list');
-    this.client.subscribeToResponseOf('trainer.list');
+    Object.values(NeedReplyTopics).forEach((topic) => {
+      this.getClient().subscribeToResponseOf(topic);
+    });
   }
 
   public getClient(): ClientKafka {
