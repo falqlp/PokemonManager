@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { CoreInterfaceService } from './core-interface.service';
 import { KafkaClientService, NeedReplyTopics } from './kafka-client.service';
 import { ClientKafka } from '@nestjs/microservices';
+import { of } from 'rxjs';
 
 jest.mock('./kafka-client.service');
 
@@ -24,9 +25,7 @@ describe('CoreInterfaceService', () => {
 
   describe('getPokemonList', () => {
     it('should send pokemon.list', () => {
-      const mockSend = jest.fn().mockReturnValue({
-        toPromise: jest.fn().mockResolvedValue('mocked response'),
-      });
+      const mockSend = jest.fn().mockReturnValue(of('mocked response'));
       const gameId = 'gameId';
       jest.spyOn(kafkaClientService, 'getClient').mockReturnValue({
         send: mockSend,
@@ -42,9 +41,7 @@ describe('CoreInterfaceService', () => {
 
   describe('getTrainerList', () => {
     it('should send pokemon.list', () => {
-      const mockSend = jest.fn().mockReturnValue({
-        toPromise: jest.fn().mockResolvedValue('mocked response'),
-      });
+      const mockSend = jest.fn().mockReturnValue(of('mocked response'));
       const gameId = 'gameId';
       jest.spyOn(kafkaClientService, 'getClient').mockReturnValue({
         send: mockSend,
