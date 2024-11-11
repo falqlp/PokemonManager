@@ -13,6 +13,7 @@ Requirement:
 MongoDb Database -> Database named: PokemonManager
 Node installed
 npm installed
+docker installed
 ```
 Import all file from dump in mongoDbCompass
 
@@ -30,10 +31,6 @@ npm start
 To launch backend (in a terminal in backend/core directory): 
 
 `
-npm install (only the first time to install dependencies)
-`
-
-`
-npm run start
+docker compose up --build
 `
 
