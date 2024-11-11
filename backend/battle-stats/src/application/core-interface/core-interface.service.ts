@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { KafkaClientService, NeedReplyTopics } from './kafka-client.service';
 import { ListBody, MongoId } from 'shared/common';
 import { IPokemon } from 'shared/models';
+import { firstValueFrom } from 'rxjs';
 
 export interface BattleStatsTrainer extends MongoId {
   name: string;
@@ -16,22 +17,27 @@ export class CoreInterfaceService {
     body: ListBody,
     gameId: string,
   ): Promise<IPokemon[]> {
-    return this.kafkaClientService
-      .getClient()
-      .send<IPokemon[], unknown>(NeedReplyTopics.PokemonList, { body, gameId })
-      .toPromise();
+    return firstValueFrom(
+      this.kafkaClientService
+        .getClient()
+        .send<
+          IPokemon[],
+          unknown
+        >(NeedReplyTopics.PokemonList, { body, gameId }),
+    );
   }
 
   public async getTrainerList(
     body: ListBody,
     gameId: string,
   ): Promise<BattleStatsTrainer[]> {
-    return this.kafkaClientService
-      .getClient()
-      .send<
-        BattleStatsTrainer[],
-        unknown
-      >(NeedReplyTopics.TrainerList, { body, gameId })
-      .toPromise();
+    return firstValueFrom(
+      this.kafkaClientService
+        .getClient()
+        .send<
+          BattleStatsTrainer[],
+          unknown
+        >(NeedReplyTopics.TrainerList, { body, gameId }),
+    );
   }
 }

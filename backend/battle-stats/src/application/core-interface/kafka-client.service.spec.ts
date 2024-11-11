@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { KafkaClientService } from './kafka-client.service';
+import { KafkaClientService, NeedReplyTopics } from './kafka-client.service';
 import { ClientKafka } from '@nestjs/microservices';
-import { NeedReplyTopics } from './core-interface.service';
 
 describe('KafkaClientService', () => {
   let service: KafkaClientService;
