@@ -1,7 +1,7 @@
 import PokemonBaseService from './PokemonBaseService';
 import { IWishList } from '../../../domain/trainer/nursery/Nursery';
 import PokemonBaseRepository from '../../../domain/pokemon/pokemonBase/PokemonBaseRepository';
-import { PokemonBaseTestMother } from '../../../test/domain/PokemonBase/PokemonBaseTestMother';
+import { PokemonBaseTestMother } from 'shared/models/test/domain/PokemonBase/PokemonBaseTestMother';
 import { Test, TestingModule } from '@nestjs/testing';
 import SpyInstance = jest.SpyInstance;
 

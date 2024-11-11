@@ -1,0 +1,8 @@
+# Ignore les dossiers de build, couverture et modules
+/dist
+/coverage
+/node_modules
+.prettierrc
+Dockerfile
+eslint.config.mjs
+nest-cli.json

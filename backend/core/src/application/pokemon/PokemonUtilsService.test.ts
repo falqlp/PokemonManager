@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import PokemonUtilsService from './PokemonUtilsService';
-import { PokemonTestMother } from '../../test/domain/pokemon/PokemonTestMother';
-import { StatsTestMother } from '../../test/domain/Stats/StatsTestMother';
+import { PokemonTestMother } from 'shared/models/test/domain/pokemon/PokemonTestMother';
+import { StatsTestMother } from 'shared/models/test/domain/Stats/StatsTestMother';
 import { normalRandom } from 'shared/utils/RandomUtils';
 import { POKEMON_NATURES } from '../../domain/pokemon/pokemonConst';
 import { IPokemon, IPokemonStats } from 'shared/models';

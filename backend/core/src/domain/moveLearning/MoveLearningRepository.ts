@@ -10,6 +10,7 @@ class MoveLearningRepository {
     @InjectModel(MoveLearning.modelName)
     protected readonly schema: Model<IMoveLearning>,
   ) {}
+
   public async getNewMoveLearned(pokemon: IPokemon): Promise<IMoveLearning[]> {
     return this.schema.find({
       pokemonId: pokemon.basePokemon.id,

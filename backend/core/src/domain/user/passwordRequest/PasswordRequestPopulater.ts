@@ -13,6 +13,7 @@ export class PasswordRequestPopulater extends Populater<IPasswordRequest> {
   ) {
     super();
   }
+
   populate(): PopulateOptions | PopulateOptions[] {
     return {
       path: 'user',

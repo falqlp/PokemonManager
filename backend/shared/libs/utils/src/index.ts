@@ -5,3 +5,4 @@ export * from './DateUtils';
 export * from './MongoUtils';
 export * from './NumberUtils';
 export * from './Utils';
+export * from './nest.utils';

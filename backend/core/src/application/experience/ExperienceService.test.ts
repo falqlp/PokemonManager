@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import ExperienceService from './ExperienceService';
-import { PokemonTestMother } from '../../test/domain/pokemon/PokemonTestMother';
+import { PokemonTestMother } from 'shared/models/test/domain/pokemon/PokemonTestMother';
 import PokemonService from '../pokemon/PokemonService';
 import TrainerRepository from '../../domain/trainer/TrainerRepository';
 import MoveLearningService from '../moveLearning/MoveLearningService';

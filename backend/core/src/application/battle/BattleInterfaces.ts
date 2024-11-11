@@ -1,11 +1,6 @@
 import { IPokemon } from 'shared/models/pokemon/pokemon-models';
 import { IMove } from 'shared/models/move/mode-model';
-
-export type Effectiveness =
-  | 'IMMUNE'
-  | 'NOT_VERY_EFFECTIVE'
-  | 'EFFECTIVE'
-  | 'SUPER_EFFECTIVE';
+import { Effectiveness } from 'shared/models';
 
 export interface IBattlePokemon extends IPokemon {
   dailyForm: number;

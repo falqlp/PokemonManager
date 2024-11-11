@@ -419,7 +419,7 @@ describe('CompetitionService', () => {
         .mockResolvedValue(null);
 
       const spyTrainerRepository = jest
-        .spyOn(trainerRepository, 'updateMany')
+        .spyOn(trainerRepository, 'updateManyDtos')
         .mockResolvedValue(null);
 
       const spyGenerateCalendarService = jest

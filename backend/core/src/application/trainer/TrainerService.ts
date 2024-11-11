@@ -239,7 +239,7 @@ class TrainerService {
     for (let trainer of trainers) {
       trainer = await this.updateBase(trainer);
     }
-    return this.trainerRepository.updateMany(trainers);
+    return this.trainerRepository.updateManyDtos(trainers);
   }
 
   public async create(trainer: ITrainer): Promise<ITrainer> {
@@ -388,6 +388,24 @@ class TrainerService {
       );
     }
     return trainersByDivision;
+  }
+
+  public async deleteTrainer(dto: ITrainer): Promise<ITrainer> {
+    await this.nurseryRepository.deleteMany({ _id: dto.nursery._id });
+    await this.trainingCampRepository.deleteMany({ _id: dto.trainingCamp._id });
+    await this.pcStorageRepository.deleteMany({ _id: dto.pcStorage._id });
+    await this.pokemonRepository.updateMany(
+      { trainerId: dto._id },
+      { $unset: { trainerId: '' } },
+    );
+    return this.trainerRepository.delete(dto._id);
+  }
+
+  public async deleteInGame(gameId: string): Promise<void> {
+    await this.trainerRepository.deleteMany({ gameId });
+    await this.nurseryRepository.deleteMany({ gameId });
+    await this.trainingCampRepository.deleteMany({ gameId });
+    await this.pcStorageRepository.deleteMany({ gameId });
   }
 }
 

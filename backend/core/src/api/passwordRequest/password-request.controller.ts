@@ -11,6 +11,7 @@ import {
 import { PasswordRequestService } from '../../application/user/passwordRequest/PasswordRequestService';
 import { PasswordRequestRepository } from '../../domain/user/passwordRequest/PasswordRequestRepository';
 import UserMapper from '../user/UserMapper';
+import { IPasswordRequest } from '../../domain/user/passwordRequest/PasswordRequest';
 
 @Controller('password-request')
 export class PasswordRequestController {
@@ -21,11 +22,11 @@ export class PasswordRequestController {
   ) {}
 
   @Post()
-  async createPasswordRequest(
+  public async createPasswordRequest(
     @Body('username') username: string,
     @Body('email') email: string,
     @Headers('lang') lang: string,
-  ) {
+  ): Promise<{ status: string }> {
     try {
       await this.service.createPasswordRequest(username, email, lang);
       return { status: 'success' };
@@ -38,7 +39,9 @@ export class PasswordRequestController {
   }
 
   @Get(':id')
-  async getPasswordRequest(@Param('id') id: string) {
+  public async getPasswordRequest(
+    @Param('id') id: string,
+  ): Promise<IPasswordRequest> {
     try {
       const obj = await this.repository.get(id);
       obj.user = this.userMapper.map(obj.user);

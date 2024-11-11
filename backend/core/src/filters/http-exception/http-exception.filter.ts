@@ -14,7 +14,7 @@ import { NotificationType } from '../../websocket/WebsocketDataService';
 export class HttpExceptionFilter implements ExceptionFilter {
   constructor(private readonly websocketUtils: WebsocketUtils) {}
 
-  catch(exception: unknown, host: ArgumentsHost) {
+  public catch(exception: unknown, host: ArgumentsHost): void {
     const httpContext: HttpArgumentsHost = host.switchToHttp();
     const response = httpContext.getResponse();
     const request = httpContext.getRequest();

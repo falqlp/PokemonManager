@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MoveTestMother } from '../../test/domain/Move/MoveTestMother';
+import { MoveTestMother } from 'shared/models/test/domain/Move/MoveTestMother';
 import { IMoveLearning } from '../../domain/moveLearning/MoveLearning';
 import { IPokedexMoveLearned } from './Pokedex';
-import { PokemonBaseTestMother } from '../../test/domain/PokemonBase/PokemonBaseTestMother';
+import { PokemonBaseTestMother } from 'shared/models/test/domain/PokemonBase/PokemonBaseTestMother';
 import { IEvolution } from '../../domain/evolution/Evolution';
 import { PokedexService } from './PokedexService';
 import PokemonBaseRepository from '../../domain/pokemon/pokemonBase/PokemonBaseRepository';

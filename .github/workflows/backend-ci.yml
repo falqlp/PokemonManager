@@ -17,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 22.x ]
+        node-version: [ 20.x ]
 
     steps:
       - uses: actions/checkout@v2
@@ -26,23 +26,30 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # Build pour core
+      # Build pour shared
       - name: Install dependencies for shared
         run: cd backend/shared && npm ci
+      - name: Compile TypeScript for shared
+        run: cd backend/shared && npm run build
+
+      # Build pour core
       - name: Install dependencies for core
         run: cd backend/core && npm ci
       - name: Compile TypeScript for core
         run: cd backend/core && npm run build
-      # Build pour shared
-      - name: Compile TypeScript for shared
-        run: cd backend/shared && npm run build
+
+      # Build pour battle-stats
+      - name: Install dependencies for battle-stats
+        run: cd backend/battle-stats && npm ci
+      - name: Compile TypeScript for battle-stats
+        run: cd backend/battle-stats && npm run build
 
   lint:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [ 22.x ]
+        node-version: [ 20.x ]
 
     steps:
       - uses: actions/checkout@v2
@@ -51,9 +58,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # Linter pour core
+
+      # Linter pour shared
       - name: Install dependencies for shared
         run: cd backend/shared && npm ci
+      - name: Run linter for shared
+        run: cd backend/shared && npm run lint:check
+      - name: Run format check for shared
+        run: cd backend/shared && npm run format:check
+
+      # Linter pour core
       - name: Install dependencies for core
         run: cd backend/core && npm ci
       - name: Run linter for core
@@ -61,18 +75,20 @@ jobs:
       - name: Run format check for core
         run: cd backend/core && npm run format:check
 
-      # Linter pour shared
-      - name: Run linter for shared
-        run: cd backend/shared && npm run lint:check
-      - name: Run format check for shared
-        run: cd backend/shared && npm run format:check
+      # Linter pour battle-stats
+      - name: Install dependencies for battle-stats
+        run: cd backend/battle-stats && npm ci
+      - name: Run linter for battle-stats
+        run: cd backend/battle-stats && npm run lint:check
+      - name: Run format check for battle-stats
+        run: cd backend/battle-stats && npm run format:check
 
   test:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [ 22.x ]
+        node-version: [ 20.x ]
 
     steps:
       - uses: actions/checkout@v2
@@ -81,9 +97,15 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # Tests pour core
+      # Tests pour shared
       - name: Install dependencies for shared
         run: cd backend/shared && npm ci
+      - name: Run tests with coverage for shared
+        run: cd backend/shared && npm test -- --coverage
+        env:
+          CI: true
+
+      # Tests pour core
       - name: Install dependencies for core
         run: cd backend/core && npm ci
       - name: Run tests with coverage for core
@@ -91,9 +113,11 @@ jobs:
         env:
           CI: true
 
-      # Tests pour shared
-      - name: Run tests with coverage for shared
-        run: cd backend/shared && npm test -- --coverage
+      # Tests pour battle-stats
+      - name: Install dependencies for battle-stats
+        run: cd backend/battle-stats && npm ci
+      - name: Run tests with coverage for battle-stats
+        run: cd backend/battle-stats && npm test -- --coverage
         env:
           CI: true
 
@@ -105,6 +129,14 @@ jobs:
           files: backend/core/coverage/lcov.info
           flags: unittests-core
           name: codecov-core
+          fail_ci_if_error: true
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: backend/battle-stats/coverage/lcov.info
+          flags: unittests-battle-stats
+          name: codecov-battle-stats
           fail_ci_if_error: true
       - name: Upload shared coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1

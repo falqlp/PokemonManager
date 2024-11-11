@@ -9,7 +9,10 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import ReadOnlyRepository from 'shared/common/domain/ReadOnlyRepository';
+import ReadOnlyRepository, {
+  ListBody,
+  TableResult,
+} from 'shared/common/domain/ReadOnlyRepository';
 import { MongoId } from 'shared/common/domain/MongoId';
 import { IMapper } from 'shared/common/domain/IMapper';
 
@@ -21,7 +24,7 @@ export abstract class ReadOnlyGlobalController<T extends MongoId> {
   ) {}
 
   @Get(':id')
-  async getOne(@Param('id') id: string) {
+  async getOne(@Param('id') id: string): Promise<T> {
     try {
       const obj = await this.service.get(id);
       return this.mapper.map(obj);
@@ -34,7 +37,7 @@ export abstract class ReadOnlyGlobalController<T extends MongoId> {
   }
 
   @Put()
-  async list(@Body() body: any) {
+  async list(@Body() body: ListBody): Promise<T[]> {
     try {
       const obj = await this.service.list(body);
       return obj.map((value) => this.mapper.map(value));
@@ -47,7 +50,10 @@ export abstract class ReadOnlyGlobalController<T extends MongoId> {
   }
 
   @Post('query-table')
-  async queryTable(@Body() body: any, @Headers('lang') lang: string) {
+  async queryTable(
+    @Body() body: ListBody,
+    @Headers('lang') lang: string,
+  ): Promise<TableResult<T>> {
     try {
       const obj = await this.service.queryTable(body, { lang });
       obj.data = obj.data.map((value) => this.mapper.map(value));

@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import CalendarEventRepository from './calendarEvent/CalendarEventRepository';
 import BattleInstanceRepository from './battleInstance/BattleInstanceRepository';
-import DamageEventRepository from './battleevents/damageevent/DamageEventRepository';
-import BattleParticipationEventRepository from './battleevents/battleparticipationevent/BattleParticipationEventRepository';
 import PokemonRepository from './pokemon/PokemonRepository';
 import TrainerRepository from './trainer/TrainerRepository';
 import CalendarEventPopulater from './calendarEvent/CalendarEventPopulater';
@@ -13,7 +11,6 @@ import PcStoragePopulater from './trainer/pcStorage/PcStoragePopulater';
 import NurseryPopulater from './trainer/nursery/NurseryPopulater';
 import TrainingCampPopulater from './trainer/trainingCamp/TrainingCampPopulater';
 import { EmptyPopulater } from 'shared/common/domain/EmptyPopulater';
-import BattleEventQueriesUtilService from './battleevents/BattleEventQueriesUtilService';
 import BattleSerieRepository from './competiton/tournament/battleSerie/BattleSerieRepository';
 import GameRepository from './game/GameRepository';
 import TournamentRepository from './competiton/tournament/TournamentRepository';
@@ -44,17 +41,14 @@ import { WebsocketUtilsModule } from '../websocket/websocket-utils.module';
 @Module({
   imports: [MongooseModule, SchemaModule, WebsocketUtilsModule],
   providers: [
-    BattleEventQueriesUtilService,
     BattleInstancePopulater,
     BattleInstanceRepository,
-    BattleParticipationEventRepository,
     BattleSeriePopulater,
     BattleSerieRepository,
     CalendarEventPopulater,
     CalendarEventRepository,
     CompetitionPopulater,
     CompetitionRepository,
-    DamageEventRepository,
     EmptyPopulater,
     EvolutionRepository,
     GamePopulater,
@@ -86,8 +80,6 @@ import { WebsocketUtilsModule } from '../websocket/websocket-utils.module';
   exports: [
     CalendarEventRepository,
     BattleInstanceRepository,
-    DamageEventRepository,
-    BattleParticipationEventRepository,
     PokemonRepository,
     TrainerRepository,
     BattleSerieRepository,

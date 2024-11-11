@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { BattleEventsService } from './BattleEvents/BattleEventsService';
 import { DomainModule } from '../domain/domain.module';
-import ColorService from './color/ColorService';
 import { BattleInstanceService } from './battleInstance/BattleInstanceService';
 import BattleService from './battle/BattleService';
 import { WebsocketModule } from '../websocket/websocket.module';
@@ -29,13 +28,13 @@ import { UserService } from './user/UserService';
 import { MailService } from './mail/MailService';
 import { PasswordRequestService } from './user/passwordRequest/PasswordRequestService';
 import { PokedexService } from './pokedex/PokedexService';
+import { CoreKafkaClientService } from './core-kafka-client/core-kafka-client.service';
 import EffectivenessService from './pokemon/EffectivenessService';
 
 @Module({
   imports: [DomainModule, WebsocketModule],
   providers: [
     BattleEventsService,
-    ColorService,
     BattleInstanceService,
     BattleService,
     BattleCalcService,
@@ -63,10 +62,10 @@ import EffectivenessService from './pokemon/EffectivenessService';
     PokedexService,
     EffectivenessService,
     PasswordRequestService,
+    CoreKafkaClientService,
   ],
   exports: [
     BattleEventsService,
-    ColorService,
     BattleInstanceService,
     BattleService,
     CalendarEventService,

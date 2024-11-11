@@ -2,7 +2,7 @@ import {
   IPcStorage,
   IPcStorageStorage,
 } from '../../../domain/trainer/pcStorage/PcStorage';
-import { PokemonTestMother } from '../pokemon/PokemonTestMother';
+import { PokemonTestMother } from 'shared/models';
 
 export class PcStorageTestMother {
   private static readonly MAX_SIZE = 36;

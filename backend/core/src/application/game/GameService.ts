@@ -15,17 +15,33 @@ import {
   NB_GENERATED_TRAINER_BY_DIVISION,
   START_DIVISION,
 } from './GameConst';
+import { BattleEventsService } from '../BattleEvents/BattleEventsService';
+import { UserService } from '../user/UserService';
+import PokemonRepository from '../../domain/pokemon/PokemonRepository';
+import BattleInstanceRepository from '../../domain/battleInstance/BattleInstanceRepository';
+import CalendarEventRepository from '../../domain/calendarEvent/CalendarEventRepository';
+import CompetitionRepository from '../../domain/competiton/CompetitionRepository';
+import CompetitionHistoryRepository from '../../domain/competiton/competitionHistory/CompetitionHistoryRepository';
+import TournamentRepository from '../../domain/competiton/tournament/TournamentRepository';
 
 @Injectable()
 class GameService {
   constructor(
-    private gameRepository: GameRepository,
-    private trainerRepository: TrainerRepository,
-    private trainerService: TrainerService,
-    private generateCalendarService: GenerateCalendarService,
-    private competitionService: CompetitionService,
-    private userRepository: UserRepository,
-    private websocketUtils: WebsocketUtils,
+    private readonly gameRepository: GameRepository,
+    private readonly trainerRepository: TrainerRepository,
+    private readonly trainerService: TrainerService,
+    private readonly generateCalendarService: GenerateCalendarService,
+    private readonly competitionService: CompetitionService,
+    private readonly userRepository: UserRepository,
+    private readonly websocketUtils: WebsocketUtils,
+    private readonly battleEventsService: BattleEventsService,
+    private readonly userService: UserService,
+    private readonly pokemonRepository: PokemonRepository,
+    private readonly battleInstanceRepository: BattleInstanceRepository,
+    private readonly calendarEventRepository: CalendarEventRepository,
+    private readonly competitionRepository: CompetitionRepository,
+    private readonly competitionHistoryRepository: CompetitionHistoryRepository,
+    private readonly tournamentRepository: TournamentRepository,
   ) {}
 
   public async createWithUsers(
@@ -45,7 +61,7 @@ class GameService {
       actualDate,
     });
     this.userRepository
-      .updateManyUser(
+      .updateMany(
         { _id: { $in: players.map((player) => player.userId) } },
         { $push: { games: newGame._id } },
       )
@@ -172,12 +188,26 @@ class GameService {
         (userGame) => userGame._id.toString() !== gameId,
       );
       if (game.players.length === 0) {
-        await this.gameRepository.delete(gameId);
+        await this.deleteGame(gameId);
       } else {
         await this.gameRepository.update(gameId, game);
       }
       await this.userRepository.update(userId, user);
     }
+  }
+
+  public async deleteGame(gameId: string): Promise<void> {
+    await this.gameRepository.delete(gameId);
+    await this.userService.deleteGameForUsers(gameId);
+    await this.trainerService.deleteInGame(gameId);
+    await this.pokemonRepository.deleteMany({ gameId });
+    await this.battleInstanceRepository.deleteMany({ gameId });
+    await this.calendarEventRepository.deleteMany({ gameId });
+    await this.competitionRepository.deleteMany({ gameId });
+    await this.competitionHistoryRepository.deleteMany({ gameId });
+    await this.tournamentRepository.deleteMany({ gameId });
+    this.battleEventsService.deleteAllBattleParticipationsForGame(gameId);
+    this.battleEventsService.deleteDamageEventsForGame(gameId);
   }
 }
 

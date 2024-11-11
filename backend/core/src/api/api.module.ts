@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { BattleEventsController } from './battle-event/battle-events.controller';
 import { BattleInstanceController } from './battle-instance/battle-instance.controller';
 import { CalendarEventController } from './calendar-event/calendar-event.controller';
 import { CompetitionController } from './competition/competition.controller';
@@ -43,7 +42,6 @@ import PcStorageMapper from './pcStorage/PcStorageMapper';
     PcStorageMapper,
   ],
   controllers: [
-    BattleEventsController,
     BattleInstanceController,
     CalendarEventController,
     CompetitionController,

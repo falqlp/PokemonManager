@@ -12,6 +12,7 @@ class TrainingCampPopulater extends Populater<ITrainingCamp> {
   ) {
     super();
   }
+
   public populate(): PopulateOptions | PopulateOptions[] {
     return '' as unknown as PopulateOptions;
   }
