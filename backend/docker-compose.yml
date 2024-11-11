@@ -7,7 +7,8 @@ services:
     ports:
       - "2181:2181"
     volumes:
-      - ./kafka/zookeeper_data:/var/lib/zookeeper
+      - ./kafka/zookeeper_data/zookeeper_data:/var/lib/zookeeper/data
+      - ./kafka/zookeeper_data/zookeeper_log:/var/lib/zookeeper/log
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -24,9 +25,6 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     volumes:
       - ./kafka/kafka-data:/var/lib/kafka/data
-    command: >
-      sh -c "rm -f /var/lib/kafka/data/meta.properties &&
-      /etc/confluent/docker/run"
 
   nginx:
     build:
