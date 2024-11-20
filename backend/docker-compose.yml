@@ -68,6 +68,17 @@ services:
       - .env
     environment:
       - BATTLE_STATS_PORT=${BATTLE_STATS_PORT}
-      - MONGODB_USERNAME=${MONGODB_USERNAME}
-      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
-      - MONGODB_LOCAL=${MONGODB_LOCAL}
+
+  battle:
+    depends_on:
+      - kafka
+    build:
+      context: .
+      dockerfile: battle/Dockerfile
+    network_mode: "host"
+    ports:
+      - "${BATTLE_PORT}:${BATTLE_PORT}"
+    env_file:
+      - .env
+    environment:
+      - BATTLE_PORT=${BATTLE_PORT}

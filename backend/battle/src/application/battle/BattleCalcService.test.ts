@@ -2,14 +2,12 @@ import { MoveTestMother } from 'shared/models/test/domain/Move/MoveTestMother';
 import BattleCalcService, {
   MIN_ROLL,
   STAB_MODIFIER,
-  TYPE_EFFECTIVENESS,
 } from './BattleCalcService';
-import { container } from 'tsyringe';
-import { PokemonTestMother } from 'shared/models/test/domain/pokemon/PokemonTestMother';
 import { IBattlePokemon, IDamage } from './BattleInterfaces';
-import BattlePokemonTestMother from '../../test/domain/battle/BattlePokemonTestMother';
 import { Test, TestingModule } from '@nestjs/testing';
-import { IMove, IPokemon } from 'shared/models';
+import { IMove } from 'shared/models';
+import BattlePokemonTestMother from '../../../test/domain/battle/BattlePokemonTestMother';
+import { TYPE_EFFECTIVENESS } from 'shared/models/pokemon/effectiveness.const';
 
 describe('BattleCalcService', () => {
   let serviceUnderTesting: BattleCalcService;
@@ -78,9 +76,11 @@ describe('BattleCalcService', () => {
   });
   describe('criticalHitDamage method', () => {
     it('should return proper critical hit damage calculation', () => {
-      const pokemon: IPokemon = PokemonTestMother.withCustomOptions({
-        level: 20,
-      });
+      const pokemon: IBattlePokemon = BattlePokemonTestMother.withCustomOptions(
+        {
+          level: 20,
+        },
+      );
 
       const result = serviceUnderTesting.criticalHitDamage(pokemon);
       const expected = (2 * pokemon.level + 5) / (pokemon.level + 5);
@@ -89,9 +89,11 @@ describe('BattleCalcService', () => {
     });
 
     it('should return a number', () => {
-      const pokemon: IPokemon = PokemonTestMother.withCustomOptions({
-        level: 20,
-      });
+      const pokemon: IBattlePokemon = BattlePokemonTestMother.withCustomOptions(
+        {
+          level: 20,
+        },
+      );
 
       const result = serviceUnderTesting.criticalHitDamage(pokemon);
 
@@ -99,7 +101,7 @@ describe('BattleCalcService', () => {
     });
   });
   describe('criticalHit method', () => {
-    const pokemon: IPokemon = PokemonTestMother.generateBulbasaur();
+    const pokemon: IBattlePokemon = BattlePokemonTestMother.generateBulbasaur();
     it('returns a number', () => {
       expect(typeof serviceUnderTesting.criticalHit(pokemon)).toBe('number');
     });
@@ -129,18 +131,15 @@ describe('BattleCalcService', () => {
     });
   });
   describe('stab method', () => {
-    let serviceUnderTesting: BattleCalcService;
-    beforeEach(() => {
-      serviceUnderTesting = container.resolve(BattleCalcService);
-    });
-
     it('returns a number', () => {
-      const pokemon: IPokemon = PokemonTestMother.generateBulbasaur();
+      const pokemon: IBattlePokemon =
+        BattlePokemonTestMother.generateBulbasaur();
       const move: IMove = MoveTestMother.basicMove();
       expect(typeof serviceUnderTesting.stab(move, pokemon)).toBe('number');
     });
     it('multiplies by the appropriate modifier based on Pokemon type', () => {
-      const pokemon: IPokemon = PokemonTestMother.generateBulbasaur();
+      const pokemon: IBattlePokemon =
+        BattlePokemonTestMother.generateBulbasaur();
       const move: IMove = MoveTestMother.basicMove();
       let modifier = 1;
       pokemon.basePokemon.types.forEach((type) => {
@@ -180,10 +179,10 @@ describe('BattleCalcService', () => {
   });
   describe('calcEffectiveness method', () => {
     let move: IMove;
-    let pokemon: IPokemon;
+    let pokemon: IBattlePokemon;
     beforeEach(() => {
       move = MoveTestMother.basicMove();
-      pokemon = PokemonTestMother.generateBulbasaur();
+      pokemon = BattlePokemonTestMother.generateBulbasaur();
     });
 
     it('returns a number', () => {
@@ -224,21 +223,24 @@ describe('BattleCalcService', () => {
   });
   describe('calcDamageBase method in BattleCalcService', () => {
     it('returns a number', () => {
-      const pokemon: IPokemon = PokemonTestMother.generateBulbasaur();
+      const pokemon: IBattlePokemon =
+        BattlePokemonTestMother.generateBulbasaur();
       const move: IMove = MoveTestMother.basicMove();
       const result = serviceUnderTesting.calcDamageBase(pokemon, pokemon, move);
       expect(typeof result).toBe('number');
     });
 
     it('returns a number greater than or equal to 0', () => {
-      const pokemon: IPokemon = PokemonTestMother.generateBulbasaur();
+      const pokemon: IBattlePokemon =
+        BattlePokemonTestMother.generateBulbasaur();
       const move: IMove = MoveTestMother.basicMove();
       const result = serviceUnderTesting.calcDamageBase(pokemon, pokemon, move);
       expect(result).toBeGreaterThanOrEqual(0);
     });
 
     it("return with move category 'status' or move power 0", () => {
-      const pokemon: IPokemon = PokemonTestMother.generateBulbasaur();
+      const pokemon: IBattlePokemon =
+        BattlePokemonTestMother.generateBulbasaur();
       const move = MoveTestMother.withCustomOptions({
         category: 'status',
         power: 0,
@@ -248,12 +250,12 @@ describe('BattleCalcService', () => {
     });
   });
   describe('estimator method', () => {
-    let defPokemon: IPokemon;
-    let attPokemon: IPokemon;
+    let defPokemon: IBattlePokemon;
+    let attPokemon: IBattlePokemon;
     let move: IMove;
     beforeEach(() => {
-      attPokemon = PokemonTestMother.generateBulbasaur();
-      defPokemon = PokemonTestMother.generateBulbasaur();
+      attPokemon = BattlePokemonTestMother.generateBulbasaur();
+      defPokemon = BattlePokemonTestMother.generateBulbasaur();
       move = MoveTestMother.basicMove();
     });
 
@@ -301,7 +303,7 @@ describe('BattleCalcService', () => {
     let pokemon: IBattlePokemon;
     let damage: IDamage;
     beforeEach(() => {
-      pokemon = BattlePokemonTestMother.getBattlePokemon();
+      pokemon = BattlePokemonTestMother.generateBulbasaur();
       damage = {
         damage: 10,
         critical: false,
@@ -339,8 +341,8 @@ describe('BattleCalcService', () => {
     let attPokemon: IBattlePokemon, defPokemon: IBattlePokemon, move: IMove;
 
     beforeEach(() => {
-      attPokemon = BattlePokemonTestMother.getBattlePokemon();
-      defPokemon = BattlePokemonTestMother.getBattlePokemon();
+      attPokemon = BattlePokemonTestMother.generateBulbasaur();
+      defPokemon = BattlePokemonTestMother.generateBulbasaur();
       move = MoveTestMother.basicMove();
     });
 

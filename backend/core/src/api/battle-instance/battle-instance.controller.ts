@@ -2,7 +2,6 @@ import {
   Body,
   Controller,
   Get,
-  Headers,
   HttpException,
   HttpStatus,
   Param,
@@ -15,15 +14,10 @@ import {
   ITrainerRanking,
 } from '../../application/battleInstance/BattleInstanceService';
 import BattleInstanceMapper from './BattleInstanceMapper';
-import {
-  IBattlePokemon,
-  IBattleTrainer,
-} from '../../application/battle/BattleInterfaces';
 import BattleInstanceRepository from '../../domain/battleInstance/BattleInstanceRepository';
-import PokemonMapper from '../pokemon/PokemonMapper';
-import BattleService from '../../application/battle/BattleService';
 import { IBattleInstance } from '../../domain/battleInstance/Battle';
 import { ReadOnlyController } from 'shared/common/api/read-only.controller';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 
 @Controller('battle-instance')
 export class BattleInstanceController extends ReadOnlyController<IBattleInstance> {
@@ -31,8 +25,6 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
     protected readonly repository: BattleInstanceRepository,
     protected readonly mapper: BattleInstanceMapper,
     private readonly battleInstanceService: BattleInstanceService,
-    private readonly battleService: BattleService,
-    private readonly pokemonMapper: PokemonMapper,
   ) {
     super(repository, mapper);
   }
@@ -104,138 +96,10 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
     }
   }
 
-  @Get('init-battle/:id')
-  public async initBattle(
-    @Param('id') id: string,
-  ): Promise<{ player: IBattleTrainer; opponent: IBattleTrainer }> {
-    try {
-      const result = await this.battleInstanceService.initBattle(id);
-      if (result) {
-        result.player.pokemons = result.player.pokemons.map(
-          (value) => this.pokemonMapper.map(value) as IBattlePokemon,
-        );
-        result.opponent.pokemons = result.opponent.pokemons.map(
-          (value) => this.pokemonMapper.map(value) as IBattlePokemon,
-        );
-      }
-      return result;
-    } catch (error) {
-      throw new HttpException(
-        'Failed to initialize battle: ' + error.message,
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-  }
-
-  @Post('init-trainer')
-  public async initTrainer(
-    @Body('trainerId') trainerId: string,
-    @Body('battleId') battleId: string,
-    @Headers('game-id') gameId: string,
-  ): Promise<{ status: string }> {
-    try {
-      await this.battleService.initTrainer(trainerId, battleId, gameId);
-      return { status: 'success' };
-    } catch (error) {
-      throw new HttpException(
-        'Failed to initialize trainer: ' + error.message,
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-  }
-
-  @Post('ask-next-round')
-  public async askNextRound(
-    @Body('trainerId') trainerId: string,
-    @Body('battleId') battleId: string,
-    @Headers('game-id') gameId: string,
-  ): Promise<{ status: string }> {
-    try {
-      await this.battleService.askNextRound(trainerId, battleId, gameId);
-      return { status: 'success' };
-    } catch (error) {
-      throw new HttpException(
-        'Failed to ask next round: ' + error.message,
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-  }
-
-  @Post('ask-next-round-loop')
-  public async askNextRoundLoop(
-    @Body('trainerId') trainerId: string,
-    @Body('battleId') battleId: string,
-    @Headers('game-id') gameId: string,
-  ): Promise<{ status: string }> {
-    try {
-      await this.battleService.askNextRoundLoop(trainerId, battleId, gameId);
-      return { status: 'success' };
-    } catch (error) {
-      throw new HttpException(
-        'Failed to ask next round loop: ' + error.message,
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-  }
-
-  @Post('delete-ask-next-round')
-  public async deleteAskNextRound(
-    @Body('trainerId') trainerId: string,
-    @Body('battleId') battleId: string,
-    @Headers('game-id') gameId: string,
-  ): Promise<{ status: string }> {
-    try {
-      await this.battleService.deleteAskNextRound(trainerId, battleId, gameId);
-      return { status: 'success' };
-    } catch (error) {
-      throw new HttpException(
-        'Failed to delete ask next round: ' + error.message,
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-  }
-
-  @Post('delete-ask-next-round-loop')
-  public async deleteAskNextRoundLoop(
-    @Body('trainerId') trainerId: string,
-    @Body('battleId') battleId: string,
-    @Headers('game-id') gameId: string,
-  ): Promise<{ status: string }> {
-    try {
-      await this.battleService.deleteAskNextRoundLoop(
-        trainerId,
-        battleId,
-        gameId,
-      );
-      return { status: 'success' };
-    } catch (error) {
-      throw new HttpException(
-        'Failed to delete ask next round loop: ' + error.message,
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-  }
-
-  @Post('reset-next-round-status')
-  public async resetNextRoundStatus(
-    @Body('battleId') battleId: string,
-    @Headers('game-id') gameId: string,
-  ): Promise<{ status: string }> {
-    try {
-      await this.battleService.resetNextRoundStatus(battleId, gameId);
-      return { status: 'success' };
-    } catch (error) {
-      throw new HttpException(
-        'Failed to reset next round status: ' + error.message,
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-  }
-
   @Put(':id')
   public async updateBattleInstance(
     @Param('id') id: string,
-    @Body() body: any,
+    @Body() body: IBattleInstance,
   ): Promise<IBattleInstance> {
     try {
       const obj = await this.battleInstanceService.update(id, body);
@@ -245,6 +109,29 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
         'Failed to update battle instance: ' + error.message,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
+    }
+  }
+
+  @MessagePattern('battleInstance.get')
+  public async getBattleInstance(
+    @Payload() data: string,
+  ): Promise<IBattleInstance> {
+    try {
+      return this.repository.get(data);
+    } catch (error) {
+      throw new Error('Failed to get battle instance: ' + error);
+    }
+  }
+
+  @MessagePattern('battleInstance.update')
+  public async battleInstanceUpdate(
+    @Payload('_id') _id: string,
+    @Payload('battle') battle: IBattleInstance,
+  ): Promise<void> {
+    try {
+      await this.battleInstanceService.update(_id, battle);
+    } catch (error) {
+      throw new Error('Failed to update battle instance: ' + error);
     }
   }
 }

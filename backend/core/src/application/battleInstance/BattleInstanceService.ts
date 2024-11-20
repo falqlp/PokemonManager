@@ -3,7 +3,6 @@ import BattleInstanceRepository from '../../domain/battleInstance/BattleInstance
 import { ObjectId } from 'mongodb';
 import TrainerRepository from '../../domain/trainer/TrainerRepository';
 import BattleService from '../battle/BattleService';
-import { IBattleTrainer } from '../battle/BattleInterfaces';
 import { IBattleInstance } from '../../domain/battleInstance/Battle';
 import { CompetitionType } from '../../domain/competiton/Competition';
 import BattleSerieRepository from '../../domain/competiton/tournament/battleSerie/BattleSerieRepository';
@@ -198,20 +197,11 @@ export class BattleInstanceService {
 
   public async simulateBattle(battleId: string): Promise<void> {
     const battle = await this.battleInstanceRepository.get(battleId);
+    const date = await this.calendarEventRepository.getBattleDate(battleId);
     await this.update(
       battleId,
-      await this.battleService.simulateBattle(battle),
+      await this.battleService.simulateBattle(battle, date),
     );
-  }
-
-  public async initBattle(
-    battleId: string,
-  ): Promise<{ player: IBattleTrainer; opponent: IBattleTrainer }> {
-    const battle = await this.battleInstanceRepository.get(battleId);
-    if (battle.winner) {
-      return;
-    }
-    return this.battleService.initBattle(battle);
   }
 
   public async update(

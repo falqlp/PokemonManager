@@ -15,7 +15,6 @@ import {
   NB_GENERATED_TRAINER_BY_DIVISION,
   START_DIVISION,
 } from './GameConst';
-import { BattleEventsService } from '../BattleEvents/BattleEventsService';
 import { UserService } from '../user/UserService';
 import PokemonRepository from '../../domain/pokemon/PokemonRepository';
 import BattleInstanceRepository from '../../domain/battleInstance/BattleInstanceRepository';
@@ -23,6 +22,7 @@ import CalendarEventRepository from '../../domain/calendarEvent/CalendarEventRep
 import CompetitionRepository from '../../domain/competiton/CompetitionRepository';
 import CompetitionHistoryRepository from '../../domain/competiton/competitionHistory/CompetitionHistoryRepository';
 import TournamentRepository from '../../domain/competiton/tournament/TournamentRepository';
+import { BattleEventsService } from '../BattleEvents/battle-events.service';
 
 @Injectable()
 class GameService {

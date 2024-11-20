@@ -1,5 +1,5 @@
-import { IBattleTrainer } from '../../../application/battle/BattleInterfaces';
 import BattlePokemonTestMother from './BattlePokemonTestMother';
+import { IBattleTrainer } from '../../../src/application/battle/BattleInterfaces';
 
 export default class BattleTrainerTestMother {
   public static getBattleTrainer(trainerId?: string): IBattleTrainer {
@@ -8,11 +8,10 @@ export default class BattleTrainerTestMother {
       defeat: false,
       class: '',
       pokemons: [
-        BattlePokemonTestMother.getBattlePokemon(
+        BattlePokemonTestMother.generateBulbasaur(
           trainerId ?? 'BattleTrainerId',
         ),
       ],
-      isAI: false,
       name: 'BattleTrainer',
     };
   }

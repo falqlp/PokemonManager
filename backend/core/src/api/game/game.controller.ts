@@ -15,6 +15,7 @@ import TrainerMapper from '../trainer/TrainerMapper';
 import { ReadOnlyController } from 'shared/common/api/read-only.controller';
 import { IGame } from '../../domain/game/Game';
 import { ITrainer } from '../../domain/trainer/Trainer';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 
 @Controller('game')
 export class GameController extends ReadOnlyController<IGame> {
@@ -98,6 +99,16 @@ export class GameController extends ReadOnlyController<IGame> {
         'Failed to initialize game if not: ' + error.message,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
+    }
+  }
+
+  @MessagePattern('game.get')
+  public async getGame(@Payload() gameId: string): Promise<IGame> {
+    try {
+      const obj = await this.service.get(gameId);
+      return this.mapper.map(obj);
+    } catch (error) {
+      throw new Error('Failed to fetch game: ' + error);
     }
   }
 }

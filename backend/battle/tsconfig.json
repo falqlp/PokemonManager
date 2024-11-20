@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "shared/utils": [
+        "../shared/libs/utils/src"
+      ],
+      "shared/utils/*": [
+        "../shared/libs/utils/src/*"
+      ],
+      "shared/common": [
+        "../shared/libs/common/src"
+      ],
+      "shared/common/*": [
+        "../shared/libs/common/src/*"
+      ],
+      "shared/models": [
+        "../shared/libs/models/src"
+      ],
+      "shared/models/*": [
+        "../shared/libs/models/src/*"
+      ]
+    }
+  }
+}
