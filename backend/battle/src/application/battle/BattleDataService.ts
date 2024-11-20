@@ -1,23 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { IBattleState } from './BattleInterfaces';
+import BattleStateRepository from '../../domain/BattleStateRepository';
 
 @Injectable()
 export class BattleDataService {
-  private battleMap: Map<string, IBattleState> = new Map();
+  constructor(private readonly battleStateRepository: BattleStateRepository) {}
 
-  public getBattleState(key: string): IBattleState {
-    if (!this.battleMap.has(key)) {
-      return undefined;
-    }
-    return this.battleMap.get(key);
+  public async getBattleState(key: string): Promise<IBattleState> {
+    return await this.battleStateRepository.get(key);
   }
 
-  public setBattleState(key: string, battleState: IBattleState): IBattleState {
-    this.battleMap.set(key, battleState);
-    return this.battleMap.get(key);
+  public async setBattleState(
+    key: string,
+    battleState: IBattleState,
+  ): Promise<IBattleState> {
+    return await this.battleStateRepository.set(key, battleState);
   }
 
   public delete(key: string): void {
-    this.battleMap.delete(key);
+    this.battleStateRepository.delete(key).then();
   }
 }

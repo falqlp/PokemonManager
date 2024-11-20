@@ -7,7 +7,7 @@ import {
 } from './BattleInterfaces';
 import BattleCalcService from './BattleCalcService';
 import { DefaultMove } from './BattleConst';
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { getRandomFromArray, getRandomValue } from 'shared/utils/RandomUtils';
 import { BattleDataService } from './BattleDataService';
 import { BattleEventsService } from '../battle-events/battle-events.service';
@@ -382,7 +382,7 @@ export default class BattleService {
   }
 
   public async playNextRound(battleId: string, init?: boolean): Promise<void> {
-    const battleState = this.battleDataService.getBattleState(battleId);
+    const battleState = await this.battleDataService.getBattleState(battleId);
     let newBattleState: IBattleState;
     let defeat = false;
     if (!init && battleState) {
@@ -407,7 +407,7 @@ export default class BattleService {
       } as BattleInstanceBattle;
       this.coreInterfaceService.updateBattleInstance(battle);
     } else {
-      this.battleDataService.setBattleState(battleId, newBattleState);
+      await this.battleDataService.setBattleState(battleId, newBattleState);
     }
     newBattleState._id = battleId;
     this.battleWebsocketService.playRound(newBattleState);
@@ -436,7 +436,6 @@ export default class BattleService {
   ): Promise<void> {
     this.battleWebsocketService.addInitBattleStatus(trainerId);
     const playerIds = await this.getPlayerIds(battleId, gameId);
-    Logger.log(await this.battleWebsocketService.getInitBattleReady(playerIds));
     if (await this.battleWebsocketService.getInitBattleReady(playerIds)) {
       await this.playNextRound(battleId, true);
       this.battleWebsocketService.deleteInitBattleStatus(playerIds);
