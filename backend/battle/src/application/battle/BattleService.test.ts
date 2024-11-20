@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import BattleService from './BattleService';
-import { BattleDataService } from './BattleDataService';
 import { BattleEventsService } from '../battle-events/battle-events.service';
 import { getRandomValue } from 'shared/utils/RandomUtils';
 import BattleCalcService from './BattleCalcService';
@@ -27,11 +26,12 @@ import {
 import BattleTrainerTestMother from '../../../test/domain/battle/BattleTrainerTestMother';
 import BattlePokemonTestMother from '../../../test/domain/battle/BattlePokemonTestMother';
 import BattleWebsocketService from '../websocket/battle-websocket.service';
+import BattleStateRepository from '../../domain/BattleStateRepository';
 
 jest.mock('../websocket/battle-websocket.service');
 jest.mock('./BattleSideEffectService');
 jest.mock('../battle-events/battle-events.service');
-jest.mock('./BattleDataService');
+jest.mock('../../domain/BattleStateRepository');
 jest.mock('../core-interface/core-interface.service');
 
 jest.mock('shared/utils/RandomUtils', () => ({
@@ -46,7 +46,7 @@ const mockedGetRandomValue = getRandomValue as jest.MockedFunction<
 describe('BattleService', () => {
   let battleService: BattleService;
   let battleMock: BattleInstanceBattle;
-  let battleDataService: BattleDataService;
+  let battleStateRepository: BattleStateRepository;
   let battleEventsService: BattleEventsService;
   let battleWebsocketService: BattleWebsocketService;
   let coreInterfaceService: CoreInterfaceService;
@@ -55,7 +55,7 @@ describe('BattleService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         BattleService,
-        BattleDataService,
+        BattleStateRepository,
         BattleEventsService,
         BattleCalcService,
         BattleSideEffectService,
@@ -65,7 +65,9 @@ describe('BattleService', () => {
     }).compile();
 
     battleService = module.get<BattleService>(BattleService);
-    battleDataService = module.get<BattleDataService>(BattleDataService);
+    battleStateRepository = module.get<BattleStateRepository>(
+      BattleStateRepository,
+    );
     battleWebsocketService = module.get<BattleWebsocketService>(
       BattleWebsocketService,
     );
@@ -96,7 +98,7 @@ describe('BattleService', () => {
 
   describe('simulateBattle method', () => {
     it('should correctly simulate a battle scenario', async () => {
-      jest.spyOn(battleDataService, 'delete');
+      jest.spyOn(battleStateRepository, 'delete');
       const date = new Date();
       jest
         .spyOn(battleEventsService, 'insertBattleEventsData')
@@ -756,7 +758,7 @@ describe('BattleService', () => {
         .mockResolvedValue(battleMock);
       jest.spyOn(battleService, 'initBattle').mockReturnValue(battleState);
       await battleService.initBattleForTrainer(battleId);
-      expect(battleDataService.setBattleState).toHaveBeenCalled();
+      expect(battleStateRepository.set).toHaveBeenCalled();
     });
 
     it('should not call setBattleState on battleDataService if winner', async () => {
@@ -765,7 +767,7 @@ describe('BattleService', () => {
         .mockResolvedValue({ ...battleMock, winner: 'player' });
       const res = await battleService.initBattleForTrainer(battleId);
       expect(res).toBe(undefined);
-      expect(battleDataService.setBattleState).not.toHaveBeenCalled();
+      expect(battleStateRepository.set).not.toHaveBeenCalled();
     });
   });
 });

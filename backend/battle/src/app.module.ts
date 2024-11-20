@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { BattleController } from './api/battle/battle.controller';
 import BattleCalcService from './application/battle/BattleCalcService';
-import { BattleDataService } from './application/battle/BattleDataService';
 import BattleService from './application/battle/BattleService';
 import BattleSideEffectService from './application/battle/BattleSideEffectService';
 import { BattleEventsService } from './application/battle-events/battle-events.service';
@@ -35,7 +34,6 @@ import { EmptyPopulater } from 'shared/common';
   controllers: [BattleController],
   providers: [
     BattleCalcService,
-    BattleDataService,
     BattleService,
     BattleSideEffectService,
     BattleEventsService,
