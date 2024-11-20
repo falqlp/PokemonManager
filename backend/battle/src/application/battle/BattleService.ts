@@ -7,9 +7,8 @@ import {
 } from './BattleInterfaces';
 import BattleCalcService from './BattleCalcService';
 import { DefaultMove } from './BattleConst';
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { getRandomFromArray, getRandomValue } from 'shared/utils/RandomUtils';
-import { BattleDataService } from './BattleDataService';
 import { BattleEventsService } from '../battle-events/battle-events.service';
 import BattleSideEffectService from './BattleSideEffectService';
 import { IPokemonStats } from 'shared/models/pokemon/pokemon-models';
@@ -20,12 +19,13 @@ import {
   CoreInterfaceService,
 } from '../core-interface/core-interface.service';
 import BattleWebsocketService from '../websocket/battle-websocket.service';
+import BattleStateRepository from '../../domain/BattleStateRepository';
 
 @Injectable()
 export default class BattleService {
   constructor(
     private readonly battleCalcService: BattleCalcService,
-    private readonly battleDataService: BattleDataService,
+    private readonly battleStateRepository: BattleStateRepository,
     private readonly battleWebsocketService: BattleWebsocketService,
     private readonly battleEventsService: BattleEventsService,
     private readonly battleSideEffectService: BattleSideEffectService,
@@ -86,10 +86,7 @@ export default class BattleService {
     if (battle.winner) {
       return;
     }
-    return this.battleDataService.setBattleState(
-      battle._id,
-      this.initBattle(battle),
-    );
+    return this.battleStateRepository.set(battle._id, this.initBattle(battle));
   }
 
   private initBattleOrder(
@@ -382,7 +379,7 @@ export default class BattleService {
   }
 
   public async playNextRound(battleId: string, init?: boolean): Promise<void> {
-    const battleState = this.battleDataService.getBattleState(battleId);
+    const battleState = await this.battleStateRepository.get(battleId);
     let newBattleState: IBattleState;
     let defeat = false;
     if (!init && battleState) {
@@ -407,7 +404,7 @@ export default class BattleService {
       } as BattleInstanceBattle;
       this.coreInterfaceService.updateBattleInstance(battle);
     } else {
-      this.battleDataService.setBattleState(battleId, newBattleState);
+      await this.battleStateRepository.set(battleId, newBattleState);
     }
     newBattleState._id = battleId;
     this.battleWebsocketService.playRound(newBattleState);
@@ -421,7 +418,7 @@ export default class BattleService {
         battle,
         date,
       );
-      this.battleDataService.delete(battleId);
+      this.battleStateRepository.delete(battleId).then();
       this.battleWebsocketService.resetNextRoundStatus([
         newBattleState.player._id,
         newBattleState.opponent._id,
@@ -436,7 +433,6 @@ export default class BattleService {
   ): Promise<void> {
     this.battleWebsocketService.addInitBattleStatus(trainerId);
     const playerIds = await this.getPlayerIds(battleId, gameId);
-    Logger.log(await this.battleWebsocketService.getInitBattleReady(playerIds));
     if (await this.battleWebsocketService.getInitBattleReady(playerIds)) {
       await this.playNextRound(battleId, true);
       this.battleWebsocketService.deleteInitBattleStatus(playerIds);
