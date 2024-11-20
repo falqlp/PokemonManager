@@ -18,6 +18,7 @@ import { ICalendarEvent } from '../../domain/calendarEvent/CalendarEvent';
 import { ITrainer } from '../../domain/trainer/Trainer';
 import { ICompetition } from '../../domain/competiton/Competition';
 import { IBattleInstance } from '../../domain/battleInstance/Battle';
+import { MessagePattern } from '@nestjs/microservices';
 
 @Controller('calendar-event')
 export class CalendarEventController extends ReadOnlyController<ICalendarEvent> {
@@ -131,6 +132,15 @@ export class CalendarEventController extends ReadOnlyController<ICalendarEvent> 
         'Failed to update ask next day request: ' + error.message,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
+    }
+  }
+
+  @MessagePattern('calendarEvent.battleDate')
+  public getBattleDate(battleId: string): Promise<Date> {
+    try {
+      return this.repository.getBattleDate(battleId);
+    } catch (error) {
+      throw new Error('Failed to get battle date: ' + error);
     }
   }
 }

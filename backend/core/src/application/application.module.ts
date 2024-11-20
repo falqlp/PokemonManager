@@ -1,12 +1,8 @@
 import { Module } from '@nestjs/common';
-import { BattleEventsService } from './BattleEvents/BattleEventsService';
 import { DomainModule } from '../domain/domain.module';
 import { BattleInstanceService } from './battleInstance/BattleInstanceService';
 import BattleService from './battle/BattleService';
 import { WebsocketModule } from '../websocket/websocket.module';
-import BattleCalcService from './battle/BattleCalcService';
-import { BattleDataService } from './battle/BattleDataService';
-import BattleSideEffectService from './battle/BattleSideEffectService';
 import CalendarEventService from './calendarEvent/CalendarEventService';
 import SimulateDayService from './calendarEvent/SimulateDayService';
 import TrainerService from './trainer/TrainerService';
@@ -30,16 +26,13 @@ import { PasswordRequestService } from './user/passwordRequest/PasswordRequestSe
 import { PokedexService } from './pokedex/PokedexService';
 import { CoreKafkaClientService } from './core-kafka-client/core-kafka-client.service';
 import EffectivenessService from './pokemon/EffectivenessService';
+import { BattleEventsService } from './BattleEvents/battle-events.service';
 
 @Module({
   imports: [DomainModule, WebsocketModule],
   providers: [
-    BattleEventsService,
     BattleInstanceService,
     BattleService,
-    BattleCalcService,
-    BattleDataService,
-    BattleSideEffectService,
     CalendarEventService,
     SimulateDayService,
     TrainerService,
@@ -63,9 +56,9 @@ import EffectivenessService from './pokemon/EffectivenessService';
     EffectivenessService,
     PasswordRequestService,
     CoreKafkaClientService,
+    BattleEventsService,
   ],
   exports: [
-    BattleEventsService,
     BattleInstanceService,
     BattleService,
     CalendarEventService,

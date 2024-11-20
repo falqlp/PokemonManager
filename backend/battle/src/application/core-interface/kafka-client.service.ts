@@ -2,17 +2,25 @@ import { Injectable, OnModuleInit } from '@nestjs/common';
 import { Client, ClientKafka, Transport } from '@nestjs/microservices';
 
 export enum NeedReplyTopics {
-  simulateBattle = 'battle.simulateBattle',
+  getBattleInstance = 'battleInstance.get',
+  getGame = 'game.get',
+  getBattleDate = 'calendarEvent.battleDate',
+  getInitBattleReady = 'getInitBattleReady',
+  getNextRoundStatus = 'getNextRoundStatus',
+  getNextRoundLoopStatus = 'getNextRoundLoopStatus',
 }
 
 @Injectable()
-export class CoreKafkaClientService implements OnModuleInit {
+export class KafkaClientService implements OnModuleInit {
   @Client({
     transport: Transport.KAFKA,
     options: {
       client: {
-        clientId: 'core',
+        clientId: 'battle',
         brokers: ['localhost:9092'],
+      },
+      consumer: {
+        groupId: 'battle',
       },
     },
   })

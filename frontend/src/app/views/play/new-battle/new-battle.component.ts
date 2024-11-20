@@ -37,11 +37,11 @@ import {
   WebsocketEventService,
 } from '../../../services/websocket-event.service';
 import { RouterService } from '../../../services/router.service';
-import { BattleInstanceQueriesService } from '../../../services/queries/battle-instance-queries.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatBadgeModule } from '@angular/material/badge';
 import { BattleDamageInfo, DamageModel } from '../../../models/damage.model';
 import { SideEffect } from '../../../models/move.model';
+import { BattleQueriesService } from '../../../services/queries/battle-queries.service';
 
 @Component({
   selector: 'pm-new-battle',
@@ -64,12 +64,12 @@ import { SideEffect } from '../../../models/move.model';
   styleUrl: './new-battle.component.scss',
 })
 export class NewBattleComponent implements OnInit {
-  private translateService = inject(TranslateService);
-  private destroyRef = inject(DestroyRef);
-  private playerService = inject(PlayerService);
-  private router = inject(RouterService);
-  private websocketEventService = inject(WebsocketEventService);
-  private battleInstanceQueriesService = inject(BattleInstanceQueriesService);
+  private readonly translateService = inject(TranslateService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly playerService = inject(PlayerService);
+  private readonly router = inject(RouterService);
+  private readonly websocketEventService = inject(WebsocketEventService);
+  private readonly battleQueriesService = inject(BattleQueriesService);
 
   @ViewChild('messages') public messageDiv: ElementRef;
   @Input('id') id: string;
@@ -101,10 +101,7 @@ export class NewBattleComponent implements OnInit {
         filter((player) => !!player),
         first(),
         switchMap((player) => {
-          return this.battleInstanceQueriesService.initTrainer(
-            player._id,
-            this.id
-          );
+          return this.battleQueriesService.initTrainer(player._id, this.id);
         })
       )
       .subscribe();
@@ -242,10 +239,7 @@ export class NewBattleComponent implements OnInit {
         filter((player) => !!player),
         first(),
         switchMap((player) => {
-          return this.battleInstanceQueriesService.askNextRound(
-            player._id,
-            this.id
-          );
+          return this.battleQueriesService.askNextRound(player._id, this.id);
         })
       )
       .subscribe(() => {
@@ -255,7 +249,7 @@ export class NewBattleComponent implements OnInit {
 
   protected pause(): void {
     this.disableButtons = true;
-    this.battleInstanceQueriesService
+    this.battleQueriesService
       .resetNextRound(this.id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
@@ -272,7 +266,7 @@ export class NewBattleComponent implements OnInit {
         filter((player) => !!player),
         first(),
         switchMap((player) => {
-          return this.battleInstanceQueriesService.askNextRoundLoop(
+          return this.battleQueriesService.askNextRoundLoop(
             player._id,
             this.id
           );
@@ -302,7 +296,7 @@ export class NewBattleComponent implements OnInit {
         filter((player) => !!player),
         first(),
         switchMap((player) => {
-          return this.battleInstanceQueriesService.deleteAskNextRound(
+          return this.battleQueriesService.deleteAskNextRound(
             player._id,
             this.id
           );
@@ -322,7 +316,7 @@ export class NewBattleComponent implements OnInit {
         filter((player) => !!player),
         first(),
         switchMap((player) => {
-          return this.battleInstanceQueriesService.deleteAskNextRoundLoop(
+          return this.battleQueriesService.deleteAskNextRoundLoop(
             player._id,
             this.id
           );

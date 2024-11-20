@@ -271,7 +271,7 @@ export default class SimulateDayService {
       },
     });
     for (const value of battles) {
-      value.event = await this.battleService.simulateBattle(value.event);
+      value.event = await this.battleService.simulateBattle(value.event, date);
       await this.battleInstanceService.update(value.event._id, value.event);
     }
   }

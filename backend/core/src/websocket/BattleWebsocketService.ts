@@ -1,16 +1,20 @@
-import { IBattleState } from '../application/battle/BattleInterfaces';
-import { Injectable } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import WebsocketDataService, { WebsocketMessage } from './WebsocketDataService';
 import WebsocketUtils from './WebsocketUtils';
+import { MessagePattern, Payload } from '@nestjs/microservices';
+import { ITrainer } from '../domain/trainer/Trainer';
 
-@Injectable()
+@Controller()
 export default class BattleWebsocketService {
   constructor(
-    private websocketUtils: WebsocketUtils,
+    private readonly websocketUtils: WebsocketUtils,
     private websocketDataService: WebsocketDataService,
   ) {}
 
-  public playRound(battleState: IBattleState): void {
+  @MessagePattern('playRound')
+  public playRound(
+    @Payload() battleState: { player: ITrainer; opponent: ITrainer },
+  ): void {
     const trainers: string[] = [
       battleState.player._id.toString(),
       battleState.opponent._id.toString(),
@@ -22,7 +26,8 @@ export default class BattleWebsocketService {
     this.websocketUtils.sendMessageToTrainers(trainers, message);
   }
 
-  public addInitBattleStatus(trainerId: string): void {
+  @MessagePattern('addInitBattleStatus')
+  public addInitBattleStatus(@Payload() trainerId: string): void {
     this.websocketDataService
       .getClients((client) => client.data.trainerId === trainerId.toString())
       .map((client) => {
@@ -31,7 +36,8 @@ export default class BattleWebsocketService {
       });
   }
 
-  public deleteInitBattleStatus(trainerIds: string[]): void {
+  @MessagePattern('deleteInitBattleStatus')
+  public deleteInitBattleStatus(@Payload() trainerIds: string[]): void {
     this.websocketDataService
       .getClients((client) => trainerIds.includes(client.data.trainerId))
       .map((client) => {
@@ -40,13 +46,18 @@ export default class BattleWebsocketService {
       });
   }
 
-  public getInitBattleReady(trainerIds: string[]): boolean {
+  @MessagePattern('getInitBattleReady')
+  public getInitBattleReady(@Payload() trainerIds: string[]): boolean {
     return this.websocketDataService
       .getClients((client) => trainerIds.includes(client.data.trainerId))
       .every((client) => client.data.initBattle);
   }
 
-  public addAskNextRound(trainerIds: string[], status: boolean): void {
+  @MessagePattern('addAskNextRound')
+  public addAskNextRound(
+    @Payload('trainerIds') trainerIds: string[],
+    @Payload('status') status: boolean,
+  ): void {
     this.websocketDataService
       .getClients((client) => trainerIds.includes(client.data.trainerId))
       .map((client) => {
@@ -55,7 +66,11 @@ export default class BattleWebsocketService {
       });
   }
 
-  public addAskNextRoundLoop(trainerIds: string[], status: boolean): void {
+  @MessagePattern('addAskNextRoundLoop')
+  public addAskNextRoundLoop(
+    @Payload('trainerIds') trainerIds: string[],
+    @Payload('status') status: boolean,
+  ): void {
     this.websocketDataService
       .getClients((client) => trainerIds.includes(client.data.trainerId))
       .map((client) => {
@@ -64,7 +79,8 @@ export default class BattleWebsocketService {
       });
   }
 
-  public resetNextRoundStatus(trainerIds: string[]): void {
+  @MessagePattern('resetNextRoundStatus')
+  public resetNextRoundStatus(@Payload() trainerIds: string[]): void {
     this.websocketDataService
       .getClients((client) => trainerIds.includes(client.data.trainerId))
       .map((client) => {
@@ -76,7 +92,8 @@ export default class BattleWebsocketService {
       });
   }
 
-  public setLoopMode(trainerIds: string[]): void {
+  @MessagePattern('setLoopMode')
+  public setLoopMode(@Payload() trainerIds: string[]): void {
     this.websocketDataService
       .getClients((client) => trainerIds.includes(client.data.trainerId))
       .map((client) => {
@@ -85,7 +102,8 @@ export default class BattleWebsocketService {
       });
   }
 
-  public getNextRoundStatus(trainerIds: string[]): boolean {
+  @MessagePattern('getNextRoundStatus')
+  public getNextRoundStatus(@Payload() trainerIds: string[]): boolean {
     for (const id of trainerIds) {
       if (
         !this.websocketDataService
@@ -102,7 +120,8 @@ export default class BattleWebsocketService {
     return true;
   }
 
-  public getNextRoundLoopStatus(trainerIds: string[]): boolean {
+  @MessagePattern('getNextRoundLoopStatus')
+  public getNextRoundLoopStatus(@Payload() trainerIds: string[]): boolean {
     for (const id of trainerIds) {
       if (
         !this.websocketDataService
@@ -118,7 +137,8 @@ export default class BattleWebsocketService {
     return true;
   }
 
-  public updateNextRoundStatus(trainerIds: string[]): void {
+  @MessagePattern('updateNextRoundStatus')
+  public updateNextRoundStatus(@Payload() trainerIds: string[]): void {
     let nextRound: boolean = false;
     let nextRoundLoop: boolean = false;
     let loopMode: boolean = false;

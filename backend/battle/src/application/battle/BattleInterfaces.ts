@@ -1,14 +1,27 @@
-import { IPokemon } from 'shared/models/pokemon/pokemon-models';
 import { IMove } from 'shared/models/move/mode-model';
-import { Effectiveness } from 'shared/models';
+import {
+  Effectiveness,
+  IBattleParticipationEvent,
+  IDamageEvent,
+  IPokemonBase,
+  IPokemonStats,
+} from 'shared/models';
+import { MongoId } from 'shared/common';
 
-export interface IBattlePokemon extends IPokemon {
+export interface IBattlePokemon extends MongoId {
   dailyForm: number;
   currentHp: number;
   cumulatedSpeed: number;
-  animation: string;
-  moving: boolean;
+  animation?: string;
+  moving?: boolean;
   reload: number;
+  stats: IPokemonStats;
+  moves: IMove[];
+  trainerId: string;
+  strategy: number[];
+  battleStrategy?: number[];
+  level: number;
+  basePokemon: IPokemonBase;
 }
 
 export enum BattleDamageInfo {
@@ -31,7 +44,6 @@ export interface IBattleTrainer {
   _id: string;
   pokemons: IBattlePokemon[];
   defeat: boolean;
-  isAI: boolean;
 }
 
 export interface IBattleState {
@@ -40,4 +52,6 @@ export interface IBattleState {
   opponent: IBattleTrainer;
   battleOrder: IBattlePokemon[];
   damage?: IDamage;
+  damageEvents: IDamageEvent[];
+  battleParticipationEvents: IBattleParticipationEvent[];
 }

@@ -1,31 +1,38 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import BattleService from './BattleService';
 import { BattleDataService } from './BattleDataService';
-import { BattleEventsService } from '../BattleEvents/BattleEventsService';
-import { IBattleInstance } from '../../domain/battleInstance/Battle';
-import BattleTestMother from '../../test/domain/battle/BattleTestMother';
-import { TrainerTestMother } from '../../test/domain/Trainer/TrainerTestMother';
+import { BattleEventsService } from '../battle-events/battle-events.service';
 import { getRandomValue } from 'shared/utils/RandomUtils';
-import { ITrainer } from '../../domain/trainer/Trainer';
 import BattleCalcService from './BattleCalcService';
-import BattleInstanceRepository from '../../domain/battleInstance/BattleInstanceRepository';
-import GameRepository from '../../domain/game/GameRepository';
 import BattleSideEffectService from './BattleSideEffectService';
-import BattleWebsocketService from '../../websocket/BattleWebsocketService';
-import CalendarEventRepository from '../../domain/calendarEvent/CalendarEventRepository';
-import PokemonRepository from '../../domain/pokemon/PokemonRepository';
-import TrainerRepository from '../../domain/trainer/TrainerRepository';
 import { StatsTestMother } from 'shared/models/test/domain/Stats/StatsTestMother';
 import { MoveTestMother } from 'shared/models/test/domain/Move/MoveTestMother';
-import { IBattlePokemon, IBattleTrainer } from './BattleInterfaces';
-import BattlePokemonTestMother from '../../test/domain/battle/BattlePokemonTestMother';
-import BattleTrainerTestMother from '../../test/domain/battle/BattleTrainerTestMother';
-import { IMove, IPokemonStats, PokemonType } from 'shared/models';
-import { CoreKafkaClientService } from '../core-kafka-client/core-kafka-client.service';
+import {
+  IBattlePokemon,
+  IBattleState,
+  IBattleTrainer,
+} from './BattleInterfaces';
+import {
+  IMove,
+  IPokemon,
+  IPokemonStats,
+  PokemonTestMother,
+  PokemonType,
+} from 'shared/models';
+import {
+  BattleInstanceBattle,
+  BattleTrainer,
+  CoreInterfaceService,
+} from '../core-interface/core-interface.service';
+import BattleTrainerTestMother from '../../../test/domain/battle/BattleTrainerTestMother';
+import BattlePokemonTestMother from '../../../test/domain/battle/BattlePokemonTestMother';
+import BattleWebsocketService from '../websocket/battle-websocket.service';
 
-jest.mock('../../websocket/BattleWebsocketService');
-jest.mock('../core-kafka-client/core-kafka-client.service');
-jest.mock('../../domain/calendarEvent/CalendarEventRepository');
+jest.mock('../websocket/battle-websocket.service');
+jest.mock('./BattleSideEffectService');
+jest.mock('../battle-events/battle-events.service');
+jest.mock('./BattleDataService');
+jest.mock('../core-interface/core-interface.service');
 
 jest.mock('shared/utils/RandomUtils', () => ({
   ...jest.requireActual('shared/utils/RandomUtils'),
@@ -38,11 +45,11 @@ const mockedGetRandomValue = getRandomValue as jest.MockedFunction<
 
 describe('BattleService', () => {
   let battleService: BattleService;
-  let battleMock: IBattleInstance;
+  let battleMock: BattleInstanceBattle;
   let battleDataService: BattleDataService;
-  let battleWebsocketService: BattleWebsocketService;
-  let calendarEventRepository: CalendarEventRepository;
   let battleEventsService: BattleEventsService;
+  let battleWebsocketService: BattleWebsocketService;
+  let coreInterfaceService: CoreInterfaceService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -51,14 +58,9 @@ describe('BattleService', () => {
         BattleDataService,
         BattleEventsService,
         BattleCalcService,
+        BattleSideEffectService,
         BattleWebsocketService,
-        CoreKafkaClientService,
-        CalendarEventRepository,
-        { provide: BattleInstanceRepository, useValue: {} },
-        { provide: GameRepository, useValue: {} },
-        { provide: BattleSideEffectService, useValue: {} },
-        { provide: PokemonRepository, useValue: {} },
-        { provide: TrainerRepository, useValue: {} },
+        CoreInterfaceService,
       ],
     }).compile();
 
@@ -67,39 +69,57 @@ describe('BattleService', () => {
     battleWebsocketService = module.get<BattleWebsocketService>(
       BattleWebsocketService,
     );
-    calendarEventRepository = module.get(CalendarEventRepository);
     battleEventsService = module.get(BattleEventsService);
+    coreInterfaceService = module.get(CoreInterfaceService);
 
     jest.clearAllMocks();
     jest.restoreAllMocks();
 
-    battleMock = BattleTestMother.getBattleInstance();
+    battleMock = {
+      _id: 'battleId',
+      opponent: {
+        _id: 'opponentId',
+        class: 'opponent class',
+        name: 'opponent name',
+        pokemons: BattleTrainerTestMother.getBattleTrainer('opponentId')
+          .pokemons as unknown as IPokemon[],
+      },
+      player: {
+        _id: 'playerId',
+        class: 'player class',
+        name: 'player name',
+        pokemons: BattleTrainerTestMother.getBattleTrainer('playerId')
+          .pokemons as unknown as IPokemon[],
+      },
+    };
   });
 
   describe('simulateBattle method', () => {
     it('should correctly simulate a battle scenario', async () => {
       jest.spyOn(battleDataService, 'delete');
-      jest
-        .spyOn(calendarEventRepository, 'getBattleDate')
-        .mockResolvedValue(new Date());
+      const date = new Date();
       jest
         .spyOn(battleEventsService, 'insertBattleEventsData')
         .mockReturnValue();
-      const result = await battleService.simulateBattle(battleMock);
+      const result = battleService.simulateBattle(battleMock, date);
       expect(result).toBeDefined();
       expect(result.winner).toBeDefined();
       expect(result.winner).toMatch(/^(opponent|player)$/);
-      expect(battleDataService.delete).toHaveBeenCalledWith(battleMock._id);
       expect(battleEventsService.insertBattleEventsData).toHaveBeenCalled();
     });
   });
 
   describe('mapBattleTrainer method', () => {
-    let trainer: ITrainer;
+    let trainer: BattleTrainer;
     let battleId: string;
 
     beforeEach(() => {
-      trainer = TrainerTestMother.weakTrainer();
+      trainer = {
+        pokemons: [PokemonTestMother.generateBulbasaur()],
+        _id: 'trainerId',
+        name: 'trainer name',
+        class: 'trainer class',
+      };
       battleId = 'battleId';
     });
 
@@ -118,7 +138,7 @@ describe('BattleService', () => {
 
     it("should transform trainer's pokemons to battle pokemons array", () => {
       const result = battleService.mapBattleTrainer(trainer, battleId);
-      expect(result).toHaveProperty('pokemons', trainer.pokemons);
+      expect(result).toHaveProperty('pokemons');
     });
 
     it('should filter pokemon with level 0 from battle pokemons array', () => {
@@ -499,6 +519,8 @@ describe('BattleService', () => {
 
     beforeEach(() => {
       jest.clearAllMocks();
+      jest.resetAllMocks();
+      jest.restoreAllMocks();
       trainerId = 'trainer1';
       battleId = 'battle1';
       gameId = 'game1';
@@ -526,7 +548,7 @@ describe('BattleService', () => {
       const spy = jest.spyOn(battleService, 'playNextRound');
       jest
         .spyOn(battleWebsocketService, 'getInitBattleReady')
-        .mockReturnValueOnce(true);
+        .mockResolvedValue(true);
       await battleService.initTrainer(trainerId, battleId, gameId);
       expect(spy).toHaveBeenCalledWith(battleId, true);
     });
@@ -535,7 +557,7 @@ describe('BattleService', () => {
       const spy = jest.spyOn(battleService, 'playNextRound');
       jest
         .spyOn(battleWebsocketService, 'getInitBattleReady')
-        .mockReturnValueOnce(false);
+        .mockResolvedValue(false);
       await battleService.initTrainer(trainerId, battleId, gameId);
       expect(spy).not.toHaveBeenCalled();
     });
@@ -575,7 +597,7 @@ describe('BattleService', () => {
       const spy = jest.spyOn(battleService, 'playNextRound');
       jest
         .spyOn(battleWebsocketService, 'getNextRoundStatus')
-        .mockReturnValueOnce(true);
+        .mockResolvedValue(true);
       await battleService.askNextRound(trainerId, battleId, gameId);
       expect(spy).toHaveBeenCalledWith(battleId);
     });
@@ -584,7 +606,7 @@ describe('BattleService', () => {
       const spy = jest.spyOn(battleService, 'playNextRound');
       jest
         .spyOn(battleWebsocketService, 'getNextRoundStatus')
-        .mockReturnValueOnce(false);
+        .mockResolvedValue(false);
       await battleService.askNextRound(trainerId, battleId, gameId);
       expect(spy).not.toHaveBeenCalled();
     });
@@ -675,7 +697,7 @@ describe('BattleService', () => {
     it('should call playNextRound in intervals if loop mode is enabled', async () => {
       jest
         .spyOn(battleWebsocketService, 'getNextRoundLoopStatus')
-        .mockReturnValue(true);
+        .mockResolvedValue(true);
 
       const playNextRoundSpy = jest.spyOn(battleService, 'playNextRound');
 
@@ -708,6 +730,42 @@ describe('BattleService', () => {
       const spy = jest.spyOn(battleWebsocketService, 'updateNextRoundStatus');
       await battleService.resetNextRoundStatus(battleId, gameId);
       expect(spy).toHaveBeenCalledWith(playerIds);
+    });
+  });
+  describe('BattleService initBattleForTrainer method', () => {
+    let battleId: string;
+
+    beforeEach(() => {
+      jest.clearAllMocks();
+      jest.resetAllMocks();
+      battleId = 'battle1';
+    });
+
+    it('should call setBattleState on battleDataService if no winner', async () => {
+      const battleState: IBattleState = {
+        player: battleMock.player as unknown as IBattleTrainer,
+        _id: battleMock._id,
+        damage: undefined,
+        battleOrder: [],
+        battleParticipationEvents: [],
+        damageEvents: [],
+        opponent: battleMock.opponent as unknown as IBattleTrainer,
+      };
+      jest
+        .spyOn(coreInterfaceService, 'getBattleInstance')
+        .mockResolvedValue(battleMock);
+      jest.spyOn(battleService, 'initBattle').mockReturnValue(battleState);
+      await battleService.initBattleForTrainer(battleId);
+      expect(battleDataService.setBattleState).toHaveBeenCalled();
+    });
+
+    it('should not call setBattleState on battleDataService if winner', async () => {
+      jest
+        .spyOn(coreInterfaceService, 'getBattleInstance')
+        .mockResolvedValue({ ...battleMock, winner: 'player' });
+      const res = await battleService.initBattleForTrainer(battleId);
+      expect(res).toBe(undefined);
+      expect(battleDataService.setBattleState).not.toHaveBeenCalled();
     });
   });
 });

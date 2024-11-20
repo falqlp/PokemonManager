@@ -1,5 +1,5 @@
-import { IBattleInstance } from '../../../domain/battleInstance/Battle';
-import { TrainerTestMother } from '../Trainer/TrainerTestMother';
+import { IBattleInstance } from '../../../../core/src/domain/battleInstance/Battle';
+import { TrainerTestMother } from '../../../../core/src/test/domain/Trainer/TrainerTestMother';
 
 export default class BattleTestMother {
   public static getBattleInstance(): IBattleInstance {

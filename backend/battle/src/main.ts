@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as fs from 'fs';
-import { Transport } from '@nestjs/microservices';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap(): Promise<void> {
   const sslOptions = {
@@ -22,7 +22,6 @@ async function bootstrap(): Promise<void> {
   const app = httpsOptions
     ? await NestFactory.create(AppModule, { httpsOptions })
     : await NestFactory.create(AppModule);
-
   app.enableCors({
     origin: process.env.FRONT_URL,
     allowedHeaders:
@@ -30,18 +29,18 @@ async function bootstrap(): Promise<void> {
     methods: 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
   });
 
-  const port = process.env.BATTLE_STATS_PORT || 3011;
+  const port = process.env.BATTLE_PORT || 3021;
   app.setGlobalPrefix('api');
 
-  app.connectMicroservice({
+  app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.KAFKA,
     options: {
       client: {
-        clientId: 'battle-stats',
+        clientId: 'battle',
         brokers: ['localhost:9092'],
       },
       consumer: {
-        groupId: 'battle-stats',
+        groupId: 'battle',
       },
       producer: {
         allowAutoTopicCreation: true,

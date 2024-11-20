@@ -33,22 +33,21 @@ async function bootstrap(): Promise<void> {
   const port = process.env.CORE_PORT || 3000;
   app.setGlobalPrefix('api');
 
+  app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.KAFKA,
+    options: {
+      client: {
+        clientId: 'core',
+        brokers: ['localhost:9092'],
+      },
+      consumer: {
+        groupId: 'core',
+      },
+    },
+  });
+
+  await app.startAllMicroservices();
   await app.listen(port);
   console.log(`Application is running on: ${await app.getUrl()}`);
-
-  const kafkaMicroservice =
-    await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
-      transport: Transport.KAFKA,
-      options: {
-        client: {
-          clientId: 'core',
-          brokers: ['localhost:9092'],
-        },
-        consumer: {
-          groupId: 'core',
-        },
-      },
-    });
-  await kafkaMicroservice.listen();
 }
 bootstrap();

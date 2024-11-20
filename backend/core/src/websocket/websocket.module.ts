@@ -8,19 +8,14 @@ import { DomainModule } from '../domain/domain.module';
 import { WebsocketUtilsModule } from './websocket-utils.module';
 
 @Module({
+  controllers: [BattleWebsocketService],
   imports: [DomainModule, WebsocketUtilsModule],
   providers: [
     WebsocketGateway,
     HandleWebsocketMessageService,
     WebsocketUtils,
     SimulateDayWebsocketService,
-    BattleWebsocketService,
   ],
-  exports: [
-    BattleWebsocketService,
-    SimulateDayWebsocketService,
-    WebsocketUtils,
-    WebsocketUtilsModule,
-  ],
+  exports: [SimulateDayWebsocketService, WebsocketUtils, WebsocketUtilsModule],
 })
 export class WebsocketModule {}
