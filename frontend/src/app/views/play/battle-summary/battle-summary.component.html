@@ -10,7 +10,7 @@
       @for (pokemon of battle.player.pokemons; track pokemon) {
       <div>
         <app-display-pokemon-image
-          class="pokemon-image"
+          [dynamicSizing]="true"
           [pokemon]="pokemon"
           [type]="'max-size'" />
       </div>
@@ -40,7 +40,7 @@
       @for (pokemon of battle.opponent.pokemons; track pokemon) {
       <div>
         <app-display-pokemon-image
-          class="pokemon-image"
+          [dynamicSizing]="true"
           [pokemon]="pokemon"
           [type]="'max-size'" />
       </div>

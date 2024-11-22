@@ -63,6 +63,7 @@
     </mat-form-field>
     <span>Shiny</span>
     <mat-slide-toggle
+      hideIcon
       [formControl]="pokemonForm.controls.shiny"></mat-slide-toggle>
     <div>
       @for (displayedMove of pokemonForm.controls.moves.value; track

@@ -47,3 +47,6 @@ Thumbs.db
 
 #env
 .env
+/nginx/Temp
+/nginx/conf
+/nginx/logs

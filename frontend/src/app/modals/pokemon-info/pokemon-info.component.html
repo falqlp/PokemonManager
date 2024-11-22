@@ -6,7 +6,7 @@
     {{ data.nickname ?? (data.basePokemon?.name ?? 'EGG' | translate) }}
   </h2>
   <mat-dialog-content class="pokemon-info__content">
-    <div class="pokemon-info__content--image img-pokemon">
+    <div class="pokemon-info__content--image">
       <app-display-pokemon-image type="max-size" [pokemon]="data" />
     </div>
     <div class="pokemon-info__content--type">

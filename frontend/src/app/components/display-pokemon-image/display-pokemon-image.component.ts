@@ -1,14 +1,11 @@
 import {
   Component,
-  ElementRef,
   inject,
   Input,
   input,
   OnChanges,
   OnInit,
-  signal,
   SimpleChanges,
-  ViewChild,
 } from '@angular/core';
 import { PokemonModel } from '../../models/PokemonModels/pokemon.model';
 import { DisplayType } from './display-pokemon-image.model';
@@ -27,18 +24,15 @@ import { RouterService } from '../../services/router.service';
 })
 export class DisplayPokemonImageComponent implements OnInit, OnChanges {
   private routerService = inject(RouterService);
-  protected elementRef = inject(ElementRef);
 
-  @ViewChild('img') protected img: ElementRef;
   @Input() public pokemon: PokemonModel | PokemonBaseModel;
   @Input() public type: DisplayType;
-  @Input() public height: number;
   @Input() public shiny = false;
   public disabledClick = input<boolean>(false);
+  public dynamicSizing = input<boolean>(false);
   protected fontSize: number;
 
   protected basePokemon: PokemonBaseModel;
-  protected maxHeight = signal<boolean>(false);
 
   protected imageUrl: string;
 
@@ -90,17 +84,6 @@ export class DisplayPokemonImageComponent implements OnInit, OnChanges {
           this.shiny ? ' shiny' : ''
         }/${idString}.png`;
     }
-  }
-
-  public loadImg(): void {
-    this.fontSize = this.img.nativeElement.height * 0.2;
-    const hwRatioImg =
-      this.elementRef.nativeElement.children[0].naturalHeight /
-      this.elementRef.nativeElement.children[0].naturalWidth;
-    const hwRatioImgDiv =
-      this.elementRef.nativeElement.parentElement.clientHeight /
-      this.elementRef.nativeElement.parentElement.clientWidth;
-    this.maxHeight.set(hwRatioImg > hwRatioImgDiv);
   }
 
   protected click(): void {

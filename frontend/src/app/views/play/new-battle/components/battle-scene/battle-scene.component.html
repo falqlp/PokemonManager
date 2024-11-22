@@ -36,6 +36,7 @@
         "
         src="../../../../../../assets/battleback/ground_city.PNG" />
       <app-display-pokemon-image
+        [dynamicSizing]="true"
         [ngClass]="[
           opponentPokemon.moving
             ? 'battle__scene__opponent__pokemon__image__pokemon--moving'
@@ -73,6 +74,7 @@
         "
         src="../../../../../../assets/battleback/ground_city.PNG" />
       <app-display-pokemon-image
+        [dynamicSizing]="true"
         class="battle__scene__player__pokemon__image__pokemon"
         [ngClass]="[
           playerPokemon.moving

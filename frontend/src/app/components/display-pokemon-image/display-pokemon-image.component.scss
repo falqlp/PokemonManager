@@ -3,6 +3,11 @@
   position: relative;
   .display-pokemon-image {
     cursor: pointer;
+    object-fit: contain;
+  }
+  .dynamic-sizing {
+    height: 100%;
+    width: 100%;
   }
   .shiny {
     top: 0;

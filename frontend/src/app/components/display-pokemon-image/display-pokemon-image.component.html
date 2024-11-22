@@ -1,14 +1,11 @@
 <img
-  #img
   class="display-pokemon-image"
   [ngClass]="{
     icon: type === 'icon',
-    'max-height': maxHeight(),
-    'max-width': !maxHeight()
+    'dynamic-sizing': dynamicSizing()
   }"
   draggable="false"
   [src]="imageUrl"
-  (load)="loadImg()"
   (click)="!disabledClick() && type !== 'icon' && type !== 'back' && click()"
   alt="{{ basePokemon?.name ?? 'EGG' | translate }} {{ type }}" />
 @if (shiny) {

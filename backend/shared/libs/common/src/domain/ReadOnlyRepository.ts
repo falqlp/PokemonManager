@@ -111,7 +111,7 @@ abstract class ReadOnlyRepository<T extends MongoId> {
       }
       if (sortParts && sortParts[0] === 'translation') {
         sortQuery = {};
-        sortQuery[Object.keys(body.sort)[0] + '.' + options.lang] =
+        sortQuery[Object.keys(body.sort)[0] + '.' + options.lang.slice(0, 2)] =
           body.sort[Object.keys(body.sort)[0]];
         aggregation.lookup({
           from: 'translations',
@@ -119,7 +119,10 @@ abstract class ReadOnlyRepository<T extends MongoId> {
           foreignField: 'key',
           as: 'translation.' + sortParts[1],
         });
-        aggregation.collation({ locale: options.lang, strength: 1 });
+        aggregation.collation({
+          locale: options.lang.slice(0, 2),
+          strength: 1,
+        });
       }
       this.getTranslatedData(
         aggregation,
@@ -176,7 +179,7 @@ abstract class ReadOnlyRepository<T extends MongoId> {
     }
     const modifiedTranslateQuery: Record<string, unknown> = {};
     Object.keys(translateQuery).forEach((key) => {
-      const newKey = key + '.' + options.lang;
+      const newKey = key + '.' + options.lang.slice(0, 2);
       modifiedTranslateQuery[newKey] = translateQuery[key];
       const splitMatch = key.split('.');
       if (key !== sortKey) {
@@ -186,7 +189,10 @@ abstract class ReadOnlyRepository<T extends MongoId> {
           foreignField: 'key',
           as: 'translation.' + splitMatch[1],
         });
-        aggregation.collation({ locale: options.lang, strength: 1 });
+        aggregation.collation({
+          locale: options.lang.slice(0, 2),
+          strength: 1,
+        });
       }
     });
     if (Object.keys(modifiedTranslateQuery).length > 0) {

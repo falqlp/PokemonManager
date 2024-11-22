@@ -14,7 +14,9 @@
       <div class="pokemon-resume-modify-moves__move--disabled"></div>
       }
       <div class="pokemon-resume-modify-moves__move__top">
-        <mat-slide-toggle [checked]="moveControl.controls.checked.value" />
+        <mat-slide-toggle
+          hideIcon
+          [checked]="moveControl.controls.checked.value" />
         <img
           class="icon-type"
           src="assets/types/simple/{{
