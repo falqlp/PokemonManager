@@ -1,8 +1,8 @@
-import { Component, DestroyRef, Input, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { TimeService } from '../../../services/time.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map, switchMap, tap } from 'rxjs';
-import { AsyncPipe, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   CalendarEventEvent,
   CalendarEventModel,
@@ -13,6 +13,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BattleStatusComponent } from '../../battle-status/battle-status.component';
 import { TrainerNameComponent } from '../../trainer-name/trainer-name.component';
 import { PlayerService } from '../../../services/player.service';
+import { RankingPipe } from '../../../pipes/ranking.pipe';
 
 @Component({
   standalone: true,
@@ -20,11 +21,11 @@ import { PlayerService } from '../../../services/player.service';
   templateUrl: './top-bar-week-calendar.component.html',
   styleUrls: ['./top-bar-week-calendar.component.scss'],
   imports: [
-    AsyncPipe,
     NgClass,
     TranslateModule,
     BattleStatusComponent,
     TrainerNameComponent,
+    RankingPipe,
   ],
 })
 export class TopBarWeekCalendarComponent implements OnInit {
