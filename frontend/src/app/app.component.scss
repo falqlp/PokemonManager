@@ -10,10 +10,9 @@
 }
 
 .background {
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
   position: fixed;
   height: 100vh;
+  width: 100vw;
+  object-fit: cover;
   z-index: -500;
 }
