@@ -49,12 +49,7 @@
           <span>
             @let trainer = event?.event.opponent.name !== player.name ?
             event?.event.opponent : event?.event.player;
-            <pm-trainer-name
-              [trainer]="
-                event?.event.opponent.name !== player.name
-                  ? event?.event.opponent
-                  : event?.event.player
-              " />
+            <pm-trainer-name [trainer]="trainer" />
             {{
               {
                 trainerId: trainer._id,
