@@ -47,8 +47,14 @@ jobs:
       # Build pour battle
       - name: Install dependencies for battle
         run: cd backend/battle && npm ci
-      - name: Compile TypeScript for battle-stats
+      - name: Compile TypeScript for battle
         run: cd backend/battle && npm run build
+
+      # Build pour battle-websocket
+      - name: Install dependencies for battle-websocket
+        run: cd backend/battle-websocket && npm ci
+      - name: Compile TypeScript for battle-websocket
+        run: cd backend/battle-websocket && npm run build
 
   lint:
     runs-on: ubuntu-latest
@@ -91,11 +97,19 @@ jobs:
 
       # Linter pour battle
       - name: Install dependencies for battle
-        run: cd backend/battle-stats && npm ci
+        run: cd backend/battle && npm ci
       - name: Run linter for battle
         run: cd backend/battle-stats && npm run lint:check
       - name: Run format check for battle
-        run: cd backend/battle-stats && npm run format:check
+        run: cd backend/battle && npm run format:check
+
+      # Linter pour battle-websocket
+      - name: Install dependencies for battle-websocket
+        run: cd backend/battle-websocket && npm ci
+      - name: Run linter for battle-websocket
+        run: cd backend/battle-websocket && npm run lint:check
+      - name: Run format check for battle-websocket
+        run: cd backend/battle-websocket && npm run format:check
 
   test:
     runs-on: ubuntu-latest
@@ -143,6 +157,14 @@ jobs:
         env:
           CI: true
 
+      # Tests pour battle-websocket
+      - name: Install dependencies for battle-websocket
+        run: cd backend/battle-websocket && npm ci
+      - name: Run tests with coverage for battle-websocket
+        run: cd backend/battle-websocket && npm test -- --coverage
+        env:
+          CI: true
+
       # Upload des rapports de couverture à Codecov
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
@@ -174,5 +196,13 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: backend/battle/coverage/lcov.info
           flags: unittests-battle
+          name: codecov-battle
+          fail_ci_if_error: true
+      - name: Upload shared coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: backend/battle-websocket/coverage/lcov.info
+          flags: unittests-battle-websocket
           name: codecov-battle
           fail_ci_if_error: true
