@@ -13,8 +13,9 @@ import WebsocketUtils from './WebsocketUtils';
 import SimulateDayWebsocketService from './SimulateDayWebsocketService';
 
 @WebSocketGateway({
+  namespace: '/core',
   cors: {
-    origin: '*', // Autorisez les requêtes Cross-Origin, ou configurez selon vos besoins
+    origin: process.env.FRONT_URL,
   },
 })
 export class WebsocketGateway

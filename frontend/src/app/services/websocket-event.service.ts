@@ -124,9 +124,10 @@ export class WebsocketEventService {
   public updateBattleStatusEvent$: Observable<BattleStatus> =
     this.updateBattleStatusEventSubject.asObservable();
 
-  public handleMessage = (message: WebSocketModel): void => {
+  public handleMessage(message: WebSocketModel): void {
+    console.info(message);
     this.eventMap[message.type](message.payload);
-  };
+  }
 
   private notifyEvent = (notification: NotificationModel): void => {
     this.notifyEventSubject.next(notification);
