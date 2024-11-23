@@ -1,0 +1,50 @@
+name: Shared CI
+
+on:
+  push:
+    branches:
+      - master
+      - prod
+    paths:
+      - 'backend/shared/**'
+  pull_request:
+    paths:
+      - 'backend/shared/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies
+        run: cd backend/shared && npm ci
+      - name: Build
+        run: cd backend/shared && npm run build
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Lint and Format Check
+        run: |
+          cd backend/shared
+          npm ci
+          npm run lint:check
+          npm run format:check
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Tests
+        run: |
+          cd backend/shared
+          npm ci
+          npm test -- --coverage
+        env:
+          CI: true

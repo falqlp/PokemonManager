@@ -1,0 +1,67 @@
+name: Battle WebSocket CI
+
+on:
+  push:
+    branches:
+      - master
+      - prod
+    paths:
+      - 'backend/battle-websocket/**'
+      - 'backend/shared/**'
+  pull_request:
+    paths:
+      - 'backend/battle-websocket/**'
+      - 'backend/shared/**'
+
+jobs:
+  build-shared:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies for shared
+        run: cd backend/shared && npm ci
+      - name: Build shared
+        run: cd backend/shared && npm run build
+
+  build-battle-websocket:
+    needs: build-shared
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies for battle-websocket
+        run: cd backend/battle-websocket && npm ci
+      - name: Build battle-websocket
+        run: cd backend/battle-websocket && npm run build
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Lint and Format Check for Battle WebSocket
+        run: |
+          cd backend/battle-websocket
+          npm ci
+          npm run lint:check
+          npm run format:check
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Tests for Battle WebSocket
+        run: |
+          cd backend/battle-websocket
+          npm ci
+          npm test -- --coverage
+        env:
+          CI: true

@@ -1,0 +1,67 @@
+name: Battle CI
+
+on:
+  push:
+    branches:
+      - master
+      - prod
+    paths:
+      - 'backend/battle/**'
+      - 'backend/shared/**'
+  pull_request:
+    paths:
+      - 'backend/battle/**'
+      - 'backend/shared/**'
+
+jobs:
+  build-shared:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies for shared
+        run: cd backend/shared && npm ci
+      - name: Build shared
+        run: cd backend/shared && npm run build
+
+  build-battle:
+    needs: build-shared
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies for battle
+        run: cd backend/battle && npm ci
+      - name: Build battle
+        run: cd backend/battle && npm run build
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Lint and Format Check for Battle
+        run: |
+          cd backend/battle
+          npm ci
+          npm run lint:check
+          npm run format:check
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Tests for Battle
+        run: |
+          cd backend/battle
+          npm ci
+          npm test -- --coverage
+        env:
+          CI: true
