@@ -8,6 +8,10 @@ export enum NeedReplyTopics {
   getInitBattleReady = 'getInitBattleReady',
   getNextRoundStatus = 'getNextRoundStatus',
   getNextRoundLoopStatus = 'getNextRoundLoopStatus',
+  addAskNextRound = 'addAskNextRound',
+  addAskNextRoundLoop = 'addAskNextRoundLoop',
+  resetNextRoundStatus = 'resetNextRoundStatus',
+  setLoopMode = 'setLoopMode',
 }
 
 @Injectable()

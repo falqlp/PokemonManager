@@ -82,3 +82,17 @@ services:
       - .env
     environment:
       - BATTLE_PORT=${BATTLE_PORT}
+
+  battle-websocket:
+    depends_on:
+      - kafka
+    build:
+      context: .
+      dockerfile: battle-websocket/Dockerfile
+    network_mode: "host"
+    ports:
+      - "${BATTLE_WEBSOCKET_PORT}:${BATTLE_WEBSOCKET_PORT}"
+    env_file:
+      - .env
+    environment:
+      - BATTLE_WEBSOCKET_PORT=${BATTLE_WEBSOCKET_PORT}

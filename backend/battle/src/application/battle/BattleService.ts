@@ -419,7 +419,7 @@ export default class BattleService {
         date,
       );
       this.battleStateRepository.delete(battleId).then();
-      this.battleWebsocketService.resetNextRoundStatus([
+      await this.battleWebsocketService.resetNextRoundStatus([
         newBattleState.player._id,
         newBattleState.opponent._id,
       ]);
@@ -444,11 +444,11 @@ export default class BattleService {
     battleId: string,
     gameId: string,
   ): Promise<void> {
-    this.battleWebsocketService.addAskNextRound([trainerId], true);
+    await this.battleWebsocketService.addAskNextRound([trainerId], true);
     const playerIds = await this.getPlayerIds(battleId, gameId);
     if (await this.battleWebsocketService.getNextRoundStatus(playerIds)) {
       await this.playNextRound(battleId);
-      this.battleWebsocketService.resetNextRoundStatus(playerIds);
+      await this.battleWebsocketService.resetNextRoundStatus(playerIds);
     }
     this.battleWebsocketService.updateNextRoundStatus(playerIds);
   }
@@ -459,7 +459,7 @@ export default class BattleService {
     gameId: string,
   ): Promise<void> {
     const playerIds = await this.getPlayerIds(battleId, gameId);
-    this.battleWebsocketService.addAskNextRound([trainerId], false);
+    await this.battleWebsocketService.addAskNextRound([trainerId], false);
     this.battleWebsocketService.updateNextRoundStatus(playerIds);
   }
 
@@ -469,7 +469,7 @@ export default class BattleService {
     gameId: string,
   ): Promise<void> {
     const playerIds = await this.getPlayerIds(battleId, gameId);
-    this.battleWebsocketService.addAskNextRoundLoop([trainerId], false);
+    await this.battleWebsocketService.addAskNextRoundLoop([trainerId], false);
     this.battleWebsocketService.updateNextRoundStatus(playerIds);
   }
 
@@ -478,14 +478,14 @@ export default class BattleService {
     battleId: string,
     gameId: string,
   ): Promise<void> {
-    this.battleWebsocketService.addAskNextRoundLoop([trainerId], true);
+    await this.battleWebsocketService.addAskNextRoundLoop([trainerId], true);
     const playerIds = await this.getPlayerIds(battleId, gameId);
     if (await this.battleWebsocketService.getNextRoundStatus(playerIds)) {
       if (await this.battleWebsocketService.getNextRoundLoopStatus(playerIds)) {
         await this.nextRoundLoop(battleId, playerIds, gameId);
       } else {
         await this.playNextRound(battleId);
-        this.battleWebsocketService.resetNextRoundStatus(playerIds);
+        await this.battleWebsocketService.resetNextRoundStatus(playerIds);
       }
     }
     this.battleWebsocketService.updateNextRoundStatus(playerIds);
@@ -496,7 +496,7 @@ export default class BattleService {
     playerIds: string[],
     gameId: string,
   ): Promise<void> {
-    this.battleWebsocketService.setLoopMode(playerIds);
+    await this.battleWebsocketService.setLoopMode(playerIds);
     this.battleWebsocketService.updateNextRoundStatus(playerIds);
     await this.playNextRound(battleId);
     const interval = setInterval(async () => {
@@ -516,7 +516,7 @@ export default class BattleService {
     gameId: string,
   ): Promise<void> {
     const playerIds = await this.getPlayerIds(battleId, gameId);
-    this.battleWebsocketService.resetNextRoundStatus(playerIds);
+    await this.battleWebsocketService.resetNextRoundStatus(playerIds);
     this.battleWebsocketService.updateNextRoundStatus(playerIds);
   }
 

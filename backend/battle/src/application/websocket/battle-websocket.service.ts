@@ -32,26 +32,42 @@ export default class BattleWebsocketService {
     );
   }
 
-  public addAskNextRound(trainerIds: string[], status: boolean): void {
-    this.kafkaClientService
-      .getClient()
-      .emit('addAskNextRound', { trainerIds, status });
+  public async addAskNextRound(
+    trainerIds: string[],
+    status: boolean,
+  ): Promise<void> {
+    await firstValueFrom(
+      this.kafkaClientService
+        .getClient()
+        .send(NeedReplyTopics.addAskNextRound, { trainerIds, status }),
+    );
   }
 
-  public addAskNextRoundLoop(trainerIds: string[], status: boolean): void {
-    this.kafkaClientService
-      .getClient()
-      .emit('addAskNextRoundLoop', { trainerIds, status });
+  public async addAskNextRoundLoop(
+    trainerIds: string[],
+    status: boolean,
+  ): Promise<void> {
+    await firstValueFrom(
+      this.kafkaClientService
+        .getClient()
+        .send(NeedReplyTopics.addAskNextRoundLoop, { trainerIds, status }),
+    );
   }
 
-  public resetNextRoundStatus(trainerIds: string[]): void {
-    this.kafkaClientService
-      .getClient()
-      .emit('resetNextRoundStatus', trainerIds);
+  public async resetNextRoundStatus(trainerIds: string[]): Promise<void> {
+    await firstValueFrom(
+      this.kafkaClientService
+        .getClient()
+        .send(NeedReplyTopics.resetNextRoundStatus, trainerIds),
+    );
   }
 
-  public setLoopMode(trainerIds: string[]): void {
-    this.kafkaClientService.getClient().emit('setLoopMode', trainerIds);
+  public async setLoopMode(trainerIds: string[]): Promise<void> {
+    await firstValueFrom(
+      this.kafkaClientService
+        .getClient()
+        .send(NeedReplyTopics.setLoopMode, trainerIds),
+    );
   }
 
   public getNextRoundStatus(trainerIds: string[]): Promise<boolean> {
