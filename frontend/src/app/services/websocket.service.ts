@@ -26,7 +26,8 @@ export class WebsocketService {
 
   public connect(): void {
     // Initialise la connexion Socket.IO avec les options CORS
-    this.socket = io(this.url, {
+    this.socket = io(this.url + '/core', {
+      forceNew: true,
       transports: ['websocket'], // Utilise uniquement le transport WebSocket
       withCredentials: true, // Ajoutez des informations d'authentification si nécessaire
     });

@@ -4,6 +4,7 @@ import {
   ElementRef,
   inject,
   Input,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -42,6 +43,9 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { BattleDamageInfo, DamageModel } from '../../../models/damage.model';
 import { SideEffect } from '../../../models/move.model';
 import { BattleQueriesService } from '../../../services/queries/battle-queries.service';
+import { io, Socket } from 'socket.io-client';
+import { environment } from '../../../../environments/environment';
+import { WebSocketModel } from '../../../services/websocket.service';
 
 @Component({
   selector: 'pm-new-battle',
@@ -63,7 +67,7 @@ import { BattleQueriesService } from '../../../services/queries/battle-queries.s
   templateUrl: './new-battle.component.html',
   styleUrl: './new-battle.component.scss',
 })
-export class NewBattleComponent implements OnInit {
+export class NewBattleComponent implements OnInit, OnDestroy {
   private readonly translateService = inject(TranslateService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly playerService = inject(PlayerService);
@@ -85,8 +89,18 @@ export class NewBattleComponent implements OnInit {
   protected askNextRoundLoop = false;
   protected disableButtons = false;
   protected updateBattleStatusEvent$: Observable<BattleStatus>;
+  private socket: Socket;
 
   public ngOnInit(): void {
+    this.socket = io(environment.wsUrl + '/battle-websocket', {
+      forceNew: true,
+      path: '/battle-websocket',
+      transports: ['websocket'],
+      withCredentials: true,
+    });
+    this.socket.on('message', (data: WebSocketModel) => {
+      this.websocketEventService.handleMessage(data);
+    });
     this.updateBattleStatusEvent$ =
       this.websocketEventService.updateBattleStatusEvent$.pipe(
         startWith({
@@ -97,12 +111,16 @@ export class NewBattleComponent implements OnInit {
       );
     this.playerService.player$
       .pipe(
-        takeUntilDestroyed(this.destroyRef),
         filter((player) => !!player),
         first(),
         switchMap((player) => {
+          this.socket.emit('init', {
+            battleId: this.id,
+            trainerId: player._id,
+          });
           return this.battleQueriesService.initTrainer(player._id, this.id);
-        })
+        }),
+        takeUntilDestroyed(this.destroyRef)
       )
       .subscribe();
     combineLatest([
@@ -131,6 +149,10 @@ export class NewBattleComponent implements OnInit {
           this.nextRound(battle);
         }
       });
+  }
+
+  public ngOnDestroy(): void {
+    this.socket.disconnect();
   }
 
   private nextRound(res: BattleStateModel): void {
