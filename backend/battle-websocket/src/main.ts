@@ -47,5 +47,6 @@ async function bootstrap(): Promise<void> {
 
   await app.listen(port);
   console.log(`Battle WebSocket is running on: ws://localhost:${port}`);
+  //test
 }
 bootstrap();
