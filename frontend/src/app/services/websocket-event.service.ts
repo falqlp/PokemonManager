@@ -125,7 +125,6 @@ export class WebsocketEventService {
     this.updateBattleStatusEventSubject.asObservable();
 
   public handleMessage(message: WebSocketModel): void {
-    console.info(message);
     this.eventMap[message.type](message.payload);
   }
 
