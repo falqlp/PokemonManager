@@ -30,6 +30,7 @@ abstract class CompleteRepository<
         .exec()) as T;
     } catch (error) {
       return Promise.reject(error);
+      // test
     }
   }
 
