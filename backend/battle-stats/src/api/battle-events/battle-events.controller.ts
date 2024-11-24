@@ -4,6 +4,7 @@ import {
   Headers,
   HttpException,
   HttpStatus,
+  Logger,
   Put,
 } from '@nestjs/common';
 import {
@@ -33,8 +34,9 @@ export class BattleEventsController {
         sort,
       );
     } catch (error) {
+      Logger.error(error);
       throw new HttpException(
-        'Failed to retrieve battle event stats: ' + error.message,
+        'Failed to retrieve battle event stats: ' + error,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }

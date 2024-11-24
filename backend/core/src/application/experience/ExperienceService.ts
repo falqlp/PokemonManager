@@ -177,6 +177,7 @@ class ExperienceService {
     const trainers = await this.trainerRepository.list({
       custom: {
         gameId: game._id,
+        division: { $exists: true },
         _id: {
           $not: { $in: game.players.map((player) => player.trainer._id) },
         },

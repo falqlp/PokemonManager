@@ -4,24 +4,25 @@ import {
   CoreKafkaClientService,
   NeedReplyTopics,
 } from '../core-kafka-client/core-kafka-client.service';
-import { firstValueFrom } from 'rxjs';
+import { catchError, firstValueFrom, throwError } from 'rxjs';
 
 @Injectable()
 export default class BattleService {
   constructor(private readonly kafkaClientService: CoreKafkaClientService) {}
 
-  public async simulateBattle(
+  public simulateBattle(
     battle: IBattleInstance,
     date: Date,
   ): Promise<IBattleInstance> {
-    try {
-      return firstValueFrom(
-        this.kafkaClientService
-          .getClient()
-          .send(NeedReplyTopics.simulateBattle, { battle, date }),
-      );
-    } catch (e) {
-      await Promise.reject(e);
-    }
+    return firstValueFrom(
+      this.kafkaClientService
+        .getClient()
+        .send(NeedReplyTopics.simulateBattle, { battle, date })
+        .pipe(
+          catchError(() => {
+            return throwError(() => new Error('Error while simulating battle'));
+          }),
+        ),
+    );
   }
 }

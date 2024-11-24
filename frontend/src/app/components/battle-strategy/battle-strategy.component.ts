@@ -1,4 +1,4 @@
-import { Component, DestroyRef, input, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, inject, input, OnInit } from '@angular/core';
 import { PlayerService } from '../../services/player.service';
 import { TrainerModel } from '../../models/TrainersModels/trainer.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -49,23 +49,25 @@ export class BattleStrategyComponent implements OnInit {
   public ngOnInit(): void {
     this.playerService.player$
       .pipe(
-        takeUntilDestroyed(this.destroyRef),
-        filter((value) => !!value)
+        filter((value) => !!value),
+        takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((player) => {
-        player.pokemons.forEach((pokemon) => {
-          const formStrategy = new FormArray<FormControl<number>>([]);
-          pokemon.strategy = pokemon.strategy ?? [];
-          pokemon.moves.forEach((move, index) => {
-            formStrategy.push(
-              new FormControl<number>(
-                pokemon.strategy[index] ?? 9,
-                Validators.required
-              )
-            );
+        if (!this.form().length) {
+          player.pokemons.forEach((pokemon) => {
+            const formStrategy = new FormArray<FormControl<number>>([]);
+            pokemon.strategy = pokemon.strategy ?? [];
+            pokemon.moves.forEach((move, index) => {
+              formStrategy.push(
+                new FormControl<number>(
+                  pokemon.strategy[index] ?? 9,
+                  Validators.required
+                )
+              );
+            });
+            this.form().push(formStrategy);
           });
-          this.form().push(formStrategy);
-        });
+        }
         this.player = player;
       });
   }

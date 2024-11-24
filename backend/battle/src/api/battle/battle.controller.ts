@@ -30,7 +30,7 @@ export class BattleController {
     } catch (error) {
       Logger.error(error);
       throw new HttpException(
-        'Failed to initialize trainer: ' + error.message,
+        'Failed to initialize trainer: ' + error,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
@@ -47,7 +47,7 @@ export class BattleController {
       return { status: 'success' };
     } catch (error) {
       throw new HttpException(
-        'Failed to ask next round: ' + error.message,
+        'Failed to ask next round: ' + error,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
@@ -64,7 +64,7 @@ export class BattleController {
       return { status: 'success' };
     } catch (error) {
       throw new HttpException(
-        'Failed to ask next round loop: ' + error.message,
+        'Failed to ask next round loop: ' + error,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
@@ -81,7 +81,7 @@ export class BattleController {
       return { status: 'success' };
     } catch (error) {
       throw new HttpException(
-        'Failed to delete ask next round: ' + error.message,
+        'Failed to delete ask next round: ' + error,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
@@ -102,7 +102,7 @@ export class BattleController {
       return { status: 'success' };
     } catch (error) {
       throw new HttpException(
-        'Failed to delete ask next round loop: ' + error.message,
+        'Failed to delete ask next round loop: ' + error,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
@@ -118,7 +118,7 @@ export class BattleController {
       return { status: 'success' };
     } catch (error) {
       throw new HttpException(
-        'Failed to reset next round status: ' + error.message,
+        'Failed to reset next round status: ' + error,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
@@ -132,7 +132,10 @@ export class BattleController {
     try {
       return this.battleService.simulateBattle(battle, date);
     } catch (error) {
-      throw new Error('Failed to simulate battle: ' + error);
+      throw new HttpException(
+        'Failed to simulate battle: ' + error,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
   }
 
@@ -142,7 +145,7 @@ export class BattleController {
       return await this.battleService.initBattleForTrainer(id);
     } catch (error) {
       throw new HttpException(
-        'Failed to initialize battle: ' + error.message,
+        'Failed to initialize battle: ' + error,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }

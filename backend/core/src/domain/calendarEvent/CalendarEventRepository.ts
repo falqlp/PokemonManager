@@ -2,10 +2,10 @@ import CompleteRepository from 'shared/common/domain/CompleteRepository';
 import CalendarEvent, { ICalendarEvent } from './CalendarEvent';
 import { Injectable } from '@nestjs/common';
 import CalendarEventPopulater from './CalendarEventPopulater';
-import Battle from '../battleInstance/Battle';
 import { addDays } from 'shared/utils/DateUtils';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import BattleInstanceRepository from '../battleInstance/BattleInstanceRepository';
 
 @Injectable()
 class CalendarEventRepository extends CompleteRepository<ICalendarEvent> {
@@ -13,6 +13,7 @@ class CalendarEventRepository extends CompleteRepository<ICalendarEvent> {
     calendarEventPopulater: CalendarEventPopulater,
     @InjectModel(CalendarEvent.modelName)
     protected override readonly schema: Model<ICalendarEvent>,
+    protected readonly battleRepository: BattleInstanceRepository,
   ) {
     super(schema, calendarEventPopulater);
   }
@@ -26,7 +27,7 @@ class CalendarEventRepository extends CompleteRepository<ICalendarEvent> {
   public override async delete(_id: string): Promise<ICalendarEvent> {
     const calendarEvent = await this.get(_id);
     if (calendarEvent.event) {
-      await Battle.deleteOne({ _id: calendarEvent.event._id });
+      await this.battleRepository.delete(calendarEvent.event._id);
     }
     return super.delete(_id);
   }
@@ -40,7 +41,7 @@ class CalendarEventRepository extends CompleteRepository<ICalendarEvent> {
       date: { $gt: addDays(date, 1) },
     });
     const deleteBattleIds = res.map((val) => val.event as unknown as string);
-    await Battle.deleteMany({
+    await this.battleRepository.deleteMany({
       _id: { $in: deleteBattleIds },
       winner: { $exists: false },
     });

@@ -87,7 +87,7 @@ describe('NewSeasonService', () => {
       trainerRepository.list.mockResolvedValue([
         TrainerTestMother.strongTrainer(),
       ]);
-      trainerService.deleteTrainer.mockResolvedValue(null);
+      trainerService.archiveTrainer.mockResolvedValue(null);
       competitionService.createChampionship.mockResolvedValue(
         {} as ICompetition,
       );

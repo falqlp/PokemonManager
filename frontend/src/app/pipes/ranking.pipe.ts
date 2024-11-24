@@ -18,6 +18,9 @@ export class RankingPipe implements PipeTransform {
       value.competitionId,
       value.trainerId
     );
+    if (ranking === null) {
+      return '';
+    }
     return `${ranking}${this.getRankingSuffix(ranking)}`;
   }
 

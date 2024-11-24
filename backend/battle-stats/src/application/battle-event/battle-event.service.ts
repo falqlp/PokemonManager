@@ -42,13 +42,13 @@ export class BattleEventService {
     battle: BattleEventsBattleInstance,
     date: Date,
   ): Promise<void> {
-    const competitionId = battle.competition._id.toString();
-    const gameId = battle.gameId.toString();
+    const competitionId = battle.competition._id;
+    const gameId = battle.gameId;
     const division = battle.competition.division;
     damageEvents = damageEvents.map((event) => {
       return {
         ...event,
-        battleId: battle._id.toString(),
+        battleId: battle._id,
         competitionId,
         date,
         gameId,
@@ -58,7 +58,7 @@ export class BattleEventService {
     battleParticipationEvents = battleParticipationEvents.map((event) => {
       return {
         ...event,
-        battleId: battle._id.toString(),
+        battleId: battle._id,
         competitionId,
         date,
         gameId,
@@ -121,32 +121,32 @@ export class BattleEventService {
     );
     const trainers = await this.coreInterfaceService.getTrainerList(
       {
-        ids: pokemons.map((pokemon) => pokemon.trainerId.toString()),
+        ids: pokemons.map((pokemon) => pokemon.trainerId),
       },
       gameId,
     );
-    const result = res.map((el, index) => {
-      const trainer = trainers.find(
-        (trainer) =>
-          trainer._id.toString() === pokemons[index].trainerId.toString(),
-      );
-      return {
-        value: el.value,
-        _id: el._id,
-        pokemon: pokemons[index],
-        trainer: {
-          name: trainer.name,
-          class: trainer.class,
-          _id: trainer._id,
-          color: this.colorService.getColorForTrainer(trainer._id.toString()),
-        },
-      };
-    });
-    if (
-      !result.every(
-        (result) => result._id.toString() === result.pokemon._id.toString(),
-      )
-    ) {
+    const result = res
+      .map((el, index) => {
+        const trainer = trainers.find(
+          (trainer) => trainer._id === pokemons[index].trainerId,
+        );
+        if (!trainer) {
+          return;
+        }
+        return {
+          value: el.value,
+          _id: el._id,
+          pokemon: pokemons[index],
+          trainer: {
+            name: trainer.name,
+            class: trainer.class,
+            _id: trainer._id,
+            color: this.colorService.getColorForTrainer(trainer._id),
+          },
+        };
+      })
+      .filter((el) => !!el);
+    if (!result.every((result) => result._id === result.pokemon._id)) {
       throw new Error('Pokemons does not match');
     }
     return result;

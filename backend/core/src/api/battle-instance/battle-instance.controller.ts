@@ -4,6 +4,7 @@ import {
   Get,
   HttpException,
   HttpStatus,
+  Logger,
   Param,
   Post,
   Put,
@@ -89,8 +90,9 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
       await this.battleInstanceService.simulateBattle(id);
       return { status: 'success' };
     } catch (error) {
+      Logger.error(error);
       throw new HttpException(
-        'Failed to simulate battle: ' + error.message,
+        'Failed to simulate battle: ' + error,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
@@ -105,8 +107,9 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
       const obj = await this.battleInstanceService.update(id, body);
       return this.mapper.map(obj);
     } catch (error) {
+      Logger.error(error);
       throw new HttpException(
-        'Failed to update battle instance: ' + error.message,
+        'Failed to update battle instance: ' + error,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
@@ -119,6 +122,7 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
     try {
       return this.repository.get(data);
     } catch (error) {
+      Logger.error(error);
       throw new Error('Failed to get battle instance: ' + error);
     }
   }
@@ -131,6 +135,7 @@ export class BattleInstanceController extends ReadOnlyController<IBattleInstance
     try {
       await this.battleInstanceService.update(_id, battle);
     } catch (error) {
+      Logger.error(error);
       throw new Error('Failed to update battle instance: ' + error);
     }
   }

@@ -99,19 +99,21 @@ export default class BattleService {
       ...opponent.pokemons.filter((pokemon) => pokemon.currentHp > 0),
     ];
     moveOrder = moveOrder ?? [];
-    while (moveOrder.length < 5) {
-      const maxPokemon = pokemons.reduce((prev, current) => {
-        return prev.cumulatedSpeed > current.cumulatedSpeed ? prev : current;
-      });
-      moveOrder.push(maxPokemon);
-      pokemons.map((pokemon) => {
-        if (pokemon._id === maxPokemon._id) {
-          pokemon.cumulatedSpeed = 0;
-        } else {
-          pokemon.cumulatedSpeed += pokemon.stats.spe;
-        }
-        return pokemon;
-      });
+    if (pokemons.length) {
+      while (moveOrder.length < 5) {
+        const maxPokemon = pokemons.reduce((prev, current) => {
+          return prev.cumulatedSpeed > current.cumulatedSpeed ? prev : current;
+        });
+        moveOrder.push(maxPokemon);
+        pokemons.map((pokemon) => {
+          if (pokemon._id === maxPokemon._id) {
+            pokemon.cumulatedSpeed = 0;
+          } else {
+            pokemon.cumulatedSpeed += pokemon.stats.spe;
+          }
+          return pokemon;
+        });
+      }
     }
     return moveOrder;
   }
@@ -215,19 +217,21 @@ export default class BattleService {
         battleState.battleOrder,
         maxDamagedPokemon,
       );
-      battleState.damageEvents.push({
-        battleId: battleState._id,
-        pokemonId: attPokemon._id,
-        trainerId: attPokemon.trainerId,
-        onPokemonId: maxDamagedPokemon._id,
-        onTrainerId: maxDamagedPokemon.trainerId,
-        value: damage.damage,
-        ko: maxDamagedPokemon.currentHp === 0,
-        critical: damage.critical,
-        missed: damage.missed,
-        moveId: damage.move._id,
-        effectiveness: damage.effectiveness,
-      });
+      if (damage) {
+        battleState.damageEvents.push({
+          battleId: battleState._id,
+          pokemonId: attPokemon._id,
+          trainerId: attPokemon.trainerId,
+          onPokemonId: maxDamagedPokemon._id,
+          onTrainerId: maxDamagedPokemon.trainerId,
+          value: damage.damage,
+          ko: maxDamagedPokemon.currentHp === 0,
+          critical: damage.critical,
+          missed: damage.missed,
+          moveId: damage.move._id,
+          effectiveness: damage.effectiveness,
+        });
+      }
     } else {
       attPokemon.reload -= 1;
       damage = {

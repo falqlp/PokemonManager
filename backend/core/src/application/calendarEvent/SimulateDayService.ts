@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import GameRepository from '../../domain/game/GameRepository';
 import {
   CalendarEventEvent,
@@ -71,7 +71,11 @@ export default class SimulateDayService {
         this.simulateDayWebsocketService.getNextDayStatus(game)
       ) {
         this.simulateDayWebsocketService.simulating(gameId, true);
-        this.startSimulation(game, date).then();
+        this.startSimulation(game, date)
+          .then()
+          .catch((err) => {
+            Logger.error(err);
+          });
       }
     }
     return res;
@@ -228,7 +232,11 @@ export default class SimulateDayService {
   }
 
   private async simulateDay(game: IGame, date: Date): Promise<Date> {
-    await this.simulateBattleForDay(game, date);
+    try {
+      await this.simulateBattleForDay(game, date);
+    } catch (error) {
+      throw error;
+    }
     date = addDays(date, 1);
     game.actualDate = date;
     await this.gameRepository.update(game._id, game);
@@ -271,10 +279,13 @@ export default class SimulateDayService {
         trainers: { $nin: game.players.map((player) => player.trainer._id) },
       },
     });
-    const promises = battles.map(async (value) => {
-      value.event = await this.battleService.simulateBattle(value.event, date);
-      await this.battleInstanceService.update(value.event._id, value.event);
+    const promises = battles.map((value) => {
+      return this.battleService.simulateBattle(value.event, date);
     });
-    await Promise.all(promises);
+
+    const simulatedBattles = await Promise.all(promises);
+    for (const battle of simulatedBattles) {
+      await this.battleInstanceService.update(battle._id, battle);
+    }
   }
 }
