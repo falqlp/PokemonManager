@@ -59,7 +59,7 @@ describe('BattleService', () => {
     } as IBattleInstance;
 
     const mockDate = new Date();
-    const mockError = new Error('Kafka Error');
+    const mockError = new Error('Error while simulating battle');
 
     mockKafkaClientService
       .getClient()
