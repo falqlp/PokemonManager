@@ -11,7 +11,7 @@ import TrainerService from '../trainer/TrainerService';
 import NurseryService from '../trainer/nursery/NurseryService';
 import NurseryRepository from '../../domain/trainer/nursery/NurseryRepository';
 import { IBattleInstance } from '../../domain/battleInstance/Battle';
-import BattleService from '../battle/BattleService';
+import BattleService from '../battle/battle.service';
 import { BattleInstanceService } from '../battleInstance/BattleInstanceService';
 import { IGame } from '../../domain/game/Game';
 import { addDays, addMonth, delay } from 'shared/utils';
