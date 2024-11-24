@@ -26,7 +26,7 @@ import { LanguageService } from './services/language.service';
 import { RouterService } from './services/router.service';
 import { UserService } from './services/user.service';
 import { CacheService } from './services/cache.service';
-import { AsyncPipe, NgClass, NgOptimizedImage } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -44,7 +44,6 @@ import { AsyncPipe, NgClass, NgOptimizedImage } from '@angular/common';
     NoMobileComponent,
     AsyncPipe,
     NgClass,
-    NgOptimizedImage,
   ],
 })
 export class AppComponent implements OnInit, AfterViewInit {

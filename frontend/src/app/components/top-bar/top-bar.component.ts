@@ -10,7 +10,7 @@ import { RouterService } from '../../services/router.service';
 import { TimeService } from '../../services/time.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SidenavService } from '../sidenav/sidenav.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
 import { MatIconModule } from '@angular/material/icon';
 import { DisplayPokemonImageComponent } from '../display-pokemon-image/display-pokemon-image.component';
@@ -50,8 +50,7 @@ export class TopBarComponent implements OnInit {
   private timeService = inject(TimeService);
   private destroyRef = inject(DestroyRef);
   private sidenavService = inject(SidenavService);
-  private translateService = inject(TranslateService);
-  private languageService = inject(LanguageService);
+  protected languageService = inject(LanguageService);
   private websocketEventService = inject(WebsocketEventService);
 
   protected player$: Observable<TrainerModel>;
@@ -60,10 +59,7 @@ export class TopBarComponent implements OnInit {
   protected date$: Observable<string>;
   protected showWeekCalendar = false;
   protected actualDate: Date;
-  protected topBar$ = this.routerService.topBar();
   protected player: TrainerModel;
-  protected lang =
-    this.translateService.currentLang ?? this.translateService.defaultLang;
 
   public ngOnInit(): void {
     this.player$ = this.playerService.player$.pipe(
@@ -100,9 +96,7 @@ export class TopBarComponent implements OnInit {
   }
 
   protected changeLanguage(lang: string): void {
-    this.translateService.use(lang);
-    this.lang = this.translateService.currentLang;
-    this.languageService.setLanguage(this.lang);
+    this.languageService.setLanguage(lang);
     this.timeService
       .getActualDate()
       .pipe(first(), takeUntilDestroyed(this.destroyRef))
