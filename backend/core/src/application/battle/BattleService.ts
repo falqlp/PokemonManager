@@ -14,10 +14,14 @@ export default class BattleService {
     battle: IBattleInstance,
     date: Date,
   ): Promise<IBattleInstance> {
-    return firstValueFrom(
-      this.kafkaClientService
-        .getClient()
-        .send(NeedReplyTopics.simulateBattle, { battle, date }),
-    );
+    try {
+      return firstValueFrom(
+        this.kafkaClientService
+          .getClient()
+          .send(NeedReplyTopics.simulateBattle, { battle, date }),
+      );
+    } catch (e) {
+      await Promise.reject(e);
+    }
   }
 }

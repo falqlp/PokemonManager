@@ -1,4 +1,10 @@
-import { addDays, addYears, calculateAge, isSevenDaysApart } from './DateUtils';
+import {
+  addDays,
+  addMonth,
+  addYears,
+  calculateAge,
+  isSevenDaysApart,
+} from './DateUtils';
 
 describe('isSevenDaysApart function', () => {
   it('returns true if two dates are seven days apart', () => {
@@ -45,6 +51,20 @@ describe('addYear function', () => {
   it('returns the same date when zero years are added', () => {
     const date = new Date('2024-05-25');
     expect(addYears(date, 0)).toEqual(date);
+  });
+});
+
+describe('addMonth function', () => {
+  it('adds the correct number of years to the date', () => {
+    const date = new Date('2024-05-25');
+    const numberOfMonthToAdd = 1;
+    const expectedResult = new Date('2024-06-25');
+    expect(addMonth(date, numberOfMonthToAdd)).toEqual(expectedResult);
+  });
+
+  it('returns the same date when zero years are added', () => {
+    const date = new Date('2024-05-25');
+    expect(addMonth(date, 0)).toEqual(date);
   });
 });
 

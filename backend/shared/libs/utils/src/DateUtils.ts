@@ -21,6 +21,12 @@ export function addYears(date: Date, years: number): Date {
   return newDate;
 }
 
+export function addMonth(date: Date, month: number): Date {
+  const newDate = new Date(date);
+  newDate.setUTCMonth(newDate.getUTCMonth() + month);
+  return newDate;
+}
+
 export function calculateAge(birthdate: Date, today: Date): number {
   birthdate = new Date(birthdate);
   let age = today.getFullYear() - birthdate.getFullYear();
