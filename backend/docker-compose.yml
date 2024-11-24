@@ -9,11 +9,17 @@ services:
     volumes:
       - ./kafka/zookeeper_data/zookeeper_data:/var/lib/zookeeper/data
       - ./kafka/zookeeper_data/zookeeper_log:/var/lib/zookeeper/log
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "2181" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   kafka:
     image: confluentinc/cp-kafka:latest
     depends_on:
-      - zookeeper
+      zookeeper:
+        condition: service_healthy
     ports:
       - "9092:9092"
     environment:
@@ -25,6 +31,11 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     volumes:
       - ./kafka/kafka-data:/var/lib/kafka/data
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "9092" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   nginx:
     build:
@@ -38,7 +49,8 @@ services:
 
   core:
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
     build:
       context: .
       dockerfile: core/Dockerfile
@@ -57,7 +69,8 @@ services:
 
   battle-stats:
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
     build:
       context: .
       dockerfile: battle-stats/Dockerfile
@@ -71,7 +84,8 @@ services:
 
   battle:
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
     build:
       context: .
       dockerfile: battle/Dockerfile
@@ -85,7 +99,8 @@ services:
 
   battle-websocket:
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
     build:
       context: .
       dockerfile: battle-websocket/Dockerfile

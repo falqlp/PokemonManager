@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { DomainModule } from '../domain/domain.module';
 import { BattleInstanceService } from './battleInstance/BattleInstanceService';
-import BattleService from './battle/BattleService';
+import BattleService from './battle/battle.service';
 import { WebsocketModule } from '../websocket/websocket.module';
 import CalendarEventService from './calendarEvent/CalendarEventService';
 import SimulateDayService from './calendarEvent/SimulateDayService';

@@ -11,10 +11,10 @@ import TrainerService from '../trainer/TrainerService';
 import NurseryService from '../trainer/nursery/NurseryService';
 import NurseryRepository from '../../domain/trainer/nursery/NurseryRepository';
 import { IBattleInstance } from '../../domain/battleInstance/Battle';
-import BattleService from '../battle/BattleService';
+import BattleService from '../battle/battle.service';
 import { BattleInstanceService } from '../battleInstance/BattleInstanceService';
 import { IGame } from '../../domain/game/Game';
-import { addDays } from 'shared/utils/DateUtils';
+import { addDays, addMonth, delay } from 'shared/utils';
 import CompetitionService from '../competition/CompetitionService';
 import TournamentService from '../competition/tournament/TournamentService';
 import ExperienceService from '../experience/ExperienceService';
@@ -23,7 +23,6 @@ import { NotificationType } from '../../websocket/WebsocketDataService';
 import SimulateDayWebsocketService from '../../websocket/SimulateDayWebsocketService';
 import WebsocketUtils from '../../websocket/WebsocketUtils';
 import PokemonService from '../pokemon/PokemonService';
-import { delay } from 'shared/utils/Utils';
 import { NewSeasonService } from './NewSeasonService';
 
 @Injectable()
@@ -154,76 +153,78 @@ export default class SimulateDayService {
         event.type === CalendarEventEvent.BATTLE && !event.event.winner,
     )?.event;
     if (!battle) {
-      const trainer = await this.trainerRepository.get(trainerId);
-      redirectTo = await this.nurseryEvents(
-        events,
-        trainer,
-        addDays(date, 1),
-        gameId,
-        redirectTo,
+      const nurseryEvent = events.find(
+        (event) =>
+          event.type === CalendarEventEvent.NURSERY_FIRST_SELECTION_DEADLINE ||
+          event.type === CalendarEventEvent.NURSERY_LAST_SELECTION_DEADLINE ||
+          event.type === CalendarEventEvent.GENERATE_NURSERY_EGGS,
       );
-    } else {
-      if (
-        trainerIds.includes(battle.player._id.toString()) &&
-        trainerIds.includes(battle.opponent._id.toString())
-      ) {
-        isMultiplayerBattle = true;
+      if (nurseryEvent) {
+        const trainer = await this.trainerRepository.get(trainerId);
+        redirectTo = await this.nurseryEvents(
+          nurseryEvent,
+          trainer,
+          addDays(date, 1),
+          gameId,
+          redirectTo,
+        );
       }
+    } else if (
+      trainerIds.includes(battle.player._id.toString()) &&
+      trainerIds.includes(battle.opponent._id.toString())
+    ) {
+      isMultiplayerBattle = true;
     }
     return { battle, redirectTo, isMultiplayerBattle };
   }
 
   public async nurseryEvents(
-    events: ICalendarEvent[],
+    nurseryEvent: ICalendarEvent,
     trainer: ITrainer,
     date: Date,
     game: string,
     redirectTo: string,
   ): Promise<string> {
     const nursery = trainer.nursery;
-    if (
-      events.find(
-        (event) => event.type === CalendarEventEvent.GENERATE_NURSERY_EGGS,
-      ) &&
-      nursery.eggs?.length === 0
-    ) {
-      await this.nurseryService.generateNurseryEgg(nursery, game);
-    }
-    if (
-      events.find(
-        (event) =>
-          event.type === CalendarEventEvent.NURSERY_FIRST_SELECTION_DEADLINE ||
-          event.type === CalendarEventEvent.NURSERY_LAST_SELECTION_DEADLINE,
-      )
-    ) {
-      if (
-        nursery.eggs?.length >
-        nursery.wishList.quantity * (nursery.step === 'FIRST_SELECTION' ? 2 : 1)
-      ) {
-        date.setUTCDate(date.getUTCDate() - 1);
-        redirectTo = 'play/nursery';
-        this.websocketUtils.notify(
-          'SELECT_VALID_NUMBER_OF_EGGS',
-          NotificationType.Neutral,
-          trainer._id,
-        );
-      } else {
-        if (nursery.step === 'FIRST_SELECTION') {
+    switch (nurseryEvent.type) {
+      case CalendarEventEvent.GENERATE_NURSERY_EGGS:
+        if (nursery.eggs?.length === 0) {
+          await this.nurseryService.generateNurseryEgg(nursery, game);
+        }
+        break;
+      case CalendarEventEvent.NURSERY_FIRST_SELECTION_DEADLINE:
+        if (nursery.eggs?.length > nursery.wishList.quantity * 2) {
+          redirectTo = this.alertTrainerToSelectEggs(trainer);
+        } else {
           nursery.step = 'LAST_SELECTION';
+        }
+        break;
+      case CalendarEventEvent.NURSERY_LAST_SELECTION_DEADLINE:
+        if (nursery.eggs?.length > nursery.wishList.quantity) {
+          redirectTo = this.alertTrainerToSelectEggs(trainer);
         } else {
           nursery.eggs.forEach((egg) => {
-            const hatchingDate = new Date(date);
-            hatchingDate.setUTCMonth(hatchingDate.getUTCMonth() + 1);
-            egg.hatchingDate = hatchingDate;
+            egg.hatchingDate = addMonth(date, 1);
             this.trainerService.addPokemonForTrainer(egg, trainer._id);
           });
           nursery.eggs = [];
           nursery.step = 'WISHLIST';
         }
-        await this.nurseryRepository.update(nursery._id, nursery);
-      }
+        break;
+      default:
+        throw new Error('Unknown event: ' + nurseryEvent.type);
     }
+    await this.nurseryRepository.update(nursery._id, nursery);
     return redirectTo;
+  }
+
+  private alertTrainerToSelectEggs(trainer: ITrainer): string {
+    this.websocketUtils.notify(
+      'SELECT_VALID_NUMBER_OF_EGGS',
+      NotificationType.Neutral,
+      trainer._id,
+    );
+    return 'nursery';
   }
 
   private async simulateDay(game: IGame, date: Date): Promise<Date> {
@@ -270,9 +271,10 @@ export default class SimulateDayService {
         trainers: { $nin: game.players.map((player) => player.trainer._id) },
       },
     });
-    for (const value of battles) {
+    const promises = battles.map(async (value) => {
       value.event = await this.battleService.simulateBattle(value.event, date);
       await this.battleInstanceService.update(value.event._id, value.event);
-    }
+    });
+    await Promise.all(promises);
   }
 }

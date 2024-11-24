@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import BattleInstanceRepository from '../../domain/battleInstance/BattleInstanceRepository';
 import { ObjectId } from 'mongodb';
 import TrainerRepository from '../../domain/trainer/TrainerRepository';
-import BattleService from '../battle/BattleService';
+import BattleService from '../battle/battle.service';
 import { IBattleInstance } from '../../domain/battleInstance/Battle';
 import { CompetitionType } from '../../domain/competiton/Competition';
 import BattleSerieRepository from '../../domain/competiton/tournament/battleSerie/BattleSerieRepository';
