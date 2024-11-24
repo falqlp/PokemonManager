@@ -16,4 +16,8 @@ export class LanguageService {
   public getLanguage(): Observable<string> {
     return this.language.asObservable();
   }
+
+  public getCurrentLang(): string {
+    return this.language.value;
+  }
 }

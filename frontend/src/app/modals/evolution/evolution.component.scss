@@ -3,6 +3,7 @@
   height: 320px;
   width: 320px;
   &__evolving {
+    display: flex;
     height: 320px;
     width: 320px;
     position: absolute;
@@ -10,6 +11,7 @@
     opacity: 0;
   }
   &__evolved {
+    display: flex;
     height: 320px;
     width: 320px;
     animation: evolved 5s linear;

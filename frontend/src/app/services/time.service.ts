@@ -1,9 +1,9 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, filter, map, Observable, of, switchMap } from 'rxjs';
 import { GameQueriesService } from './queries/game-queries.service';
 import { CacheService } from './cache.service';
-import { TranslateService } from '@ngx-translate/core';
 import { WebsocketEventService } from './websocket-event.service';
+import { LanguageService } from './language.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +11,10 @@ import { WebsocketEventService } from './websocket-event.service';
 export class TimeService {
   private gameQueriesService = inject(GameQueriesService);
   private cacheService = inject(CacheService);
-  private translateService = inject(TranslateService);
+  private languageService = inject(LanguageService);
   private websocketEventService = inject(WebsocketEventService);
 
   protected actualDate: Date = null;
-  protected actualDaySubjectToString: BehaviorSubject<string> =
-    new BehaviorSubject(this.dateToLocalDate(this.actualDate));
 
   protected newDaySubject: BehaviorSubject<void> = new BehaviorSubject(null);
   protected $newDay = this.newDaySubject.asObservable();
@@ -45,18 +43,24 @@ export class TimeService {
   }
 
   public getActualDateToString(): Observable<string> {
-    return this.actualDaySubjectToString.asObservable();
+    return this.languageService.getLanguage().pipe(
+      switchMap((lang) => {
+        return this.getActualDate().pipe(
+          map((date) => this.dateToLocalDate(date, lang))
+        );
+      })
+    );
   }
 
   public getActualDate(): Observable<Date> {
     return this.actualDaySubject.asObservable().pipe(filter((date) => !!date));
   }
 
-  public dateToLocalDate(date: Date): string {
+  public dateToLocalDate(date: Date, local: string): string {
     if (!date) {
       return '';
     }
-    return date.toLocaleString(this.translateService.currentLang, {
+    return date.toLocaleString(local, {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -65,7 +69,7 @@ export class TimeService {
   }
 
   public dateToSimplifyLocalDate(date: Date): string {
-    return date.toLocaleString(this.translateService.currentLang, {
+    return date.toLocaleString(this.languageService.getCurrentLang(), {
       year: 'numeric',
       month: 'numeric',
       day: 'numeric',
@@ -74,7 +78,6 @@ export class TimeService {
   }
 
   public updateDate(newDate: Date): void {
-    this.actualDaySubjectToString.next(this.dateToLocalDate(newDate));
     this.actualDaySubject.next(newDate);
     this.newDaySubject.next();
   }

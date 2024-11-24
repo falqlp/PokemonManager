@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { CacheService } from './cache.service';
 import { UserQueriesService } from './queries/user-queries.service';
 import { EMPTY, map, Observable, switchMap, tap } from 'rxjs';

@@ -36,7 +36,7 @@
     {{ title$ | async | translate }}
     @if (date$ | async; as date) {
     <div class="top-bar__right-content">
-      @if (lang) {
+      @if (languageService.getLanguage() | async; as lang) {
       <button
         mat-flat-button
         (click)="changeLanguage(lang === 'fr-FR' ? 'en-EN' : 'fr-FR')">

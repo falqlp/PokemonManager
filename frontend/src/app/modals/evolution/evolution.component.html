@@ -4,10 +4,12 @@
     <app-display-pokemon-image
       [pokemon]="pokemon"
       type="thumbnails"
+      [dynamicSizing]="true"
       class="evolution__evolving" />
     <app-display-pokemon-image
       [pokemon]="data.evolution.evolution"
       [shiny]="pokemon.shiny"
+      [dynamicSizing]="true"
       type="thumbnails"
       class="evolution__evolved" />
   </div>
