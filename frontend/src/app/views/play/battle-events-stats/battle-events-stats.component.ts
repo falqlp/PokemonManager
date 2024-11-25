@@ -19,15 +19,10 @@ import {
 import { MatOption, MatSelect } from '@angular/material/select';
 import { CompetitionQueriesService } from '../../../services/queries/competition-queries.service';
 import { TranslateModule } from '@ngx-translate/core';
-import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TrainerQueriesService } from '../../../services/queries/trainer-queries.service';
 import { AsyncPipe } from '@angular/common';
-import {
-  MatAutocomplete,
-  MatAutocompleteTrigger,
-} from '@angular/material/autocomplete';
-import { MatInput } from '@angular/material/input';
 import {
   MatButtonToggle,
   MatButtonToggleGroup,
@@ -59,9 +54,6 @@ import { MatTooltip } from '@angular/material/tooltip';
     MatSuffix,
     MatIcon,
     AsyncPipe,
-    MatAutocomplete,
-    MatAutocompleteTrigger,
-    MatInput,
     MatLabel,
     MatButtonToggleGroup,
     MatButtonToggle,
@@ -71,7 +63,6 @@ import { MatTooltip } from '@angular/material/tooltip';
     MatEndDate,
     MatStartDate,
     MatSlideToggle,
-    MatButton,
     MatTooltip,
   ],
   templateUrl: './battle-events-stats.component.html',

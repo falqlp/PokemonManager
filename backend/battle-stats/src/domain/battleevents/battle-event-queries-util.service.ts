@@ -6,6 +6,7 @@ export interface IDamageEventQuery {
   period?: PeriodModel;
   division?: number;
   trainerIds?: string[];
+  pokemonIds?: string[];
 }
 export interface IStatsByPokemon {
   _id: string;
@@ -26,26 +27,61 @@ export default class BattleEventQueriesUtilService {
     query?: IDamageEventQuery,
     on?: boolean,
   ): Record<string, unknown> {
-    const matchStage: Record<string, unknown> = { gameId };
+    let matchStage: Record<string, unknown> = { gameId };
     if (query) {
-      if (query.competitionId) {
-        matchStage.competitionId = query.competitionId;
-      }
-      if (query.trainerIds && query.trainerIds.length !== 0) {
+      matchStage = this.matchStageBase(query, matchStage, on);
+      if (query.pokemonIds) {
         if (on) {
-          matchStage.onTrainerId = { $in: query.trainerIds };
+          matchStage.onPokemonId = { $in: query.pokemonIds };
         } else {
-          matchStage.trainerId = { $in: query.trainerIds };
+          matchStage.pokemonId = { $in: query.pokemonIds };
         }
       }
-      if (query.division) {
-        matchStage.division = query.division;
+    }
+    return matchStage;
+  }
+
+  private matchStageBase(
+    query: IDamageEventQuery,
+    matchStage: Record<string, unknown>,
+    on: boolean,
+  ): Record<string, unknown> {
+    if (query.competitionId) {
+      matchStage.competitionId = query.competitionId;
+    }
+    if (query.trainerIds && query.trainerIds.length !== 0) {
+      if (on) {
+        matchStage.onTrainerId = { $in: query.trainerIds };
+      } else {
+        matchStage.trainerId = { $in: query.trainerIds };
       }
-      if (query.period) {
-        matchStage.date = {
-          $gte: query.period.startDate,
-          $lt: query.period.endDate,
-        };
+    }
+    if (query.division) {
+      matchStage.division = query.division;
+    }
+    if (query.period) {
+      matchStage.date = {
+        $gte: new Date(query.period.startDate),
+        $lt: new Date(query.period.endDate),
+      };
+    }
+    return matchStage;
+  }
+
+  public getMatchStageBattleParticipation(
+    gameId: string,
+    query?: IDamageEventQuery,
+    on?: boolean,
+  ): Record<string, unknown> {
+    let matchStage: Record<string, unknown> = { gameId };
+    if (query) {
+      matchStage = this.matchStageBase(query, matchStage, on);
+      if (query.pokemonIds) {
+        if (on) {
+          matchStage.onPokemonId = { $in: query.pokemonIds };
+        } else {
+          matchStage.pokemonIds = { $in: query.pokemonIds };
+        }
       }
     }
     return matchStage;

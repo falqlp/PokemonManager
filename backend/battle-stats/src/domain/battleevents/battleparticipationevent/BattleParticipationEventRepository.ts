@@ -28,7 +28,12 @@ export default class BattleParticipationEventRepository extends CompleteReposito
   ): Promise<IStatsByPokemon[]> {
     return this.schema
       .aggregate<IStatsByPokemon>()
-      .match(this.battleEventQueriesUtilService.getMatchStage(gameId, query))
+      .match(
+        this.battleEventQueriesUtilService.getMatchStageBattleParticipation(
+          gameId,
+          query,
+        ),
+      )
       .unwind('$pokemonIds')
       .group({
         _id: '$pokemonIds',

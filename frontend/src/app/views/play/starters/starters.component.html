@@ -11,6 +11,7 @@
     (click)="selectPokemon(starter)">
     <app-display-pokemon-image
       [pokemon]="starter"
+      [dynamicSizing]="true"
       [disabledClick]="true"
       type="max-size" />
   </mat-grid-tile>
