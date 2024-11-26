@@ -66,7 +66,7 @@ describe('BattleService', () => {
       .send.mockImplementation(() => throwError(mockError));
 
     await expect(service.simulateBattle(mockBattle, mockDate)).rejects.toThrow(
-      'Kafka Error',
+      'Error while simulating battle',
     );
   });
 });
