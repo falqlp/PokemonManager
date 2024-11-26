@@ -43,14 +43,18 @@ export class NewSeasonService {
     await this.pokemonRepository.archiveOldPokemon(game);
 
     const noPokemonTrainers = await this.trainerRepository.list({
-      custom: { gameId: game._id, pokemons: { $size: 0 } },
+      custom: {
+        gameId: game._id,
+        pokemons: { $size: 0 },
+        division: { $exists: true },
+      },
     });
     const nbTrainersToGenerateByDivision: number[] = [0, 0, 0];
     noPokemonTrainers.forEach((trainer) => {
       nbTrainersToGenerateByDivision[trainer.division - 1] += 1;
     });
     for (const trainer of noPokemonTrainers) {
-      await this.trainerService.deleteTrainer(trainer);
+      await this.trainerService.archiveTrainer(trainer);
     }
 
     const championships: ICompetition[] = [];
@@ -66,7 +70,11 @@ export class NewSeasonService {
       championships,
     );
     const trainers = await this.trainerRepository.list(
-      {},
+      {
+        custom: {
+          division: { $exists: true },
+        },
+      },
       { gameId: game._id },
     );
     const trainersByDivision: ITrainer[][] =

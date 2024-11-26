@@ -1,3 +1,13 @@
+<h3 mat-dialog-title>
+  {{ 'Battle' | translate }} {{ 'AGAINST' | translate }}
+  <pm-trainer-name [trainer]="opponent" />
+  {{
+    {
+      trainerId: opponent._id,
+      competitionId: data.battle.competition._id
+    } | ranking
+  }}
+</h3>
 <mat-tab-group mat-dialog-content class="battle-strategy-modal">
   <mat-tab [label]="'BATTLE-STRATEGY' | translate">
     <pm-battle-strategy [form]="strategyForms" />

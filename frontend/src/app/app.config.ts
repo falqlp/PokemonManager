@@ -1,4 +1,3 @@
-// AoT requires an exported function for factories
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import {
   HTTP_INTERCEPTORS,
@@ -11,17 +10,17 @@ import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
-import { DateAdapter } from '@angular/material/core';
-import {
-  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
-  MatMomentDateModule,
-  MomentDateAdapter,
-} from '@angular/material-moment-adapter';
 import { HeaderInterceptor } from './core/header-interceptor.service';
 import { register } from 'swiper/element/bundle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxEchartsModule } from 'ngx-echarts';
+import {
+  MAT_DATE_LOCALE,
+  provideNativeDateAdapter,
+} from '@angular/material/core';
+import { LanguageService } from './services/language.service';
+import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 
 register();
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
@@ -45,7 +44,6 @@ export const appConfig: ApplicationConfig = {
       TranslateModule.forRoot(provideTranslation()),
       MatDialogModule,
       MatSnackBarModule,
-      MatMomentDateModule,
       RouterModule.forRoot(routes, {
         bindToComponentInputs: true,
       }),
@@ -53,12 +51,15 @@ export const appConfig: ApplicationConfig = {
         echarts: () => import('echarts'),
       }),
     ]),
-    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
     {
-      provide: DateAdapter,
-      useClass: MomentDateAdapter,
-      deps: [MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+      provide: MAT_DATE_LOCALE,
+      useFactory: (languageService: LanguageService): string => {
+        return languageService.getCurrentLang();
+      },
+      deps: [LanguageService],
     },
+    provideMomentDateAdapter(undefined, { useUtc: true }),
+    provideNativeDateAdapter(),
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
   ],
 };

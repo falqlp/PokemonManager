@@ -19,15 +19,10 @@ import {
 import { MatOption, MatSelect } from '@angular/material/select';
 import { CompetitionQueriesService } from '../../../services/queries/competition-queries.service';
 import { TranslateModule } from '@ngx-translate/core';
-import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TrainerQueriesService } from '../../../services/queries/trainer-queries.service';
 import { AsyncPipe } from '@angular/common';
-import {
-  MatAutocomplete,
-  MatAutocompleteTrigger,
-} from '@angular/material/autocomplete';
-import { MatInput } from '@angular/material/input';
 import {
   MatButtonToggle,
   MatButtonToggleGroup,
@@ -59,9 +54,6 @@ import { MatTooltip } from '@angular/material/tooltip';
     MatSuffix,
     MatIcon,
     AsyncPipe,
-    MatAutocomplete,
-    MatAutocompleteTrigger,
-    MatInput,
     MatLabel,
     MatButtonToggleGroup,
     MatButtonToggle,
@@ -71,7 +63,6 @@ import { MatTooltip } from '@angular/material/tooltip';
     MatEndDate,
     MatStartDate,
     MatSlideToggle,
-    MatButton,
     MatTooltip,
   ],
   templateUrl: './battle-events-stats.component.html',
@@ -90,7 +81,7 @@ export class BattleEventsStatsComponent implements OnInit {
   private readonly timeService: TimeService = inject(TimeService);
   protected readonly indicators = Object.values(BattleEventQueryType);
 
-  protected readonly divisions = [3];
+  protected readonly divisions = [1, 2, 3];
   protected competitions = signal<CompetitionModel[]>([]);
   protected trainers = signal<TrainerModel[]>([]);
   protected periods = signal<PeriodModel[]>([]);
@@ -135,11 +126,20 @@ export class BattleEventsStatsComponent implements OnInit {
     this.trainerQueriesService.list().subscribe((result) => {
       this.trainers.set(result);
     });
-    this.queryForm.controls.context.controls.division.valueChanges
+    this.timeService
+      .getActualDate()
       .pipe(
-        switchMap((value) => {
+        switchMap((date) => {
+          return this.queryForm.controls.context.controls.division.valueChanges.pipe(
+            map((value) => ({ value, date }))
+          );
+        }),
+        switchMap(({ value, date }) => {
           return this.competitionQueriesService.list({
-            custom: { division: value },
+            custom: {
+              division: value,
+              startDate: { $gte: new Date(date.getUTCFullYear(), 0, 1) },
+            },
           });
         }),
         switchMap((competitions) => {

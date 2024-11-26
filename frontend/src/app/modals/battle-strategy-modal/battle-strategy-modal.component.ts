@@ -17,6 +17,7 @@ import {
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
+  MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
@@ -36,6 +37,8 @@ import { RouterService } from '../../services/router.service';
 import { DialogButtonsModel } from '../generic-dialog/generic-dialog.models';
 import { BattleInstanceQueriesService } from '../../services/queries/battle-instance-queries.service';
 import { GenericDialogComponent } from '../generic-dialog/generic-dialog.component';
+import { TrainerNameComponent } from '../../components/trainer-name/trainer-name.component';
+import { RankingPipe } from '../../pipes/ranking.pipe';
 
 @Component({
   selector: 'pm-battle-strategy-modal',
@@ -57,6 +60,9 @@ import { GenericDialogComponent } from '../generic-dialog/generic-dialog.compone
     MatSlideToggle,
     ReactiveFormsModule,
     SpinnerComponent,
+    MatDialogTitle,
+    TrainerNameComponent,
+    RankingPipe,
   ],
   templateUrl: './battle-strategy-modal.component.html',
   styleUrl: './battle-strategy-modal.component.scss',

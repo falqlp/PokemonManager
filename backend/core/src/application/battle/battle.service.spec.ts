@@ -59,14 +59,14 @@ describe('BattleService', () => {
     } as IBattleInstance;
 
     const mockDate = new Date();
-    const mockError = new Error('Kafka Error');
+    const mockError = new Error('Error while simulating battle');
 
     mockKafkaClientService
       .getClient()
       .send.mockImplementation(() => throwError(mockError));
 
     await expect(service.simulateBattle(mockBattle, mockDate)).rejects.toThrow(
-      'Kafka Error',
+      'Error while simulating battle',
     );
   });
 });

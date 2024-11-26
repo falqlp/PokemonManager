@@ -26,13 +26,14 @@ describe('BattleWebsocketGateway', () => {
   });
 
   it('should join the client to the correct rooms on init', () => {
-    const clientMock: Socket = { join: jest.fn() } as any;
+    const clientMock: Socket = { join: jest.fn(), send: jest.fn() } as any;
     const payload = { battleId: 'battle123', trainerId: 'trainer456' };
 
     gateway.initClient(clientMock, payload);
 
     expect(clientMock.join).toHaveBeenCalledWith('battle123');
     expect(clientMock.join).toHaveBeenCalledWith('trainer456');
+    expect(clientMock.send).toHaveBeenCalledWith({ type: 'init' });
   });
 
   it('should send a message to the specified trainers', () => {

@@ -6,20 +6,21 @@ import type { TrainerModel } from 'src/app/models/TrainersModels/trainer.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { PokemonQueriesService } from 'src/app/services/queries/pokemon-queries.service';
 import { AddCalendarEventComponent } from '../../../modals/add-calendar-event/add-calendar-event.component';
-import { filter } from 'rxjs';
+import { filter, switchMap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { TranslateModule } from '@ngx-translate/core';
 import { DisplayPokemonImageComponent } from '../../../components/display-pokemon-image/display-pokemon-image.component';
 import { DisplayTypeComponent } from '../../../components/display-type/display-type.component';
-import { AsyncPipe } from '@angular/common';
-import { TrainerNameComponent } from '../../../components/trainer-name/trainer-name.component';
 import { RankingComponent } from '../../../components/ranking/ranking.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
-import { MoveComponent } from '../../../components/move/move.component';
 import { SimpleDisplayStatsComponent } from '../../../components/simple-display-stats/simple-display-stats.component';
 import { TournamentRankingComponent } from '../../../components/ranking/tournament-ranking/tournament-ranking.component';
 import { GroupsRankingComponent } from '../../../components/ranking/groups-ranking/groups-ranking.component';
+import { BattleEventsQueriesService } from '../../../services/queries/battle-events-queries.service';
+import { BattleEventQueryType } from '../../../models/battle-events.model';
+import { TimeService } from '../../../services/time.service';
+import { NumberFormatterPipe } from '../../../pipes/number-formatter.pipe';
 
 @Component({
   selector: 'app-home',
@@ -29,31 +30,55 @@ import { GroupsRankingComponent } from '../../../components/ranking/groups-ranki
   imports: [
     DisplayPokemonImageComponent,
     DisplayTypeComponent,
-    AsyncPipe,
-    TrainerNameComponent,
     RankingComponent,
     MatTabsModule,
     MatButtonModule,
     TranslateModule,
-    MoveComponent,
     SimpleDisplayStatsComponent,
     TournamentRankingComponent,
     GroupsRankingComponent,
+    NumberFormatterPipe,
   ],
 })
 export class HomeComponent implements OnInit {
   protected dialog = inject(MatDialog);
   protected playerService = inject(PlayerService);
   protected pokemonService = inject(PokemonQueriesService);
+  private readonly battleEventsQueriesService: BattleEventsQueriesService =
+    inject(BattleEventsQueriesService);
+
+  private readonly timeService: TimeService = inject(TimeService);
 
   protected player = signal<TrainerModel>(null);
   protected readonly environment = environment;
+  protected statsByPokemon: Record<string, number> = {};
 
   public ngOnInit(): void {
     this.playerService.player$
-      .pipe(filter((player) => !!player))
-      .subscribe((player) => {
-        this.player.set(player);
+      .pipe(
+        filter((player) => !!player),
+        switchMap((player) => {
+          this.player.set(player);
+          return this.timeService.getActualDate();
+        }),
+        switchMap((actualDate) => {
+          return this.battleEventsQueriesService.getBattleEventStats(
+            BattleEventQueryType.TOTAL_DAMAGE,
+            true,
+            {
+              period: {
+                startDate: new Date(actualDate.getFullYear(), 0, 1),
+                endDate: new Date(actualDate.getFullYear() + 1, 0, 1),
+              },
+              pokemonIds: this.player().pokemons.map((pokemon) => pokemon._id),
+            }
+          );
+        })
+      )
+      .subscribe((stats) => {
+        stats.forEach((stat) => {
+          this.statsByPokemon[stat.pokemon._id] = stat.value;
+        });
       });
   }
 

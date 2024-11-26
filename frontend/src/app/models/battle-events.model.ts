@@ -18,6 +18,7 @@ export interface DamageEventQueryModel {
   period?: PeriodModel;
   trainerIds?: string[];
   division?: number;
+  pokemonIds?: string[];
 }
 
 export type SortOrder = -1 | 1;

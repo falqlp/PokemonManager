@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
 import PokemonPopulater from './PokemonPopulater';
 import { IGame } from '../game/Game';
 import { addYears } from 'shared/utils/DateUtils';
-import PcStorage from '../trainer/pcStorage/PcStorage';
+import PcStorage, { IPcStorage } from '../trainer/pcStorage/PcStorage';
 import { InjectModel } from '@nestjs/mongoose';
 import { IPokemon } from 'shared/models/pokemon/pokemon-models';
 import Pokemon from './Pokemon';
@@ -21,6 +21,8 @@ class PokemonRepository extends CompleteRepository<IPokemon> {
     private readonly trainerSchema: Model<ITrainer>,
     @InjectModel(Nursery.modelName)
     private readonly nurserySchema: Model<INursery>,
+    @InjectModel(PcStorage.modelName)
+    private readonly pcStorageSchema: Model<IPcStorage>,
   ) {
     super(schema, pokemonPopulater);
   }
@@ -51,13 +53,13 @@ class PokemonRepository extends CompleteRepository<IPokemon> {
       { gameId: game._id },
     );
     const oldPokemonIds = oldPokemons.map((pokemon) => pokemon._id);
-    await Trainer.updateMany(
+    await this.trainerSchema.updateMany(
       { gameId: game._id },
       {
         $pull: { pokemons: { $in: oldPokemonIds } },
       },
     );
-    await PcStorage.updateMany(
+    await this.pcStorageSchema.updateMany(
       { gameId: game._id },
       {
         $pull: { storage: { pokemon: { $in: oldPokemonIds } } },
