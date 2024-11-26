@@ -62,7 +62,6 @@ export class HomeComponent implements OnInit {
           return this.timeService.getActualDate();
         }),
         switchMap((actualDate) => {
-          Date.UTC(actualDate.getUTCFullYear(), 0, 1);
           return this.battleEventsQueriesService.getBattleEventStats(
             BattleEventQueryType.TOTAL_DAMAGE,
             true,

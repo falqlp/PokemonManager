@@ -26,6 +26,7 @@ import {
   combineLatest,
   filter,
   first,
+  map,
   Observable,
   startWith,
   switchMap,
@@ -118,6 +119,9 @@ export class NewBattleComponent implements OnInit, OnDestroy {
             battleId: this.id,
             trainerId: player._id,
           });
+          return this.websocketEventService.init$.pipe(map(() => player));
+        }),
+        switchMap((player) => {
           return this.battleQueriesService.initTrainer(player._id, this.id);
         }),
         takeUntilDestroyed(this.destroyRef)

@@ -81,7 +81,7 @@ export class BattleEventsStatsComponent implements OnInit {
   private readonly timeService: TimeService = inject(TimeService);
   protected readonly indicators = Object.values(BattleEventQueryType);
 
-  protected readonly divisions = [3];
+  protected readonly divisions = [1, 2, 3];
   protected competitions = signal<CompetitionModel[]>([]);
   protected trainers = signal<TrainerModel[]>([]);
   protected periods = signal<PeriodModel[]>([]);
@@ -126,11 +126,20 @@ export class BattleEventsStatsComponent implements OnInit {
     this.trainerQueriesService.list().subscribe((result) => {
       this.trainers.set(result);
     });
-    this.queryForm.controls.context.controls.division.valueChanges
+    this.timeService
+      .getActualDate()
       .pipe(
-        switchMap((value) => {
+        switchMap((date) => {
+          return this.queryForm.controls.context.controls.division.valueChanges.pipe(
+            map((value) => ({ value, date }))
+          );
+        }),
+        switchMap(({ value, date }) => {
           return this.competitionQueriesService.list({
-            custom: { division: value },
+            custom: {
+              division: value,
+              startDate: { $gte: new Date(date.getUTCFullYear(), 0, 1) },
+            },
           });
         }),
         switchMap((competitions) => {

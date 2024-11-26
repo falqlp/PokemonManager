@@ -46,16 +46,15 @@
             pokemon.nickname ?? pokemon.basePokemon.name | translate
           }}</span>
         </div>
-        <!--        <div class="home__team__pokemons__pokemon__moves">-->
-        <!--          @for (move of pokemon.moves; track move._id) {-->
-        <!--          <pm-move [move]="move" />-->
-        <!--          }-->
-        <!--        </div>-->
         <pm-simple-display-stats [pokemon]="pokemon" />
-        <span>
-          {{ statsByPokemon[pokemon._id] ?? 0 | numberFormatter }}
-          {{ 'TOTAL_DAMAGE' | translate }}/{{ 'BATTLE' | translate }}
-        </span>
+        <div class="home__team__pokemons__pokemon__stats">
+          <h3>
+            {{ statsByPokemon[pokemon._id] ?? 0 | numberFormatter }}
+          </h3>
+          <span
+            >{{ 'TOTAL_DAMAGE' | translate }} / {{ 'BATTLE' | translate }}</span
+          >
+        </div>
       </div>
       } }
     </div>

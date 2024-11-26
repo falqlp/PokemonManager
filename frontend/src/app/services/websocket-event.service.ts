@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, filter, Observable } from 'rxjs';
+import { BehaviorSubject, filter, Observable, Subject } from 'rxjs';
 import { PokemonBaseModel } from '../models/PokemonModels/pokemonBase.model';
 import { TrainerModel } from '../models/TrainersModels/trainer.model';
 import { WebSocketModel } from './websocket.service';
@@ -124,6 +124,9 @@ export class WebsocketEventService {
   public updateBattleStatusEvent$: Observable<BattleStatus> =
     this.updateBattleStatusEventSubject.asObservable();
 
+  private initSubject = new Subject<void>();
+  public init$ = this.initSubject.asObservable();
+
   public handleMessage(message: WebSocketModel): void {
     this.eventMap[message.type](message.payload);
   }
@@ -182,6 +185,10 @@ export class WebsocketEventService {
     this.updateBattleStatusEventSubject.next(payload);
   };
 
+  private initEvent = (): void => {
+    this.initSubject.next();
+  };
+
   private eventMap: Record<string, (payload?: any) => void> = {
     updatePlayer: this.updatePlayerEvent,
     connexion: console.log,
@@ -198,5 +205,6 @@ export class WebsocketEventService {
     simulating: this.simulatingEvent,
     updateGame: this.updateGameEvent,
     updateBattleStatus: this.updateBattleStatusEvent,
+    init: this.initEvent,
   };
 }

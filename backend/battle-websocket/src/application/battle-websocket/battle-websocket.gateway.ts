@@ -26,6 +26,7 @@ export class BattleWebsocketGateway {
   ): void {
     client.join(payload.battleId);
     client.join(payload.trainerId);
+    client.send({ type: 'init' });
   }
 
   public sendMessageToTrainers(
