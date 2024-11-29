@@ -1,16 +1,16 @@
-import { Inject, Injectable, Logger, OnModuleInit } from "@nestjs/common";
-import { Model } from "mongoose";
-import { InjectModel } from "@nestjs/mongoose";
-import { Version } from "./domain/version.schema";
-import * as semver from "semver";
-import { MigrationScript } from "./migration-script/MigrationScript";
+import { Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { Version } from './domain/version.schema';
+import * as semver from 'semver';
+import { MigrationScript } from './migration-script/MigrationScript';
 
 @Injectable()
 export class AppService implements OnModuleInit {
-  private maxVersion: string = "1.0.0";
+  private maxVersion: string = '1.0.0';
   constructor(
     @InjectModel(Version.name) private versionModel: Model<Version>,
-    @Inject("ALL_SERVICES") private readonly services: MigrationScript[],
+    @Inject('ALL_SERVICES') private readonly services: MigrationScript[],
   ) {}
 
   async onModuleInit(): Promise<any> {
@@ -53,10 +53,10 @@ export class AppService implements OnModuleInit {
     if (
       !currentVersion ||
       semver.lt(currentVersion, migration.version) ||
-      migration.version === "0.0.0"
+      migration.version === '0.0.0'
     ) {
       await migration.run();
-      Logger.log("Success " + migration.name);
+      Logger.log('Success ' + migration.name);
     }
     if (semver.lt(currentVersion, migration.version)) {
       this.maxVersion = migration.version;
