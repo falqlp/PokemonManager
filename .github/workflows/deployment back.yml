@@ -15,32 +15,55 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Vérifier le code source
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '20'
+      # Construire les images Docker
+      - name: Build Docker images
+        run: |
+          docker build -t core ./backend/core
+          docker build -t battle ./backend/battle
+          docker build -t battle-stats ./backend/battle-stats
+          docker build -t battle-websocket ./backend/battle-websocket
+          docker build -t nginx ./backend/nginx
 
-      - name: Install dependencies
-        run: cd backend && npm install
-
-      - name: Build
-        run: cd backend && npm run build
-
+      # Configurer SSH pour se connecter à la VM
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Clean directory on VM except .env
+      # Créer les répertoires nécessaires sur la VM
+      - name: Create necessary directories for Docker volumes
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "sudo find ${{ secrets.DEPLOY_PATH }} -type f ! -name '.env' ! -path '*/.ssh/*' -delete"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "
+          mkdir -p ${{ secrets.DEPLOY_PATH }}/kafka/zookeeper_data/zookeeper_data &&
+          mkdir -p ${{ secrets.DEPLOY_PATH }}/kafka/zookeeper_data/zookeeper_log &&
+          mkdir -p ${{ secrets.DEPLOY_PATH }}/kafka/kafka-data
+          "
 
+      # Nettoyer les fichiers sur la VM sauf .env et les volumes Docker
+      - name: Clean directory on VM except .env and volumes
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "
+          sudo find ${{ secrets.DEPLOY_PATH }} -type f ! -name '.env' ! -path '*/.ssh/*' \
+          ! -path '*/kafka/zookeeper_data/*' ! -path '*/kafka/kafka-data/*' -delete
+          "
 
-      - name: Connect to VM and Deploy
-        run: rsync -ah --progress ./backend/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.DEPLOY_PATH }}
+      # Transférer les images Docker vers la VM
+      - name: Save and transfer Docker images
+        run: |
+          docker save core | ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "docker load"
+          docker save battle | ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "docker load"
+          docker save battle-stats | ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "docker load"
+          docker save battle-websocket | ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "docker load"
+          docker save nginx | ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "docker load"
+
+      # Transférer le fichier docker-compose.yml depuis /backend vers la VM
+      - name: Transfer docker-compose.yml
+        run: |
+          scp -o StrictHostKeyChecking=no backend/docker-compose.yml ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.DEPLOY_PATH }}
 
       - name: Restart VM
         run: |
