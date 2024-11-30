@@ -117,7 +117,9 @@ export default class WebsocketUtils {
     trainersIds: string[],
     message: WebsocketMessage,
   ): void {
-    trainersIds = trainersIds.map((trainersId) => trainersId.toString());
+    trainersIds = trainersIds
+      .filter((id) => !!id)
+      .map((trainersId) => trainersId.toString());
     const clients = this.websocketDataService.getClients((client) =>
       trainersIds.includes(client.data.trainerId),
     );

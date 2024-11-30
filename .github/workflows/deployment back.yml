@@ -22,11 +22,10 @@ jobs:
       # Construire les images Docker
       - name: Build Docker images
         run: |
-          docker build -t core ./backend/core
-          docker build -t battle ./backend/battle
-          docker build -t battle-stats ./backend/battle-stats
-          docker build -t battle-websocket ./backend/battle-websocket
-          docker build -t nginx ./backend/nginx
+          docker build -t core -f ./backend/core/Dockerfile ./backend
+          docker build -t battle -f ./backend/battle/Dockerfile ./backend
+          docker build -t battle-stats -f ./backend/battle-stats/Dockerfile ./backend
+          docker build -t battle-websocket -f ./backend/battle-websocket/Dockerfile ./backend
 
       # Configurer SSH pour se connecter à la VM
       - name: Set up SSH
@@ -58,12 +57,14 @@ jobs:
           docker save battle | ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "docker load"
           docker save battle-stats | ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "docker load"
           docker save battle-websocket | ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "docker load"
-          docker save nginx | ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "docker load"
 
       # Transférer le fichier docker-compose.yml depuis /backend vers la VM
-      - name: Transfer docker-compose.yml
+      - name: Transfer docker-compose.yml and nginx.conf
         run: |
-          scp -o StrictHostKeyChecking=no backend/docker-compose.yml ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.DEPLOY_PATH }}
+          scp -o StrictHostKeyChecking=no backend/deployment/docker-compose.yml ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.DEPLOY_PATH }}
+          ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'mkdir -p ~/tmp'
+          scp -o StrictHostKeyChecking=no backend/nginx/prod/nginx.conf ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/tmp/nginx.conf
+          ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'sudo mv ~/tmp/nginx.conf /etc/nginx/'
 
       - name: Restart VM
         run: |

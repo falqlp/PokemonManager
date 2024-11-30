@@ -56,7 +56,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   protected routerService = inject(RouterService);
   private userService = inject(UserService);
   private cacheService = inject(CacheService);
-
   @ViewChild('drawer') public drawer: MatDrawer;
   protected isMobile = false;
   protected topBar$ = this.routerService.topBar();

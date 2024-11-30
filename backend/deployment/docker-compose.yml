@@ -1,0 +1,45 @@
+services:
+  core:
+    image: core:latest
+    network_mode: "host"
+    ports:
+      - "${CORE_PORT}:${CORE_PORT}"
+    env_file:
+      - .env
+    environment:
+      - CORE_PORT=${CORE_PORT}
+      - MONGODB_USERNAME=${MONGODB_USERNAME}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+      - MONGODB_LOCAL=${MONGODB_LOCAL}
+      - FRONT_URL=${FRONT_URL}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+
+  battle-stats:
+    image: battle-stats:latest
+    network_mode: "host"
+    ports:
+      - "${BATTLE_STATS_PORT}:${BATTLE_STATS_PORT}"
+    env_file:
+      - .env
+    environment:
+      - BATTLE_STATS_PORT=${BATTLE_STATS_PORT}
+
+  battle:
+    image: battle:latest
+    network_mode: "host"
+    ports:
+      - "${BATTLE_PORT}:${BATTLE_PORT}"
+    env_file:
+      - .env
+    environment:
+      - BATTLE_PORT=${BATTLE_PORT}
+
+  battle-websocket:
+    image: battle-websocket:latest
+    network_mode: "host"
+    ports:
+      - "${BATTLE_WEBSOCKET_PORT}:${BATTLE_WEBSOCKET_PORT}"
+    env_file:
+      - .env
+    environment:
+      - BATTLE_WEBSOCKET_PORT=${BATTLE_WEBSOCKET_PORT}
