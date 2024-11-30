@@ -1,6 +1,12 @@
 @import 'colors';
 
-@mixin flexbox($justify-content, $level, $flex-direction: row, $padding: 10px) {
+@mixin flexbox(
+  $justify-content,
+  $level,
+  $flex-direction: row,
+  $padding: 10px,
+  $background-opacity: 1
+) {
   display: flex;
   justify-content: $justify-content;
   padding: $padding;
@@ -8,9 +14,9 @@
   align-items: baseline;
   @if $level == 1 {
     border-radius: 4px;
-    background-color: $background-color1;
+    background-color: rgba($background-color1, $background-opacity);
   } @else if $level == 2 {
     border-radius: 8px;
-    background-color: $background-color2;
+    background-color: rgba($background-color2, $background-opacity);
   }
 }

@@ -2,15 +2,29 @@
 
 :host {
   min-height: 100vh;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin: 50px;
 
   .main-page {
     &__top {
-      @include flexbox(center, 2, column, 20px);
+      @include flexbox(center, 1, column, 20px, 0.9);
       align-items: center;
-      gap: 50px;
+      gap: 20px;
       width: auto;
-      margin: 50px;
+      height: calc(100vh - 140px);
+      justify-content: space-between;
+      padding-bottom: 40px;
+      &__bar {
+        height: 5px;
+        background-color: white;
+        width: 50%;
+      }
+      &__paragraph {
+        width: 50%;
+        text-align: center;
+      }
       &__play-button {
         width: 300px;
         height: 100px;
@@ -19,17 +33,25 @@
       }
     }
     &__news {
-      margin: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+      @include flexbox(left, 1, column, 10px, 0.9);
+      height: calc(100vh - 120px);
+
       gap: 10px;
-      &__article {
-        @include flexbox(left, 2, column, 20px);
-        margin: 0;
-        height: fit-content;
-        width: 30vw;
+      &__title {
+        text-align: center;
+        width: 100%;
+      }
+      &__content {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+
+        &__article {
+          @include flexbox(left, 2, column, 20px, 0.8);
+          margin: 0;
+          height: 100%;
+          width: calc(33% - 46px);
+        }
       }
     }
   }

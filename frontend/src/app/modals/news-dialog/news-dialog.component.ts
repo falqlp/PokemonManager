@@ -6,7 +6,7 @@ import { UserService } from '../../services/user.service';
 import { UserQueriesService } from '../../services/queries/user-queries.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { first, switchMap } from 'rxjs';
-import { NewsV11Component } from '../../components/news/news-v1-1/news-v1-1.component';
+import { NewsV12Component } from '../../components/news/news-v1-2/news-v1-2.component';
 
 @Component({
   selector: 'pm-news-dialog',
@@ -15,7 +15,7 @@ import { NewsV11Component } from '../../components/news/news-v1-1/news-v1-1.comp
     MatDialogModule,
     MatButtonModule,
     TranslateModule,
-    NewsV11Component,
+    NewsV12Component,
   ],
   templateUrl: './news-dialog.component.html',
   styleUrl: './news-dialog.component.scss',

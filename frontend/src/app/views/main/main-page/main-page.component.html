@@ -1,6 +1,7 @@
 <div class="main-page__top">
-  <h1 class="main-page__top__title">Pokemon Manager</h1>
-  <p>{{ 'PM_DESC' | translate }}</p>
+  <img src="assets/other/Title.png" alt="title" />
+  <div class="main-page__top__bar"></div>
+  <p class="main-page__top__paragraph">{{ 'PM_DESC' | translate }}</p>
   <button
     class="main-page__top__play-button"
     routerLink="login"
@@ -10,6 +11,9 @@
   </button>
 </div>
 <div class="main-page__news">
-  <h1 class="main-page__news__article">News</h1>
-  <pm-news-v1-1 class="main-page__news__article" />
+  <h1 class="main-page__news__title">News</h1>
+  <div class="main-page__news__content">
+    <pm-news-v1-2 class="main-page__news__content__article" />
+    <pm-news-v1-1 class="main-page__news__content__article" />
+  </div>
 </div>
