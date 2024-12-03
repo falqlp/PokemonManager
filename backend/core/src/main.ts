@@ -10,7 +10,6 @@ async function bootstrap(): Promise<void> {
     certPath:
       '/etc/letsencrypt/live/pokemon-manager.francecentral.cloudapp.azure.com/fullchain.pem',
   };
-
   const httpsOptions =
     fs.existsSync(sslOptions.keyPath) && fs.existsSync(sslOptions.certPath)
       ? {

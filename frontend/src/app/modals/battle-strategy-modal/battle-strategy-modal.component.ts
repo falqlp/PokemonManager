@@ -17,6 +17,7 @@ import {
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
+  MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
@@ -72,6 +73,10 @@ export class BattleStrategyModalComponent implements OnInit {
 
   private readonly playerService: PlayerService = inject(PlayerService);
   private readonly routerService = inject(RouterService);
+  private readonly dialogRef = inject(
+    MatDialogRef<BattleStrategyModalComponent>
+  );
+
   private readonly dialog = inject(MatDialog);
   private readonly battleInstanceQueriesService = inject(
     BattleInstanceQueriesService
@@ -135,9 +140,10 @@ export class BattleStrategyModalComponent implements OnInit {
   protected goToBattle(): void {
     this.save()
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() =>
-        this.routerService.navigate(['play', 'battle', this.data.battle._id])
-      );
+      .subscribe(() => {
+        this.dialogRef.close();
+        this.routerService.navigate(['play', 'battle', this.data.battle._id]);
+      });
   }
 
   protected goToPc(): void {
