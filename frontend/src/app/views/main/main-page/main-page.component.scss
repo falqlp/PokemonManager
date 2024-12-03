@@ -16,6 +16,9 @@
       height: calc(100vh - 140px);
       justify-content: space-between;
       padding-bottom: 40px;
+      &__title {
+        width: 100%;
+      }
       &__bar {
         height: 5px;
         background-color: white;
