@@ -26,8 +26,8 @@ export default class DrainMoveMigration extends MigrationScript {
     progressBar.start(moves.length, 0);
 
     const limiter = new Bottleneck({
-      maxConcurrent: 200,
-      minTime: 1,
+      maxConcurrent: 100,
+      minTime: 5,
     });
 
     const movePromises = moves.map((move) =>
