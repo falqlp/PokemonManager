@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { createTransport } from 'nodemailer';
 import { MailOptions } from 'nodemailer/lib/smtp-pool';
-
-import fs from 'fs';
-import path from 'node:path';
 import { IUser } from '../../domain/user/User';
+import { modifyPasswordHtmlFR } from './fr-FR/modify-password.html';
+import { verifyMailHtmlFR } from './fr-FR/verify-mail.html';
+import { verifyMailHtmlEN } from './en-EN/verify-mail.html';
+import { modifyPasswordHtmlEN } from './en-EN/modify-password.html';
 
 @Injectable()
 export class MailService {
@@ -21,13 +22,7 @@ export class MailService {
   }
 
   public sendVerifyUser(user: IUser): void {
-    let content = fs.readFileSync(
-      path.join(
-        __dirname.replace('\\dist', '').replace('/dist', ''),
-        (user.lang === 'fr-FR' ? 'fr-FR' : 'en-EN') + '/verify-mail.html',
-      ),
-      'utf-8',
-    );
+    let content = user.lang === 'fr-FR' ? verifyMailHtmlFR : verifyMailHtmlEN;
     content = content.replace('username', user.username);
     content = content.replace(
       'link',
@@ -54,13 +49,8 @@ export class MailService {
     user: IUser,
     lang: string,
   ): void {
-    let content = fs.readFileSync(
-      path.join(
-        __dirname.replace('\\dist', '').replace('/dist', ''),
-        (user.lang === 'fr-FR' ? 'fr-FR' : 'en-EN') + '/modify-password.html',
-      ),
-      'utf-8',
-    );
+    let content =
+      user.lang === 'fr-FR' ? modifyPasswordHtmlFR : modifyPasswordHtmlEN;
     content = content.replace('username', user.username);
     content = content.replace(
       'link',

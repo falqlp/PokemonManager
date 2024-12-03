@@ -1,4 +1,4 @@
-<body
+export const modifyPasswordHtmlEN = `<body
   style="
     font-family: &quot;Poppins&quot;, sans-serif;
     background-color: #1f1c3d;
@@ -20,7 +20,7 @@
         height: 20px;
       "
       href="link"
-      >Verify account</a
+      >Modify password</a
     >
   </div>
-</body>
+</body>`;
