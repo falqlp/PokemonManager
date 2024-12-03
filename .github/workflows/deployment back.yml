@@ -37,9 +37,7 @@ jobs:
       - name: Create necessary directories for Docker volumes
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "
-          mkdir -p ${{ secrets.DEPLOY_PATH }}/kafka/zookeeper_data/zookeeper_data &&
-          mkdir -p ${{ secrets.DEPLOY_PATH }}/kafka/zookeeper_data/zookeeper_log &&
-          mkdir -p ${{ secrets.DEPLOY_PATH }}/kafka/kafka-data
+          docker system prune -a --volumes -f
           "
 
       # Nettoyer les fichiers sur la VM sauf .env et les volumes Docker
