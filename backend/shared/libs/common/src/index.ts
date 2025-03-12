@@ -7,3 +7,4 @@ export * from './domain/EmptyPopulater';
 export * from './domain/ReadOnlyRepository';
 
 export * from './api/read-only.controller';
+export * from './api/shared-app.controller';

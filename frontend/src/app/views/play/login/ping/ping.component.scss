@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ping__dot--red,
+.ping__dot--green {
+  padding: 10px;
+  border-radius: 10px;
+  width: 0;
+  height: 0;
+}
+.ping__dot--green {
+  background-color: green;
+}
+.ping__dot--red {
+  background-color: red;
+}

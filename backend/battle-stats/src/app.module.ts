@@ -15,6 +15,7 @@ import { join } from 'path';
 import { ConfigModule } from '@nestjs/config';
 import ColorService from './application/color/color.service';
 import { EmptyPopulater } from 'shared/common';
+import { AppController } from './app.controller';
 import BattleEventQueriesUtilService from './domain/battleevents/battle-event-queries-util.service';
 
 @Module({
@@ -39,6 +40,7 @@ import BattleEventQueriesUtilService from './domain/battleevents/battle-event-qu
     BattleEventsController,
     DamageEventController,
     BattleParticipationController,
+    AppController,
   ],
   providers: [
     KafkaClientService,

@@ -25,4 +25,19 @@ export default class BattleService {
         ),
     );
   }
+
+  public ping(): Promise<Date> {
+    return firstValueFrom(
+      this.kafkaClientService
+        .getClient()
+        .send(NeedReplyTopics.ping, {})
+        .pipe(
+          catchError(() => {
+            return throwError(
+              () => new Error('Ping error on Battle from core'),
+            );
+          }),
+        ),
+    );
+  }
 }

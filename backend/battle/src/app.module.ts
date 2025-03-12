@@ -14,6 +14,8 @@ import BattleState from './domain/BattleState';
 import { MongooseModule } from '@nestjs/mongoose';
 import BattleStateRepository from './domain/BattleStateRepository';
 import { EmptyPopulater } from 'shared/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -31,7 +33,7 @@ import { EmptyPopulater } from 'shared/common';
     }),
     MongooseModule.forFeature(mapSchemas([BattleState])),
   ],
-  controllers: [BattleController],
+  controllers: [BattleController, AppController],
   providers: [
     BattleCalcService,
     BattleService,
@@ -42,6 +44,7 @@ import { EmptyPopulater } from 'shared/common';
     BattleWebsocketService,
     BattleStateRepository,
     EmptyPopulater,
+    AppService,
   ],
 })
 export class AppModule {}
