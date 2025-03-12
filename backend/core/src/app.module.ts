@@ -9,6 +9,8 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { WebsocketModule } from './websocket/websocket.module';
 import { join } from 'path';
+import { AppService } from './app.service';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -33,7 +35,9 @@ import { join } from 'path';
       provide: APP_FILTER,
       useClass: HttpExceptionFilter,
     },
+    AppService,
   ],
+  controllers: [AppController],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): void {

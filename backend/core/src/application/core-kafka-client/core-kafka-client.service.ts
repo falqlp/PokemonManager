@@ -3,6 +3,7 @@ import { Client, ClientKafka, Transport } from '@nestjs/microservices';
 
 export enum NeedReplyTopics {
   simulateBattle = 'battle.simulateBattle',
+  ping = 'battle.ping',
 }
 
 @Injectable()

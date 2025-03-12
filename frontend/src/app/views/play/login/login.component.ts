@@ -22,6 +22,7 @@ import {
   NotificationType,
   NotifierService,
 } from '../../../services/notifier.service';
+import { PingComponent } from './ping/ping.component';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +34,7 @@ import {
     TranslateModule,
     ReactiveFormsModule,
     MatButtonModule,
+    PingComponent,
   ],
 })
 export class LoginComponent implements OnInit {

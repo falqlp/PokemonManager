@@ -1,0 +1,6 @@
+@if (status === 'Offline'){
+<div class="ping__dot--red"></div>
+{{ 'OFFLINE' | translate }}
+} @else {
+<div class="ping__dot--green"></div>
+{{ 'ONLINE' | translate }}: {{ ping }} ms }

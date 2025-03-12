@@ -60,5 +60,6 @@ import PcStorageMapper from './pcStorage/PcStorageMapper';
     TrainerController,
     UserController,
   ],
+  exports: [ApplicationModule],
 })
 export class ApiModule {}

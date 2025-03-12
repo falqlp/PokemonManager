@@ -3,7 +3,7 @@ import {
   KafkaClientService,
   NeedReplyTopics,
 } from '../core-interface/kafka-client.service';
-import { firstValueFrom } from 'rxjs';
+import { catchError, firstValueFrom, throwError } from 'rxjs';
 import { IBattleState } from '../battle/BattleInterfaces';
 
 @Injectable()
@@ -90,5 +90,20 @@ export default class BattleWebsocketService {
     this.kafkaClientService
       .getClient()
       .emit('updateNextRoundStatus', trainerIds);
+  }
+
+  public ping(): Promise<Date> {
+    return firstValueFrom(
+      this.kafkaClientService
+        .getClient()
+        .send(NeedReplyTopics.battleWebsocketPing, {})
+        .pipe(
+          catchError(() => {
+            return throwError(
+              () => new Error('Ping error on Battle websocket from Battle'),
+            );
+          }),
+        ),
+    );
   }
 }

@@ -12,6 +12,8 @@ export enum NeedReplyTopics {
   addAskNextRoundLoop = 'addAskNextRoundLoop',
   resetNextRoundStatus = 'resetNextRoundStatus',
   setLoopMode = 'setLoopMode',
+  battleStatsPing = 'battle-stats.ping',
+  battleWebsocketPing = 'battle-websocket.ping',
 }
 
 @Injectable()
